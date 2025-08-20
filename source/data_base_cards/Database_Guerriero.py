@@ -34,7 +34,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+"quantita": 0
     },
     
     "Bauhaus Venusian Ranger": {
@@ -69,7 +70,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Ilian Paladini": {
@@ -104,7 +106,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Bauhaus Ducal Militia": {
@@ -130,7 +133,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === CAPITOL ===
@@ -157,7 +161,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+    "quantita": 0
     },
     
     "Mitch Hunter": {
@@ -200,7 +205,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Capitol Purple Shark": {
@@ -235,7 +241,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === CYBERTRONIC ===
@@ -271,7 +278,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Max Steiner": {
@@ -306,7 +314,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Cybertronic Machinators": {
@@ -341,7 +350,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === IMPERIALE ===
@@ -368,7 +378,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Nathaniel Durand": {
@@ -411,7 +422,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Imperial Blood Beret": {
@@ -446,7 +458,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === MISHIMA ===
@@ -482,7 +495,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Takashi Mugan": {
@@ -525,7 +539,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Mishima Samurai": {
@@ -560,7 +575,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === FRATELLANZA ===
@@ -596,7 +612,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Cardinal Dominic": {
@@ -639,7 +656,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Inquisitor Sebastian": {
@@ -682,7 +700,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === LEGIONE OSCURA ===
@@ -718,7 +737,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Nepharite of Algeroth": {
@@ -769,7 +789,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Razide": {
@@ -804,7 +825,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
     
     "Heretic Legionnaire": {
@@ -839,7 +861,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === FREELANCER ===
@@ -883,7 +906,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === ESPANSIONI WARZONE ===
@@ -927,7 +951,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Capitol Air Cavalry": {
@@ -970,7 +995,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Cyber Assassin": {
@@ -1013,7 +1039,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Warzone Lieutenant": {
@@ -1048,7 +1075,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Mishima Ninja": {
@@ -1091,7 +1119,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     "Brotherhood Templar": {
@@ -1134,7 +1163,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     },
 
     # === TRIBÙ DI DARK EDEN ===
@@ -1178,7 +1208,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
-        }
+        },
+        "quantita": 0
     }
 }
 

@@ -9,7 +9,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione  # Import dalle classi esistenti
 
 
 class TipoEquipaggiamento(Enum):
@@ -118,7 +118,7 @@ class Equipaggiamento:
         self.keywords: List[str] = []
         
         # Metadati
-        self.set_espansione = "Base"
+        self.set_espansione = Set_Espansione.BASE
         self.numero_carta = ""
         
         # Stato di gioco
@@ -131,6 +131,7 @@ class Equipaggiamento:
         # Compatibilità
         self.compatibile_con: List[str] = []
         self.equipaggiamenti_richiesti: List[str] = []
+        self.quantita = 0
     
     def get_costo_destiny_points(self) -> int:
         """Restituisce il costo in Destiny Points per giocare questa carta"""

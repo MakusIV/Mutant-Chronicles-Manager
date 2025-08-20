@@ -8,7 +8,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Abilita  # Corretto percorso import
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, Abilita  # Corretto percorso import
 
 
 class TipoOscuraSimmetria(Enum):
@@ -21,16 +21,6 @@ class TipoOscuraSimmetria(Enum):
     POSSESSIONE = "Possessione"
     MALEDIZIONE_OSCURA = "Maledizione Oscura"
     INVOCAZIONE_OSCURA = "Invocazione Oscura"
-
-
-class ApostoloPadre(Enum):
-    """Apostoli Padri dell'Oscura Simmetria"""
-    ALGEROTH = "Algeroth"      # Apostolo della Guerra
-    SEMAI = "Semai"            # Apostolo della Peste
-    MUAWIJHE = "Muawijhe"      # Apostolo delle Mutazioni
-    ILIAN = "Ilian"            # Apostolo del Vuoto
-    DEMNOGONIS = "Demnogonis"  # Apostolo della Follia
-    NESSUNO = "Nessuno"        # Per carte generiche
 
 
 class BersaglioOscura(Enum):
@@ -96,7 +86,7 @@ class Oscura_Simmetria:
     Versione corretta secondo il regolamento ufficiale
     """
     
-    def __init__(self, nome: str, costo_destino: int = 0, tipo: Optional[TipoOscuraSimmetria] = TipoOscuraSimmetria.GENERICA, rarity: Optional[Rarity] = Rarity.COMMON, apostolo_padre: Optional[ApostoloPadre] = ApostoloPadre.NESSUNO, set_espansione: Optional[str] = "Base"):
+    def __init__(self, nome: str, costo_destino: int = 0, tipo: Optional[TipoOscuraSimmetria] = TipoOscuraSimmetria.GENERICA, rarity: Optional[Rarity] = Rarity.COMMON, apostolo_padre: Optional[ApostoloPadre] = ApostoloPadre.NESSUNO, set_espansione: Optional[str] = Set_Espansione.BASE):
         """
         Inizializza una nuova carta Oscura Simmetria
         
@@ -150,6 +140,7 @@ class Oscura_Simmetria:
         
         # Gestione immunità
         self.puo_essere_negata = True  # Alcune carte non possono essere negate
+        self.quantita = 0
         
     def puo_essere_giocata_da_fazione(self, fazione: Fazione) -> bool:
         """
@@ -699,7 +690,7 @@ def crea_oscura_generica(nome: str, costo: int = 0) -> Oscura_Simmetria:
     carta = Oscura_Simmetria(nome, costo)
     carta.tipo = TipoOscuraSimmetria.GENERICA
     carta.fazioni_permesse = [Fazione.OSCURA_LEGIONE]
-    carta.set_espansione = "Base"
+    carta.set_espansione = Set_Espansione.BASE
     return carta
 
 def crea_dono_apostolo(nome: str, apostolo: ApostoloPadre, costo: int = 1) -> Oscura_Simmetria:
@@ -711,7 +702,7 @@ def crea_dono_apostolo(nome: str, apostolo: ApostoloPadre, costo: int = 1) -> Os
     carta.bersaglio = BersaglioOscura.GUERRIERO_PROPRIO
     carta.fazioni_permesse = [Fazione.OSCURA_LEGIONE]
     carta.restrizioni.append(f"Solo Seguaci di {apostolo.value}")
-    carta.set_espansione = "Base"
+    carta.set_espansione = Set_Espansione.BASE
     return carta
 
 def crea_corruzione(nome: str, livello: int = 1, costo: int = 0) -> Oscura_Simmetria:

@@ -7,7 +7,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Abilita  # Corretto percorso import
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, Abilita  # Corretto percorso import
 
 
 class TipoArte(Enum):
@@ -132,7 +132,7 @@ class Arte:
         self.maestri_richiesti: List[str] = []  # Quali maestri possono lanciare
         
         # Attributi per espansioni
-        self.set_espansione = "Base"
+        self.set_espansione = Set_Espansione.BASE
         self.numero_carta = ""
         
         # Stato di gioco
@@ -146,6 +146,7 @@ class Arte:
         
         # Contatori per effetti speciali
         self.contatori_speciali: Dict[str, int] = {}
+        self.quantita = 0
     
     def puo_essere_giocata_da_fazione(self, fazione: Fazione) -> bool:
         """
@@ -570,7 +571,7 @@ def crea_arte_fratellanza(nome: str, costo: int = 0, disciplina: DisciplinaArte 
     arte = Arte(nome, costo)
     arte.disciplina = disciplina
     arte.fazioni_permesse = [Fazione.FRATELLANZA]
-    arte.set_espansione = "Base"
+    arte.set_espansione = Set_Espansione.BASE
     return arte
 
 def crea_arte_universale(nome: str, costo: int = 0) -> Arte:
@@ -587,7 +588,7 @@ def crea_arte_universale(nome: str, costo: int = 0) -> Arte:
 def crea_arte_inquisition(nome: str, costo: int = 0) -> Arte:
     """Crea una carta Arte dell'espansione Inquisition"""
     arte = Arte(nome, costo)
-    arte.set_espansione = "Inquisition"
+    arte.set_espansione = Set_Espansione.INQUISITION
     # Alcune carte Inquisition possono essere usate da Imperiale, ma raro
     arte.fazioni_permesse = [Fazione.FRATELLANZA]
     return arte

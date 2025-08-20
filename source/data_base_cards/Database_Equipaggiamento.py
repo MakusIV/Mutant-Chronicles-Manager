@@ -68,7 +68,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Armatura da Combattimento"],
             "upgrade_disponibili": ["Spada Energetica"],
             "equipaggiamenti_richiesti": []
-        }
+        },
+        "quantita": 0
     },
 
     "ascia_da_battaglia": {
@@ -139,7 +140,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Giubbotto Antiproiettile"],
             "upgrade_disponibili": ["Ascia Energetica"],
             "equipaggiamenti_richiesti": []
-        }
+        },
+        "quantita": 0
     },
 
     # ========== ARMI DA FUOCO - SET BASE ==========
@@ -205,7 +207,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Silenziatore", "Mirino Laser"],
             "upgrade_disponibili": ["Pistola Plasma"],
             "equipaggiamenti_richiesti": []
-        }
+        },
+        "quantita": 0
     },
 
     "fucile_dassalto": {
@@ -276,7 +279,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Granate", "Baionetta"],
             "upgrade_disponibili": ["Fucile Plasma"],
             "equipaggiamenti_richiesti": []
-        }
+        },
+        "quantita": 0
     },
 
     "fucile_di_precisione": {
@@ -347,7 +351,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Mirino Telescopico"],
             "upgrade_disponibili": ["Fucile Gauss"],
             "equipaggiamenti_richiesti": []
-        }
+        },
+        "quantita": 0
     },
 
     # ========== ARMATURE - SET BASE ==========
@@ -405,7 +410,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Tutte le armi"],
             "upgrade_disponibili": ["Armatura da Combattimento"],
             "equipaggiamenti_richiesti": []
-        }
+        },
+        "quantita": 0
     },
 
     "armatura_da_combattimento": {
@@ -469,7 +475,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Armi leggere"],
             "upgrade_disponibili": ["Armatura Powered"],
             "equipaggiamenti_richiesti": []
-        }
+        },
+        "quantita": 0
     },
 
     # ========== VEICOLI - SET BASE ==========
@@ -542,7 +549,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Armi leggere"],
             "upgrade_disponibili": ["Moto da Guerra"],
             "equipaggiamenti_richiesti": ["Addestramento Veicoli"]
-        }
+        },
+        "quantita": 0
     },
 
     # ========== EQUIPAGGIAMENTO GENERICO - SET BASE ==========
@@ -608,7 +616,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Tutti gli equipaggiamenti"],
             "upgrade_disponibili": ["Kit Medico Avanzato"],
             "equipaggiamenti_richiesti": []
-        }
+        },
+        "quantita": 0
     },
 
     # ========== ESPANSIONI ==========
@@ -682,7 +691,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Armatura Powered"],
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": ["Addestramento Avanzato"]
-        }
+        },
+        "quantita": 0
     },
 
     "armatura_powered": {
@@ -760,7 +770,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             "compatibile_con": ["Armi pesanti"],
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": ["Addestramento Avanzato"]
-        }
+        },
+        "quantita": 0
     }
 }
 

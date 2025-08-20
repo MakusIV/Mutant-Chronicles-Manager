@@ -9,6 +9,16 @@ from typing import List, Optional, Dict, Any
 from dataclasses import dataclass, field
 import json
 
+class Set_Espansione(Enum):
+    """Espansioni disponibili nel gioco"""
+    BASE = "Base"
+    INQUISITION = "Inquisition" 
+    WARZONE = "Warzone"
+    MORTIFICATOR = "Mortificator"
+    GOLGOTHA = "Golgotha"
+    APOCALYPSE = "Apocalypse"
+
+
 
 class Fazione(Enum):
     """Fazioni disponibili nel gioco"""
@@ -20,6 +30,7 @@ class Fazione(Enum):
     FRATELLANZA = "Fratellanza"
     OSCURA_LEGIONE = "Oscura Legione"  # Corretto da "LEGIONE_OSCURA"
     FREELANCER = "Freelancer"
+    TRIBÙ = "Tribù"
 
 
 class TipoGuerriero(Enum):
@@ -60,6 +71,15 @@ class StatoGuerriero(Enum):
     MORTO = "Morto"
     IN_COPERTURA = "In Copertura"
 
+
+class ApostoloPadre(Enum):
+    """Apostoli Padri dell'Oscura Simmetria"""
+    ALGEROTH = "Algeroth"      # Apostolo della Guerra
+    SEMAI = "Semai"            # Apostolo della Peste
+    MUAWIJHE = "Muawijhe"      # Apostolo delle Mutazioni
+    ILIAN = "Ilian"            # Apostolo del Vuoto
+    DEMNOGONIS = "Demnogonis"  # Apostolo della Follia
+    NESSUNO = "Nessuno"        # Per carte generiche
 
 @dataclass
 class Statistiche:
@@ -119,7 +139,7 @@ class Guerriero:
         self.flavour_text = ""
         
         # Attributi per espansioni
-        self.set_espansione = "Base"
+        self.set_espansione = Set_Espansione.BASE
         self.numero_carta = ""
         
         # Modificatori temporanei
@@ -144,6 +164,7 @@ class Guerriero:
         
         # Gestione Personalità
         self.e_personalita = False
+        self.quantita = 0
         
     def get_costo_destino(self) -> int:
         """
@@ -582,19 +603,19 @@ class Guerriero:
 def crea_guerriero_base(nome: str, fazione: Fazione, c: int, s: int, a: int, v: int) -> Guerriero:
     """Crea un guerriero della versione base"""
     guerriero = Guerriero(nome, fazione, c, s, a, v)
-    guerriero.set_espansione = "Base"
+    guerriero.set_espansione = Set_Espansione.BASE
     return guerriero
 
 def crea_guerriero_inquisition(nome: str, fazione: Fazione, c: int, s: int, a: int, v: int) -> Guerriero:
     """Crea un guerriero dell'espansione Inquisition"""
     guerriero = Guerriero(nome, fazione, c, s, a, v)
-    guerriero.set_espansione = "Inquisition"
+    guerriero.set_espansione = Set_Espansione.INQUISITION
     return guerriero
 
 def crea_guerriero_warzone(nome: str, fazione: Fazione, c: int, s: int, a: int, v: int) -> Guerriero:
     """Crea un guerriero dell'espansione Warzone"""
     guerriero = Guerriero(nome, fazione, c, s, a, v)
-    guerriero.set_espansione = "Warzone" 
+    guerriero.set_espansione = Set_Espansione.INQUISITION 
     return guerriero
 
 def crea_personalita(nome: str, fazione: Fazione, c: int, s: int, a: int, v: int) -> Guerriero:
