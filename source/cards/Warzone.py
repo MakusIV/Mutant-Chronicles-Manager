@@ -20,8 +20,8 @@ class TipoWarzone(Enum):
     CAMPO_BATTAGLIA = "Campo di Battaglia"
     TRINCEA = "Trincea"
     BUNKER = "Bunker"
-    CITTA_DEVASTATA = "Città Devastata"
-    ZONA_INDUSTRIALE = "Zona Industriale"
+    CITTA_DEVASTATA = "Citta Devastata"
+    COMPLESSO_INDUSTRIALE = "Complesso Industriale"
     TERRITORIO_NEMICO = "Territorio Nemico"
     CRATERE = "Cratere"
     COLLINE = "Colline"
@@ -417,12 +417,14 @@ class Warzone:
         warzone.restrizioni.limiti_utilizzo = restr_data["limiti_utilizzo"]
         
         # Stato gioco
-        stato_data = data["stato_gioco"]
-        warzone.in_gioco = stato_data["in_gioco"]
-        warzone.area_assegnata = AreaGioco(stato_data["area_assegnata"]) if stato_data["area_assegnata"] else None
-        warzone.proprietario = stato_data["proprietario"]
-        warzone.utilizzata_questo_turno = stato_data["utilizzata_questo_turno"]
-        
+        stato_data = data.get("stato_gioco") #data["stato_gioco"]    
+
+        if stato_data:
+            warzone.in_gioco = stato_data["in_gioco"]
+            warzone.area_assegnata = AreaGioco(stato_data["area_assegnata"]) if stato_data["area_assegnata"] else None
+            warzone.proprietario = stato_data["proprietario"]
+            warzone.utilizzata_questo_turno = stato_data["utilizzata_questo_turno"]
+            
         # Attributi aggiuntivi
         warzone.valore_strategico = data.get("valore_strategico", 0)
         warzone.frequenza_utilizzo = data.get("frequenza_utilizzo", "Media")

@@ -91,7 +91,7 @@ DATABASE_WARZONE = {
     "Città Devastata": {
         "nome": "Città Devastata",
         "costo_azione": 1,
-        "tipo": "Citta_Devastata",
+        "tipo": "Citta Devastata",
         "terreno": "Difficile",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -126,7 +126,7 @@ DATABASE_WARZONE = {
     "Campo Aperto": {
         "nome": "Campo Aperto",
         "costo_azione": 1,
-        "tipo": "Campo_Battaglia",
+        "tipo": "Campo di Battaglia",
         "terreno": "Aperto",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -194,10 +194,10 @@ DATABASE_WARZONE = {
         "quantita": 0
     },
 
-    "Zona Industriale": {
-        "nome": "Zona Industriale",
+    "Complesso Industriale": {
+        "nome": "Complesso Industriale",
         "costo_azione": 1,
-        "tipo": "Zona_Industriale",
+        "tipo": "Complesso Industriale",
         "terreno": "Pericoloso",
         "rarity": "Rare",
         "set_espansione": "Base",
@@ -349,7 +349,7 @@ DATABASE_WARZONE = {
     "Laboratorio Abbandonato": {
         "nome": "Laboratorio Abbandonato",
         "costo_azione": 1,
-        "tipo": "Complesso_Industriale",
+        "tipo": "Complesso Industriale",
         "terreno": "Pericoloso",
         "rarity": "Rare",
         "set_espansione": "Inquisition",
@@ -391,7 +391,7 @@ DATABASE_WARZONE = {
     "Arena Gladiatoria": {
         "nome": "Arena Gladiatoria",
         "costo_azione": 1,
-        "tipo": "Campo_Battaglia",
+        "tipo": "Campo di Battaglia",
         "terreno": "Aperto",
         "rarity": "Ultra Rare",
         "set_espansione": "Golgotha",
@@ -630,7 +630,7 @@ def crea_mazzo_warzone_bilanciato() -> List[Warzone]:
     mazzo.append(crea_istanza_warzone("Palude Tossica"))
     
     # 2 Warzone rare speciali
-    mazzo.append(crea_istanza_warzone("Zona Industriale"))
+    mazzo.append(crea_istanza_warzone("Complesso Industriale"))
     mazzo.append(crea_istanza_warzone("Laboratorio Abbandonato"))
     
     # Rimuove istanze None (se qualche Warzone non esiste)
@@ -778,7 +778,7 @@ def valida_warzone(nome: str) -> Dict[str, Any]:
     # Coerenze logiche
     if tipo == "Bunker" and terreno != "Coperto":
         errori.append("Bunker dovrebbe avere terreno 'Coperto'")
-    elif tipo == "Campo_Battaglia" and terreno == "Coperto":
+    elif tipo == "Campo di Battaglia" and terreno == "Coperto":
         errori.append("Campo di battaglia non dovrebbe essere 'Coperto'")
     
     return {
