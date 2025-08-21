@@ -35,7 +35,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-"quantita": 0
+"quantita":9
     },
     
     "Bauhaus Venusian Ranger": {
@@ -71,7 +71,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Ilian Paladini": {
@@ -107,7 +107,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Bauhaus Ducal Militia": {
@@ -134,7 +134,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === CAPITOL ===
@@ -162,7 +162,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-    "quantita": 0
+    "quantita":9
     },
     
     "Mitch Hunter": {
@@ -196,7 +196,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Quando eliminato"
             }
         ],
-        "testo_carta": "Il più grande cacciatore della Capitol, nemico giurato della Legione Oscura.",
+        "testo_carta": "Il più grande cacciatore della Capitol, nemico giurato della Oscura Legione.",
         "flavour_text": "Alcuni nascono per cacciare. Altri per essere cacciati.",
         "keywords": ["Personalità", "Unico", "Leggenda"],
         "restrizioni": ["Un solo Mitch Hunter per squadra"],
@@ -206,7 +206,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Capitol Purple Shark": {
@@ -242,7 +242,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === CYBERTRONIC ===
@@ -279,7 +279,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Max Steiner": {
@@ -315,7 +315,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Cybertronic Machinators": {
@@ -351,7 +351,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === IMPERIALE ===
@@ -379,7 +379,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Nathaniel Durand": {
@@ -423,7 +423,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Imperial Blood Beret": {
@@ -459,7 +459,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === MISHIMA ===
@@ -496,7 +496,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Takashi Mugan": {
@@ -540,7 +540,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Mishima Samurai": {
@@ -576,7 +576,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === FRATELLANZA ===
@@ -596,7 +596,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [
             {
                 "nome": "Fede Incrollabile",
-                "descrizione": "Immune agli effetti mentali della Legione Oscura",
+                "descrizione": "Immune agli effetti mentali della Oscura Legione",
                 "tipo": "Difesa",
                 "costo_destino": 0,
                 "target": "Self",
@@ -613,7 +613,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Cardinal Dominic": {
@@ -640,10 +640,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             },
             {
                 "nome": "Aura Sacra",
-                "descrizione": "Tutti i guerrieri della Legione Oscura entro portata subiscono -2 a tutte le statistiche",
+                "descrizione": "Tutti i guerrieri della Oscura Legione entro portata subiscono -2 a tutte le statistiche",
                 "tipo": "Speciale",
                 "costo_destino": 0,
-                "target": "Nemici Legione Oscura",
+                "target": "Nemici Oscura Legione",
                 "timing": "Permanente"
             }
         ],
@@ -657,7 +657,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Inquisitor Sebastian": {
@@ -676,10 +676,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [
             {
                 "nome": "Cacciatore di Eretici",
-                "descrizione": "Infligge danno doppio ai guerrieri corrotti dalla Legione Oscura",
+                "descrizione": "Infligge danno doppio ai guerrieri corrotti dalla Oscura Legione",
                 "tipo": "Attacco",
                 "costo_destino": 0,
-                "target": "Eretici e Legione Oscura",
+                "target": "Eretici e Oscura Legione",
                 "timing": "Durante l'attacco"
             },
             {
@@ -701,13 +701,13 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === LEGIONE OSCURA ===
     "Necromutant": {
         "nome": "Necromutant",
-        "fazione": "Legione Oscura",
+        "fazione": "Oscura Legione",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -728,7 +728,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Quando eliminato"
             }
         ],
-        "testo_carta": "Guerriero non-morto della Legione Oscura, rianimato per servire il Male.",
+        "testo_carta": "Guerriero non-morto della Oscura Legione, rianimato per servire il Male.",
         "flavour_text": "La morte è solo l'inizio del servizio alle Potenze Oscure.",
         "keywords": ["Non-Morto", "Corrotto"],
         "restrizioni": [],
@@ -738,12 +738,12 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Nepharite of Algeroth": {
         "nome": "Nepharite of Algeroth",
-        "fazione": "Legione Oscura",
+        "fazione": "Oscura Legione",
         "tipo": "Nepharite",
         "rarity": "Ultra Rare",
         "set_espansione": "Base",
@@ -765,7 +765,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             },
             {
                 "nome": "Corruzione",
-                "descrizione": "Può tentare di corrompere un guerriero nemico facendolo passare alla Legione Oscura",
+                "descrizione": "Può tentare di corrompere un guerriero nemico facendolo passare alla Oscura Legione",
                 "tipo": "Speciale",
                 "costo_destino": 5,
                 "target": "Guerriero nemico",
@@ -780,7 +780,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Inizio turno"
             }
         ],
-        "testo_carta": "Alto comandante della Legione Oscura, servitore diretto di Algeroth.",
+        "testo_carta": "Alto comandante della Oscura Legione, servitore diretto di Algeroth.",
         "flavour_text": "Davanti alla pura malvagità, anche i più coraggiosi tremano.",
         "keywords": ["Nepharite", "Demonio", "Unico", "Comandante"],
         "restrizioni": ["Un solo Nepharite of Algeroth per squadra"],
@@ -790,12 +790,12 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Razide": {
         "nome": "Razide",
-        "fazione": "Legione Oscura",
+        "fazione": "Oscura Legione",
         "tipo": "Seguace",
         "rarity": "Uncommon",
         "set_espansione": "Base",
@@ -816,7 +816,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Inizio turno"
             }
         ],
-        "testo_carta": "Mutante della Legione Oscura, creatura di pura malvagità.",
+        "testo_carta": "Mutante della Oscura Legione, creatura di pura malvagità.",
         "flavour_text": "Dalla carne corrotta nasce solo abominio.",
         "keywords": ["Mutante", "Corrotto"],
         "restrizioni": [],
@@ -826,12 +826,12 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
     
     "Heretic Legionnaire": {
         "nome": "Heretic Legionnaire",
-        "fazione": "Legione Oscura",
+        "fazione": "Oscura Legione",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Inquisition",
@@ -862,7 +862,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === FREELANCER ===
@@ -907,7 +907,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === ESPANSIONI WARZONE ===
@@ -952,7 +952,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Capitol Air Cavalry": {
@@ -996,7 +996,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Cyber Assassin": {
@@ -1040,7 +1040,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Warzone Lieutenant": {
@@ -1076,7 +1076,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Mishima Ninja": {
@@ -1120,7 +1120,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "Brotherhood Templar": {
@@ -1139,10 +1139,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [
             {
                 "nome": "Furia Sacra",
-                "descrizione": "+4 Combattimento quando attacca guerrieri della Legione Oscura",
+                "descrizione": "+4 Combattimento quando attacca guerrieri della Oscura Legione",
                 "tipo": "Attacco",
                 "costo_destino": 0,
-                "target": "Legione Oscura",
+                "target": "Oscura Legione",
                 "timing": "Durante l'attacco"
             },
             {
@@ -1164,7 +1164,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # === TRIBÙ DI DARK EDEN ===
@@ -1209,7 +1209,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita": 0
+        "quantita":9
     }
 }
 
@@ -1247,7 +1247,7 @@ def get_guerrieri_per_fazione(fazione: str) -> List[str]:
     return [nome for nome, data in GUERRIERI_DATABASE.items() 
             if data["fazione"] == fazione]
 
-def get_guerrieri_per_espansione(espansione: str) -> List[str]:
+def get_guerrieri_per_set(espansione: str) -> List[str]:
     """
     Restituisce una lista dei nomi di tutti i guerrieri di una specifica espansione
     

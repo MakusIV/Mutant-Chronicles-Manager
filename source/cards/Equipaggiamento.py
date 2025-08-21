@@ -234,7 +234,9 @@ class Equipaggiamento:
             guerriero.applica_modificatore("valore", self.modificatori_valore)
             modificatori_applicati["valore"] = self.modificatori_valore
         
-        # Modificatori condizionali
+        # Modificatori condizionali - att: i modificatori speciali possono essere in alterantiva alle statistiche oppure in aggiunta dipendendo dalla descrizione nella carta:
+        # se in alternativa -> devi azzerare i corrispondenti in statistiche, se in aggiunta  
+        # Importante tenerne conto nel database       
         for mod in self.modificatori_speciali:
             if self._verifica_condizione_modificatore(mod, guerriero):
                 guerriero.applica_modificatore(mod.statistica, mod.valore)
@@ -253,14 +255,14 @@ class Equipaggiamento:
         
         condizione = modificatore.condizione.lower()
         
-        if "combattimento corpo a corpo" in condizione:
-            return hasattr(guerriero, 'in_combattimento_cac') and guerriero.in_combattimento_cac
-        elif "combattimento sparare" in condizione:
-            return hasattr(guerriero, 'in_combattimento_sparare') and guerriero.in_combattimento_sparare
-        elif "ferito" in condizione:
-            return guerriero.ferito
-        elif "non ferito" in condizione:
-            return not guerriero.ferito
+        #if "combattimento corpo a corpo" in condizione:
+        #    return hasattr(guerriero., 'in_combattimento_cac') and guerriero.in_combattimento_cac
+        #elif "combattimento sparare" in condizione:
+        #    return hasattr(guerriero, 'in_combattimento_sparare') and guerriero.in_combattimento_sparare
+        #elif "ferito" in condizione:
+        #    return guerriero.ferito
+        #elif "non ferito" in condizione:
+        #    return not guerriero.ferito
         
         return True
     

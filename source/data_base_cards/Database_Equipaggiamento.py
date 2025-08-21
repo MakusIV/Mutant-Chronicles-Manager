@@ -12,23 +12,30 @@ from source.cards.Guerriero import Fazione, Rarity
 
 
 DATABASE_EQUIPAGGIAMENTO = {
+
+    # Note: su statistiche (*) e modificatori_condizionali (**) 
+    # Modificatori condizionali - att: i modificatori speciali possono essere in alterantiva alle statistiche oppure in aggiunta dipendendo dalla descrizione nella carta:
+    # se in alternativa -> devi azzerare i corrispondenti in statistiche, se in aggiunta  
+    # Importante tenerne conto nel database
+    #
+    # (*): in Equipaggiamento definiti come self.modificatori_<caratteristica>
+    # (**): in Equipaggiamento definiti nel Dict modificatori
     
     # ========== ARMI CORPO A CORPO - SET BASE ==========
     
     "spada_combattimento": {
         "nome": "Spada da Combattimento",
-        "costo_destino": 1,
+        "valore": 1,
         "tipo": "Arma da Corpo a Corpo",  # CORRETTO: secondo regolamento
         "categoria_arma": "Lama",
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
-            "valore_combattimento": 2,
-            "valore_armatura": 0,
-            "valore_movimento": 0,
-            "capacita_trasporto": 0,
-            "punti_struttura": 3
+            "combattimento": 2,
+            "armatura": 0,
+            "sparare": 0,            
+            "valore": 3
         },
         "modificatori": [],
         "abilita_speciali": [],
@@ -69,23 +76,22 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Spada Energetica"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "ascia_da_battaglia": {
         "nome": "Ascia da Battaglia",
-        "costo_destino": 2,
+        "valore": 2,
         "tipo": "Arma da Corpo a Corpo",  # CORRETTO
         "categoria_arma": "Ascia",
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
-            "valore_combattimento": 3,
-            "valore_armatura": 0,
-            "valore_movimento": -1,  # Pesante
-            "capacita_trasporto": 0,
-            "punti_struttura": 4
+            "combattimento": 3,
+            "armatura": 0,
+            "sparare": 0,              
+            "valore": 4
         },
         "modificatori": [
             {
@@ -141,25 +147,25 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Ascia Energetica"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # ========== ARMI DA FUOCO - SET BASE ==========
     
     "pistola_automatica": {
         "nome": "Pistola Automatica",
-        "costo_destino": 1,
+        "valore": 1,
         "tipo": "Arma da Fuoco",  # CORRETTO: secondo regolamento
         "categoria_arma": "Pistola",
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
-            "valore_combattimento": 2,
-            "valore_armatura": 0,
-            "valore_movimento": 0,
-            "capacita_trasporto": 0,
-            "punti_struttura": 2
+            "combattimento": 2,
+            "armatura": 0,
+            "sparare": 0,
+            
+            "valore": 2
         },
         "modificatori": [],
         "abilita_speciali": [
@@ -208,23 +214,23 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Pistola Plasma"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "fucile_dassalto": {
         "nome": "Fucile d'Assalto",
-        "costo_destino": 2,
+        "valore": 2,
         "tipo": "Arma da Fuoco",  # CORRETTO
         "categoria_arma": "Fucile",
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
-            "valore_combattimento": 3,
-            "valore_armatura": 0,
-            "valore_movimento": 0,
-            "capacita_trasporto": 0,
-            "punti_struttura": 3
+            "combattimento": 3,
+            "armatura": 0,
+            "sparare": 0,
+            
+            "valore": 3
         },
         "modificatori": [
             {
@@ -280,23 +286,23 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Fucile Plasma"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "fucile_di_precisione": {
         "nome": "Fucile di Precisione",
-        "costo_destino": 3,
+        "valore": 3,
         "tipo": "Arma da Fuoco",  # CORRETTO
         "categoria_arma": "Fucile",
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Uncommon",
         "statistiche": {
-            "valore_combattimento": 4,
-            "valore_armatura": 0,
-            "valore_movimento": -1,
-            "capacita_trasporto": 0,
-            "punti_struttura": 3
+            "combattimento": 4,
+            "armatura": 0,
+            "sparare": -1,
+            
+            "valore": 3
         },
         "modificatori": [
             {
@@ -352,25 +358,25 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Fucile Gauss"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # ========== ARMATURE - SET BASE ==========
     
     "giubbotto_antiproiettile": {
         "nome": "Giubbotto Antiproiettile",
-        "costo_destino": 1,
+        "valore": 1,
         "tipo": "Armatura",
         "categoria_arma": None,
         "tipo_armatura": "Leggera",
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
-            "valore_combattimento": 0,
-            "valore_armatura": 2,
-            "valore_movimento": 0,
-            "capacita_trasporto": 0,
-            "punti_struttura": 3
+            "combattimento": 0,
+            "armatura": 2,
+            "sparare": 0,
+            
+            "valore": 3
         },
         "modificatori": [],
         "abilita_speciali": [],
@@ -411,23 +417,23 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Armatura da Combattimento"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "armatura_da_combattimento": {
         "nome": "Armatura da Combattimento",
-        "costo_destino": 3,
+        "valore": 3,
         "tipo": "Armatura",
         "categoria_arma": None,
         "tipo_armatura": "Media",
         "tipo_veicolo": None,
         "rarity": "Uncommon",
         "statistiche": {
-            "valore_combattimento": 0,
-            "valore_armatura": 4,
-            "valore_movimento": -1,  # Pesante riduce movimento
-            "capacita_trasporto": 0,
-            "punti_struttura": 6
+            "combattimento": 0,
+            "armatura": 4,
+            "sparare": -1,  # Pesante riduce movimento
+            
+            "valore": 6
         },
         "modificatori": [],
         "abilita_speciali": [
@@ -476,25 +482,24 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Armatura Powered"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # ========== VEICOLI - SET BASE ==========
     
     "moto_da_ricognizione": {
         "nome": "Moto da Ricognizione",
-        "costo_destino": 2,
+        "valore": 2,
         "tipo": "Veicolo",
         "categoria_arma": None,
         "tipo_armatura": None,
         "tipo_veicolo": "Generico",
         "rarity": "Common",
         "statistiche": {
-            "valore_combattimento": 0,
-            "valore_armatura": 1,
-            "valore_movimento": 3,  # +3 Movimento
-            "capacita_trasporto": 1,
-            "punti_struttura": 4
+            "combattimento": 0,
+            "armatura": 1,
+            "sparare": 3,  # +3 Movimento
+            "valore": 4
         },
         "modificatori": [
             {
@@ -550,25 +555,25 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Moto da Guerra"],
             "equipaggiamenti_richiesti": ["Addestramento Veicoli"]
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # ========== EQUIPAGGIAMENTO GENERICO - SET BASE ==========
     
     "kit_medico": {
         "nome": "Kit Medico",
-        "costo_destino": 1,
+        "valore": 1,
         "tipo": "Equipaggiamento",  # CORRETTO: regolamento usa "Equipaggiamento"
         "categoria_arma": None,
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
-            "valore_combattimento": 0,
-            "valore_armatura": 0,
-            "valore_movimento": 0,
-            "capacita_trasporto": 0,
-            "punti_struttura": 1
+            "combattimento": 0,
+            "armatura": 0,
+            "sparare": 0,
+            
+            "valore": 1
         },
         "modificatori": [],
         "abilita_speciali": [
@@ -617,7 +622,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Kit Medico Avanzato"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita": 0
+        "quantita":9
     },
 
     # ========== ESPANSIONI ==========
@@ -625,7 +630,7 @@ DATABASE_EQUIPAGGIAMENTO = {
     # WARZONE
     "fucile_plasma": {
         "nome": "Fucile Plasma",
-        "costo_destino": 4,
+        "valore": 4,
         "tipo": "Arma da Fuoco",  # CORRETTO
         "categoria_arma": "Fucile",
         "tipo_armatura": None,
@@ -633,10 +638,10 @@ DATABASE_EQUIPAGGIAMENTO = {
         "rarity": "Rare",
         "statistiche": {
             "valore_combattimento": 5,
-            "valore_armatura": 0,
-            "valore_movimento": -1,
-            "capacita_trasporto": 0,
-            "punti_struttura": 4
+            "armatura": 0,
+            "sparare": -1,
+            
+            "valore": 4
         },
         "modificatori": [],
         "abilita_speciali": [
@@ -692,23 +697,22 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": ["Addestramento Avanzato"]
         },
-        "quantita": 0
+        "quantita":9
     },
 
     "armatura_powered": {
         "nome": "Armatura Powered",
-        "costo_destino": 5,
+        "valore": 5,
         "tipo": "Armatura",
         "categoria_arma": None,
         "tipo_armatura": "Powered",
         "tipo_veicolo": None,
         "rarity": "Rare",
         "statistiche": {
-            "valore_combattimento": 2,  # Bonus forza
-            "valore_armatura": 6,
-            "valore_movimento": 1,  # Servo-motori compensano il peso
-            "capacita_trasporto": 0,
-            "punti_struttura": 10
+            "combattimento": 2,  # Bonus forza
+            "armatura": 6,
+            "sparare": 0,  # Servo-motori compensano il peso            
+            "valore": 0
         },
         "modificatori": [
             {
@@ -771,7 +775,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": ["Addestramento Avanzato"]
         },
-        "quantita": 0
+        "quantita":9
     }
 }
 
@@ -807,7 +811,7 @@ def get_equipaggiamenti_per_costo(costo_min: int, costo_max: int = None) -> dict
     if costo_max is None:
         costo_max = costo_min
     return {k: v for k, v in DATABASE_EQUIPAGGIAMENTO.items() 
-            if costo_min <= v["costo_destino"] <= costo_max}
+            if costo_min <= v["valore"] <= costo_max}
 
 
 def get_armi_per_categoria(categoria: str) -> dict:
@@ -843,10 +847,10 @@ def filtra_equipaggiamenti(filtri: dict) -> dict:
         risultato = {k: v for k, v in risultato.items() if v["tipo"] == filtri["tipo"]}
     
     if "costo_min" in filtri:
-        risultato = {k: v for k, v in risultato.items() if v["costo_destino"] >= filtri["costo_min"]}
+        risultato = {k: v for k, v in risultato.items() if v["valore"] >= filtri["costo_min"]}
     
     if "costo_max" in filtri:
-        risultato = {k: v for k, v in risultato.items() if v["costo_destino"] <= filtri["costo_max"]}
+        risultato = {k: v for k, v in risultato.items() if v["valore"] <= filtri["costo_max"]}
     
     if "rarity" in filtri:
         risultato = {k: v for k, v in risultato.items() if v["rarity"] == filtri["rarity"]}
@@ -879,24 +883,23 @@ def crea_equipaggiamento_da_database(nome_equipaggiamento: str):
     data = DATABASE_EQUIPAGGIAMENTO[nome_equipaggiamento]
     
     # Crea l'istanza base usando il valore dal database
-    valore = data["statistiche"]["valore_combattimento"] + data["statistiche"]["valore_armatura"]
+    valore = data["statistiche"]["combattimento"] + data["statistiche"]["armatura"]
     equipaggiamento = Equipaggiamento(
         nome=data["nome"],
         valore=valore
     )
     
-    # Configura proprietà specifiche
-    equipaggiamento.costo_destino = data["costo_destino"]
+    # Configura proprietà specifiche    
     equipaggiamento.tipo = TipoEquipaggiamento(data["tipo"]) if data["tipo"] in [t.value for t in TipoEquipaggiamento] else TipoEquipaggiamento.EQUIPAGGIAMENTO_GENERICO
     equipaggiamento.rarity = Rarity(data["rarity"])
     equipaggiamento.set_espansione = data["set_espansione"]
     
     # Configura statistiche
     stats = data["statistiche"]
-    equipaggiamento.valore_combattimento = stats["valore_combattimento"]
-    equipaggiamento.valore_armatura = stats["valore_armatura"]
-    equipaggiamento.valore_movimento = stats["valore_movimento"]
-    equipaggiamento.punti_struttura = stats["punti_struttura"]
+    equipaggiamento.modificatori_combattimento = stats["combattimento"]
+    equipaggiamento.modificatori_armatura = stats["armatura"]
+    equipaggiamento.modificatori_sparare = stats["sparare"]
+    equipaggiamento.modificatori_valore = stats["valore"]
     
     # Configura modificatori
     for mod_data in data["modificatori"]:
@@ -960,7 +963,7 @@ def get_statistiche_database_equipaggiamenti() -> dict:
         per_set[set_esp] = per_set.get(set_esp, 0) + 1
         
         # Per costo
-        costo = eq["costo_destino"]
+        costo = eq['statistiche']["valore"]
         distribuzione_costo[costo] = distribuzione_costo.get(costo, 0) + 1
         
         # Per categoria arma
@@ -1009,8 +1012,8 @@ def verifica_integrita_database_equipaggiamenti() -> dict:
             errori["proprieta_mancanti"].append(f"{nome}: usa 'forza_minima_richiesta' invece di 'valore_minimo_richiesto_sparare'")
         
         # Verifica costi validi
-        if eq["costo_destino"] < 0 or eq["costo_destino"] > 10:
-            errori["costi_invalidi"].append(f"{nome}: Costo {eq['costo_destino']}")
+        if eq['statistiche']["valore"] < 0 or eq['statistiche']["valore"] > 10:
+            errori["costi_invalidi"].append(f"{nome}: Costo {eq['statistiche']['valore']}")
         
         # Verifica statistiche valide
         stats = eq["statistiche"]
@@ -1019,7 +1022,7 @@ def verifica_integrita_database_equipaggiamenti() -> dict:
                 errori["statistiche_invalide"].append(f"{nome}: {stat}={valore}")
         
         # Verifica encoding corretto
-        if "quantità" in str(eq):
+        if "quantita" in str(eq):
             errori["encoding_errato"].append(f"{nome}: contiene caratteri non ASCII")
     
     return errori
@@ -1038,7 +1041,7 @@ def get_loadout_consigliato(fazione: str, stile_combattimento: str, budget_dp: i
         Dizionario con equipaggiamenti consigliati
     """
     eq_disponibili = get_equipaggiamenti_per_fazione(fazione)
-    eq_budget = {k: v for k, v in eq_disponibili.items() if v["costo_destino"] <= budget_dp}
+    eq_budget = {k: v for k, v in eq_disponibili.items() if v["valore"] <= budget_dp}
     
     loadout = {
         "arma_primaria": None,
@@ -1054,9 +1057,9 @@ def get_loadout_consigliato(fazione: str, stile_combattimento: str, budget_dp: i
         armi_cc = get_equipaggiamenti_per_tipo("Arma da Corpo a Corpo")
         armi_cc_budget = {k: v for k, v in armi_cc.items() if k in eq_budget}
         if armi_cc_budget:
-            migliore_cc = max(armi_cc_budget.items(), key=lambda x: x[1]["statistiche"]["valore_combattimento"])
+            migliore_cc = max(armi_cc_budget.items(), key=lambda x: x[1]["statistiche"]["combattimento"])
             loadout["arma_primaria"] = migliore_cc[0]
-            loadout["costo_totale"] += migliore_cc[1]["costo_destino"]
+            loadout["costo_totale"] += migliore_cc[1]["valore"]
     
     elif stile_combattimento == "Supporto":
         # Privilegia armi a distanza e kit medici
@@ -1065,25 +1068,25 @@ def get_loadout_consigliato(fazione: str, stile_combattimento: str, budget_dp: i
         if armi_df_budget:
             migliore_df = max(armi_df_budget.items(), key=lambda x: x[1]["meccaniche_armi"]["gittata_massima"])
             loadout["arma_primaria"] = migliore_df[0]
-            loadout["costo_totale"] += migliore_df[1]["costo_destino"]
+            loadout["costo_totale"] += migliore_df[1]["valore"]
     
     elif stile_combattimento == "Ricognizione":
         # Privilegia veicoli veloci e armi leggere
         veicoli = get_equipaggiamenti_per_tipo("Veicolo")
         veicoli_budget = {k: v for k, v in veicoli.items() if k in eq_budget}
         if veicoli_budget:
-            migliore_veicolo = max(veicoli_budget.items(), key=lambda x: x[1]["statistiche"]["valore_movimento"])
+            migliore_veicolo = max(veicoli_budget.items(), key=lambda x: x[1]["statistiche"]["sparare"])
             loadout["veicolo"] = migliore_veicolo[0]
-            loadout["costo_totale"] += migliore_veicolo[1]["costo_destino"]
+            loadout["costo_totale"] += migliore_veicolo[1]["valore"]
     
     # Aggiungi armatura se budget rimane
     budget_rimanente = budget_dp - loadout["costo_totale"]
     armature = get_equipaggiamenti_per_tipo("Armatura")
-    armature_budget = {k: v for k, v in armature.items() if v["costo_destino"] <= budget_rimanente}
+    armature_budget = {k: v for k, v in armature.items() if v["valore"] <= budget_rimanente}
     if armature_budget:
-        migliore_armatura = max(armature_budget.items(), key=lambda x: x[1]["statistiche"]["valore_armatura"])
+        migliore_armatura = max(armature_budget.items(), key=lambda x: x[1]["statistiche"]["armatura"])
         loadout["armatura"] = migliore_armatura[0]
-        loadout["costo_totale"] += migliore_armatura[1]["costo_destino"]
+        loadout["costo_totale"] += migliore_armatura[1]["valore"]
     
     return loadout
 
@@ -1097,7 +1100,7 @@ def stampa_lista_equipaggiamenti():
         if eq_categoria:
             print(f"\n--- {categoria.upper()} ---")
             for nome, data in eq_categoria.items():
-                print(f"• {data['nome']} - {data['costo_destino']} DP ({data['rarity']}) - {data['set_espansione']}")
+                print(f"• {data['nome']} - {data['valore']} DP ({data['rarity']}) - {data['set_espansione']}")
 
 
 # ========== ESEMPI DI UTILIZZO ==========
@@ -1144,8 +1147,8 @@ if __name__ == "__main__":
     if spada:
         print(f"✓ Equipaggiamento creato: {spada.nome}")
         print(f"  Tipo: {spada.tipo.value}")
-        print(f"  Costo: {spada.costo_destino}")
-        print(f"  Valore Combattimento: {spada.valore_combattimento}")
+        print(f"  Costo: {spada.valore}")
+        print(f"  Valore Combattimento: {spada.modificatori_combattimento}")
     
     # Verifica integrità
     print(f"\n=== VERIFICA INTEGRITÀ ===")

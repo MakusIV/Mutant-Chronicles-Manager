@@ -37,7 +37,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     "dark_curse": {
@@ -71,7 +71,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0,
+        "quantita":9,
     },
 
     "healing_light": {
@@ -105,7 +105,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     "righteous_fury": {
@@ -139,7 +139,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     "divine_intervention": {
@@ -173,7 +173,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     "brotherhood_unity": {
@@ -214,7 +214,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     # === CARTE ARTE UNIVERSALI ===
@@ -249,7 +249,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     # === CARTE INQUISITION ===
@@ -284,7 +284,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     "purification_rite": {
@@ -318,7 +318,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     # === CARTE ARTE RARE E ULTRA RARE ===
@@ -367,7 +367,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     "resurrection": {
@@ -401,7 +401,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     # === CARTE ARTE SPECIFICHE PER ESPANSIONI ===
@@ -436,7 +436,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     "mass_conversion": {
@@ -470,7 +470,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     # === CARTE COMBATTIMENTO ===
@@ -505,7 +505,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     },
 
     "protective_ward": {
@@ -539,7 +539,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita": 0
+        "quantita":9
     }
 }
 

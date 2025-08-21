@@ -52,7 +52,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0  # CORRETTO: era "quantità"
+        "quantita":9  # CORRETTO: era "quantità"
     },
     
     "tentazione": {
@@ -91,7 +91,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     },
 
     "possessione_demoniaca": {
@@ -130,7 +130,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     },
 
     # ========== DONI DEGLI APOSTOLI ==========
@@ -171,7 +171,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     },
 
     "benedizione_di_semai": {
@@ -210,7 +210,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     },
 
     "artigli_di_muawijhe": {
@@ -249,7 +249,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     },
 
     "vuoto_di_ilian": {
@@ -288,7 +288,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     },
 
     "follia_di_demnogonis": {
@@ -327,7 +327,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     },
 
     # ========== ESPANSIONI ==========
@@ -369,7 +369,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     },
 
     "corruzione_maggiore": {
@@ -408,7 +408,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita": 0
+        "quantita":9
     }
 }
 
@@ -608,7 +608,7 @@ if __name__ == "__main__":
     
     # Verifica encoding proprietà
     encoding_corretto = all(
-        "quantita" in carta and "quantità" not in carta
+        "quantita" in carta and "quantita" not in carta
         for carta in DATABASE_OSCURA_SIMMETRIA.values()
     )
     print(f"✓ Encoding corretto (quantita vs quantità): {encoding_corretto}")

@@ -56,7 +56,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": ["Abilità di combattimento corpo a corpo"],
-        "quantita": 0
+        "quantita":9
     },
 
     "Martello di Algeroth": {
@@ -109,7 +109,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": ["Altre armi Apostoliche"],
         "potenzia": ["Attacchi corpo a corpo letali"],
-        "quantita": 0
+        "quantita":9
     },
 
     # RELIQUIE TECNOLOGICHE
@@ -172,7 +172,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": ["EMP", "Interferenze", "Sovraccarico"],
         "incompatibile_con": [],
         "potenzia": ["Equipaggiamento Cybertronic"],
-        "quantita": 0
+        "quantita":9
     },
 
     # RELIQUIE MISTICHE - FRATELLANZA
@@ -237,7 +237,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": ["Doni dell'Oscura Simmetria"],
         "potenzia": ["Arti della Fratellanza", "Abilità mistiche"],
-        "quantita": 0
+        "quantita":9
     },
 
     "Amuleto di Protezione": {
@@ -292,7 +292,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": ["Resistenza mistica"],
-        "quantita": 0
+        "quantita":9
     },
 
     # RELIQUIE CORPORATIVE SPECIFICHE
@@ -355,7 +355,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": ["Tradimento"],
         "potenzia": ["Abilità di comando", "Morale delle truppe"],
-        "quantita": 0
+        "quantita":9
     },
 
     "Dispositivo Bauhaus": {
@@ -408,7 +408,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": ["Interferenze magnetiche"],
         "incompatibile_con": [],
         "potenzia": ["Armi da fuoco Bauhaus"],
-        "quantita": 0
+        "quantita":9
     },
 
     "Katana Ancestrale": {
@@ -470,7 +470,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": ["Azioni disonorevoli"],
         "potenzia": ["Abilità di duello", "Tecniche Mishima"],
-        "quantita": 0
+        "quantita":9
     },
 
     "Emblema Capitol": {
@@ -532,7 +532,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": ["Morale Capitol", "Resistenza"],
-        "quantita": 0
+        "quantita":9
     },
 
     # RELIQUIE DELL'OSCURA LEGIONE
@@ -602,7 +602,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": ["Simboli sacri", "Luce pura"],
         "incompatibile_con": ["Reliquie sacre"],
         "potenzia": ["Doni dell'Oscura Simmetria"],
-        "quantita": 0
+        "quantita":9
     },
 
     # RELIQUIE UNIVERSALI
@@ -658,7 +658,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": ["Controllo del destino", "Fortuna"],
-        "quantita": 0
+        "quantita":9
     },
 
     "Armatura Antica": {
@@ -711,7 +711,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": ["Ridotta mobilità"],
         "incompatibile_con": ["Altre armature"],
         "potenzia": ["Sopravvivenza"],
-        "quantita": 0
+        "quantita":9
     }
 }
 
@@ -832,6 +832,18 @@ def get_reliquie_per_tipo(tipo_reliquia: str) -> Dict[str, Dict[str, Any]]:
     
     return reliquie_tipo
 
+def get_reliquie_per_set(espansione: str) -> List[str]:
+    """
+    Restituisce una lista dei nomi di tutte le reliquie di una specifica espansione
+    
+    Args:
+        espansione: Nome dell'espansione
+        
+    Returns:
+        Lista dei nomi delle reliquie dell'espansione
+    """
+    return [nome for nome, data in DATABASE_RELIQUIE.items() 
+            if data["set_espansione"] == espansione]
 
 def get_reliquie_per_rarita(rarity: str) -> Dict[str, Dict[str, Any]]:
     """

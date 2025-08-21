@@ -58,7 +58,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "La città fortezza di Heimburg protegge i guerrieri Bauhaus con le sue possenti mura.",
         "flavour_text": "Nelle profondità di Venere, Heimburg rappresenta la potenza industriale Bauhaus.",
         "keywords": ["Bauhaus", "Città", "Fortificazione", "Difesa"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Citadel": {
@@ -110,7 +110,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "La Citadel rappresenta la supremazia militare e spirituale dell'Impero.",
         "flavour_text": "Nel cuore della Terra, la Citadel vigila sui fedeli dell'Imperatore.",
         "keywords": ["Imperiale", "Città", "Fortificazione", "Difesa", "Resistenza"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Ilian": {
@@ -161,7 +161,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Ilian, la città di cristallo di Mercurio, conferisce velocità ai suoi difensori.",
         "flavour_text": "Come il mercurio scorre veloce, così i guerrieri di Ilian si muovono.",
         "keywords": ["Mishima", "Città", "Fortificazione", "Velocità"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Capitol": {
@@ -205,7 +205,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Capitol, centro del progresso tecnologico e commerciale.",
         "flavour_text": "Dove la tecnologia incontra l'ambizione, nasce Capitol.",
         "keywords": ["Capitol", "Città", "Fortificazione", "Tecnologia"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Saguenay": {
@@ -257,7 +257,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Saguenay, centro dell'innovazione cibernetica di Cybertronic.",
         "flavour_text": "Nel silenzio digitale di Saguenay, il futuro prende forma.",
         "keywords": ["Cybertronic", "Città", "Fortificazione", "Cibernetico"],
-        "quantita": 0
+        "quantita":9
     },
     
     # CITTADELLE DEGLI APOSTOLI
@@ -317,7 +317,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Nel nome di Algeroth, le armi parlano e la guerra non ha fine.",
         "flavour_text": "Dalle fondamenta della Cittadella echeggia l'eterno rumore della battaglia.",
         "keywords": ["Algeroth", "Cittadella", "Guerra", "Oscura Legione"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Cittadella di Ilian": {
@@ -369,7 +369,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Nella Cittadella di Ilian, la verità si dissolve come nebbia.",
         "flavour_text": "Chi entra nel labirinto di Ilian, perde se stesso nelle bugie.",
         "keywords": ["Ilian", "Cittadella", "Inganno", "Oscura Legione"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Cittadella di Demnogonis": {
@@ -421,7 +421,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Il gelo eterno di Demnogonis preserva i suoi servitori.",
         "flavour_text": "Nel cuore della Cittadella, l'inverno non ha mai fine.",
         "keywords": ["Demnogonis", "Cittadella", "Gelo", "Terrore", "Oscura Legione"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Cittadella di Muawijhe": {
@@ -473,7 +473,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "I sussurri di Muawijhe portano follia e corruzione.",
         "flavour_text": "Chi ascolta troppo a lungo, dimentica chi era.",
         "keywords": ["Muawijhe", "Cittadella", "Follia", "Corruzione", "Oscura Legione"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Cittadella di Semai": {
@@ -525,7 +525,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Nel Tempio di Semai, il destino prende forma.",
         "flavour_text": "Le trame del fato si intrecciano nella Cittadella del Destino.",
         "keywords": ["Semai", "Cittadella", "Destino", "Fato", "Oscura Legione"],
-        "quantita": 0
+        "quantita":9
     },
     
     # FORTIFICAZIONI GENERICHE
@@ -570,7 +570,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Un rifugio sicuro contro le tempeste della guerra.",
         "flavour_text": "Spesse pareti di ferro proteggono chi vi si rifugia.",
         "keywords": ["Bunker", "Fortificazione", "Difesa", "Universale"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Torretta di Guardia": {
@@ -614,7 +614,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Una posizione elevata conferisce vantaggi tattici significativi.",
         "flavour_text": "Dall'alto, ogni movimento nemico è visibile.",
         "keywords": ["Torretta", "Avvistamento", "Tattica", "Distanza"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Complesso Industriale": {
@@ -666,7 +666,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "L'industria alimenta la macchina bellica con risorse continue.",
         "flavour_text": "Dalle fabbriche escono armi e speranza in egual misura.",
         "keywords": ["Industria", "Produzione", "Equipaggiamenti", "Rifornimenti"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Base Operativa": {
@@ -718,7 +718,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Il cuore operativo delle forze Doomtrooper sul campo.",
         "flavour_text": "Da qui partono gli ordini che cambiano il corso della battaglia.",
         "keywords": ["Base", "Comando", "Doomtrooper", "Tattica"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Rifugio Blindato": {
@@ -762,7 +762,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Spesse piastre di blindatura proteggono chi si rifugia all'interno.",
         "flavour_text": "Quando le bombe cadono, il rifugio è l'unica salvezza.",
         "keywords": ["Rifugio", "Blindatura", "Protezione", "Sicurezza"],
-        "quantita": 0
+        "quantita":9
     },
     
     # FORTIFICAZIONI SPECIALI DELL'AVAMPOSTO
@@ -815,7 +815,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Nel Club Arkadin, informazioni e favori sono la moneta corrente.",
         "flavour_text": "Dove le Tribù si incontrano, i segreti cambiano di mano.",
         "keywords": ["Club", "Tribù", "Informazioni", "Avamposto"],
-        "quantita": 0
+        "quantita":9
     },
     
     "Santuario Templare": {
@@ -867,7 +867,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "La fede purifica e protegge dal male oscuro.",
         "flavour_text": "Nel Santuario, la luce scaccia ogni ombra.",
         "keywords": ["Santuario", "Templari", "Fede", "Immunità"],
-        "quantita": 0
+        "quantita":9
     }
 }
 
@@ -897,6 +897,23 @@ def get_fortificazioni_per_fazione(fazione: str) -> Dict[str, Dict[str, Any]]:
     return {nome: data for nome, data in DATABASE_FORTIFICAZIONI.items() 
             if not data["fazioni_permesse"] or fazione in data["fazioni_permesse"]}
 
+def get_fortificazioni_per_set(nome_set: str) -> Dict[str, Dict[str, Any]]:
+    """
+    Restituisce tutte le fortificazioni di un set specifico
+    
+    Args:
+        nome_set: Nome del set (es. "Base", "Inquisition", "Warzone")
+    
+    Returns:
+        Dizionario con le missioni del set specificato
+    """
+    fortificazione_set = {}
+    
+    for nome_fortificazione, dati_fortificazione in DATABASE_FORTIFICAZIONI.items():
+        if dati_fortificazione["set_espansione"] == nome_set:
+            fortificazione_set[nome_fortificazione] = dati_fortificazione
+    
+    return fortificazione_set
 
 def get_fortificazioni_per_corporazione(corporazione: str) -> Dict[str, Dict[str, Any]]:
     """Restituisce tutte le fortificazioni specifiche per una corporazione"""

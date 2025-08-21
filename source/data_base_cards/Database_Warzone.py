@@ -50,7 +50,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 3,
         "frequenza_utilizzo": "Alta",
-        "quantita": 0
+        "quantita":9
     },
 
     "Bunker Corazzato": {
@@ -85,7 +85,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 5,
         "frequenza_utilizzo": "Media",
-        "quantita": 0
+        "quantita":9
     },
 
     "Città Devastata": {
@@ -120,7 +120,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 4,
         "frequenza_utilizzo": "Alta",
-        "quantita": 0
+        "quantita":9
     },
 
     "Campo Aperto": {
@@ -155,7 +155,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 3,
         "frequenza_utilizzo": "Media",
-        "quantita": 0
+        "quantita":9
     },
 
     "Giungla Ostile": {
@@ -191,7 +191,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 4,
         "frequenza_utilizzo": "Media",
-        "quantita": 0
+        "quantita":9
     },
 
     "Complesso Industriale": {
@@ -227,7 +227,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 6,
         "frequenza_utilizzo": "Bassa",
-        "quantita": 0
+        "quantita":9
     },
 
     # === WARZONE ESPANSIONI ===
@@ -271,7 +271,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 7,
         "frequenza_utilizzo": "Bassa",
-        "quantita": 0
+        "quantita":9
     },
 
     "Palude Tossica": {
@@ -307,7 +307,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 4,
         "frequenza_utilizzo": "Media",
-        "quantita": 0
+        "quantita":9
     },
 
     "Montagne Ghiacciate": {
@@ -343,7 +343,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 5,
         "frequenza_utilizzo": "Bassa",
-        "quantita": 0
+        "quantita":9
     },
 
     "Laboratorio Abbandonato": {
@@ -385,7 +385,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 8,
         "frequenza_utilizzo": "Bassa",
-        "quantita": 0
+        "quantita":9
     },
 
     "Arena Gladiatoria": {
@@ -426,7 +426,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 9,
         "frequenza_utilizzo": "Molto Bassa",
-        "quantita": 0
+        "quantita":9
     }
 }
 
@@ -563,6 +563,13 @@ def filtra_warzone_per_area(area: str) -> Dict[str, Dict[str, Any]]:
         nome: dati for nome, dati in DATABASE_WARZONE.items()
         if area in dati["restrizioni"]["aree_utilizzabili"] or 
            "Qualsiasi Area" in dati["restrizioni"]["aree_utilizzabili"]
+    }
+
+def filtra_warzone_per_fazione(fazione: str) -> Dict[str, Dict[str, Any]]:
+    """Filtra le Warzone per fazione"""
+    return {
+        nome: dati for nome, dati in DATABASE_WARZONE.items()
+        if dati["restrizioni"]["fazioni_permesse"] == [] or fazione in dati["restrizioni"]["fazioni_permesse"]
     }
 
 def filtra_warzone_per_valore_strategico(valore_min: int, valore_max: int = None) -> Dict[str, Dict[str, Any]]:
