@@ -30,7 +30,7 @@ class Fazione(Enum):
     FRATELLANZA = "Fratellanza"
     OSCURA_LEGIONE = "Oscura Legione"  # Corretto da "LEGIONE_OSCURA"
     FREELANCER = "Freelancer"
-    TRIBÙ = "Tribù"
+
 
 
 class TipoGuerriero(Enum):

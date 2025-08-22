@@ -45,7 +45,7 @@ DATABASE_RELIQUIE = {
             }
         ],
         "poteri": [],
-        "set_espansione": "Base",
+        "set_espansione": "Inquisition",
         "numero_carta": "R001",
         "testo_carta": "+3 Corpo a corpo, +1 Armatura. Solo per Doomtrooper delle Corporazioni.",
         "flavour_text": "Forgiata nelle prime guerre corporative, la sua lama non conosce sconfitta.",
@@ -161,7 +161,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Base",
+        "set_espansione": "Inquisition",
         "numero_carta": "R003",
         "testo_carta": "+4 Sparare con tecnologia, +2 C con cyber. Può controllare tech nemico.",
         "flavour_text": "L'interfaccia definitiva tra mente e macchina.",
@@ -281,7 +281,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Base",
+        "set_espansione": "Inquisition",
         "numero_carta": "R005",
         "testo_carta": "+2 A vs mistici. Immune paura. Una volta/turno annulla attacco.",
         "flavour_text": "Un antico simbolo che protegge chi lo porta dalle forze oscure.",
@@ -397,7 +397,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Base",
+        "set_espansione": "Inquisition",
         "numero_carta": "R007",
         "testo_carta": "+3 Sparare, +2 A vs esplosivi. Ignora copertura e distanza.",
         "flavour_text": "L'ingegneria tedesca al suo apice: precisione e affidabilità assolute.",
@@ -521,7 +521,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Base",
+        "set_espansione": "Inquisition",
         "numero_carta": "R009",
         "testo_carta": "+2 Sparare, +2 Valore. Ripristina ferite. Immune ritirata.",
         "flavour_text": "Il simbolo dell'indomito spirito americano che non si arrende mai.",
@@ -700,7 +700,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Base",
+        "set_espansione": "Inquisition",
         "numero_carta": "R012",
         "testo_carta": "+4 Armatura, -1 Corpo a corpo. Immune primi 2 danni/turno.",
         "flavour_text": "Forgiata in tempi dimenticati, offre protezione a costo della mobilità.",

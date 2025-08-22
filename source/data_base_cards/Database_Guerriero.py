@@ -35,7 +35,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-"quantita":9
+        "quantita":9
     },
     
     "Bauhaus Venusian Ranger": {
@@ -1234,6 +1234,19 @@ def crea_guerriero_da_nome(nome_guerriero: str):
         print(f"Guerriero '{nome_guerriero}' non trovato nel database")
         return None
 
+def get_numero_guerrieri_per_fazione(fazione: str) -> Dict[str, int]:
+    """
+    Restituisce un dizionari con i nomi e le quantita di tutti i guerrieri di una specifica fazione
+    
+    Args:
+        fazione: Nome della fazione
+        
+    Returns:
+        Dizionario con i nomi e le quantita dei guerrieri della fazione
+    """
+    return [{'nome': nome, 'quantita': data['quantita']} for nome, data in GUERRIERI_DATABASE.items() 
+            if data["fazione"] == fazione]
+
 def get_guerrieri_per_fazione(fazione: str) -> List[str]:
     """
     Restituisce una lista dei nomi di tutti i guerrieri di una specifica fazione
@@ -1247,7 +1260,21 @@ def get_guerrieri_per_fazione(fazione: str) -> List[str]:
     return [nome for nome, data in GUERRIERI_DATABASE.items() 
             if data["fazione"] == fazione]
 
-def get_guerrieri_per_set(espansione: str) -> List[str]:
+def get_numero_guerrieri_per_set(espansione: str) -> Dict[str, int]:
+    """
+    Restituisce una lista dei nomi di tutti i guerrieri di una specifica espansione e la quantita disponibile
+    
+    Args:
+        espansione: Nome dell'espansione
+        
+    Returns:
+        Dizionario dei nomi dei guerrieri dell'espansione e della relativa quantita
+    """
+    return [{'nome': nome, 'quantita': data['quantita']} for nome, data in GUERRIERI_DATABASE.items() 
+            if data["set_espansione"] == espansione]
+
+
+def get_guerrieri_per_set(espansione: str) -> List[str]:    
     """
     Restituisce una lista dei nomi di tutti i guerrieri di una specifica espansione
     
