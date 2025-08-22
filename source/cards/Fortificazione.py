@@ -40,7 +40,7 @@ class AreaCompatibile(Enum):
 
 class BeneficiarioFortificazione(Enum):
     """Chi può beneficiare della fortificazione"""
-    GUERRIERI_AREA = "Guerrieri nell'area"
+    GUERRIERI_AREA = "Guerrieri Area"
     CORPORAZIONE_SPECIFICA = "Corporazione Specifica"
     APOSTOLO_SPECIFICO = "Apostolo Specifico"
     FAZIONE_SPECIFICA = "Guerrieri di una fazione specifica"

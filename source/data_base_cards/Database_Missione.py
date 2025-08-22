@@ -390,7 +390,7 @@ DATABASE_MISSIONI = {
         "difficolta": "Normale",
         "rarity": "Common",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Oscura_Legione"],
+        "fazioni_permesse": ["Oscura Legione"],
         "corporazioni_specifiche": [],
         "restrizioni_guerriero": [],
         "obiettivo": {
@@ -423,7 +423,7 @@ DATABASE_MISSIONI = {
         "difficolta": "Difficile",
         "rarity": "Rare",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Oscura_Legione"],
+        "fazioni_permesse": ["Oscura Legione"],
         "corporazioni_specifiche": [],
         "restrizioni_guerriero": ["Apostolo", "Nepharite"],
         "obiettivo": {

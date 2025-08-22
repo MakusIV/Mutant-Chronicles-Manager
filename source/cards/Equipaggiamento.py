@@ -21,7 +21,7 @@ class TipoEquipaggiamento(Enum):
     ARMATURA = "Armatura"
     VEICOLO = "Veicolo"
     EQUIPAGGIAMENTO_GENERICO = "Equipaggiamento"
-    RELIQUIA = "Reliquia"  # Non considerato Equipaggiamento normale
+    
 
 
 class TipoArmatura(Enum):
@@ -87,10 +87,10 @@ class Equipaggiamento:
         self.rarity = Rarity.COMMON
         
         # Modificatori alle statistiche del guerriero (C, S, A, V)
-        self.modificatori_combattimento = 0    # Modifica al Corpo a corpo (C)
-        self.modificatori_sparare = 0          # Modifica al Sparare (S)
-        self.modificatori_armatura = 0         # Modifica all'Armatura (A)
-        self.modificatori_valore = 0           # Modifica al Valore (V)
+        self.modificatori_combattimento: int = 0    # Modifica al Corpo a corpo (C)
+        self.modificatori_sparare: int = 0          # Modifica al Sparare (S)
+        self.modificatori_armatura: int = 0         # Modifica all'Armatura (A)
+        self.modificatori_valore: int = 0           # Modifica al Valore (V)
         
         # Modificatori condizionali
         self.modificatori_speciali: List[ModificatoreEquipaggiamento] = []
@@ -98,8 +98,8 @@ class Equipaggiamento:
         # Abilità speciali
         self.abilita_speciali: List[AbilitaSpeciale] = []
         
-        # Restrizioni di affiliazione
-        self.affiliazione = None  # Affiliazione richiesta (None = generica)
+        # Restrizioni di fazioni_permesse
+        self.fazioni_permesse: List[str] = []  # Affiliazione richiesta (None = generica)
         self.restrizioni_guerriero: List[str] = []
         
         # Meccaniche specifiche per armi
@@ -133,6 +133,16 @@ class Equipaggiamento:
         self.equipaggiamenti_richiesti: List[str] = []
         self.quantita = 0
     
+
+    def set_fazioni_permesse(fazioni_permesse: str):
+
+        if not isinstance(fazioni_permesse, str):
+            raise TypeError("fazioni_permesse must be a str")
+        
+        if all( a not in [f.value for f in Fazione] for a in fazioni_permesse):
+            if fazioni_permesse != ["Generica"]:
+                raise ValueError(f"fazioni_permesse must be in {[f.value for f in Fazione]}")
+
     def get_costo_destiny_points(self) -> int:
         """Restituisce il costo in Destiny Points per giocare questa carta"""
         return self.valore
@@ -169,7 +179,7 @@ class Equipaggiamento:
     def puo_essere_assegnato_a_guerriero(self, guerriero: Any) -> Dict[str, Any]:
         """
         Controlla se l'equipaggiamento può essere assegnato al guerriero specificato
-        Basato sulle regole di affiliazione del regolamento
+        Basato sulle regole di fazioni_permesse del regolamento
         
         Args:
             guerriero: Istanza del guerriero
@@ -179,14 +189,14 @@ class Equipaggiamento:
         """
         risultato = {"puo_assegnare": True, "errori": []}
         
-        # Controllo affiliazione
-        if self.affiliazione is not None:
-            # Se l'equipaggiamento ha un'affiliazione specifica
-            if guerriero.fazione != self.affiliazione:
+        # Controllo fazioni_permesse
+        if self.fazioni_permesse is not None:
+            # Se l'equipaggiamento ha fazioni_permesse specifiche
+            if all( a not in [f.value for f in Fazione] for a in self.fazioni_permesse):
                 # Verifica se è equipaggiamento generico utilizzabile da tutti
-                if self.affiliazione != "Generica":
+                if self.fazioni_permesse != ["Generica"]:
                     risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Affiliazione richiesta: {self.affiliazione.value}")
+                    risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse.value}")
         
         # Controllo restrizioni specifiche
         for restrizione in self.restrizioni_guerriero:
@@ -369,7 +379,7 @@ class Equipaggiamento:
                     "limitazioni": ab.limitazioni
                 } for ab in self.abilita_speciali
             ],
-            "affiliazione": self.affiliazione.value if self.affiliazione else None,
+            "fazioni_permesse": self.fazioni_permesse.value if self.fazioni_permesse else None,
             "restrizioni_guerriero": self.restrizioni_guerriero,
             "meccaniche_armi": {
                 "e_arma_da_fuoco": self.e_arma_da_fuoco,
@@ -418,8 +428,8 @@ class Equipaggiamento:
         equipaggiamento.modificatori_valore = mod["valore"]
         
         # Affiliazione
-        if data["affiliazione"]:
-            equipaggiamento.affiliazione = Fazione(data["affiliazione"])
+        if data["fazioni_permesse"]:
+            equipaggiamento.fazioni_permesse = Fazione(data["fazioni_permesse"])
         
         equipaggiamento.restrizioni_guerriero = data["restrizioni_guerriero"]
         
@@ -593,9 +603,9 @@ if __name__ == "__main__":
         modificatori = equipaggiamento_generico.applica_modificatori(guerriero_bauhaus)
         print(f"  Modificatori applicati: {modificatori}")
     
-    # Esempio 7: Equipaggiamento con affiliazione specifica
+    # Esempio 7: Equipaggiamento con fazioni_permesse specifica
     equipaggiamento_bauhaus = Equipaggiamento("Equipaggiamento Bauhaus", valore=2)
-    equipaggiamento_bauhaus.affiliazione = Fazione.BAUHAUS
+    equipaggiamento_bauhaus.fazioni_permesse = Fazione.BAUHAUS
     equipaggiamento_bauhaus.modificatori_combattimento = 1
     equipaggiamento_bauhaus.testo_carta = "+1 Corpo a corpo. Solo per guerrieri Bauhaus."
     

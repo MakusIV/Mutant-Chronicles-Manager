@@ -272,7 +272,7 @@ class Reliquia:
         Returns:
             bool: True se assegnazione riuscita
         """
-        if self.stato != StatoReliquia.NON_ASSEGNATA:
+        if self.stato and self.stato != StatoReliquia.NON_ASSEGNATA:
             return False
         
         if self.in_gioco_globalmente:
@@ -547,14 +547,16 @@ class Reliquia:
         reliquia.immunita = data["immunita"]
         reliquia.vulnerabilita = data["vulnerabilita"]
         
-        # Ripristina stato di gioco
-        stato = data["stato_gioco"]
-        reliquia.stato = StatoReliquia(stato["stato"])
-        reliquia.assegnata_a = stato["assegnata_a"]
-        reliquia.assegnata_da = stato["assegnata_da"]
-        reliquia.turno_assegnazione = stato["turno_assegnazione"]
-        reliquia.in_gioco_globalmente = stato["in_gioco_globalmente"]
-        
+        # Ripristina stato di gioco        
+        stato = data.get("stato_gioco")
+
+        if stato:
+            reliquia.stato = StatoReliquia(stato["stato"])
+            reliquia.assegnata_a = stato["assegnata_a"]
+            reliquia.assegnata_da = stato["assegnata_da"]
+            reliquia.turno_assegnazione = stato["turno_assegnazione"]
+            reliquia.in_gioco_globalmente = stato["in_gioco_globalmente"]
+            
         return reliquia
     
     def __str__(self) -> str:

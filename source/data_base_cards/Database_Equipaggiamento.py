@@ -19,7 +19,7 @@ DATABASE_EQUIPAGGIAMENTO = {
     # Importante tenerne conto nel database
     #
     # (*): in Equipaggiamento definiti come self.modificatori_<caratteristica>
-    # (**): in Equipaggiamento definiti nel Dict modificatori
+    # (**): in Equipaggiamento definiti nel Dict modificatori_speciali
     
     # ========== ARMI CORPO A CORPO - SET BASE ==========
     
@@ -37,7 +37,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "sparare": 0,            
             "valore": 3
         },
-        "modificatori": [],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": ["Nessuno"],
         "fazioni_permesse": [],  # Tutte le fazioni possono usare
@@ -93,7 +93,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "sparare": 0,              
             "valore": 4
         },
-        "modificatori": [
+        "modificatori_speciali": [
             {
                 "statistica": "combattimento",
                 "valore": 1,
@@ -167,7 +167,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             
             "valore": 2
         },
-        "modificatori": [],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Fuoco Rapido",
@@ -232,7 +232,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             
             "valore": 3
         },
-        "modificatori": [
+        "modificatori_speciali": [
             {
                 "statistica": "combattimento",
                 "valore": 1,
@@ -304,7 +304,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             
             "valore": 3
         },
-        "modificatori": [
+        "modificatori_speciali": [
             {
                 "statistica": "combattimento",
                 "valore": 2,
@@ -378,7 +378,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             
             "valore": 3
         },
-        "modificatori": [],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": ["Nessuno"],
         "fazioni_permesse": [],
@@ -435,7 +435,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             
             "valore": 6
         },
-        "modificatori": [],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Protezione Ambientale",
@@ -501,7 +501,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "sparare": 3,  # +3 Movimento
             "valore": 4
         },
-        "modificatori": [
+        "modificatori_speciali": [
             {
                 "statistica": "movimento",
                 "valore": 3,
@@ -575,7 +575,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             
             "valore": 1
         },
-        "modificatori": [],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Guarigione",
@@ -643,7 +643,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             
             "valore": 4
         },
-        "modificatori": [],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Cauterizzazione",
@@ -714,7 +714,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "sparare": 0,  # Servo-motori compensano il peso            
             "valore": 0
         },
-        "modificatori": [
+        "modificatori_speciali": [
             {
                 "statistica": "combattimento",
                 "valore": 2,
@@ -901,15 +901,15 @@ def crea_equipaggiamento_da_database(nome_equipaggiamento: str):
     equipaggiamento.modificatori_sparare = stats["sparare"]
     equipaggiamento.modificatori_valore = stats["valore"]
     
-    # Configura modificatori
-    for mod_data in data["modificatori"]:
+    # Configura modificatori_speciali
+    for mod_data in data["modificatori_speciali"]:
         modificatore = ModificatoreEquipaggiamento(
             statistica=mod_data["statistica"],
             valore=mod_data["valore"],
             condizione=mod_data["condizione"],
             descrizione=mod_data["descrizione"]
         )
-        equipaggiamento.modificatori.append(modificatore)
+        equipaggiamento.modificatori_speciali.append(modificatore)
     
     # Configura abilità speciali
     for abil_data in data["abilita_speciali"]:
