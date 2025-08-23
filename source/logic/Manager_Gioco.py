@@ -159,8 +159,13 @@ class StatisticheCollezione:
         self.per_set = defaultdict(int)
         self.per_rarity = defaultdict(int)
     
+   
+        
+    # Fix per il metodo aggiorna_statistiche nella classe StatisticheCollezione
+    # Questo metodo deve gestire sia enum che stringhe per set_espansione
+
     def aggiorna_statistiche(self, carta: Any, quantita: int = 1):
-        """Aggiorna le statistiche della collezione"""
+        """Aggiorna le statistiche in base alla carta aggiunta"""
         tipo_carta = type(carta).__name__.lower()
         
         if tipo_carta == "guerriero":
@@ -190,30 +195,83 @@ class StatisticheCollezione:
         elif hasattr(carta, 'costo_destino'):
             self.valore_totale_dp += carta.costo_destino * quantita
         
-        # Aggiorna contatori per fazione, set e rarità
+        # Aggiorna contatori per fazione, set e rarità con gestione sicura degli enum
         if hasattr(carta, 'fazione'):
-            self.per_fazione[carta.fazione.value] += quantita
+            # Gestisce sia enum che stringhe per fazione
+            fazione_key = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+            self.per_fazione[fazione_key] += quantita
+            
         if hasattr(carta, 'set_espansione'):
-            self.per_set[carta.set_espansione] += quantita
+            # Gestisce sia enum che stringhe per set_espansione - QUI È IL FIX PRINCIPALE
+            if hasattr(carta.set_espansione, 'value'):
+                # È un enum Set_Espansione
+                set_key = carta.set_espansione.value
+            else:
+                # È già una stringa
+                set_key = str(carta.set_espansione)
+            self.per_set[set_key] += quantita
+            
         if hasattr(carta, 'rarity'):
-            self.per_rarity[carta.rarity.value] += quantita
-    
+            # Gestisce sia enum che stringhe per rarity
+            rarity_key = carta.rarity.value if hasattr(carta.rarity, 'value') else str(carta.rarity)
+            self.per_rarity[rarity_key] += quantita
+
+    # Alternativa più robusta usando try/except:
+    def aggiorna_statistiche_robusta(self, carta: Any, quantita: int = 1):
+        """Versione più robusta che gestisce tutti i casi possibili"""
+        tipo_carta = type(carta).__name__.lower()
+        
+        # ... codice per aggiornare contatori per tipo carta ...
+        
+        # Aggiorna contatori per fazione con gestione errori
+        if hasattr(carta, 'fazione'):
+            try:
+                fazione_key = carta.fazione.value
+            except AttributeError:
+                fazione_key = str(carta.fazione)
+            self.per_fazione[fazione_key] += quantita
+            
+        # Aggiorna contatori per set_espansione con gestione errori
+        if hasattr(carta, 'set_espansione'):
+            try:
+                set_key = carta.set_espansione.value
+            except AttributeError:
+                set_key = str(carta.set_espansione)
+            self.per_set[set_key] += quantita
+            
+        # Aggiorna contatori per rarity con gestione errori
+        if hasattr(carta, 'rarity'):
+            try:
+                rarity_key = carta.rarity.value
+            except AttributeError:
+                rarity_key = str(carta.rarity)
+            self.per_rarity[rarity_key] += quantita
+
+    # Funzione helper per convertire enum in stringa sicura
+    def enum_to_string(obj):
+        """Converte un enum in stringa in modo sicuro"""
+        if hasattr(obj, 'value'):
+            return obj.value
+        else:
+            return str(obj)
+
+
     def __str__(self) -> str:
         return f"""Statistiche Collezione:
-- Guerrieri: {self.guerrieri}
-- Equipaggiamenti: {self.equipaggiamenti}
-- Speciali: {self.speciali}
-- Fortificazioni: {self.fortificazioni}
-- Missioni: {self.missioni}
-- Arte: {self.arte}
-- Oscura Simmetria: {self.oscura_simmetria}
-- Reliquie: {self.reliquie}
-- Warzone: {self.warzone}
-- Totale carte: {self.totale_carte}
-- Valore totale DP: {self.valore_totale_dp}
-- Per fazione: {dict(self.per_fazione)}
-- Per set: {dict(self.per_set)}
-- Per rarità: {dict(self.per_rarity)}"""
+            - Guerrieri: {self.guerrieri}
+            - Equipaggiamenti: {self.equipaggiamenti}
+            - Speciali: {self.speciali}
+            - Fortificazioni: {self.fortificazioni}
+            - Missioni: {self.missioni}
+            - Arte: {self.arte}
+            - Oscura Simmetria: {self.oscura_simmetria}
+            - Reliquie: {self.reliquie}
+            - Warzone: {self.warzone}
+            - Totale carte: {self.totale_carte}
+            - Valore totale DP: {self.valore_totale_dp}
+            - Per fazione: {dict(self.per_fazione)}
+            - Per set: {dict(self.per_set)}
+            - Per rarità: {dict(self.per_rarity)}"""
 
 
 class CollezioneGiocatore:
@@ -286,12 +344,284 @@ class CollezioneGiocatore:
             'inventario_quantita': dict(self.inventario_quantita)
         }
     
-    def __str__(self) -> str:
-        fazioni_str = ", ".join([f.value if hasattr(f, 'value') else str(f) for f in self.fazioni_orientamento])
-        return f"""Collezione Giocatore {self.id_giocatore}:
-Fazioni orientamento: {fazioni_str}
-{self.statistiche}"""
+    #def __str__(self) -> str:
+    #    fazioni_str = ", ".join([f.value if hasattr(f, 'value') else str(f) for f in self.fazioni_orientamento])
+    #    return f"""Collezione Giocatore {self.id_giocatore}:
+    #        Fazioni orientamento: {fazioni_str}
+    #        {self.statistiche}"""
 
+    #####################  AGGIUNTA ############################################
+
+    # Metodi aggiuntivi da aggiungere alla classe CollezioneGiocatore
+    # per migliorare la gestione dell'inventario
+
+    def get_inventario_dettagliato(self) -> Dict[str, Dict[str, Any]]:
+        """
+        Restituisce l'inventario completo con dettagli per ogni carta.
+        
+        Returns:
+            Dict: {nome_carta: {tipo, quantita, fazione (se guerriero), rarità, set, valore}}
+        """
+        inventario = {}
+        
+        for tipo_carta, liste_carte in self.carte.items():
+            for carta in liste_carte:
+                nome_carta = carta.nome
+                
+                if nome_carta not in inventario:
+                    # Crea entry base
+                    inventario[nome_carta] = {
+                        'tipo': tipo_carta.capitalize(),
+                        'quantita': 0,
+                        'rarity': None,
+                        'set_espansione': None,
+                        'valore_dp': 0
+                    }
+                    
+                    # Aggiunge fazione se è un guerriero
+                    if tipo_carta == 'guerriero' and hasattr(carta, 'fazione'):
+                        fazione = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+                        inventario[nome_carta]['fazione'] = fazione
+                    
+                    # Aggiunge rarità
+                    if hasattr(carta, 'rarity'):
+                        rarity = carta.rarity.value if hasattr(carta.rarity, 'value') else str(carta.rarity)
+                        inventario[nome_carta]['rarity'] = rarity
+                    
+                    # Aggiunge set espansione
+                    if hasattr(carta, 'set_espansione'):
+                        set_esp = carta.set_espansione.value if hasattr(carta.set_espansione, 'value') else str(carta.set_espansione)
+                        inventario[nome_carta]['set_espansione'] = set_esp
+                    
+                    # Aggiunge valore DP
+                    if hasattr(carta, 'valore'):
+                        inventario[nome_carta]['valore_dp'] = carta.valore
+                    elif hasattr(carta, 'costo_destino'):
+                        inventario[nome_carta]['valore_dp'] = carta.costo_destino
+                
+                # Incrementa quantità
+                inventario[nome_carta]['quantita'] += 1
+        
+        return inventario
+
+    def stampa_inventario_compatto(self):
+        """
+        Stampa una versione compatta dell'inventario organizzata per tipo.
+        """
+        print(f"\n📦 INVENTARIO COMPATTO - GIOCATORE {self.id_giocatore}")
+        print("=" * 60)
+        
+        # Orientamento se presente
+        if self.fazioni_orientamento:
+            fazioni_str = ", ".join([f.value if hasattr(f, 'value') else str(f) for f in self.fazioni_orientamento])
+            print(f"🎯 Orientamento: {fazioni_str}")
+            print("-" * 60)
+        
+        tipi_carte = {
+            'guerriero': '⚔️  Guerrieri',
+            'equipaggiamento': '🛡️  Equipaggiamenti', 
+            'speciale': '🎴 Speciali',
+            'fortificazione': '🏰 Fortificazioni',
+            'missione': '📜 Missioni',
+            'arte': '✨ Arte',
+            'oscura_simmetria': '🌑 Oscura Simmetria',
+            'reliquia': '🏺 Reliquie',
+            'warzone': '💥 Warzone'
+        }
+        
+        for tipo_carta, icona_nome in tipi_carte.items():
+            carte_tipo = self.carte.get(tipo_carta, [])
+            if carte_tipo:
+                # Conta le carte uniche
+                carte_uniche = defaultdict(int)
+                for carta in carte_tipo:
+                    carte_uniche[carta.nome] += 1
+                
+                print(f"\n{icona_nome}: {len(carte_tipo)} carte ({len(carte_uniche)} uniche)")
+                
+                # Mostra le più comuni (>1 copia)
+                carte_multiple = {nome: qty for nome, qty in carte_uniche.items() if qty > 1}
+                if carte_multiple:
+                    print("   Copie multiple:", end=" ")
+                    items = [f"{nome}(x{qty})" for nome, qty in sorted(carte_multiple.items())]
+                    print(", ".join(items[:3]))  # Mostra solo le prime 3
+                    if len(items) > 3:
+                        print(f"   ... e {len(items) - 3} altre")
+
+    def get_statistiche_avanzate(self) -> Dict[str, Any]:
+        """
+        Calcola statistiche avanzate della collezione.
+        
+        Returns:
+            Dict con statistiche dettagliate
+        """
+        stats = {
+            'totale_carte': self.get_totale_carte(),
+            'carte_uniche': 0,
+            'valore_totale_dp': self.statistiche.valore_totale_dp,
+            'distribuzione_rarità': defaultdict(int),
+            'distribuzione_set': defaultdict(int),
+            'distribuzione_fazioni': defaultdict(int),
+            'guerrieri_per_fazione': defaultdict(int),
+            'carta_più_comune': {'nome': '', 'quantita': 0},
+            'carta_più_rara': {'nome': '', 'rarity': ''},
+            'valore_medio_carta': 0
+        }
+        
+        inventario = self.get_inventario_dettagliato()
+        stats['carte_uniche'] = len(inventario)
+        
+        if stats['totale_carte'] > 0:
+            stats['valore_medio_carta'] = stats['valore_totale_dp'] / stats['totale_carte']
+        
+        # Analizza ogni carta unica
+        for nome_carta, info in inventario.items():
+            # Distribuzione rarità
+            if info['rarity']:
+                stats['distribuzione_rarità'][info['rarity']] += info['quantita']
+            
+            # Distribuzione set
+            if info['set_espansione']:
+                stats['distribuzione_set'][info['set_espansione']] += info['quantita']
+            
+            # Distribuzione fazioni
+            if 'fazione' in info and info['fazione']:
+                stats['distribuzione_fazioni'][info['fazione']] += info['quantita']
+                if info['tipo'] == 'Guerriero':
+                    stats['guerrieri_per_fazione'][info['fazione']] += info['quantita']
+            
+            # Carta più comune
+            if info['quantita'] > stats['carta_più_comune']['quantita']:
+                stats['carta_più_comune'] = {
+                    'nome': nome_carta,
+                    'quantita': info['quantita'],
+                    'tipo': info['tipo']
+                }
+            
+            # Carta più rara (in termini di rarità, non quantità)
+            rarità_priorità = {'Ultra Rare': 4, 'Rare': 3, 'Uncommon': 2, 'Common': 1}
+            rarity_attuale = rarità_priorità.get(info.get('rarity', ''), 0)
+            rarity_max = rarità_priorità.get(stats['carta_più_rara'].get('rarity', ''), 0)
+            
+            if rarity_attuale > rarity_max:
+                stats['carta_più_rara'] = {
+                    'nome': nome_carta,
+                    'rarity': info['rarity'],
+                    'tipo': info['tipo']
+                }
+        
+        return stats
+
+    def stampa_statistiche_avanzate(self):
+        """
+        Stampa statistiche avanzate della collezione.
+        """
+        stats = self.get_statistiche_avanzate()
+        
+        print(f"\n📊 STATISTICHE AVANZATE - GIOCATORE {self.id_giocatore}")
+        print("=" * 65)
+        
+        print(f"📦 Carte totali: {stats['totale_carte']} ({stats['carte_uniche']} uniche)")
+        print(f"💰 Valore totale: {stats['valore_totale_dp']} DP")
+        print(f"💎 Valore medio/carta: {stats['valore_medio_carta']:.1f} DP")
+        
+        # Carta più comune
+        if stats['carta_più_comune']['quantita'] > 1:
+            comune = stats['carta_più_comune']
+            print(f"🔄 Carta più comune: {comune['nome']} (x{comune['quantita']}, {comune['tipo']})")
+        
+        # Carta più rara
+        if stats['carta_più_rara']['nome']:
+            rara = stats['carta_più_rara']
+            print(f"💎 Carta più rara: {rara['nome']} ({rara['rarity']}, {rara['tipo']})")
+        
+        # Distribuzione rarità
+        if stats['distribuzione_rarità']:
+            print(f"\n🌟 Distribuzione Rarità:")
+            for rarity, count in sorted(stats['distribuzione_rarità'].items()):
+                percentuale = (count / stats['totale_carte']) * 100
+                print(f"   {rarity}: {count} carte ({percentuale:.1f}%)")
+        
+        # Distribuzione set
+        if stats['distribuzione_set']:
+            print(f"\n📚 Distribuzione Set:")
+            for set_nome, count in sorted(stats['distribuzione_set'].items()):
+                percentuale = (count / stats['totale_carte']) * 100
+                print(f"   {set_nome}: {count} carte ({percentuale:.1f}%)")
+        
+        # Guerrieri per fazione
+        if stats['guerrieri_per_fazione']:
+            print(f"\n⚔️  Guerrieri per Fazione:")
+            for fazione, count in sorted(stats['guerrieri_per_fazione'].items()):
+                print(f"   {fazione}: {count} guerrieri")
+
+    def cerca_carte(self, termine: str, tipo_carta: Optional[str] = None) -> List[Dict[str, Any]]:
+        """
+        Cerca carte nella collezione.
+        
+        Args:
+            termine: Termine da cercare nei nomi delle carte
+            tipo_carta: Tipo specifico di carta da cercare (opzionale)
+        
+        Returns:
+            Lista di risultati con dettagli delle carte trovate
+        """
+        risultati = []
+        inventario = self.get_inventario_dettagliato()
+        termine_lower = termine.lower()
+        
+        for nome_carta, info in inventario.items():
+            # Filtra per tipo se specificato
+            if tipo_carta and info['tipo'].lower() != tipo_carta.lower():
+                continue
+            
+            # Cerca nel nome
+            if termine_lower in nome_carta.lower():
+                risultato = info.copy()
+                risultato['nome'] = nome_carta
+                risultati.append(risultato)
+        
+        return risultati
+
+    def __str__(self) -> str:
+        """Rappresentazione string migliorata della collezione"""
+        orientamento_str = ""
+        if self.fazioni_orientamento:
+            fazioni = [f.value if hasattr(f, 'value') else str(f) for f in self.fazioni_orientamento]
+            orientamento_str = f" [🎯 {', '.join(fazioni)}]"
+        
+        return f"""🎮 Collezione Giocatore {self.id_giocatore}{orientamento_str}
+    📦 Totale carte: {self.get_totale_carte()}
+    💰 Valore: {self.statistiche.valore_totale_dp} DP
+    ⚔️  Guerrieri: {self.statistiche.guerrieri}
+    🛡️  Equipaggiamenti: {self.statistiche.equipaggiamenti}
+    🎴 Speciali: {self.statistiche.speciali}
+    🏰 Fortificazioni: {self.statistiche.fortificazioni}
+    📜 Missioni: {self.statistiche.missioni}
+    ✨ Arte: {self.statistiche.arte}
+    🌑 Oscura Simmetria: {self.statistiche.oscura_simmetria}
+    🏺 Reliquie: {self.statistiche.reliquie}
+    💥 Warzone: {self.statistiche.warzone}"""
+
+    # Esempio di come aggiungere questi metodi alla classe esistente:
+    """
+    Per integrare questi metodi nella classe CollezioneGiocatore esistente,
+    aggiungi il contenuto di questo file alla classe:
+
+    class CollezioneGiocatore:
+        # ... metodi esistenti ...
+        
+        # Aggiungi qui tutti i metodi sopra definiti
+        get_inventario_dettagliato = get_inventario_dettagliato
+        stampa_inventario_compatto = stampa_inventario_compatto
+        get_statistiche_avanzate = get_statistiche_avanzate
+        stampa_statistiche_avanzate = stampa_statistiche_avanzate
+        cerca_carte = cerca_carte
+        __str__ = __str__  # Sostituisce il __str__ esistente
+    """
+
+    print("Metodi per inventario dettagliato della CollezioneGiocatore creati.")
+    print("Integrare questi metodi nella classe esistente per funzionalità avanzate.")
 
 # Tracciamento globale delle quantità utilizzate
 QUANTITA_UTILIZZATE = defaultdict(int)
@@ -746,6 +1076,275 @@ def stampa_riepilogo_collezioni(collezioni: List[CollezioneGiocatore]):
     print(f"Valore totale DP: {totale_valore}")
     print(f"Media carte per collezione: {totale_carte / len(collezioni):.1f}")
     print(f"Media valore DP per collezione: {totale_valore / len(collezioni):.1f}")
+
+
+
+#################################  AGGIUNTA ########################################################
+
+def stampa_inventario_dettagliato(collezione):
+    """
+    Stampa l'inventario dettagliato della collezione con tipo di carta 
+    e fazione per i guerrieri.
+    
+    Args:
+        collezione: Oggetto CollezioneGiocatore
+    """
+    print(f"\n📦 INVENTARIO DETTAGLIATO - GIOCATORE {collezione.id_giocatore}")
+    print("=" * 80)
+    
+    if collezione.fazioni_orientamento:
+        fazioni_str = ", ".join([f.value if hasattr(f, 'value') else str(f) for f in collezione.fazioni_orientamento])
+        print(f"🎯 Orientamento: {fazioni_str}")
+        print("-" * 80)
+    
+    # Organizza le carte per tipo con informazioni dettagliate
+    inventario_organizzato = organizza_inventario_per_tipo(collezione)
+    
+    # Stampa ogni tipo di carta
+    for tipo_carta, carte_info in inventario_organizzato.items():
+        if carte_info:
+            print(f"\n🃏 {tipo_carta.upper()}: {len(carte_info)} carte")
+            print("-" * 40)
+            
+            # Ordina per nome carta
+            for nome_carta, info in sorted(carte_info.items()):
+                quantita = info['quantita']
+                esempi = info['esempi']
+                
+                # Costruisce la stringa di visualizzazione
+                riga_base = f"  • {nome_carta} (x{quantita})"
+                
+                # Aggiunge informazioni specifiche per tipo
+                if tipo_carta == "guerriero" and esempi:
+                    # Per i guerrieri mostra la fazione
+                    guerriero_esempio = esempi[0]
+                    if hasattr(guerriero_esempio, 'fazione'):
+                        fazione = guerriero_esempio.fazione.value if hasattr(guerriero_esempio.fazione, 'value') else str(guerriero_esempio.fazione)
+                        riga_base += f" [{fazione}]"
+                    
+                    # Aggiunge rarità e set se disponibili
+                    if hasattr(guerriero_esempio, 'rarity'):
+                        rarity = guerriero_esempio.rarity.value if hasattr(guerriero_esempio.rarity, 'value') else str(guerriero_esempio.rarity)
+                        riga_base += f" ({rarity})"
+                    
+                    if hasattr(guerriero_esempio, 'set_espansione'):
+                        set_esp = guerriero_esempio.set_espansione.value if hasattr(guerriero_esempio.set_espansione, 'value') else str(guerriero_esempio.set_espansione)
+                        riga_base += f" - {set_esp}"
+                
+                elif esempi:  # Per altri tipi di carta
+                    carta_esempio = esempi[0]
+                    info_extra = []
+                    
+                    # Aggiunge rarità se disponibile
+                    if hasattr(carta_esempio, 'rarity'):
+                        rarity = carta_esempio.rarity.value if hasattr(carta_esempio.rarity, 'value') else str(carta_esempio.rarity)
+                        info_extra.append(rarity)
+                    
+                    # Aggiunge set se disponibile
+                    if hasattr(carta_esempio, 'set_espansione'):
+                        set_esp = carta_esempio.set_espansione.value if hasattr(carta_esempio.set_espansione, 'value') else str(carta_esempio.set_espansione)
+                        info_extra.append(set_esp)
+                    
+                    # Aggiunge valore/costo se disponibile
+                    if hasattr(carta_esempio, 'valore'):
+                        info_extra.append(f"{carta_esempio.valore} DP")
+                    elif hasattr(carta_esempio, 'costo_destino'):
+                        info_extra.append(f"{carta_esempio.costo_destino} DP")
+                    
+                    if info_extra:
+                        riga_base += f" ({', '.join(info_extra)})"
+                
+                print(riga_base)
+    
+    # Riepilogo finale
+    print(f"\n📊 TOTALE: {collezione.get_totale_carte()} carte")
+    print(f"💰 Valore totale: {collezione.statistiche.valore_totale_dp} DP")
+
+def organizza_inventario_per_tipo(collezione):
+    """
+    Organizza l'inventario per tipo di carta con informazioni dettagliate.
+    
+    Returns:
+        Dict con struttura: {tipo_carta: {nome_carta: {quantita: int, esempi: [carta]}}}
+    """
+    inventario = defaultdict(lambda: defaultdict(lambda: {'quantita': 0, 'esempi': []}))
+    
+    # Itera su tutti i tipi di carte
+    for tipo_carta, liste_carte in collezione.carte.items():
+        for carta in liste_carte:
+            nome_carta = carta.nome
+            inventario[tipo_carta][nome_carta]['quantita'] += 1
+            
+            # Mantiene solo un esempio di ogni carta per le info
+            if len(inventario[tipo_carta][nome_carta]['esempi']) < 1:
+                inventario[tipo_carta][nome_carta]['esempi'].append(carta)
+    
+    return dict(inventario)
+
+def stampa_statistiche_fazioni(collezione):
+    """
+    Stampa statistiche dettagliate per fazione nella collezione.
+    
+    Args:
+        collezione: Oggetto CollezioneGiocatore
+    """
+    print(f"\n🏛️ STATISTICHE PER FAZIONE - GIOCATORE {collezione.id_giocatore}")
+    print("=" * 70)
+    
+    # Analizza carte per fazione
+    stats_fazioni = analizza_carte_per_fazione(collezione)
+    
+    if not stats_fazioni:
+        print("Nessuna carta con fazione trovata.")
+        return
+    
+    # Stampa statistiche per ogni fazione
+    for fazione, info in sorted(stats_fazioni.items()):
+        print(f"\n🏺 {fazione}:")
+        print(f"   Totale carte: {info['totale_carte']}")
+        print(f"   Guerrieri: {info['guerrieri']}")
+        print(f"   Altre carte: {info['altre_carte']}")
+        print(f"   Valore DP: {info['valore_dp']}")
+        
+        if info['carte_dettagli']:
+            print(f"   Dettaglio carte:")
+            for nome_carta, quantita in sorted(info['carte_dettagli'].items()):
+                if quantita > 0:
+                    print(f"     • {nome_carta} (x{quantita})")
+
+def analizza_carte_per_fazione(collezione):
+    """
+    Analizza le carte della collezione organizzandole per fazione.
+    
+    Returns:
+        Dict con statistiche per fazione
+    """
+    stats_fazioni = defaultdict(lambda: {
+        'totale_carte': 0,
+        'guerrieri': 0,
+        'altre_carte': 0,
+        'valore_dp': 0,
+        'carte_dettagli': defaultdict(int)
+    })
+    
+    # Analizza tutti i tipi di carte
+    for tipo_carta, liste_carte in collezione.carte.items():
+        for carta in liste_carte:
+            if hasattr(carta, 'fazione') and carta.fazione:
+                fazione_nome = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+                
+                # Aggiorna contatori
+                stats_fazioni[fazione_nome]['totale_carte'] += 1
+                stats_fazioni[fazione_nome]['carte_dettagli'][carta.nome] += 1
+                
+                if tipo_carta == 'guerriero':
+                    stats_fazioni[fazione_nome]['guerrieri'] += 1
+                else:
+                    stats_fazioni[fazione_nome]['altre_carte'] += 1
+                
+                # Aggiunge valore
+                if hasattr(carta, 'valore'):
+                    stats_fazioni[fazione_nome]['valore_dp'] += carta.valore
+                elif hasattr(carta, 'costo_destino'):
+                    stats_fazioni[fazione_nome]['valore_dp'] += carta.costo_destino
+    
+    return dict(stats_fazioni)
+
+def stampa_riepilogo_collezioni_migliorato(collezioni: List):
+    """
+    Stampa un riepilogo migliorato delle collezioni con inventari dettagliati.
+    
+    Args:
+        collezioni: Lista di oggetti CollezioneGiocatore
+    """
+    print(f"\n{'='*80}")
+    print(f"📋 RIEPILOGO DETTAGLIATO {len(collezioni)} COLLEZIONI GIOCATORI")
+    print(f"{'='*80}")
+    
+    # Riepilogo compatto iniziale
+    print(f"\n📊 PANORAMICA GENERALE:")
+    print("-" * 50)
+    
+    totale_carte = 0
+    totale_valore = 0
+    
+    for collezione in collezioni:
+        carte_collezione = collezione.get_totale_carte()
+        valore_collezione = collezione.statistiche.valore_totale_dp
+        
+        totale_carte += carte_collezione
+        totale_valore += valore_collezione
+        
+        orientamento_str = ""
+        if collezione.fazioni_orientamento:
+            fazioni = [f.value if hasattr(f, 'value') else str(f) for f in collezione.fazioni_orientamento]
+            orientamento_str = f" [🎯 {', '.join(fazioni)}]"
+        
+        print(f"  🎮 Giocatore {collezione.id_giocatore}: {carte_collezione} carte, {valore_collezione} DP{orientamento_str}")
+    
+    print(f"\n💯 STATISTICHE AGGREGATE:")
+    print(f"   📦 Totale carte: {totale_carte}")
+    print(f"   💰 Valore totale: {totale_valore} DP")
+    print(f"   📈 Media carte/giocatore: {totale_carte / len(collezioni):.1f}")
+    print(f"   💎 Media valore/giocatore: {totale_valore / len(collezioni):.1f} DP")
+    
+    # Inventari dettagliati per ogni collezione
+    for collezione in collezioni:
+        stampa_inventario_dettagliato(collezione)
+        
+        # Opzionale: statistiche fazioni solo se ci sono guerrieri
+        if collezione.statistiche.guerrieri > 0:
+            stampa_statistiche_fazioni(collezione)
+
+def cerca_carte_in_collezione(collezione, termine_ricerca: str):
+    """
+    Cerca carte nella collezione che contengono il termine specificato.
+    
+    Args:
+        collezione: Oggetto CollezioneGiocatore  
+        termine_ricerca: Termine da cercare nei nomi delle carte
+    
+    Returns:
+        Lista di risultati con informazioni dettagliate
+    """
+    risultati = []
+    termine_lower = termine_ricerca.lower()
+    
+    for tipo_carta, liste_carte in collezione.carte.items():
+        for carta in liste_carte:
+            if termine_lower in carta.nome.lower():
+                info_carta = {
+                    'nome': carta.nome,
+                    'tipo': tipo_carta,
+                    'quantita': collezione.inventario_quantita.get(carta.nome, 0)
+                }
+                
+                # Aggiunge info specifiche per guerrieri
+                if tipo_carta == 'guerriero' and hasattr(carta, 'fazione'):
+                    fazione = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+                    info_carta['fazione'] = fazione
+                
+                # Evita duplicati
+                if not any(r['nome'] == carta.nome for r in risultati):
+                    risultati.append(info_carta)
+    
+    return risultati
+
+# Esempio di utilizzo
+def esempio_inventario_dettagliato():
+    """
+    Esempio di come utilizzare le funzioni di inventario dettagliato.
+    Questa funzione dovrebbe essere chiamata dopo aver creato alcune collezioni.
+    """
+    print("\n🔍 ESEMPIO UTILIZZO INVENTARIO DETTAGLIATO")
+    print("=" * 60)
+    print("Per utilizzare queste funzioni:")
+    print("1. Crea alcune collezioni usando creazione_Collezione_Giocatore()")
+    print("2. Chiama stampa_riepilogo_collezioni_migliorato(collezioni)")
+    print("3. Per collezioni singole: stampa_inventario_dettagliato(collezione)")
+    print("4. Per cercare carte: cerca_carte_in_collezione(collezione, 'termine')")
+
+#########################################################
 
 
 
