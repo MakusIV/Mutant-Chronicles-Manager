@@ -516,40 +516,6 @@ DATABASE_MISSIONI = {
         "quantita":9
     },
 
-    # MISSIONI DELLE TRIBÙ
-    "Chiamata della Terra": {
-        "nome": "Chiamata della Terra",
-        "costo_azione": 1,
-        "tipo": "Guerriero",
-        "difficolta": "Normale",
-        "rarity": "Uncommon",
-        "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Tribù"],
-        "corporazioni_specifiche": [],
-        "restrizioni_guerriero": ["Mutante", "Ferals"],
-        "obiettivo": {
-            "descrizione": "Sopravvivi in Avamposto per 4 turni",
-            "tipo_obiettivo": "Sopravvivere",
-            "valore_richiesto": 4,
-            "condizioni_speciali": ["Solo in Avamposto", "Turni consecutivi"]
-        },
-        "ricompensa": {
-            "punti_promozione": 3,
-            "punti_destino": 2,
-            "carte_extra": 0,
-            "effetti_speciali": ["Comunione con la Terra: +2 Armatura e +1 Combattimento per 3 turni"],
-            "descrizione": "3 Punti Promozione, 2 Punti Destino e Comunione con la Terra"
-        },
-        "set_espansione": "Warzone",
-        "numero_carta": "M017",
-        "testo_carta": "Solo Mutanti o Ferals. Sopravvivi in Avamposto per 4 turni consecutivi. Ricompensa include Comunione con la Terra: +2 Armatura e +1 Combattimento per 3 turni.",
-        "flavour_text": "La Terra riconosce i suoi figli e li protegge da ogni minaccia.",
-        "keywords": ["Missione", "Tribù", "Sopravvivenza"],
-        "restrizioni": ["Solo Mutanti o Ferals delle Tribù"],
-        "condizioni_speciali": ["Deve rimanere in Avamposto per tutta la durata"],
-        "quantita":9
-    },
-
     # MISSIONI EPICHE E RARE
     "Leggenda Vivente": {
         "nome": "Leggenda Vivente",

@@ -1,0 +1,31 @@
+{
+  "numero_collezioni": 2,
+  "data_creazione": "2025-08-23 08:59:49.471622",
+  "collezioni": [
+    {
+      "id_giocatore": 1,
+      "fazioni_orientamento": [],
+      "statistiche": {
+        "guerrieri": 36,
+        "equipaggiamenti": 12,
+        "speciali": 30,
+        "fortificazioni": 36,
+        "missioni": 30,
+        "arte": 0,
+        "oscura_simmetria": 19,
+        "reliquie": 14,
+        "warzone": 0,
+        "totale_carte": 177,
+        "valore_totale_dp": 213,
+        "per_fazione": {
+          "Freelancer": 7,
+          "Mishima": 2,
+          "Cybertronic": 7,
+          "Bauhaus": 5,
+          "Capitol": 6,
+          "Imperiale": 5,
+          "Oscura Legione": 4
+        },
+        "per_set": {
+          "Warzone": 16,
+          "Base": 110

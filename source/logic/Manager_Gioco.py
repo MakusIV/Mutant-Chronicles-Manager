@@ -9,7 +9,7 @@ Versione: 1.0
 """
 
 import random
-import datetime
+from datetime import datetime
 from typing import List, Dict, Tuple, Optional, Any, Union
 from enum import Enum
 import json
@@ -107,6 +107,23 @@ LIMITI_CARTE_MAZZO = {
     'Reliquia': {'min': int(0.05 * NUMERO_CARTE_DISPONIBILI['Reliquia']) , 'max': int(0.07 * NUMERO_CARTE_DISPONIBILI['Reliquia']) },
     'Warzone': {'min': int(0.05 * NUMERO_CARTE_DISPONIBILI['Warzone']) , 'max': int(0.07 * NUMERO_CARTE_DISPONIBILI['Warzone']) },
 }
+
+
+# Serializzatore personalizzato per gestire enum e altri oggetti non serializzabili
+class EnumJSONEncoder(json.JSONEncoder):
+    """
+    Encoder JSON personalizzato per gestire enum e altri oggetti non serializzabili.
+    Converte automaticamente gli enum nei loro valori stringa.
+    """
+    def default(self, obj: Any) -> Any:
+        if isinstance(obj, Enum):
+            return obj.value
+        # Se è un oggetto con attributo 'value', usa quello
+        elif hasattr(obj, 'value'):
+            return obj.value
+        # Altrimenti usa il serializzatore di default
+        return super().default(obj)
+
 
 class TipoCombinazioneFazionePerMazzo(Enum):
     """Combinazioni di fazioni per collezioni orientate"""
@@ -399,13 +416,13 @@ def seleziona_carte_casuali_per_tipo(
             dati_carta.get('quantita', 0) - QUANTITA_UTILIZZATE[nome_carta]
         )
         
-        if max_quantita_disponibile <= 0:
+        #if max_quantita_disponibile <= 0:
             # Rimuovi carte non più disponibili
-            if nome_carta in carte_orientate:
-                del carte_orientate[nome_carta]
-            if nome_carta in carte_generiche:
-                del carte_generiche[nome_carta]
-            continue
+        if nome_carta in carte_orientate:
+            del carte_orientate[nome_carta]
+        if nome_carta in carte_generiche:
+            del carte_generiche[nome_carta]
+        #    continue
         
         quantita = random.randint(1, max_quantita_disponibile)
         
@@ -731,18 +748,111 @@ def stampa_riepilogo_collezioni(collezioni: List[CollezioneGiocatore]):
     print(f"Media valore DP per collezione: {totale_valore / len(collezioni):.1f}")
 
 
-def salva_collezioni_json(collezioni: List[CollezioneGiocatore], filename: str = "collezioni_giocatori.json"):
-    """Salva le collezioni in formato JSON"""
-    dati_export = {
-        'numero_collezioni': len(collezioni),
-        'data_creazione': str(datetime.now()),
-        'collezioni': [c.export_to_dict() for c in collezioni]
-    }
+
+def converti_enum_ricorsivo(obj: Any) -> Any:
+    """
+    Converte ricorsivamente tutti gli enum in un oggetto (dizionario, lista, ecc.) 
+    nei loro valori stringa per renderli serializzabili in JSON.
+    """
+    if isinstance(obj, Enum):
+        return obj.value
+    elif isinstance(obj, dict):
+        return {
+            (k.value if isinstance(k, Enum) else k): converti_enum_ricorsivo(v) 
+            for k, v in obj.items()
+        }
+    elif isinstance(obj, list):
+        return [converti_enum_ricorsivo(item) for item in obj]
+    elif hasattr(obj, 'value'):
+        return obj.value
+    else:
+        return obj
+
+def salva_collezioni_json(collezioni: List, filename: str = "collezioni_giocatori.json"):
+    """
+    Salva le collezioni in formato JSON con gestione corretta degli enum.
     
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(dati_export, f, indent=2, ensure_ascii=False)
-    
-    print(f"Collezioni salvate in {filename}")
+    Args:
+        collezioni: Lista delle collezioni da salvare
+        filename: Nome del file di output
+    """
+    try:
+        # Prepara i dati per l'export
+        dati_export = {
+            'numero_collezioni': len(collezioni),
+            'data_creazione': str(datetime.now()),
+            'collezioni': [c.export_to_dict() for c in collezioni]
+        }
+        
+        # Converte ricorsivamente tutti gli enum in valori stringa
+        dati_puliti = converti_enum_ricorsivo(dati_export)
+        
+        # Salva usando l'encoder personalizzato come backup
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(dati_puliti, f, indent=2, ensure_ascii=False, cls=EnumJSONEncoder)
+        
+        print(f"✅ Collezioni salvate con successo in {filename}")
+        
+    except Exception as e:
+        print(f"❌ Errore durante il salvataggio JSON: {e}")
+        
+        # Tentativo di salvataggio di debug per capire il problema
+        try:
+            debug_filename = filename.replace('.json', '_debug.txt')
+            with open(debug_filename, 'w', encoding='utf-8') as f:
+                f.write(f"Errore durante serializzazione JSON: {e}\n\n")
+                f.write(f"Numero collezioni: {len(collezioni)}\n")
+                for i, c in enumerate(collezioni):
+                    f.write(f"Collezione {i}: {type(c)} - {c.id_giocatore}\n")
+            print(f"File di debug salvato in {debug_filename}")
+        except Exception as debug_error:
+            print(f"Errore anche nel debug: {debug_error}")
+
+# Funzione alternativa più semplice per casi estremi
+def salva_collezioni_json_semplice(collezioni: List, filename: str = "collezioni_giocatori_simple.json"):
+    """
+    Versione semplificata del salvataggio che converte tutto in stringa.
+    Usare solo se la versione completa non funziona.
+    """
+    try:
+        dati_semplici = {
+            'numero_collezioni': len(collezioni),
+            'data_creazione': str(datetime.now()),
+            'collezioni': []
+        }
+        
+        for c in collezioni:
+            collezione_semplice = {
+                'id_giocatore': c.id_giocatore,
+                'fazioni_orientamento': [str(f) for f in c.fazioni_orientamento],
+                'statistiche': {
+                    'guerrieri': c.statistiche.guerrieri,
+                    'equipaggiamenti': c.statistiche.equipaggiamenti,
+                    'speciali': c.statistiche.speciali,
+                    'fortificazioni': c.statistiche.fortificazioni,
+                    'missioni': c.statistiche.missioni,
+                    'arte': c.statistiche.arte,
+                    'oscura_simmetria': c.statistiche.oscura_simmetria,
+                    'reliquie': c.statistiche.reliquie,
+                    'warzone': c.statistiche.warzone,
+                    'totale_carte': c.statistiche.totale_carte,
+                    'valore_totale_dp': c.statistiche.valore_totale_dp,
+                    # Converte tutte le chiavi in stringa
+                    'per_fazione': {str(k): v for k, v in c.statistiche.per_fazione.items()},
+                    'per_set': {str(k): v for k, v in c.statistiche.per_set.items()},
+                    'per_rarity': {str(k): v for k, v in c.statistiche.per_rarity.items()}
+                },
+                'totale_carte': c.get_totale_carte()
+            }
+            dati_semplici['collezioni'].append(collezione_semplice)
+        
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(dati_semplici, f, indent=2, ensure_ascii=False)
+        
+        print(f"✅ Collezioni salvate (versione semplice) in {filename}")
+        
+    except Exception as e:
+        print(f"❌ Errore anche nella versione semplice: {e}")
 
 
 def verifica_integrità_collezioni(collezioni: List[CollezioneGiocatore]) -> Dict[str, Any]:
@@ -1092,7 +1202,7 @@ def menu_interattivo():
                 
                 salva = input("Salvare in JSON? (s/n): ").lower().startswith('s')
                 if salva:
-                    filename = f"collezioni_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                    filename = f"collezioni_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
                     salva_collezioni_json(collezioni, filename)
                 
             except Exception as e:
