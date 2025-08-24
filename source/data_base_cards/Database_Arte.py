@@ -3,6 +3,8 @@ Database delle carte Arte di Mutant Chronicles/Doomtrooper
 VERSIONE CORRETTA - Allineata alle regole ufficiali del regolamento
 Dizionario completo per creare istanze usando Arte.from_dict()
 """
+from source.cards.Arte import Arte
+
 
 CARTE_ARTE_DATABASE = {
     # === CARTE ARTE BASE SET ===
@@ -549,7 +551,6 @@ def crea_carte_arte_da_database():
     Funzione helper per creare tutte le carte Arte dal database
     Restituisce un dizionario con nome_carta: istanza_Arte
     """
-    from source.cards.Arte import Arte
     
     carte_create = {}
     
@@ -789,7 +790,6 @@ def crea_carta_da_database(nome_carta: str):
         return None
     
     try:
-        from cards.Arte import Arte
         carta = Arte.from_dict(carta_data)
         return carta
     except Exception as e:

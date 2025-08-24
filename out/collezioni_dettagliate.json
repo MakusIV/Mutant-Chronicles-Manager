@@ -1,0 +1,2507 @@
+{
+  "metadata": {
+    "versione": "2.0",
+    "tipo_export": "collezioni_dettagliate",
+    "data_creazione": "2025-08-24T10:16:22.765054",
+    "numero_collezioni": 2,
+    "descrizione": "Export dettagliato collezioni con inventari completi e statistiche per fazione"
+  },
+  "statistiche_aggregate": {
+    "panoramica_generale": {
+      "numero_collezioni": 2,
+      "totale_carte": 395,
+      "totale_valore_dp": 474,
+      "media_carte_per_collezione": 197.5,
+      "media_valore_per_collezione": 237.0
+    },
+    "riepilogo_collezioni": [
+      {
+        "id_giocatore": 1,
+        "totale_carte": 208,
+        "valore_dp": 241,
+        "orientamento": {
+          "attivo": true,
+          "fazioni": [
+            "Fratellanza",
+            "Oscura Legione",
+            "Freelancer"
+          ]
+        }
+      },
+      {
+        "id_giocatore": 2,
+        "totale_carte": 187,
+        "valore_dp": 233,
+        "orientamento": {
+          "attivo": true,
+          "fazioni": [
+            "Bauhaus",
+            "Capitol",
+            "Imperiale",
+            "Mishima",
+            "Cybertronic",
+            "Oscura Legione",
+            "Freelancer"
+          ]
+        }
+      }
+    ],
+    "distribuzione_orientamenti": {
+      "Fratellanza, Freelancer, Oscura Legione": 1,
+      "Bauhaus, Capitol, Cybertronic, Freelancer, Imperiale, Mishima, Oscura Legione": 1
+    },
+    "distribuzione_globale": {
+      "per_tipo": {
+        "guerrieri": 79,
+        "equipaggiamenti": 35,
+        "speciali": 57,
+        "fortificazioni": 58,
+        "missioni": 54,
+        "arte": 46,
+        "oscura_simmetria": 24,
+        "reliquie": 42
+      },
+      "per_fazione": {
+        "Oscura Legione": 19,
+        "Fratellanza": 3,
+        "Imperiale": 13,
+        "Cybertronic": 13,
+        "Mishima": 8,
+        "Capitol": 4,
+        "Bauhaus": 19
+      },
+      "per_rarity": {
+        "Common": 145,
+        "Rare": 95,
+        "Uncommon": 108,
+        "Ultra Rare": 47
+      },
+      "per_set": {
+        "Base": 328,
+        "Inquisition": 67
+      }
+    }
+  },
+  "collezioni_dettagliate": [
+    {
+      "id_giocatore": 1,
+      "orientamento": {
+        "attivo": true,
+        "fazioni": [
+          "Fratellanza",
+          "Oscura Legione",
+          "Freelancer"
+        ]
+      },
+      "carte_per_tipo": {
+        "guerriero": {
+          "totale_carte": 45,
+          "carte_uniche": 16,
+          "dettaglio_carte": {
+            "Necromutant": {
+              "nome": "Necromutant",
+              "quantita": 5,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 14,
+                "sparare": 12,
+                "armatura": 8,
+                "valore": 4
+              },
+              "testo_carta": "Guerriero non-morto della Oscura Legione, rianimato per servire il Male.",
+              "keywords": [
+                "Non-Morto",
+                "Corrotto"
+              ]
+            },
+            "Brotherhood Missionary": {
+              "nome": "Brotherhood Missionary",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 8,
+                "sparare": 10,
+                "armatura": 10,
+                "valore": 6
+              },
+              "testo_carta": "Missionario della Fratellanza, diffonde la parola della Luce.",
+              "keywords": [
+                "Sacerdote"
+              ]
+            },
+            "Imperial Blood Beret": {
+              "nome": "Imperial Blood Beret",
+              "quantita": 5,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Imperiale",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 14,
+                "armatura": 11,
+                "valore": 7
+              },
+              "testo_carta": "Truppe d'elite imperiali, famose per la loro aggressività.",
+              "keywords": [
+                "Elite",
+                "Truppe d'Assalto"
+              ]
+            },
+            "Max Steiner": {
+              "nome": "Max Steiner",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Cybertronic",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 16,
+                "armatura": 14,
+                "valore": 9
+              },
+              "testo_carta": "Hacker leggendario della Cybertronic, maestro dell'infiltrazione digitale.",
+              "keywords": [
+                "Personalità",
+                "Unico",
+                "Hacker"
+              ]
+            },
+            "Mishima Hatamoto": {
+              "nome": "Mishima Hatamoto",
+              "quantita": 5,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Mishima",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 11,
+                "armatura": 13,
+                "valore": 6
+              },
+              "testo_carta": "Guerriero samurai della Mishima, fedele al codice d'onore.",
+              "keywords": [
+                "Samurai"
+              ]
+            },
+            "Capitol Purple Shark": {
+              "nome": "Capitol Purple Shark",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Capitol",
+              "statistiche": {
+                "combattimento": 12,
+                "sparare": 13,
+                "armatura": 11,
+                "valore": 5
+              },
+              "testo_carta": "Elite della Capitol, spietati cacciatori urbani.",
+              "keywords": [
+                "Elite"
+              ]
+            },
+            "Cardinal Dominic": {
+              "nome": "Cardinal Dominic",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 12,
+                "sparare": 13,
+                "armatura": 11,
+                "valore": 15
+              },
+              "testo_carta": "Alto prelato della Fratellanza, campione della Luce contro le tenebre.",
+              "keywords": [
+                "Personalità",
+                "Unico",
+                "Cardinale",
+                "Sacro"
+              ]
+            },
+            "Cybertronic Chasseur": {
+              "nome": "Cybertronic Chasseur",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Cybertronic",
+              "statistiche": {
+                "combattimento": 14,
+                "sparare": 14,
+                "armatura": 12,
+                "valore": 5
+              },
+              "testo_carta": "Guerriero cyber-potenziato specializzato in ricognizione e infiltrazione.",
+              "keywords": [
+                "Cyborg"
+              ]
+            },
+            "Bauhaus Venusian Ranger": {
+              "nome": "Bauhaus Venusian Ranger",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 10,
+                "sparare": 14,
+                "armatura": 12,
+                "valore": 5
+              },
+              "testo_carta": "Ranger esperto nella sopravvivenza negli ambienti ostili di Venere.",
+              "keywords": [
+                "Ranger"
+              ]
+            },
+            "Bauhaus Ducal Militia": {
+              "nome": "Bauhaus Ducal Militia",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 9,
+                "sparare": 11,
+                "armatura": 8,
+                "valore": 3
+              },
+              "testo_carta": "Milizia ducale della Bauhaus, guardia del corpo dei nobili.",
+              "keywords": [
+                "Milizia"
+              ]
+            },
+            "Cybertronic Machinators": {
+              "nome": "Cybertronic Machinators",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Cybertronic",
+              "statistiche": {
+                "combattimento": 11,
+                "sparare": 13,
+                "armatura": 12,
+                "valore": 5
+              },
+              "testo_carta": "Tecnici cyber-potenziati specializzati in manutenzione sul campo.",
+              "keywords": [
+                "Tecnico",
+                "Cyborg"
+              ]
+            },
+            "Bauhaus Blitzer": {
+              "nome": "Bauhaus Blitzer",
+              "quantita": 4,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 12,
+                "sparare": 12,
+                "armatura": 10,
+                "valore": 4
+              },
+              "testo_carta": "Guerriero standard della Bauhaus, specializzato in combattimenti ravvicinati.",
+              "keywords": []
+            },
+            "Ilian Paladini": {
+              "nome": "Ilian Paladini",
+              "quantita": 4,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 16,
+                "sparare": 14,
+                "armatura": 12,
+                "valore": 8
+              },
+              "testo_carta": "Leggendario comandante della Bauhaus, ispira coraggio nei suoi uomini.",
+              "keywords": [
+                "Personalità",
+                "Unico"
+              ]
+            },
+            "Heretic Legionnaire": {
+              "nome": "Heretic Legionnaire",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 13,
+                "sparare": 11,
+                "armatura": 9,
+                "valore": 4
+              },
+              "testo_carta": "Ex-soldato delle corporazioni, ora servo delle Potenze Oscure.",
+              "keywords": [
+                "Eretico",
+                "Ex-Corporazione"
+              ]
+            },
+            "Nepharite of Algeroth": {
+              "nome": "Nepharite of Algeroth",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 20,
+                "sparare": 16,
+                "armatura": 15,
+                "valore": 12
+              },
+              "testo_carta": "Alto comandante della Oscura Legione, servitore diretto di Algeroth.",
+              "keywords": [
+                "Nepharite",
+                "Demonio",
+                "Unico",
+                "Comandante"
+              ]
+            },
+            "Takashi Mugan": {
+              "nome": "Takashi Mugan",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Mishima",
+              "statistiche": {
+                "combattimento": 19,
+                "sparare": 13,
+                "armatura": 15,
+                "valore": 10
+              },
+              "testo_carta": "Leggendario maestro di spada della Mishima, invincibile nel duello.",
+              "keywords": [
+                "Personalità",
+                "Unico",
+                "Maestro di Spada"
+              ]
+            }
+          }
+        },
+        "equipaggiamento": {
+          "totale_carte": 21,
+          "carte_uniche": 6,
+          "dettaglio_carte": {
+            "Moto da Ricognizione": {
+              "nome": "Moto da Ricognizione",
+              "quantita": 3,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "+3 Movimento, +1 Armatura. Fuga automatica dal combattimento.",
+              "keywords": [
+                "Veicolo",
+                "Ricognizione",
+                "Veloce"
+              ]
+            },
+            "Giubbotto Antiproiettile": {
+              "nome": "Giubbotto Antiproiettile",
+              "quantita": 5,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "+2 Armatura. Protezione leggera ma efficace.",
+              "keywords": [
+                "Armatura",
+                "Leggera",
+                "Protezione"
+              ]
+            },
+            "Ascia da Battaglia": {
+              "nome": "Ascia da Battaglia",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "+3 Combattimento corpo a corpo. +1 aggiuntivo nel primo round. Ignora 1 punto Armatura.",
+              "keywords": [
+                "Arma",
+                "Corpo a Corpo",
+                "Ascia",
+                "Devastazione"
+              ]
+            },
+            "Fucile d'Assalto": {
+              "nome": "Fucile d'Assalto",
+              "quantita": 5,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "+3 Combattimento a distanza (8 caselle). +1 aggiuntivo a lunga distanza. Fuoco di soppressione.",
+              "keywords": [
+                "Arma",
+                "Da Fuoco",
+                "Fucile",
+                "Militare"
+              ]
+            },
+            "Fucile di Precisione": {
+              "nome": "Fucile di Precisione",
+              "quantita": 5,
+              "tipo": "Equipaggiamento",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "+4 Combattimento a distanza (12 caselle). +2 aggiuntivo se non si muove. Colpo critico con 6.",
+              "keywords": [
+                "Arma",
+                "Da Fuoco",
+                "Fucile",
+                "Precisione"
+              ]
+            },
+            "Pistola Automatica": {
+              "nome": "Pistola Automatica",
+              "quantita": 2,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "+2 Combattimento a distanza (4 caselle). Può sparare due volte per turno.",
+              "keywords": [
+                "Arma",
+                "Da Fuoco",
+                "Pistola"
+              ]
+            }
+          }
+        },
+        "speciale": {
+          "totale_carte": 31,
+          "carte_uniche": 10,
+          "dettaglio_carte": {
+            "Change Attacker": {
+              "nome": "Change Attacker",
+              "quantita": 3,
+              "tipo": "Speciale",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Sostituisci l'attaccante corrente con un tuo guerriero. Il nuovo attaccante deve essere in grado di attaccare il difensore.",
+              "keywords": [
+                "Cambio",
+                "Tattica"
+              ]
+            },
+            "Retreat": {
+              "nome": "Retreat",
+              "quantita": 4,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Annulla l'attacco corrente. Nessun combattimento ha luogo.",
+              "keywords": [
+                "Fuga",
+                "Annullamento"
+              ]
+            },
+            "Destiny's Favor": {
+              "nome": "Destiny's Favor",
+              "quantita": 5,
+              "tipo": "Speciale",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Pesca 2 carte dal tuo mazzo.",
+              "keywords": [
+                "Pescaggio",
+                "Destino"
+              ]
+            },
+            "Imperial Discipline": {
+              "nome": "Imperial Discipline",
+              "quantita": 2,
+              "tipo": "Speciale",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Un guerriero Imperiale ottiene +1 Combattimento e +1 Sparare fino alla fine del turno.",
+              "keywords": [
+                "Imperiale",
+                "Disciplina"
+              ]
+            },
+            "Mishima Honor": {
+              "nome": "Mishima Honor",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Se il guerriero Mishima è in inferiorità numerica, ottiene +2 Combattimento corpo a corpo.",
+              "keywords": [
+                "Mishima",
+                "Onore"
+              ]
+            },
+            "Ammunition Shortage": {
+              "nome": "Ammunition Shortage",
+              "quantita": 2,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Il guerriero bersaglio subisce -1 Sparare negli attacchi a distanza per mancanza di munizioni.",
+              "keywords": [
+                "Munizioni",
+                "Logistica"
+              ]
+            },
+            "Duck and Cover": {
+              "nome": "Duck and Cover",
+              "quantita": 3,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Il guerriero bersaglio ottiene +2 Armatura contro attacchi a distanza durante questo combattimento.",
+              "keywords": [
+                "Protezione",
+                "Tattica"
+              ]
+            },
+            "Berserk": {
+              "nome": "Berserk",
+              "quantita": 3,
+              "tipo": "Speciale",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Il guerriero bersaglio ottiene +2 Combattimento e -1 Armatura durante questo combattimento.",
+              "keywords": [
+                "Furia",
+                "Rischio"
+              ]
+            },
+            "Devastating Assault": {
+              "nome": "Devastating Assault",
+              "quantita": 4,
+              "tipo": "Speciale",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "L'attaccante ottiene +4 Combattimento. Se l'attacco va a segno, il difensore viene automaticamente ucciso.",
+              "keywords": [
+                "Devastazione",
+                "Morte"
+              ]
+            },
+            "Aim": {
+              "nome": "Aim",
+              "quantita": 4,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Il guerriero bersaglio ottiene +1 Sparare durante questo combattimento.",
+              "keywords": [
+                "Modifica",
+                "Sparare"
+              ]
+            }
+          }
+        },
+        "fortificazione": {
+          "totale_carte": 28,
+          "carte_uniche": 9,
+          "dettaglio_carte": {
+            "Cittadella di Semai": {
+              "nome": "Cittadella di Semai",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "Nel Tempio di Semai, il destino prende forma.",
+              "keywords": [
+                "Semai",
+                "Cittadella",
+                "Destino",
+                "Fato",
+                "Oscura Legione"
+              ]
+            },
+            "Complesso Industriale": {
+              "nome": "Complesso Industriale",
+              "quantita": 3,
+              "tipo": "Fortificazione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "L'industria alimenta la macchina bellica con risorse continue.",
+              "keywords": [
+                "Industria",
+                "Produzione",
+                "Equipaggiamenti",
+                "Rifornimenti"
+              ]
+            },
+            "Cittadella di Algeroth": {
+              "nome": "Cittadella di Algeroth",
+              "quantita": 5,
+              "tipo": "Fortificazione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "Nel nome di Algeroth, le armi parlano e la guerra non ha fine.",
+              "keywords": [
+                "Algeroth",
+                "Cittadella",
+                "Guerra",
+                "Oscura Legione"
+              ]
+            },
+            "Rifugio Blindato": {
+              "nome": "Rifugio Blindato",
+              "quantita": 5,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Spesse piastre di blindatura proteggono chi si rifugia all'interno.",
+              "keywords": [
+                "Rifugio",
+                "Blindatura",
+                "Protezione",
+                "Sicurezza"
+              ]
+            },
+            "Base Operativa": {
+              "nome": "Base Operativa",
+              "quantita": 5,
+              "tipo": "Fortificazione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "Il cuore operativo delle forze Doomtrooper sul campo.",
+              "keywords": [
+                "Base",
+                "Comando",
+                "Doomtrooper",
+                "Tattica"
+              ]
+            },
+            "Saguenay": {
+              "nome": "Saguenay",
+              "quantita": 5,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Saguenay, centro dell'innovazione cibernetica di Cybertronic.",
+              "keywords": [
+                "Cybertronic",
+                "Città",
+                "Fortificazione",
+                "Cibernetico"
+              ]
+            },
+            "Cittadella di Demnogonis": {
+              "nome": "Cittadella di Demnogonis",
+              "quantita": 2,
+              "tipo": "Fortificazione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 5,
+              "testo_carta": "Il gelo eterno di Demnogonis preserva i suoi servitori.",
+              "keywords": [
+                "Demnogonis",
+                "Cittadella",
+                "Gelo",
+                "Terrore",
+                "Oscura Legione"
+              ]
+            },
+            "Cittadella di Muawijhe": {
+              "nome": "Cittadella di Muawijhe",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "I sussurri di Muawijhe portano follia e corruzione.",
+              "keywords": [
+                "Muawijhe",
+                "Cittadella",
+                "Follia",
+                "Corruzione",
+                "Oscura Legione"
+              ]
+            },
+            "Cittadella di Ilian": {
+              "nome": "Cittadella di Ilian",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "Nella Cittadella di Ilian, la verità si dissolve come nebbia.",
+              "keywords": [
+                "Ilian",
+                "Cittadella",
+                "Inganno",
+                "Oscura Legione"
+              ]
+            }
+          }
+        },
+        "missione": {
+          "totale_carte": 27,
+          "carte_uniche": 9,
+          "dettaglio_carte": {
+            "Purificazione": {
+              "nome": "Purificazione",
+              "quantita": 3,
+              "tipo": "Missione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri della Fratellanza. Uccidi 2 guerrieri dell'Oscura Legione. Ricompensa include Benedizione: immune alla prossima carta Oscura Simmetria.",
+              "keywords": [
+                "Missione",
+                "Fratellanza",
+                "Purificazione"
+              ]
+            },
+            "Leggenda Vivente": {
+              "nome": "Leggenda Vivente",
+              "quantita": 5,
+              "tipo": "Missione",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo Personalità o Eroi. Uccidi 5 guerrieri senza morire in una singola partita. Ricompensa include Status Leggendario: +2 permanente a tutte le statistiche.",
+              "keywords": [
+                "Missione",
+                "Epica",
+                "Leggenda"
+              ]
+            },
+            "Supremazia Cybertronic": {
+              "nome": "Supremazia Cybertronic",
+              "quantita": 3,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri Cybertronic. Controlla simultaneamente 2 Equipaggiamenti tecnologici. Ricompensa include Efficienza Tecnologica: -1 costo per equipaggiare per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Cybertronic",
+                "Tecnologia"
+              ]
+            },
+            "Dominazione": {
+              "nome": "Dominazione",
+              "quantita": 5,
+              "tipo": "Missione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo Apostoli o Nepharite. Controlla simultaneamente 3 aree diverse del campo di battaglia. Ricompensa include Supremazia Oscura: +1 a tutte le statistiche per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Oscura Legione",
+                "Dominazione"
+              ]
+            },
+            "Esorcismo": {
+              "nome": "Esorcismo",
+              "quantita": 1,
+              "tipo": "Missione",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "Solo Inquisitori o Mistici. Elimina 1 carta Oscura Simmetria in gioco. Ricompensa include Santificazione: +2 Armatura contro l'Oscura Legione per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Fratellanza",
+                "Esorcismo"
+              ]
+            },
+            "Corruzione": {
+              "nome": "Corruzione",
+              "quantita": 2,
+              "tipo": "Missione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri dell'Oscura Legione. Assegna 2 Doni Oscuri a guerrieri nemici. Ricompensa include Favore Oscuro: -1 costo per assegnare Doni per 2 turni.",
+              "keywords": [
+                "Missione",
+                "Oscura Legione",
+                "Corruzione"
+              ]
+            },
+            "Risorse Infinite": {
+              "nome": "Risorse Infinite",
+              "quantita": 3,
+              "tipo": "Missione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Assegna questa missione a te stesso. Se accumuli 10 Punti Destino simultaneamente, guadagni 2 Punti Promozione, 5 Punti Destino aggiuntivi e peschi 2 carte.",
+              "keywords": [
+                "Missione",
+                "Giocatore",
+                "Risorse"
+              ]
+            },
+            "Caccia al Nemico": {
+              "nome": "Caccia al Nemico",
+              "quantita": 3,
+              "tipo": "Missione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero uccide 1 guerriero nemico, guadagni 1 Punto Promozione e 1 Punto Destino.",
+              "keywords": [
+                "Missione",
+                "Uccisione"
+              ]
+            },
+            "Operazione Heimburg": {
+              "nome": "Operazione Heimburg",
+              "quantita": 2,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri Bauhaus. Controlla una Fortificazione nemica per 1 turno completo. Ricompensa: 3 Punti Promozione, 2 Punti Destino e +2 Armatura per 2 turni.",
+              "keywords": [
+                "Missione",
+                "Bauhaus",
+                "Controllo"
+              ]
+            }
+          }
+        },
+        "arte": {
+          "totale_carte": 22,
+          "carte_uniche": 7,
+          "dettaglio_carte": {
+            "Cardinal's Blessing": {
+              "nome": "Cardinal's Blessing",
+              "quantita": 3,
+              "tipo": "Arte",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Base",
+              "valore_dp": 5,
+              "testo_carta": "Il guerriero bersaglio ottiene +2 a tutte le statistiche (C, S, A).",
+              "keywords": [
+                "Benedizione",
+                "Cardinale",
+                "Potenziamento"
+              ]
+            },
+            "Ancient Wisdom": {
+              "nome": "Ancient Wisdom",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Pesca 2 carte. Qualsiasi fazione può giocare questa carta.",
+              "keywords": [
+                "Universale",
+                "Pesca"
+              ]
+            },
+            "Divine Intervention": {
+              "nome": "Divine Intervention",
+              "quantita": 2,
+              "tipo": "Arte",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "Annulla l'ultima azione giocata dall'avversario in questo turno.",
+              "keywords": [
+                "Controspell",
+                "Divino"
+              ]
+            },
+            "Mystic Strength": {
+              "nome": "Mystic Strength",
+              "quantita": 4,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Il guerriero bersaglio ottiene +2 Sparare fino alla fine del combattimento.",
+              "keywords": [
+                "Potenziamento",
+                "Sparare"
+              ]
+            },
+            "Righteous Fury": {
+              "nome": "Righteous Fury",
+              "quantita": 4,
+              "tipo": "Arte",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Il guerriero bersaglio ottiene +3 Combattimento fino alla fine del turno. Gioca solo durante il combattimento.",
+              "keywords": [
+                "Potenziamento",
+                "Combattimento"
+              ]
+            },
+            "Inquisitorial Seal": {
+              "nome": "Inquisitorial Seal",
+              "quantita": 5,
+              "tipo": "Arte",
+              "rarity": "Uncommon",
+              "set_espansione": "Inquisition",
+              "valore_dp": 2,
+              "testo_carta": "Il guerriero bersaglio è immune a tutte le carte Arte giocate dagli avversari.",
+              "keywords": [
+                "Protezione",
+                "Immunità",
+                "Inquisizione"
+              ]
+            },
+            "Healing Light": {
+              "nome": "Healing Light",
+              "quantita": 3,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Rimuovi tutti i danni da un guerriero bersaglio.",
+              "keywords": [
+                "Guarigione"
+              ]
+            }
+          }
+        },
+        "oscura_simmetria": {
+          "totale_carte": 9,
+          "carte_uniche": 5,
+          "dettaglio_carte": {
+            "Possessione Demoniaca": {
+              "nome": "Possessione Demoniaca",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "Prendi il controllo del guerriero bersaglio con Valore 3 o meno. Scarta 2 carte ogni turno per mantenerlo.",
+              "keywords": [
+                "Possessione",
+                "Demnogonis",
+                "Controllo"
+              ]
+            },
+            "Furia di Algeroth": {
+              "nome": "Furia di Algeroth",
+              "quantita": 4,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Assegna a un Seguace di Algeroth. +2 Combattimento. Non può ritirarsi.",
+              "keywords": [
+                "Dono",
+                "Algeroth",
+                "Combattimento"
+              ]
+            },
+            "Benedizione di Semai": {
+              "nome": "Benedizione di Semai",
+              "quantita": 2,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Assegna a un Seguace di Semai. Immune a malattie e veleni. Quando eliminato, infetta guerrieri adiacenti.",
+              "keywords": [
+                "Dono",
+                "Semai",
+                "Immunità",
+                "Malattia"
+              ]
+            },
+            "Follia di Demnogonis": {
+              "nome": "Follia di Demnogonis",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Assegna a un Seguace di Demnogonis. Quando ferito, deve attaccare un alleato adiacente.",
+              "keywords": [
+                "Dono",
+                "Demnogonis",
+                "Follia",
+                "Reazione"
+              ]
+            },
+            "Vuoto di Ilian": {
+              "nome": "Vuoto di Ilian",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "Assegna a un Seguace di Ilian. Può assorbire carte Arte giocate contro di lui.",
+              "keywords": [
+                "Dono",
+                "Ilian",
+                "Assorbimento",
+                "Vuoto"
+              ]
+            }
+          }
+        },
+        "reliquia": {
+          "totale_carte": 25,
+          "carte_uniche": 7,
+          "dettaglio_carte": {
+            "Martello di Algeroth": {
+              "nome": "Martello di Algeroth",
+              "quantita": 3,
+              "tipo": "Reliquia",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+4 Corpo a corpo, +2 Valore. Uccide automaticamente guerrieri con A≤8.",
+              "keywords": [
+                "Artefatto",
+                "Arma Apostolica",
+                "Devastante"
+              ]
+            },
+            "Sigillo di Cardinal": {
+              "nome": "Sigillo di Cardinal",
+              "quantita": 5,
+              "tipo": "Reliquia",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+3 Valore. Alleati +1 tutte stats. Può esorcizzare. Area immune Oscura Simmetria.",
+              "keywords": [
+                "Sacro",
+                "Benedizione",
+                "Autorità"
+              ]
+            },
+            "Amuleto di Protezione": {
+              "nome": "Amuleto di Protezione",
+              "quantita": 3,
+              "tipo": "Reliquia",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+2 A vs mistici. Immune paura. Una volta/turno annulla attacco.",
+              "keywords": [
+                "Protezione",
+                "Mistico",
+                "Antico"
+              ]
+            },
+            "Armatura Antica": {
+              "nome": "Armatura Antica",
+              "quantita": 5,
+              "tipo": "Reliquia",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+4 Armatura, -1 Corpo a corpo. Immune primi 2 danni/turno.",
+              "keywords": [
+                "Protezione",
+                "Armatura",
+                "Antica"
+              ]
+            },
+            "Impianto Neurale Avanzato": {
+              "nome": "Impianto Neurale Avanzato",
+              "quantita": 3,
+              "tipo": "Reliquia",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+4 Sparare con tecnologia, +2 C con cyber. Può controllare tech nemico.",
+              "keywords": [
+                "Tecnologia",
+                "Cyborg",
+                "Interfaccia"
+              ]
+            },
+            "Dispositivo Bauhaus": {
+              "nome": "Dispositivo Bauhaus",
+              "quantita": 2,
+              "tipo": "Reliquia",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+3 Sparare, +2 A vs esplosivi. Ignora copertura e distanza.",
+              "keywords": [
+                "Bauhaus",
+                "Precisione",
+                "Ingegneria"
+              ]
+            },
+            "Emblema Capitol": {
+              "nome": "Emblema Capitol",
+              "quantita": 4,
+              "tipo": "Reliquia",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+2 Sparare, +2 Valore. Ripristina ferite. Immune ritirata.",
+              "keywords": [
+                "Capitol",
+                "Determinazione",
+                "Veterano"
+              ]
+            }
+          }
+        }
+      },
+      "statistiche_fazioni": {
+        "Oscura Legione": {
+          "totale_carte": 9,
+          "guerrieri": 9,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Necromutant": 5,
+            "Heretic Legionnaire": 2,
+            "Nepharite of Algeroth": 2
+          },
+          "tipi_carte": {
+            "guerriero": 9
+          }
+        },
+        "Fratellanza": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Brotherhood Missionary": 1,
+            "Cardinal Dominic": 1
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        },
+        "Imperiale": {
+          "totale_carte": 5,
+          "guerrieri": 5,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Imperial Blood Beret": 5
+          },
+          "tipi_carte": {
+            "guerriero": 5
+          }
+        },
+        "Cybertronic": {
+          "totale_carte": 7,
+          "guerrieri": 7,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Max Steiner": 2,
+            "Cybertronic Chasseur": 3,
+            "Cybertronic Machinators": 2
+          },
+          "tipi_carte": {
+            "guerriero": 7
+          }
+        },
+        "Mishima": {
+          "totale_carte": 6,
+          "guerrieri": 6,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Mishima Hatamoto": 5,
+            "Takashi Mugan": 1
+          },
+          "tipi_carte": {
+            "guerriero": 6
+          }
+        },
+        "Capitol": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Capitol Purple Shark": 2
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        },
+        "Bauhaus": {
+          "totale_carte": 14,
+          "guerrieri": 14,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Bauhaus Venusian Ranger": 3,
+            "Bauhaus Ducal Militia": 3,
+            "Bauhaus Blitzer": 4,
+            "Ilian Paladini": 4
+          },
+          "tipi_carte": {
+            "guerriero": 14
+          }
+        }
+      },
+      "totali": {
+        "carte_totali": 208,
+        "valore_totale_dp": 241,
+        "carte_uniche": 69
+      }
+    },
+    {
+      "id_giocatore": 2,
+      "orientamento": {
+        "attivo": true,
+        "fazioni": [
+          "Bauhaus",
+          "Capitol",
+          "Imperiale",
+          "Mishima",
+          "Cybertronic",
+          "Oscura Legione",
+          "Freelancer"
+        ]
+      },
+      "carte_per_tipo": {
+        "guerriero": {
+          "totale_carte": 34,
+          "carte_uniche": 15,
+          "dettaglio_carte": {
+            "Cybertronic Chasseur": {
+              "nome": "Cybertronic Chasseur",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Cybertronic",
+              "statistiche": {
+                "combattimento": 14,
+                "sparare": 14,
+                "armatura": 12,
+                "valore": 5
+              },
+              "testo_carta": "Guerriero cyber-potenziato specializzato in ricognizione e infiltrazione.",
+              "keywords": [
+                "Cyborg"
+              ]
+            },
+            "Inquisitor Sebastian": {
+              "nome": "Inquisitor Sebastian",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 16,
+                "sparare": 15,
+                "armatura": 13,
+                "valore": 8
+              },
+              "testo_carta": "Inquisitore spietato nella caccia agli eretici e ai servi delle tenebre.",
+              "keywords": [
+                "Inquisitore",
+                "Cacciatore di Eretici"
+              ]
+            },
+            "Capitol Purple Shark": {
+              "nome": "Capitol Purple Shark",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Capitol",
+              "statistiche": {
+                "combattimento": 12,
+                "sparare": 13,
+                "armatura": 11,
+                "valore": 5
+              },
+              "testo_carta": "Elite della Capitol, spietati cacciatori urbani.",
+              "keywords": [
+                "Elite"
+              ]
+            },
+            "Mishima Hatamoto": {
+              "nome": "Mishima Hatamoto",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Mishima",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 11,
+                "armatura": 13,
+                "valore": 6
+              },
+              "testo_carta": "Guerriero samurai della Mishima, fedele al codice d'onore.",
+              "keywords": [
+                "Samurai"
+              ]
+            },
+            "Bauhaus Ducal Militia": {
+              "nome": "Bauhaus Ducal Militia",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 9,
+                "sparare": 11,
+                "armatura": 8,
+                "valore": 3
+              },
+              "testo_carta": "Milizia ducale della Bauhaus, guardia del corpo dei nobili.",
+              "keywords": [
+                "Milizia"
+              ]
+            },
+            "Capitol Free Marine": {
+              "nome": "Capitol Free Marine",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Capitol",
+              "statistiche": {
+                "combattimento": 10,
+                "sparare": 12,
+                "armatura": 10,
+                "valore": 4
+              },
+              "testo_carta": "Marine della Capitol, addestrato per combattimenti in ambiente urbano.",
+              "keywords": []
+            },
+            "Heretic Legionnaire": {
+              "nome": "Heretic Legionnaire",
+              "quantita": 5,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 13,
+                "sparare": 11,
+                "armatura": 9,
+                "valore": 4
+              },
+              "testo_carta": "Ex-soldato delle corporazioni, ora servo delle Potenze Oscure.",
+              "keywords": [
+                "Eretico",
+                "Ex-Corporazione"
+              ]
+            },
+            "Imperial Blood Beret": {
+              "nome": "Imperial Blood Beret",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Imperiale",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 14,
+                "armatura": 11,
+                "valore": 7
+              },
+              "testo_carta": "Truppe d'elite imperiali, famose per la loro aggressività.",
+              "keywords": [
+                "Elite",
+                "Truppe d'Assalto"
+              ]
+            },
+            "Max Steiner": {
+              "nome": "Max Steiner",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Cybertronic",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 16,
+                "armatura": 14,
+                "valore": 9
+              },
+              "testo_carta": "Hacker leggendario della Cybertronic, maestro dell'infiltrazione digitale.",
+              "keywords": [
+                "Personalità",
+                "Unico",
+                "Hacker"
+              ]
+            },
+            "Takashi Mugan": {
+              "nome": "Takashi Mugan",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Mishima",
+              "statistiche": {
+                "combattimento": 19,
+                "sparare": 13,
+                "armatura": 15,
+                "valore": 10
+              },
+              "testo_carta": "Leggendario maestro di spada della Mishima, invincibile nel duello.",
+              "keywords": [
+                "Personalità",
+                "Unico",
+                "Maestro di Spada"
+              ]
+            },
+            "Nathaniel Durand": {
+              "nome": "Nathaniel Durand",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Imperiale",
+              "statistiche": {
+                "combattimento": 17,
+                "sparare": 16,
+                "armatura": 13,
+                "valore": 12
+              },
+              "testo_carta": "Comandante supremo delle forze imperiali, stratega senza pari.",
+              "keywords": [
+                "Personalità",
+                "Unico",
+                "Comandante Supremo"
+              ]
+            },
+            "Imperial Trencher": {
+              "nome": "Imperial Trencher",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Imperiale",
+              "statistiche": {
+                "combattimento": 11,
+                "sparare": 11,
+                "armatura": 9,
+                "valore": 4
+              },
+              "testo_carta": "Soldato imperiale specializzato nella guerra di trincea.",
+              "keywords": []
+            },
+            "Bauhaus Blitzer": {
+              "nome": "Bauhaus Blitzer",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 12,
+                "sparare": 12,
+                "armatura": 10,
+                "valore": 4
+              },
+              "testo_carta": "Guerriero standard della Bauhaus, specializzato in combattimenti ravvicinati.",
+              "keywords": []
+            },
+            "Nepharite of Algeroth": {
+              "nome": "Nepharite of Algeroth",
+              "quantita": 5,
+              "tipo": "Guerriero",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 20,
+                "sparare": 16,
+                "armatura": 15,
+                "valore": 12
+              },
+              "testo_carta": "Alto comandante della Oscura Legione, servitore diretto di Algeroth.",
+              "keywords": [
+                "Nepharite",
+                "Demonio",
+                "Unico",
+                "Comandante"
+              ]
+            },
+            "Ilian Paladini": {
+              "nome": "Ilian Paladini",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 16,
+                "sparare": 14,
+                "armatura": 12,
+                "valore": 8
+              },
+              "testo_carta": "Leggendario comandante della Bauhaus, ispira coraggio nei suoi uomini.",
+              "keywords": [
+                "Personalità",
+                "Unico"
+              ]
+            }
+          }
+        },
+        "equipaggiamento": {
+          "totale_carte": 14,
+          "carte_uniche": 5,
+          "dettaglio_carte": {
+            "Fucile d'Assalto": {
+              "nome": "Fucile d'Assalto",
+              "quantita": 4,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "+3 Combattimento a distanza (8 caselle). +1 aggiuntivo a lunga distanza. Fuoco di soppressione.",
+              "keywords": [
+                "Arma",
+                "Da Fuoco",
+                "Fucile",
+                "Militare"
+              ]
+            },
+            "Giubbotto Antiproiettile": {
+              "nome": "Giubbotto Antiproiettile",
+              "quantita": 3,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "+2 Armatura. Protezione leggera ma efficace.",
+              "keywords": [
+                "Armatura",
+                "Leggera",
+                "Protezione"
+              ]
+            },
+            "Ascia da Battaglia": {
+              "nome": "Ascia da Battaglia",
+              "quantita": 2,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "+3 Combattimento corpo a corpo. +1 aggiuntivo nel primo round. Ignora 1 punto Armatura.",
+              "keywords": [
+                "Arma",
+                "Corpo a Corpo",
+                "Ascia",
+                "Devastazione"
+              ]
+            },
+            "Spada da Combattimento": {
+              "nome": "Spada da Combattimento",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "+2 Combattimento in corpo a corpo. Arma standard dell'esercito.",
+              "keywords": [
+                "Arma",
+                "Corpo a Corpo",
+                "Lama"
+              ]
+            },
+            "Moto da Ricognizione": {
+              "nome": "Moto da Ricognizione",
+              "quantita": 4,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "+3 Movimento, +1 Armatura. Fuga automatica dal combattimento.",
+              "keywords": [
+                "Veicolo",
+                "Ricognizione",
+                "Veloce"
+              ]
+            }
+          }
+        },
+        "speciale": {
+          "totale_carte": 26,
+          "carte_uniche": 10,
+          "dettaglio_carte": {
+            "Surprise Attack": {
+              "nome": "Surprise Attack",
+              "quantita": 5,
+              "tipo": "Speciale",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "L'attaccante colpisce per primo in questo combattimento. Il difensore non può rispondere.",
+              "keywords": [
+                "Sorpresa",
+                "Primo Attacco"
+              ]
+            },
+            "Mishima Honor": {
+              "nome": "Mishima Honor",
+              "quantita": 4,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Se il guerriero Mishima è in inferiorità numerica, ottiene +2 Combattimento corpo a corpo.",
+              "keywords": [
+                "Mishima",
+                "Onore"
+              ]
+            },
+            "Equipment Malfunction": {
+              "nome": "Equipment Malfunction",
+              "quantita": 4,
+              "tipo": "Speciale",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Il guerriero bersaglio subisce -2 Sparare durante questo combattimento a causa di un malfunzionamento dell'equipaggiamento.",
+              "keywords": [
+                "Malfunzionamento",
+                "Tecnologia"
+              ]
+            },
+            "Bauhaus Engineering": {
+              "nome": "Bauhaus Engineering",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Un guerriero Bauhaus ottiene +1 Armatura permanente. Costa un'Azione.",
+              "keywords": [
+                "Bauhaus",
+                "Ingegneria"
+              ]
+            },
+            "Imperial Discipline": {
+              "nome": "Imperial Discipline",
+              "quantita": 2,
+              "tipo": "Speciale",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Un guerriero Imperiale ottiene +1 Combattimento e +1 Sparare fino alla fine del turno.",
+              "keywords": [
+                "Imperiale",
+                "Disciplina"
+              ]
+            },
+            "Precise Shot": {
+              "nome": "Precise Shot",
+              "quantita": 2,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Il guerriero bersaglio ottiene +2 Sparare solo negli attacchi a distanza.",
+              "keywords": [
+                "Precisione",
+                "Armi da Fuoco"
+              ]
+            },
+            "Lucky Shot": {
+              "nome": "Lucky Shot",
+              "quantita": 2,
+              "tipo": "Speciale",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Se l'attacco va a segno, infligge una ferita aggiuntiva.",
+              "keywords": [
+                "Fortuna",
+                "Danno Extra"
+              ]
+            },
+            "Destiny's Favor": {
+              "nome": "Destiny's Favor",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Pesca 2 carte dal tuo mazzo.",
+              "keywords": [
+                "Pescaggio",
+                "Destino"
+              ]
+            },
+            "Change Defender": {
+              "nome": "Change Defender",
+              "quantita": 4,
+              "tipo": "Speciale",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Sostituisci il difensore corrente con un tuo guerriero. Il nuovo difensore deve essere un bersaglio valido.",
+              "keywords": [
+                "Cambio",
+                "Sacrificio"
+              ]
+            },
+            "Flanking Maneuver": {
+              "nome": "Flanking Maneuver",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Il guerriero attaccante ottiene +2 Combattimento e ignora l'armatura del difensore.",
+              "keywords": [
+                "Manovra",
+                "Aggiramento"
+              ]
+            }
+          }
+        },
+        "fortificazione": {
+          "totale_carte": 30,
+          "carte_uniche": 11,
+          "dettaglio_carte": {
+            "Heimburg": {
+              "nome": "Heimburg",
+              "quantita": 3,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "La città fortezza di Heimburg protegge i guerrieri Bauhaus con le sue possenti mura.",
+              "keywords": [
+                "Bauhaus",
+                "Città",
+                "Fortificazione",
+                "Difesa"
+              ]
+            },
+            "Capitol": {
+              "nome": "Capitol",
+              "quantita": 3,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "Capitol, centro del progresso tecnologico e commerciale.",
+              "keywords": [
+                "Capitol",
+                "Città",
+                "Fortificazione",
+                "Tecnologia"
+              ]
+            },
+            "Cittadella di Algeroth": {
+              "nome": "Cittadella di Algeroth",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "Nel nome di Algeroth, le armi parlano e la guerra non ha fine.",
+              "keywords": [
+                "Algeroth",
+                "Cittadella",
+                "Guerra",
+                "Oscura Legione"
+              ]
+            },
+            "Complesso Industriale": {
+              "nome": "Complesso Industriale",
+              "quantita": 4,
+              "tipo": "Fortificazione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "L'industria alimenta la macchina bellica con risorse continue.",
+              "keywords": [
+                "Industria",
+                "Produzione",
+                "Equipaggiamenti",
+                "Rifornimenti"
+              ]
+            },
+            "Cittadella di Demnogonis": {
+              "nome": "Cittadella di Demnogonis",
+              "quantita": 3,
+              "tipo": "Fortificazione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 5,
+              "testo_carta": "Il gelo eterno di Demnogonis preserva i suoi servitori.",
+              "keywords": [
+                "Demnogonis",
+                "Cittadella",
+                "Gelo",
+                "Terrore",
+                "Oscura Legione"
+              ]
+            },
+            "Base Operativa": {
+              "nome": "Base Operativa",
+              "quantita": 3,
+              "tipo": "Fortificazione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "Il cuore operativo delle forze Doomtrooper sul campo.",
+              "keywords": [
+                "Base",
+                "Comando",
+                "Doomtrooper",
+                "Tattica"
+              ]
+            },
+            "Bunker Difensivo": {
+              "nome": "Bunker Difensivo",
+              "quantita": 3,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Un rifugio sicuro contro le tempeste della guerra.",
+              "keywords": [
+                "Bunker",
+                "Fortificazione",
+                "Difesa",
+                "Universale"
+              ]
+            },
+            "Saguenay": {
+              "nome": "Saguenay",
+              "quantita": 3,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Saguenay, centro dell'innovazione cibernetica di Cybertronic.",
+              "keywords": [
+                "Cybertronic",
+                "Città",
+                "Fortificazione",
+                "Cibernetico"
+              ]
+            },
+            "Torretta di Guardia": {
+              "nome": "Torretta di Guardia",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Una posizione elevata conferisce vantaggi tattici significativi.",
+              "keywords": [
+                "Torretta",
+                "Avvistamento",
+                "Tattica",
+                "Distanza"
+              ]
+            },
+            "Citadel": {
+              "nome": "Citadel",
+              "quantita": 4,
+              "tipo": "Fortificazione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "La Citadel rappresenta la supremazia militare e spirituale dell'Impero.",
+              "keywords": [
+                "Imperiale",
+                "Città",
+                "Fortificazione",
+                "Difesa",
+                "Resistenza"
+              ]
+            },
+            "Cittadella di Ilian": {
+              "nome": "Cittadella di Ilian",
+              "quantita": 2,
+              "tipo": "Fortificazione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "Nella Cittadella di Ilian, la verità si dissolve come nebbia.",
+              "keywords": [
+                "Ilian",
+                "Cittadella",
+                "Inganno",
+                "Oscura Legione"
+              ]
+            }
+          }
+        },
+        "missione": {
+          "totale_carte": 27,
+          "carte_uniche": 8,
+          "dettaglio_carte": {
+            "Purificazione": {
+              "nome": "Purificazione",
+              "quantita": 5,
+              "tipo": "Missione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri della Fratellanza. Uccidi 2 guerrieri dell'Oscura Legione. Ricompensa include Benedizione: immune alla prossima carta Oscura Simmetria.",
+              "keywords": [
+                "Missione",
+                "Fratellanza",
+                "Purificazione"
+              ]
+            },
+            "Esorcismo": {
+              "nome": "Esorcismo",
+              "quantita": 4,
+              "tipo": "Missione",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "Solo Inquisitori o Mistici. Elimina 1 carta Oscura Simmetria in gioco. Ricompensa include Santificazione: +2 Armatura contro l'Oscura Legione per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Fratellanza",
+                "Esorcismo"
+              ]
+            },
+            "Eliminazione": {
+              "nome": "Eliminazione",
+              "quantita": 3,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero uccide 3 guerrieri nemici nello stesso turno, guadagni 5 Punti Promozione, 2 Punti Destino e peschi 1 carta.",
+              "keywords": [
+                "Missione",
+                "Uccisione",
+                "Difficile"
+              ]
+            },
+            "Dominazione": {
+              "nome": "Dominazione",
+              "quantita": 4,
+              "tipo": "Missione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo Apostoli o Nepharite. Controlla simultaneamente 3 aree diverse del campo di battaglia. Ricompensa include Supremazia Oscura: +1 a tutte le statistiche per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Oscura Legione",
+                "Dominazione"
+              ]
+            },
+            "Assalto Capitol": {
+              "nome": "Assalto Capitol",
+              "quantita": 2,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri Capitol. Uccidi 2 guerrieri usando la statistica Sparare. Ricompensa: 3 Punti Promozione, 1 Punto Destino e +2 Sparare per 2 turni.",
+              "keywords": [
+                "Missione",
+                "Capitol",
+                "Armi da Fuoco"
+              ]
+            },
+            "Strategia Superiore": {
+              "nome": "Strategia Superiore",
+              "quantita": 5,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Assegna questa missione a te stesso. Se vinci 3 combattimenti con guerrieri diversi nello stesso turno, ottieni la ricompensa e Comando Tattico: +1 Azione per 2 turni.",
+              "keywords": [
+                "Missione",
+                "Giocatore",
+                "Strategia"
+              ]
+            },
+            "Leggenda Vivente": {
+              "nome": "Leggenda Vivente",
+              "quantita": 3,
+              "tipo": "Missione",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo Personalità o Eroi. Uccidi 5 guerrieri senza morire in una singola partita. Ricompensa include Status Leggendario: +2 permanente a tutte le statistiche.",
+              "keywords": [
+                "Missione",
+                "Epica",
+                "Leggenda"
+              ]
+            },
+            "Supremazia Cybertronic": {
+              "nome": "Supremazia Cybertronic",
+              "quantita": 1,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri Cybertronic. Controlla simultaneamente 2 Equipaggiamenti tecnologici. Ricompensa include Efficienza Tecnologica: -1 costo per equipaggiare per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Cybertronic",
+                "Tecnologia"
+              ]
+            }
+          }
+        },
+        "arte": {
+          "totale_carte": 24,
+          "carte_uniche": 7,
+          "dettaglio_carte": {
+            "Protective Ward": {
+              "nome": "Protective Ward",
+              "quantita": 5,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Il guerriero bersaglio ottiene +2 Armatura fino alla fine del combattimento.",
+              "keywords": [
+                "Protezione",
+                "Armatura"
+              ]
+            },
+            "Inquisitorial Seal": {
+              "nome": "Inquisitorial Seal",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Uncommon",
+              "set_espansione": "Inquisition",
+              "valore_dp": 2,
+              "testo_carta": "Il guerriero bersaglio è immune a tutte le carte Arte giocate dagli avversari.",
+              "keywords": [
+                "Protezione",
+                "Immunità",
+                "Inquisizione"
+              ]
+            },
+            "Brotherhood Unity": {
+              "nome": "Brotherhood Unity",
+              "quantita": 3,
+              "tipo": "Arte",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "Tutti i tuoi guerrieri ottengono +1 Combattimento e +1 Sparare fino alla fine del turno.",
+              "keywords": [
+                "Benedizione",
+                "Massa"
+              ]
+            },
+            "Ancient Wisdom": {
+              "nome": "Ancient Wisdom",
+              "quantita": 3,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Pesca 2 carte. Qualsiasi fazione può giocare questa carta.",
+              "keywords": [
+                "Universale",
+                "Pesca"
+              ]
+            },
+            "Mystic Strength": {
+              "nome": "Mystic Strength",
+              "quantita": 2,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "Il guerriero bersaglio ottiene +2 Sparare fino alla fine del combattimento.",
+              "keywords": [
+                "Potenziamento",
+                "Sparare"
+              ]
+            },
+            "Righteous Fury": {
+              "nome": "Righteous Fury",
+              "quantita": 5,
+              "tipo": "Arte",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Il guerriero bersaglio ottiene +3 Combattimento fino alla fine del turno. Gioca solo durante il combattimento.",
+              "keywords": [
+                "Potenziamento",
+                "Combattimento"
+              ]
+            },
+            "Purification Rite": {
+              "nome": "Purification Rite",
+              "quantita": 5,
+              "tipo": "Arte",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 3,
+              "testo_carta": "Rimuovi tutte le carte Arte (benedizioni e maledizioni) da un guerriero bersaglio.",
+              "keywords": [
+                "Rituale",
+                "Purificazione",
+                "Rimozione"
+              ]
+            }
+          }
+        },
+        "oscura_simmetria": {
+          "totale_carte": 15,
+          "carte_uniche": 5,
+          "dettaglio_carte": {
+            "Vuoto di Ilian": {
+              "nome": "Vuoto di Ilian",
+              "quantita": 3,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "Assegna a un Seguace di Ilian. Può assorbire carte Arte giocate contro di lui.",
+              "keywords": [
+                "Dono",
+                "Ilian",
+                "Assorbimento",
+                "Vuoto"
+              ]
+            },
+            "Corruzione Minore": {
+              "nome": "Corruzione Minore",
+              "quantita": 3,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Assegna al bersaglio. Il guerriero bersaglio subisce -1 al Combattimento.",
+              "keywords": [
+                "Corruzione"
+              ]
+            },
+            "Possessione Demoniaca": {
+              "nome": "Possessione Demoniaca",
+              "quantita": 2,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 4,
+              "testo_carta": "Prendi il controllo del guerriero bersaglio con Valore 3 o meno. Scarta 2 carte ogni turno per mantenerlo.",
+              "keywords": [
+                "Possessione",
+                "Demnogonis",
+                "Controllo"
+              ]
+            },
+            "Artigli di Muawijhe": {
+              "nome": "Artigli di Muawijhe",
+              "quantita": 5,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Assegna a un Seguace di Muawijhe. +2 Combattimento corpo a corpo. Ignora l'Armatura nel primo round.",
+              "keywords": [
+                "Dono",
+                "Muawijhe",
+                "Mutazione",
+                "Artigli"
+              ]
+            },
+            "Benedizione di Semai": {
+              "nome": "Benedizione di Semai",
+              "quantita": 2,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 2,
+              "testo_carta": "Assegna a un Seguace di Semai. Immune a malattie e veleni. Quando eliminato, infetta guerrieri adiacenti.",
+              "keywords": [
+                "Dono",
+                "Semai",
+                "Immunità",
+                "Malattia"
+              ]
+            }
+          }
+        },
+        "reliquia": {
+          "totale_carte": 17,
+          "carte_uniche": 7,
+          "dettaglio_carte": {
+            "Spada del Destino": {
+              "nome": "Spada del Destino",
+              "quantita": 2,
+              "tipo": "Reliquia",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+3 Corpo a corpo, +1 Armatura. Solo per Doomtrooper delle Corporazioni.",
+              "keywords": [
+                "Artefatto",
+                "Arma Antica",
+                "Leggendaria"
+              ]
+            },
+            "Armatura Antica": {
+              "nome": "Armatura Antica",
+              "quantita": 2,
+              "tipo": "Reliquia",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+4 Armatura, -1 Corpo a corpo. Immune primi 2 danni/turno.",
+              "keywords": [
+                "Protezione",
+                "Armatura",
+                "Antica"
+              ]
+            },
+            "Martello di Algeroth": {
+              "nome": "Martello di Algeroth",
+              "quantita": 4,
+              "tipo": "Reliquia",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+4 Corpo a corpo, +2 Valore. Uccide automaticamente guerrieri con A≤8.",
+              "keywords": [
+                "Artefatto",
+                "Arma Apostolica",
+                "Devastante"
+              ]
+            },
+            "Sigillo di Cardinal": {
+              "nome": "Sigillo di Cardinal",
+              "quantita": 3,
+              "tipo": "Reliquia",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+3 Valore. Alleati +1 tutte stats. Può esorcizzare. Area immune Oscura Simmetria.",
+              "keywords": [
+                "Sacro",
+                "Benedizione",
+                "Autorità"
+              ]
+            },
+            "Emblema Capitol": {
+              "nome": "Emblema Capitol",
+              "quantita": 2,
+              "tipo": "Reliquia",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+2 Sparare, +2 Valore. Ripristina ferite. Immune ritirata.",
+              "keywords": [
+                "Capitol",
+                "Determinazione",
+                "Veterano"
+              ]
+            },
+            "Impianto Neurale Avanzato": {
+              "nome": "Impianto Neurale Avanzato",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Ultra Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+4 Sparare con tecnologia, +2 C con cyber. Può controllare tech nemico.",
+              "keywords": [
+                "Tecnologia",
+                "Cyborg",
+                "Interfaccia"
+              ]
+            },
+            "Amuleto di Protezione": {
+              "nome": "Amuleto di Protezione",
+              "quantita": 3,
+              "tipo": "Reliquia",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "+2 A vs mistici. Immune paura. Una volta/turno annulla attacco.",
+              "keywords": [
+                "Protezione",
+                "Mistico",
+                "Antico"
+              ]
+            }
+          }
+        }
+      },
+      "statistiche_fazioni": {
+        "Cybertronic": {
+          "totale_carte": 6,
+          "guerrieri": 6,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Cybertronic Chasseur": 3,
+            "Max Steiner": 3
+          },
+          "tipi_carte": {
+            "guerriero": 6
+          }
+        },
+        "Fratellanza": {
+          "totale_carte": 1,
+          "guerrieri": 1,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Inquisitor Sebastian": 1
+          },
+          "tipi_carte": {
+            "guerriero": 1
+          }
+        },
+        "Capitol": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Capitol Purple Shark": 1,
+            "Capitol Free Marine": 1
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        },
+        "Mishima": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Mishima Hatamoto": 1,
+            "Takashi Mugan": 1
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        },
+        "Bauhaus": {
+          "totale_carte": 5,
+          "guerrieri": 5,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Bauhaus Ducal Militia": 1,
+            "Bauhaus Blitzer": 3,
+            "Ilian Paladini": 1
+          },
+          "tipi_carte": {
+            "guerriero": 5
+          }
+        },
+        "Oscura Legione": {
+          "totale_carte": 10,
+          "guerrieri": 10,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Heretic Legionnaire": 5,
+            "Nepharite of Algeroth": 5
+          },
+          "tipi_carte": {
+            "guerriero": 10
+          }
+        },
+        "Imperiale": {
+          "totale_carte": 8,
+          "guerrieri": 8,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Imperial Blood Beret": 2,
+            "Nathaniel Durand": 3,
+            "Imperial Trencher": 3
+          },
+          "tipi_carte": {
+            "guerriero": 8
+          }
+        }
+      },
+      "totali": {
+        "carte_totali": 187,
+        "valore_totale_dp": 233,
+        "carte_uniche": 68
+      }
+    }
+  ]
+}

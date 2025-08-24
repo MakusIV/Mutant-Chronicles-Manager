@@ -69,6 +69,7 @@ from source.data_base_cards.Database_Warzone import (
     ottieni_warzone as crea_warzone_da_database
 )
 
+PERCORSO_SALVATAGGIO = "out/"
 
 
 NUMERO_CARTE_DISPONIBILI = {
@@ -1347,12 +1348,22 @@ def esempio_inventario_dettagliato():
 #########################################################
 
 
+######################################## SALVATAGGIO JSON 
+
+
+
+# Serializzatore personalizzato per gestire enum
+class EnumJSONEncoder(json.JSONEncoder):
+    """Encoder JSON personalizzato per gestire enum e altri oggetti non serializzabili."""
+    def default(self, obj: Any) -> Any:
+        if isinstance(obj, Enum):
+            return obj.value
+        elif hasattr(obj, 'value'):
+            return obj.value
+        return super().default(obj)
 
 def converti_enum_ricorsivo(obj: Any) -> Any:
-    """
-    Converte ricorsivamente tutti gli enum in un oggetto (dizionario, lista, ecc.) 
-    nei loro valori stringa per renderli serializzabili in JSON.
-    """
+    """Converte ricorsivamente tutti gli enum nei loro valori stringa."""
     if isinstance(obj, Enum):
         return obj.value
     elif isinstance(obj, dict):
@@ -1367,91 +1378,382 @@ def converti_enum_ricorsivo(obj: Any) -> Any:
     else:
         return obj
 
-def salva_collezioni_json(collezioni: List, filename: str = "collezioni_giocatori.json"):
+def crea_inventario_dettagliato_json(collezione) -> Dict[str, Any]:
     """
-    Salva le collezioni in formato JSON con gestione corretta degli enum.
+    Crea l'inventario dettagliato per una collezione in formato JSON.
+    Struttura analoga a stampa_inventario_dettagliato().
+    """
+    inventario_json = {
+        'id_giocatore': collezione.id_giocatore,
+        'orientamento': {
+            'attivo': bool(collezione.fazioni_orientamento),
+            'fazioni': []
+        },
+        'carte_per_tipo': {},
+        'statistiche_fazioni': {},
+        'totali': {
+            'carte_totali': collezione.get_totale_carte(),
+            'valore_totale_dp': collezione.statistiche.valore_totale_dp,
+            'carte_uniche': 0
+        }
+    }
     
-    Args:
-        collezioni: Lista delle collezioni da salvare
-        filename: Nome del file di output
-    """
-    try:
-        # Prepara i dati per l'export
-        dati_export = {
-            'numero_collezioni': len(collezioni),
-            'data_creazione': str(datetime.now()),
-            'collezioni': [c.export_to_dict() for c in collezioni]
+    # Orientamento
+    if collezione.fazioni_orientamento:
+        inventario_json['orientamento']['fazioni'] = [
+            f.value if hasattr(f, 'value') else str(f) 
+            for f in collezione.fazioni_orientamento
+        ]
+    
+    # Organizza carte per tipo con dettagli completi
+    carte_uniche_totali = set()
+    
+    for tipo_carta, liste_carte in collezione.carte.items():
+        if not liste_carte:
+            continue
+            
+        # Conta carte per nome
+        carte_conteggio = defaultdict(int)
+        carte_esempi = {}
+        
+        for carta in liste_carte:
+            carte_conteggio[carta.nome] += 1
+            if carta.nome not in carte_esempi:
+                carte_esempi[carta.nome] = carta
+            carte_uniche_totali.add(carta.nome)
+        
+        # Crea struttura per tipo carta
+        tipo_info = {
+            'totale_carte': len(liste_carte),
+            'carte_uniche': len(carte_conteggio),
+            'dettaglio_carte': {}
         }
         
-        # Converte ricorsivamente tutti gli enum in valori stringa
+        # Dettagli per ogni carta unica
+        for nome_carta, quantita in carte_conteggio.items():
+            carta_esempio = carte_esempi[nome_carta]
+            
+            dettaglio_carta = {
+                'nome': nome_carta,
+                'quantita': quantita,
+                'tipo': tipo_carta.capitalize()
+            }
+            
+            # Informazioni base della carta
+            if hasattr(carta_esempio, 'rarity'):
+                dettaglio_carta['rarity'] = (
+                    carta_esempio.rarity.value if hasattr(carta_esempio.rarity, 'value') 
+                    else str(carta_esempio.rarity)
+                )
+            
+            if hasattr(carta_esempio, 'set_espansione'):
+                dettaglio_carta['set_espansione'] = (
+                    carta_esempio.set_espansione.value if hasattr(carta_esempio.set_espansione, 'value')
+                    else str(carta_esempio.set_espansione)
+                )
+            
+            # Valore DP
+            if hasattr(carta_esempio, 'valore'):
+                dettaglio_carta['valore_dp'] = carta_esempio.valore
+            elif hasattr(carta_esempio, 'costo_destino'):
+                dettaglio_carta['valore_dp'] = carta_esempio.costo_destino
+            else:
+                dettaglio_carta['valore_dp'] = 0
+            
+            # Informazioni specifiche per guerrieri
+            if tipo_carta == 'guerriero' and hasattr(carta_esempio, 'fazione'):
+                dettaglio_carta['fazione'] = (
+                    carta_esempio.fazione.value if hasattr(carta_esempio.fazione, 'value')
+                    else str(carta_esempio.fazione)
+                )
+                
+                # Statistiche combattimento per guerrieri
+                if hasattr(carta_esempio, 'stats'):
+                    dettaglio_carta['statistiche'] = {
+                        'combattimento': getattr(carta_esempio.stats, 'combattimento', 0),
+                        'sparare': getattr(carta_esempio.stats, 'sparare', 0),
+                        'armatura': getattr(carta_esempio.stats, 'armatura', 0),
+                        'valore': getattr(carta_esempio.stats, 'valore', 0)
+                    }
+            
+            # Altre informazioni specifiche per tipo
+            if hasattr(carta_esempio, 'testo_carta'):
+                dettaglio_carta['testo_carta'] = carta_esempio.testo_carta
+            
+            if hasattr(carta_esempio, 'keywords'):
+                dettaglio_carta['keywords'] = carta_esempio.keywords
+            
+            tipo_info['dettaglio_carte'][nome_carta] = dettaglio_carta
+        
+        inventario_json['carte_per_tipo'][tipo_carta] = tipo_info
+    
+    # Totale carte uniche
+    inventario_json['totali']['carte_uniche'] = len(carte_uniche_totali)
+    
+    # Statistiche per fazione (analoga a stampa_statistiche_fazioni)
+    inventario_json['statistiche_fazioni'] = crea_statistiche_fazioni_json(collezione)
+    
+    return inventario_json
+
+def crea_statistiche_fazioni_json(collezione) -> Dict[str, Any]:
+    """
+    Crea statistiche per fazione in formato JSON.
+    Analoga a stampa_statistiche_fazioni().
+    """
+    stats_fazioni = {}
+    
+    # Analizza carte per fazione
+    for tipo_carta, liste_carte in collezione.carte.items():
+        for carta in liste_carte:
+            if hasattr(carta, 'fazione') and carta.fazione:
+                fazione_nome = (
+                    carta.fazione.value if hasattr(carta.fazione, 'value') 
+                    else str(carta.fazione)
+                )
+                
+                if fazione_nome not in stats_fazioni:
+                    stats_fazioni[fazione_nome] = {
+                        'totale_carte': 0,
+                        'guerrieri': 0,
+                        'altre_carte': 0,
+                        'valore_dp': 0,
+                        'dettaglio_carte': defaultdict(int),
+                        'tipi_carte': defaultdict(int)
+                    }
+                
+                # Aggiorna contatori
+                stats_fazioni[fazione_nome]['totale_carte'] += 1
+                stats_fazioni[fazione_nome]['dettaglio_carte'][carta.nome] += 1
+                stats_fazioni[fazione_nome]['tipi_carte'][tipo_carta] += 1
+                
+                if tipo_carta == 'guerriero':
+                    stats_fazioni[fazione_nome]['guerrieri'] += 1
+                else:
+                    stats_fazioni[fazione_nome]['altre_carte'] += 1
+                
+                # Valore DP
+                if hasattr(carta, 'valore'):
+                    stats_fazioni[fazione_nome]['valore_dp'] += carta.valore
+                elif hasattr(carta, 'costo_destino'):
+                    stats_fazioni[fazione_nome]['valore_dp'] += carta.costo_destino
+    
+    # Converte defaultdict in dict normali
+    for fazione_info in stats_fazioni.values():
+        fazione_info['dettaglio_carte'] = dict(fazione_info['dettaglio_carte'])
+        fazione_info['tipi_carte'] = dict(fazione_info['tipi_carte'])
+    
+    return stats_fazioni
+
+def crea_statistiche_aggregate_json(collezioni: List) -> Dict[str, Any]:
+    """
+    Crea statistiche aggregate per tutte le collezioni.
+    Analoga alla sezione "STATISTICHE AGGREGATE" di stampa_riepilogo_collezioni_migliorato().
+    """
+    totale_carte = sum(c.get_totale_carte() for c in collezioni)
+    totale_valore = sum(c.statistiche.valore_totale_dp for c in collezioni)
+    
+    statistiche_aggregate = {
+        'panoramica_generale': {
+            'numero_collezioni': len(collezioni),
+            'totale_carte': totale_carte,
+            'totale_valore_dp': totale_valore,
+            'media_carte_per_collezione': totale_carte / len(collezioni) if collezioni else 0,
+            'media_valore_per_collezione': totale_valore / len(collezioni) if collezioni else 0
+        },
+        'riepilogo_collezioni': [],
+        'distribuzione_orientamenti': defaultdict(int),
+        'distribuzione_globale': {
+            'per_tipo': defaultdict(int),
+            'per_fazione': defaultdict(int),
+            'per_rarity': defaultdict(int),
+            'per_set': defaultdict(int)
+        }
+    }
+    
+    # Riepilogo per ogni collezione
+    for collezione in collezioni:
+        carte_collezione = collezione.get_totale_carte()
+        valore_collezione = collezione.statistiche.valore_totale_dp
+        
+        orientamento_info = {
+            'attivo': bool(collezione.fazioni_orientamento),
+            'fazioni': []
+        }
+        
+        if collezione.fazioni_orientamento:
+            fazioni = [
+                f.value if hasattr(f, 'value') else str(f) 
+                for f in collezione.fazioni_orientamento
+            ]
+            orientamento_info['fazioni'] = fazioni
+            
+            # Conta orientamenti
+            orientamento_key = ', '.join(sorted(fazioni))
+            statistiche_aggregate['distribuzione_orientamenti'][orientamento_key] += 1
+        else:
+            statistiche_aggregate['distribuzione_orientamenti']['Nessun orientamento'] += 1
+        
+        collezione_summary = {
+            'id_giocatore': collezione.id_giocatore,
+            'totale_carte': carte_collezione,
+            'valore_dp': valore_collezione,
+            'orientamento': orientamento_info
+        }
+        
+        statistiche_aggregate['riepilogo_collezioni'].append(collezione_summary)
+        
+        # Aggiorna distribuzioni globali
+        for tipo_carta, count in collezione.statistiche.__dict__.items():
+            if isinstance(count, int) and count > 0:
+                if tipo_carta not in ['totale_carte', 'valore_totale_dp']:
+                    statistiche_aggregate['distribuzione_globale']['per_tipo'][tipo_carta] += count
+        
+        # Distribuzioni da defaultdict
+        for fazione, count in collezione.statistiche.per_fazione.items():
+            statistiche_aggregate['distribuzione_globale']['per_fazione'][str(fazione)] += count
+        
+        for rarity, count in collezione.statistiche.per_rarity.items():
+            statistiche_aggregate['distribuzione_globale']['per_rarity'][str(rarity)] += count
+        
+        for set_esp, count in collezione.statistiche.per_set.items():
+            statistiche_aggregate['distribuzione_globale']['per_set'][str(set_esp)] += count
+    
+    # Converte defaultdict in dict
+    statistiche_aggregate['distribuzione_orientamenti'] = dict(statistiche_aggregate['distribuzione_orientamenti'])
+    for key in statistiche_aggregate['distribuzione_globale']:
+        statistiche_aggregate['distribuzione_globale'][key] = dict(statistiche_aggregate['distribuzione_globale'][key])
+    
+    return statistiche_aggregate
+
+def salva_collezioni_json_migliorato(collezioni: List, filename: str = "collezioni_dettagliate.json"):
+    """
+    Salva le collezioni in formato JSON con struttura dettagliata.
+    Equivalente JSON di stampa_riepilogo_collezioni_migliorato().
+    """
+    try:
+        print(f"🔄 Creazione struttura JSON dettagliata per {len(collezioni)} collezioni...")
+        
+        # Struttura principale del JSON
+        dati_export = {
+            'metadata': {
+                'versione': '2.0',
+                'tipo_export': 'collezioni_dettagliate',
+                'data_creazione': datetime.now().isoformat(),
+                'numero_collezioni': len(collezioni),
+                'descrizione': 'Export dettagliato collezioni con inventari completi e statistiche per fazione'
+            },
+            'statistiche_aggregate': crea_statistiche_aggregate_json(collezioni),
+            'collezioni_dettagliate': []
+        }
+        
+        # Aggiunge ogni collezione con inventario dettagliato
+        for i, collezione in enumerate(collezioni):
+            print(f"  📦 Processando collezione {i+1}/{len(collezioni)}...")
+            inventario_dettagliato = crea_inventario_dettagliato_json(collezione)
+            dati_export['collezioni_dettagliate'].append(inventario_dettagliato)
+        
+        # Converte enum ricorsivamente
+        print("🔄 Conversione enum per compatibilità JSON...")
         dati_puliti = converti_enum_ricorsivo(dati_export)
         
-        # Salva usando l'encoder personalizzato come backup
-        with open(filename, 'w', encoding='utf-8') as f:
+        # Salva il file
+        print(f"💾 Salvando in {PERCORSO_SALVATAGGIO+filename}...")
+        with open(PERCORSO_SALVATAGGIO + filename, 'w', encoding='utf-8') as f:
             json.dump(dati_puliti, f, indent=2, ensure_ascii=False, cls=EnumJSONEncoder)
         
-        print(f"✅ Collezioni salvate con successo in {filename}")
+        # Statistiche del file salvato
+        import os
+        dimensione_file = os.path.getsize(PERCORSO_SALVATAGGIO + filename) / 1024  # KB
+        
+        print(f"✅ Collezioni salvate con successo!")
+        print(f"   📄 File: {filename}")
+        print(f"   📊 Dimensione: {dimensione_file:.1f} KB")
+        print(f"   🎮 Collezioni: {len(collezioni)}")
+        print(f"   📦 Carte totali: {sum(c.get_totale_carte() for c in collezioni)}")
+        
+        return True
         
     except Exception as e:
         print(f"❌ Errore durante il salvataggio JSON: {e}")
         
-        # Tentativo di salvataggio di debug per capire il problema
+        # Salvataggio di debug
         try:
             debug_filename = filename.replace('.json', '_debug.txt')
-            with open(debug_filename, 'w', encoding='utf-8') as f:
+            with open(PERCORSO_SALVATAGGIO + debug_filename, 'w', encoding='utf-8') as f:
                 f.write(f"Errore durante serializzazione JSON: {e}\n\n")
                 f.write(f"Numero collezioni: {len(collezioni)}\n")
                 for i, c in enumerate(collezioni):
-                    f.write(f"Collezione {i}: {type(c)} - {c.id_giocatore}\n")
-            print(f"File di debug salvato in {debug_filename}")
+                    f.write(f"Collezione {i}: ID {c.id_giocatore} - {c.get_totale_carte()} carte\n")
+            print(f"📄 File di debug salvato in {debug_filename}")
         except Exception as debug_error:
-            print(f"Errore anche nel debug: {debug_error}")
+            print(f"❌ Errore anche nel debug: {debug_error}")
+        
+        return False
 
-# Funzione alternativa più semplice per casi estremi
-def salva_collezioni_json_semplice(collezioni: List, filename: str = "collezioni_giocatori_simple.json"):
+def carica_collezioni_json_migliorato(filename: str) -> Optional[Dict[str, Any]]:
     """
-    Versione semplificata del salvataggio che converte tutto in stringa.
-    Usare solo se la versione completa non funziona.
+    Carica collezioni dal formato JSON migliorato.
     """
     try:
-        dati_semplici = {
-            'numero_collezioni': len(collezioni),
-            'data_creazione': str(datetime.now()),
-            'collezioni': []
-        }
+        print(f"📂 Caricamento collezioni da {PERCORSO_SALVATAGGIO+filename}...")
         
-        for c in collezioni:
-            collezione_semplice = {
-                'id_giocatore': c.id_giocatore,
-                'fazioni_orientamento': [str(f) for f in c.fazioni_orientamento],
-                'statistiche': {
-                    'guerrieri': c.statistiche.guerrieri,
-                    'equipaggiamenti': c.statistiche.equipaggiamenti,
-                    'speciali': c.statistiche.speciali,
-                    'fortificazioni': c.statistiche.fortificazioni,
-                    'missioni': c.statistiche.missioni,
-                    'arte': c.statistiche.arte,
-                    'oscura_simmetria': c.statistiche.oscura_simmetria,
-                    'reliquie': c.statistiche.reliquie,
-                    'warzone': c.statistiche.warzone,
-                    'totale_carte': c.statistiche.totale_carte,
-                    'valore_totale_dp': c.statistiche.valore_totale_dp,
-                    # Converte tutte le chiavi in stringa
-                    'per_fazione': {str(k): v for k, v in c.statistiche.per_fazione.items()},
-                    'per_set': {str(k): v for k, v in c.statistiche.per_set.items()},
-                    'per_rarity': {str(k): v for k, v in c.statistiche.per_rarity.items()}
-                },
-                'totale_carte': c.get_totale_carte()
-            }
-            dati_semplici['collezioni'].append(collezione_semplice)
+        with open(PERCORSO_SALVATAGGIO + filename, 'r', encoding='utf-8') as f:
+            dati = json.load(f)
         
-        with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(dati_semplici, f, indent=2, ensure_ascii=False)
+        # Verifica formato
+        if 'metadata' not in dati or dati.get('metadata', {}).get('tipo_export') != 'collezioni_dettagliate':
+            print("⚠️  Attenzione: File potrebbe non essere in formato dettagliato")
         
-        print(f"✅ Collezioni salvate (versione semplice) in {filename}")
+        # Stampa info di caricamento
+        metadata = dati.get('metadata', {})
+        print(f"✅ Caricamento completato!")
+        print(f"   📅 Creato: {metadata.get('data_creazione', 'N/A')}")
+        print(f"   🎮 Collezioni: {metadata.get('numero_collezioni', 'N/A')}")
+        print(f"   📦 Carte totali: {dati.get('statistiche_aggregate', {}).get('panoramica_generale', {}).get('totale_carte', 'N/A')}")
         
+        return dati
+        
+    except FileNotFoundError:
+        print(f"❌ File {PERCORSO_SALVATAGGIO+filename} non trovato!")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"❌ Errore nel parsing JSON: {e}")
+        return None
     except Exception as e:
-        print(f"❌ Errore anche nella versione semplice: {e}")
+        print(f"❌ Errore durante il caricamento: {e}")
+        return None
+
+def stampa_statistiche_da_json(dati_json: Dict[str, Any]):
+    """
+    Stampa statistiche dalle collezioni caricate da JSON.
+    Equivalente di stampa_riepilogo_collezioni_migliorato() per dati JSON.
+    """
+    if not dati_json:
+        print("❌ Nessun dato da visualizzare")
+        return
+    
+    stats_aggregate = dati_json.get('statistiche_aggregate', {})
+    panoramica = stats_aggregate.get('panoramica_generale', {})
+    
+    print(f"\n{'='*80}")
+    print(f"📋 STATISTICHE DA JSON - {panoramica.get('numero_collezioni', 0)} COLLEZIONI")
+    print(f"{'='*80}")
+    
+    print(f"📦 Totale carte: {panoramica.get('totale_carte', 0)}")
+    print(f"💰 Valore totale: {panoramica.get('totale_valore_dp', 0)} DP")
+    print(f"📈 Media carte/collezione: {panoramica.get('media_carte_per_collezione', 0):.1f}")
+    print(f"💎 Media valore/collezione: {panoramica.get('media_valore_per_collezione', 0):.1f} DP")
+    
+    # Riepilogo collezioni
+    print(f"\n📊 RIEPILOGO COLLEZIONI:")
+    for collezione in stats_aggregate.get('riepilogo_collezioni', []):
+        orientamento_str = ""
+        if collezione.get('orientamento', {}).get('attivo'):
+            fazioni = collezione.get('orientamento', {}).get('fazioni', [])
+            orientamento_str = f" [🎯 {', '.join(fazioni)}]"
+        
+        print(f"  🎮 Giocatore {collezione.get('id_giocatore')}: {collezione.get('totale_carte')} carte, {collezione.get('valore_dp')} DP{orientamento_str}")
+
 
 
 def verifica_integrità_collezioni(collezioni: List[CollezioneGiocatore]) -> Dict[str, Any]:
@@ -1506,7 +1808,7 @@ def test_creazione_collezioni_base():
         orientamento=False
     )
     
-    stampa_riepilogo_collezioni(collezioni)
+    stampa_riepilogo_collezioni_migliorato(collezioni)
     
     integrità = verifica_integrità_collezioni(collezioni)
     print(f"\nRisultati verifica integrità: {integrità}")
@@ -1526,7 +1828,7 @@ def test_creazione_collezioni_orientate():
         orientamento=True
     )
     
-    stampa_riepilogo_collezioni(collezioni)
+    stampa_riepilogo_collezioni_migliorato(collezioni)
     
     integrità = verifica_integrità_collezioni(collezioni)
     print(f"\nRisultati verifica integrità: {integrità}")
@@ -1546,7 +1848,7 @@ def test_creazione_collezioni_multiple_espansioni():
         orientamento=True
     )
     
-    stampa_riepilogo_collezioni(collezioni)
+    stampa_riepilogo_collezioni_migliorato(collezioni)
     
     integrità = verifica_integrità_collezioni(collezioni)
     print(f"\nRisultati verifica integrità: {integrità}")
@@ -1567,7 +1869,7 @@ def test_creazione_collezioni_stress():
             orientamento=True
         )
         
-        stampa_riepilogo_collezioni(collezioni)
+        stampa_riepilogo_collezioni_migliorato(collezioni)
         
         integrità = verifica_integrità_collezioni(collezioni)
         print(f"\nRisultati verifica integrità: {integrità}")
@@ -1694,6 +1996,29 @@ def analizza_bilanciamento_collezioni(collezioni: List[CollezioneGiocatore]):
             print(f"\n⚠️  {collezioni_senza_guerrieri} collezioni senza guerrieri")
             print(f"   (OK per collezioni giocatore - potranno acquistare guerrieri separatamente)")
 
+# Esempio di utilizzo
+def esempio_salvataggio_migliorato():
+    """
+    Esempio di utilizzo delle funzioni di salvataggio migliorato.
+    """
+    print("\n🔍 ESEMPIO SALVATAGGIO JSON MIGLIORATO")
+    print("=" * 60)
+    print("1. Crea collezioni: collezioni = creazione_Collezione_Giocatore(...)")
+    # Crea collezioni
+    collezioni = creazione_Collezione_Giocatore(
+            numero_giocatori=2,
+            espansioni=[Set_Espansione.BASE, Set_Espansione.INQUISITION],
+            orientamento=True
+        )
+    # Stampa con visualizzazione migliorata
+    stampa_riepilogo_collezioni_migliorato(collezioni)
+    print("2. Salva dettagliato: salva_collezioni_json_migliorato(collezioni, 'collezioni_dettagliate.json')")
+    # Salva con la STESSA struttura in JSON
+    salva_collezioni_json_migliorato(collezioni, "collezioni_dettagliate.json")
+    print("3. Carica: dati = carica_collezioni_json_migliorato('collezioni_dettagliate.json')")
+    dati_json = carica_collezioni_json_migliorato("collezioni_dettagliate.json")
+    print("4. Visualizza: stampa_statistiche_da_json(dati)")
+    stampa_statistiche_da_json(dati_json)
 
 def esempio_utilizzo_completo():
     """Esempio completo di utilizzo del Manager_Gioco"""
@@ -1712,7 +2037,7 @@ def esempio_utilizzo_completo():
     )
     
     print("\n2. Analisi dettagliata delle collezioni...")
-    stampa_riepilogo_collezioni(collezioni_torneo)
+    stampa_riepilogo_collezioni_migliorato(collezioni_torneo)
     
     print("\n3. Verifica integrità...")
     integrità = verifica_integrità_collezioni(collezioni_torneo)
@@ -1762,6 +2087,7 @@ def menu_interattivo():
         print("6. Esempio utilizzo completo")
         print("7. Creazione personalizzata")
         print("8. Reset tracciamento quantità")
+        print("9. Carica collezioni da JSON")
         print("0. Esci")
         
         scelta = input("\nScegli un'opzione: ").strip()
@@ -1797,18 +2123,25 @@ def menu_interattivo():
                 orientamento = input("Orientamento (s/n): ").lower().startswith('s')
                 
                 collezioni = creazione_Collezione_Giocatore(num, espansioni, orientamento)
-                stampa_riepilogo_collezioni(collezioni)
+                stampa_riepilogo_collezioni_migliorato(collezioni)
                 
                 salva = input("Salvare in JSON? (s/n): ").lower().startswith('s')
                 if salva:
                     filename = f"collezioni_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-                    salva_collezioni_json(collezioni, filename)
+                    salva_collezioni_json_migliorato(collezioni, filename)
                 
             except Exception as e:
                 print(f"Errore: {e}")
         elif scelta == "8":
             resetta_tracciamento_quantita()
             print("Tracciamento quantità resettato.")
+        elif scelta == "9":
+            try:
+                num = str(input("nome file collezione: "))
+                carica_collezioni_json_migliorato(num)
+            except Exception as e:
+                print(f"Errore: {e}")
+
         else:
             print("Opzione non valida.")
         
@@ -1847,8 +2180,6 @@ def test_creazioni_individuali():
     print("# menu_interattivo()")
     print(f"{'='*80}")
     
-    # Per attivare il menu interattivo, decommenta la riga seguente:
-    menu_interattivo()
 
 
 
@@ -1905,7 +2236,13 @@ if __name__ == "__main__":
         
         print("\n🎯 Demo: Test funzioni di creazione individuali")
         test_creazioni_individuali()
+
+        print("\n🎯 Demo: Test salvataggio")
+        esempio_salvataggio_migliorato()
         
+        # Per attivare il menu interattivo, decommenta la riga seguente:
+        menu_interattivo()
+
     except Exception as e:
         print(f"❌ Errore durante la demo: {e}")
 
