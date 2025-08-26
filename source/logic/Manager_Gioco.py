@@ -592,17 +592,17 @@ class CollezioneGiocatore:
             orientamento_str = f" [🎯 {', '.join(fazioni)}]"
         
         return f"""🎮 Collezione Giocatore {self.id_giocatore}{orientamento_str}
-    📦 Totale carte: {self.get_totale_carte()}
-    💰 Valore: {self.statistiche.valore_totale_dp} DP
-    ⚔️  Guerrieri: {self.statistiche.guerrieri}
-    🛡️  Equipaggiamenti: {self.statistiche.equipaggiamenti}
-    🎴 Speciali: {self.statistiche.speciali}
-    🏰 Fortificazioni: {self.statistiche.fortificazioni}
-    📜 Missioni: {self.statistiche.missioni}
-    ✨ Arte: {self.statistiche.arte}
-    🌑 Oscura Simmetria: {self.statistiche.oscura_simmetria}
-    🏺 Reliquie: {self.statistiche.reliquie}
-    💥 Warzone: {self.statistiche.warzone}"""
+                    📦 Totale carte: {self.get_totale_carte()}
+                    💰 Valore: {self.statistiche.valore_totale_dp} DP
+                    ⚔️  Guerrieri: {self.statistiche.guerrieri}
+                    🛡️  Equipaggiamenti: {self.statistiche.equipaggiamenti}
+                    🎴 Speciali: {self.statistiche.speciali}
+                    🏰 Fortificazioni: {self.statistiche.fortificazioni}
+                    📜 Missioni: {self.statistiche.missioni}
+                    ✨ Arte: {self.statistiche.arte}
+                    🌑 Oscura Simmetria: {self.statistiche.oscura_simmetria}
+                    🏺 Reliquie: {self.statistiche.reliquie}
+                    💥 Warzone: {self.statistiche.warzone}"""
 
     # Esempio di come aggiungere questi metodi alla classe esistente:
     """
@@ -743,16 +743,16 @@ def seleziona_carte_casuali_per_tipo(
         
         # Determina quantità da aggiungere (1-3 copie)
         max_quantita_disponibile = min(
-            5,  # Massimo 5 copie per carta- qui utilizza la quantita minima consigliata
+            7,  # Massimo 7 copie per carta per collezione (considera mazzo max 5 carte e collezione di gioco: totale 25 carte). La quantità minima consigliata viene utilizzata per la creazione del mazzo
             dati_carta.get('quantita', 0) - QUANTITA_UTILIZZATE[nome_carta]
         )
         
         #if max_quantita_disponibile <= 0:
             # Rimuovi carte non più disponibili
         if nome_carta in carte_orientate:
-            del carte_orientate[nome_carta]
+            del carte_orientate[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
         if nome_carta in carte_generiche:
-            del carte_generiche[nome_carta]
+            del carte_generiche[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
         #    continue
         
         quantita = random.randint(1, max_quantita_disponibile)

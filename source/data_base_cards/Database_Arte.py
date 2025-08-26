@@ -4,6 +4,7 @@ VERSIONE CORRETTA - Allineata alle regole ufficiali del regolamento
 Dizionario completo per creare istanze usando Arte.from_dict()
 """
 from source.cards.Arte import Arte
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, DisciplinaArte, Abilita  # Corretto percorso import
 
 
 CARTE_ARTE_DATABASE = {
@@ -14,11 +15,11 @@ CARTE_ARTE_DATABASE = {
         "tipo": "Benedizione",
         "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
+        "fazioni_permesse": [Fazione.FRATELLANZA.value, Fazione.FREELANCER.value],
         "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "Turno Proprio",
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "A001",
         "effetti": [
             {
@@ -39,7 +40,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "dark_curse": {
@@ -48,7 +51,7 @@ CARTE_ARTE_DATABASE = {
         "tipo": "Maledizione",
         "rarity": "Uncommon",
         "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
+        "fazioni_permesse": [Fazione.FRATELLANZA.value, Fazione.FREELANCER.value],
         "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
         "timing": "Turno Proprio",
@@ -73,7 +76,7 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9,
+        "quantita":9
     },
 
     "healing_light": {
@@ -107,7 +110,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "righteous_fury": {
@@ -141,7 +146,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "divine_intervention": {
@@ -175,7 +182,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "brotherhood_unity": {
@@ -216,7 +225,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === CARTE ARTE UNIVERSALI ===
@@ -251,7 +262,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === CARTE INQUISITION ===
@@ -286,7 +299,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "purification_rite": {
@@ -320,7 +335,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === CARTE ARTE RARE E ULTRA RARE ===
@@ -369,7 +386,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "resurrection": {
@@ -403,7 +422,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === CARTE ARTE SPECIFICHE PER ESPANSIONI ===
@@ -438,7 +459,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "mass_conversion": {
@@ -472,7 +495,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === CARTE COMBATTIMENTO ===
@@ -507,7 +532,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "protective_ward": {
@@ -541,7 +568,9 @@ CARTE_ARTE_DATABASE = {
             "bersagli_attuali": []
         },
         "contatori_speciali": {},
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }
 

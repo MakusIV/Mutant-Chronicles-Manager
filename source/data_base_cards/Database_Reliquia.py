@@ -56,7 +56,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": ["Abilità di combattimento corpo a corpo"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Martello di Algeroth": {
@@ -109,7 +111,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": ["Altre armi Apostoliche"],
         "potenzia": ["Attacchi corpo a corpo letali"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # RELIQUIE TECNOLOGICHE
@@ -172,7 +176,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": ["EMP", "Interferenze", "Sovraccarico"],
         "incompatibile_con": [],
         "potenzia": ["Equipaggiamento Cybertronic"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # RELIQUIE MISTICHE - FRATELLANZA
@@ -237,7 +243,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": ["Doni dell'Oscura Simmetria"],
         "potenzia": ["Arti della Fratellanza", "Abilità mistiche"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Amuleto di Protezione": {
@@ -292,7 +300,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": ["Resistenza mistica"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # RELIQUIE CORPORATIVE SPECIFICHE
@@ -355,7 +365,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": ["Tradimento"],
         "potenzia": ["Abilità di comando", "Morale delle truppe"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Dispositivo Bauhaus": {
@@ -408,7 +420,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": ["Interferenze magnetiche"],
         "incompatibile_con": [],
         "potenzia": ["Armi da fuoco Bauhaus"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Katana Ancestrale": {
@@ -470,7 +484,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": ["Azioni disonorevoli"],
         "potenzia": ["Abilità di duello", "Tecniche Mishima"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Emblema Capitol": {
@@ -532,7 +548,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": ["Morale Capitol", "Resistenza"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # RELIQUIE DELL'OSCURA LEGIONE
@@ -602,7 +620,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": ["Simboli sacri", "Luce pura"],
         "incompatibile_con": ["Reliquie sacre"],
         "potenzia": ["Doni dell'Oscura Simmetria"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # RELIQUIE UNIVERSALI
@@ -658,7 +678,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": ["Controllo del destino", "Fortuna"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Armatura Antica": {
@@ -711,7 +733,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": ["Ridotta mobilità"],
         "incompatibile_con": ["Altre armature"],
         "potenzia": ["Sopravvivenza"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }
 

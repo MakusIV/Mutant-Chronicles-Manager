@@ -154,6 +154,8 @@ class Speciale:
         # Contatori per effetti speciali
         self.contatori_speciali: Dict[str, int] = {}
         self.quantita = 0
+        self.quantita_minima_consigliata = 0  # per la creazione del mazzo
+        self.fondamentale = False  # se la carta è fondamentale per il mazzo
     
     def get_costo_destino(self) -> int:
         """
@@ -504,6 +506,9 @@ class Speciale:
         speciale.flavour_text = data["flavour_text"]
         speciale.keywords = data["keywords"]
         speciale.restrizioni = data["restrizioni"]
+        speciale.quantita = data.get("quantita", 0)
+        speciale.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        speciale.fondamentale = data.get("fondamentale", False)
         
         # Ripristina stato di gioco se presente
         if "stato_gioco" in data:

@@ -5,10 +5,10 @@ Versione corretta secondo il regolamento ufficiale
 """
 
 from source.cards.Oscura_Simmetria import (
-    Oscura_Simmetria, TipoOscuraSimmetria, ApostoloPadre, 
+    Oscura_Simmetria, ApostoloOscuraSimmetria,
     BersaglioOscura, DurataOscura, TimingOscura, EffettoOscura
 )
-from source.cards.Guerriero import Fazione, Rarity
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloOscuraSimmetria, TipoOscuraSimmetria  # Corretto percorso import
 
 
 DATABASE_OSCURA_SIMMETRIA = {
@@ -52,7 +52,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9  # CORRETTO: era "quantità"
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)          # CORRETTO: era "quantità"
     },
     
     "tentazione": {
@@ -91,7 +93,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "possessione_demoniaca": {
@@ -99,7 +103,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "costo_destino": 4,
         "tipo": "Possessione",
         "rarity": "Rare",
-        "apostolo_padre": "Demnogonis",
+        "apostolo_padre": ApostoloOscuraSimmetria.DEMNOGONIS.value,
         "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
         "bersaglio": "Guerriero Avversario",
         "durata": "Fino Eliminazione",
@@ -130,7 +134,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # ========== DONI DEGLI APOSTOLI ==========
@@ -171,7 +177,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "benedizione_di_semai": {
@@ -210,7 +218,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "artigli_di_muawijhe": {
@@ -249,7 +259,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "vuoto_di_ilian": {
@@ -288,7 +300,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "follia_di_demnogonis": {
@@ -327,7 +341,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # ========== ESPANSIONI ==========
@@ -369,7 +385,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "corruzione_maggiore": {
@@ -408,7 +426,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }
 
@@ -473,7 +493,7 @@ def crea_carta_da_database(nome_carta: str):
         nome=data["nome"],
         costo_destino=data["costo_destino"],
         tipo=TipoOscuraSimmetria(data["tipo"]) if data["tipo"] != "Generica" else TipoOscuraSimmetria.GENERICA,
-        apostolo_padre=ApostoloPadre(data["apostolo_padre"]) if data["apostolo_padre"] != "Nessuno" else ApostoloPadre.NESSUNO,
+        apostolo_padre=ApostoloOscuraSimmetria(data["apostolo_padre"]) if data["apostolo_padre"] != ApostoloOscuraSimmetria.NESSUNO else ApostoloOscuraSimmetria.NESSUNO,
         rarity=Rarity(data["rarity"]),
         set_espansione=data["set_espansione"]
     )

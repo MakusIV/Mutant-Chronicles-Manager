@@ -18,8 +18,6 @@ class Set_Espansione(Enum):
     GOLGOTHA = "Golgotha"
     APOCALYPSE = "Apocalypse"
 
-
-
 class Fazione(Enum):
     """Fazioni disponibili nel gioco"""
     IMPERIALE = "Imperiale"
@@ -30,8 +28,6 @@ class Fazione(Enum):
     FRATELLANZA = "Fratellanza"
     OSCURA_LEGIONE = "Oscura Legione"  # Corretto da "LEGIONE_OSCURA"
     FREELANCER = "Freelancer"
-
-
 
 class TipoGuerriero(Enum):
     """Tipi di guerriero"""
@@ -45,7 +41,39 @@ class TipoGuerriero(Enum):
     INQUISITORE = "Inquisitore"
     CACCIATORE_OSCURO = "Cacciatore Oscuro"
     MORTIFICATOR = "Mortificator"  # Aggiunto per regole speciali
+    ERETICO = "Eretico"
 
+class DisciplinaArte(Enum):
+    """Discipline dell'Arte secondo il regolamento"""
+    CAMBIAMENTO = "Arte del Cambiamento"
+    ELEMENTI = "Arte degli Elementi"
+    ESORCISMO = "Arte dell'Esorcismo"
+    CINETICA = "Arte della Cinetica"
+    MANIPOLAZIONE = "Arte della Manipolazione"
+    MENTALE = "Arte Mentale"
+    PREMONIZIONE = "Arte della Premonizione"
+    EVOCAZIONE = "Arte d'Evocazione"
+    TUTTE = "Tutte le Discipline"
+
+class TipoOscuraSimmetria(Enum):
+    """Tipi di carte Oscura Simmetria"""
+    GENERICA = "Generica"
+    DONO_APOSTOLO = "Dono dell'Apostolo"
+    CORRUZIONE = "Corruzione"
+    TENTAZIONE = "Tentazione"
+    MUTAZIONE = "Mutazione"
+    POSSESSIONE = "Possessione"
+    MALEDIZIONE_OSCURA = "Maledizione Oscura"
+    INVOCAZIONE_OSCURA = "Invocazione Oscura"
+
+class ApostoloOscuraSimmetria(Enum):
+    """Apostoli Padri dell'Oscura Simmetria"""
+    ALGEROTH = "Algeroth"      # Apostolo della Guerra
+    SEMAI = "Semai"            # Apostolo della Peste
+    MUAWIJHE = "Muawijhe"      # Apostolo delle Mutazioni
+    ILIAN = "Ilian"            # Apostolo del Vuoto
+    DEMNOGONIS = "Demnogonis"  # Apostolo della Follia
+    NESSUNO = "Nessuno"        # Per carte generiche
 
 class Rarity(Enum):
     """Rarità delle carte"""
@@ -134,7 +162,7 @@ class Guerriero:
         self.rarity = Rarity.COMMON
         
         # Abilità e testo della carta
-        self.abilita: List[Abilita] = []
+        self.abilita: List[Abilita] = [] # La capacità di lanciare incantesimi dell'arte è definita qui
         self.testo_carta = ""
         self.flavour_text = ""
         
@@ -159,13 +187,15 @@ class Guerriero:
         self.dentro_veicolo = False  # Stato dentro/fuori veicolo
         
         # Attributi speciali per espansioni
-        self.keywords: List[str] = []
+        self.keywords: List[str] = [] # la specificazione di essere un seguace di un determinato apostolo è definita qui    " Seguace di Algeroth", etc.    
         self.restrizioni: List[str] = []
         
         # Gestione Personalità
         self.e_personalita = False
         self.quantita = 0
-        
+        self.quantita_minima_consigliata = 0  # utilizzata per la creazione del mazzo
+        self.fondamentale = False  # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)
+
     def get_costo_destino(self) -> int:
         """
         Restituisce il costo in Destiny Points per giocare questa carta
@@ -548,6 +578,8 @@ class Guerriero:
         guerriero.keywords = data["keywords"]
         guerriero.restrizioni = data["restrizioni"]
         guerriero.equipaggiamento = data["equipaggiamento"]
+        guerriero.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        guerriero.fondamentale = data.get("fondamentale", False)
         
         # Ripristina stato di gioco (con compatibilità)
         stato = data["stato_gioco"]

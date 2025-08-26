@@ -58,7 +58,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "La città fortezza di Heimburg protegge i guerrieri Bauhaus con le sue possenti mura.",
         "flavour_text": "Nelle profondità di Venere, Heimburg rappresenta la potenza industriale Bauhaus.",
         "keywords": ["Bauhaus", "Città", "Fortificazione", "Difesa"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Citadel": {
@@ -110,7 +112,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "La Citadel rappresenta la supremazia militare e spirituale dell'Impero.",
         "flavour_text": "Nel cuore della Terra, la Citadel vigila sui fedeli dell'Imperatore.",
         "keywords": ["Imperiale", "Città", "Fortificazione", "Difesa", "Resistenza"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Ilian": {
@@ -161,7 +165,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Ilian, la città di cristallo di Mercurio, conferisce velocità ai suoi difensori.",
         "flavour_text": "Come il mercurio scorre veloce, così i guerrieri di Ilian si muovono.",
         "keywords": ["Mishima", "Città", "Fortificazione", "Velocità"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Capitol": {
@@ -205,7 +211,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Capitol, centro del progresso tecnologico e commerciale.",
         "flavour_text": "Dove la tecnologia incontra l'ambizione, nasce Capitol.",
         "keywords": ["Capitol", "Città", "Fortificazione", "Tecnologia"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Saguenay": {
@@ -257,7 +265,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Saguenay, centro dell'innovazione cibernetica di Cybertronic.",
         "flavour_text": "Nel silenzio digitale di Saguenay, il futuro prende forma.",
         "keywords": ["Cybertronic", "Città", "Fortificazione", "Cibernetico"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     # CITTADELLE DEGLI APOSTOLI
@@ -317,7 +327,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Nel nome di Algeroth, le armi parlano e la guerra non ha fine.",
         "flavour_text": "Dalle fondamenta della Cittadella echeggia l'eterno rumore della battaglia.",
         "keywords": ["Algeroth", "Cittadella", "Guerra", "Oscura Legione"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Cittadella di Ilian": {
@@ -369,7 +381,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Nella Cittadella di Ilian, la verità si dissolve come nebbia.",
         "flavour_text": "Chi entra nel labirinto di Ilian, perde se stesso nelle bugie.",
         "keywords": ["Ilian", "Cittadella", "Inganno", "Oscura Legione"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Cittadella di Demnogonis": {
@@ -421,7 +435,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Il gelo eterno di Demnogonis preserva i suoi servitori.",
         "flavour_text": "Nel cuore della Cittadella, l'inverno non ha mai fine.",
         "keywords": ["Demnogonis", "Cittadella", "Gelo", "Terrore", "Oscura Legione"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Cittadella di Muawijhe": {
@@ -473,7 +489,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "I sussurri di Muawijhe portano follia e corruzione.",
         "flavour_text": "Chi ascolta troppo a lungo, dimentica chi era.",
         "keywords": ["Muawijhe", "Cittadella", "Follia", "Corruzione", "Oscura Legione"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Cittadella di Semai": {
@@ -525,7 +543,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Nel Tempio di Semai, il destino prende forma.",
         "flavour_text": "Le trame del fato si intrecciano nella Cittadella del Destino.",
         "keywords": ["Semai", "Cittadella", "Destino", "Fato", "Oscura Legione"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     # FORTIFICAZIONI GENERICHE
@@ -570,7 +590,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Un rifugio sicuro contro le tempeste della guerra.",
         "flavour_text": "Spesse pareti di ferro proteggono chi vi si rifugia.",
         "keywords": ["Bunker", "Fortificazione", "Difesa", "Universale"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Torretta di Guardia": {
@@ -614,7 +636,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Una posizione elevata conferisce vantaggi tattici significativi.",
         "flavour_text": "Dall'alto, ogni movimento nemico è visibile.",
         "keywords": ["Torretta", "Avvistamento", "Tattica", "Distanza"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Complesso Industriale": {
@@ -666,7 +690,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "L'industria alimenta la macchina bellica con risorse continue.",
         "flavour_text": "Dalle fabbriche escono armi e speranza in egual misura.",
         "keywords": ["Industria", "Produzione", "Equipaggiamenti", "Rifornimenti"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Base Operativa": {
@@ -718,7 +744,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Il cuore operativo delle forze Doomtrooper sul campo.",
         "flavour_text": "Da qui partono gli ordini che cambiano il corso della battaglia.",
         "keywords": ["Base", "Comando", "Doomtrooper", "Tattica"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Rifugio Blindato": {
@@ -762,7 +790,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Spesse piastre di blindatura proteggono chi si rifugia all'interno.",
         "flavour_text": "Quando le bombe cadono, il rifugio è l'unica salvezza.",
         "keywords": ["Rifugio", "Blindatura", "Protezione", "Sicurezza"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     # FORTIFICAZIONI SPECIALI DELL'AVAMPOSTO
@@ -815,7 +845,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "Nel Club Arkadin, informazioni e favori sono la moneta corrente.",
         "flavour_text": "Dove le Tribù si incontrano, i segreti cambiano di mano.",
         "keywords": ["Club", "Tribù", "Informazioni", "Avamposto"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Santuario Templare": {
@@ -867,7 +899,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "La fede purifica e protegge dal male oscuro.",
         "flavour_text": "Nel Santuario, la luce scaccia ogni ombra.",
         "keywords": ["Santuario", "Templari", "Fede", "Immunità"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }
 

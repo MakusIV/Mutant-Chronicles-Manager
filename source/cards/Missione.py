@@ -135,6 +135,8 @@ class Missione:
         self.effetti_attivi: List[str] = []
         self.modificatori_applicati: Dict[str, int] = {}
         self.quantita = 0
+        self.quantita_minima_consigliata = 0  # per la creazione del mazzo
+        self.fondamentale = False  # se la carta è fondamentale per il mazzo    
         
     def puo_essere_assegnata_a(self, bersaglio: Union[str, object]) -> Dict[str, Any]:
         """
@@ -430,6 +432,10 @@ class Missione:
         
         missione.effetti_attivi = data["effetti_attivi"]
         missione.modificatori_applicati = data["modificatori_applicati"]
+
+        missione.quantita = data.get("quantita", 0)
+        missione.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        missione.fondamentale = data.get("fondamentale", False)
         
         return missione
     

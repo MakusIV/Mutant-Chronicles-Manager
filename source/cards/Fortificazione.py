@@ -127,6 +127,8 @@ class Fortificazione:
         self.testo_carta: str = ""
         self.flavour_text: str = ""
         self.keywords: List[str] = []
+        self.quantita_minima_consigliata: int = 0  # per la creazione del mazzo
+        self.fondamentale: bool = False  # se la carta è fondamentale per il mazzo
         
         # Statistiche avanzate
         self.punti_struttura: int = 0  # Resistenza della fortificazione
@@ -537,6 +539,9 @@ class Fortificazione:
         fortificazione.punti_struttura = data["punti_struttura"]
         fortificazione.resistenza_attacchi = data["resistenza_attacchi"]
         fortificazione.bonus_armatura = data["bonus_armatura"]
+        fortificazione.quantita = data.get("quantita", 0)
+        fortificazione.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        fortificazione.fondamentale = data.get("fondamentale", False)
         
         return fortificazione
     

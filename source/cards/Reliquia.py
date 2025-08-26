@@ -159,6 +159,8 @@ class Reliquia:
         self.incompatibile_con: List[str] = []  # Reliquie/equipaggiamenti incompatibili
         self.potenzia: List[str] = []  # Carte/abilità che potenzia
         self.quantita = 0
+        self.quantita_minima_consigliata = 0  # per la creazione del mazzo
+        self.fondamentale = False  # se la carta è fondamentale per il mazzo
     
     def puo_essere_assegnata_a(self, guerriero: object) -> Dict[str, Any]:
         """
@@ -546,6 +548,9 @@ class Reliquia:
         reliquia.requisiti_speciali = data["requisiti_speciali"]
         reliquia.immunita = data["immunita"]
         reliquia.vulnerabilita = data["vulnerabilita"]
+        reliquia.quantita = data.get("quantita", 0)
+        reliquia.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        reliquia.fondamentale = data.get("fondamentale", False)
         
         # Ripristina stato di gioco        
         stato = data.get("stato_gioco")

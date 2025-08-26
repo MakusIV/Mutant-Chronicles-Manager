@@ -7,7 +7,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, Abilita  # Corretto percorso import
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, DisciplinaArte, Abilita  # Corretto percorso import
 
 
 class TipoArte(Enum):
@@ -21,17 +21,6 @@ class TipoArte(Enum):
     INCANTESIMO_COMBATTIMENTO = "Incantesimo di Combattimento"
     INCANTESIMO_PERSONALE = "Incantesimo Personale di Combattimento"
 
-
-class DisciplinaArte(Enum):
-    """Discipline dell'Arte secondo il regolamento"""
-    CAMBIAMENTO = "Arte del Cambiamento"
-    ELEMENTI = "Arte degli Elementi"
-    ESORCISMO = "Arte dell'Esorcismo"
-    CINETICA = "Arte della Cinetica"
-    MANIPOLAZIONE = "Arte della Manipolazione"
-    MENTALE = "Arte Mentale"
-    PREMONIZIONE = "Arte della Premonizione"
-    EVOCAZIONE = "Arte d'Evocazione"
 
 
 class BersaglioArte(Enum):
@@ -147,15 +136,17 @@ class Arte:
         # Contatori per effetti speciali
         self.contatori_speciali: Dict[str, int] = {}
         self.quantita = 0
-    
-    def puo_essere_giocata_da_fazione(self, fazione: Fazione) -> bool:
+        self.quantita_minima_consigliata = 0  # per la creazione del mazzo
+        self.fondamentale = False  # se la carta è fondamentale per il mazzo
+
+    def puo_essere_associata_a_fazione(self, fazione: Fazione) -> bool:
         """
-        Controlla se la carta può essere giocata dalla fazione specificata
+        Controlla se la carta può essere associata dalla fazione specificata
         Secondo il regolamento: solo Fratellanza e pochi altri Doomtrooper
         """
         return fazione in self.fazioni_permesse
     
-    def puo_essere_giocata_da_guerriero(self, guerriero: Any) -> Dict[str, Any]:
+    def puo_essere_associata_a_guerriero(self, guerriero: Any) -> Dict[str, Any]:
         """
         Verifica se un guerriero può lanciare questo incantesimo
         Secondo il regolamento: deve essere un Maestro della disciplina richiesta
@@ -163,7 +154,29 @@ class Arte:
         risultato = {"puo_lanciare": True, "errori": []}
         
         # Deve essere della Fratellanza o fazione permessa
-        if not self.puo_essere_giocata_da_fazione(guerriero.fazione):
+        if not self.puo_essere_associata_a_fazione(guerriero.fazione) and "Apostata" not in guerriero.keywords:  # Apostata possono usare incantesimi dell'arte                
+            risultato["puo_lanciare"] = False
+            risultato["errori"].append(f"Solo {[f.value for f in self.fazioni_permesse]} ed gli Apostati possono usare l'Arte")
+        
+        # Verifica gestione della disciplina (se specificata)
+        if len(guerriero.abilita) > 0:
+            discipline_arte_guerriero = [abilita.nome for abilita in guerriero.abilita if abilita.tipo == "Arte"]   
+            if [DisciplinaArte.TUTTE.value, self.disciplina.value] not in discipline_arte_guerriero:
+                risultato["puo_lanciare"] = False
+                risultato["errori"].append(f"Richiede disciplina in {self.disciplina.value}")      
+        
+        return risultato
+    
+    
+    def puo_essere_giocata_da_guerriero(self, guerriero: Any) -> Dict[str, Any]:
+        """
+        Verifica se un guerriero può lanciare questo incantesimo
+        Secondo il regolamento: deve essere un Maestro della disciplina richiesta
+        """
+        risultato = self.puo_essere_associata_a_guerriero(guerriero)
+        
+        # Deve essere della Fratellanza o fazione permessa
+        if not self.puo_essere_associata_a_fazione(guerriero.fazione):
             risultato["puo_lanciare"] = False
             risultato["errori"].append(f"Solo {[f.value for f in self.fazioni_permesse]} possono usare l'Arte")
         
@@ -174,15 +187,9 @@ class Arte:
                 risultato["puo_lanciare"] = False
                 risultato["errori"].append("Il maestro deve essere nella Squadra per lanciare incantesimi")
         
-        # Verifica maestria della disciplina (se specificata)
-        if self.maestri_richiesti:
-            if not any(maestria in guerriero.keywords for maestria in self.maestri_richiesti):
-                risultato["puo_lanciare"] = False
-                risultato["errori"].append(f"Richiede maestria in: {self.maestri_richiesti}")
-        
         # Non può influenzare guerrieri Oscura Legione (tranne conversioni)
         if hasattr(guerriero, 'fazione') and guerriero.fazione == Fazione.OSCURA_LEGIONE:
-            if "Eretico" not in guerriero.keywords:  # Eretici possono usare su tutti
+            #if "Eretico" not in guerriero.keywords:  # Eretici possono usare su tutti
                 risultato["puo_lanciare"] = False
                 risultato["errori"].append("Fratellanza non può aiutare l'Oscura Legione")
         
@@ -269,7 +276,7 @@ class Arte:
             risultato["errori"].append(f"Destiny Points insufficienti: richiesti {self.valore}, disponibili {destiny_points}")
         
         # Controllo fazione
-        if not self.puo_essere_giocata_da_fazione(fazione_giocatore):
+        if not self.puo_essere_associata_a_fazione(fazione_giocatore):
             risultato["puo_giocare"] = False
             risultato["errori"].append(f"Fazione {fazione_giocatore.value} non può giocare questa carta")
         
@@ -486,7 +493,7 @@ class Arte:
             "flavour_text": self.flavour_text,
             "keywords": self.keywords,
             "restrizioni": self.restrizioni,
-            "maestri_richiesti": self.maestri_richiesti,
+            #"maestri_richiesti": self.maestri_richiesti,
             "stato_gioco": {
                 "in_gioco": self.in_gioco,
                 "utilizzata": self.utilizzata,
@@ -523,10 +530,12 @@ class Arte:
         arte.flavour_text = data["flavour_text"]
         arte.keywords = data["keywords"]
         arte.restrizioni = data["restrizioni"]
+        arte.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        arte.fondamentale = data.get("fondamentale", False)
         
         # Gestione maestri richiesti (nuovo campo)
-        if "maestri_richiesti" in data:
-            arte.maestri_richiesti = data["maestri_richiesti"]
+        #if "maestri_richiesti" in data:
+        #    arte.maestri_richiesti = data["maestri_richiesti"]
         
         arte.contatori_speciali = data["contatori_speciali"]
         

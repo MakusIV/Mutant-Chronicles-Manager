@@ -5,7 +5,13 @@ Include carte dalla versione base e dalle espansioni Inquisition e Warzone
 Eliminazione proprietà duplicate e non esistenti (rango, costo_destino, punti_promozione)
 """
 
+"""NOTE:
+l'Apostata è un guerriero della OL che può lanciare incantesimi dell'Arte contro Doomtrooper e fratellanza
+rivedi verifica vincoli in puo_associare_a_guerriero in Oscura_Simmetria.py"""
+
+
 from typing import Dict, Any, List
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, DisciplinaArte, ApostoloOscuraSimmetria
 
 # Database completo dei guerrieri di Mutant Chronicles (versione corretta)
 GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
@@ -35,7 +41,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Bauhaus Venusian Ranger": {
@@ -71,7 +79,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Ilian Paladini": {
@@ -107,7 +117,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Bauhaus Ducal Militia": {
@@ -134,7 +146,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === CAPITOL ===
@@ -162,7 +176,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-    "quantita":9
+    "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Mitch Hunter": {
@@ -206,7 +222,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Capitol Purple Shark": {
@@ -242,7 +260,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === CYBERTRONIC ===
@@ -279,7 +299,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Max Steiner": {
@@ -315,7 +337,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Cybertronic Machinators": {
@@ -351,7 +375,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === IMPERIALE ===
@@ -379,7 +405,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Nathaniel Durand": {
@@ -423,7 +451,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Imperial Blood Beret": {
@@ -459,7 +489,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === MISHIMA ===
@@ -496,7 +528,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Takashi Mugan": {
@@ -540,7 +574,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Mishima Samurai": {
@@ -576,13 +612,15 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === FRATELLANZA ===
     "Brotherhood Missionary": {
         "nome": "Brotherhood Missionary",
-        "fazione": "Fratellanza",
+        "fazione": Fazione.FRATELLANZA.value,
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -601,7 +639,15 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "costo_destino": 0,
                 "target": "Self",
                 "timing": "Permanente"
-            }
+            },
+            {
+                "nome": DisciplinaArte.CAMBIAMENTO.value,
+                "descrizione": "",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Nemici Oscura Legione",
+                "timing": "Permanente"
+            },
         ],
         "testo_carta": "Missionario della Fratellanza, diffonde la parola della Luce.",
         "flavour_text": "La Luce scaccia le tenebre dall'anima degli uomini.",
@@ -613,15 +659,17 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Cardinal Dominic": {
         "nome": "Cardinal Dominic",
-        "fazione": "Fratellanza",
+        "fazione": Fazione.FRATELLANZA.value,
         "tipo": "Personalità",
-        "rarity": "Ultra Rare",
-        "set_espansione": "Inquisition",
+        "rarity": Rarity.ULTRA_RARE.value,
+        "set_espansione": Set_Espansione.INQUISITION.value,
         "numero_carta": "I01",
         "stats": {
             "combattimento": 12,
@@ -645,7 +693,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "costo_destino": 0,
                 "target": "Nemici Oscura Legione",
                 "timing": "Permanente"
-            }
+            },
+            {
+                "nome": DisciplinaArte.TUTTE.value,
+                "descrizione": "Questo guerriero può lanciare qualunque incantesimo dell'arte",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Nemici Oscura Legione",
+                "timing": "Permanente"
+            },
+
         ],
         "testo_carta": "Alto prelato della Fratellanza, campione della Luce contro le tenebre.",
         "flavour_text": "Dove cammino io, la Luce risplende eterna.",
@@ -657,7 +714,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Inquisitor Sebastian": {
@@ -701,14 +760,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === LEGIONE OSCURA ===
     "Necromutant": {
         "nome": "Necromutant",
         "fazione": "Oscura Legione",
-        "tipo": "Normale",
+        "tipo": "Seguace",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "60",
@@ -730,7 +791,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Guerriero non-morto della Oscura Legione, rianimato per servire il Male.",
         "flavour_text": "La morte è solo l'inizio del servizio alle Potenze Oscure.",
-        "keywords": ["Non-Morto", "Corrotto"],
+        "keywords": ["Non-Morto", "Corrotto", "Seguace di Algeroth"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -738,7 +799,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Nepharite of Algeroth": {
@@ -782,7 +845,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Alto comandante della Oscura Legione, servitore diretto di Algeroth.",
         "flavour_text": "Davanti alla pura malvagità, anche i più coraggiosi tremano.",
-        "keywords": ["Nepharite", "Demonio", "Unico", "Comandante"],
+        "keywords": ["Nepharite", "Demonio", "Unico", "Comandante", "Seguace di Algeroth"],
         "restrizioni": ["Un solo Nepharite of Algeroth per squadra"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -790,7 +853,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Razide": {
@@ -818,7 +883,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Mutante della Oscura Legione, creatura di pura malvagità.",
         "flavour_text": "Dalla carne corrotta nasce solo abominio.",
-        "keywords": ["Mutante", "Corrotto"],
+        "keywords": ["Mutante", "Corrotto", "Seguace di Algeroth"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -826,7 +891,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "Heretic Legionnaire": {
@@ -862,7 +929,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === FREELANCER ===
@@ -907,7 +976,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === ESPANSIONI WARZONE ===
@@ -952,7 +1023,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Capitol Air Cavalry": {
@@ -996,7 +1069,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Cyber Assassin": {
@@ -1040,7 +1115,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Warzone Lieutenant": {
@@ -1076,7 +1153,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Mishima Ninja": {
@@ -1120,7 +1199,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Brotherhood Templar": {
@@ -1164,7 +1245,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === TRIBÙ DI DARK EDEN ===
@@ -1209,7 +1292,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }
 

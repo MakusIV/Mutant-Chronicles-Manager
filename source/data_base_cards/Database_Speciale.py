@@ -44,7 +44,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Un momento di concentrazione può fare la differenza.",
         "keywords": ["Modifica", "Sparare"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "flanking_maneuver": {
@@ -75,7 +77,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Un attacco dal fianco può ribaltare ogni situazione.",
         "keywords": ["Manovra", "Aggiramento"],
         "restrizioni": ["Il guerriero deve potersi muovere"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "berserk": {
@@ -114,7 +118,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "La furia acceca la ragione ma alimenta la forza.",
         "keywords": ["Furia", "Rischio"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "surprise_attack": {
@@ -145,7 +151,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "L'elemento sorpresa vale più di mille proiettili.",
         "keywords": ["Sorpresa", "Primo Attacco"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "retreat": {
@@ -176,7 +184,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "A volte ritirarsi è la scelta più saggia.",
         "keywords": ["Fuga", "Annullamento"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "lucky_shot": {
@@ -207,7 +217,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Ogni tanto anche la fortuna aiuta i coraggiosi.",
         "keywords": ["Fortuna", "Danno Extra"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "healing": {
@@ -238,7 +250,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Anche nelle guerre più cruente, la compassione trova la sua strada.",
         "keywords": ["Guarigione", "Supporto"],
         "restrizioni": ["Solo su guerrieri feriti"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "destinys_favor": {
@@ -269,7 +283,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Il destino sorride ai preparati.",
         "keywords": ["Pescaggio", "Destino"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "sabotage": {
@@ -300,7 +316,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Un piccolo atto di sabotaggio può rovinare i piani migliori.",
         "keywords": ["Sabotaggio", "Controllo"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "change_attacker": {
@@ -331,7 +349,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Nel caos della battaglia, ogni momento può portare nuove opportunità.",
         "keywords": ["Cambio", "Tattica"],
         "restrizioni": ["Il nuovo attaccante deve essere valido"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "change_defender": {
@@ -362,7 +382,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Un sacrificio tattico può salvare un alleato prezioso.",
         "keywords": ["Cambio", "Sacrificio"],
         "restrizioni": ["Il nuovo difensore deve essere valido"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "equipment_malfunction": {
@@ -393,7 +415,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Anche la tecnologia più avanzata può tradire nel momento cruciale.",
         "keywords": ["Malfunzionamento", "Tecnologia"],
         "restrizioni": ["Bersaglio deve avere equipaggiamento"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "ammunition_shortage": {
@@ -424,7 +448,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Nel momento cruciale, anche i veterani possono rimanere a secco.",
         "keywords": ["Munizioni", "Logistica"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "resourcefulness": {
@@ -455,7 +481,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "L'ingegno può trasformare anche la situazione più disperata.",
         "keywords": ["Risorse", "Punti Destino"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "imperial_discipline": {
@@ -494,7 +522,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "L'addestramento Imperiale non conosce pari in tutto il sistema solare.",
         "keywords": ["Imperiale", "Disciplina"],
         "restrizioni": ["Solo fazione Imperiale"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "bauhaus_engineering": {
@@ -525,7 +555,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "L'ingegneria Bauhaus trasforma ogni guerriero in una fortezza ambulante.",
         "keywords": ["Bauhaus", "Ingegneria"],
         "restrizioni": ["Solo fazione Bauhaus"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "mishima_honor": {
@@ -556,7 +588,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "L'onore Mishima brilla più luminoso quando tutto sembra perduto.",
         "keywords": ["Mishima", "Onore"],
         "restrizioni": ["Solo fazione Mishima", "Solo corpo a corpo"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "acts_of_heroism": {
@@ -595,7 +629,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Gli eroi nascono nei momenti più bui della storia.",
         "keywords": ["Eroismo", "Leggenda"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "devastating_assault": {
@@ -634,7 +670,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Alcuni attacchi sono così devastanti che non lasciano scampo.",
         "keywords": ["Devastazione", "Morte"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
     "duck_and_cover": {
@@ -665,7 +703,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Quando i proiettili volano, meglio stare bassi.",
         "keywords": ["Protezione", "Tattica"],
         "restrizioni": [],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "combat_fury": {
@@ -696,7 +736,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Nel corpo a corpo, l'istinto supera l'addestramento.",
         "keywords": ["Corpo a Corpo", "Furia"],
         "restrizioni": ["Solo combattimento corpo a corpo"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "precise_shot": {
@@ -727,7 +769,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "Ogni proiettile conta quando la vita è in gioco.",
         "keywords": ["Precisione", "Armi da Fuoco"],
         "restrizioni": ["Solo attacchi a distanza"],
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }
 

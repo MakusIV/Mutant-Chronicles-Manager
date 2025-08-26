@@ -8,19 +8,8 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, Abilita  # Corretto percorso import
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloOscuraSimmetria, TipoOscuraSimmetria  # Corretto percorso import
 
-
-class TipoOscuraSimmetria(Enum):
-    """Tipi di carte Oscura Simmetria"""
-    GENERICA = "Generica"
-    DONO_APOSTOLO = "Dono dell'Apostolo"
-    CORRUZIONE = "Corruzione"
-    TENTAZIONE = "Tentazione"
-    MUTAZIONE = "Mutazione"
-    POSSESSIONE = "Possessione"
-    MALEDIZIONE_OSCURA = "Maledizione Oscura"
-    INVOCAZIONE_OSCURA = "Invocazione Oscura"
 
 
 class BersaglioOscura(Enum):
@@ -86,7 +75,7 @@ class Oscura_Simmetria:
     Versione corretta secondo il regolamento ufficiale
     """
     
-    def __init__(self, nome: str, costo_destino: int = 0, tipo: Optional[TipoOscuraSimmetria] = TipoOscuraSimmetria.GENERICA, rarity: Optional[Rarity] = Rarity.COMMON, apostolo_padre: Optional[ApostoloPadre] = ApostoloPadre.NESSUNO, set_espansione: Optional[str] = Set_Espansione.BASE):
+    def __init__(self, nome: str, costo_destino: int = 0, tipo: Optional[TipoOscuraSimmetria] = TipoOscuraSimmetria.GENERICA, rarity: Optional[Rarity] = Rarity.COMMON, apostolo_padre: Optional[ApostoloOscuraSimmetria] = ApostoloOscuraSimmetria.NESSUNO, set_espansione: Optional[str] = Set_Espansione.BASE):
         """
         Inizializza una nuova carta Oscura Simmetria
         
@@ -140,28 +129,50 @@ class Oscura_Simmetria:
         
         # Gestione immunità
         self.puo_essere_negata = True  # Alcune carte non possono essere negate
+
         self.quantita = 0
+        self.quantita_minima_consigliata = 0  # per la creazione del mazzo
+        self.fondamentale = False  # se la carta è fondamentale per il mazzo
         
-    def puo_essere_giocata_da_fazione(self, fazione: Fazione) -> bool:
+
+    def puo_essere_associata_a_fazione(self, fazione: Fazione) -> bool:
         """
         Controlla se la carta può essere giocata dalla fazione specificata
         Secondo il regolamento: solo Oscura Legione può usare carte Oscura Simmetria
         """
         return fazione in self.fazioni_permesse
     
+    def puo_essere_associata_a_guerriero(self, guerriero: Any) -> Dict[str, Any]:
+        """
+        Verifica se il dono può essere assegnato al guerriero
+        Secondo il regolamento: solo guerrieri Oscura Legione, con controlli per seguaci specifici
+        """
+        risultato = {"puo_lanciare": True, "errori": []}
+        
+        # Deve essere della Fratellanza o fazione permessa
+        if not self.puo_essere_associata_a_fazione(guerriero.fazione):
+            risultato["puo_lanciare"] = False
+            risultato["errori"].append(f"Solo {[f.value for f in self.fazioni_permesse]} possono usare l'Arte")
+    
+        
+        # Verifica seguaci degli apostoli
+        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO:
+            seguace_richiesto = f"Seguace di {self.apostolo_padre.value}"
+            if seguace_richiesto not in guerriero.keywords:
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append(f"Solo seguaci di {self.apostolo_padre.value} possono ricevere questo dono")
+        
+        return risultato
+    
+    # funzione di gioco
     def puo_essere_assegnata_a_guerriero(self, guerriero: Any) -> Dict[str, Any]:
         """
         Verifica se il dono può essere assegnato al guerriero
         Secondo il regolamento: solo guerrieri Oscura Legione, con controlli per seguaci specifici
         """
-        risultato = {"puo_assegnare": True, "errori": []}
-        
-        # Deve essere dell'Oscura Legione
-        if guerriero.fazione != Fazione.OSCURA_LEGIONE:
-            risultato["puo_assegnare"] = False
-            risultato["errori"].append("Solo guerrieri dell'Oscura Legione possono ricevere doni")
-        
-        # Verifica immunità
+        risultato = self.puo_essere_associata_a_guerriero(guerriero)        
+         
+        # Verifica immunità: ATT confonde guerriero con il target
         if hasattr(guerriero, 'keywords'):
             if "Immune all'Oscura Simmetria" in guerriero.keywords:
                 risultato["puo_assegnare"] = False
@@ -170,14 +181,7 @@ class Oscura_Simmetria:
                 if self.tipo == TipoOscuraSimmetria.GENERICA:
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append("Guerriero immune ai Doni generici")
-        
-        # Verifica seguaci degli apostoli
-        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloPadre.NESSUNO:
-            seguace_richiesto = f"Seguace di {self.apostolo_padre.value}"
-            if seguace_richiesto not in guerriero.keywords:
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append(f"Solo seguaci di {self.apostolo_padre.value} possono ricevere questo dono")
-        
+          
         # Verifica se ha già una copia dello stesso dono
         if hasattr(guerriero, 'allegati') and self.nome in guerriero.allegati:
             risultato["puo_assegnare"] = False
@@ -217,7 +221,7 @@ class Oscura_Simmetria:
         """Controlla se la carta ha una specifica keyword"""
         return keyword.lower() in [k.lower() for k in self.keywords]
     
-    def e_dono_apostolo(self, apostolo: ApostoloPadre) -> bool:
+    def e_dono_apostolo(self, apostolo: ApostoloOscuraSimmetria) -> bool:
         """Controlla se la carta è un dono dell'apostolo specificato"""
         return self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre == apostolo
     
@@ -253,7 +257,7 @@ class Oscura_Simmetria:
         elif self.bersaglio == BersaglioOscura.SEGUACE_APOSTOLO:
             # Verifica se è seguace dell'apostolo appropriato
             return (bersaglio in (guerrieri_propri + guerrieri_avversari) and
-                   self.apostolo_padre != ApostoloPadre.NESSUNO)
+                   self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO)
         else:
             # Per bersagli multipli, sarà gestito dalla logica di gioco
             return True
@@ -626,7 +630,7 @@ class Oscura_Simmetria:
         
         carta.tipo = TipoOscuraSimmetria(data["tipo"])
         carta.rarity = Rarity(data["rarity"])
-        carta.apostolo_padre = ApostoloPadre(data["apostolo_padre"])
+        carta.apostolo_padre = ApostoloOscuraSimmetria(data["apostolo_padre"])
         carta.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"]]
         carta.bersaglio = BersaglioOscura(data["bersaglio"])
         carta.durata = DurataOscura(data["durata"])
@@ -642,6 +646,9 @@ class Oscura_Simmetria:
         carta.penalita_giocatore = data["penalita_giocatore"]
         carta.contatori_oscura = data["contatori_oscura"]
         carta.livello_corruzione = data["livello_corruzione"]
+        carta.quantita = data.get("quantita", 0)
+        carta.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        carta.fondamentale = data.get("fondamentale", False)
         
         # Gestione nuovi campi (compatibilità)
         if "puo_essere_negata" in data:
@@ -672,7 +679,7 @@ class Oscura_Simmetria:
     
     def __str__(self) -> str:
         """Rappresentazione stringa della carta Oscura Simmetria"""
-        apostolo_str = f" - {self.apostolo_padre.value}" if self.apostolo_padre != ApostoloPadre.NESSUNO else ""
+        apostolo_str = f" - {self.apostolo_padre.value}" if self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO else ""
         fazioni_str = ", ".join([f.value for f in self.fazioni_permesse])
         assegnata_str = f" [→ {self.assegnata_a}]" if self.assegnata_a else ""
         return (f"{self.nome} (Costo: {self.costo_destino}) - "
@@ -693,7 +700,7 @@ def crea_oscura_generica(nome: str, costo: int = 0) -> Oscura_Simmetria:
     carta.set_espansione = Set_Espansione.BASE
     return carta
 
-def crea_dono_apostolo(nome: str, apostolo: ApostoloPadre, costo: int = 1) -> Oscura_Simmetria:
+def crea_dono_apostolo(nome: str, apostolo: ApostoloOscuraSimmetria, costo: int = 1) -> Oscura_Simmetria:
     """Crea un Dono specifico di un Apostolo"""
     carta = Oscura_Simmetria(nome, costo)
     carta.tipo = TipoOscuraSimmetria.DONO_APOSTOLO
@@ -756,7 +763,7 @@ if __name__ == "__main__":
     print(f"  Può essere usata da: {[f.value for f in corruzione_minore.fazioni_permesse]}")
     
     # Dono di Algeroth
-    furia_algeroth = crea_dono_apostolo("Furia di Algeroth", ApostoloPadre.ALGEROTH, 1)
+    furia_algeroth = crea_dono_apostolo("Furia di Algeroth", ApostoloOscuraSimmetria.ALGEROTH, 1)
     furia_algeroth.aggiungi_effetto("Modificatore", 2, "combattimento",
                                    "Il guerriero ottiene +2 Combattimento",
                                    [], ["Il guerriero non può ritirarsi dal combattimento"])

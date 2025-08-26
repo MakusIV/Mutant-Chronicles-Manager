@@ -132,6 +132,8 @@ class Equipaggiamento:
         self.compatibile_con: List[str] = []
         self.equipaggiamenti_richiesti: List[str] = []
         self.quantita = 0
+        self.quantita_minima_consigliata = 0  # per la creazione del mazzo
+        self.fondamentale = False  # se la carta è fondamentale per il mazzo
     
 
     def set_fazioni_permesse(fazioni_permesse: str):
@@ -456,6 +458,8 @@ class Equipaggiamento:
         equipaggiamento.keywords = data["keywords"]
         equipaggiamento.set_espansione = data["set_espansione"]
         equipaggiamento.numero_carta = data["numero_carta"]
+        equipaggiamento.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        equipaggiamento.fondamentale = data.get("fondamentale", False)
         
         # Compatibilità
         comp = data["compatibilita"]

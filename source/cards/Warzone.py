@@ -160,7 +160,10 @@ class Warzone:
         
         # Compatibilità espansioni
         self.compatibile_espansioni: List[str] = ["Base"]
+
         self.quantita = 0
+        self.quantita_minima_consigliata = 0  # per la creazione del mazzo
+        self.fondamentale = False  # se la carta è fondamentale per il mazzo
     
     def aggiungi_modificatore_difensore(self, statistica: str, valore: int, 
                                       condizione: str = "", descrizione: str = "") -> None:

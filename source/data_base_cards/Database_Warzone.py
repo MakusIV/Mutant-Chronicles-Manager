@@ -50,7 +50,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 3,
         "frequenza_utilizzo": "Alta",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Bunker Corazzato": {
@@ -85,7 +87,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 5,
         "frequenza_utilizzo": "Media",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Città Devastata": {
@@ -120,7 +124,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 4,
         "frequenza_utilizzo": "Alta",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Campo Aperto": {
@@ -155,7 +161,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 3,
         "frequenza_utilizzo": "Media",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Giungla Ostile": {
@@ -191,7 +199,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 4,
         "frequenza_utilizzo": "Media",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Complesso Industriale": {
@@ -227,7 +237,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 6,
         "frequenza_utilizzo": "Bassa",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # === WARZONE ESPANSIONI ===
@@ -271,7 +283,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 7,
         "frequenza_utilizzo": "Bassa",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Palude Tossica": {
@@ -307,7 +321,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 4,
         "frequenza_utilizzo": "Media",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Montagne Ghiacciate": {
@@ -343,7 +359,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 5,
         "frequenza_utilizzo": "Bassa",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Laboratorio Abbandonato": {
@@ -385,7 +403,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 8,
         "frequenza_utilizzo": "Bassa",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "Arena Gladiatoria": {
@@ -426,7 +446,9 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 9,
         "frequenza_utilizzo": "Molto Bassa",
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }
 

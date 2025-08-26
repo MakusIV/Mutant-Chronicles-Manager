@@ -76,7 +76,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Spada Energetica"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,
     },
 
     "ascia_da_battaglia": {
@@ -147,7 +149,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Ascia Energetica"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
     # ========== ARMI DA FUOCO - SET BASE ==========
@@ -214,7 +218,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Pistola Plasma"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
     "fucile_dassalto": {
@@ -286,7 +292,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Fucile Plasma"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
     "fucile_di_precisione": {
@@ -358,7 +366,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Fucile Gauss"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
     # ========== ARMATURE - SET BASE ==========
@@ -417,7 +427,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Armatura da Combattimento"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,       
     },
 
     "armatura_da_combattimento": {
@@ -482,7 +494,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Armatura Powered"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
     # ========== VEICOLI - SET BASE ==========
@@ -555,7 +569,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Moto da Guerra"],
             "equipaggiamenti_richiesti": ["Addestramento Veicoli"]
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,
     },
 
     # ========== EQUIPAGGIAMENTO GENERICO - SET BASE ==========
@@ -622,7 +638,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": ["Kit Medico Avanzato"],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     # ========== ESPANSIONI ==========
@@ -697,7 +715,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": ["Addestramento Avanzato"]
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
     "armatura_powered": {
@@ -775,7 +795,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": ["Addestramento Avanzato"]
         },
-        "quantita":9
+        "quantita":9,
+        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }
 
