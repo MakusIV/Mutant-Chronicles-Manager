@@ -14,6 +14,8 @@ from typing import List, Dict, Tuple, Optional, Any, Union
 from enum import Enum
 import json
 from collections import defaultdict
+from dataclasses import dataclass
+
 
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
 from source.cards.Guerriero import (
@@ -23,10 +25,22 @@ from source.cards.Equipaggiamento import Equipaggiamento
 from source.cards.Speciale import Speciale
 from source.cards.Fortificazione import Fortificazione
 from source.cards.Missione import Missione
-from source.cards.Arte import Arte
-from source.cards.Oscura_Simmetria import Oscura_Simmetria
+from source.cards.Arte import Arte, DisciplinaArte
+from source.cards.Oscura_Simmetria import Oscura_Simmetria, ApostoloOscuraSimmetria
 from source.cards.Reliquia import Reliquia
 from source.cards.Warzone import Warzone
+
+# Import delle classi necessarie (assumi che siano disponibili)
+
+from source.data_base_cards.Database_Arte import Database_Arte
+from source.data_base_cards.Database_Oscura_Simmetria import Database_Oscura_Simmetria
+from source.data_base_cards.Database_Equipaggiamento import Database_Equipaggiamento
+from source.data_base_cards.Database_Speciale import Database_Speciale
+from source.data_base_cards.Database_Fortificazione import Database_Fortificazione
+from source.data_base_cards.Database_Reliquia import Database_Reliquia
+from source.data_base_cards.Database_Warzone import Database_Warzone
+from source.data_base_cards.Database_Missione import Database_Missione
+
 
 # Import dei database
 from source.data_base_cards.Database_Guerriero import (
@@ -693,7 +707,7 @@ def seleziona_carte_casuali_per_tipo(
     if not carte_disponibili:
         return carte_selezionate
     
-    # Determina numero di carte da selezionare
+    # Determina numero di carte da selezionare per una stessa carta
     num_carte = random.randint(min_carte, max_carte)
     
     # Separa carte per orientamento se specificato
@@ -1754,8 +1768,6 @@ def stampa_statistiche_da_json(dati_json: Dict[str, Any]):
         
         print(f"  🎮 Giocatore {collezione.get('id_giocatore')}: {collezione.get('totale_carte')} carte, {collezione.get('valore_dp')} DP{orientamento_str}")
 
-
-
 def verifica_integrità_collezioni(collezioni: List[CollezioneGiocatore]) -> Dict[str, Any]:
     """Verifica l'integrità delle collezioni create"""
     risultati = {
@@ -1794,7 +1806,7 @@ def verifica_integrità_collezioni(collezioni: List[CollezioneGiocatore]) -> Dic
     return risultati
 
 
-# ==================== ESEMPI E TEST ====================
+# ==================== ESEMPI E TEST PER COLLEZIONE GIOCATORE ====================
 
 def test_creazione_collezioni_base():
     """Test base per la creazione di collezioni"""
@@ -2071,7 +2083,6 @@ def esempio_utilizzo_completo():
     
     return collezioni_torneo
 
-
 def menu_interattivo():
     """Menu interattivo per testare le funzionalità"""
     
@@ -2147,8 +2158,6 @@ def menu_interattivo():
         
         input("\nPremi Invio per continuare...")
 
-
-
 def test_creazioni_individuali():
     """Test delle singole funzioni di creazione carte"""
     print("Testando funzioni di creazione individuali...")
@@ -2180,6 +2189,1083 @@ def test_creazioni_individuali():
     print("# menu_interattivo()")
     print(f"{'='*80}")
     
+
+
+################################ CREAZIONE MAZZO #################################################
+
+"""
+Manager_Gioco.py - Funzione per la creazione automatica di mazzi da collezione
+Versione completa con tutti i criteri di selezione richiesti
+"""
+
+
+
+# ================================================================================
+# COSTANTI PER LA DISTRIBUZIONE DEL TIPO DI CARTE NEL MAZZO
+# ================================================================================
+
+DISTRIBUZIONE_BASE = {
+    'guerriero': (0.19, 0.24),          # 19-24%
+    'equipaggiamento': (0.11, 0.16),    # 11-16%
+    'speciale': (0.42, 0.47),           # 42-47%
+    'oscura_simmetria': (0.09, 0.14),   # 9-14%
+    'arte': (0.09, 0.14),               # 9-14%
+    'reliquia': (0.05, 0.07),           # 5-7%
+    'warzone': (0.05, 0.08),            # 5-8%
+    'missione': 2                       # max 2 carte (numero fisso)
+}
+
+# Ridistribuzione quando Oscura Simmetria e/o Arte non sono utilizzate
+RIDISTRIBUZIONE_PERCENTUALE = {
+    'equipaggiamento': 0.40,  # 40% della percentuale mancante
+    'speciale': 0.40,         # 40% della percentuale mancante
+    'reliquia': 0.20          # 20% della percentuale mancante
+}
+
+# Fazioni Doomtrooper e Oscura Legione
+FAZIONI_DOOMTROOPER = [
+    Fazione.IMPERIALE, 
+    Fazione.CAPITOL, 
+    Fazione.MISHIMA,
+    Fazione.BAUHAUS, 
+    Fazione.CYBERTRONIC, 
+    Fazione.FREELANCER
+]
+
+FAZIONI_FRATELLANZA = [Fazione.FRATELLANZA]
+FAZIONI_OSCURA_LEGIONE = [Fazione.OSCURA_LEGIONE]
+
+# ================================================================================
+# CLASSE PRINCIPALE PER LA CREAZIONE DEL MAZZO
+# ================================================================================
+
+class CreatoreMazzo:
+    """Classe per gestire la creazione del mazzo da collezione"""
+    
+    def __init__(self, collezione):
+        """
+        Inizializza il creatore del mazzo
+        
+        Args:
+            collezione: Oggetto CollezioneGiocatore
+        """
+        self.collezione = collezione
+        self.mazzo = {
+            'squadra': [],      # Guerrieri Doomtrooper e Fratellanza
+            'schieramento': [], # Guerrieri Oscura Legione
+            'supporto': []      # Altre carte (Equipaggiamenti, Speciali, etc.)
+        }
+        self.carte_selezionate = defaultdict(int)  # Traccia carte già selezionate
+        self.potenze_calcolate = {}  # Cache per i calcoli di potenza
+        
+    def calcola_potenza_guerriero(self, guerriero: Guerriero) -> float:
+        """
+        Calcola la potenza relativa di un guerriero
+        
+        Args:
+            guerriero: Oggetto Guerriero
+            
+        Returns:
+            float: Potenza relativa del guerriero (0-1)
+        """
+        if guerriero.nome in self.potenze_calcolate:
+            return self.potenze_calcolate[guerriero.nome]
+            
+        # Calcola potenza assoluta
+        combattimento = guerriero.stats.get('combattimento', 0)
+        sparo = guerriero.stats.get('sparare', 0)
+        armatura = guerriero.stats.get('armatura', 0)
+        valore = guerriero.stats.get('valore', 1)
+        
+        if valore == 0:
+            valore = 1  # Evita divisione per zero
+            
+        potenza_assoluta = ((combattimento + sparo + armatura) * 1.5) / valore
+        
+        # Bonus per abilità speciali
+        for abilita in guerriero.abilita:
+            # Potenziamento altri guerrieri
+            if any(keyword in abilita.get('descrizione', '').lower() 
+                   for keyword in ['tutti i guerrieri', 'alleati', 'guadagnano', '+1', '+2', '+3']):
+                potenza_assoluta *= 1.3
+                
+            # Uccisione automatica
+            if any(keyword in abilita.get('descrizione', '').lower() 
+                   for keyword in ['uccide', 'elimina', 'distrugge', 'automaticamente']):
+                potenza_assoluta *= 2.0
+        
+        # Normalizza rispetto al massimo della collezione
+        max_potenza = self._calcola_max_potenza_guerrieri()
+        if max_potenza > 0:
+            potenza_relativa = potenza_assoluta / max_potenza
+        else:
+            potenza_relativa = 0.5
+            
+        self.potenze_calcolate[guerriero.nome] = min(potenza_relativa, 1.0)
+        return self.potenze_calcolate[guerriero.nome]
+    
+    def _calcola_max_potenza_guerrieri(self) -> float:
+        """Calcola la potenza massima tra tutti i guerrieri della collezione"""
+        max_potenza = 0
+        
+        for guerriero in self.collezione.get_carte_per_tipo('guerriero'):
+            combattimento = guerriero.stats.get('combattimento', 0)
+            sparo = guerriero.stats.get('sparare', 0)
+            armatura = guerriero.stats.get('armatura', 0)
+            valore = guerriero.stats.get('valore', 1)
+            
+            if valore == 0:
+                valore = 1
+                
+            potenza_assoluta = ((combattimento + sparo + armatura) * 1.5) / valore
+            max_potenza = max(max_potenza, potenza_assoluta)
+            
+        return max_potenza
+    
+    def calcola_potenza_equipaggiamento(self, equipaggiamento: Equipaggiamento) -> float:
+        """
+        Calcola la potenza relativa di un equipaggiamento
+        
+        Args:
+            equipaggiamento: Oggetto Equipaggiamento
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        potenza = 0
+        
+        # Somma modificatori statistiche
+        for modifica in equipaggiamento.modifiche_guerriero:
+            if modifica['tipo'] in ['combattimento', 'sparare', 'armatura']:
+                potenza += abs(modifica['valore'])
+        
+        # Bonus per effetti speciali
+        if hasattr(equipaggiamento, 'effetti_speciali'):
+            for effetto in equipaggiamento.effetti_speciali:
+                desc = effetto.get('descrizione', '').lower()
+                if 'ferisce' in desc and 'automaticamente' in desc:
+                    potenza *= 1.4
+                elif 'uccide' in desc and 'automaticamente' in desc:
+                    potenza *= 2.0
+        
+        # Se non influenza l'armatura
+        influenza_armatura = any(m['tipo'] == 'armatura' for m in equipaggiamento.modifiche_guerriero)
+        if not influenza_armatura:
+            potenza = 0.5
+        
+        # Normalizza
+        max_potenza = self._calcola_max_potenza_equipaggiamenti()
+        if max_potenza > 0:
+            return min(potenza / max_potenza, 1.0)
+        return 0.5
+    
+    def _calcola_max_potenza_equipaggiamenti(self) -> float:
+        """Calcola la potenza massima tra tutti gli equipaggiamenti"""
+        max_potenza = 0
+        
+        for equip in self.collezione.get_carte_per_tipo('equipaggiamento'):
+            potenza = sum(abs(m['valore']) for m in equip.modifiche_guerriero 
+                         if m['tipo'] in ['combattimento', 'sparare', 'armatura'])
+            max_potenza = max(max_potenza, potenza)
+            
+        return max_potenza
+    
+    def calcola_potenza_fortificazione(self, fortificazione: Fortificazione) -> float:
+        """
+        Calcola la potenza relativa di una fortificazione
+        
+        Args:
+            fortificazione: Oggetto Fortificazione
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        armatura = fortificazione.bonus_armatura
+        
+        # Se ha valori differenziati, prendi il minore
+        if hasattr(fortificazione, 'bonus_differenziati'):
+            armatura = min(fortificazione.bonus_differenziati.values())
+        
+        # Se non influenza l'armatura
+        if armatura == 0:
+            return 0.5
+        
+        # Normalizza
+        max_potenza = self._calcola_max_potenza_fortificazioni()
+        if max_potenza > 0:
+            return min(armatura / max_potenza, 1.0)
+        return 0.5
+    
+    def _calcola_max_potenza_fortificazioni(self) -> float:
+        """Calcola la potenza massima tra tutte le fortificazioni"""
+        max_armatura = 0
+        
+        for fort in self.collezione.get_carte_per_tipo('fortificazione'):
+            max_armatura = max(max_armatura, fort.bonus_armatura)
+            
+        return max_armatura
+    
+    def calcola_potenza_arte(self, arte: Arte) -> float:
+        """
+        Calcola la potenza relativa di una carta Arte
+        
+        Args:
+            arte: Oggetto Arte
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        potenza = 0
+        
+        # Analizza effetti
+        for effetto in arte.effetti:
+            # Modificatori statistiche
+            if effetto.tipo_effetto == "Modificatore":
+                potenza += abs(effetto.valore)
+            
+            desc = effetto.descrizione.lower()
+            
+            # Effetti speciali
+            if 'ferisce' in desc and 'automaticamente' in desc:
+                potenza *= 1.4
+            elif 'uccide' in desc:
+                potenza *= 2.0
+            elif 'scarta' in desc and 'guerriero' in desc:
+                potenza = 1.5
+            elif 'scarta' in desc and any(x in desc for x in ['equipaggiamento', 'fortificazione', 'reliquia', 'warzone']):
+                potenza = 1.0
+        
+        # Default per effetti non contemplati
+        if potenza == 0:
+            potenza = 0.5
+        
+        # Normalizza
+        max_potenza = self._calcola_max_potenza_arte()
+        if max_potenza > 0:
+            return min(potenza / max_potenza, 1.0)
+        return 0.5
+    
+    def _calcola_max_potenza_arte(self) -> float:
+        """Calcola la potenza massima tra tutte le carte Arte"""
+        max_potenza = 0
+        
+        for arte in self.collezione.get_carte_per_tipo('arte'):
+            potenza = sum(abs(e.valore) for e in arte.effetti if e.tipo_effetto == "Modificatore")
+            max_potenza = max(max_potenza, potenza)
+            
+        return max_potenza if max_potenza > 0 else 1.0
+    
+    def calcola_potenza_oscura_simmetria(self, oscura: Oscura_Simmetria) -> float:
+        """
+        Calcola la potenza relativa di una carta Oscura Simmetria
+        
+        Args:
+            oscura: Oggetto Oscura_Simmetria
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        potenza = 0
+        
+        # Analizza effetti
+        for effetto in oscura.effetti:
+            # Modificatori statistiche
+            if hasattr(effetto, 'valore'):
+                potenza += abs(effetto.valore)
+            
+            desc = effetto.descrizione_effetto.lower() if hasattr(effetto, 'descrizione_effetto') else ""
+            
+            # Effetti speciali
+            if 'ferisce' in desc and 'automaticamente' in desc:
+                potenza *= 1.4
+            elif 'uccide' in desc:
+                potenza *= 2.0
+            elif 'scarta' in desc and 'guerriero' in desc:
+                potenza = 1.5
+            elif 'scarta' in desc:
+                potenza = 1.0
+        
+        # Default per effetti non contemplati
+        if potenza == 0:
+            potenza = 0.5
+        
+        # Normalizza
+        max_potenza = self._calcola_max_potenza_oscura_simmetria()
+        if max_potenza > 0:
+            return min(potenza / max_potenza, 1.0)
+        return 0.5
+    
+    def _calcola_max_potenza_oscura_simmetria(self) -> float:
+        """Calcola la potenza massima tra tutte le carte Oscura Simmetria"""
+        max_potenza = 0
+        
+        for oscura in self.collezione.get_carte_per_tipo('oscura_simmetria'):
+            potenza = sum(abs(e.valore) for e in oscura.effetti if hasattr(e, 'valore'))
+            max_potenza = max(max_potenza, potenza)
+            
+        return max_potenza if max_potenza > 0 else 1.0
+    
+    def calcola_potenza_reliquia(self, reliquia: Reliquia) -> float:
+        """
+        Calcola la potenza relativa di una reliquia
+        
+        Args:
+            reliquia: Oggetto Reliquia
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        potenza = 0
+        
+        # Somma modificatori statistiche
+        if hasattr(reliquia, 'modifiche_guerriero'):
+            for modifica in reliquia.modifiche_guerriero:
+                if modifica['tipo'] in ['combattimento', 'sparare', 'armatura']:
+                    potenza += abs(modifica['valore'])
+        
+        # Bonus per effetti speciali
+        if hasattr(reliquia, 'effetti_speciali'):
+            for effetto in reliquia.effetti_speciali:
+                desc = effetto.get('descrizione', '').lower()
+                if 'ferisce' in desc and 'automaticamente' in desc:
+                    potenza *= 1.4
+                elif 'uccide' in desc:
+                    potenza *= 2.0
+        
+        # Se non influenza le statistiche base
+        if potenza == 0:
+            potenza = 0.5
+        
+        # Normalizza
+        max_potenza = self._calcola_max_potenza_reliquie()
+        if max_potenza > 0:
+            return min(potenza / max_potenza, 1.0)
+        return 0.5
+    
+    def _calcola_max_potenza_reliquie(self) -> float:
+        """Calcola la potenza massima tra tutte le reliquie"""
+        max_potenza = 0
+        
+        for reliquia in self.collezione.get_carte_per_tipo('reliquia'):
+            if hasattr(reliquia, 'modifiche_guerriero'):
+                potenza = sum(abs(m['valore']) for m in reliquia.modifiche_guerriero 
+                             if m['tipo'] in ['combattimento', 'sparare', 'armatura'])
+                max_potenza = max(max_potenza, potenza)
+                
+        return max_potenza if max_potenza > 0 else 1.0
+    
+    def calcola_potenza_warzone(self, warzone: Warzone) -> float:
+        """
+        Calcola la potenza relativa di una warzone
+        
+        Args:
+            warzone: Oggetto Warzone
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        # Statistiche base della warzone
+        combattimento = warzone.stats_difensori.get('combattimento', 0)
+        sparo = warzone.stats_difensori.get('sparare', 0)
+        armatura = warzone.stats_difensori.get('armatura', 0)
+        
+        potenza = combattimento + sparo + armatura
+        
+        # Bonus per fazioni/tipi specifici
+        if hasattr(warzone, 'bonus_fazioni'):
+            for bonus in warzone.bonus_fazioni.values():
+                potenza += sum([bonus.get('combattimento', 0), 
+                               bonus.get('sparare', 0), 
+                               bonus.get('armatura', 0)])
+        
+        # Bonus per uccisione automatica
+        if hasattr(warzone, 'effetti_combattimento'):
+            for effetto in warzone.effetti_combattimento:
+                if 'uccide' in effetto.descrizione.lower() and 'automaticamente' in effetto.descrizione.lower():
+                    potenza *= 2.0
+        
+        # Default per warzone con effetti diversi
+        if potenza == 0:
+            potenza = 0.5
+        
+        # Normalizza
+        max_potenza = self._calcola_max_potenza_warzone()
+        if max_potenza > 0:
+            return min(potenza / max_potenza, 1.0)
+        return 0.5
+    
+    def _calcola_max_potenza_warzone(self) -> float:
+        """Calcola la potenza massima tra tutte le warzone"""
+        max_potenza = 0
+        
+        for warzone in self.collezione.get_carte_per_tipo('warzone'):
+            potenza = (warzone.stats_difensori.get('combattimento', 0) + 
+                      warzone.stats_difensori.get('sparare', 0) + 
+                      warzone.stats_difensori.get('armatura', 0))
+            max_potenza = max(max_potenza, potenza)
+            
+        return max_potenza if max_potenza > 0 else 1.0
+    
+    def filtra_carte_per_espansioni(self, carte: List[Any], espansioni_richieste: List[str]) -> List[Any]:
+        """
+        Filtra le carte per le espansioni richieste
+        
+        Args:
+            carte: Lista di carte da filtrare
+            espansioni_richieste: Lista delle espansioni richieste
+            
+        Returns:
+            Lista di carte filtrate
+        """
+        if not espansioni_richieste:
+            return carte
+            
+        carte_filtrate = []
+        for carta in carte:
+            if hasattr(carta, 'set_espansione'):
+                set_carta = carta.set_espansione
+                if hasattr(set_carta, 'value'):
+                    set_carta = set_carta.value
+                    
+                if set_carta in espansioni_richieste:
+                    carte_filtrate.append(carta)
+                    
+        return carte_filtrate
+    
+    def seleziona_guerrieri(self, 
+                           espansioni_richieste: List[str],
+                           orientamento_doomtrooper: List[str] = None,
+                           orientamento_arte: List[str] = None,
+                           orientamento_apostolo: List[str] = None,
+                           orientamento_eretico: bool = False,
+                           numero_guerrieri_target: int = 20) -> Tuple[List[Guerriero], List[Guerriero]]:
+        """
+        Seleziona i guerrieri per squadra e schieramento
+        
+        Args:
+            espansioni_richieste: Lista espansioni richieste
+            orientamento_doomtrooper: Fazioni Doomtrooper preferite
+            orientamento_arte: Discipline arte preferite
+            orientamento_apostolo: Apostoli preferiti
+            orientamento_eretico: Se True, preferisce eretici
+            numero_guerrieri_target: Numero target di guerrieri da selezionare
+            
+        Returns:
+            Tupla (squadra, schieramento)
+        """
+        # Ottieni tutti i guerrieri disponibili e filtrali per espansione
+        tutti_guerrieri = self.collezione.get_carte_per_tipo('guerriero')
+        guerrieri_disponibili = self.filtra_carte_per_espansioni(tutti_guerrieri, espansioni_richieste)
+        
+        if not guerrieri_disponibili:
+            return [], []
+        
+        # Separa guerrieri per categoria
+        guerrieri_doomtrooper = []
+        guerrieri_fratellanza = []
+        guerrieri_oscura_legione = []
+        guerrieri_eretici = []
+        guerrieri_cultisti = []
+        
+        for guerriero in guerrieri_disponibili:
+            # Controlla se è eretico
+            if hasattr(guerriero, 'keywords') and 'Eretico' in guerriero.keywords:
+                guerrieri_eretici.append(guerriero)
+            
+            # Controlla se è cultista (può essere sia Doomtrooper che Oscura Legione)
+            if hasattr(guerriero, 'keywords'):
+                for keyword in guerriero.keywords:
+                    if 'Cultista di' in keyword:
+                        guerrieri_cultisti.append(guerriero)
+                        break
+            
+            # Categorizza per fazione
+            if guerriero.fazione in FAZIONI_DOOMTROOPER:
+                guerrieri_doomtrooper.append(guerriero)
+            elif guerriero.fazione in FAZIONI_FRATELLANZA:
+                guerrieri_fratellanza.append(guerriero)
+            elif guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+                guerrieri_oscura_legione.append(guerriero)
+        
+        # Calcola punteggi per ogni guerriero basati sugli orientamenti
+        punteggi = {}
+        
+        for guerriero in guerrieri_disponibili:
+            punteggio = self.calcola_potenza_guerriero(guerriero)
+            
+            # Bonus per orientamenti
+            bonus_moltiplicatore = 1.0
+            
+            # Orientamento Doomtrooper
+            if orientamento_doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
+                fazione_nome = guerriero.fazione.value if hasattr(guerriero.fazione, 'value') else str(guerriero.fazione)
+                if fazione_nome in orientamento_doomtrooper:
+                    bonus_moltiplicatore *= 2.0
+            
+            # Orientamento Arte (per guerrieri Fratellanza)
+            if orientamento_arte and guerriero.fazione in FAZIONI_FRATELLANZA:
+                for abilita in guerriero.abilita:
+                    if abilita.get('tipo') == 'Arte':
+                        disciplina = abilita.get('nome', '')
+                        if disciplina in orientamento_arte or disciplina == DisciplinaArte.TUTTE.value:
+                            bonus_moltiplicatore *= 2.0
+                            break
+            
+            # Orientamento Apostolo (per guerrieri Oscura Legione)
+            if orientamento_apostolo and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+                for apostolo in orientamento_apostolo:
+                    if f"Seguace di {apostolo}" in guerriero.keywords:
+                        bonus_moltiplicatore *= 2.0
+                        break
+            
+            # Orientamento Eretico
+            if orientamento_eretico and 'Eretico' in guerriero.keywords:
+                bonus_moltiplicatore *= 2.0
+            
+            # Bonus per carte fondamentali
+            if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
+                bonus_moltiplicatore *= 10.0  # Priorità massima
+            
+            punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore
+        
+        # Ordina guerrieri per punteggio
+        guerrieri_ordinati = sorted(guerrieri_disponibili, 
+                                   key=lambda g: punteggi.get(g.nome, 0), 
+                                   reverse=True)
+        
+        # Seleziona guerrieri garantendo distribuzione equa
+        squadra = []
+        schieramento = []
+        
+        # Prima seleziona le carte fondamentali
+        for guerriero in guerrieri_ordinati:
+            if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
+                quantita_richiesta = min(
+                    getattr(guerriero, 'quantita_minima_consigliata', 1),
+                    getattr(guerriero, 'quantita', 1)
+                )
+                
+                for _ in range(quantita_richiesta):
+                    if guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+                        schieramento.append(guerriero)
+                    else:
+                        squadra.append(guerriero)
+        
+        # Poi seleziona gli altri guerrieri
+        for guerriero in guerrieri_ordinati:
+            if len(squadra) + len(schieramento) >= numero_guerrieri_target:
+                break
+                
+            # Skip se già aggiunto come fondamentale
+            if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
+                continue
+            
+            # Calcola quantità da aggiungere
+            potenza = self.calcola_potenza_guerriero(guerriero)
+            quantita_disponibile = getattr(guerriero, 'quantita', 1)
+            quantita_consigliata = getattr(guerriero, 'quantita_minima_consigliata', 1)
+            
+            # Calcola numero di copie basato sulla potenza
+            if potenza > 0.8:
+                num_copie = min(5, quantita_disponibile, quantita_consigliata + 2)
+            elif potenza > 0.5:
+                num_copie = min(3, quantita_disponibile, quantita_consigliata)
+            else:
+                num_copie = min(1, quantita_disponibile)
+            
+            # Aggiungi con un po' di casualità
+            num_copie = random.randint(1, num_copie)
+            
+            for _ in range(num_copie):
+                if guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+                    if len(schieramento) < numero_guerrieri_target // 3:  # ~33% Oscura Legione
+                        schieramento.append(guerriero)
+                else:
+                    if len(squadra) < (numero_guerrieri_target * 2) // 3:  # ~67% Doomtrooper/Fratellanza
+                        squadra.append(guerriero)
+        
+        return squadra, schieramento
+    
+    def seleziona_carte_supporto(self, 
+                                squadra: List[Guerriero],
+                                schieramento: List[Guerriero],
+                                espansioni_richieste: List[str],
+                                tipo_carta: str,
+                                numero_carte: int) -> List[Any]:
+        """
+        Seleziona carte di supporto (Equipaggiamento, Speciale, etc.)
+        
+        Args:
+            squadra: Guerrieri nella squadra
+            schieramento: Guerrieri nello schieramento
+            espansioni_richieste: Espansioni richieste
+            tipo_carta: Tipo di carta da selezionare
+            numero_carte: Numero di carte da selezionare
+            
+        Returns:
+            Lista di carte selezionate
+        """
+        # Ottieni tutte le carte del tipo richiesto
+        tutte_carte = self.collezione.get_carte_per_tipo(tipo_carta)
+        carte_disponibili = self.filtra_carte_per_espansioni(tutte_carte, espansioni_richieste)
+        
+        if not carte_disponibili:
+            return []
+        
+        carte_selezionate = []
+        tutti_guerrieri = squadra + schieramento
+        
+        # Prima seleziona carte fondamentali
+        for carta in carte_disponibili:
+            if hasattr(carta, 'fondamentale') and carta.fondamentale:
+                # Verifica compatibilità con i guerrieri
+                if self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri):
+                    quantita_richiesta = min(
+                        getattr(carta, 'quantita_minima_consigliata', 1),
+                        getattr(carta, 'quantita', 1)
+                    )
+                    
+                    for _ in range(quantita_richiesta):
+                        carte_selezionate.append(carta)
+        
+        # Calcola potenza per ogni carta
+        carte_con_punteggio = []
+        
+        for carta in carte_disponibili:
+            # Skip carte fondamentali già aggiunte
+            if hasattr(carta, 'fondamentale') and carta.fondamentale:
+                continue
+            
+            # Verifica compatibilità
+            if not self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri):
+                continue
+            
+            # Calcola potenza basata sul tipo
+            if tipo_carta == 'equipaggiamento':
+                potenza = self.calcola_potenza_equipaggiamento(carta)
+            elif tipo_carta == 'fortificazione':
+                potenza = self.calcola_potenza_fortificazione(carta)
+            elif tipo_carta == 'arte':
+                potenza = self.calcola_potenza_arte(carta)
+            elif tipo_carta == 'oscura_simmetria':
+                potenza = self.calcola_potenza_oscura_simmetria(carta)
+            elif tipo_carta == 'reliquia':
+                potenza = self.calcola_potenza_reliquia(carta)
+            elif tipo_carta == 'warzone':
+                potenza = self.calcola_potenza_warzone(carta)
+            elif tipo_carta == 'speciale':
+                potenza = 0.5  # Default per carte speciali
+            elif tipo_carta == 'missione':
+                potenza = 0.5  # Default per missioni
+            else:
+                potenza = 0.5
+            
+            carte_con_punteggio.append((carta, potenza))
+        
+        # Ordina per potenza
+        carte_con_punteggio.sort(key=lambda x: x[1], reverse=True)
+        
+        # Seleziona carte
+        for carta, potenza in carte_con_punteggio:
+            if len(carte_selezionate) >= numero_carte:
+                break
+            
+            # Calcola numero di copie
+            quantita_disponibile = getattr(carta, 'quantita', 1)
+            quantita_consigliata = getattr(carta, 'quantita_minima_consigliata', 1)
+            
+            if potenza > 0.7:
+                num_copie = min(5, quantita_disponibile, quantita_consigliata + 1)
+            elif potenza > 0.4:
+                num_copie = min(3, quantita_disponibile, quantita_consigliata)
+            else:
+                num_copie = min(1, quantita_disponibile)
+            
+            # Aggiungi casualità
+            num_copie = random.randint(1, min(num_copie, numero_carte - len(carte_selezionate)))
+            
+            for _ in range(num_copie):
+                if len(carte_selezionate) < numero_carte:
+                    carte_selezionate.append(carta)
+        
+        return carte_selezionate
+    
+    def _carta_compatibile_con_guerrieri(self, carta: Any, guerrieri: List[Guerriero]) -> bool:
+        """
+        Verifica se una carta è compatibile con i guerrieri nel mazzo
+        
+        Args:
+            carta: Carta da verificare
+            guerrieri: Lista dei guerrieri nel mazzo
+            
+        Returns:
+            True se compatibile, False altrimenti
+        """
+        if not guerrieri:
+            return False
+        
+        tipo_carta = type(carta).__name__.lower()
+        
+        # Verifica compatibilità per tipo
+        if tipo_carta == 'arte':
+            # Verifica se ci sono guerrieri che possono lanciare l'arte
+            for guerriero in guerrieri:
+                if hasattr(carta, 'puo_essere_associata_a_guerriero'):
+                    risultato = carta.puo_essere_associata_a_guerriero(guerriero)
+                    if risultato.get('puo_lanciare', False):
+                        return True
+            return False
+            
+        elif tipo_carta == 'oscura_simmetria':
+            # Verifica se ci sono guerrieri Oscura Legione
+            for guerriero in guerrieri:
+                if guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+                    if hasattr(carta, 'puo_essere_associata_a_guerriero'):
+                        risultato = carta.puo_essere_associata_a_guerriero(guerriero)
+                        if risultato.get('puo_lanciare', False) or risultato.get('puo_assegnare', False):
+                            return True
+            return False
+            
+        elif tipo_carta in ['equipaggiamento', 'reliquia']:
+            # Verifica restrizioni di fazione/tipo
+            if hasattr(carta, 'fazioni_permesse'):
+                fazioni_guerrieri = set(g.fazione for g in guerrieri)
+                if not any(f in carta.fazioni_permesse for f in fazioni_guerrieri):
+                    return False
+            
+            if hasattr(carta, 'tipi_guerriero_permessi'):
+                tipi_guerrieri = set()
+                for g in guerrieri:
+                    if hasattr(g, 'tipo'):
+                        tipi_guerrieri.add(g.tipo)
+                if not any(t in carta.tipi_guerriero_permessi for t in tipi_guerrieri):
+                    return False
+            
+            return True
+            
+        elif tipo_carta == 'fortificazione':
+            # Le fortificazioni sono generalmente utilizzabili
+            return True
+            
+        elif tipo_carta == 'warzone':
+            # Verifica se può essere assegnata ad almeno una fazione presente
+            fazioni_presenti = set(g.fazione for g in guerrieri)
+            for fazione in fazioni_presenti:
+                if hasattr(carta, 'puo_essere_associata_a_fazione'):
+                    risultato = carta.puo_essere_associata_a_fazione(fazione)
+                    if risultato.get('puo_essere_associata', False):
+                        return True
+            return False
+            
+        elif tipo_carta in ['speciale', 'missione']:
+            # Verifica restrizioni generiche
+            if hasattr(carta, 'fazioni_permesse'):
+                fazioni_guerrieri = set(g.fazione for g in guerrieri)
+                if not any(f in carta.fazioni_permesse for f in fazioni_guerrieri):
+                    return False
+            return True
+        
+        return True
+    
+    def calcola_distribuzione_carte(self, 
+                                   numero_totale: int,
+                                   usa_fratellanza: bool,
+                                   usa_oscura_legione: bool) -> Dict[str, int]:
+        """
+        Calcola la distribuzione delle carte nel mazzo
+        
+        Args:
+            numero_totale: Numero totale di carte nel mazzo
+            usa_fratellanza: Se True, include carte Arte
+            usa_oscura_legione: Se True, include carte Oscura Simmetria
+            
+        Returns:
+            Dizionario con numero di carte per tipo
+        """
+        distribuzione = {}
+        
+        # Calcola percentuali base
+        for tipo, percentuale in DISTRIBUZIONE_BASE.items():
+            if tipo == 'missione':
+                distribuzione[tipo] = min(2, numero_totale // 30)  # Max 2 missioni
+            else:
+                min_perc, max_perc = percentuale
+                perc_media = (min_perc + max_perc) / 2
+                
+                # Aggiungi casualità
+                perc_finale = perc_media + random.uniform(-0.02, 0.02)
+                perc_finale = max(min_perc, min(max_perc, perc_finale))
+                
+                distribuzione[tipo] = int(numero_totale * perc_finale)
+        
+        # Ridistribuisci se Arte o Oscura Simmetria non sono usate
+        ridistribuzione_totale = 0
+        
+        if not usa_fratellanza:
+            ridistribuzione_totale += distribuzione['arte']
+            distribuzione['arte'] = 0
+        
+        if not usa_oscura_legione:
+            ridistribuzione_totale += distribuzione['oscura_simmetria']
+            distribuzione['oscura_simmetria'] = 0
+        
+        if ridistribuzione_totale > 0:
+            # Ridistribuisci alle altre carte
+            distribuzione['equipaggiamento'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['equipaggiamento'])
+            distribuzione['speciale'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['speciale'])
+            distribuzione['reliquia'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['reliquia'])
+        
+        # Assicura che il totale sia corretto
+        totale_attuale = sum(distribuzione.values())
+        differenza = numero_totale - totale_attuale
+        
+        if differenza > 0:
+            distribuzione['speciale'] += differenza
+        elif differenza < 0:
+            # Riduci carte speciali se necessario
+            distribuzione['speciale'] = max(0, distribuzione['speciale'] + differenza)
+        
+        return distribuzione
+
+
+# ================================================================================
+# FUNZIONE PRINCIPALE
+# ================================================================================
+
+def crea_mazzo_da_collezione(collezione: Any,
+                            numero_carte_max: int,
+                            numero_carte_min: int,
+                            espansioni_richieste: List[str],
+                            orientamento_doomtrooper: List[str] = None,
+                            orientamento_arte: List[str] = None,
+                            orientamento_apostolo: List[str] = None,
+                            orientamento_eretico: bool = False) -> Dict[str, Any]:
+    """
+    Crea un mazzo ottimizzato dalla collezione del giocatore
+    
+    Args:
+        collezione: Oggetto CollezioneGiocatore contenente tutte le carte
+        numero_carte_max: Numero massimo di carte nel mazzo
+        numero_carte_min: Numero minimo di carte nel mazzo
+        espansioni_richieste: Lista delle espansioni da utilizzare (es: ['Base', 'Inquisition', 'Warzone'])
+        orientamento_doomtrooper: Fazioni Doomtrooper preferite (opzionale)
+        orientamento_arte: Discipline Arte preferite (opzionale)
+        orientamento_apostolo: Apostoli preferiti (opzionale)
+        orientamento_eretico: Se True, preferisce guerrieri eretici (opzionale)
+        
+    Returns:
+        Dizionario contenente:
+        - 'squadra': Lista dei guerrieri Doomtrooper/Fratellanza
+        - 'schieramento': Lista dei guerrieri Oscura Legione
+        - 'carte_supporto': Lista delle altre carte
+        - 'statistiche': Statistiche del mazzo creato
+        - 'errori': Eventuali errori o avvisi
+    """
+    
+    # Validazione parametri
+    if numero_carte_min > numero_carte_max:
+        return {
+            'squadra': [],
+            'schieramento': [],
+            'carte_supporto': [],
+            'statistiche': {},
+            'errori': ["Il numero minimo di carte non può essere maggiore del numero massimo"]
+        }
+    
+    # Determina il numero target di carte
+    numero_carte_target = random.randint(numero_carte_min, numero_carte_max)
+    
+    # Crea il creatore del mazzo
+    creatore = CreatoreMazzo(collezione)
+    
+    # Determina se usare Fratellanza e Oscura Legione
+    usa_fratellanza = orientamento_arte is not None and len(orientamento_arte) > 0
+    usa_oscura_legione = orientamento_apostolo is not None and len(orientamento_apostolo) > 0
+    
+    # Se non specificato, controlla nella collezione
+    if not usa_fratellanza:
+        guerrieri_fratellanza = [g for g in collezione.get_carte_per_tipo('guerriero') 
+                                 if g.fazione in FAZIONI_FRATELLANZA]
+        usa_fratellanza = len(guerrieri_fratellanza) > 0
+    
+    if not usa_oscura_legione:
+        guerrieri_oscura = [g for g in collezione.get_carte_per_tipo('guerriero') 
+                           if g.fazione in FAZIONI_OSCURA_LEGIONE]
+        usa_oscura_legione = len(guerrieri_oscura) > 0
+    
+    # Calcola distribuzione carte
+    distribuzione = creatore.calcola_distribuzione_carte(
+        numero_carte_target,
+        usa_fratellanza,
+        usa_oscura_legione
+    )
+    
+    # Seleziona guerrieri
+    numero_guerrieri = distribuzione['guerriero']
+    squadra, schieramento = creatore.seleziona_guerrieri(
+        espansioni_richieste,
+        orientamento_doomtrooper,
+        orientamento_arte,
+        orientamento_apostolo,
+        orientamento_eretico,
+        numero_guerrieri
+    )
+    
+    # Seleziona carte di supporto nell'ordine specificato
+    carte_supporto = []
+    
+    # 1. Equipaggiamenti
+    if distribuzione['equipaggiamento'] > 0:
+        equipaggiamenti = creatore.seleziona_carte_supporto(
+            squadra, schieramento, espansioni_richieste,
+            'equipaggiamento', distribuzione['equipaggiamento']
+        )
+        carte_supporto.extend(equipaggiamenti)
+    
+    # 2. Fortificazioni
+    fortificazioni = creatore.seleziona_carte_supporto(
+        squadra, schieramento, espansioni_richieste,
+        'fortificazione', distribuzione.get('fortificazione', 0)
+    )
+    carte_supporto.extend(fortificazioni)
+    
+    # 3. Speciali
+    if distribuzione['speciale'] > 0:
+        speciali = creatore.seleziona_carte_supporto(
+            squadra, schieramento, espansioni_richieste,
+            'speciale', distribuzione['speciale']
+        )
+        carte_supporto.extend(speciali)
+    
+    # 4. Missioni
+    if distribuzione['missione'] > 0:
+        missioni = creatore.seleziona_carte_supporto(
+            squadra, schieramento, espansioni_richieste,
+            'missione', distribuzione['missione']
+        )
+        carte_supporto.extend(missioni)
+    
+    # 5. Arte (se guerrieri Fratellanza presenti)
+    if usa_fratellanza and distribuzione['arte'] > 0:
+        arte = creatore.seleziona_carte_supporto(
+            squadra, schieramento, espansioni_richieste,
+            'arte', distribuzione['arte']
+        )
+        carte_supporto.extend(arte)
+    
+    # 6. Oscura Simmetria (se guerrieri Oscura Legione presenti)
+    if usa_oscura_legione and distribuzione['oscura_simmetria'] > 0:
+        oscura = creatore.seleziona_carte_supporto(
+            squadra, schieramento, espansioni_richieste,
+            'oscura_simmetria', distribuzione['oscura_simmetria']
+        )
+        carte_supporto.extend(oscura)
+    
+    # 7. Reliquie (se espansione Inquisition richiesta)
+    if 'Inquisition' in espansioni_richieste and distribuzione['reliquia'] > 0:
+        reliquie = creatore.seleziona_carte_supporto(
+            squadra, schieramento, espansioni_richieste,
+            'reliquia', distribuzione['reliquia']
+        )
+        carte_supporto.extend(reliquie)
+    
+    # 8. Warzone (se espansione Warzone richiesta)
+    if 'Warzone' in espansioni_richieste and distribuzione['warzone'] > 0:
+        warzone = creatore.seleziona_carte_supporto(
+            squadra, schieramento, espansioni_richieste,
+            'warzone', distribuzione['warzone']
+        )
+        carte_supporto.extend(warzone)
+    
+    # Calcola statistiche
+    statistiche = {
+        'numero_totale_carte': len(squadra) + len(schieramento) + len(carte_supporto),
+        'guerrieri_squadra': len(squadra),
+        'guerrieri_schieramento': len(schieramento),
+        'carte_supporto': len(carte_supporto),
+        'distribuzione_per_tipo': {},
+        'fazioni_presenti': [],
+        'espansioni_utilizzate': espansioni_richieste
+    }
+    
+    # Conta carte per tipo
+    for carta in carte_supporto:
+        tipo = type(carta).__name__.lower()
+        statistiche['distribuzione_per_tipo'][tipo] = statistiche['distribuzione_per_tipo'].get(tipo, 0) + 1
+    
+    # Identifica fazioni presenti
+    fazioni_set = set()
+    for guerriero in squadra + schieramento:
+        fazioni_set.add(guerriero.fazione.value if hasattr(guerriero.fazione, 'value') else str(guerriero.fazione))
+    statistiche['fazioni_presenti'] = list(fazioni_set)
+    
+    # Verifica errori o avvisi
+    errori = []
+    
+    if len(squadra) < 5:
+        errori.append("ATTENZIONE: La squadra ha meno di 5 guerrieri (minimo richiesto dal regolamento)")
+    
+    if statistiche['numero_totale_carte'] < numero_carte_min:
+        errori.append(f"Il mazzo ha {statistiche['numero_totale_carte']} carte, meno del minimo richiesto ({numero_carte_min})")
+    
+    if statistiche['numero_totale_carte'] > numero_carte_max:
+        errori.append(f"Il mazzo ha {statistiche['numero_totale_carte']} carte, più del massimo richiesto ({numero_carte_max})")
+    
+    # Costruisci il risultato finale
+    risultato = {
+        'squadra': squadra,
+        'schieramento': schieramento,
+        'carte_supporto': carte_supporto,
+        'statistiche': statistiche,
+        'errori': errori,
+        'distribuzione_utilizzata': distribuzione
+    }
+    
+    return risultato
+
+
+# ================================================================================
+# FUNZIONI DI UTILITÀ
+# ================================================================================
+
+def stampa_mazzo(mazzo: Dict[str, Any]) -> None:
+    """
+    Stampa il mazzo in formato leggibile
+    
+    Args:
+        mazzo: Dizionario del mazzo creato
+    """
+    print("=" * 80)
+    print("MAZZO CREATO")
+    print("=" * 80)
+    
+    print(f"\n📊 STATISTICHE:")
+    for chiave, valore in mazzo['statistiche'].items():
+        print(f"  • {chiave}: {valore}")
+    
+    print(f"\n⚔️ SQUADRA ({len(mazzo['squadra'])} guerrieri):")
+    for guerriero in mazzo['squadra']:
+        print(f"  • {guerriero.nome} ({guerriero.fazione.value if hasattr(guerriero.fazione, 'value') else guerriero.fazione})")
+    
+    print(f"\n🌑 SCHIERAMENTO ({len(mazzo['schieramento'])} guerrieri):")
+    for guerriero in mazzo['schieramento']:
+        print(f"  • {guerriero.nome} ({guerriero.fazione.value if hasattr(guerriero.fazione, 'value') else guerriero.fazione})")
+    
+    print(f"\n🎴 CARTE SUPPORTO ({len(mazzo['carte_supporto'])} carte):")
+    for carta in mazzo['carte_supporto'][:20]:  # Mostra solo le prime 20
+        tipo = type(carta).__name__
+        print(f"  • {carta.nome} ({tipo})")
+    
+    if len(mazzo['carte_supporto']) > 20:
+        print(f"  ... e altre {len(mazzo['carte_supporto']) - 20} carte")
+    
+    if mazzo['errori']:
+        print(f"\n⚠️ AVVISI:")
+        for errore in mazzo['errori']:
+            print(f"  • {errore}")
+    
+    print("=" * 80)
+
 
 
 

@@ -162,9 +162,9 @@ class Reliquia:
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
     
-    def puo_essere_assegnata_a(self, guerriero: object) -> Dict[str, Any]:
+    def puo_essere_associata_a_guerriero(self, guerriero: object) -> Dict[str, Any]:
         """
-        Verifica se la reliquia può essere assegnata a un guerriero
+        Verifica se la reliquia può essere associata a un guerriero
         
         Args:
             guerriero: Oggetto guerriero da verificare
@@ -173,16 +173,7 @@ class Reliquia:
             Dict con risultato della verifica
         """
         errori = []
-        
-        # Verifica se è già in gioco (regola unicità)
-        if self.in_gioco_globalmente:
-            errori.append("Reliquia già presente in gioco (regola unicità)")
-        
-        # Verifica se guerriero ha già questa reliquia
-        if hasattr(guerriero, 'reliquie_assegnate'):
-            if self.nome in guerriero.reliquie_assegnate:
-                errori.append("Guerriero ha già questa reliquia")
-        
+
         # Verifica fazioni permesse
         if self.restrizioni.fazioni_permesse:
             if hasattr(guerriero, 'fazione'):
@@ -215,7 +206,7 @@ class Reliquia:
                                    if kw not in guerriero.keywords]
                 if keywords_mancanti:
                     errori.append(f"Keywords mancanti: {keywords_mancanti}")
-        
+
         # Verifica livello minimo (per Personalità/Eroi)
         if self.restrizioni.livello_minimo > 0:
             if hasattr(guerriero, 'livello'):
@@ -227,6 +218,33 @@ class Reliquia:
             if not self._verifica_requisito_speciale(guerriero, requisito):
                 errori.append(f"Requisito speciale non soddisfatto: {requisito}")
         
+        return {
+            "puo_assegnare": len(errori) == 0,
+            "errori": errori,
+            "avvertenze": self._genera_avvertenze(guerriero)
+        }
+
+    def puo_essere_assegnata_a(self, guerriero: object) -> Dict[str, Any]:
+        """
+        Verifica se la reliquia può essere assegnata a un guerriero
+        
+        Args:
+            guerriero: Oggetto guerriero da verificare
+            
+        Returns:
+            Dict con risultato della verifica
+        """
+        errori = self.puo_essere_associata_a_guerriero(guerriero)["errori"]
+        
+        # Verifica se è già in gioco (regola unicità)
+        if self.in_gioco_globalmente:
+            errori.append("Reliquia già presente in gioco (regola unicità)")
+        
+        # Verifica se guerriero ha già questa reliquia
+        if hasattr(guerriero, 'reliquie_assegnate'):
+            if self.nome in guerriero.reliquie_assegnate:
+                errori.append("Guerriero ha già questa reliquia")
+                
         # Verifica incompatibilità
         if hasattr(guerriero, 'equipaggiamento_assegnato'):
             for item in guerriero.equipaggiamento_assegnato:

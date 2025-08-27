@@ -41,7 +41,7 @@ class TipoGuerriero(Enum):
     INQUISITORE = "Inquisitore"
     CACCIATORE_OSCURO = "Cacciatore Oscuro"
     MORTIFICATOR = "Mortificator"  # Aggiunto per regole speciali
-    ERETICO = "Eretico"
+    
 
 class DisciplinaArte(Enum):
     """Discipline dell'Arte secondo il regolamento"""

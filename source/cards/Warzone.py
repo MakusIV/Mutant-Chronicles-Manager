@@ -14,6 +14,8 @@ from dataclasses import dataclass
 import json
 from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, AreaGioco  # Import dalle classi esistenti
 
+FAZIONI_SQUADRA = [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.CYBERTRONIC, Fazione.FRATELLANZA, Fazione.IMPERIALE, Fazione.MISHIMA, Fazione.FREELANCER]
+FAZIONI_SCHIERAMENTO = [Fazione.OSCURA_LEGIONE]
 
 class TipoWarzone(Enum):
     """Tipi di zone di guerra secondo il regolamento"""
@@ -90,6 +92,7 @@ class RestrizioneWarzone:
     richiede_grande_stratega: bool = True  # Sempre True secondo regolamento
     aree_utilizzabili: List[AreaCompatibileWarzone] = None
     fazioni_permesse: List[Fazione] = None
+    soggetti_avvantaggiati: List[str] = None
     solo_una_per_area: bool = True  # Ogni giocatore non può avere più della stessa Warzone in una sua Area
     limiti_utilizzo: List[str] = None
     
@@ -98,6 +101,8 @@ class RestrizioneWarzone:
             self.aree_utilizzabili = [AreaCompatibileWarzone.QUALSIASI_AREA]
         if self.fazioni_permesse is None:
             self.fazioni_permesse = []
+        if self.soggetti_avvantaggiati is None:
+            self.soggetti_avvantaggiati = []
         if self.limiti_utilizzo is None:
             self.limiti_utilizzo = []
 
@@ -145,7 +150,7 @@ class Warzone:
         self.keywords: List[str] = []
         
         # Attributi per espansioni
-        self.set_espansione = "Base"
+        self.set_espansione = Set_Espansione.WARZONE.value
         self.numero_carta = ""
         
         # Stato di gioco
@@ -190,8 +195,93 @@ class Warzone:
             condizioni=condizioni or []
         )
         self.effetti_combattimento.append(effetto)
+
+    def puo_essere_associata_a_fazione(self, fazione: Fazione) -> Dict[str, Any]:
+        """
+        Verifica se la Warzone può essere associata a una fazione
+        
+        Args:
+            fazione: Fazione del guerriero
+            
+        Returns:
+            Dict con risultato e eventuali errori
+        """
+        risultato = {
+            "puo_essere_associata": True,
+            "errori": []
+        }
+
+        
+        
+        # Verifica fazioni permesse
+        # Verifica compatibilità area
+        aree_permesse = [a.value for a in self.restrizioni.aree_utilizzabili]
+
+        if AreaCompatibileWarzone.QUALSIASI_AREA.value not in aree_permesse:
+            if AreaCompatibileWarzone.SQUADRA in aree_permesse and fazione not in FAZIONI_SQUADRA:
+                if AreaCompatibileWarzone.SCHIERAMENTO in aree_permesse and fazione not in FAZIONI_SCHIERAMENTO:
+                    risultato["può_assegnare"] = False
+                    risultato["errori"].append(f"Non può essere assegnata alla fazione: {fazione} in nessuna area permessa")
+ 
+        # questa verifica comporta che se sono specificate fazioni_permesse, la warzone è utilizzabile solo dale fazioni presenti in fazioni_permesse anche se sono coerenti con l'assegnazione nella squadra o nello schieramento
+        if self.restrizioni.fazioni_permesse and len(self.restrizioni.fazioni_permesse) > 0 and fazione not in self.restrizioni.fazioni_permesse:
+            risultato["puo_essere_associata"] = False
+            risultato["errori"].append(f"Fazione {fazione.value} non permessa")
+        
+        return risultato
+
+    def puo_essere_asssociata_a_guerriero(self, guerriero: object) -> Dict[str, Any]:
+        """
+        Verifica se la Warzone può essere associata a un guerriero
+        
+        Args:
+            guerriero: Istanza del guerriero a cui associare la Warzone
+            
+        Returns:
+            Dict con risultato e eventuali errori
+        """
+        risultato = self.puo_essere_associata_a_fazione(guerriero.fazione)
+        
+        
+        return risultato
     
-    def può_essere_assegnata(self, area: AreaGioco, ha_grande_stratega: bool,
+    def e_fazione_avvantaggiata(self, fazione: Fazione) -> bool:
+        """
+        Verifica se la fazione è preferenziale per questa Warzone
+        
+        Args:
+            fazione: Fazione da verificare
+            
+        Returns:
+            True se la fazione è preferenziale
+        """
+        if self.restrizioni.soggetti_avvantaggiati and len(self.restrizioni.soggetti_avvantaggiati) > 0:
+            return fazione in self.restrizioni.soggetti_avvantaggiati
+                
+        return False
+    
+    def e_guerriero_avvantaggiato(self, guerriero: object) -> bool:
+        """
+        Verifica se il guerriero è preferenziale per questa Warzone
+        
+        Args:
+            guerriero: Istanza del guerriero da verificare
+            
+        Returns:
+            True se il guerriero è preferenziale
+        """
+        if self.e_fazione_avvantaggiata(guerriero.fazione):
+            return True
+        
+        if self.restrizioni.soggetti_avvantaggiati and len(self.restrizioni.soggetti_avvantaggiati) > 0:
+            if hasattr(guerriero, 'keywords'):
+                for soggetto in self.restrizioni.soggetti_avvantaggiati:
+                    if soggetto in guerriero.keywords:
+                        return True
+                
+        return False
+
+    def puo_essere_assegnata(self, area: AreaGioco, ha_grande_stratega: bool,
                            azioni_disponibili: int, warzone_esistenti: List[str] = None) -> Dict[str, Any]:
         """
         Verifica se la Warzone può essere assegnata a un'area
@@ -363,6 +453,7 @@ class Warzone:
                 "richiede_grande_stratega": self.restrizioni.richiede_grande_stratega,
                 "aree_utilizzabili": [a.value for a in self.restrizioni.aree_utilizzabili],
                 "fazioni_permesse": [f.value for f in self.restrizioni.fazioni_permesse],
+                "soggetti_avvantaggiati": [s for s in self.restrizioni.soggetti_avvantaggiati] if self.restrizioni.soggetti_avvantaggiati else [],
                 "solo_una_per_area": self.restrizioni.solo_una_per_area,
                 "limiti_utilizzo": self.restrizioni.limiti_utilizzo
             },
@@ -416,6 +507,7 @@ class Warzone:
         warzone.restrizioni.richiede_grande_stratega = restr_data["richiede_grande_stratega"]
         warzone.restrizioni.aree_utilizzabili = [AreaCompatibileWarzone(a) for a in restr_data["aree_utilizzabili"]]
         warzone.restrizioni.fazioni_permesse = [Fazione(f) for f in restr_data["fazioni_permesse"]]
+        warzone.restrizioni.soggetti_avvantaggiati = [f for f in restr_data["soggetti_avvantaggiati"]] if restr_data.get("soggetti_avvantaggiati") else []
         warzone.restrizioni.solo_una_per_area = restr_data["solo_una_per_area"]
         warzone.restrizioni.limiti_utilizzo = restr_data["limiti_utilizzo"]
         
@@ -539,7 +631,7 @@ if __name__ == "__main__":
     
     # Test meccaniche di gioco
     print(f"\n=== TEST MECCANICHE ===")
-    può_assegnare = trincea.può_essere_assegnata(
+    può_assegnare = trincea.puo_essere_assegnata(
         AreaGioco.SQUADRA,
         ha_grande_stratega=True,
         azioni_disponibili=2,

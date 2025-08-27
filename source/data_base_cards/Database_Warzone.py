@@ -11,12 +11,12 @@ from source.cards.Warzone import (
     Warzone, TipoWarzone, TerrenoWarzone, AreaCompatibileWarzone,
     crea_warzone_base, crea_warzone_avanzata
 )
-from source.cards.Guerriero import Fazione, Rarity, AreaGioco
+from source.cards.Guerriero import Fazione, Rarity, AreaGioco, Set_Espansione
 
 
 # Database completo delle carte Warzone
 DATABASE_WARZONE = {
-    # === WARZONE BASE SET ===
+   
     
     "Trincea Difensiva": {
         "nome": "Trincea Difensiva",
@@ -24,7 +24,7 @@ DATABASE_WARZONE = {
         "tipo": "Trincea",
         "terreno": "Coperto",
         "rarity": "Common",
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.WARZONE.value,
         "numero_carta": "WZ001",
         "modificatori_difensore": [
             {"statistica": "A", "valore": 3, "descrizione": "+3 Armatura in difesa"},
@@ -45,6 +45,7 @@ DATABASE_WARZONE = {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
             "fazioni_permesse": [],
+            "soggetti_avvantaggiati": ['Ranger_Venusiano'],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -250,7 +251,7 @@ DATABASE_WARZONE = {
         "tipo": "Cratere",
         "terreno": "Estremo",
         "rarity": "Rare",
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.WARZONE.value,
         "numero_carta": "WZ010",
         "modificatori_difensore": [
             {"statistica": "A", "valore": 2, "descrizione": "+2 Armatura dalla posizione elevata"},
