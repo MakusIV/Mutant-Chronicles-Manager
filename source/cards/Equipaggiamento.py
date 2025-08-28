@@ -178,6 +178,7 @@ class Equipaggiamento:
                 self.tipo == TipoEquipaggiamento.ARMA_DA_FUOCO_E_CORPO_A_CORPO or
                 self.tipo == TipoEquipaggiamento.ARMA_SPECIALE)
     
+
     def puo_essere_assegnato_a_guerriero(self, guerriero: Any) -> Dict[str, Any]:
         """
         Controlla se l'equipaggiamento può essere assegnato al guerriero specificato

@@ -135,7 +135,7 @@ class Reliquia:
         self.flavour_text = ""
         
         # Attributi per espansioni
-        self.set_espansione = Set_Espansione.BASE
+        self.set_espansione = Set_Espansione.BASE.value
         self.numero_carta = ""
         
         # Metadati
