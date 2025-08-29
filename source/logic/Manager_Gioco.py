@@ -2339,12 +2339,18 @@ class CreatoreMazzo:
         potenza = 0
         
         # Somma modificatori statistiche
-        for modifica in equipaggiamento.modifiche_guerriero:
-            if modifica['tipo'] in ['combattimento', 'sparare', 'armatura']:
-                potenza += abs(modifica['valore'])
+        modifiche_guerriero = {
+            'combattimento':    equipaggiamento.modificatori_combattimento,
+            'sparare':          equipaggiamento.modificatori_sparare,
+            'armatura':         equipaggiamento.modificatori_armatura,
+            'valore':           equipaggiamento.modificatori_valore
+        }
+        for modifica in modifiche_guerriero:
+            if modifica in ['combattimento', 'sparare', 'armatura']:
+                potenza += abs(modifiche_guerriero[modifica])
         
         # Bonus per abilita speciali
-        if hasattr(equipaggiamento, 'effetti_speciali'):
+        if hasattr(equipaggiamento, 'abilita_speciali'):
             for effetto in equipaggiamento.abilita_speciali:
                 desc = effetto.descrizione.lower()
                 if 'ferisce' in desc and 'automaticamente' in desc:
@@ -2368,8 +2374,14 @@ class CreatoreMazzo:
         max_potenza = 0
         
         for equip in self.collezione.get_carte_per_tipo('equipaggiamento'):
-            potenza = sum(abs(m['valore']) for m in equip.modifiche_guerriero 
-                         if m['tipo'] in ['combattimento', 'sparare', 'armatura'])
+            modifiche_guerriero = {
+            'combattimento':    equip.modificatori_combattimento,
+            'sparare':          equip.modificatori_sparare,
+            'armatura':         equip.modificatori_armatura,
+            'valore':           equip.modificatori_valore
+            }
+            potenza = sum(abs(modifiche_guerriero[m]) for m in modifiche_guerriero 
+                         if m in ['combattimento', 'sparare', 'armatura'])
             max_potenza = max(max_potenza, potenza)
             
         return max_potenza

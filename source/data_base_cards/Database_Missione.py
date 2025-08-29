@@ -47,7 +47,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo Doomtrooper"],
         "condizioni_speciali": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
@@ -82,7 +82,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo Doomtrooper"],
         "condizioni_speciali": ["Tutte le uccisioni nello stesso turno"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
@@ -118,7 +118,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo Doomtrooper"],
         "condizioni_speciali": ["Deve essere attaccato almeno una volta per turno"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
@@ -153,7 +153,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo Doomtrooper"],
         "condizioni_speciali": ["Tutti gli altri guerrieri devono essere fuori gioco"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
@@ -189,7 +189,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo guerrieri Bauhaus"],
         "condizioni_speciali": ["Fortificazione deve essere controllata dall'avversario"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
@@ -224,7 +224,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo guerrieri Capitol"],
         "condizioni_speciali": ["Uccisioni devono usare statistica Sparare"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
@@ -259,7 +259,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo guerrieri Imperiale"],
         "condizioni_speciali": ["Combattimenti devono usare statistica Combattimento"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
@@ -294,7 +294,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo Samurai o Ninja Mishima"],
         "condizioni_speciali": ["Nessun supporto esterno", "Combattimento 1 vs 1"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
@@ -329,7 +329,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo guerrieri Cybertronic"],
         "condizioni_speciali": ["Equipaggiamenti devono essere attivi simultaneamente"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -365,7 +365,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo guerrieri della Fratellanza"],
         "condizioni_speciali": ["Solo guerrieri dell'Oscura Legione"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -400,7 +400,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo Inquisitori o Mistici della Fratellanza"],
         "condizioni_speciali": ["Carta deve essere attualmente in gioco"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -436,7 +436,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo guerrieri dell'Oscura Legione"],
         "condizioni_speciali": ["Doni devono essere accettati dai bersagli"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -471,7 +471,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo Apostoli o Nepharite"],
         "condizioni_speciali": ["Controllo deve essere mantenuto per 1 turno completo"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -507,7 +507,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo giocatori Doomtrooper"],
         "condizioni_speciali": ["Combattimenti con guerrieri diversi"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -542,7 +542,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo giocatori Doomtrooper"],
         "condizioni_speciali": ["Punti Destino devono essere presenti simultaneamente"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -578,7 +578,7 @@ DATABASE_MISSIONI = {
         "restrizioni": ["Solo Personalità o Eroi"],
         "condizioni_speciali": ["Il guerriero non deve mai morire durante la missione"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }

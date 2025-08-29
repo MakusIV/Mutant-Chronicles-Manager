@@ -42,7 +42,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -80,7 +80,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -118,7 +118,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -147,7 +147,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -177,7 +177,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
     "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -223,7 +223,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -261,7 +261,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -300,7 +300,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -338,7 +338,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -376,7 +376,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -406,7 +406,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -452,7 +452,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -490,7 +490,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -529,7 +529,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -575,7 +575,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -613,7 +613,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -660,7 +660,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -715,7 +715,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -761,7 +761,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -800,7 +800,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -854,7 +854,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -892,7 +892,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -930,7 +930,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -977,7 +977,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -1024,7 +1024,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -1070,7 +1070,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -1116,7 +1116,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -1154,7 +1154,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -1200,7 +1200,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -1246,7 +1246,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -1293,7 +1293,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }

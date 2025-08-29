@@ -45,7 +45,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Modifica", "Sparare"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -78,7 +78,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Manovra", "Aggiramento"],
         "restrizioni": ["Il guerriero deve potersi muovere"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -119,7 +119,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Furia", "Rischio"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -152,7 +152,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Sorpresa", "Primo Attacco"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -185,7 +185,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Fuga", "Annullamento"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -218,7 +218,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Fortuna", "Danno Extra"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -251,7 +251,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Guarigione", "Supporto"],
         "restrizioni": ["Solo su guerrieri feriti"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -284,7 +284,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Pescaggio", "Destino"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -317,7 +317,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Sabotaggio", "Controllo"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -350,7 +350,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Cambio", "Tattica"],
         "restrizioni": ["Il nuovo attaccante deve essere valido"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -383,7 +383,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Cambio", "Sacrificio"],
         "restrizioni": ["Il nuovo difensore deve essere valido"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -416,7 +416,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Malfunzionamento", "Tecnologia"],
         "restrizioni": ["Bersaglio deve avere equipaggiamento"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -449,7 +449,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Munizioni", "Logistica"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -482,7 +482,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Risorse", "Punti Destino"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -523,7 +523,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Imperiale", "Disciplina"],
         "restrizioni": ["Solo fazione Imperiale"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -556,7 +556,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Bauhaus", "Ingegneria"],
         "restrizioni": ["Solo fazione Bauhaus"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -589,7 +589,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Mishima", "Onore"],
         "restrizioni": ["Solo fazione Mishima", "Solo corpo a corpo"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -630,7 +630,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Eroismo", "Leggenda"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -671,7 +671,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Devastazione", "Morte"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -704,7 +704,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Protezione", "Tattica"],
         "restrizioni": [],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -737,7 +737,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Corpo a Corpo", "Furia"],
         "restrizioni": ["Solo combattimento corpo a corpo"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
@@ -770,7 +770,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Precisione", "Armi da Fuoco"],
         "restrizioni": ["Solo attacchi a distanza"],
         "quantita":9,
-        "quantità_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     }
 }

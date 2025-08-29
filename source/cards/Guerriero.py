@@ -578,6 +578,7 @@ class Guerriero:
         guerriero.keywords = data["keywords"]
         guerriero.restrizioni = data["restrizioni"]
         guerriero.equipaggiamento = data["equipaggiamento"]
+        guerriero.quantita = data.get("quantita", 0)
         guerriero.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
         guerriero.fondamentale = data.get("fondamentale", False)
         
