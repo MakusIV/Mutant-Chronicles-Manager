@@ -2210,19 +2210,21 @@ Versione completa con tutti i criteri di selezione richiesti
 DISTRIBUZIONE_BASE = {
     'guerriero': (0.19, 0.24),          # 19-24%
     'equipaggiamento': (0.11, 0.16),    # 11-16%
-    'speciale': (0.42, 0.47),           # 42-47%
+    'speciale': (0.42, 0.47),           # 40-47%
+    'fortificazione': (0.04, 0.08),     # 4-8%
     'oscura_simmetria': (0.09, 0.14),   # 9-14%
     'arte': (0.09, 0.14),               # 9-14%
-    'reliquia': (0.05, 0.07),           # 5-7%
-    'warzone': (0.05, 0.08),            # 5-8%
+    'reliquia': (0.04, 0.07),           # 4-7%
+    'warzone': (0.04, 0.08),            # 4-8%
     'missione': 2                       # max 2 carte (numero fisso)
 }
 
 # Ridistribuzione quando Oscura Simmetria e/o Arte non sono utilizzate
 RIDISTRIBUZIONE_PERCENTUALE = {
-    'equipaggiamento': 0.40,  # 40% della percentuale mancante
-    'speciale': 0.40,         # 40% della percentuale mancante
-    'reliquia': 0.20          # 20% della percentuale mancante
+    'equipaggiamento': 0.25,  # 40% della percentuale mancante
+    'speciale': 0.35,         # 40% della percentuale mancante
+    'reliquia': 0.20,          # 20% della percentuale mancante
+    'warzone': 0.20
 }
 
 # Fazioni Doomtrooper e Oscura Legione
@@ -2935,35 +2937,26 @@ class CreatoreMazzo:
         tipo_carta = type(carta).__name__.lower()
         
         # Verifica compatibilità per tipo
-        if tipo_carta in ['arte', 'reliquia', 'oscura_simmetria', 'fortificazione', 'warzone']:
+        if tipo_carta in ['arte', 'reliquia', 'oscura_simmetria', 'fortificazione', 'warzone', 'speciale', 'equipaggiamento']:
             # Verifica se c'è almeno un guerriero che può usare la carta
-            for guerriero in guerrieri:
-                #if hasattr(carta, 'puo_essere_associata_a_guerriero'):
-                if tipo_carta in ['equipaggiamento', 'fortificazione']:
+            for guerriero in guerrieri:                
+                if tipo_carta in ['equipaggiamento', 'fortificazione', 'reliquia', 'speciale', 'warzone']:
                     risultato = carta.puo_essere_assegnato_a_guerriero(guerriero)
                     if risultato.get('puo_assegnare', False):
                         return True
-                else:
+                elif tipo_carta in ['arte', 'oscura simmetria', 'missione']:
                     risultato = carta.puo_essere_associata_a_guerriero(guerriero)
                     if risultato.get('puo_lanciare', False):
                         return True
             return False
-                    
-        elif tipo_carta in ['speciale', 'missione']:
-            # Verifica restrizioni generiche
-            if hasattr(carta, 'fazioni_permesse'):
-                fazioni_guerrieri = set(g.fazione for g in guerrieri)
-                if not any(f in carta.fazioni_permesse for f in fazioni_guerrieri):
-                    return False
-            return True
-
         
         return True
     
     def calcola_distribuzione_carte(self, 
                                    numero_totale: int,
                                    usa_fratellanza: bool,
-                                   usa_oscura_legione: bool) -> Dict[str, int]:
+                                   usa_oscura_legione: bool,
+                                   espansioni_richieste: List[Set_Espansione]) -> Dict[str, int]:
         """
         Calcola la distribuzione delle carte nel mazzo
         
@@ -3002,11 +2995,25 @@ class CreatoreMazzo:
             ridistribuzione_totale += distribuzione['oscura_simmetria']
             distribuzione['oscura_simmetria'] = 0
         
+        if not Set_Espansione.WARZONE in espansioni_richieste:
+            ridistribuzione_totale += distribuzione['warzone']
+            distribuzione['warzone'] = 0
+            
+        if not Set_Espansione.INQUISITION in espansioni_richieste:
+            ridistribuzione_totale += distribuzione['inquisition']
+            distribuzione['warzone'] = 0
+        
         if ridistribuzione_totale > 0:
             # Ridistribuisci alle altre carte
+            if Set_Espansione.INQUISITION in espansioni_richieste:
+               distribuzione['reliquia'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['reliquia'])
+            
+            if Set_Espansione.WARZONE in espansioni_richieste:
+               distribuzione['warzone'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['warzone'])
+            
             distribuzione['equipaggiamento'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['equipaggiamento'])
             distribuzione['speciale'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['speciale'])
-            distribuzione['reliquia'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['reliquia'])
+            distribuzione['fortificazione'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['fortificazione'])
         
         # Assicura che il totale sia corretto
         totale_attuale = sum(distribuzione.values())
@@ -3015,6 +3022,7 @@ class CreatoreMazzo:
         if differenza > 0:
             distribuzione['speciale'] += differenza
         elif differenza < 0:
+
             # Riduci carte speciali se necessario
             distribuzione['speciale'] = max(0, distribuzione['speciale'] + differenza)
         
@@ -3091,18 +3099,18 @@ def crea_mazzo_da_collezione(collezione: Any,
     distribuzione = creatore.calcola_distribuzione_carte(
         numero_carte_target,
         usa_fratellanza,
-        usa_oscura_legione
+        usa_oscura_legione,
+        espansioni_richieste
     )
     
     # Seleziona guerrieri
-    numero_guerrieri = distribuzione['guerriero']
     squadra, schieramento = creatore.seleziona_guerrieri(
         espansioni_richieste,
         orientamento_doomtrooper,
         orientamento_arte,
         orientamento_apostolo,
         orientamento_eretico,
-        numero_guerrieri
+        distribuzione['guerriero']
     )
     
     # Seleziona carte di supporto nell'ordine specificato
@@ -3115,24 +3123,22 @@ def crea_mazzo_da_collezione(collezione: Any,
             'equipaggiamento', distribuzione['equipaggiamento']
         )
         carte_supporto.extend(equipaggiamenti)
-        #carte_supporto['equipaggiamento'] = equipaggiamenti
     
     # 2. Fortificazioni
-    fortificazioni = creatore.seleziona_carte_supporto(
-        squadra, schieramento, espansioni_richieste,
-        'fortificazione', distribuzione.get('fortificazione', 0)
-    )
-    carte_supporto.extend(fortificazioni)
-    #carte_supporto['fortificazione'] = fortificazioni
+    if distribuzione['fortificazione'] > 0:
+        fortificazioni = creatore.seleziona_carte_supporto(
+            squadra, schieramento, espansioni_richieste,
+            'fortificazione', distribuzione['fortificazione']
+        )
+        carte_supporto.extend(fortificazioni)
     
-    # 3. Speciali
+    # 3. Speciali    
     if distribuzione['speciale'] > 0:
         speciali = creatore.seleziona_carte_supporto(
             squadra, schieramento, espansioni_richieste,
             'speciale', distribuzione['speciale']
         )
-        carte_supporto.extend(speciali)
-        #carte_supporto['speciale'] = speciali
+        carte_supporto.extend(speciali)        
     
     # 4. Missioni
     if distribuzione['missione'] > 0:
@@ -3140,8 +3146,7 @@ def crea_mazzo_da_collezione(collezione: Any,
             squadra, schieramento, espansioni_richieste,
             'missione', distribuzione['missione']
         )
-        carte_supporto.extend(missioni)
-        #carte_supporto['missione'] = missioni
+        carte_supporto.extend(missioni)        
     
     # 5. Arte (se guerrieri Fratellanza presenti)
     if usa_fratellanza and distribuzione['arte'] > 0:
@@ -3150,7 +3155,6 @@ def crea_mazzo_da_collezione(collezione: Any,
             'arte', distribuzione['arte']
         )
         carte_supporto.extend(arte)
-        #carte_supporto['arte'] = arte
     
     # 6. Oscura Simmetria (se guerrieri Oscura Legione presenti)
     if usa_oscura_legione and distribuzione['oscura_simmetria'] > 0:
@@ -3159,7 +3163,6 @@ def crea_mazzo_da_collezione(collezione: Any,
             'oscura_simmetria', distribuzione['oscura_simmetria']
         )
         carte_supporto.extend(oscura)
-        #carte_supporto['oscura_simmetria'] = oscura
     
     # 7. Reliquie (se espansione Inquisition richiesta)
     if 'Inquisition' in espansioni_richieste and distribuzione['reliquia'] > 0:
@@ -3168,7 +3171,6 @@ def crea_mazzo_da_collezione(collezione: Any,
             'reliquia', distribuzione['reliquia']
         )
         carte_supporto.extend(reliquie)
-        #carte_supporto['reliquia'] = reliquie
     
     # 8. Warzone (se espansione Warzone richiesta)
     if 'Warzone' in espansioni_richieste and distribuzione['warzone'] > 0:

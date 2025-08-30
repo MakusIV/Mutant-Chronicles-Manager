@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Any, Union
 from enum import Enum
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione  # Import dalle classi esistenti
+from source.cards.Guerriero import Guerriero, Fazione, Rarity, Set_Espansione  # Import dalle classi esistenti
 
 
 
@@ -138,6 +138,56 @@ class Missione:
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo    
         
+    def puo_essere_associata_a(self, bersaglio: any):
+
+        risultato = {"puo_assegnare": True, "motivo": ""}
+
+        # Se bersaglio è stringa "giocatore"
+        if isinstance(bersaglio, str) and bersaglio.lower() == "giocatore":
+            if self.tipo == TipoMissione.GUERRIERO:
+                risultato["puo_assegnare"] = False
+                risultato["motivo"] = "Missione deve essere assegnata a un guerriero"
+                return risultato
+            
+        # Se bersaglio è Guerriero: Controlla restrizioni di tipo guerriero
+        if isinstance(bersaglio, Guerriero):
+                                
+            # Controlla restrizioni di fazione
+            if self.fazioni_permesse and bersaglio.fazione not in self.fazioni_permesse:
+                risultato["puo_assegnare"] = False
+                risultato["motivo"] = f"Fazione {bersaglio.fazione.value} non permessa"
+            
+            # Controlla restrizioni di corporazione            
+            elif "Solo Doomtrooper" in self.corporazioni_specifiche: 
+                if bersaglio.fazione == Fazione.OSCURA_LEGIONE:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Doomtrooper")
+
+            elif "Solo Oscura Legione" in self.corporazioni_specifiche:
+                if bersaglio.fazione != Fazione.OSCURA_LEGIONE:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Oscura Legione")                            
+
+            elif "Solo Seguaci di" in self.corporazioni_specifiche:
+                    apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
+                    if (bersaglio.keywords is None or bersaglio.keywords == [] or bersaglio.keywords != "Seguace di " + apostolo_richiesto):                       
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
+            
+            elif "Solo Eretici" in self.corporazioni_specifiche:
+                    if (bersaglio.keywords is None or bersaglio.keywords == [] or bersaglio.keywords != "Eretico" ):                       
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Eretici")
+                
+            # Controlla restrizioni di tipo guerriero
+            for restrizione in self.restrizioni_guerriero:
+                if hasattr(bersaglio, 'keywords') and restrizione not in bersaglio.keywords:
+                    if hasattr(bersaglio, 'tipo') and restrizione not in str(bersaglio.tipo.value):
+                        risultato["puo_assegnare"] = False
+                        risultato["motivo"] = f"Guerriero deve essere {restrizione}"
+                        
+            return risultato
+                
     def puo_essere_assegnata_a(self, bersaglio: Union[str, object]) -> Dict[str, Any]:
         """
         Verifica se la missione può essere assegnata al bersaglio specificato
@@ -148,7 +198,7 @@ class Missione:
         Returns:
             Dict con risultato della verifica
         """
-        risultato = {"puo_assegnare": True, "motivo": ""}
+        risultato = self.puo_essere_associata_a(bersaglio)
         
         # Controlla se è già assegnata
         if self.stato != StatoMissione.NON_ASSEGNATA:
@@ -156,6 +206,8 @@ class Missione:
             risultato["motivo"] = f"Missione già {self.stato.value.lower()}"
             return risultato
         
+
+
         # Se bersaglio è stringa "giocatore"
         if isinstance(bersaglio, str) and bersaglio.lower() == "giocatore":
             if self.tipo == TipoMissione.GUERRIERO:
@@ -170,27 +222,7 @@ class Missione:
                 risultato["motivo"] = "Missione deve essere assegnata al giocatore"
                 return risultato
             
-            # Controlla restrizioni di fazione
-            if self.fazioni_permesse and bersaglio.fazione not in self.fazioni_permesse:
-                risultato["puo_assegnare"] = False
-                risultato["motivo"] = f"Fazione {bersaglio.fazione.value} non permessa"
-                return risultato
-            
-            # Controlla restrizioni di corporazione
-            if (self.corporazioni_specifiche and 
-                hasattr(bersaglio, 'corporazione') and 
-                bersaglio.corporazione not in self.corporazioni_specifiche):
-                risultato["puo_assegnare"] = False
-                risultato["motivo"] = f"Corporazione {bersaglio.corporazione} non permessa"
-                return risultato
-            
-            # Controlla restrizioni di tipo guerriero
-            for restrizione in self.restrizioni_guerriero:
-                if hasattr(bersaglio, 'keywords') and restrizione not in bersaglio.keywords:
-                    if hasattr(bersaglio, 'tipo') and restrizione not in str(bersaglio.tipo.value):
-                        risultato["puo_assegnare"] = False
-                        risultato["motivo"] = f"Guerriero deve essere {restrizione}"
-                        return risultato
+           
         
         return risultato
     
@@ -521,7 +553,7 @@ if __name__ == "__main__":
             self.fazione = fazione
             self.keywords = []
     
-    guerriero_bauhaus = GuerrieroTest("Blitzer Bauhaus", Fazione.BAUHAUS)
+    guerriero_bauhaus = Guerriero("Blitzer Bauhaus", Fazione.BAUHAUS)
     
     # Test assegnazione corretta
     verifica = missione_bauhaus.puo_essere_assegnata_a(guerriero_bauhaus)
