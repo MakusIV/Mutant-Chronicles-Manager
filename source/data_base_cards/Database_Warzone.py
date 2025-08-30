@@ -47,7 +47,7 @@ DATABASE_WARZONE = {
             "fazioni_permesse": [],
             "soggetti_avvantaggiati": ['Ranger_Venusiano'],
             "solo_una_per_area": True,
-            "limiti_utilizzo": []
+            "limiti_utilizzo": [] # # 'Solo Seguaci di <Apostolo>', 'Solo Doomtrooper', 'Solo Oscura Legione', 'Solo Eretici'
         },
         "valore_strategico": 3,
         "frequenza_utilizzo": "Alta",

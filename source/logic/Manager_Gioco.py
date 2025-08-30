@@ -2643,7 +2643,7 @@ class CreatoreMazzo:
                 #if hasattr(set_carta, 'value'):
                 #    set_carta = set_carta.value
                     
-                if set_carta in espansioni_richieste:
+                if set_carta in espansioni_richieste.value if hasattr(espansioni_richieste, 'value') else espansioni_richieste:
                     carte_filtrate.append(carta)
                     
         return carte_filtrate
@@ -2903,6 +2903,9 @@ class CreatoreMazzo:
             else:
                 num_copie = min(1, quantita_disponibile)
             
+            if num_copie < 1:
+                num_copie = 1
+
             # Aggiungi casualità
             num_copie = random.randint(1, num_copie) #random.randint(1, min(num_copie, numero_carte - len(carte_selezionate)))
             
@@ -2933,11 +2936,11 @@ class CreatoreMazzo:
         
         # Verifica compatibilità per tipo
         if tipo_carta in ['arte', 'reliquia', 'oscura_simmetria', 'fortificazione', 'warzone']:
-            # Verifica se ci sono guerrieri che possono lanciare l'arte
+            # Verifica se c'è almeno un guerriero che può usare la carta
             for guerriero in guerrieri:
                 #if hasattr(carta, 'puo_essere_associata_a_guerriero'):
-                if tipo_carta == 'equipaggiamento':
-                    risultato = carta.puo_essere_assegnata_a_guerriero(guerriero)
+                if tipo_carta in ['equipaggiamento', 'fortificazione']:
+                    risultato = carta.puo_essere_assegnato_a_guerriero(guerriero)
                     if risultato.get('puo_assegnare', False):
                         return True
                 else:
@@ -3119,8 +3122,8 @@ def crea_mazzo_da_collezione(collezione: Any,
         squadra, schieramento, espansioni_richieste,
         'fortificazione', distribuzione.get('fortificazione', 0)
     )
-    #carte_supporto.extend(fortificazioni)
-    carte_supporto['fortificazione'] = fortificazioni
+    carte_supporto.extend(fortificazioni)
+    #carte_supporto['fortificazione'] = fortificazioni
     
     # 3. Speciali
     if distribuzione['speciale'] > 0:

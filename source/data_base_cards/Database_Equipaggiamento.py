@@ -8,7 +8,7 @@ from source.cards.Equipaggiamento import (
     Equipaggiamento, TipoEquipaggiamento, TipoArmatura, TipoVeicolo,
     ModificatoreEquipaggiamento, AbilitaSpeciale
 )
-from source.cards.Guerriero import Fazione, Rarity
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione
 
 
 DATABASE_EQUIPAGGIAMENTO = {
@@ -68,7 +68,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+2 Combattimento in corpo a corpo. Arma standard dell'esercito.",
         "flavour_text": "L'acciaio temperato non conosce pietà.",
         "keywords": ["Arma", "Corpo a Corpo", "Lama"],
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-001",
         "costo_produzione": 2,
         "compatibilita": {
@@ -141,7 +141,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+3 Combattimento corpo a corpo. +1 aggiuntivo nel primo round. Ignora 1 punto Armatura.",
         "flavour_text": "La forza bruta ha il suo fascino primitivo.",
         "keywords": ["Arma", "Corpo a Corpo", "Ascia", "Devastazione"],
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-002",
         "costo_produzione": 3,
         "compatibilita": {
@@ -210,7 +210,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+2 Combattimento a distanza (4 caselle). Può sparare due volte per turno.",
         "flavour_text": "Affidabile, precisa, mortale.",
         "keywords": ["Arma", "Da Fuoco", "Pistola"],  # CORRETTO: "Da Fuoco" non "A Distanza"
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-003",
         "costo_produzione": 2,
         "compatibilita": {
@@ -284,7 +284,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+3 Combattimento a distanza (8 caselle). +1 aggiuntivo a lunga distanza. Fuoco di soppressione.",
         "flavour_text": "L'arma standard dei soldati veterani.",
         "keywords": ["Arma", "Da Fuoco", "Fucile", "Militare"],  # CORRETTO
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-004",
         "costo_produzione": 4,
         "compatibilita": {
@@ -358,7 +358,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+4 Combattimento a distanza (12 caselle). +2 aggiuntivo se non si muove. Colpo critico con 6.",
         "flavour_text": "Un colpo, una vita.",
         "keywords": ["Arma", "Da Fuoco", "Fucile", "Precisione"],  # CORRETTO
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-005",
         "costo_produzione": 6,
         "compatibilita": {
@@ -419,7 +419,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+2 Armatura. Protezione leggera ma efficace.",
         "flavour_text": "Meglio averla e non servirsene che servirtene e non averla.",
         "keywords": ["Armatura", "Leggera", "Protezione"],
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-006",
         "costo_produzione": 2,
         "compatibilita": {
@@ -486,7 +486,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+4 Armatura, -1 Movimento. Immune a gas e radiazioni.",
         "flavour_text": "La migliore protezione che la tecnologia possa offrire.",
         "keywords": ["Armatura", "Media", "Protezione", "Ambientale"],
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-007",
         "costo_produzione": 6,
         "compatibilita": {
@@ -561,7 +561,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+3 Movimento, +1 Armatura. Fuga automatica dal combattimento.",
         "flavour_text": "Veloce, agile, perfetta per le ricognizioni.",
         "keywords": ["Veicolo", "Ricognizione", "Veloce"],
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-008",
         "costo_produzione": 4,
         "compatibilita": {
@@ -630,7 +630,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "Cura un guerriero ferito. Azione una volta per turno.",
         "flavour_text": "La vita è preziosa, anche in guerra.",
         "keywords": ["Equipaggiamento", "Medico", "Guarigione"],  # CORRETTO
-        "set_espansione": "Base",
+        "set_espansione": Set_Espansione.BASE.value,
         "numero_carta": "EQ-009",
         "costo_produzione": 1,
         "compatibilita": {
@@ -707,7 +707,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+5 Combattimento a distanza (10 caselle). Ignora Armatura. Surriscaldamento.",
         "flavour_text": "Il calore del sole concentrato in un colpo.",
         "keywords": ["Arma", "Da Fuoco", "Plasma", "Avanzata"],  # CORRETTO
-        "set_espansione": "Warzone",
+        "set_espansione": Set_Espansione.WARZONE.value,
         "numero_carta": "EQ-W01",
         "costo_produzione": 8,
         "compatibilita": {
@@ -787,7 +787,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "testo_carta": "+6 Armatura, +2 Combattimento, +1 Movimento. Immune a ambienti ostili.",
         "flavour_text": "L'evoluzione dell'armatura da battaglia.",
         "keywords": ["Armatura", "Powered", "Avanzata", "Servo-Motori"],
-        "set_espansione": "Warzone",
+        "set_espansione": Set_Espansione.WARZONE.value,
         "numero_carta": "EQ-W02",
         "costo_produzione": 10,
         "compatibilita": {

@@ -91,10 +91,10 @@ class RestrizioneWarzone:
     """Restrizioni per l'uso della Warzone"""
     richiede_grande_stratega: bool = True  # Sempre True secondo regolamento
     aree_utilizzabili: List[AreaCompatibileWarzone] = None
-    fazioni_permesse: List[Fazione] = None
+    fazioni_permesse: List[Fazione] = None # Fazione.MISHIMA, ...
     soggetti_avvantaggiati: List[str] = None
     solo_una_per_area: bool = True  # Ogni giocatore non può avere più della stessa Warzone in una sua Area
-    limiti_utilizzo: List[str] = None
+    limiti_utilizzo: List[str] = None # 'Solo Seguaci di <Apostolo>', 'Solo Doomtrooper', 'Solo Oscura Legione', 'Solo Eretici'
     
     def __post_init__(self):
         if self.aree_utilizzabili is None:
@@ -241,6 +241,33 @@ class Warzone:
             Dict con risultato e eventuali errori
         """
         risultato = self.puo_essere_associata_a_fazione(guerriero.fazione)
+
+
+        errori = []
+
+       
+        
+        if "Solo Doomtrooper" in self.restrizioni.limiti_utilizzo: 
+                if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Doomtrooper")
+
+        elif "Solo Oscura Legione" in self.restrizioni.limiti_utilizzo:
+            if guerriero.fazione != Fazione.OSCURA_LEGIONE:
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append("Solo per Oscura Legione")                            
+
+        elif "Solo Seguaci di" in self.restrizioni.limiti_utilizzo:
+                apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
+          
+        elif "Solo Eretici" in self.restrizioni.limiti_utilizzo:
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Eretici")
+     
         
         
         return risultato

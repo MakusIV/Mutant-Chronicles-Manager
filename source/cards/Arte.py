@@ -165,6 +165,8 @@ class Arte:
                 risultato["puo_lanciare"] = False
                 risultato["errori"].append(f"Richiede disciplina in {self.disciplina.value}")      
         
+
+
         return risultato
     
     

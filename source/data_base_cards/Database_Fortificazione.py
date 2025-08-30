@@ -53,7 +53,7 @@ DATABASE_FORTIFICAZIONI = {
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo guerrieri Bauhaus"],
+        "restrizioni": [],
         "fazioni_permesse": ["Bauhaus"],
         "testo_carta": "La città fortezza di Heimburg protegge i guerrieri Bauhaus con le sue possenti mura.",
         "flavour_text": "Nelle profondità di Venere, Heimburg rappresenta la potenza industriale Bauhaus.",
@@ -206,7 +206,7 @@ DATABASE_FORTIFICAZIONI = {
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo guerrieri Capitol"],
+        "restrizioni": [],
         "fazioni_permesse": ["Capitol"],
         "testo_carta": "Capitol, centro del progresso tecnologico e commerciale.",
         "flavour_text": "Dove la tecnologia incontra l'ambizione, nasce Capitol.",
@@ -260,7 +260,7 @@ DATABASE_FORTIFICAZIONI = {
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo guerrieri Cybertronic"],
+        "restrizioni": [],
         "fazioni_permesse": ["Cybertronic"],
         "testo_carta": "Saguenay, centro dell'innovazione cibernetica di Cybertronic.",
         "flavour_text": "Nel silenzio digitale di Saguenay, il futuro prende forma.",
@@ -322,7 +322,7 @@ DATABASE_FORTIFICAZIONI = {
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo seguaci di Algeroth"],
+        "restrizioni": ["Solo Seguaci di Algeroth"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "Nel nome di Algeroth, le armi parlano e la guerra non ha fine.",
         "flavour_text": "Dalle fondamenta della Cittadella echeggia l'eterno rumore della battaglia.",
@@ -376,7 +376,7 @@ DATABASE_FORTIFICAZIONI = {
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo seguaci di Ilian"],
+        "restrizioni": ["Solo Seguaci di Ilian"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "Nella Cittadella di Ilian, la verità si dissolve come nebbia.",
         "flavour_text": "Chi entra nel labirinto di Ilian, perde se stesso nelle bugie.",
@@ -430,7 +430,7 @@ DATABASE_FORTIFICAZIONI = {
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo seguaci di Demnogonis"],
+        "restrizioni": ["Solo Seguaci di Demnogonis"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "Il gelo eterno di Demnogonis preserva i suoi servitori.",
         "flavour_text": "Nel cuore della Cittadella, l'inverno non ha mai fine.",
@@ -484,7 +484,7 @@ DATABASE_FORTIFICAZIONI = {
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo seguaci di Muawijhe"],
+        "restrizioni": ["Solo Seguaci di Muawijhe"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "I sussurri di Muawijhe portano follia e corruzione.",
         "flavour_text": "Chi ascolta troppo a lungo, dimentica chi era.",
@@ -538,7 +538,7 @@ DATABASE_FORTIFICAZIONI = {
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo seguaci di Semai"],
+        "restrizioni": ["Solo Seguaci di Semai"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "Nel Tempio di Semai, il destino prende forma.",
         "flavour_text": "Le trame del fato si intrecciano nella Cittadella del Destino.",

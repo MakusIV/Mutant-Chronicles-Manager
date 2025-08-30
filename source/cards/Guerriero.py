@@ -26,7 +26,7 @@ class Fazione(Enum):
     CAPITOL = "Capitol"
     CYBERTRONIC = "Cybertronic"
     FRATELLANZA = "Fratellanza"
-    OSCURA_LEGIONE = "Oscura Legione"  # Corretto da "LEGIONE_OSCURA"
+    OSCURA_LEGIONE = "Oscura Legione"  # Corretto da "OSCURA_LEGIONE"
     FREELANCER = "Freelancer"
 
 class TipoGuerriero(Enum):

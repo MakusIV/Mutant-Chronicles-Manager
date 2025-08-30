@@ -69,8 +69,8 @@ class PotereReliquia:
 @dataclass
 class RestrizioneReliquia:
     """Restrizioni per l'assegnazione della reliquia"""
-    fazioni_permesse: List[Fazione] = None
-    corporazioni_specifiche: List[str] = None
+    fazioni_permesse: List[Fazione] = None # Fazione.Mishime, Fazione.Oscura_Legione, ...
+    corporazioni_specifiche: List[str] = None # 'Solo Seguaci di <Apostolo>, 'Solo Doomtrooper', 'Solo Oscura Legione', 'Solo Eretici'
     tipi_guerriero: List[str] = None  # es. ["Doomtrooper", "Personalità", "Eroe"]
     keywords_richieste: List[str] = None  # es. ["Techno", "Mystic"]
     livello_minimo: int = 0  # per PersonalitÃ  o Eroi
@@ -181,11 +181,32 @@ class Reliquia:
                     fazioni_str = [f.value for f in self.restrizioni.fazioni_permesse]
                     errori.append(f"Fazione non permessa. Richieste: {fazioni_str}")
         
+        if "Solo Doomtrooper" in self.restrizioni.corporazioni_specifiche: 
+                if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Doomtrooper")
+
+        elif "Solo Oscura Legione" in self.restrizioni.corporazioni_specifiche:
+            if guerriero.fazione != Fazione.OSCURA_LEGIONE:
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append("Solo per Oscura Legione")                            
+
+        elif "Solo Seguaci di" in self.restrizioni.corporazioni_specifiche:
+                apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
+          
+        elif "Solo Eretici" in self.restrizioni.corporazioni_specifiche:
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Eretici")
+            
         # Verifica corporazioni specifiche
-        if self.restrizioni.corporazioni_specifiche:
-            if hasattr(guerriero, 'corporazione'):
-                if guerriero.corporazione not in self.restrizioni.corporazioni_specifiche:
-                    errori.append(f"Corporazione non valida. Richieste: {self.restrizioni.corporazioni_specifiche}")
+        #if self.restrizioni.corporazioni_specifiche:
+        #    if hasattr(guerriero, 'corporazione'):
+        #        if guerriero.corporazione not in self.restrizioni.corporazioni_specifiche:
+        #            errori.append(f"Corporazione non valida. Richieste: {self.restrizioni.corporazioni_specifiche}")
         
         # Verifica tipi di guerriero
         if self.restrizioni.tipi_guerriero:
@@ -497,7 +518,7 @@ class Reliquia:
                     "una_volta_per_turno": p.una_volta_per_turno
                 } for p in self.poteri
             ],
-            "set_espansione": self.set_espansione.value,
+            "set_espansione": self.set_espansione,
             "numero_carta": self.numero_carta,
             "testo_carta": self.testo_carta,
             "flavour_text": self.flavour_text,

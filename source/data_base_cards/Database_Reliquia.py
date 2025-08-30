@@ -10,7 +10,7 @@ from source.cards.Reliquia import (
     Reliquia, TipoReliquia, StatoReliquia, PoterereReliquia,
     ModificatoreReliquia, PotereReliquia, RestrizioneReliquia
 )
-from source.cards.Guerriero import Fazione, Rarity
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione
 
 
 # Database completo delle carte Reliquia
@@ -20,10 +20,10 @@ DATABASE_RELIQUIE = {
         "nome": "Spada del Destino",
         "valore": 0,  # Reliquie non costano DP, solo 1 Azione
         "tipo": "Equipaggiamento Speciale",
-        "rarity": "Ultra Rare",
+        "rarity": Rarity.ULTRA_RARE,
         "restrizioni": {
-            "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima"],
-            "corporazioni_specifiche": [],
+            "fazioni_permesse": [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.IMPERIALE, Fazione.MISHIMA],
+            "corporazioni_specifiche": [], # corporazioni_specifiche: List[str] = None # 'Solo Seguaci di <Apostolo>, 'Solo Doomtrooper', 'Solo Oscura Legione', 'Solo Eretici'
             "tipi_guerriero": ["Doomtrooper", "Personalità", "Eroe"],
             "keywords_richieste": [],
             "livello_minimo": 0
@@ -45,7 +45,7 @@ DATABASE_RELIQUIE = {
             }
         ],
         "poteri": [],
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.INQUISITION,
         "numero_carta": "R001",
         "testo_carta": "+3 Corpo a corpo, +1 Armatura. Solo per Doomtrooper delle Corporazioni.",
         "flavour_text": "Forgiata nelle prime guerre corporative, la sua lama non conosce sconfitta.",
@@ -65,12 +65,12 @@ DATABASE_RELIQUIE = {
         "nome": "Martello di Algeroth",
         "valore": 0,
         "tipo": "Cimelio di Battaglia",
-        "rarity": "Ultra Rare",
+        "rarity": Rarity.ULTRA_RARE,
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
             "tipi_guerriero": ["Nepharite", "Centurion", "Personalità"],
-            "keywords_richieste": ["Seguace di Algeroth"],
+            "keywords_richieste": ["Solo Seguaci di Algeroth"],
             "livello_minimo": 0
         },
         "modificatori": [
@@ -100,7 +100,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.INQUISITION,
         "numero_carta": "R002",
         "testo_carta": "+4 Corpo a corpo, +2 Valore. Uccide automaticamente guerrieri con A≤8.",
         "flavour_text": "L'arma personale dell'Apostolo della Guerra, forgiata nella Prima Cittadella.",
@@ -121,7 +121,7 @@ DATABASE_RELIQUIE = {
         "nome": "Impianto Neurale Avanzato",
         "valore": 0,
         "tipo": "Tecnologia Perduta",
-        "rarity": "Ultra Rare",
+        "rarity": Rarity.ULTRA_RARE,
         "restrizioni": {
             "fazioni_permesse": ["Cybertronic"],
             "corporazioni_specifiche": [],
@@ -165,7 +165,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.INQUISITION,
         "numero_carta": "R003",
         "testo_carta": "+4 Sparare con tecnologia, +2 C con cyber. Può controllare tech nemico.",
         "flavour_text": "L'interfaccia definitiva tra mente e macchina.",
@@ -186,7 +186,7 @@ DATABASE_RELIQUIE = {
         "nome": "Sigillo di Cardinal",
         "valore": 0,
         "tipo": "Reliquia Sacra",
-        "rarity": "Ultra Rare",
+        "rarity": Rarity.ULTRA_RARE,
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
             "corporazioni_specifiche": [],
@@ -232,7 +232,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.INQUISITION,
         "numero_carta": "R004",
         "testo_carta": "+3 Valore. Alleati +1 tutte stats. Può esorcizzare. Area immune Oscura Simmetria.",
         "flavour_text": "Il simbolo del potere supremo della Fratellanza, benedetto dal Cardinal stesso.",
@@ -252,7 +252,7 @@ DATABASE_RELIQUIE = {
         "nome": "Amuleto di Protezione",
         "valore": 0,
         "tipo": "Artefatto Antico",
-        "rarity": "Rare",
+        "rarity": Rarity.RARE,
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza", "Bauhaus", "Capitol", "Imperiale", "Mishima"],
             "corporazioni_specifiche": [],
@@ -289,7 +289,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.INQUISITION,
         "numero_carta": "R005",
         "testo_carta": "+2 A vs mistici. Immune paura. Una volta/turno annulla attacco.",
         "flavour_text": "Un antico simbolo che protegge chi lo porta dalle forze oscure.",
@@ -310,7 +310,7 @@ DATABASE_RELIQUIE = {
         "nome": "Sigillo Imperiale",
         "valore": 0,
         "tipo": "Cimelio di Battaglia",
-        "rarity": "Ultra Rare",
+        "rarity": Rarity.ULTRA_RARE,
         "restrizioni": {
             "fazioni_permesse": ["Imperiale"],
             "corporazioni_specifiche": [],
@@ -374,7 +374,7 @@ DATABASE_RELIQUIE = {
         "nome": "Dispositivo Bauhaus",
         "valore": 0,
         "tipo": "Tecnologia Perduta",
-        "rarity": "Rare",
+        "rarity": Rarity.RARE,
         "restrizioni": {
             "fazioni_permesse": ["Bauhaus"],
             "corporazioni_specifiche": [],
@@ -409,7 +409,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.INQUISITION,
         "numero_carta": "R007",
         "testo_carta": "+3 Sparare, +2 A vs esplosivi. Ignora copertura e distanza.",
         "flavour_text": "L'ingegneria tedesca al suo apice: precisione e affidabilità assolute.",
@@ -429,7 +429,7 @@ DATABASE_RELIQUIE = {
         "nome": "Katana Ancestrale",
         "valore": 0,
         "tipo": "Cimelio di Battaglia",
-        "rarity": "Ultra Rare",
+        "rarity": Rarity.ULTRA_RARE,
         "restrizioni": {
             "fazioni_permesse": ["Mishima"],
             "corporazioni_specifiche": [],
@@ -473,7 +473,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": True
             }
         ],
-        "set_espansione": "Warzone",
+        "set_espansione": Set_Espansione.WARZONE,
         "numero_carta": "R008",
         "testo_carta": "+5 C in duello, +1 A. Attacca sempre prima. Può ignorare armatura.",
         "flavour_text": "Forgiata dai maestri spadai Mishima, porta con sé l'onore di mille guerrieri.",
@@ -493,7 +493,7 @@ DATABASE_RELIQUIE = {
         "nome": "Emblema Capitol",
         "valore": 0,
         "tipo": "Cimelio di Battaglia",
-        "rarity": "Rare",
+        "rarity": Rarity.RARE,
         "restrizioni": {
             "fazioni_permesse": ["Capitol"],
             "corporazioni_specifiche": [],
@@ -537,7 +537,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.INQUISITION,
         "numero_carta": "R009",
         "testo_carta": "+2 Sparare, +2 Valore. Ripristina ferite. Immune ritirata.",
         "flavour_text": "Il simbolo dell'indomito spirito americano che non si arrende mai.",
@@ -558,7 +558,7 @@ DATABASE_RELIQUIE = {
         "nome": "Frammento del Vuoto",
         "valore": 0,
         "tipo": "Artefatto Antico",
-        "rarity": "Ultra Rare",
+        "rarity": Rarity.ULTRA_RARE,
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
@@ -630,7 +630,7 @@ DATABASE_RELIQUIE = {
         "nome": "Cristallo del Destino",
         "valore": 0,
         "tipo": "Artefatto Antico",
-        "rarity": "Ultra Rare",
+        "rarity": Rarity.ULTRA_RARE,
         "restrizioni": {
             "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic", "Fratellanza"],
             "corporazioni_specifiche": [],
@@ -667,7 +667,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": True
             }
         ],
-        "set_espansione": "Golgotha",
+        "set_espansione": Set_Espansione.GOLGOTHA,
         "numero_carta": "R011",
         "testo_carta": "+3 Valore. Una volta/partita cambia dado. Può vedere carte avversario.",
         "flavour_text": "Un cristallo che riflette le infinite possibilità del destino.",
@@ -687,7 +687,7 @@ DATABASE_RELIQUIE = {
         "nome": "Armatura Antica",
         "valore": 0,
         "tipo": "Equipaggiamento Speciale",
-        "rarity": "Rare",
+        "rarity": Rarity.RARE,
         "restrizioni": {
             "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Fratellanza"],
             "corporazioni_specifiche": [],
@@ -722,7 +722,7 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": "Inquisition",
+        "set_espansione": Set_Espansione.INQUISITION,
         "numero_carta": "R012",
         "testo_carta": "+4 Armatura, -1 Corpo a corpo. Immune primi 2 danni/turno.",
         "flavour_text": "Forgiata in tempi dimenticati, offre protezione a costo della mobilità.",
@@ -874,7 +874,7 @@ def get_reliquie_per_rarita(rarity: str) -> Dict[str, Dict[str, Any]]:
     Restituisce tutte le reliquie di una rarità specifica
     
     Args:
-        rarity: Rarità richiesta ("Common", "Uncommon", "Rare", "Ultra Rare")
+        rarity: Rarità richiesta Rarity.Common, Rarity.Uncommon, Rarity.RARE, Rarity.ULTRA_RARE)
     
     Returns:
         Dizionario con le reliquie della rarità specificata
@@ -1074,7 +1074,7 @@ if __name__ == "__main__":
     
     # Esempio 4: Reliquie Ultra Rare
     print(f"\n=== RELIQUIE ULTRA RARE ===")
-    ultra_rare = get_reliquie_per_rarita("Ultra Rare")
+    ultra_rare = get_reliquie_per_rarita(Rarity.ULTRA_RARE)
     print(f"Reliquie Ultra Rare: {len(ultra_rare)}")
     for nome in ultra_rare.keys():
         print(f"  - {nome}")
@@ -1302,8 +1302,8 @@ def analizza_potere_reliquia(nome_reliquia: str) -> Dict[str, Any]:
             "vulnerabilita_penalita": penalita_vulnerabilita
         },
         "rarità": dati["rarity"],
-        "bilanciamento": "OK" if (dati["rarity"] == "Ultra Rare" and punteggio_totale >= 10) or 
-                                (dati["rarity"] == "Rare" and 6 <= punteggio_totale <= 12) else "Da rivedere"
+        "bilanciamento": "OK" if (dati["rarity"] == Rarity.ULTRA_RARE and punteggio_totale >= 10) or 
+                                (dati["rarity"] == Rarity.RARE and 6 <= punteggio_totale <= 12) else "Da rivedere"
     }
 
 
@@ -1443,7 +1443,7 @@ if __name__ == "__main__":
     # Test ricerca avanzata
     filtri_test = {
         "fazione": "Bauhaus",
-        "rarita": "Rare"
+        "rarita": Rarity.RARE
     }
     risultati_ricerca = cerca_reliquie_avanzata(filtri_test)
     print(f"Reliquie Bauhaus Rare: {len(risultati_ricerca)}")

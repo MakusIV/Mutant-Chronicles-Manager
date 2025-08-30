@@ -179,6 +179,56 @@ class Speciale:
         
         return fazione in self.fazioni_permesse
     
+
+    def puo_essere_assegnato_a_guerriero(self, guerriero: Any) -> Dict[str, Any]:
+        """
+        Controlla se la carta speciale può essere assegnata al guerriero specificato
+        Basato sulle regole di fazioni_permesse del regolamento
+        
+        Args:
+            guerriero: Istanza del guerriero
+            
+        Returns:
+            Dizionario con risultato e eventuali errori
+        """
+        risultato = {"puo_assegnare": True, "errori": []}
+        
+        # Controllo fazioni_permesse
+        if self.fazioni_permesse is not None and self.fazioni_permesse != []:
+            # Se l'equipaggiamento ha fazioni_permesse specifiche
+            if all( a != guerriero.fazione for a in self.fazioni_permesse):
+                # Verifica se è equipaggiamento generico utilizzabile da tutti
+                if self.fazioni_permesse != ["Generica"]:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse}")
+        
+        # Controllo restrizioni specifiche
+        for restrizione in self.restrizioni:
+            if "Solo Doomtrooper" in restrizione: 
+                if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Doomtrooper")
+            elif "Solo Oscura Legione" in restrizione:
+                if guerriero.fazione != Fazione.OSCURA_LEGIONE:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Oscura Legione")                            
+
+            elif "Solo Seguaci di" in restrizione:
+                apostolo_richiesto = restrizione.split("Solo Seguaci di ")[1].strip()
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
+            
+            elif "Solo Eretici" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Eretici")
+            
+            
+
+        return risultato
+    
+    
     def puo_essere_giocata(self, destiny_points: int = 0, 
                           fazione_giocatore: Optional[Fazione] = None,
                           timing_corrente: Optional[TimingSpeciale] = None,

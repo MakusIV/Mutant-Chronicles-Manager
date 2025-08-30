@@ -99,7 +99,7 @@ class Equipaggiamento:
         self.abilita_speciali: List[AbilitaSpeciale] = []
         
         # Restrizioni di fazioni_permesse
-        self.fazioni_permesse: List[str] = []  # Affiliazione richiesta (None = generica)
+        self.fazioni_permesse: List[Fazione] = []  # Affiliazione richiesta (None = generica)
         self.restrizioni_guerriero: List[str] = []
         
         # Meccaniche specifiche per armi
@@ -136,7 +136,7 @@ class Equipaggiamento:
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
     
 
-    def set_fazioni_permesse(fazioni_permesse: str):
+    def set_fazioni_permesse(self, fazioni_permesse: str):
 
         if not isinstance(fazioni_permesse, str):
             raise TypeError("fazioni_permesse must be a str")
@@ -144,6 +144,8 @@ class Equipaggiamento:
         if all( a not in [f.value for f in Fazione] for a in fazioni_permesse):
             if fazioni_permesse != ["Generica"]:
                 raise ValueError(f"fazioni_permesse must be in {[f.value for f in Fazione]}")
+        
+        self.fazioni_permesse.append(fazioni_permesse)
 
     def get_costo_destiny_points(self) -> int:
         """Restituisce il costo in Destiny Points per giocare questa carta"""
@@ -193,29 +195,39 @@ class Equipaggiamento:
         risultato = {"puo_assegnare": True, "errori": []}
         
         # Controllo fazioni_permesse
-        if self.fazioni_permesse is not None:
+        if self.fazioni_permesse is not None and self.fazioni_permesse != []:
             # Se l'equipaggiamento ha fazioni_permesse specifiche
             if all( a not in [f.value for f in Fazione] for a in self.fazioni_permesse):
                 # Verifica se è equipaggiamento generico utilizzabile da tutti
                 if self.fazioni_permesse != ["Generica"]:
                     risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse.value}")
+                    risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse}")
         
         # Controllo restrizioni specifiche
         for restrizione in self.restrizioni_guerriero:
             if "Solo Doomtrooper" in restrizione:
-                if guerriero.fazione == Fazione.LEGIONE_OSCURA:
+                if guerriero.fazione == Fazione.OSCURA_LEGIONE:
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append("Solo per Doomtrooper")
+            
             elif "Solo Oscura Legione" in restrizione:
-                if guerriero.fazione != Fazione.LEGIONE_OSCURA:
+                if guerriero.fazione != Fazione.OSCURA_LEGIONE:
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append("Solo per Oscura Legione")
-            elif "Non Animali" in restrizione:
-                if "Animale" in guerriero.keywords:
+            
+            elif "Solo Seguaci di" in restrizione:
+                apostolo_richiesto = restrizione.split("Solo Seguaci di ")[1].strip()
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
                     risultato["puo_assegnare"] = False
-                    risultato["errori"].append("Non può essere assegnato ad Animali")
-        
+                    risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
+
+            elif "Solo Eretici" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Eretici")
+            
+            # Aggiungere altre restrizioni specifiche secondo necessità
+
         return risultato
     
     def applica_modificatori(self, guerriero: Any) -> Dict[str, int]:
@@ -382,7 +394,7 @@ class Equipaggiamento:
                     "limitazioni": ab.limitazioni
                 } for ab in self.abilita_speciali
             ],
-            "fazioni_permesse": self.fazioni_permesse.value if self.fazioni_permesse else None,
+            "fazioni_permesse": self.fazioni_permesse if self.fazioni_permesse else [],
             "restrizioni_guerriero": self.restrizioni_guerriero,
             "meccaniche_armi": {
                 "e_arma_da_fuoco": self.e_arma_da_fuoco,
@@ -407,7 +419,10 @@ class Equipaggiamento:
             "compatibilita": {
                 "compatibile_con": self.compatibile_con,
                 "equipaggiamenti_richiesti": self.equipaggiamenti_richiesti
-            }
+            },
+            "quantita_minima_consigliata": self.quantita_minima_consigliata,
+            "fondamentale": self.fondamentale,
+            "quantita": self.quantita
         }
     
     @classmethod
@@ -432,7 +447,7 @@ class Equipaggiamento:
         
         # Affiliazione
         if data["fazioni_permesse"]:
-            equipaggiamento.fazioni_permesse = Fazione(data["fazioni_permesse"])
+            equipaggiamento.fazioni_permesse = data["fazioni_permesse"]
         
         equipaggiamento.restrizioni_guerriero = data["restrizioni_guerriero"]
         
@@ -460,7 +475,27 @@ class Equipaggiamento:
         equipaggiamento.set_espansione = data["set_espansione"]
         equipaggiamento.numero_carta = data["numero_carta"]
         equipaggiamento.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
-        equipaggiamento.fondamentale = data.get("fondamentale", False)
+        equipaggiamento.fondamentale = data.get("fondamentale", False),
+        equipaggiamento.quantita = data.get("quantita", 0)
+
+        # Modificatori speciali e abilità
+        equipaggiamento.modificatori_speciali = [
+            ModificatoreEquipaggiamento(
+                mod["statistica"],
+                mod["valore"],
+                mod.get("condizione", ""),
+                mod.get("descrizione", "")
+            ) for mod in data["modificatori_speciali"]
+        ]
+        equipaggiamento.abilita_speciali = [
+            AbilitaSpeciale(
+                ab["nome"],
+                ab["descrizione"],
+                ab.get("costo_attivazione", 0),
+                ab.get("tipo_attivazione", "Automatica"),
+                ab.get("limitazioni", [])
+            ) for ab in data["abilita_speciali"]
+        ]
         
         # Compatibilità
         comp = data["compatibilita"]
@@ -610,7 +645,7 @@ if __name__ == "__main__":
     
     # Esempio 7: Equipaggiamento con fazioni_permesse specifica
     equipaggiamento_bauhaus = Equipaggiamento("Equipaggiamento Bauhaus", valore=2)
-    equipaggiamento_bauhaus.fazioni_permesse = Fazione.BAUHAUS
+    equipaggiamento_bauhaus.fazioni_permesse = [Fazione.BAUHAUS]
     equipaggiamento_bauhaus.modificatori_combattimento = 1
     equipaggiamento_bauhaus.testo_carta = "+1 Corpo a corpo. Solo per guerrieri Bauhaus."
     
