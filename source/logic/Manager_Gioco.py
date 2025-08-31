@@ -2221,10 +2221,11 @@ DISTRIBUZIONE_BASE = {
 
 # Ridistribuzione quando Oscura Simmetria e/o Arte non sono utilizzate
 RIDISTRIBUZIONE_PERCENTUALE = {
-    'equipaggiamento': 0.25,  # 40% della percentuale mancante
-    'speciale': 0.35,         # 40% della percentuale mancante
-    'reliquia': 0.20,          # 20% della percentuale mancante
-    'warzone': 0.20
+    'equipaggiamento': 0.20,  # 40% della percentuale mancante
+    'speciale': 0.30,         # 40% della percentuale mancante
+    'reliquia': 0.15,          # 20% della percentuale mancante
+    'warzone': 0.15,
+    'fortificazione': 0.20
 }
 
 # Fazioni Doomtrooper e Oscura Legione
@@ -2995,17 +2996,17 @@ class CreatoreMazzo:
             ridistribuzione_totale += distribuzione['oscura_simmetria']
             distribuzione['oscura_simmetria'] = 0
         
-        if not Set_Espansione.WARZONE in espansioni_richieste:
+        if not Set_Espansione.WARZONE.value in espansioni_richieste:
             ridistribuzione_totale += distribuzione['warzone']
             distribuzione['warzone'] = 0
             
-        if not Set_Espansione.INQUISITION in espansioni_richieste:
+        if not Set_Espansione.INQUISITION.value in espansioni_richieste:
             ridistribuzione_totale += distribuzione['inquisition']
             distribuzione['warzone'] = 0
         
         if ridistribuzione_totale > 0:
             # Ridistribuisci alle altre carte
-            if Set_Espansione.INQUISITION in espansioni_richieste:
+            if Set_Espansione.INQUISITION.value in espansioni_richieste:
                distribuzione['reliquia'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['reliquia'])
             
             if Set_Espansione.WARZONE in espansioni_richieste:
