@@ -181,6 +181,17 @@ class Equipaggiamento:
                 self.tipo == TipoEquipaggiamento.ARMA_SPECIALE)
     
 
+    def modifica_principale_effettuata(self) -> str:
+
+        if self.modificatori_combattimento >= self.modificatori_sparare:
+            return "combattimento"
+        elif self.modificatori_sparare > self.modificatori_combattimento:
+            return "sparare"
+        elif self.e_armatura() and self.modificatori_armatura != 0:
+            return "armatura"
+        else:
+            return "azioni"
+
     def puo_essere_assegnato_a_guerriero(self, guerriero: Any) -> Dict[str, Any]:
         """
         Controlla se l'equipaggiamento può essere assegnato al guerriero specificato

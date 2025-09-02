@@ -157,6 +157,41 @@ class Speciale:
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
     
+
+    def modifica_principale_effettuata(self) -> str:
+
+        combattimento = 0
+        sparare = 0
+        armatura = 0
+            
+        for effetto in self.effetti:
+        
+            tipo_effetto = effetto.tipo_effetto # es. "Modificatore", "Controllo", "Danno", etc.
+            valore = effetto.valore # valore numerico dell'effetto (se applicabile)
+            statistica_target = effetto.statistica_target # quale statistica viene modificata (C, S, A, V)
+
+            if tipo_effetto == "Modificatore" and statistica_target in ["combattimento", "sparare", "armatura"]:
+                                
+                if statistica_target == 'combattimento':
+                    combattimento = valore if valore > combattimento else combattimento
+                elif statistica_target == 'sparare':
+                    sparare = valore if valore > sparare else sparare
+                elif statistica_target == 'armatura':
+                    armatura = valore if valore > armatura else armatura
+                
+            else:
+                return 'azioni'   
+
+        if combattimento >= sparare and combattimento >= armatura:
+            result = 'combattimento'
+        elif sparare >= combattimento and sparare >= armatura:
+            result = 'sparare'
+        else:
+            result = 'armatura'
+        
+        return result
+            
+
     def get_costo_destino(self) -> int:
         """
         Restituisce il costo in Destiny Points per giocare questa carta
