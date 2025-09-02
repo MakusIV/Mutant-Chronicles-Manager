@@ -191,7 +191,6 @@ class Speciale:
         
         return result
             
-
     def get_costo_destino(self) -> int:
         """
         Restituisce il costo in Destiny Points per giocare questa carta
@@ -214,7 +213,6 @@ class Speciale:
         
         return fazione in self.fazioni_permesse
     
-
     def puo_essere_assegnato_a_guerriero(self, guerriero: Any) -> Dict[str, Any]:
         """
         Controlla se la carta speciale può essere assegnata al guerriero specificato
@@ -262,8 +260,7 @@ class Speciale:
             
 
         return risultato
-    
-    
+     
     def puo_essere_giocata(self, destiny_points: int = 0, 
                           fazione_giocatore: Optional[Fazione] = None,
                           timing_corrente: Optional[TimingSpeciale] = None,

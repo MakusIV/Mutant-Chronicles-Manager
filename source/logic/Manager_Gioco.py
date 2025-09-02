@@ -2424,6 +2424,8 @@ class CreatoreMazzo:
             
         return max_armatura
     
+
+
     def calcola_potenza_arte(self, arte: Arte) -> float:
         """
         Calcola la potenza relativa di una carta Arte
@@ -2433,46 +2435,10 @@ class CreatoreMazzo:
             
         Returns:
             float: Potenza relativa (0-1)
-        """
-        potenza = 0
-        
-        # Analizza effetti
-        for effetto in arte.effetti:
-            # Modificatori statistiche
-            if effetto.tipo_effetto == "Modificatore":
-                potenza += abs(effetto.valore)
-            
-            desc = effetto.descrizione.lower()
-            
-            # Effetti speciali
-            if 'ferisce' in desc and 'automaticamente' in desc:
-                potenza *= 1.4
-            elif 'uccide' in desc:
-                potenza *= 2.0
-            elif 'scarta' in desc and 'guerriero' in desc:
-                potenza = 1.5
-            elif 'scarta' in desc and any(x in desc for x in ['equipaggiamento', 'fortificazione', 'reliquia', 'warzone']):
-                potenza = 1.0
-        
-        # Default per effetti non contemplati
-        if potenza == 0:
-            potenza = 0.5
-        
-        # Normalizza
-        max_potenza = self._calcola_max_potenza_arte()
-        if max_potenza > 0:
-            return min(potenza / max_potenza, 1.0)
-        return 0.5
-    
-    def _calcola_max_potenza_arte(self) -> float:
-        """Calcola la potenza massima tra tutte le carte Arte"""
-        max_potenza = 0
-        
-        for arte in self.collezione.get_carte_per_tipo('arte'):
-            potenza = sum(abs(e.valore) for e in arte.effetti if e.tipo_effetto == "Modificatore")
-            max_potenza = max(max_potenza, potenza)
-            
-        return max_potenza if max_potenza > 0 else 1.0
+        """        
+        potenza = self._calcola_potenza_carta(arte)
+        return potenza
+
     
     def calcola_potenza_oscura_simmetria(self, oscura: Oscura_Simmetria) -> float:
         """
@@ -2625,6 +2591,165 @@ class CreatoreMazzo:
             
         return max_potenza if max_potenza > 0 else 1.0
     
+    
+    def calcola_potenza_speciale(self, speciale: Speciale) -> float:
+        """
+        Calcola la potenza relativa di una carta Speciale
+        
+        Args:
+            arte: Oggetto Speciale
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        
+        potenza = self._calcola_potenza_carta(speciale)
+        return potenza
+          
+        
+    def _calcola_potenza_carta_stats(self, carta: Any) -> float:
+        """
+        Calcola la potenza relativa alle statistiche di combattimento di una carta di supporto: Speciale, Arte e Oscura_Simmetria
+        
+        Args:
+            carta Oggetto Speciale, Arte e Oscura_Simmetria
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        
+        potenza = 0
+        # Analizza effetti statistiche
+        for effetto in carta.effetti:
+
+            tipo_effetto = effetto.tipo_effetto # es. "Modificatore", "Controllo", "Danno", etc.
+            valore = effetto.valore # valore numerico dell'effetto (se applicabile)
+            statistica_target = effetto.statistica_target # quale statistica viene modificata (C, S, A, V)
+            descrizione_effetto = effetto.descrizione_effetto #descrizione effetto: 'uccide', ferisce automaticamente', 'scarta guerriero' 'scarta carta'
+            desc = descrizione_effetto.lower()
+
+            if tipo_effetto == "Modificatore" and statistica_target in ["combattimento", "sparare", "armatura"] and valore > 0:
+                potenza += valore                     
+        
+        
+        # Normalizza
+        classe_carta = type(carta).__name__.lower()
+        max_potenza = self._calcola_max_potenza_carta_stats(classe_carta)
+        
+        if max_potenza > 0:
+            return min(potenza / max_potenza, 1.0)
+        
+        return 0.5
+        
+    def _calcola_max_potenza_carta_stats(self, classe: str) -> float:
+        """Calcola la potenza massima delle statistiche di combattimento tra tutte le carte della classe richiesta"""
+        max_potenza = 0
+
+        carte_collezione = self.collezione.get_carte_per_tipo(classe)
+        
+        for carta in carte_collezione:
+            
+            potenza = sum(abs(e.valore) for e in carta.effetti if e.tipo_effetto == "Modificatore" and e.statistica_target in ["combattimento", "sparare", "armatura"])
+            max_potenza = max(max_potenza, potenza)
+            
+        return max_potenza if max_potenza > 0 else 1.0
+    
+    def _calcola_potenza_carta_azioni(self, carta: Any) -> float:
+        """
+        Calcola la potenza relativa alle sazioni di una carta di supporto: Speciale, Arte e Oscura_Simmetria
+        
+        Args:
+            carta Oggetto Speciale, Arte e Oscura_Simmetria
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+    
+        potenza = 1.0
+        # Analizza effetti
+        for effetto in carta.effetti:
+
+            tipo_effetto = effetto.tipo_effetto # es. "Modificatore", "Controllo", "Danno", etc.
+            valore = effetto.valore # valore numerico dell'effetto (se applicabile)
+            statistica_target = effetto.statistica_target # quale statistica viene modificata (C, S, A, V)
+            descrizione_effetto = effetto.descrizione_effetto #descrizione effetto: 'uccide', ferisce automaticamente', 'scarta guerriero' 'scarta carta'
+            desc = descrizione_effetto.lower()
+                
+            if tipo_effetto == "Danno":
+                                
+                # Effetti speciali
+                if 'ferisce' in desc and 'automaticamente' in desc:
+                    potenza *= 1.4
+                elif 'uccide' in desc:
+                    potenza *= 2.0
+                elif 'scarta' in desc and 'guerriero' in desc:
+                    potenza = 1.5
+                elif 'scarta' in desc and any(x in desc for x in ['equipaggiamento', 'fortificazione', 'reliquia', 'warzone']):
+                    potenza = 1.0
+
+            elif tipo_effetto in ['Azione Combattimento', 'Azione Fase']: # Azione Fase, Azione Ogni Momento
+                potenza *= valore
+
+            elif tipo_effetto == 'Azione Ogni Momento':
+                potenza *= 2 * valore
+            
+        
+        # Normalizza
+        classe_carta = type(carta).__name__.lower()
+        max_potenza = self._calcola_max_potenza_carta_azioni(classe_carta)
+
+        if max_potenza > 0:
+            return min(potenza / max_potenza, 1.0)
+        return 0.5
+    
+    def _calcola_max_potenza_carta_azioni(self, classe: str) -> float:
+        """Calcola la potenza massima delle statistiche delle azioni tra tutte le carte della classe specificata"""
+        
+        max_potenza = 0        
+                
+        for carta in self.collezione.get_carte_per_tipo(classe):
+            potenza = 2.0 #valore massimo azioni Danno
+
+            for e in carta.effetti:
+                
+                if e.tipo_effetto == ["Azione Combattimento", "Azione Fase"]:
+                    potenza *= e.valore        
+                    
+                elif e.tipo_effetto == ["Azione Ogni Momento"]:
+                    potenza *= 2 * e.valore        
+            
+            max_potenza = max(max_potenza, potenza)
+            
+        return max_potenza if max_potenza > 0 else 1.0
+    
+    def _calcola_potenza_carta(self, carta: Any) -> float:
+        """
+        Calcola la potenza relativa di una carta (Speciale, Arte, Oscura_Simmetria)
+        
+        Args:
+            carta: Oggetto Speciale, Arte, Oscura_Simmetria
+            
+        Returns:
+            float: Potenza relativa (0-1)
+        """
+        
+        if not isinstance(carta, (Speciale, Arte, Oscura_Simmetria)):
+            raise TypeError(f"classe carta {type(carta).__name__} diversa da Speciale, Arte, Oscura_Simmetria")
+
+
+        potenza_statistiche_combattimento = self._calcola_potenza_carta_stats(carta)
+        potenza_azioni = self._calcola_potenza_carta_azioni(carta)
+
+        return potenza_statistiche_combattimento + potenza_azioni
+              
+    
+ 
+
+
+
+
+
+
     def filtra_carte_per_espansioni(self, carte: List[Any], espansioni_richieste: List[str]) -> List[Any]:
         """
         Filtra le carte per le espansioni richieste
@@ -2947,7 +3072,7 @@ class CreatoreMazzo:
             elif tipo_carta == 'warzone':
                 potenza = self.calcola_potenza_warzone(carta)
             elif tipo_carta == 'speciale':
-                potenza = 0.5  # Default per carte speciali NOTA: Definire il calcolo potenza per speciali
+                potenza = self.calcola_potenza_speciale(carta)  # Default per carte speciali NOTA: Definire il calcolo potenza per speciali
                 modifica_principale_effettuata = carta.modifica_principale_effettuata()
                 for modifica, percentuale in DISTRIBUZIONE_SPECIALE.items():
                     if modifica_principale_effettuata == modifica:
@@ -3115,69 +3240,6 @@ class CreatoreMazzo:
         
         return distribuzione
     
-    # non serve
-    def calcola_distribuzione_carte_supporto(self, 
-                                   numero_totale: int,
-                                   tipo_carta: str,                                   
-                                   carte: List[any],                                   
-                                   ) -> Dict[str, int]:
-        """
-        Calcola la distribuzione di uno specifico tipo di carte: Equipaggiamento, Speciale, Fortificazione ecc.
-        
-        Args:
-            numero_totale: Numero totale di carte
-            tipo_carta: Equipaggiamento, Speciale ecc. (class Name)
-            carte: lista delle carte
-            distribuzione: distribuzione delle carte 
-            
-        Returns:
-            Dizionario con numero di carte per distribuzione
-        """
-        DISTRIBUZIONE_EQUIPAGGIAMENTI = {
-            'combattimento':    0.25, 
-            'sparare':          0.25,
-            'armatura':         0.25,
-            'azioni':           0.125            
-        }
-
-        DISTRIBUZIONE_SPECIALI = {
-            'combattimento':    0.12,
-            'sparare':          0.12,
-            'armatura':         0.12,
-            'azioni':           0.64            
-        }
-
-        distribuzione_carte = {}
-        
-        if tipo_carta == 'Equipaggiamento':
-            distribuzione = DISTRIBUZIONE_EQUIPAGGIAMENTI
-            ridistribuzione = 'azioni'
-        
-        elif tipo_carta == 'Speciale':
-            distribuzione = DISTRIBUZIONE_SPECIALI
-            ridistribuzione = 'azioni'
-        
-        else:
-            raise ValueError("Tipo carta non supportato per la distribuzione")
-
-        # Calcola percentuali base
-        for tipo, percentuale in distribuzione.items():
-            distribuzione_carte[tipo] = int(numero_totale * percentuale)
-    
-
-        # Assicura che il totale sia corretto
-        totale_attuale = sum(distribuzione.values())
-        differenza = numero_totale - totale_attuale
-        
-        if differenza > 0:
-            distribuzione[ridistribuzione] += differenza
-        
-        elif differenza < 0:
-            # Riduci carte speciali se necessario
-            distribuzione[ridistribuzione] = max(0, distribuzione[ridistribuzione] - differenza)
-        
-        return distribuzione
-
 
 # ================================================================================
 # FUNZIONE PRINCIPALE
