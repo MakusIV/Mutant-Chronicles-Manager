@@ -87,7 +87,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Ilian Paladini": {
         "nome": "Ilian Paladini",
         "fazione": "Bauhaus",
-        "tipo": "Personalità",
+        "tipo": "Personalita",
         "rarity": "Rare",
         "set_espansione": "Base",
         "numero_carta": "03",
@@ -109,7 +109,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Leggendario comandante della Bauhaus, ispira coraggio nei suoi uomini.",
         "flavour_text": "Un vero leader non comanda dalla retroguardia.",
-        "keywords": ["Personalità", "Unico"],
+        "keywords": ["Personalita", "Unico"],
         "restrizioni": ["Un solo Ilian Paladini per squadra"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -184,7 +184,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Mitch Hunter": {
         "nome": "Mitch Hunter",
         "fazione": "Capitol",
-        "tipo": "Personalità",
+        "tipo": "Personalita",
         "rarity": "Ultra Rare",
         "set_espansione": "Base",
         "numero_carta": "11",
@@ -214,7 +214,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Il più grande cacciatore della Capitol, nemico giurato della Oscura Legione.",
         "flavour_text": "Alcuni nascono per cacciare. Altri per essere cacciati.",
-        "keywords": ["Personalità", "Unico", "Leggenda"],
+        "keywords": ["Personalita", "Unico", "Leggenda"],
         "restrizioni": ["Un solo Mitch Hunter per squadra"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -307,7 +307,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Max Steiner": {
         "nome": "Max Steiner",
         "fazione": "Cybertronic",
-        "tipo": "Personalità",
+        "tipo": "Personalita",
         "rarity": "Rare",
         "set_espansione": "Base",
         "numero_carta": "21",
@@ -329,7 +329,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Hacker leggendario della Cybertronic, maestro dell'infiltrazione digitale.",
         "flavour_text": "La mente umana è solo un altro sistema da hackerare.",
-        "keywords": ["Personalità", "Unico", "Hacker"],
+        "keywords": ["Personalita", "Unico", "Hacker"],
         "restrizioni": ["Un solo Max Steiner per squadra"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -413,7 +413,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Nathaniel Durand": {
         "nome": "Nathaniel Durand",
         "fazione": "Imperiale",
-        "tipo": "Personalità",
+        "tipo": "Personalita",
         "rarity": "Ultra Rare",
         "set_espansione": "Base",
         "numero_carta": "31",
@@ -443,7 +443,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Comandante supremo delle forze imperiali, stratega senza pari.",
         "flavour_text": "L'Impero non conosce sconfitta sotto la mia guida.",
-        "keywords": ["Personalità", "Unico", "Comandante Supremo"],
+        "keywords": ["Personalita", "Unico", "Comandante Supremo"],
         "restrizioni": ["Un solo Nathaniel Durand per squadra"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -536,7 +536,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Takashi Mugan": {
         "nome": "Takashi Mugan",
         "fazione": "Mishima",
-        "tipo": "Personalità",
+        "tipo": "Personalita",
         "rarity": "Rare",
         "set_espansione": "Base",
         "numero_carta": "41",
@@ -566,7 +566,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Leggendario maestro di spada della Mishima, invincibile nel duello.",
         "flavour_text": "La lama che non si vede è quella che uccide.",
-        "keywords": ["Personalità", "Unico", "Maestro di Spada"],
+        "keywords": ["Personalita", "Unico", "Maestro di Spada"],
         "restrizioni": ["Un solo Takashi Mugan per squadra"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -667,7 +667,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Cardinal Dominic": {
         "nome": "Cardinal Dominic",
         "fazione": Fazione.FRATELLANZA.value,
-        "tipo": "Personalità",
+        "tipo": "Personalita",
         "rarity": Rarity.ULTRA_RARE.value,
         "set_espansione": Set_Espansione.INQUISITION.value,
         "numero_carta": "I01",
@@ -706,7 +706,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Alto prelato della Fratellanza, campione della Luce contro le tenebre.",
         "flavour_text": "Dove cammino io, la Luce risplende eterna.",
-        "keywords": ["Personalità", "Unico", "Cardinale", "Sacro"],
+        "keywords": ["Personalita", "Unico", "Cardinale", "Sacro"],
         "restrizioni": ["Un solo Cardinal Dominic per squadra"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -766,32 +766,23 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
 
     # === LEGIONE OSCURA ===
-    "Necromutant": {
-        "nome": "Necromutant",
+    "Necromutante": {
+        "nome": "Necromutante",
         "fazione": "Oscura Legione",
         "tipo": "Seguace",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "60",
         "stats": {
-            "combattimento": 14,
-            "sparare": 12,
-            "armatura": 8,
+            "combattimento": 3,
+            "sparare": 3,
+            "armatura": 3,
             "valore": 4
         },
-        "abilita": [
-            {
-                "nome": "Non-Morto",
-                "descrizione": "Può ritornare in gioco dopo essere stato eliminato spendendo 2 Punti Destino",
-                "tipo": "Speciale",
-                "costo_destino": 2,
-                "target": "Self",
-                "timing": "Quando eliminato"
-            }
-        ],
-        "testo_carta": "Guerriero non-morto della Oscura Legione, rianimato per servire il Male.",
+        "abilita": [],
+        "testo_carta": "I Necromutanti sono guerrieri trasformati dalla malvagia Necrotecnologia. Essi agiscono come ufficiali comandanti dei Legionari nn Morti di Algeroth",
         "flavour_text": "La morte è solo l'inizio del servizio alle Potenze Oscure.",
-        "keywords": ["Non-Morto", "Corrotto", "Seguace di Algeroth"],
+        "keywords": ["Seguace di Algeroth"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -799,7 +790,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":9,
+        "quantita":7,
         "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
@@ -807,7 +798,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Nepharite of Algeroth": {
         "nome": "Nepharite of Algeroth",
         "fazione": "Oscura Legione",
-        "tipo": "Nepharite",
+        "tipo": "Seguace",
         "rarity": "Ultra Rare",
         "set_espansione": "Base",
         "numero_carta": "61",
@@ -934,11 +925,536 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
+    # Seguaci di Algeroth
+    "Eretico": {
+        "nome": "Eretico",
+        "fazione": "Oscura Legione",
+        "tipo": "Normale",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 2,
+            "armatura": 2,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "Puoi assegnare un DONO DELL'OSCURA SIMMETRIA agli Eretici man non un DONO DEGLI APOSTOLI",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":7,
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    "Billy": {
+        "nome": "Billy",
+        "fazione": "Oscura Legione",
+        "tipo": "Personalita",
+        "rarity": "Rare",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4,
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [
+            {
+                "nome": "Doni Apostoli",
+                "descrizione": "Spendendo 5D può ricevere un DONO DEGLI APOSTOLI",
+                "tipo": "Incantesimi",
+                "costo_destino": 5,
+                "target": "Tutto",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "Billy è considerato un Eretico. Egli può ricever DONI DELL'OSCURA SIMMETRIA e spendendo 5D può ricevere un DONO DEGLI APOSTOLI",
+        "flavour_text": "",
+        "keywords": ["Eretico", "Personalita"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":3,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    "Centurion": {
+        "nome": "Centurion",
+        "fazione": "Oscura Legione",
+        "tipo": "Normale",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4,
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [],
+        "testo_carta": "I Centurion sono soldati d'Elite trasformati dall'Oscura Simmetria per diventare i comandanti delle Legioni di Algeroth",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":2,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    "Pretorian Stalker": {
+        "nome": "Pretorian Stalker",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Rare",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 12,
+            "sparare": 3,
+            "armatura": 8,
+            "valore": 7
+        },
+        "abilita": [{
+                "nome": "Incremento Combattimento",
+                "descrizione": "Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Tutto",
+                "timing": ""
+            }],
+        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ad un Pretorian Stalker. Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":1,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    "Legionario Non Morto": {
+        "nome": "Legionario Non Morto",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 1,
+            "armatura": 2,
+            "valore": 2
+        },
+        "abilita": [],
+        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":6,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    # Seguaci di Muawijhe
+    "Legionario Urlante": {
+        "nome": "Legionario Urlante",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 2,
+            "armatura": 1,
+            "valore": 3
+        },
+        "abilita": [{
+                "nome": "Vento della Pazzia",
+                "descrizione": "Una volta a partita, al costo di 5D, puoi invocare il Vento della Pazzia.",
+                "tipo": "Incantesimi",
+                "costo_destino": 5,
+                "target": "Tutto",
+                "timing": "Una volta a partita"
+            }],
+        "testo_carta": "Una volta a partita, al costo di 5D, puoi invocare il Vento della Pazzia. Ogni Urlatore causa un Punto Danno, se sommandoli il totale è >= A, tutti i guerrieri in gioco sono Feriti. Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":5,
+        "quantita_minima_consigliata":4, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+    
+    "Zenithiano Assassino dell'Anima": {
+        "nome": "Zenithiano Assassino dell'Anima",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Rare",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 7,
+            "sparare": 2,
+            "armatura": 6,
+            "valore": 6
+        },
+        "abilita": [],
+        "testo_carta": "Alti oltre 3 metri, questi guerrieri enormi incitano le orde senza fine di Legionari Urlanti",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":2,
+        "quantita_minima_consigliata":2, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+    
+    # Seguaci di Demnogonis
+    "Nepharita di Demnogonis": {
+        "nome": "Nepharita di Demnogonis",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Rare",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 5,
+            "armatura": 2,
+            "valore": 5
+        },
+        "abilita": [
+            {
+                "nome": "Immunita",
+                "descrizione": "Immune agli effetti dell'Arte",
+                "tipo": "Incantesimi",
+                "costo_destino": 0,
+                "target": "",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Modificatore",
+                "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
+                "tipo": "Incantesimi",
+                "costo_destino": 1,
+                "target": "",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Guarigione",
+                "descrizione": "Se Ferito, il Nefarita  può guarire se stesso spendendo 7D",
+                "tipo": "Incantesimi",
+                "costo_destino": 7,
+                "target": "",
+                "timing": "Sempre"
+            }],
+        "testo_carta": "Immune agli effetti dell'Arte. Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.Se Ferito, il Nefarita  può guarire se stesso spendendo 7D",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":1,
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+   
+   "Tutore": {
+        "nome": "Tutore",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 4,
+            "armatura": 3,
+            "valore": 4
+        },
+        "abilita": [],
+        "testo_carta": "Con laLame Scalper e siringhe piene di veleni mortali, i Tutori sono ben lieti di dare ai feriti l'estrema unzione",
+        "flavour_text": "",
+        "keywords": ["Seguace di Demnogonis"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":3,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    "Legionario Benedetto": {
+        "nome": "Legionario Benedetto",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 3,
+            "armatura": 1,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            },],
+        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Benedetti. I guerrieri feriti dai Legionari Benedetti sono automaticamente morti.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Demnogonis", "Se ferisce, uccide automaticamente"],
+        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":7,
+        "quantita_minima_consigliata":4, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    # Seguaci di Ilian
+    "Figlio di Ilian": {
+        "nome": "Figlio di Ilian",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 1,
+            "sparare": 3,
+            "armatura": 2,
+            "valore": 2
+        },
+        "abilita": [],
+        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Figli di Ilian",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":10,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+    "Templare": {
+        "nome": "Templare",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Uncommon",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 7,
+            "armatura": 5,
+            "valore": 6
+        },
+        "abilita": [],
+        "testo_carta": "Le Guardie del Tempio di Ilian sono guerrieri estremamente potenti che pattugliano la Cittadella della Signora del Vuoto",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":5,
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    # Seguaci di Semai
+    "Intruso Callistoniano": {
+        "nome": "Intruso Callistoniano",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Uncommon",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4,
+            "armatura": 6,
+            "valore": 6
+        },
+        "abilita": [           
+            {
+                "nome": "Guarigione",
+                "descrizione": "Se Ferito, l'Intruso Callistoniano può guarire se stesso spendendo, in ogni momento, 6D",
+                "tipo": "Incantesimi",
+                "costo_destino": 7,
+                "target": "",
+                "timing": "Sempre"
+            }],
+        "testo_carta": "Se Ferito, l'Intruso Callistoniano può guarire se stesso spendendo, in ogni momento, 6D",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":4,
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    "Legionario di Semai": {
+        "nome": "Legionario di Semai",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 1,
+            "sparare": 2,
+            "armatura": 3,
+            "valore": 2
+        },
+        "abilita": [],
+        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari di Semai",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":11,
+        "quantita_minima_consigliata":2, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    "Nepharita di Semai": {
+        "nome": "Nepharita di Semai",
+        "fazione": "Oscura Legione",
+        "tipo": "Seguace",
+        "rarity": "Rare",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 4,
+            "armatura": 5,
+            "valore": 6
+        },
+        "abilita": [
+            {
+                "nome": "Immunita",
+                "descrizione": "Immune agli effetti dell'Arte",
+                "tipo": "Incantesimi",
+                "costo_destino": 0,
+                "target": "",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Trasformatore",
+                "descrizione": "I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto",
+                "tipo": "Incantesimi",
+                "costo_destino": 1,
+                "target": "Doomtrooper",
+                "timing": "Fase Combattimento"
+            },
+            {
+                "nome": "Guarigione",
+                "descrizione": "Se Ferito, il Nefarita  può guarire se stesso spendendo 7D",
+                "tipo": "Incantesimi",
+                "costo_destino": 7,
+                "target": "",
+                "timing": "Sempre"
+            }],
+        "testo_carta": "Immune agli effetti dell'Arte. I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto, esamina la tua Collezione e introduci un Legionario di Semai nel tuo Schieramento. Se non hai una carta per rappresentarlo, perdi questa possibilità",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False,
+            "pronto": True
+        },
+        "quantita":1,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
+        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
     # === FREELANCER ===
     "Agent Nick Michael": {
         "nome": "Agent Nick Michael",
         "fazione": "Freelancer",
-        "tipo": "Personalità",
+        "tipo": "Personalita",
         "rarity": "Uncommon",
         "set_espansione": "Base",
         "numero_carta": "70",
@@ -968,7 +1484,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Agente misterioso che lavora per tutti e per nessuno.",
         "flavour_text": "In guerra, l'informazione è più letale di qualsiasi arma.",
-        "keywords": ["Personalità", "Agente", "Doppio Gioco"],
+        "keywords": ["Personalita", "Agente", "Doppio Gioco"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -1411,7 +1927,7 @@ def get_guerrieri_per_tipo(tipo: str) -> List[str]:
     Restituisce tutti i guerrieri di un tipo specifico
     
     Args:
-        tipo: Tipo di guerriero (Normale, Personalità, Inquisitore, etc.)
+        tipo: Tipo di guerriero (Normale, Personalita, Inquisitore, etc.)
         
     Returns:
         Lista dei nomi dei guerrieri del tipo specificato
@@ -1420,8 +1936,8 @@ def get_guerrieri_per_tipo(tipo: str) -> List[str]:
             if data["tipo"] == tipo]
 
 def get_personalita() -> List[str]:
-    """Restituisce tutte le Personalità nel database"""
-    return get_guerrieri_per_tipo("Personalità")
+    """Restituisce tutte le Personalita nel database"""
+    return get_guerrieri_per_tipo("Personalita")
 
 def get_guerrieri_con_keyword(keyword: str) -> List[str]:
     """
@@ -1596,8 +2112,8 @@ def valida_database() -> Dict[str, List[str]]:
             errori["nomi_duplicati"].append(nome)
         nomi_visti.add(nome)
         
-        # Verifica personalità duplicate
-        if data["tipo"] == "Personalità":
+        # Verifica Personalita duplicate
+        if data["tipo"] == "Personalita":
             if nome in personalita_viste:
                 errori["personalita_duplicate"].append(nome)
             personalita_viste.add(nome)
@@ -1668,9 +2184,9 @@ if __name__ == "__main__":
     costosi = get_guerrieri_per_valore(10, None)
     print(f"Guerrieri costosi (valore ≥ 10): {len(costosi)} - {costosi}")
     
-    # Personalità
+    # Personalita
     personalita = get_personalita()
-    print(f"Personalità nel database: {len(personalita)} - {personalita[:3]}...")
+    print(f"Personalita nel database: {len(personalita)} - {personalita[:3]}...")
     
     # Guerrieri con keywords specifiche
     cyborg = get_guerrieri_con_keyword("Cyborg")
@@ -1745,7 +2261,7 @@ if __name__ == "__main__":
     print("✓ Espansioni Base, Inquisition, Warzone")
     print("✓ Statistiche 'sparare' invece di 'forza' errata")
     print("✓ Solo campo 'valore' per costo DP e punti promozione")
-    print("✓ Personalità e tipi di guerriero corretti")
+    print("✓ Personalita e tipi di guerriero corretti")
     print("✓ Funzioni di utilità avanzate per filtri e ricerche")
     print("✓ Compatibile con from_dict() per creazione istanze")
     print("✓ Validazione automatica del database")

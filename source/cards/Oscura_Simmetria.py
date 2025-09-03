@@ -152,9 +152,12 @@ class Oscura_Simmetria:
         # Deve essere della Fratellanza o fazione permessa
         if not self.puo_essere_associata_a_fazione(guerriero.fazione):
             risultato["puo_lanciare"] = False
-            risultato["errori"].append(f"Solo {[f.value for f in self.fazioni_permesse]} possono usare l'Arte")
+            risultato["errori"].append(f"Solo {[f.value for f in self.fazioni_permesse]} possono usare l'Oscura Simmetria")
     
-        
+        if self.tipo == TipoOscuraSimmetria.GENERICA and "Carte Oscura Simmetria non Assegnabili" in guerriero.restrizioni:
+            risultato["puo_lanciare"] = False
+            risultato["errori"].append(f"Il guerriero {guerriero.nome} non può usare le carte generiche dell'Oscura Simmetria")
+    
         # Verifica seguaci degli apostoli
         if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO:
             seguace_richiesto = f"Seguace di {self.apostolo_padre.value}"

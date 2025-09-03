@@ -91,7 +91,7 @@ NUMERO_CARTE_DISPONIBILI = {
     'Warzone': 11,
 }
 
-LIMITI_CARTE_COLLEZIONE = { # rappresentano i valori per nomi di guerriero consentti, considera che poi si aggiungono il numero minimo di copie per carta
+LIMITI_CARTE_COLLEZIONE = { # specifica il range del numero di carte per tipo da inserire nella collezione, considera che poi si aggiungono il numero minimo di copie per carta
             'Guerriero': {'min': 13 , 'max': 17 },
             'Equipaggiamento': {'min': 5 , 'max': 6  },
             'Speciale': {'min': 10 , 'max':   12},
@@ -101,7 +101,9 @@ LIMITI_CARTE_COLLEZIONE = { # rappresentano i valori per nomi di guerriero conse
             'Missione': {'min': 7 , 'max': 9  },
             'Reliquia': {'min': 5 , 'max': 7  },
             'Warzone': {'min': 5 , 'max': 6  },
-        }
+        } 
+
+MAX_COPIE_CARTA = 7 # Numero massimo di copie da inserire nella collezione per una specifica carta
 
 # percentuale distribuzione carte per collezione/mazzo gioco
 LIMITI_CARTE_MAZZO = {
@@ -133,19 +135,14 @@ class EnumJSONEncoder(json.JSONEncoder):
         return super().default(obj)
 
 
-class TipoCombinazioneFazionePerMazzo(Enum):
-    """Combinazioni di fazioni per collezioni orientate"""
-    FRATELLANZA_DOOMTROOPER_FREELANCER = ("Fratellanza", "Doomtrooper", "Freelancer")
-    FRATELLANZA_OSCURA_LEGIONE_FREELANCER = ("Fratellanza", "Oscura Legione", "Freelancer") 
-    DOOMTROOPER_OSCURA_LEGIONE_FREELANCER = ("Doomtrooper", "Oscura Legione", "Freelancer")
-
 
 
 class TipoCombinazioneFazione(Enum):
     """Combinazioni di fazioni per collezioni orientate"""
     FRATELLANZA_DOOMTROOPER_FREELANCER = ("Fratellanza", "Doomtrooper", "Freelancer")
-    FRATELLANZA_OSCURA_LEGIONE_FREELANCER = ("Fratellanza", "Oscura Legione", "Freelancer") 
+    # FRATELLANZA_OSCURA_LEGIONE_FREELANCER = ("Fratellanza", "Oscura Legione", "Freelancer") 
     DOOMTROOPER_OSCURA_LEGIONE_FREELANCER = ("Doomtrooper", "Oscura Legione", "Freelancer")
+    DOOMTROOPER_FREELANCER = ("Doomtrooper", "Freelancer")
 
 
 class StatisticheCollezione:
@@ -750,18 +747,17 @@ def seleziona_carte_casuali_per_tipo(
         
         # Determina quantità da aggiungere (1-3 copie)
         max_quantita_disponibile = min(
-            7,  # Massimo 7 copie per carta per collezione (considera mazzo max 5 carte e collezione di gioco: totale 25 carte). La quantità minima consigliata viene utilizzata per la creazione del mazzo
+            MAX_COPIE_CARTA,  # Massimo 7 copie per carta per collezione (considera mazzo max 5 carte e collezione di gioco: totale 25 carte). La quantità minima consigliata viene utilizzata per la creazione del mazzo
             dati_carta.get('quantita', 0) - QUANTITA_UTILIZZATE[nome_carta]
         )
-        
-        #if max_quantita_disponibile <= 0:
-            # Rimuovi carte non più disponibili
+
+        # rimuovi la carta dalle liste di selezione
         if nome_carta in carte_orientate:
             del carte_orientate[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
         if nome_carta in carte_generiche:
             del carte_generiche[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
-        #    continue
         
+        # calcola la quantita di copie da inserire nella collezione per una specifica carta        
         quantita = random.randint(1, max_quantita_disponibile)
         
         # Crea e aggiungi carte
@@ -904,34 +900,7 @@ def creazione_Collezione_Giocatore(
             else:               
                 
                 print("Impossibile assegnare orientamento unico, procedendo senza orientamento")
-        """
-        else:
-            guerrieri_espansioni = {}
-            for espansione in espansioni_valide:
-                guerrieri_espansioni.update( get_numero_guerrieri_per_set( espansione = espansioni ) )
-                
-                for nome, data in guerrieri_espansioni:
-                        numero_guerrieri[nome]=data['quantita']
 
-            numero_guerrieri = {}
-        """
-        """
-        min_carte = 0.9/( numero_giocatori )
-        max_carte = 1.1/( numero_giocatori )
-
-        limiti_carte = {
-            'Guerriero': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Guerriero']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Guerriero']) },
-            'Equipaggiamento': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Equipaggiamento']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Equipaggiamento']) },
-            'Speciale': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Speciale']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Speciale']) },
-            'Arte': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Arte']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Arte']) },
-            'Oscura Simmetria': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Oscura Simmetria']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Oscura Simmetria']) },
-            'Fortificazione': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Fortificazione']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Fortificazione']) },
-            'Missione': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Missione']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Missione']) },
-            'Reliquia': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Reliquia']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Reliquia']) },
-            'Warzone': {'min': int(min_carte * NUMERO_CARTE_DISPONIBILI['Warzone']) , 'max': int(max_carte * NUMERO_CARTE_DISPONIBILI['Warzone']) },
-        }
-        """
-        
 
         # Seleziona carte per ogni tipo
         

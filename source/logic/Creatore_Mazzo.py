@@ -295,8 +295,6 @@ class CreatoreMazzo:
             max_armatura = max(max_armatura, fort.bonus_armatura)
             
         return max_armatura
-    
-
 
     def calcola_potenza_arte(self, arte: Arte) -> float:
         """
@@ -310,7 +308,6 @@ class CreatoreMazzo:
         """        
         potenza = self._calcola_potenza_carta(arte)
         return potenza
-
     
     def calcola_potenza_oscura_simmetria(self, oscura: Oscura_Simmetria) -> float:
         """
@@ -464,7 +461,6 @@ class CreatoreMazzo:
             
         return max_potenza if max_potenza > 0 else 1.0
     
-    
     def calcola_potenza_speciale(self, speciale: Speciale) -> float:
         """
         Calcola la potenza relativa di una carta Speciale
@@ -478,8 +474,7 @@ class CreatoreMazzo:
         
         potenza = self._calcola_potenza_carta(speciale)
         return potenza
-          
-        
+                  
     def _calcola_potenza_carta_stats(self, carta: Any) -> float:
         """
         Calcola la potenza relativa alle statistiche di combattimento di una carta di supporto: Speciale, Arte e Oscura_Simmetria
@@ -1315,8 +1310,8 @@ def crea_mazzo_da_gioco(collezione: Any,
     # Verifica errori o avvisi
     errori = []
     
-    if len(squadra) < 5:
-        errori.append("ATTENZIONE: La squadra ha meno di 5 guerrieri (minimo richiesto dal regolamento)")
+    if len(squadra) + len(schieramento) < 5:
+        errori.append("ATTENZIONE: La squadra e lo schieramento hanno, complessivamentee, meno di 5 guerrieri")
     
     if statistiche['numero_totale_carte'] < numero_carte_min:
         errori.append(f"Il mazzo ha {statistiche['numero_totale_carte']} carte, meno del minimo richiesto ({numero_carte_min})")

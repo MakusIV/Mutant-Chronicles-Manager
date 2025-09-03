@@ -556,7 +556,7 @@ DATABASE_MISSIONI = {
         "bersaglio": "Proprio Guerriero",
         "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic", "Fratellanza"],
         "corporazioni_specifiche": [],
-        "restrizioni_guerriero": ["Personalità", "Eroe"],
+        "restrizioni_guerriero": ["Personalita", "Eroe"],
         "obiettivo": {
             "descrizione": "Uccidi 5 guerrieri senza morire",
             "tipo_obiettivo": "Uccidere",
@@ -572,10 +572,10 @@ DATABASE_MISSIONI = {
         },
         "set_espansione": "Base",
         "numero_carta": "M018",
-        "testo_carta": "Solo Personalità o Eroi. Uccidi 5 guerrieri senza morire in una singola partita. Ricompensa include Status Leggendario: +2 permanente a tutte le statistiche.",
+        "testo_carta": "Solo Personalita o Eroi. Uccidi 5 guerrieri senza morire in una singola partita. Ricompensa include Status Leggendario: +2 permanente a tutte le statistiche.",
         "flavour_text": "Quando la morte stessa si inchina al tuo cospetto, sei diventato una leggenda.",
         "keywords": ["Missione", "Epica", "Leggenda"],
-        "restrizioni": ["Solo Personalità o Eroi"],
+        "restrizioni": ["Solo Personalita o Eroi"],
         "condizioni_speciali": ["Il guerriero non deve mai morire durante la missione"],
         "quantita":9,
         "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo

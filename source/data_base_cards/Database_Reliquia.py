@@ -24,7 +24,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.IMPERIALE, Fazione.MISHIMA],
             "corporazioni_specifiche": [], # corporazioni_specifiche: List[str] = None # 'Solo Seguaci di <Apostolo>, 'Solo Doomtrooper', 'Solo Oscura Legione', 'Solo Eretici'
-            "tipi_guerriero": ["Doomtrooper", "Personalità", "Eroe"],
+            "tipi_guerriero": ["Doomtrooper", "Personalita", "Eroe"],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -69,7 +69,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Nepharite", "Centurion", "Personalità"],
+            "tipi_guerriero": ["Nepharite", "Centurion", "Personalita"],
             "keywords_richieste": ["Solo Seguaci di Algeroth"],
             "livello_minimo": 0
         },
@@ -125,7 +125,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Cybertronic"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalità"],
+            "tipi_guerriero": ["Doomtrooper", "Personalita"],
             "keywords_richieste": ["Cyborg", "Techno"],
             "livello_minimo": 0
         },
@@ -190,7 +190,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalità", "Cardinal"],
+            "tipi_guerriero": ["Doomtrooper", "Personalita", "Cardinal"],
             "keywords_richieste": ["Mystic"],
             "livello_minimo": 0
         },
@@ -314,7 +314,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Imperiale"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalità", "Ufficiale"],
+            "tipi_guerriero": ["Doomtrooper", "Personalita", "Ufficiale"],
             "keywords_richieste": ["Comando"],
             "livello_minimo": 0
         },
@@ -378,7 +378,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Bauhaus"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalità"],
+            "tipi_guerriero": ["Doomtrooper", "Personalita"],
             "keywords_richieste": ["Techno"],
             "livello_minimo": 0
         },
@@ -433,7 +433,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Mishima"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalità", "Samurai"],
+            "tipi_guerriero": ["Doomtrooper", "Personalita", "Samurai"],
             "keywords_richieste": ["Onore"],
             "livello_minimo": 0
         },
@@ -497,7 +497,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Capitol"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalità"],
+            "tipi_guerriero": ["Doomtrooper", "Personalita"],
             "keywords_richieste": ["Veterano"],
             "livello_minimo": 0
         },
@@ -562,7 +562,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Nepharite", "Centurion", "Personalità"],
+            "tipi_guerriero": ["Nepharite", "Centurion", "Personalita"],
             "keywords_richieste": ["Oscuro"],
             "livello_minimo": 0
         },
@@ -634,7 +634,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic", "Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Personalità", "Eroe"],
+            "tipi_guerriero": ["Personalita", "Eroe"],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -691,7 +691,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalità"],
+            "tipi_guerriero": ["Doomtrooper", "Personalita"],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -912,7 +912,7 @@ def get_reliquie_per_tipo_guerriero(tipo_guerriero: str) -> Dict[str, Dict[str, 
     Restituisce reliquie assegnabili a un tipo specifico di guerriero
     
     Args:
-        tipo_guerriero: Tipo di guerriero ("Doomtrooper", "Personalità", etc.)
+        tipo_guerriero: Tipo di guerriero ("Doomtrooper", "Personalita", etc.)
     
     Returns:
         Dizionario con le reliquie assegnabili al tipo
@@ -1143,8 +1143,8 @@ if __name__ == "__main__":
     # Esempio 8: Reliquie per tipo di guerriero
     print(f"\n=== RELIQUIE PER TIPO GUERRIERO ===")
     
-    reliquie_personalita = get_reliquie_per_tipo_guerriero("Personalità")
-    print(f"Reliquie per Personalità: {len(reliquie_personalita)}")
+    reliquie_personalita = get_reliquie_per_tipo_guerriero("Personalita")
+    print(f"Reliquie per Personalita: {len(reliquie_personalita)}")
     for nome in list(reliquie_personalita.keys())[:3]:  # Solo primi 3
         print(f"  - {nome}")
     
@@ -1203,7 +1203,7 @@ if __name__ == "__main__":
     print("✓ Compatibilità verificata con sistema fazioni/keywords")
     print("✓ Database bilanciato con reliquie per tutte le fazioni")
     print("✓ Reliquie speciali per Oscura Legione e Fratellanza")
-    print("✓ Reliquie universali per Personalità ed Eroi")
+    print("✓ Reliquie universali per Personalita ed Eroi")
 
 
 # Funzioni avanzate per il bilanciamento e la gestione del gioco

@@ -32,11 +32,9 @@ class Fazione(Enum):
 class TipoGuerriero(Enum):
     """Tipi di guerriero"""
     NORMALE = "Normale"
-    PERSONALITA = "Personalità"  # Corretto encoding
+    PERSONALITA = "Personalita"  # Corretto encoding
     WARLORD = "Warlord"
-    SEGUACE = "Seguace"
-    NEPHARITE = "Nepharite"
-    CENTURION = "Centurion"
+    SEGUACE = "Seguace"    
     APOSTOLO = "Apostolo"
     INQUISITORE = "Inquisitore"
     CACCIATORE_OSCURO = "Cacciatore Oscuro"
