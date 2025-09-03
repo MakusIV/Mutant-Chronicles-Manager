@@ -1,0 +1,765 @@
+{
+  "metadata": {
+    "versione": "2.0",
+    "tipo_export": "collezioni_dettagliate",
+    "data_creazione": "2025-09-03T12:15:11.466402",
+    "numero_collezioni": 2,
+    "descrizione": "Export dettagliato collezioni con inventari completi e statistiche per fazione"
+  },
+  "statistiche_aggregate": {
+    "panoramica_generale": {
+      "numero_collezioni": 2,
+      "totale_carte": 79,
+      "totale_valore_dp": 91,
+      "media_carte_per_collezione": 39.5,
+      "media_valore_per_collezione": 45.5
+    },
+    "riepilogo_collezioni": [
+      {
+        "id_giocatore": 1,
+        "totale_carte": 48,
+        "valore_dp": 60,
+        "orientamento": {
+          "attivo": true,
+          "fazioni": [
+            "Fratellanza",
+            "Bauhaus",
+            "Capitol",
+            "Imperiale",
+            "Mishima",
+            "Cybertronic",
+            "Freelancer"
+          ]
+        }
+      },
+      {
+        "id_giocatore": 2,
+        "totale_carte": 31,
+        "valore_dp": 31,
+        "orientamento": {
+          "attivo": true,
+          "fazioni": [
+            "Fratellanza",
+            "Oscura Legione",
+            "Freelancer"
+          ]
+        }
+      }
+    ],
+    "distribuzione_orientamenti": {
+      "Bauhaus, Capitol, Cybertronic, Fratellanza, Freelancer, Imperiale, Mishima": 1,
+      "Fratellanza, Freelancer, Oscura Legione": 1
+    },
+    "distribuzione_globale": {
+      "per_tipo": {
+        "guerrieri": 53,
+        "equipaggiamenti": 4,
+        "arte": 12,
+        "oscura_simmetria": 10
+      },
+      "per_fazione": {
+        "Mishima": 4,
+        "Freelancer": 9,
+        "Cybertronic": 9,
+        "Imperiale": 8,
+        "Fratellanza": 6,
+        "Bauhaus": 8,
+        "Capitol": 9
+      },
+      "per_rarity": {
+        "Uncommon": 40,
+        "Common": 9,
+        "Rare": 30
+      },
+      "per_set": {
+        "Warzone": 79
+      }
+    }
+  },
+  "collezioni_dettagliate": [
+    {
+      "id_giocatore": 1,
+      "orientamento": {
+        "attivo": true,
+        "fazioni": [
+          "Fratellanza",
+          "Bauhaus",
+          "Capitol",
+          "Imperiale",
+          "Mishima",
+          "Cybertronic",
+          "Freelancer"
+        ]
+      },
+      "carte_per_tipo": {
+        "guerriero": {
+          "totale_carte": 32,
+          "carte_uniche": 7,
+          "dettaglio_carte": {
+            "Mishima Ninja": {
+              "nome": "Mishima Ninja",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Mishima",
+              "statistiche": {
+                "combattimento": 13,
+                "sparare": 12,
+                "armatura": 15,
+                "valore": 5
+              },
+              "testo_carta": "Guerriero ombra della Mishima, maestro delle arti marziali segrete.",
+              "keywords": [
+                "Ninja",
+                "Stealth"
+              ]
+            },
+            "Dark Eden Tribesman": {
+              "nome": "Dark Eden Tribesman",
+              "quantita": 7,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Freelancer",
+              "statistiche": {
+                "combattimento": 10,
+                "sparare": 11,
+                "armatura": 12,
+                "valore": 3
+              },
+              "testo_carta": "Guerriero tribale di Dark Eden, adattato alla vita sul pianeta maledetto.",
+              "keywords": [
+                "Tribale",
+                "Selvaggio"
+              ]
+            },
+            "Cyber Assassin": {
+              "nome": "Cyber Assassin",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Cybertronic",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 16,
+                "armatura": 13,
+                "valore": 7
+              },
+              "testo_carta": "Assassino cyber-potenziato specializzato nell'eliminazione silenziosa.",
+              "keywords": [
+                "Cyborg",
+                "Assassino",
+                "Stealth"
+              ]
+            },
+            "Warzone Lieutenant": {
+              "nome": "Warzone Lieutenant",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Imperiale",
+              "statistiche": {
+                "combattimento": 13,
+                "sparare": 14,
+                "armatura": 11,
+                "valore": 7
+              },
+              "testo_carta": "Ufficiale veterano delle zone di guerra più pericolose.",
+              "keywords": [
+                "Ufficiale",
+                "Veterano"
+              ]
+            },
+            "Brotherhood Templar": {
+              "nome": "Brotherhood Templar",
+              "quantita": 5,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 12,
+                "armatura": 12,
+                "valore": 8
+              },
+              "testo_carta": "Templare della Fratellanza, guerriero sacro nella lotta contro il Male.",
+              "keywords": [
+                "Templare",
+                "Sacro"
+              ]
+            },
+            "Heavy Tank Commander": {
+              "nome": "Heavy Tank Commander",
+              "quantita": 6,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 12,
+                "sparare": 16,
+                "armatura": 12,
+                "valore": 8
+              },
+              "testo_carta": "Comandante di carri armati pesanti, specialista nella guerra corazzata.",
+              "keywords": [
+                "Veicolo",
+                "Comandante",
+                "Corazzato"
+              ]
+            },
+            "Capitol Air Cavalry": {
+              "nome": "Capitol Air Cavalry",
+              "quantita": 7,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Capitol",
+              "statistiche": {
+                "combattimento": 11,
+                "sparare": 15,
+                "armatura": 14,
+                "valore": 6
+              },
+              "testo_carta": "Cavalleria aerea della Capitol, domina i cieli del campo di battaglia.",
+              "keywords": [
+                "Aereo",
+                "Cavalleria"
+              ]
+            }
+          }
+        },
+        "equipaggiamento": {
+          "totale_carte": 3,
+          "carte_uniche": 1,
+          "dettaglio_carte": {
+            "Armatura Powered": {
+              "nome": "Armatura Powered",
+              "quantita": 3,
+              "tipo": "Equipaggiamento",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 8,
+              "testo_carta": "+6 Armatura, +2 Combattimento, +1 Movimento. Immune a ambienti ostili.",
+              "keywords": [
+                "Armatura",
+                "Powered",
+                "Avanzata",
+                "Servo-Motori"
+              ]
+            }
+          }
+        },
+        "arte": {
+          "totale_carte": 8,
+          "carte_uniche": 2,
+          "dettaglio_carte": {
+            "Void Protection": {
+              "nome": "Void Protection",
+              "quantita": 4,
+              "tipo": "Arte",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 2,
+              "testo_carta": "Il guerriero bersaglio è immune a tutti gli effetti delle carte della Legione Oscura.",
+              "keywords": [
+                "Protezione",
+                "Anti-Legione",
+                "Tecnologico"
+              ]
+            },
+            "Mass Conversion": {
+              "nome": "Mass Conversion",
+              "quantita": 4,
+              "tipo": "Arte",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 4,
+              "testo_carta": "Fino alla fine del turno, tutti i guerrieri in gioco sono considerati della Fratellanza.",
+              "keywords": [
+                "Conversione",
+                "Massa",
+                "Controllo"
+              ]
+            }
+          }
+        },
+        "oscura_simmetria": {
+          "totale_carte": 5,
+          "carte_uniche": 2,
+          "dettaglio_carte": {
+            "Corruzione Maggiore": {
+              "nome": "Corruzione Maggiore",
+              "quantita": 3,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 2,
+              "testo_carta": "Assegna al bersaglio. -2 Combattimento permanente. Può diffondersi.",
+              "keywords": [
+                "Corruzione",
+                "Diffusione"
+              ]
+            },
+            "Campo di Distorsione": {
+              "nome": "Campo di Distorsione",
+              "quantita": 2,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 3,
+              "testo_carta": "Rimane in gioco. Tutti i movimenti costano 1 azione aggiuntiva. I tuoi guerrieri sono immuni.",
+              "keywords": [
+                "Mutazione",
+                "Globale",
+                "Movimento"
+              ]
+            }
+          }
+        }
+      },
+      "statistiche_fazioni": {
+        "Mishima": {
+          "totale_carte": 1,
+          "guerrieri": 1,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Mishima Ninja": 1
+          },
+          "tipi_carte": {
+            "guerriero": 1
+          }
+        },
+        "Freelancer": {
+          "totale_carte": 7,
+          "guerrieri": 7,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Dark Eden Tribesman": 7
+          },
+          "tipi_carte": {
+            "guerriero": 7
+          }
+        },
+        "Cybertronic": {
+          "totale_carte": 3,
+          "guerrieri": 3,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Cyber Assassin": 3
+          },
+          "tipi_carte": {
+            "guerriero": 3
+          }
+        },
+        "Imperiale": {
+          "totale_carte": 3,
+          "guerrieri": 3,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Warzone Lieutenant": 3
+          },
+          "tipi_carte": {
+            "guerriero": 3
+          }
+        },
+        "Fratellanza": {
+          "totale_carte": 5,
+          "guerrieri": 5,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Brotherhood Templar": 5
+          },
+          "tipi_carte": {
+            "guerriero": 5
+          }
+        },
+        "Bauhaus": {
+          "totale_carte": 6,
+          "guerrieri": 6,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Heavy Tank Commander": 6
+          },
+          "tipi_carte": {
+            "guerriero": 6
+          }
+        },
+        "Capitol": {
+          "totale_carte": 7,
+          "guerrieri": 7,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Capitol Air Cavalry": 7
+          },
+          "tipi_carte": {
+            "guerriero": 7
+          }
+        }
+      },
+      "totali": {
+        "carte_totali": 48,
+        "valore_totale_dp": 60,
+        "carte_uniche": 12
+      }
+    },
+    {
+      "id_giocatore": 2,
+      "orientamento": {
+        "attivo": true,
+        "fazioni": [
+          "Fratellanza",
+          "Oscura Legione",
+          "Freelancer"
+        ]
+      },
+      "carte_per_tipo": {
+        "guerriero": {
+          "totale_carte": 21,
+          "carte_uniche": 7,
+          "dettaglio_carte": {
+            "Cyber Assassin": {
+              "nome": "Cyber Assassin",
+              "quantita": 6,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Cybertronic",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 16,
+                "armatura": 13,
+                "valore": 7
+              },
+              "testo_carta": "Assassino cyber-potenziato specializzato nell'eliminazione silenziosa.",
+              "keywords": [
+                "Cyborg",
+                "Assassino",
+                "Stealth"
+              ]
+            },
+            "Brotherhood Templar": {
+              "nome": "Brotherhood Templar",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 15,
+                "sparare": 12,
+                "armatura": 12,
+                "valore": 8
+              },
+              "testo_carta": "Templare della Fratellanza, guerriero sacro nella lotta contro il Male.",
+              "keywords": [
+                "Templare",
+                "Sacro"
+              ]
+            },
+            "Capitol Air Cavalry": {
+              "nome": "Capitol Air Cavalry",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Capitol",
+              "statistiche": {
+                "combattimento": 11,
+                "sparare": 15,
+                "armatura": 14,
+                "valore": 6
+              },
+              "testo_carta": "Cavalleria aerea della Capitol, domina i cieli del campo di battaglia.",
+              "keywords": [
+                "Aereo",
+                "Cavalleria"
+              ]
+            },
+            "Mishima Ninja": {
+              "nome": "Mishima Ninja",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Mishima",
+              "statistiche": {
+                "combattimento": 13,
+                "sparare": 12,
+                "armatura": 15,
+                "valore": 5
+              },
+              "testo_carta": "Guerriero ombra della Mishima, maestro delle arti marziali segrete.",
+              "keywords": [
+                "Ninja",
+                "Stealth"
+              ]
+            },
+            "Warzone Lieutenant": {
+              "nome": "Warzone Lieutenant",
+              "quantita": 5,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Imperiale",
+              "statistiche": {
+                "combattimento": 13,
+                "sparare": 14,
+                "armatura": 11,
+                "valore": 7
+              },
+              "testo_carta": "Ufficiale veterano delle zone di guerra più pericolose.",
+              "keywords": [
+                "Ufficiale",
+                "Veterano"
+              ]
+            },
+            "Dark Eden Tribesman": {
+              "nome": "Dark Eden Tribesman",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Freelancer",
+              "statistiche": {
+                "combattimento": 10,
+                "sparare": 11,
+                "armatura": 12,
+                "valore": 3
+              },
+              "testo_carta": "Guerriero tribale di Dark Eden, adattato alla vita sul pianeta maledetto.",
+              "keywords": [
+                "Tribale",
+                "Selvaggio"
+              ]
+            },
+            "Heavy Tank Commander": {
+              "nome": "Heavy Tank Commander",
+              "quantita": 2,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 12,
+                "sparare": 16,
+                "armatura": 12,
+                "valore": 8
+              },
+              "testo_carta": "Comandante di carri armati pesanti, specialista nella guerra corazzata.",
+              "keywords": [
+                "Veicolo",
+                "Comandante",
+                "Corazzato"
+              ]
+            }
+          }
+        },
+        "equipaggiamento": {
+          "totale_carte": 1,
+          "carte_uniche": 1,
+          "dettaglio_carte": {
+            "Armatura Powered": {
+              "nome": "Armatura Powered",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 8,
+              "testo_carta": "+6 Armatura, +2 Combattimento, +1 Movimento. Immune a ambienti ostili.",
+              "keywords": [
+                "Armatura",
+                "Powered",
+                "Avanzata",
+                "Servo-Motori"
+              ]
+            }
+          }
+        },
+        "arte": {
+          "totale_carte": 4,
+          "carte_uniche": 2,
+          "dettaglio_carte": {
+            "Void Protection": {
+              "nome": "Void Protection",
+              "quantita": 2,
+              "tipo": "Arte",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 2,
+              "testo_carta": "Il guerriero bersaglio è immune a tutti gli effetti delle carte della Legione Oscura.",
+              "keywords": [
+                "Protezione",
+                "Anti-Legione",
+                "Tecnologico"
+              ]
+            },
+            "Mass Conversion": {
+              "nome": "Mass Conversion",
+              "quantita": 2,
+              "tipo": "Arte",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 4,
+              "testo_carta": "Fino alla fine del turno, tutti i guerrieri in gioco sono considerati della Fratellanza.",
+              "keywords": [
+                "Conversione",
+                "Massa",
+                "Controllo"
+              ]
+            }
+          }
+        },
+        "oscura_simmetria": {
+          "totale_carte": 5,
+          "carte_uniche": 2,
+          "dettaglio_carte": {
+            "Corruzione Maggiore": {
+              "nome": "Corruzione Maggiore",
+              "quantita": 4,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Uncommon",
+              "set_espansione": "Warzone",
+              "valore_dp": 2,
+              "testo_carta": "Assegna al bersaglio. -2 Combattimento permanente. Può diffondersi.",
+              "keywords": [
+                "Corruzione",
+                "Diffusione"
+              ]
+            },
+            "Campo di Distorsione": {
+              "nome": "Campo di Distorsione",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Rare",
+              "set_espansione": "Warzone",
+              "valore_dp": 3,
+              "testo_carta": "Rimane in gioco. Tutti i movimenti costano 1 azione aggiuntiva. I tuoi guerrieri sono immuni.",
+              "keywords": [
+                "Mutazione",
+                "Globale",
+                "Movimento"
+              ]
+            }
+          }
+        }
+      },
+      "statistiche_fazioni": {
+        "Cybertronic": {
+          "totale_carte": 6,
+          "guerrieri": 6,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Cyber Assassin": 6
+          },
+          "tipi_carte": {
+            "guerriero": 6
+          }
+        },
+        "Fratellanza": {
+          "totale_carte": 1,
+          "guerrieri": 1,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Brotherhood Templar": 1
+          },
+          "tipi_carte": {
+            "guerriero": 1
+          }
+        },
+        "Capitol": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Capitol Air Cavalry": 2
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        },
+        "Mishima": {
+          "totale_carte": 3,
+          "guerrieri": 3,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Mishima Ninja": 3
+          },
+          "tipi_carte": {
+            "guerriero": 3
+          }
+        },
+        "Imperiale": {
+          "totale_carte": 5,
+          "guerrieri": 5,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Warzone Lieutenant": 5
+          },
+          "tipi_carte": {
+            "guerriero": 5
+          }
+        },
+        "Freelancer": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Dark Eden Tribesman": 2
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        },
+        "Bauhaus": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Heavy Tank Commander": 2
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        }
+      },
+      "totali": {
+        "carte_totali": 31,
+        "valore_totale_dp": 31,
+        "carte_uniche": 12
+      }
+    }
+  ]
+}
