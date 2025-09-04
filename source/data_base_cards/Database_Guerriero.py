@@ -1087,7 +1087,601 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
+    "Karnofago": {
+        "nome": "Karnofago",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 2,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "SEGUACE DI ALGEROTH. Ogni Karnofago nel tuo Schieramento ucciderà automaticamente un guerriero ferito in gioco (mai un Nefaria) durante la fase SCARTARE. Non vengono guadagnati punti. Se non vi sono guerrieri feriti, il Karnofago viene scartato. L'avversario, in questo caso, non guadagna punti.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 3,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": False
+    },
+    
+    "Mietitori di anime": {
+        "nome": "Mietitori di anime",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 8,
+            "sparare": 3, 
+            "armatura": 6,
+            "valore": 6
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "SEGUACE DI ALGEROTH. CONSIDERATO UN ERETICO. Guerrieri feriti da Mietitori in combattimento Corpo a Corpo (C) sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth", "Eretico"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Destroyer": {
+        "nome": "Destroyer",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 7,
+            "sparare": 7, 
+            "armatura": 7,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "SEGUACE DI ALGEROTH. CONSIDERATO UN ERETICO. Guerrieri feriti dal Destroyer sono automaticamente morti e permanentemente rimossi dal gioco.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth", "Eretico"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": False
+    },
+ 
+    "Brass apocalypt": {
+        "nome": "Brass apocalypt",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 6,
+            "sparare": 13, 
+            "armatura": 10,
+            "valore": 7
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ALGEROTH. Quando lo inserisci in gioco, assegna un guerriero del tuo schieramento, con un caratteristica V di 6 o meno, all'Apocalypt. Da questo momento il guerriero non potrà più essere attaccato; se dovesse morire o essere scartato, anche l'Apocalypt verrà scartato senza far guadagnare punti all'avversario. L'Apocalypt può attaccare o essere attaccato normalmente.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 3,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": False
+    },
+    
+    "Technomancer": {
+        "nome": "Technomancer",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ALGEROTH. CONSIDERATO UN ERETICO. I Technomancer possono essere equipaggiati con ogni tipo di carta indipendentemente dall'icona di legame.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth", "Eretico"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+ 
+    "Eaonian justifier": {
+        "nome": "Eaonian justifier",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 10
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ALGEROTH. Non può mai partecipare a un combattimento, o andare in copertura. Se qualcuno dei tuoi seguaci di Algeroth viene ucciso da un Doomtrooper e sopravvive al combattimento non IMPRIGIONARLO, le carte associate al guerriero imprigionato sono scartate. I prigionieri non possono attaccare e non possono essere attaccati. Se il Justifier è scartato tutti i suoi prigionieri tornano alla loro Squadra.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Maculator di mercurio": {
+        "nome": "Maculator di mercurio",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 8,
+            "sparare": 14, 
+            "armatura": 6,
+            "valore": 6
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ALGEROTH. Può essere assegnato al tuo schieramento solo se hai una WARZONE di MERCURIO in gioco. Se tutte le WARZONE di MERCURIO vengono scartate, anche i Maculator saranno scartati. L'avversario, in questo caso, non guadagna punti.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": ["Assegnabile solo se hai una WARZONE di MERCURIO"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 5,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Progenie immacolata": {
+        "nome": "Progenie immacolata",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 9, 
+            "armatura": 6,
+            "valore": 6
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ALGEROTH. Quando una Progenie uccide un Doomtrooper, tu puoi immediatamente rimpiazzarla con una Furia Immacolata della tua collezione. Tutte le carte assegnate alla Progenie rimangono assegnate alla Furia Immacolata.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 6,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Bio gigante": {
+        "nome": "Bio gigante",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 22,
+            "sparare": 14, 
+            "armatura": 26,
+            "valore": 20
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ALGEROTH. Non può attaccare più di una volta per turno. Questi guerrieri non possono ricevere carte dell'Oscura Simmetria o Equipaggiamenti, inoltre, non guadagnano i Bonus delle Fortificazioni. Solo l'avversario può giocare carte Speciali sul Bio Gigante.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": ["Carte Oscura Simmetria non Assegnabili", "Può attaccare solo una volta per turno", "Equipaggiamenti non assegnabili", "Non guadagnano bonus Fortificazione", "Carte Speciale non giocabili su di esso"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Algeroth-apostolo della guerra": {
+        "nome": "Algeroth-apostolo della guerra",
+        "fazione": "Oscura Legione", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 20
+        },
+        "abilita": [{
+                "nome": "Assegna carte Equipaggiamento",
+                "descrizione": "Equipaggia qualsiasi guerriero dell'Oscura Legione",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Guerrieri Oscura Legione",
+                "timing": "Ogni Momento"
+                },
+                {
+                "nome": "Scarta Carte",
+                "descrizione": "Può scartare qualsiasi carta in gioco al costo di tre azioni",
+                "tipo": "Scarta Carte",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Turno"
+                },],
+        "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, tutti i Tuoi guerrieri dell'Oscura Legione possono essere equipaggiati in ogni momento e senza spendere Azioni, con qualsiasi carta Equipaggiamento, senza limiti di Legame. Algeroth può scartare una qualsiasi carta Equipaggiamento in gioco, al costo di tre Azioni.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Cultista di Algeroth": {
+        "nome": "Cultista di algeroth",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ALGEROTH. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth", "Eretico", "Cultista di Algeroth"],
+        "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Valpurgius": {
+        "nome": "Valpurgius",
+        "fazione": "Oscura Legione", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 7,
+            "valore": 8
+        },
+        "abilita": [{
+                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
+                "descrizione": "Equipaggia qualsiasi seguace di Algeroth",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Seguaci di ALgeroth",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
+                "tipo": "Incantesimi",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Turno"
+            },],
+        "testo_carta": "PERSONALITA. SEGUACE E NEFARIA DI ALGEROTH. Valpurgius è l'Arcimago di Alakhai, può equipaggiare qualsiasi SEGUACE DI ALGEROTH con qualsiasi carta dell'Oscura Simmetria in ogni momento, senza spendere Azioni. Può manipolare l'Arte e lanciare qualsiasi incantesimo dell'Arte.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth", "Nefarita"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Tekron": {
+        "nome": "Tekron",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 3,
+            "valore": 6
+        },
+        "abilita": [{
+                "nome": "Sostituisce Eretici",
+                "descrizione": "Può sostituire un Eretico con un Seguace di Algeroth al costo di tre azioni",
+                "tipo": "Sostituzione Guerrieri",
+                "costo_destino": 0,
+                "target": "Eretici",
+                "timing": "Turno"
+            }],
+        "testo_carta": "SEGUACE DI ALGEROTH. Mentre è in gioco, al costo di tre Azioni, il Tekron può sostituire un Eretico con qualsiasi SEGUACE DI ALGEROTH non Personalità della Tua Collezione. Devi pagare il costo V del nuovo guerriero e devi rimuovere dal gioco l'Eretico.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 5,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Cacciatore oscuro": {
+        "nome": "Cacciatore oscuro",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 5, 
+            "armatura": 5,
+            "valore": 6
+        }, 
+        "abilita": [
+            {
+                "nome": "Ataccabile solo dalla Fratellanza",
+                "descrizione": "Solo i membri della Fratellamza possono attaccarlo con penalità in A di -1",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "SEGUACE DI ALGEROTH. I membri delle cinque Corporazioni non possono Attaccare il Cacciatore, ma i guerrieri della Fratellanza possono. Se Attaccati i Doomtrooper hanno un -1 in A quando combattono contro un Cacciatore Oscuro.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 4,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Golem dell'oscurità": {
+        "nome": "Golem dell'oscurità",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 6,
+            "sparare": 5, 
+            "armatura": 7,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Guarigione",
+                "descrizione": "Se ferito, può guarire se stesso. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.",
+                "tipo": "Incantesimi",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "SEGUACE DI ALGEROTH. Il Golem non può ricevere nessuna carta dell'Oscura Simmetria. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+
     # Seguaci di Muawijhe
+    "Muawijhe-signore dei sogni": {
+        "nome": "Muawijhe-signore dei sogni",
+        "fazione": "Oscura Legione", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 20
+        },
+        "abilita": [
+            {
+                "nome": "Attaccare per primi",
+                "descrizione": "I guerrieri dell'Oscura Legione possono Attaccare per primi i loro avversari in combattimento",
+                "tipo": "Combattimento",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Turno"
+            },
+        ],
+        "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, tutti i guerrieri dell'Oscura Legione possono Attaccare per primi i loro avversari in combattimento. Se l'avversario sopravvive, può rispondere ai colpi.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Comandante zenithiano": {
+        "nome": "Comandante zenithiano",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 9,
+            "sparare": 2, 
+            "armatura": 4,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "SEGUACE DI MUAWIJHE. Considerato un ASSASSINO DELL'ANIMA ZENITHIANO. Mentre è in gioco, i guerrieri feriti dagli ASSASSINI DELL'ANIMA ZENITHIANI sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
     "Legionario Urlante": {
         "nome": "Legionario Urlante",
         "fazione": "Oscura Legione",
@@ -1152,12 +1746,148 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata":2, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
+        
+    "Cultista di muawijhe": {
+        "nome": "Cultista di muawijhe",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 2, 
+            "armatura": 4,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI MUAWIJHE. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe", "Eretico", "Cultista di Muawijhe"],
+        "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # Seguaci di Demnogonis    
+    "Demnogonis il corruttore": {
+        "nome": "Demnogonis il corruttore",
+        "fazione": "Oscura Legione", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 20
+        },
+        "abilita": [
+            {
+                "nome": "Scarta Carte",
+                "descrizione": "Può scartare un qualsiasi Doomtrooper in gioco al costo di tre azioni",
+                "tipo": "Scarta Carte",
+                "costo_destino": 0,
+                "target": "Tutti i Doomtrooper",
+                "timing": "Turno"
+            },
+        ],
+        "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte al combattimento, né andare in Copertura. Mentre è in gioco, al costo di tre Azioni, può scartare un qualsiasi Doomtrooper in gioco, pagando il suo V in D. Non guadagni Punti eliminando i guerrieri in questo modo.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Cultista di demnogonis": {
+        "nome": "Cultista di demnogonis",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 3, 
+            "armatura": 2,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI DEMNOGONIS. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Demnogonis", "Eretico", "Cultista di Demnogonis"],
+        "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
     
-    # Seguaci di Demnogonis
+    "Conquistatore callistoniano": {
+        "nome": "Conquistatore callistoniano",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 6,
+            "sparare": 6, 
+            "armatura": 6,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "SEGUACE DI SEMAI. Considerato un INTRUSO CALLISTONIANO. Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 6,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
     "Nepharita di Demnogonis": {
         "nome": "Nepharita di Demnogonis",
         "fazione": "Oscura Legione",
         "tipo": "Seguace",
+
+
         "rarity": "Rare",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1186,7 +1916,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             },
             {
                 "nome": "Guarigione",
-                "descrizione": "Se Ferito, il Nefarita  può guarire se stesso spendendo 7D",
+                "descrizione": "Se Ferito, il Nefarita può guarire se stesso spendendo 7D",
                 "tipo": "Incantesimi",
                 "costo_destino": 7,
                 "target": "",
@@ -1274,6 +2004,74 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
 
     # Seguaci di Ilian
+
+    "Cultista di ilian": {
+        "nome": "Cultista di ilian",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 4, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ILIAN. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian", "Eretico", "Cultista di Ilian"],
+        "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 7,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Rampollo di ilian": {
+        "nome": "Rampollo di ilian",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 5, 
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "SEGUACE DI ILIAN. Considerato un FIGLIO DI ILIAN. Mentre è in gioco, i guerrieri feriti dai Tuoi FIGLI DI ILIAN sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 6,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
     "Figlio di Ilian": {
         "nome": "Figlio di Ilian",
         "fazione": "Oscura Legione",
@@ -1302,6 +2100,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
+    
     "Templare": {
         "nome": "Templare",
         "fazione": "Oscura Legione",
@@ -1331,7 +2130,196 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
+    "Pipistrello da ricognizione": {
+        "nome": "Pipistrello da ricognizione",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 1, 
+            "armatura": 1,
+            "valore": 1
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ILIAN. Non potrà mai essere influenzato da altre carte (eccetto carte di attacco a guerrieri) e non potrà mai attaccare. Al costo di 2 AZIONI potrai ispezionare un numero di carte, in mano al giocatore avversario, pari al numero di punti D spesi. 1 x . Spendendo 2 D potrai guardare 2 carte. Le carte da guardare si pescano a caso.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Sentinella del tempio": {
+        "nome": "Sentinella del tempio",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [
+            {
+                "nome": "Immunita",
+                "descrizione": "Immune agli effetti dell'Arte",
+                "tipo": "Incantesimi",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "SEGUACE DI ILIAN. Considerato un Templare. Mentre questa carta è in gioco, tutti i Tuoi Templari sono immuni all'Arte.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 9,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Pipistrello velenoso": {
+        "nome": "Pipistrello velenoso",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 1, 
+            "armatura": 1,
+            "valore": 1
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ILIAN. Non potrà mai essere influenzato da altre carte (eccetto carte di attacco a guerrieri) e non potrà mai attaccare. Se hai ispezionato le carte del tuo avversario con i Pipistrelli da Ricognizione potrai scartare ogni guerriero trovato nell'ispezione.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Ilian-signora del vuoto": {
+        "nome": "Ilian-signora del vuoto",
+        "fazione": "Oscura Legione", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansion": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 20
+        },
+        "abilita": [
+            {
+                "nome": "Immunita",
+                "descrizione": "Può annullare qualsiasi immuntità dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
+                "descrizione": "Equipaggia qualsiasi seguace di Ilian",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Guerrieri Oscura Legione",
+                "timing": "Ogni Momento"
+            },
+        ],
+        "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, i Tuoi guerrieri dell'Oscura Legione possono ricevere in ogni momento qualsiasi Dono dell'Oscura Simmetria o degli Apostoli senza spendere Azioni. Ilian può annullare in ogni momento qualsiasi immunità all'Oscura Simmetria per tutto il tempo che desidera.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
     # Seguaci di Semai
+
+    "Semai-signore dell'odio": {
+        "nome": "Semai-signore dell'odio",
+        "fazione": "Oscura Legione", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 20
+        },
+        "abilita": [
+            {
+                "nome": "Combattimento tra Doomtrooper",
+                "descrizione": "I Doomtrooper possono attaccare qualsiasi Doomtrooper non della tua squadra ma devono pagare 4D per attaccare Guerriri dell'Oscura Legione",
+                "tipo": "Combattimento",
+                "costo_destino": 0,
+                "target": "Guerrieri Doomtrooper",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
+                "descrizione": "Equipaggia qualsiasi seguace di Ilian",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Guerrieri Oscura Legione",
+                "timing": "Ogni Momento"
+            },
+        ],
+        "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, i Doomtrooper possono attaccare qualsiasi altro Doomtrooper in gioco (non nella stessa Squadra), ma devono pagare 4D, per poter Attaccare guerrieri dell'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
     "Intruso Callistoniano": {
         "nome": "Intruso Callistoniano",
         "fazione": "Oscura Legione",
@@ -1450,6 +2438,76 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
+   
+    "Cultista di semai": {
+        "nome": "Cultista di semai",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 2, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI SEMAI. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai", "Eretico", "Cultista di Semai"],
+        "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 8,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    # Generici Oscura Legione
+
+    "Apostata": {
+        "nome": "Apostata",
+        "fazione": "Oscura Legione", 
+        "tipo": "Eretico",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
+                "tipo": "Incantesimi",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Turno"
+            },
+        ],
+        "testo_carta": "CONSIDERATO UN ERETICO. L'Apostata può lanciare tutti gli incantesimi dell'Arte, ma solo a beneficio dell'Oscura Legione. L'Apostata è un guerriero della Fratellanza che ha rinnegato la Luce per unirsi all'Oscurità.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
     # === FREELANCER ===
     "Agent Nick Michael": {
         "nome": "Agent Nick Michael",

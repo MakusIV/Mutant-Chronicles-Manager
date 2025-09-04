@@ -163,15 +163,24 @@ class CreatoreMazzo:
         # Bonus per abilità speciali
         for abilita in guerriero.abilita:
             # Potenziamento altri guerrieri
-            if abilita.descrizione:
-                
-                keyword = abilita.descrizione.lower() 
-                for keyword in ['tutti i guerrieri', 'alleati', 'guadagnano', '+1', '+2', '+3']:
-                    potenza_assoluta *= 1.3
-                
-                # Uccisione automatica            
-                for keyword in ['uccide', 'elimina', 'distrugge', 'automaticamente']:
-                    potenza_assoluta *= 2.0
+            keywords = abilita.descrizione
+            if abilita.nome == "Uccide Automaticamente":
+                potenza_assoluta *= 2.0
+
+            if abilita.nome == "Immunita":
+                if abilita.descrizione == "immune agli effetti dell'arte" or abilita.descrizione == "immune agli effetti dell'oscura simmetria":
+                    potenza_assoluta *= 1.7
+                elif "immune agli effetti della specifica arte" in abilita.descrizione:
+                    potenza_assoluta *= 1.5
+                        
+            if abilita.nome == "Modificatore":
+                potenza_assoluta *= 1.3
+            
+            if abilita.nome == "Guarigione" :
+                if "può guarire se stesso" in abilita.descrizione:
+                    potenza_assoluta *= 1.4
+            
+                    
         
         # Normalizza rispetto al massimo della collezione
         max_potenza = self._calcola_max_potenza_guerrieri()
