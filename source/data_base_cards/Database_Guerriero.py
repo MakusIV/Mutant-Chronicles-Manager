@@ -695,11 +695,11 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Permanente"
             },
             {
-                "nome": DisciplinaArte.TUTTE.value,
-                "descrizione": "Questo guerriero può lanciare qualunque incantesimo dell'arte",
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Nemici Oscura Legione",
+                "target": "Arte",
                 "timing": "Permanente"
             },
 
@@ -766,7 +766,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
 
     # === LEGIONE OSCURA ===
-    "Necromutante": {
+   
+    # Seguaci di Algeroth
+     "Necromutante": {
         "nome": "Necromutante",
         "fazione": "Oscura Legione",
         "tipo": "Seguace",
@@ -795,137 +797,6 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
-    "Nepharite of Algeroth": {
-        "nome": "Nepharite of Algeroth",
-        "fazione": "Oscura Legione",
-        "tipo": "Seguace",
-        "rarity": "Ultra Rare",
-        "set_espansione": "Base",
-        "numero_carta": "61",
-        "stats": {
-            "combattimento": 20,
-            "sparare": 16,
-            "armatura": 15,
-            "valore": 12
-        },
-        "abilita": [
-            {
-                "nome": "Aura di Terrore",
-                "descrizione": "Tutti i nemici entro portata subiscono -3 in Combattimento per la paura",
-                "tipo": "Speciale",
-                "costo_destino": 0,
-                "target": "Nemici",
-                "timing": "Permanente"
-            },
-            {
-                "nome": "Corruzione",
-                "descrizione": "Può tentare di corrompere un guerriero nemico facendolo passare alla Oscura Legione",
-                "tipo": "Speciale",
-                "costo_destino": 5,
-                "target": "Guerriero nemico",
-                "timing": "Azione"
-            },
-            {
-                "nome": "Rigenerazione",
-                "descrizione": "Guarisce automaticamente all'inizio di ogni turno",
-                "tipo": "Difesa",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Inizio turno"
-            }
-        ],
-        "testo_carta": "Alto comandante della Oscura Legione, servitore diretto di Algeroth.",
-        "flavour_text": "Davanti alla pura malvagità, anche i più coraggiosi tremano.",
-        "keywords": ["Nepharite", "Demonio", "Unico", "Comandante", "Seguace di Algeroth"],
-        "restrizioni": ["Un solo Nepharite of Algeroth per squadra"],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Razide": {
-        "nome": "Razide",
-        "fazione": "Oscura Legione",
-        "tipo": "Seguace",
-        "rarity": "Uncommon",
-        "set_espansione": "Base",
-        "numero_carta": "65",
-        "stats": {
-            "combattimento": 12,
-            "sparare": 10,
-            "armatura": 10,
-            "valore": 3
-        },
-        "abilita": [
-            {
-                "nome": "Rigenerazione Minore",
-                "descrizione": "Guarisce 1 ferita all'inizio del turno",
-                "tipo": "Difesa",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Inizio turno"
-            }
-        ],
-        "testo_carta": "Mutante della Oscura Legione, creatura di pura malvagità.",
-        "flavour_text": "Dalla carne corrotta nasce solo abominio.",
-        "keywords": ["Mutante", "Corrotto", "Seguace di Algeroth"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Heretic Legionnaire": {
-        "nome": "Heretic Legionnaire",
-        "fazione": "Oscura Legione",
-        "tipo": "Normale",
-        "rarity": "Common",
-        "set_espansione": "Inquisition",
-        "numero_carta": "I20",
-        "stats": {
-            "combattimento": 13,
-            "sparare": 11,
-            "armatura": 9,
-            "valore": 4
-        },
-        "abilita": [
-            {
-                "nome": "Fanatismo Oscuro",
-                "descrizione": "Non può ritirarsi dal combattimento",
-                "tipo": "Speciale",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            }
-        ],
-        "testo_carta": "Ex-soldato delle corporazioni, ora servo delle Potenze Oscure.",
-        "flavour_text": "La corruzione trasforma gli eroi in mostri.",
-        "keywords": ["Eretico", "Ex-Corporazione"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # Seguaci di Algeroth
     "Eretico": {
         "nome": "Eretico",
         "fazione": "Oscura Legione",
@@ -1474,7 +1345,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
                 "tipo": "Incantesimi",
                 "costo_destino": 0,
-                "target": "Tutti i Guerrieri",
+                "target": "Arte",
                 "timing": "Turno"
             },],
         "testo_carta": "PERSONALITA. SEGUACE E NEFARIA DI ALGEROTH. Valpurgius è l'Arcimago di Alakhai, può equipaggiare qualsiasi SEGUACE DI ALGEROTH con qualsiasi carta dell'Oscura Simmetria in ogni momento, senza spendere Azioni. Può manipolare l'Arte e lanciare qualsiasi incantesimo dell'Arte.",
@@ -1581,9 +1452,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Guarigione",
+                "nome": "Guarisce se stesso",
                 "descrizione": "Se ferito, può guarire se stesso. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.",
-                "tipo": "Incantesimi",
+                "tipo": "Guarigione",
                 "costo_destino": 0,
                 "target": "Guerriero",
                 "timing": "Sempre"
@@ -1665,6 +1536,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "costo_destino": 0,
                 "target": "Guerriero",
                 "timing": "Fase Combattimento"
+            },
+            {
+                "nome": "I Zenithiani Assassini dell'Anima uccidono automaticamente i guerrieri feriti",
+                "descrizione": "Mentre è in gioco Zenithiani Assassini dell'Anima uccidono automaticamente i guerrieri feriti",
+                "tipo": "Potenziamento Guerrieri", 
+                "costo_destino": 0,
+                "target": "Zenithiani Assassini dell'Anima",
+                "timing": "Fase Combattimento"
             }
         ],
         "testo_carta": "SEGUACE DI MUAWIJHE. Considerato un ASSASSINO DELL'ANIMA ZENITHIANO. Mentre è in gioco, i guerrieri feriti dagli ASSASSINI DELL'ANIMA ZENITHIANI sono automaticamente uccisi.",
@@ -1696,9 +1575,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 3
         },
         "abilita": [{
-                "nome": "Vento della Pazzia",
-                "descrizione": "Una volta a partita, al costo di 5D, puoi invocare il Vento della Pazzia.",
-                "tipo": "Incantesimi",
+                "nome": "Aumenta punto danno",
+                "descrizione": "Ogni Urlatore causa un Punto Danno al costo di 5D.",
+                "tipo": "Modificatore",
                 "costo_destino": 5,
                 "target": "Tutto",
                 "timing": "Una volta a partita"
@@ -1775,6 +1654,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+
 
     # Seguaci di Demnogonis    
     "Demnogonis il corruttore": {
@@ -1886,8 +1766,6 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "nome": "Nepharita di Demnogonis",
         "fazione": "Oscura Legione",
         "tipo": "Seguace",
-
-
         "rarity": "Rare",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1901,23 +1779,23 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             {
                 "nome": "Immunita",
                 "descrizione": "Immune agli effetti dell'Arte",
-                "tipo": "Incantesimi",
+                "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "",
+                "target": "Arte",
                 "timing": "Sempre"
             },
             {
-                "nome": "Modificatore",
+                "nome": "Raddoppia effetto Oscura Simmetria per ogni punto D speso",
                 "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
-                "tipo": "Incantesimi",
+                "tipo": "Modificatore",
                 "costo_destino": 1,
                 "target": "",
                 "timing": "Sempre"
             },
             {
-                "nome": "Guarigione",
+                "nome": "Guarisce se stesso",
                 "descrizione": "Se Ferito, il Nefarita può guarire se stesso spendendo 7D",
-                "tipo": "Incantesimi",
+                "tipo": "Guarigione",
                 "costo_destino": 7,
                 "target": "",
                 "timing": "Sempre"
@@ -2003,8 +1881,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
-    # Seguaci di Ilian
 
+    # Seguaci di Ilian
     "Cultista di ilian": {
         "nome": "Cultista di ilian",
         "fazione": "Oscura Legione", 
@@ -2054,6 +1932,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "tipo": "Combattimento", 
                 "costo_destino": 0,
                 "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            },
+            {
+                "nome": "I Figli di Ilian uccidono automaticamente i guerrieri feriti",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Potenziamento Guerrieri", 
+                "costo_destino": 0,
+                "target": "Figlio di Ilian",
                 "timing": "Fase Combattimento"
             }
         ],
@@ -2176,9 +2062,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             {
                 "nome": "Immunita",
                 "descrizione": "Immune agli effetti dell'Arte",
-                "tipo": "Incantesimi",
+                "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "Guerriero",
+                "target": "Arte",
                 "timing": "Sempre"
             }
         ],
@@ -2231,7 +2117,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fazione": "Oscura Legione", 
         "tipo": "Personalita",
         "rarity": "Common",
-        "set_espansion": "Inquisition",
+        "set_espansione": "Inquisition",
         "numero_carta": "",
         "stats": {
             "combattimento": 0,
@@ -2241,11 +2127,11 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Immunita",
+                "nome": "Annulla Immunita",
                 "descrizione": "Può annullare qualsiasi immuntità dell'Oscura Simmetria",
                 "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "Tutti i Guerrieri",
+                "target": "Oscura Simmetria",
                 "timing": "Ogni Momento"
             },
             {
@@ -2272,8 +2158,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    # Seguaci di Semai
 
+    # Seguaci di Semai
     "Semai-signore dell'odio": {
         "nome": "Semai-signore dell'odio",
         "fazione": "Oscura Legione", 
@@ -2335,9 +2221,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [           
             {
-                "nome": "Guarigione",
+                "nome": "Guarisce se stesso",
                 "descrizione": "Se Ferito, l'Intruso Callistoniano può guarire se stesso spendendo, in ogni momento, 6D",
-                "tipo": "Incantesimi",
+                "tipo": "Guarigione",
                 "costo_destino": 7,
                 "target": "",
                 "timing": "Sempre"
@@ -2403,9 +2289,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             {
                 "nome": "Immunita",
                 "descrizione": "Immune agli effetti dell'Arte",
-                "tipo": "Incantesimi",
+                "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "",
+                "target": "Arte",
                 "timing": "Sempre"
             },
             {
@@ -2417,9 +2303,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Fase Combattimento"
             },
             {
-                "nome": "Guarigione",
+                "nome": "Guarisce se stesso",
                 "descrizione": "Se Ferito, il Nefarita  può guarire se stesso spendendo 7D",
-                "tipo": "Incantesimi",
+                "tipo": "Guarigione",
                 "costo_destino": 7,
                 "target": "",
                 "timing": "Sempre"
@@ -2489,7 +2375,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
                 "tipo": "Incantesimi",
                 "costo_destino": 0,
-                "target": "Tutti i Guerrieri",
+                "target": "Arte",
                 "timing": "Turno"
             },
         ],

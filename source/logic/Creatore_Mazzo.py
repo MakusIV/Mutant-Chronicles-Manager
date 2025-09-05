@@ -161,25 +161,219 @@ class CreatoreMazzo:
         potenza_assoluta = ((combattimento + sparo + armatura) * 1.5) / valore
         
         # Bonus per abilità speciali
+        """
+                abilita:
+
+                {
+                "nome": "Scarta Carte",
+                "descrizione": "Può scartare qualsiasi carta in gioco al costo di tre azioni",
+                "tipo": "Scarta Carte",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Turno"
+                }
+                {
+                "nome": "Scarta Carte",
+                "descrizione": "Può scartare un qualsiasi Doomtrooper in gioco al costo di tre azioni",
+                "tipo": "Scarta Carte",
+                "costo_destino": 0,
+                "target": "Tutti i Doomtrooper",
+                "timing": "Turno"
+                }
+                {
+                "nome": "Assegna carte Equipaggiamento",
+                "descrizione": "Equipaggia qualsiasi guerriero dell'Oscura Legione",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Guerrieri Oscura Legione",
+                "timing": "Ogni Momento"
+                },                
+                {
+                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
+                "descrizione": "Equipaggia qualsiasi seguace di Algeroth",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Seguaci di ALgeroth",
+                "timing": "Ogni Momento"
+                }                
+                {
+                "nome": "Sostituisce Eretici",
+                "descrizione": "Può sostituire un Eretico con un Seguace di Algeroth al costo di tre azioni",
+                "tipo": "Sostituzione Guerrieri",
+                "costo_destino": 0,
+                "target": "Eretici",
+                "timing": "Turno"
+                }
+                {
+                "nome": "Ataccabile solo dalla Fratellanza",
+                "descrizione": "Solo i membri della Fratellamza possono attaccarlo con penalità in A di -1",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+                }
+                {
+                "nome": "Attaccare per primi",
+                "descrizione": "I guerrieri dell'Oscura Legione possono Attaccare per primi i loro avversari in combattimento",
+                "tipo": "Combattimento",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Turno"
+                }
+                {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+                }
+                {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
+                "tipo": "Incantesimi",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Turno"
+                }
+                {
+                "nome": "Guarisce se stesso",
+                "descrizione": "Se ferito, può guarire se stesso. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.",
+                "tipo": "Guarigione",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+                }                
+            {
+                "nome": "Raddoppia effetto Oscura Simmetria per ogni punto D speso",
+                "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
+                "tipo": "Modificatore",
+                "costo_destino": 1,
+                "target": "",
+                "timing": "Sempre"
+            },           
+            {
+                "nome": "Immunita",
+                "descrizione": "Immune agli effetti dell'Arte",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Arte",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Annulla Immunita",
+                "descrizione": "Può annullare qualsiasi immuntità dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Oscura Simmetria",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Modificatore",
+                "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
+                "tipo": "Incantesimi",
+                "costo_destino": 1,
+                "target": "",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Guarisce se stesso",
+                "descrizione": "Se Ferito, il Nefarita può guarire se stesso spendendo 7D",
+                "tipo": "Guarigione",
+                "costo_destino": 7,
+                "target": "",
+                "timing": "Sempre"
+            }            
+            {
+                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
+                "descrizione": "Equipaggia qualsiasi seguace di Ilian",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Guerrieri Oscura Legione",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Combattimento tra Doomtrooper",
+                "descrizione": "I Doomtrooper possono attaccare qualsiasi Doomtrooper non della tua squadra ma devono pagare 4D per attaccare Guerriri dell'Oscura Legione",
+                "tipo": "Combattimento",
+                "costo_destino": 0,
+                "target": "Guerrieri Doomtrooper",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
+                "descrizione": "Equipaggia qualsiasi seguace di Ilian",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Guerrieri Oscura Legione",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
+                "tipo": "Incantesimi",
+                "costo_destino": 0,
+                "target": "Arte",
+                "timing": "Turno"
+            },
+            {
+                "nome": "Assegna carte Equipaggiamento",
+                "descrizione": "Equipaggia qualsiasi guerriero dell'Oscura Legione",
+                "tipo": "Assegnazione Carte",
+                "costo_destino": 0,
+                "target": "Guerrieri Oscura Legione",
+                "timing": "Ogni Momento"
+                },
+                {
+                "nome": "Scarta Carte",
+                "descrizione": "Può scartare qualsiasi carta in gioco al costo di tre azioni",
+                "tipo": "Scarta Carte",
+                "costo_destino": 0,
+                "target": "Tutti i Guerrieri",
+                "timing": "Turno"
+            },
+            {
+                "nome": "I Zenithiani Assassini dell'Anima uccidono automaticamente i guerrieri feriti",
+                "descrizione": "Mentre è in gioco Zenithiani Assassini dell'Anima uccidono automaticamente i guerrieri feriti",
+                "tipo": "Potenziamento Guerrieri", 
+                "costo_destino": 0,
+                "target": "Zenithiani Assassini dell'Anima",
+                "timing": "Fase Combattimento"
+            }
+
+
+                restrizioni:
+                "restrizioni": ["Carte Oscura Simmetria non Assegnabili", "Può attaccare solo una volta per turno", "Equipaggiamenti non assegnabili", "Non guadagnano bonus Fortificazione", "Carte Speciale non giocabili su di esso"],
+                ["Carte Oscura Simmetria non Assegnabili"]
+                ["Non può prendere parte al combattimento", "Non può andare in copertura"],
+
+        """
         for abilita in guerriero.abilita:
             # Potenziamento altri guerrieri
-            keywords = abilita.descrizione
+            keywords = abilita.descrizione.lower()
             if abilita.nome == "Uccide Automaticamente":
                 potenza_assoluta *= 2.0
 
-            if abilita.nome == "Immunita":
+            if abilita.tipo == "Immunita":
                 if abilita.descrizione == "immune agli effetti dell'arte" or abilita.descrizione == "immune agli effetti dell'oscura simmetria":
-                    potenza_assoluta *= 1.7
-                elif "immune agli effetti della specifica arte" in abilita.descrizione:
                     potenza_assoluta *= 1.5
+                elif "immune agli effetti della specifica arte" in abilita.descrizione:
+                    potenza_assoluta *= 1.2
                         
             if abilita.nome == "Modificatore":
                 potenza_assoluta *= 1.3
             
-            if abilita.nome == "Guarigione" :
-                if "può guarire se stesso" in abilita.descrizione:
-                    potenza_assoluta *= 1.4
-            
+            if abilita.tipo == "Guarigione" :
+                if "Guarisce se stesso" in abilita.nome:
+                    potenza_assoluta *= 1.7
+
+            if abilita.tipo == "Arte":
+                if "Lancia Arte e/o Incantesimo dell'Arte" in abilita.nome:
+                    potenza_assoluta *= 1.5
+                
+                elif "Lancia Arte del" in abilita.nome or "Lancia Incantesimo di" in abilita.nome:
+                    potenza_assoluta *= 1.2
+                
                     
         
         # Normalizza rispetto al massimo della collezione
