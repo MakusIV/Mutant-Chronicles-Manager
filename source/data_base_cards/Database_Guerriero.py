@@ -266,507 +266,2136 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
 
     # === CYBERTRONIC ===
-    "Cybertronic Chasseur": {
-        "nome": "Cybertronic Chasseur",
-        "fazione": "Cybertronic",
-        "tipo": "Normale",
-        "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "20",
-        "stats": {
-            "combattimento": 14,
-            "sparare": 14,
-            "armatura": 12,
-            "valore": 5
-        },
-        "abilita": [
-            {
-                "nome": "Potenziamenti Cibernetici",
-                "descrizione": "Immune alle ferite da armi da fuoco leggere",
-                "tipo": "Speciale",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            }
-        ],
-        "testo_carta": "Guerriero cyber-potenziato specializzato in ricognizione e infiltrazione.",
-        "flavour_text": "La carne è debole, il metallo è eterno.",
-        "keywords": ["Cyborg"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Max Steiner": {
-        "nome": "Max Steiner",
-        "fazione": "Cybertronic",
+
+    "Cyril dent": {
+        "nome": "Cyril dent",
+        "fazione": "Cybertronic", 
         "tipo": "Personalita",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "21",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 15,
-            "sparare": 16,
-            "armatura": 14,
+            "combattimento": 11,
+            "sparare": 8, 
+            "armatura": 11,
             "valore": 9
         },
         "abilita": [
             {
-                "nome": "Hackeraggio Mentale",
-                "descrizione": "Può prendere il controllo di un guerriero nemico per un turno",
-                "tipo": "Speciale",
-                "costo_destino": 3,
-                "target": "Guerriero nemico",
-                "timing": "Azione"
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
             }
         ],
-        "testo_carta": "Hacker leggendario della Cybertronic, maestro dell'infiltrazione digitale.",
-        "flavour_text": "La mente umana è solo un altro sistema da hackerare.",
-        "keywords": ["Personalita", "Unico", "Hacker"],
-        "restrizioni": ["Un solo Max Steiner per squadra"],
+        "testo_carta": "PERSONALITÀ. CONSIDERATO UN CORAZZIERE. IMMUNE AI DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Se ferisce avversari con un V pari o inferiore a 7 li uccide automaticamente.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte delle Arti non Assegnabili"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-
-    "Cybertronic Machinators": {
-        "nome": "Cybertronic Machinators",
-        "fazione": "Cybertronic",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
-        "set_espansione": "Base",
-        "numero_carta": "22",
+    "Dottoressa diana": {
+        "nome": "Dottoressa diana",
+        "fazione": "Cybertronic", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 11,
-            "sparare": 13,
-            "armatura": 12,
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 6,
             "valore": 5
         },
         "abilita": [
             {
-                "nome": "Riparazione Rapida",
-                "descrizione": "Può riparare equipaggiamento danneggiato spendendo 1 Punto Destino",
-                "tipo": "Speciale",
-                "costo_destino": 1,
-                "target": "Equipaggiamento",
-                "timing": "Azione"
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Guarisce se stesso",
+                "descrizione": "Se ferito, può guarire se stesso. Se Diana non è al Coperto, può spendere un'azione per guarire un qualsiasi Doomtrooper ferito in gioco. Dopo deve andare al Coperto. Diana non può mai lanciare incantesimi dell'Arte.",
+                "tipo": "Guarigione",
+                "costo_destino": 0,
+                "target": "Doomtrooper ferito",
+                "timing": "Turno"
             }
         ],
-        "testo_carta": "Tecnici cyber-potenziati specializzati in manutenzione sul campo.",
-        "flavour_text": "La macchina perfetta non esiste, ma noi ci avviciniamo.",
-        "keywords": ["Tecnico", "Cyborg"],
-        "restrizioni": [],
+        "testo_carta": "PERSONALITÀ. Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI. Se Diana non è al Coperto, puoi spendere un'azione per guarire un qualsiasi Doomtrooper ferito in gioco. Dopo deve andare al Coperto. Diana non può mai lanciare incantesimi dell'Arte.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte delle Arti non Assegnabili"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-
-    # === IMPERIALE ===
-    "Imperial Trencher": {
-        "nome": "Imperial Trencher",
-        "fazione": "Imperiale",
-        "tipo": "Normale",
+    "Mercenario ex-cybertronic": {
+        "nome": "Mercenario ex-cybertronic",
+        "fazione": "Cybertronic", 
+        "tipo": "",
         "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "30",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 11,
-            "sparare": 11,
-            "armatura": 9,
-            "valore": 4
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 4,
+            "valore": 1
         },
-        "abilita": [],
-        "testo_carta": "Soldato imperiale specializzato nella guerra di trincea.",
-        "flavour_text": "Per l'Imperatore e per la gloria dell'Impero!",
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA. Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Cybertronic\", ma dovrà pagare 1D per poter introdurre queste carte in gioco.",
+        "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-    
-    "Nathaniel Durand": {
-        "nome": "Nathaniel Durand",
-        "fazione": "Imperiale",
+    "Fay & klaus": {
+        "nome": "Fay & klaus",
+        "fazione": "Cybertronic", 
         "tipo": "Personalita",
-        "rarity": "Ultra Rare",
+        "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "31",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 17,
-            "sparare": 16,
-            "armatura": 13,
-            "valore": 12
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 5
         },
         "abilita": [
             {
-                "nome": "Autorità Imperiale",
-                "descrizione": "Tutti i guerrieri alleati sono immuni alla paura",
-                "tipo": "Comando",
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "Alleati",
-                "timing": "Permanente"
-            },
-            {
-                "nome": "Strategia Superiore",
-                "descrizione": "Una volta per turno può dare un'azione extra a un alleato",
-                "tipo": "Comando",
-                "costo_destino": 2,
-                "target": "Alleato",
-                "timing": "Azione"
+                "target": "Guerriero",
+                "timing": "Sempre"
             }
         ],
-        "testo_carta": "Comandante supremo delle forze imperiali, stratega senza pari.",
-        "flavour_text": "L'Impero non conosce sconfitta sotto la mia guida.",
-        "keywords": ["Personalita", "Unico", "Comandante Supremo"],
-        "restrizioni": ["Un solo Nathaniel Durand per squadra"],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Imperial Blood Beret": {
-        "nome": "Imperial Blood Beret",
-        "fazione": "Imperiale",
-        "tipo": "Normale",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "32",
-        "stats": {
-            "combattimento": 15,
-            "sparare": 14,
-            "armatura": 11,
-            "valore": 7
-        },
-        "abilita": [
-            {
-                "nome": "Assalto Frontale",
-                "descrizione": "Può attaccare immediatamente dopo essere entrato in gioco",
-                "tipo": "Attacco",
-                "costo_destino": 0,
-                "target": "Nemico",
-                "timing": "All'entrata"
-            }
-        ],
-        "testo_carta": "Truppe d'elite imperiali, famose per la loro aggressività.",
-        "flavour_text": "Il sangue dei nemici colora i nostri berretti.",
-        "keywords": ["Elite", "Truppe d'Assalto"],
+        "testo_carta": "PERSONALITÀ. IMMUNE AGLI EFFETTI DEI DONI DELL'OSCURA SIMMETRIA. Questa carta è considerata come un singolo guerriero. Puoi combattere con Fay & Klaus come se fossero una Squadra, spendendo 5D. Se lo fai, C, S, A e V guadagnano un + 3 fino alla fine del combattimento.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-
-    # === MISHIMA ===
-    "Mishima Hatamoto": {
-        "nome": "Mishima Hatamoto",
-        "fazione": "Mishima",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
+    "Contorsionista": {
+        "nome": "Contorsionista",
+        "fazione": "Cybertronic", 
+        "tipo": "",
+        "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "40",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 15,
-            "sparare": 11,
-            "armatura": 13,
-            "valore": 6
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 2,
+            "valore": 2
         },
         "abilita": [
             {
-                "nome": "Codice Bushido",
-                "descrizione": "Quando attacca guadagna +3 in Combattimento se il nemico ha Valore inferiore",
-                "tipo": "Attacco",
+                "nome": "Aumenta caratteristiche se equipaggiati con Ticker",
+                "descrizione": "Aumenta le caratteristiche di Combattimento e Sparare di +1",
+                "tipo": "Modificatore",
                 "costo_destino": 0,
-                "target": "Nemico",
-                "timing": "Durante l'attacco"
+                "target": "Guerriero equipaggiato con TICKER",
+                "timing": "Sempre"
             }
         ],
-        "testo_carta": "Guerriero samurai della Mishima, fedele al codice d'onore.",
-        "flavour_text": "L'onore vale più della vita stessa.",
-        "keywords": ["Samurai"],
+        "testo_carta": "Se questi individui sono equipaggiati con il TICKER, le loro C e S saranno incrementate di un + 1 in aggiunta ai normali effetti del TICKER.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-    
-    "Takashi Mugan": {
-        "nome": "Takashi Mugan",
-        "fazione": "Mishima",
-        "tipo": "Personalita",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "41",
+    "Capitano cybertronic": {
+        "nome": "Capitano cybertronic",
+        "fazione": "Cybertronic", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 19,
-            "sparare": 13,
-            "armatura": 15,
+            "combattimento": 6,
+            "sparare": 5, 
+            "armatura": 9,
             "valore": 10
         },
         "abilita": [
             {
-                "nome": "Maestro della Lama",
-                "descrizione": "Gli attacchi corpo a corpo non possono essere bloccati",
-                "tipo": "Attacco",
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli",
+                "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "Nemici",
-                "timing": "Permanente"
+                "target": "Guerriero",
+                "timing": "Sempre"
             },
             {
-                "nome": "Iaijutsu",
-                "descrizione": "Può contrattaccare immediatamente dopo essere stato attaccato",
-                "tipo": "Difesa",
-                "costo_destino": 1,
-                "target": "Attaccante",
-                "timing": "Quando attaccato"
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerrieri Cybertronic con V uguale a 9 o meno",
+                "timing": "Fase Combattimento"
+            },
+            {
+                "nome": "I guerrieri alleati uccidono automaticamente",
+                "descrizione": "Mentre è in gioco, tutti i guerrieri Cybertronic nella tua Squadra con V uguale a 9 o meno, uccidono automaticamente i guerrieri che feriscono",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
             }
         ],
-        "testo_carta": "Leggendario maestro di spada della Mishima, invincibile nel duello.",
-        "flavour_text": "La lama che non si vede è quella che uccide.",
-        "keywords": ["Personalita", "Unico", "Maestro di Spada"],
-        "restrizioni": ["Un solo Takashi Mugan per squadra"],
+        "testo_carta": "COMANDANTE (CAPITANO). IMMUNE AI DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Mentre è in gioco, tutti i guerrieri Cybertronic nella tua Squadra con V uguale a 9 o meno, uccidono automaticamente i guerrieri che feriscono.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte delle Arti non Assegnabili"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-
-    "Mishima Samurai": {
-        "nome": "Mishima Samurai",
-        "fazione": "Mishima",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
+    "Chemiman": {
+        "nome": "Chemiman",
+        "fazione": "Cybertronic", 
+        "tipo": "",
+        "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "42",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 14,
-            "sparare": 10,
-            "armatura": 14,
-            "valore": 6
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 4,
+            "valore": 4
         },
         "abilita": [
             {
-                "nome": "Morte Prima del Disonore",
-                "descrizione": "Quando viene eliminato, può effettuare un ultimo attacco",
-                "tipo": "Difesa",
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti delle carte dell'Oscura Simmetria",
+                "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "Qualsiasi nemico",
-                "timing": "Quando eliminato"
+                "target": "Guerriero",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Qualsiasi guerriero ferito",
+                "timing": "Fase Combattimento"
             }
         ],
-        "testo_carta": "Guerriero samurai tradizionale, custode dell'antica via.",
-        "flavour_text": "Il vero samurai vive ogni giorno come se fosse l'ultimo.",
-        "keywords": ["Samurai", "Onore"],
+        "testo_carta": "IMMUNE AGLI EFFETTI DELLE CARTE DELL'OSCURA SIMMETRIA. Ogni guerriero ferito da ChemiMan, automaticamente è morto.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-
-    # === FRATELLANZA ===
-    "Brotherhood Missionary": {
-        "nome": "Brotherhood Missionary",
-        "fazione": Fazione.FRATELLANZA.value,
-        "tipo": "Normale",
+    "Droide eradicator": {
+        "nome": "Droide eradicator",
+        "fazione": "Cybertronic", 
+        "tipo": "",
         "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "50",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 8,
-            "sparare": 10,
+            "combattimento": 4,
+            "sparare": 13, 
             "armatura": 10,
-            "valore": 6
+            "valore": 12
         },
         "abilita": [
             {
-                "nome": "Fede Incrollabile",
-                "descrizione": "Immune agli effetti mentali della Oscura Legione",
-                "tipo": "Difesa",
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune a tutte le carte Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "IMMUNE A TUTTE LE CARTE OSCURA SIMMETRIA. CONSIDERATO UN VEICOLO. Non può usare Equipaggiamento e non può mai andare in Copertura. Non potrà mai lanciare incantesimi dell'Arte.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte Equipaggiamento non Assegnabili", "Non può andare in copertura", "Carte delle Arti non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Gestore occulto": {
+        "nome": "Gestore occulto",
+        "fazione": "Cybertronic", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Sicurezza cybertronic": {
+        "nome": "Sicurezza cybertronic",
+        "fazione": "Cybertronic", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Vince diamond": {
+        "nome": "Vince diamond",
+        "fazione": "Cybertronic", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 8,
+            "sparare": 11, 
+            "armatura": 7,
+            "valore": 10
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. CONSIDERATO UN CACCIATORE. Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI. Mentre è in gioco, tutti i Tuoi CACCIATORI (ma non Vince) guadagnano un + 2 in C, S e A. Non potrà mai lanciare incantesimi dell'Arte.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte delle Arti non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Tecnico vac": {
+        "nome": "Tecnico vac",
+        "fazione": "Cybertronic", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Assegna Carta",
+                "descrizione": "Equipaggia qualsiasi Doomtrooper con carte Equipaggiamento Cybertronic senza spendere Azioni. Può anche affiliare qualsiasi Doomtrooper non-Personalità alla Cybertronic. Questo causa una ferita al Tecnico, ma se muore così non si guadagnano Punti. Non può usare l'Arte.",
+                "tipo": "Carte",
+                "costo_destino": 10,
+                "target": "Equipaggiamento Cybertronic",
+                "timing": "Ogni Momento"
+            }
+        ],
+        "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI. In ogni momento, può equipaggiare qualsiasi Doomtrooper con carte Equipaggiamento Cybertronic senza spendere Azioni. Può anche affiliare qualsiasi Doomtrooper non-Personalità alla Cybertronic. Questo causa una ferita al Tecnico, ma se muore così non si guadagnano Punti. Non può usare l'Arte.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte delle Arti non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Cacciatore": {
+        "nome": "Cacciatore",
+        "fazione": "Cybertronic", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 4, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Charles sykes": {
+        "nome": "Charles sykes",
+        "fazione": "Cybertronic", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 8,
+            "sparare": 7, 
+            "armatura": 11,
+            "valore": 13
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune ai DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Tutti i guerrieri Cybertronic nella squadra",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. IMMUNE AI DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Tutti i tuoi guerrieri Cybertronic guadagnano un + 4 in C, S, A e V finché Charles stesso finché lui è presente nella squadra.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte delle Arti non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+
+    # === IMPERIALE ===
+    # Fatto
+    # Base
+    "Esperto in Trincee": {
+        "nome": "Esperto in Trincee",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 2, 
+            "armatura": 2,
+            "valore": 3
+        },
+        "abilita": [{
+                "nome": "Assegna Carta",
+                "descrizione": "Preleva carta Trincea e associala a questo guerriero al costo 3 Azioni",
+                "tipo": "Carte",
+                "costo_destino": 3,
+                "target": "Self",
+                "timing": "Permanente"
+            }],
+        "testo_carta": "Quest'uomo può scavare una trincea al costo di 3 Azioni. Se esegue quest'operazione, preleva dalla Tua Collezione la carta Trincea e associala a questo guerriero.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Guardia Inesperta": {
+        "nome": "Guardia Inesperta",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 2,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "Le Guardie inesperte non possono mai andare in Copertura e non possono mai utilizzare fortificationi.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può andare in copertura", "Bonus relativi alle Fortificazioni non ricevibile"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Membro del Clan": {
+        "nome": "Membro del Clan",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 2, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [{
+                "nome": "Aumenta caratteristica",
+                "descrizione": "+1 in C e A per ogni altro membro del Clan che è assegnato alla squadra. Se ci sono cinque guerrieri assegnati, il Membro del Clan guadagna un +4 in C e A.",
+                "tipo": "Modificatore",
                 "costo_destino": 0,
                 "target": "Self",
                 "timing": "Permanente"
-            },
-            {
-                "nome": DisciplinaArte.CAMBIAMENTO.value,
-                "descrizione": "",
-                "tipo": "Arte",
-                "costo_destino": 0,
-                "target": "Nemici Oscura Legione",
-                "timing": "Permanente"
-            },
-        ],
-        "testo_carta": "Missionario della Fratellanza, diffonde la parola della Luce.",
-        "flavour_text": "La Luce scaccia le tenebre dall'anima degli uomini.",
-        "keywords": ["Sacerdote"],
+            }],
+        "testo_carta": "Quest'uomo guadagna un +1 in C e A per ogni altro membro del Clan che è assegnato alla sua stessa sezione. Se ci sono cinque guerrieri assegnati, il Membro del Clan guadagna un +4 in C e A.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-    
-    "Cardinal Dominic": {
-        "nome": "Cardinal Dominic",
-        "fazione": Fazione.FRATELLANZA.value,
-        "tipo": "Personalita",
-        "rarity": Rarity.ULTRA_RARE.value,
-        "set_espansione": Set_Espansione.INQUISITION.value,
-        "numero_carta": "I01",
-        "stats": {
-            "combattimento": 12,
-            "sparare": 13,
-            "armatura": 11,
-            "valore": 15
-        },
-        "abilita": [
-            {
-                "nome": "Benedizione Divina",
-                "descrizione": "Può curare completamente un alleato una volta per turno",
-                "tipo": "Speciale",
-                "costo_destino": 3,
-                "target": "Alleato",
-                "timing": "Azione"
-            },
-            {
-                "nome": "Aura Sacra",
-                "descrizione": "Tutti i guerrieri della Oscura Legione entro portata subiscono -2 a tutte le statistiche",
-                "tipo": "Speciale",
-                "costo_destino": 0,
-                "target": "Nemici Oscura Legione",
-                "timing": "Permanente"
-            },
-            {
-                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
-                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
-                "tipo": "Arte",
-                "costo_destino": 0,
-                "target": "Arte",
-                "timing": "Permanente"
-            },
 
-        ],
-        "testo_carta": "Alto prelato della Fratellanza, campione della Luce contro le tenebre.",
-        "flavour_text": "Dove cammino io, la Luce risplende eterna.",
-        "keywords": ["Personalita", "Unico", "Cardinale", "Sacro"],
-        "restrizioni": ["Un solo Cardinal Dominic per squadra"],
+    "Blood Beret": {
+        "nome": "Blood Beret",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [{
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "immune agli effetti dell'oscura simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Self",
+                "timing": "Ogni Momento"
+            }],
+        "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Sgt McBride": {
+        "nome": "Sgt McBride",
+        "fazione": "Imperiali", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 5, 
+            "armatura": 5,
+            "valore": 5
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Quando è in gioco tutti i Blood Beret (ma non lui stesso) guadagnano +1 in C e S",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Cavalleria Aerea",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ CONSIDERATO UN BLOOD BERET. Quando è in gioco tutti i Blood Beret (ma non lui stesso) guadagnano +1 in C e S",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Golden Lion": {
+        "nome": "Golden Lion",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "Mentre la maggior parte delle Forze Speciali sono addestrate per affrontare l'Oscura Legione, questi guerrieri sono specializzati nel combattere le Megacorporazioni avversarie.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Farabutto": {
+        "nome": "Farabutto",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 3,
+            "valore": 5
+        },
+        "abilita": [],
+        "testo_carta": "Non puoi aggiungere il Farabutto alla tua Squadra se sono presenti Guerrieri Imperiali e viceversa.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Incompatibilità con Imperiali"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Sean Gallagher": {
+        "nome": "Sean Gallagher",
+        "fazione": "Imperiali", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 8,
+            "sparare": 0, 
+            "armatura": 8,
+            "valore": 10
+        },
+        "abilita": [{
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Se stesso",
+                "timing": "Sempre"
+            }],
+        "testo_carta": "PERSONALITÀ. CONSIDERATO UN MEMBRO DEL CLAN. Deve attaccare preferibilmente un membro dell'Oscura Legione, se non ve ne sono sei libero di fare quello che vuoi. Quando Callagher è in gioco tutti i tuoi Membri del Clan sono Immuni agli effetti delle caarte dell'Oscura Simmetria",
+        "flavour_text": "",
+        "keywords": ["Seguace di Bauhaus"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Cavalleria Aerea": {
+        "nome": "Cavalleria Aerea",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 4, 
+            "armatura": 6,
+            "valore": 5
+        },
+        "abilita": [],
+        "testo_carta": "CONSIDERATO UN'AERONAVE. Può solo attaccare in combattimento a distanza, e non può essere attaccato in Corpo a Corpo. Non può andare in copertura. Armi e carte Equipaggiamento non possono essere giocate sulla Cavalleria Aerea. La Cavalleria Aerea non tiene conto dei bonus delle Fortificazioni.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può andare in copertura", "Carte Equipaggiamento non Assegnabili", "Bonus relativi alle Fortificazioni non ricevibile"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Pilota Trevor Bartholomew": {
+        "nome": "Pilota Trevor Bartholomew",
+        "fazione": "Imperiali", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 6, 
+            "armatura": 8,
+            "valore": 7
+        },
+        "abilita": [{
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Quando è in gioco, tutta la Cavalleria Aerea guadagna un +1 in S e A",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Cavalleria Aerea",
+                "timing": "Sempre"
+            }],
+        "testo_carta": "PERSONALITÀ. CONSIDERATO CAVALLERIA AEREA E AERONAVE. Può solo attaccare a distanza (Sparare), non può essere attaccato in Corpo a Corpo. Non può Andare in Copertura. Armi e Equipaggiamenti non gli possono essere assegnati. Gli avversari non guadagnano i bonus delle Fortificazioni. Quando è in gioco, tutta la Cavalleria Aerea guadagna un +1 in S e A",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può andare in copertura", "Carte Equipaggiamento non Assegnabili", "Bonus relativi alle Fortificazioni non ricevibile"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Sunset Striker": {
+        "nome": "Sunset Striker",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "Di stanza su Mercurio, questi guerrieri sono addestrati a combattere le truppe della Mishima sul loro pianeta d'origine.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Cavalleria Leggera Wolfbane": {
+        "nome": "Cavalleria Leggera Wolfbane",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 4, 
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [{
+                "nome": "Decrementa caratteristiche",
+                "descrizione": "Decrementa le caratteristiche di -3 A agli avversari non protetti da Forticazione",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerrieri nemici",
+                "timing": "Sempre"
+            }],
+        "testo_carta": "Gli avversari della Cavalleria Wolfbane subiscono un -3 in A, a meno che non siano protetti da una Fortificazione. In questo caso la loro A aumenta di un +3.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Mercenario Ex-Imperiale": {
+        "nome": "Mercenario Ex-Imperiale",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 2, 
+            "armatura": 2,
+            "valore": 1
+        },
+        "abilita": [],
+        "testo_carta": "Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Imperiali\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # Warzone
+    "Comandante di Reparto": {
+        "nome": "Comandante di Reparto",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 3, 
+            "armatura": 7,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta al guerriero assegnato ed alle sue copie, le caratteristiche di Combattimento, Sparare, Armatura e valore di +4",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerrieri assegnati al Comandante",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "COMANDANTE (SERGENTE). Assegna un guerriero Imperiale non personalità al Comandante.Questo guerriero e le sue eventuali copie incrementa le caratteristiche di Combattimento, Sparare, Armatura e valore di +4",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },    
+
+    "Comandante in Capo": {
+        "nome": "Comandante in Capo",
+        "fazione": "Imperiali", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 6,
+            "sparare": 7, 
+            "armatura": 5,
+            "valore": 9
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "I guerrieri imperiali della squadra con V <= 8, uccidono automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "COMANDANTE (CAPITANO). Mentre questo guerriero è in gioco, tutti i guerrieri imperiali della tua squadra con V<=8 uccidono automaticamente i guerrieri che feriscono.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+
+
+    # === MISHIMA ===
+    # Fatto
+    # Base    
+    "Samurai": {
+        "nome": "Samurai",
+        "fazione": "Mishima", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "I Samurai della Mishima sono soldati d'Elite che formano la scorta personale dei Lord Ereditari.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Mercenario Ex-Mishima": {
+        "nome": "Mercenario Ex-Mishima",
+        "fazione": "Mishima", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 1
+        },
+        "abilita": [],
+        "testo_carta": "Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare armi e Equipaggiamenti marcati \"Solo Mishima\", ma dovrà pagare 3D per poter introdurre in gioco queste carte.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Artefatto di Combattimento": {
+        "nome": "Artefatto di Combattimento",
+        "fazione": "Mishima", 
+        "tipo": "Equipaggiamento",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 3,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Se stesso",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "IMMUNE ALLE CARTE DELL'OSCURA SIMMETRIA. Combattenti semi-intelligenti costruiti dalla Corporazione Mishima. Miracolo tecnologico devastante.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Tatsu": {
+        "nome": "Tatsu",
+        "fazione": "Mishima", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 6,
+            "sparare": 6, 
+            "armatura": 7,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Samurai",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. CONSIDERATO UN SAMURAI. Mentre Tatsu è in gioco, tutti i Tuoi Samurai sono immuni agli effetti dell'Oscura Simmetria.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Artefatto Suicida": {
+        "nome": "Artefatto Suicida",
+        "fazione": "Mishima", 
+        "tipo": "Equipaggiamento",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 10,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "IMMUNE ALLE CARTE DELL'OSCURA SIMMETRIA. Combattenti semi-intelligenti costruiti dalla Corporazione Mishima. Non può utilizzare Armi o Equipaggiamento. L'Artefatto Suicida, quando viene colpito (ferito), risulta ucciso. Scarta la carta.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte Equipaggiamento non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Hatamoto": {
+        "nome": "Hatamoto",
+        "fazione": "Mishima", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [],
+        "testo_carta": "Ogni Missione assegnata a un Hatamoto deve avere la priorità. Se completi un'altra Missione prima di quella dell'Hatamoto, non guadagni i Punti Ricompensa e quella Missione è persa.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # Inquisition
+    "Ninja": {
+        "nome": "Ninja",
+        "fazione": "Mishima", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [],
+        "testo_carta": "Può Attaccare qualsiasi guerriero. Il Ninja attacca sempre per primo i suoi avversari in combattimento. Se l'avversario sopravvive, allora può rispondere all'Attacco del Ninja.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Mentore": {
+        "nome": "Mentore",
+        "fazione": "Mishima", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 2
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento e Sparare di +1",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerrieri Mishima",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "Per ogni Tuo Mentore in gioco, i Tuoi guerrieri Mishima guadagnano un +1 in C e S. Un Mentore non può accrescere le sue caratteristiche personali, ma altri Mentori possono.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # Warzone
+    "Jito": {
+        "nome": "Jito",
+        "fazione": "Mishima", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 5, 
+            "armatura": 5,
+            "valore": 6
+        },
+        "abilita": [
+            {
+                "nome": "Assegna Carta",
+                "descrizione": "Assegna un guerriero Mishima non personalità al Jito. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre il Jito è vivo e nella Squadra.",
+                "tipo": "Carte",
+                "costo_destino": 0,
+                "target": "Guerriero Mishima",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerriero Mishima assegnato",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "COMANDANTE (SERGENTE). Assegna un guerriero Mishima non personalità al Jito. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre il Jito è vivo e nella Squadra.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Bushi": {
+        "nome": "Bushi",
+        "fazione": "Mishima", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Attacco di +2",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerrieri Mishima nella squadra tranne il Porta Stendardo",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PORTA STENDARDO. Questo guerriero ispira i suoi commilitoni. Tutti i guerrieri Mishima nella tua Squadra, eccetto il Porta Stendardo, guadagnano un +2 in A mentre questo guerriero è presente. Ulteriori Porta Stendardo incrementano anche il valore A del Porta Stendardo.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Shugo": {
+        "nome": "Shugo",
+        "fazione": "Mishima", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 7,
+            "sparare": 7, 
+            "armatura": 7,
+            "valore": 9
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            },
+            {
+                "nome": "I guerrieri alleati uccidono automaticamente",
+                "descrizione": "Mentre è in gioco, tutti i guerrieri Mishima nella tua Squadra con V uguale a 8 o meno, uccidono automaticamente i guerrieri che feriscono",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Mishima nella tua Squadra con V uguale a 8 o meno, uccidono automaticamente i guerrieri che feriscono.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Lord Nozaki": {
+        "nome": "Lord Nozaki",
+        "fazione": "Mishima", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 20
+        },
+        "abilita": [],
+        "testo_carta": "PERSONALITÀ. LEADER CORPORATIVO. Non può mai prendere parte al combattimento né andare in copertura. Mentre il Lord è in gioco tu puoi convertire ogni numero di Azioni non di attacco in Azioni d'attacco, ma queste devono essere compiute da guerrieri Mishima.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+
+
+    # === FRATELLANZA ===
+    # Fatto
+    # Base
+    "Laura vestale benedetta": {
+        "nome": "Laura vestale benedetta",
+        "fazione": "Fratellanza", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [
+            {
+                "nome": "Immunita",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Valchirie",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Immunita",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Valchirie",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. CONSIDERATA UNA VALKIRIA. Quando Laura è in gioco, tutte le Tue Valkirje possono usare TUTTE le carte ARTE, e sono immuni alle carte dell'Oscura Simmetria.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
     
-    "Inquisitor Sebastian": {
-        "nome": "Inquisitor Sebastian",
-        "fazione": "Fratellanza",
-        "tipo": "Inquisitore",
-        "rarity": "Rare",
-        "set_espansione": "Inquisition",
-        "numero_carta": "I10",
+    "Nicholai": {
+        "nome": "Nicholai",
+        "fazione": "Fratellanza", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 16,
-            "sparare": 15,
-            "armatura": 13,
+            "combattimento": 5,
+            "sparare": 4, 
+            "armatura": 6,
             "valore": 8
         },
         "abilita": [
             {
-                "nome": "Cacciatore di Eretici",
-                "descrizione": "Infligge danno doppio ai guerrieri corrotti dalla Oscura Legione",
-                "tipo": "Attacco",
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte specifica",
+                "descrizione": "Lancia incantesimi Arte della Manipolazione e dell'Esorcismo, più tutti gli incantesimi di Combattimento Personale",
+                "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Eretici e Oscura Legione",
-                "timing": "Durante l'attacco"
+                "target": "Arte della Manipolazione e Esorcismo",
+                "timing": "Turno"
             },
             {
-                "nome": "Interrogatorio",
-                "descrizione": "Può costringere un avversario a scartare due carte dalla mano",
-                "tipo": "Speciale",
-                "costo_destino": 2,
-                "target": "Avversario",
-                "timing": "Azione"
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
             }
         ],
-        "testo_carta": "Inquisitore spietato nella caccia agli eretici e ai servi delle tenebre.",
-        "flavour_text": "La purezza si ottiene solo attraverso il fuoco purificatore.",
-        "keywords": ["Inquisitore", "Cacciatore di Eretici"],
+        "testo_carta": "PERSONALITÀ. CONSIDERATO UN MORTIFICATOR. Nicholai può lanciare incantesimi Arte della Manipolazione e dell'Esorcismo, più tutti gli incantesimi di Combattimento Personale. I guerrieri feriti da Nicholai sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "L'inquisitore massimo": {
+        "nome": "L'inquisitore massimo",
+        "fazione": "Fratellanza", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 7,
+            "sparare": 7, 
+            "armatura": 7,
+            "valore": 8
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia tutte le ARTI",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "L'Inquisitore Massimo può utilizzare tutte le ARTI.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Mortificator": {
+        "nome": "Mortificator",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte  specifica",
+                "descrizione": "Lancia Arte della Cinetica e l'Arte della Manipolazione",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte della Cinetica e Arte della Manipolazione",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "I Mortificator possono utilizzare l'Arte della Cinetica e l'Arte della Manipolazione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Mistico": {
+        "nome": "Mistico",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 4,
+            "valore": 5
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia tutte le carte ARTE",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "Il Mistico può utilizzare TUTTE le carte ARTE. Maestri in tutte le Arti, questi guerrieri dedicano la loro vita alla lotta contro l'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Arcangelo": {
+        "nome": "Arcangelo",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte specifica",
+                "descrizione": "Lancia Arte del Cambiamento e l'Arte degli Elementi",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte del Cambiamento e Arte degli Elementi",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "Gli Arcangeli possono utilizzare l'Arte del Cambiamento e l'Arte degli Elementi.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Revisore": {
+        "nome": "Revisore",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte specifica",
+                "descrizione": "Lancia Arte della Manipolazione e l'Arte Mentale",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte della Manipolazione e Arte Mentale",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "I Revisori possono utilizzare l'Arte della Manipolazione e l'Arte Mentale.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Valkiria": {
+        "nome": "Valkiria",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte specifica",
+                "descrizione": "Lancia Arte del Cambiamento e l'Arte della Premonizione",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte del Cambiamento e Arte della Premonizione",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "Le Valkirje possono utilizzare l'Arte del Cambiamento e l'Arte della Premonizione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+        
+    "Inquisitore": {
+        "nome": "Inquisitore",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte specifica",
+                "descrizione": "Lancia Arte dell'Esorcismo e l'Arte Mentale",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte dell'Esorcismo e Arte Mentale",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "Gli Inquisitori possono utilizzare l'Arte dell'Esorcismo e l'Arte Mentale.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Custode dell'arte": {
+        "nome": "Custode dell'arte",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 5,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia tutte le carte ARTE",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte",
+                "timing": "Turno"
+            },
+            {
+                "nome": "Aumenta effetto",
+                "descrizione": "Aumenta l'effetto dell'Incantesimo, vale 2D per quell'effetto",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Incantesimi Personali di combattimento",
+                "timing": "Combattimento"
+            }
+        ],
+        "testo_carta": "IL CUSTODE DELL'ARTE PUÒ UTILIZZARE TUTTE LE CARTE ARTE. Tutti gli Incantesimi Personali di combattimento sono considerati Incantesimi di combattimento quando sono giocati dal Custode, e ogni Punto D speso su un effetto dell'Incantesimo, vale 2D per quell'effetto.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "L'arcinquisitore nikodemus": {
+        "nome": "L'arcinquisitore nikodemus",
+        "fazione": "Fratellanza", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 8,
+            "sparare": 8, 
+            "armatura": 8,
+            "valore": 9
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia tutte le ARTI ed è immune agli effetti delle carte dell'Oscura Simmetria",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte",
+                "timing": "Turno"
+            },
+            {
+                "nome": "Immunita",
+                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. L'Arcinquisitore è Maestro in tutte le ARTI ed è immune agli effetti delle carte dell'Oscura Simmetria. Quando è in gioco, i Doomtroopers non possono Andare in Copertura volontariamente. Se viene ferito puoi spendere un'Azione e 5D per guarirlo, ferendo al suo posto un altro Doomtrooper nella Tua Squadra.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Guerrieri sacri": {
+        "nome": "Guerrieri sacri",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte specifica",
+                "descrizione": "Lancia Arte della Premonizione e l'Arte dell'Esorcismo",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte della Premonizione e Arte dell'Esorcismo",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "I Guerrieri Sacri possono utilizzare l'Arte della Premonizione e l'Arte dell'Esorcismo.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    # Inquisition
+    "Antiquario": {
+        "nome": "Antiquario",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte specifica",
+                "descrizione": "Lancia Arte Cinetica ed d'Evocazione",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte Cinetica e Arte d'Evocazione",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "L'Antiquario può utilizzare l'Arte Cinetica ed d'Evocazione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
+    "Cardinale durand": {
+        "nome": "Cardinale durand",
+        "fazione": "Fratellanza", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 11,
+            "sparare": 11, 
+            "armatura": 11,
+            "valore": 14
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia tutti gli aspetti dell'Arte",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte",
+                "timing": "Turno"
+            },
+            {
+                "nome": "Immunita",
+                "descrizione": "Immune all'Arte per il tempo che vuole",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerrieri della Fratellanza",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. Mentre è in gioco, tutti i guerrieri della Fratellanza possono usare tutti gli aspetti dell'Arte. Il Cardinale Durand può eliminare in ogni momento qualsiasi immunità all'Arte per il tempo che vuole. Se ucciso o scartato, rimetti il Cardinale nel Tuo mazzo di carte da Pescare.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Famoso evocatore": {
+        "nome": "Famoso evocatore",
+        "fazione": "Fratellanza", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 5,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte specifica",
+                "descrizione": "Lancia Arte d'Evocazione e della Manipolazione",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte d'Evocazione e Arte della Manipolazione",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "Il Famoso Evocatore può usare l'Arte d'Evocazione e della Manipolazione. Quando lancia incantesimi dell'Arte d'Evocazione, paga solo la metà del loro costo D.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+
     # === LEGIONE OSCURA ===
-   
+    # Fatto
     # Seguaci di Algeroth
      "Necromutante": {
         "nome": "Necromutante",
@@ -841,9 +2470,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Doni Apostoli",
+                "nome": "Riceve Doni Apostoli",
                 "descrizione": "Spendendo 5D può ricevere un DONO DEGLI APOSTOLI",
-                "tipo": "Incantesimi",
+                "tipo": "Dono degli Apostoli",
                 "costo_destino": 5,
                 "target": "Tutto",
                 "timing": "Turno"
@@ -907,7 +2536,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 7
         },
         "abilita": [{
-                "nome": "Incremento Combattimento",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -1201,7 +2830,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "armatura": 6,
             "valore": 6
         },
-        "abilita": [],
+        "abilita": [{
+                "nome": "Trasforma guerrieri uccisi in alleati",
+                "descrizione": "Se la Progenie uccide un Doomtrooper, puoi immediatamente rimpiazzarla con una Furia Immacolata",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Doomtrooper",
+                "timing": "Turno"
+            }],
         "testo_carta": "SEGUACE DI ALGEROTH. Quando una Progenie uccide un Doomtrooper, tu puoi immediatamente rimpiazzarla con una Furia Immacolata della tua collezione. Tutte le carte assegnate alla Progenie rimangono assegnate alla Furia Immacolata.",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
@@ -1260,17 +2896,17 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 20
         },
         "abilita": [{
-                "nome": "Assegna carte Equipaggiamento",
+                "nome": "Assegna Carta",
                 "descrizione": "Equipaggia qualsiasi guerriero dell'Oscura Legione",
-                "tipo": "Assegnazione Carte",
+                "tipo": "Carte",
                 "costo_destino": 0,
                 "target": "Guerrieri Oscura Legione",
                 "timing": "Ogni Momento"
                 },
                 {
-                "nome": "Scarta Carte",
+                "nome": "Scarta Carta",
                 "descrizione": "Può scartare qualsiasi carta in gioco al costo di tre azioni",
-                "tipo": "Scarta Carte",
+                "tipo": "Carte",
                 "costo_destino": 0,
                 "target": "Tutti i Guerrieri",
                 "timing": "Turno"
@@ -1333,9 +2969,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 8
         },
         "abilita": [{
-                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
-                "descrizione": "Equipaggia qualsiasi seguace di Algeroth",
-                "tipo": "Assegnazione Carte",
+                "nome": "Assegna Carte",
+                "descrizione": "Equipaggia qualsiasi seguace di Algeroth con arte Oscura Simmetria e Doni degli Apostoli",
+                "tipo": "Carte",
                 "costo_destino": 0,
                 "target": "Seguaci di ALgeroth",
                 "timing": "Ogni Momento"
@@ -1343,7 +2979,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             {
                 "nome": "Lancia Arte e/o Incantesimo dell'Arte",
                 "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
-                "tipo": "Incantesimi",
+                "tipo": "Arte",
                 "costo_destino": 0,
                 "target": "Arte",
                 "timing": "Turno"
@@ -1377,9 +3013,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 6
         },
         "abilita": [{
-                "nome": "Sostituisce Eretici",
+                "nome": "Sostituisce guerrieri",
                 "descrizione": "Può sostituire un Eretico con un Seguace di Algeroth al costo di tre azioni",
-                "tipo": "Sostituzione Guerrieri",
+                "tipo": "Modificatore",
                 "costo_destino": 0,
                 "target": "Eretici",
                 "timing": "Turno"
@@ -1492,7 +3128,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Attaccare per primi",
+                "nome": "Permette ai guerrieri di attaccare per primi",
                 "descrizione": "I guerrieri dell'Oscura Legione possono Attaccare per primi i loro avversari in combattimento",
                 "tipo": "Combattimento",
                 "costo_destino": 0,
@@ -1538,9 +3174,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Fase Combattimento"
             },
             {
-                "nome": "I Zenithiani Assassini dell'Anima uccidono automaticamente i guerrieri feriti",
+                "nome": "I guerrieri alleati uccidono automaticamente",
                 "descrizione": "Mentre è in gioco Zenithiani Assassini dell'Anima uccidono automaticamente i guerrieri feriti",
-                "tipo": "Potenziamento Guerrieri", 
+                "tipo": "Combattimento", 
                 "costo_destino": 0,
                 "target": "Zenithiani Assassini dell'Anima",
                 "timing": "Fase Combattimento"
@@ -1575,7 +3211,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 3
         },
         "abilita": [{
-                "nome": "Aumenta punto danno",
+                "nome": "Aumenta effetto",
                 "descrizione": "Ogni Urlatore causa un Punto Danno al costo di 5D.",
                 "tipo": "Modificatore",
                 "costo_destino": 5,
@@ -1672,9 +3308,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Scarta Carte",
+                "nome": "Scarta Carta",
                 "descrizione": "Può scartare un qualsiasi Doomtrooper in gioco al costo di tre azioni",
-                "tipo": "Scarta Carte",
+                "tipo": "Carte",
                 "costo_destino": 0,
                 "target": "Tutti i Doomtrooper",
                 "timing": "Turno"
@@ -1745,6 +3381,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "costo_destino": 0,
                 "target": "Guerriero",
                 "timing": "Fase Combattimento"
+            },
+            {
+                "nome": "I guerrieri alleati uccidono automaticamente",
+                "descrizione": "Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
             }
         ],
         "testo_carta": "SEGUACE DI SEMAI. Considerato un INTRUSO CALLISTONIANO. Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi.",
@@ -1777,7 +3421,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Immunita",
+                "nome": "Immune agli effetti dell'Arte",
                 "descrizione": "Immune agli effetti dell'Arte",
                 "tipo": "Immunita",
                 "costo_destino": 0,
@@ -1785,7 +3429,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Sempre"
             },
             {
-                "nome": "Raddoppia effetto Oscura Simmetria per ogni punto D speso",
+                "nome": "Aumenta effetto",
                 "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
                 "tipo": "Modificatore",
                 "costo_destino": 1,
@@ -1935,9 +3579,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Fase Combattimento"
             },
             {
-                "nome": "I Figli di Ilian uccidono automaticamente i guerrieri feriti",
-                "descrizione": "Se ferisce, uccide automaticamente",
-                "tipo": "Potenziamento Guerrieri", 
+                "nome": "I guerrieri alleati uccidono automaticamente",
+                "descrizione": "I Figli di Ilian uccidono automaticamente i guerrieri feriti",
+                "tipo": "Combattimento", 
                 "costo_destino": 0,
                 "target": "Figlio di Ilian",
                 "timing": "Fase Combattimento"
@@ -2060,7 +3704,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Immunita",
+                "nome": "Immune agli effetti dell'Arte",
                 "descrizione": "Immune agli effetti dell'Arte",
                 "tipo": "Immunita",
                 "costo_destino": 0,
@@ -2127,7 +3771,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Annulla Immunita",
+                "nome": "Annulla Immunita dell'Oscura Simmetria",
                 "descrizione": "Può annullare qualsiasi immuntità dell'Oscura Simmetria",
                 "tipo": "Immunita",
                 "costo_destino": 0,
@@ -2135,9 +3779,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Ogni Momento"
             },
             {
-                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
-                "descrizione": "Equipaggia qualsiasi seguace di Ilian",
-                "tipo": "Assegnazione Carte",
+                "nome": "Assegna Carta",
+                "descrizione": "Assegna carte Oscura Simmetria e Doni degli Apostoli. Equipaggia qualsiasi seguace di Ilian",
+                "tipo": "Carte",
                 "costo_destino": 0,
                 "target": "Guerrieri Oscura Legione",
                 "timing": "Ogni Momento"
@@ -2181,15 +3825,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "costo_destino": 0,
                 "target": "Guerrieri Doomtrooper",
                 "timing": "Ogni Momento"
-            },
-            {
-                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
-                "descrizione": "Equipaggia qualsiasi seguace di Ilian",
-                "tipo": "Assegnazione Carte",
-                "costo_destino": 0,
-                "target": "Guerrieri Oscura Legione",
-                "timing": "Ogni Momento"
-            },
+            }
         ],
         "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, i Doomtrooper possono attaccare qualsiasi altro Doomtrooper in gioco (non nella stessa Squadra), ma devono pagare 4D, per poter Attaccare guerrieri dell'Oscura Legione.",
         "flavour_text": "",
@@ -2287,7 +3923,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Immunita",
+                "nome": "Immune agli effetti dell'Arte",
                 "descrizione": "Immune agli effetti dell'Arte",
                 "tipo": "Immunita",
                 "costo_destino": 0,
@@ -2295,9 +3931,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Sempre"
             },
             {
-                "nome": "Trasformatore",
+                "nome": "Trasforma guerrieri uccisi in alleati",
                 "descrizione": "I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto",
-                "tipo": "Incantesimi",
+                "tipo": "Modificatore",
                 "costo_destino": 1,
                 "target": "Doomtrooper",
                 "timing": "Fase Combattimento"
@@ -2354,7 +3990,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    # Generici Oscura Legione
+    # Generico Oscura Legione
 
     "Apostata": {
         "nome": "Apostata",
@@ -2373,7 +4009,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             {
                 "nome": "Lancia Arte e/o Incantesimo dell'Arte",
                 "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
-                "tipo": "Incantesimi",
+                "tipo": "Arte",
                 "costo_destino": 0,
                 "target": "Arte",
                 "timing": "Turno"
@@ -2394,52 +4030,178 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
+
     # === FREELANCER ===
-    "Agent Nick Michael": {
-        "nome": "Agent Nick Michael",
-        "fazione": "Freelancer",
+    # Fatto
+    "Agente nick michaels": {
+        "nome": "Agente nick michaels",
+        "fazione": "Freelancer", 
         "tipo": "Personalita",
-        "rarity": "Uncommon",
+        "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "70",
+        "numero_carta": "",
         "stats": {
             "combattimento": 4,
-            "sparare": 4,
+            "sparare": 4, 
             "armatura": 4,
             "valore": 4
         },
-        "abilita": [
-            {
-                "nome": "Agente Doppio",
-                "descrizione": "Può essere considerato membro di qualsiasi delle cinque corporazioni",
-                "tipo": "Speciale",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            },
-            {
-                "nome": "Immunità Politica",
-                "descrizione": "Non può mai perdere l'affiliazione Cartel né diventare Eretico",
-                "tipo": "Speciale",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            }
-        ],
-        "testo_carta": "Agente misterioso che lavora per tutti e per nessuno.",
-        "flavour_text": "In guerra, l'informazione è più letale di qualsiasi arma.",
-        "keywords": ["Personalita", "Agente", "Doppio Gioco"],
+        "abilita": [],
+        "testo_carta": "PERSONALITÀ. L'Agente Michaels è considerato un membro di tutte e cinque le Corporazioni (ma non della Fratellanza). Egli non potrà mai perdere il legame con l'Alleanza e neppure diventare un Eretico.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
+    "Guardia del corpo": {
+        "nome": "Guardia del corpo",
+        "fazione": "Freelancer", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 6,
+            "valore": 4
+        },
+        "abilita": [],
+        "testo_carta": "CONSIDERATA ANCHE UNA FORTIFICAZIONE. Una volta in gioco, puoi assegnare la Guardia del Corpo in qualsiasi momento a qualsiasi Doomtrooper. Se vuoi, durante il combattimento combatterà al posto di quel guerriero. Puoi assegnare la Guardia del Corpo a un altro guerriero spendendo 3D.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Paparazzo": {
+        "nome": "Paparazzo",
+        "fazione": "Freelancer", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 2,
+            "valore": 4
+        },
+        "abilita": [],
+        "testo_carta": "Questo guerriero non può utilizzare nessuna carta equipaggiamento. Mentre è in gioco tutti i tuoi Doomtrooper guadagnano 2 punti extra quando uccidono un avversario in combattimento.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte Equipaggiamento non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Medico da campo": {
+        "nome": "Medico da campo",
+        "fazione": "Freelancer", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 5,
+            "valore": 3
+        },
+        "abilita": [
+            {
+                "nome": "Guarisce se stesso.",
+                "descrizione": "Se ferito, .",
+                "tipo": "Guarigione",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Guarisce guerriero ferito",
+                "descrizione": "Può curare un Doomtrooper ferito (facendolo tornare sano) al costo di tre azioni. Non può curare un morto.",
+                "tipo": "Guarigione",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "Non può utilizzare carte equipaggiamento o attaccare un guerriero avversario. Può curare un Doomtrooper ferito (facendolo tornare sano) al costo di tre azioni. Non può curare un morto.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte Equipaggiamento non Assegnabili", "Non può attaccare guerrieri: qualsiasi"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    "Apostata rinnegato": {
+        "nome": "Apostata rinnegato",
+        "fazione": "Freelancer", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 4, 
+            "armatura": 5,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Arte",
+                "timing": "Turno"
+            }
+        ],
+        "testo_carta": "Può usare tutti i tipi di Arte. L'apostata Rinnegato non ha nessun Legame e non può riceverne nessuno separato dalla Tua Squadra e dal Tuo Schieramento. Può lanciare qualsiasi incantesimo su qualsiasi guerriero e Attaccare ed essere Attaccato da qualsiasi guerriero.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+
+
 
     # === ESPANSIONI WARZONE ===
     "Heavy Tank Commander": {
@@ -3133,8 +4895,8 @@ if __name__ == "__main__":
     print(f"Personalita nel database: {len(personalita)} - {personalita[:3]}...")
     
     # Guerrieri con keywords specifiche
-    cyborg = get_guerrieri_con_keyword("Cyborg")
-    print(f"Guerrieri Cyborg: {cyborg}")
+    eretico = get_guerrieri_con_keyword("Eretico")
+    print(f"Guerrieri Eretico: {eretico}")
     
     samurai = get_guerrieri_con_keyword("Samurai")
     print(f"Guerrieri Samurai: {samurai}")

@@ -245,7 +245,7 @@ class CreatoreMazzo:
                 "timing": "Sempre"
                 }                
             {
-                "nome": "Raddoppia effetto Oscura Simmetria per ogni punto D speso",
+                "nome": "Aumenta effetto su se stesso",
                 "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
                 "tipo": "Modificatore",
                 "costo_destino": 1,
@@ -253,7 +253,7 @@ class CreatoreMazzo:
                 "timing": "Sempre"
             },           
             {
-                "nome": "Immunita",
+                "nome": "Immune agli effetti dell'Arte",
                 "descrizione": "Immune agli effetti dell'Arte",
                 "tipo": "Immunita",
                 "costo_destino": 0,
@@ -351,31 +351,51 @@ class CreatoreMazzo:
         for abilita in guerriero.abilita:
             # Potenziamento altri guerrieri
             keywords = abilita.descrizione.lower()
-            if abilita.nome == "Uccide Automaticamente":
-                potenza_assoluta *= 2.0
+
+            if abilita.tipo == "Combattimento":
+                if abilita.nome == "Uccide Automaticamente":
+                    potenza_assoluta *= 2.0
+                if abilita.nome == "Permette ai guerrieri di attaccare per primi":
+                    potenza_assoluta *= 1.3
+                if abilita.nome == "I guerrieri alleati uccidono automaticamente":
+                    potenza_assoluta *= 1.3
 
             if abilita.tipo == "Immunita":
-                if abilita.descrizione == "immune agli effetti dell'arte" or abilita.descrizione == "immune agli effetti dell'oscura simmetria":
+                if abilita.nome in ["Immune agli effetti dell'Arte", "Immune agli effetti dell'Oscura Simmetria", "Annulla Immunita dell'Oscura Simmetria", "Immune ai Doni degli Apostoli"]:
                     potenza_assoluta *= 1.5
-                elif "immune agli effetti della specifica arte" in abilita.descrizione:
+                elif "Immune agli effetti della specifica arte" in abilita.nome:
                     potenza_assoluta *= 1.2
                         
-            if abilita.nome == "Modificatore":
-                potenza_assoluta *= 1.3
-            
+                        
+            if abilita.tipo == "Modificatore":
+                if abilita.nome in ["Aumenta effetto", "Aumenta caratteristica"]:
+                    potenza_assoluta *= 1.3
+                elif abilita.nome == "Trasforma guerrieri uccisi in alleati":
+                    potenza_assoluta *= 1.1
+                elif abilita.nome == "Sostituisce guerrieri":
+                    potenza_assoluta *= 1.2
+
             if abilita.tipo == "Guarigione" :
                 if "Guarisce se stesso" in abilita.nome:
-                    potenza_assoluta *= 1.7
+                    potenza_assoluta *= 1.5
 
             if abilita.tipo == "Arte":
-                if "Lancia Arte e/o Incantesimo dell'Arte" in abilita.nome:
-                    potenza_assoluta *= 1.5
+                if "Lancia Arte e/o Incantesimo dell'Arte" == abilita.nome:
+                    potenza_assoluta *= 1.3
                 
-                elif "Lancia Arte del" in abilita.nome or "Lancia Incantesimo di" in abilita.nome:
+                elif "Lancia Arte e/o Incantesimo dell'Arte specifica" == abilita.nome:
                     potenza_assoluta *= 1.2
-                
+
+            if abilita.tipo == "Oscura Simmetria" or abilita.tipo == "Dono degli Apostoli":                
+                    potenza_assoluta *= 1.3
+            
+
+            if abilita.tipo == "Carte":
+
+                if abilita.nome in ["Assegna Carta", "Scarta Carta", "Elimina Carta"]:
+                    potenza_assoluta *= 1.3    
                     
-        
+         
         # Normalizza rispetto al massimo della collezione
         max_potenza = self._calcola_max_potenza_guerrieri()
         if max_potenza > 0:
@@ -813,14 +833,6 @@ class CreatoreMazzo:
 
         return potenza_statistiche_combattimento + potenza_azioni
               
-    
- 
-
-
-
-
-
-
     def filtra_carte_per_espansioni(self, carte: List[Any], espansioni_richieste: List[str]) -> List[Any]:
         """
         Filtra le carte per le espansioni richieste
@@ -847,6 +859,8 @@ class CreatoreMazzo:
                     
         return carte_filtrate
     
+
+
     def seleziona_guerrieri(self, 
                            espansioni_richieste: List[str],
                            doomtrooper: bool = None,
@@ -1193,6 +1207,8 @@ class CreatoreMazzo:
 
         return carte_selezionate
     
+
+
     def _carta_compatibile_con_guerrieri(self, carta: Any, guerrieri: List[Guerriero]) -> List:
         """
         Verifica se una carta è compatibile con almeno un guerriero della lista
@@ -1470,30 +1486,11 @@ def crea_mazzo_da_gioco(collezione: Any,
             'warzone', distribuzione['warzone']
         )
         carte_supporto.extend(warzone)
-    
-    #n_eq = len ( carte_supporto.get('equipaggiamento', []) )
-    #n_fo = len ( carte_supporto.get('fortificazione', []) )
-    #n_sp = len ( carte_supporto.get('speciale', []) )
-    #n_mi = len ( carte_supporto.get('missione', []) )
-    #n_ar = len ( carte_supporto.get('arte', []) )
-    #n_os = len ( carte_supporto.get('oscura_simmetria', []) )
-    #n_re = len ( carte_supporto.get('reliquia', []) )
-    #n_wa = len ( carte_supporto.get('warzone', []) )
-
-    #n_supporto = sum ( [ n_eq, n_fo, n_sp, n_mi, n_ar, n_os, n_re, n_wa ] )
 
     statistiche = {
         'numero_totale_carte': len(squadra) + len(schieramento) + len(carte_supporto),
         'guerrieri_squadra': len(squadra),
         'guerrieri_schieramento': len(schieramento),
-        #'equipaggiamento': n_eq,        
-        #'fortificazione': n_fo,
-        #'speciale': n_sp,
-        #'missione': n_mi,
-        #'arte': n_ar,
-        #'oscura_simmetria': n_os,
-        #'reliquia': n_re,
-        #'warzone': n_wa,
         'distribuzione_per_tipo': {},
         'fazioni_presenti': [],
         'espansioni_utilizzate': espansioni_richieste
