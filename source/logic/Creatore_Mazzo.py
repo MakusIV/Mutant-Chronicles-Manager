@@ -339,7 +339,16 @@ class CreatoreMazzo:
                 "costo_destino": 0,
                 "target": "Zenithiani Assassini dell'Anima",
                 "timing": "Fase Combattimento"
+            },
+                     {
+                "nome": "Converte Azioni in Azioni d'Attacco",
+                "descrizione": "Mentre il Maresciallo è in gioco tu puoi convertire ogni numero di Azioni non di attacco in Azioni d'attacco",
+                "tipo": "Azioni",
+                "costo_destino": 0,
+                "target": "Guerrieri Imperiali",
+                "timing": "Mentre questo guerriero è presente"
             }
+   
 
 
                 restrizioni:
@@ -354,18 +363,15 @@ class CreatoreMazzo:
 
             if abilita.tipo == "Combattimento":
                 if abilita.nome == "Uccide Automaticamente":
-                    potenza_assoluta *= 2.0
-                if abilita.nome == "Permette ai guerrieri di attaccare per primi":
+                    potenza_assoluta *= 1.5
+                if abilita.nome in ["Permette ai guerrieri di attaccare per primi", "I guerrieri alleati uccidono automaticamente"]:
                     potenza_assoluta *= 1.3
-                if abilita.nome == "I guerrieri alleati uccidono automaticamente":
-                    potenza_assoluta *= 1.3
-
+                
             if abilita.tipo == "Immunita":
                 if abilita.nome in ["Immune agli effetti dell'Arte", "Immune agli effetti dell'Oscura Simmetria", "Annulla Immunita dell'Oscura Simmetria", "Immune ai Doni degli Apostoli"]:
-                    potenza_assoluta *= 1.5
+                    potenza_assoluta *= 1.4
                 elif "Immune agli effetti della specifica arte" in abilita.nome:
-                    potenza_assoluta *= 1.2
-                        
+                    potenza_assoluta *= 1.2                        
                         
             if abilita.tipo == "Modificatore":
                 if abilita.nome in ["Aumenta effetto", "Aumenta caratteristica"]:
@@ -377,7 +383,7 @@ class CreatoreMazzo:
 
             if abilita.tipo == "Guarigione" :
                 if "Guarisce se stesso" in abilita.nome:
-                    potenza_assoluta *= 1.5
+                    potenza_assoluta *= 1.3
 
             if abilita.tipo == "Arte":
                 if "Lancia Arte e/o Incantesimo dell'Arte" == abilita.nome:
@@ -387,12 +393,16 @@ class CreatoreMazzo:
                     potenza_assoluta *= 1.2
 
             if abilita.tipo == "Oscura Simmetria" or abilita.tipo == "Dono degli Apostoli":                
-                    potenza_assoluta *= 1.3
-            
+                    potenza_assoluta *= 1.3            
 
             if abilita.tipo == "Carte":
 
                 if abilita.nome in ["Assegna Carta", "Scarta Carta", "Elimina Carta"]:
+                    potenza_assoluta *= 1.3    
+
+            if abilita.tipo == "Azioni":
+
+                if abilita.nome in ["Converte Azioni in Azioni d'Attacco"]:
                     potenza_assoluta *= 1.3    
                     
          

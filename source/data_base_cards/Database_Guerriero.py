@@ -17,256 +17,811 @@ from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, DisciplinaAr
 GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     
     # === BAUHAUS ===
-    "Bauhaus Blitzer": {
-        "nome": "Bauhaus Blitzer",
-        "fazione": "Bauhaus",
-        "tipo": "Normale",
+    # fatto
+    # Base
+    "Ussaro": {
+        "nome": "Ussaro",
+        "fazione": "Bauhaus", 
+        "tipo": "",
         "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "01",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 12,  # C - Corpo a corpo
-            "sparare": 12,       # S - Sparare (non "forza")
-            "armatura": 10,      # A - Armatura
-            "valore": 4          # V - Valore (sia costo che PP)
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 3,
+            "valore": 2
         },
         "abilita": [],
-        "testo_carta": "Guerriero standard della Bauhaus, specializzato in combattimenti ravvicinati.",
-        "flavour_text": "La forza bruta della Bauhaus al servizio dell'Imperatore.",
+        "testo_carta": "Gli Ussari sono la fanteria regolare della Corporazione Bauhaus. Ben equipaggiati, eccezionalmente addestrati e fortemente motivati, sono dei guerrieri dalle incredibili capacità offensive.",
+        "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
     
-    "Bauhaus Venusian Ranger": {
-        "nome": "Bauhaus Venusian Ranger",
-        "fazione": "Bauhaus",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
+    "Mercenario Ex-Bauhaus": {
+        "nome": "Mercenario Ex-Bauhaus",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "02",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 10,
-            "sparare": 14,      # Ranger specializzato nel tiro
-            "armatura": 12,
-            "valore": 5
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 4,
+            "valore": 1
         },
-        "abilita": [
-            {
-                "nome": "Sopravvivenza Venusiana",
-                "descrizione": "Immune agli effetti ambientali tossici",
-                "tipo": "Speciale",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            }
-        ],
-        "testo_carta": "Ranger esperto nella sopravvivenza negli ambienti ostili di Venere.",
-        "flavour_text": "Nelle giungle velenose di Venere, solo i più forti sopravvivono.",
-        "keywords": ["Ranger"],
+        "abilita": [],
+        "testo_carta": "Ogni punto guadagnato dal Mercenario deve essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Bauhaus\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Incursore Bauhaus": {
+        "nome": "Incursore Bauhaus",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "Paracadutisti del Clan Romanov; questi guerrieri sono utilizzati principalmente per azioni di sabotaggio e infiltrazione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
     
-    "Ilian Paladini": {
-        "nome": "Ilian Paladini",
-        "fazione": "Bauhaus",
-        "tipo": "Personalita",
-        "rarity": "Rare",
+    "Ranger Venusiano": {
+        "nome": "Ranger Venusiano",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "03",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 16,
-            "sparare": 14,
-            "armatura": 12,
+            "combattimento": 4,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti di tutte le carte DONI DELL'OSCURA SIMMETRIA",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "I Ranger Venusiani sono immuni agli effetti di tutte le carte DONI DELL'OSCURA SIMMETRIA.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Etoiles Mortant": {
+        "nome": "Etoiles Mortant",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 2, 
+            "armatura": 6,
+            "valore": 4
+        },
+        "abilita": [],
+        "testo_carta": "Gli Etoiles Mortant, se sono presenti guerrieri dell'Oscura Legione, possono solo attaccare quest'ultimi (anche se fanno parte del Tuo Schieramento). Se non ve ne sono, agiscono normalmente.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Dragone": {
+        "nome": "Dragone",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 1,
+            "sparare": 3, 
+            "armatura": 5,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "I Dragoni sono la Forza Corazzata d'Elite della Bauhaus. I loro Carri Armati speciali sono conosciuti e temuti ovunque.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # Inquisition
+    "Maresciallo Venusiano": {
+        "nome": "Maresciallo Venusiano",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 8,
+            "sparare": 7, 
+            "armatura": 8,
             "valore": 8
         },
         "abilita": [
             {
-                "nome": "Comando Ispirato",
-                "descrizione": "Tutti i guerrieri Bauhaus alleati guadagnano +2 in Combattimento",
-                "tipo": "Comando",
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare e Armatura di +2",
+                "tipo": "Modificatore",
                 "costo_destino": 0,
-                "target": "Alleati Bauhaus",
-                "timing": "Permanente"
+                "target": "Tutti i Tuoi Doomtrooper Bauhaus non-Personalità",
+                "timing": "Sempre"
             }
         ],
-        "testo_carta": "Leggendario comandante della Bauhaus, ispira coraggio nei suoi uomini.",
-        "flavour_text": "Un vero leader non comanda dalla retroguardia.",
-        "keywords": ["Personalita", "Unico"],
-        "restrizioni": ["Un solo Ilian Paladini per squadra"],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Bauhaus Ducal Militia": {
-        "nome": "Bauhaus Ducal Militia",
-        "fazione": "Bauhaus",
-        "tipo": "Normale",
-        "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "04",
-        "stats": {
-            "combattimento": 9,
-            "sparare": 11,
-            "armatura": 8,
-            "valore": 3
-        },
-        "abilita": [],
-        "testo_carta": "Milizia ducale della Bauhaus, guardia del corpo dei nobili.",
-        "flavour_text": "Lealtà e onore sono i pilastri della nobiltà.",
-        "keywords": ["Milizia"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # === CAPITOL ===
-    "Capitol Free Marine": {
-        "nome": "Capitol Free Marine",
-        "fazione": "Capitol",
-        "tipo": "Normale",
-        "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "10",
-        "stats": {
-            "combattimento": 10,
-            "sparare": 12,
-            "armatura": 10,
-            "valore": 4
-        },
-        "abilita": [],
-        "testo_carta": "Marine della Capitol, addestrato per combattimenti in ambiente urbano.",
-        "flavour_text": "La libertà ha un prezzo, e noi lo paghiamo con il sangue.",
+        "testo_carta": "Per ogni Maresciallo Venusiano che hai nella Tua Squadra, tutti i Tuoi Doomtrooper Bauhaus non-Personalità guadagnano un +2 in C, S e A (non altri Marescialli).",
+        "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-    "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
     
-    "Mitch Hunter": {
-        "nome": "Mitch Hunter",
-        "fazione": "Capitol",
-        "tipo": "Personalita",
-        "rarity": "Ultra Rare",
-        "set_espansione": "Base",
-        "numero_carta": "11",
+    # Warzone
+    "Comandante": {
+        "nome": "Comandante",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
         "stats": {
-            "combattimento": 18,
-            "sparare": 18,
-            "armatura": 14,
+            "combattimento": 6,
+            "sparare": 5, 
+            "armatura": 9,
             "valore": 10
         },
         "abilita": [
             {
-                "nome": "Cacciatore Leggendario",
-                "descrizione": "Può attaccare due volte per turno",
-                "tipo": "Attacco",
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +5",
+                "tipo": "Modificatore",
                 "costo_destino": 0,
-                "target": "Nemici",
-                "timing": "Durante il turno"
-            },
-            {
-                "nome": "Istinto di Sopravvivenza",
-                "descrizione": "La prima volta che dovrebbe essere eliminato, invece si ferisce",
-                "tipo": "Difesa",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Quando eliminato"
+                "target": "Tutti i guerrieri Bauhaus nella tua squadra equipaggiati con CARRO ARMATO e tutti i guerrieri Bauhaus considerati CARRI ARMATI o VEICOLI",
+                "timing": "Mentre è in gioco"
             }
         ],
-        "testo_carta": "Il più grande cacciatore della Capitol, nemico giurato della Oscura Legione.",
-        "flavour_text": "Alcuni nascono per cacciare. Altri per essere cacciati.",
-        "keywords": ["Personalita", "Unico", "Leggenda"],
-        "restrizioni": ["Un solo Mitch Hunter per squadra"],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Capitol Purple Shark": {
-        "nome": "Capitol Purple Shark",
-        "fazione": "Capitol",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
-        "set_espansione": "Base",
-        "numero_carta": "12",
-        "stats": {
-            "combattimento": 12,
-            "sparare": 13,
-            "armatura": 11,
-            "valore": 5
-        },
-        "abilita": [
-            {
-                "nome": "Frenesia Combattiva",
-                "descrizione": "+2 Combattimento quando attacca un guerriero ferito",
-                "tipo": "Attacco",
-                "costo_destino": 0,
-                "target": "Guerriero ferito",
-                "timing": "Durante l'attacco"
-            }
-        ],
-        "testo_carta": "Elite della Capitol, spietati cacciatori urbani.",
-        "flavour_text": "Come squali nell'oceano di cemento.",
-        "keywords": ["Elite"],
+        "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Bauhaus nella tua squadra equipaggiati con CARRO ARMATO e tutti i guerrieri Bauhaus considerati CARRI ARMATI o VEICOLI, guadagnano un +5 in C, S, A e V. Il Comandante non incrementa i propri valori, ma ulteriori Comandanti introdotti in gioco possono farlo.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False,
+            "ferito": False, 
             "pronto": True
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
+    
+    "Aiuto Di Campo": {
+        "nome": "Aiuto Di Campo",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 4, 
+            "armatura": 7,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Assegna un guerriero Bauhaus non personalità all'Aiuto di Campo. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre l'Aiuto di Campo è vivo e nella Squadra.",
+                "tipo": "Carte",
+                "costo_destino": 0,
+                "target": "Guerriero Bauhaus non personalità",
+                "timing": "Ogni Momento"
+            },
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerriero Bauhaus assegnato ed eventuali copie nella squadra",
+                "timing": "Mentre l'Aiuto di Campo è vivo e nella Squadra"
+            }
+        ],
+        "testo_carta": "COMANDANTE (SERGENTE). Assegna un guerriero Bauhaus non personalità all'Aiuto di Campo. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre l'Aiuto di Campo è vivo e nella Squadra.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Eva Valmonte": {
+        "nome": "Eva Valmonte",
+        "fazione": "Bauhaus", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 1,
+            "sparare": 1, 
+            "armatura": 1,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare e Armatura di +2",
+                "tipo": "Modificatore",
+                "costo_destino": 1,
+                "target": "Tuoi Doomtrooper (ma non Eva)",
+                "timing": "Azione dedicata allo spionaggio"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. Famosa attrice della Bauhaus assoldата come spia. Per ogni Azione dedicata allo spionaggio, i tuoi Doomtrooper (ma non Eva) guadagnano un +2 in C, S e A fino all'inizio del tuo prossimo turno. Per attaccare Eva l'avversario deve spendere un Punto Promozione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Poliziotto Bauhaus": {
+        "nome": "Poliziotto Bauhaus",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 2, 
+            "armatura": 2,
+            "valore": 4
+        },
+        "abilita": [],
+        "testo_carta": "Se un Doomtrooper ferisce o uccide un guerriero Bauhaus, il poliziotto può IMPRIGIONARE il Doomtrooper. Quando lo imprigioni puoi scegliere di scartare alcune o tutte le carte assegnate a associare al guerriero imprigionato sono scartate. I prigionieri non possono attaccare e non possono essere attaccati. Se il Poliziotto viene scartato o ucciso tutti i suoi prigionieri tornano nella Squadra di appartenenza.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Capitano Bauhaus": {
+        "nome": "Capitano Bauhaus",
+        "fazione": "Bauhaus", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 6, 
+            "armatura": 9,
+            "valore": 10
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerrieri feriti dai guerrieri Bauhaus nella Tua Squadra con V uguale a 9 o meno",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Bauhaus nella Tua Squadra con V uguale a 9 o meno, uccidono automaticamente i guerrieri che feriscono.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    # === CAPITOL ===
+    # fatto
+    #Base
+    
+    "Mercenario Ex-Capitol": {
+        "nome": "Mercenario Ex-Capitol",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 4, 
+            "armatura": 2,
+            "valore": 1
+        },
+        "abilita": [],
+        "testo_carta": "Ogni punto guadagnato dal Mercenario deve essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Capitol\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Fanteria": {
+        "nome": "Fanteria",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 3, 
+            "armatura": 2,
+            "valore": 2
+        },
+        "abilita": [],
+        "testo_carta": "Sono le Forze Armate Terrestri Capitol più comuni in tutto il Sistema Solare. Ben armati e equipaggiati, questi guerrieri sono molto temibili.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Generale Michael Kell": {
+        "nome": "Generale Michael Kell",
+        "fazione": "Capitol", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 7,
+            "sparare": 11, 
+            "armatura": 9,
+            "valore": 12
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +3",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerrieri Capitol (ma non Kell) nella tua squadra",
+                "timing": "Mentre è nella tua squadra"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. Mentre è nella tua squadra tutti i guerrieri Capitol (ma non Kell) guadagnano un +3 in C, S, A e V.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Agente Speciale Hunter": {
+        "nome": "Agente Speciale Hunter",
+        "fazione": "Capitol", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 9,
+            "sparare": 4, 
+            "armatura": 7,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti delle carte dell'Oscura Simmetria, compresi i Doni degli Apostoli",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento con valore base C raddoppiato (18)",
+                "tipo": "Modificatore",
+                "costo_destino": 2,
+                "target": "Se stesso",
+                "timing": "Attacco in Corpo a Corpo"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. IMMUNE A TUTTI I DONI DELL'OSCURA SIMMETRIA, COMPRESI I DONI DEGLI APOSTOLI. Non può mai diventare un Eretico. Può spendere due Azioni per fare un Attacco in Corpo a Corpo con il valore base C raddoppiato (18).",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Free Marine": {
+        "nome": "Free Marine",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 4, 
+            "armatura": 2,
+            "valore": 1
+        },
+        "abilita": [],
+        "testo_carta": "Al di fuori di ogni inquadramento, questi guerrieri pluridecorati sono alla ricerca del proprio riscatto morale. Parecchi di loro sono infatti stati degradati dalla Corte Marziale.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+  
+    "Sea Lion": {
+        "nome": "Sea Lion",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 4, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [],
+        "testo_carta": "I Sea Lion (Leoni di Mare) sono una Forza Navale d'Elite attualmente impiegata come truppa anfibia nell'Arcipelago di Venere.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Mitch Hunter": {
+        "nome": "Mitch Hunter",
+        "fazione": "Capitol", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 7, 
+            "armatura": 7,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti delle carte dell'Oscura Simmetria",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Tutta la Tua fanteria",
+                "timing": "Quando Hunter è in gioco"
+            }
+        ],
+        "testo_carta": "PERSONALITÀ. CONSIDERATO UN GUERRIERO DI FANTERIA. Quando Hunter è in gioco, tutta la Tua fanteria è immune agli effetti delle carte dell'Oscura Simmetria.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Martian Banshee": {
+        "nome": "Martian Banshee",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 1,
+            "sparare": 5, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "Truppe Aerotrasportate utilizzate su Marte; questi guerrieri hanno in comune il fatto di nutrire un forte odio contro la Corporazione Mishima o l'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    # Warzone
+      
+    "Capitano Capitol": {
+        "nome": "Capitano Capitol",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 6,
+            "sparare": 8, 
+            "armatura": 7,
+            "valore": 9
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerrieri feriti dai guerrieri Capitol nella tua Squadra con V uguale a 8 o meno",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Capitol nella tua Squadra con V uguale a 8 o meno, uccidono automaticamente i guerrieri che feriscono.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Sergente": {
+        "nome": "Sergente",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 7, 
+            "armatura": 5,
+            "valore": 6
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerriero Capitol non personalità assegnato al Sergente",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "COMANDANTE (SERGENTE). Assegna un guerriero Capitol non personalità al Sergente. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre il Sergente è vivo e nella Squadra.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Capo Squadriglia": {
+        "nome": "Capo Squadriglia",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 9, 
+            "armatura": 7,
+            "valore": 9
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +3",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerrieri Capitol con AERONAVI e tutti i guerrieri Capitol considerati AERONAVI o VEICOLI",
+                "timing": "Mentre questo guerriero è presente"
+            }
+        ],
+        "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Capitol nella tua squadra equipaggiati con AERONAVI e tutti i guerrieri Capitol considerati AERONAVI o VEICOLI, guadagnano un +3 in C, S, A e V mentre il Capo Squadriglia non incrementa i propri valori, ma ulteriori Capi Squadriglia introdotti in gioco possono farlo.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
 
     # === CYBERTRONIC ===
-
+    # fatto
+    # Base
     "Cyril dent": {
         "nome": "Cyril dent",
         "fazione": "Cybertronic", 
@@ -304,6 +859,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Dottoressa diana": {
         "nome": "Dottoressa diana",
         "fazione": "Cybertronic", 
@@ -349,6 +905,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Mercenario ex-cybertronic": {
         "nome": "Mercenario ex-cybertronic",
         "fazione": "Cybertronic", 
@@ -386,6 +943,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Fay & klaus": {
         "nome": "Fay & klaus",
         "fazione": "Cybertronic", 
@@ -423,6 +981,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Contorsionista": {
         "nome": "Contorsionista",
         "fazione": "Cybertronic", 
@@ -460,6 +1019,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Capitano cybertronic": {
         "nome": "Capitano cybertronic",
         "fazione": "Cybertronic", 
@@ -513,6 +1073,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Chemiman": {
         "nome": "Chemiman",
         "fazione": "Cybertronic", 
@@ -558,6 +1119,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Droide eradicator": {
         "nome": "Droide eradicator",
         "fazione": "Cybertronic", 
@@ -595,6 +1157,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Gestore occulto": {
         "nome": "Gestore occulto",
         "fazione": "Cybertronic", 
@@ -632,6 +1195,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Sicurezza cybertronic": {
         "nome": "Sicurezza cybertronic",
         "fazione": "Cybertronic", 
@@ -669,6 +1233,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Vince diamond": {
         "nome": "Vince diamond",
         "fazione": "Cybertronic", 
@@ -706,6 +1271,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Tecnico vac": {
         "nome": "Tecnico vac",
         "fazione": "Cybertronic", 
@@ -751,6 +1317,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Cacciatore": {
         "nome": "Cacciatore",
         "fazione": "Cybertronic", 
@@ -788,6 +1355,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+    
     "Charles sykes": {
         "nome": "Charles sykes",
         "fazione": "Cybertronic", 
@@ -838,6 +1406,81 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     # === IMPERIALE ===
     # Fatto
     # Base
+
+    "Maresciallo di Campo Johnstone": {
+        "nome": "Maresciallo di campo johnstone",
+        "fazione": "Imperiali", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 0, 
+            "armatura": 0,
+            "valore": 20
+        },
+        "abilita": [{
+                "nome": "Converte Azioni in Azioni d'Attacco",
+                "descrizione": "Mentre il Maresciallo è in gioco tu puoi convertire ogni numero di Azioni non di attacco in Azioni d'attacco",
+                "tipo": "Azioni",
+                "costo_destino": 0,
+                "target": "Guerrieri Imperiali",
+                "timing": "Mentre questo guerriero è presente"
+            }],
+        "testo_carta": "PERSONALITÀ. LEADER CORPORATIVO. Non può mai prendere parte al combattimento né andare in copertura. Mentre il Maresciallo è in gioco tu puoi convertire ogni numero di Azioni non di attacco in Azioni d'attacco, ma queste devono essere compiute da guerrieri Imperiali.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
+    "Porta Stendardo": {
+        "nome": "Porta Stendardo",
+        "fazione": "Capitol", 
+        "tipo": "",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 5,
+            "sparare": 1, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Aumenta caratteristiche",
+                "descrizione": "Aumenta le caratteristiche di Attacco di +2",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerrieri Imperiali nella squadra tranne il Porta Stendardo",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "PORTA STENDARDO. Questo guerriero ispira i suoi commilitoni. Tutti i guerrieri Imperiali nella tua Squadra, eccetto il Porta Stendardo, guadagnano un +2 in A mentre questo guerriero è presente. Ulteriori Porta Stendardo incrementano anche il valore A del Porta Stendardo.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    
     "Esperto in Trincee": {
         "nome": "Esperto in Trincee",
         "fazione": "Imperiali", 

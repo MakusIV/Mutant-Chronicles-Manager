@@ -2,7 +2,7 @@
   "metadata": {
     "versione": "2.1",
     "tipo_export": "mazzi_dettagliati_con_conteggio",
-    "data_creazione": "2025-09-03T22:16:24.116238",
+    "data_creazione": "2025-09-08T20:39:35.821347",
     "numero_mazzi": 2,
     "descrizione": "Export dettagliato mazzi con inventari raggruppati per nome carta e conteggio copie",
     "formato_inventario": "raggruppato_con_conteggio",
@@ -16,24 +16,24 @@
   "statistiche_aggregate": {
     "panoramica_generale": {
       "numero_mazzi": 2,
-      "totale_carte": 89,
-      "totale_guerrieri_squadra": 12,
-      "totale_guerrieri_schieramento": 6,
-      "media_carte_per_mazzo": 44.5,
-      "media_guerrieri_squadra": 6.0,
-      "media_guerrieri_schieramento": 3.0
+      "totale_carte": 81,
+      "totale_guerrieri_squadra": 6,
+      "totale_guerrieri_schieramento": 5,
+      "media_carte_per_mazzo": 40.5,
+      "media_guerrieri_squadra": 3.0,
+      "media_guerrieri_schieramento": 2.5
     },
     "distribuzione_globale": {
       "per_tipo_supporto": {
-        "equipaggiamento": 15,
+        "equipaggiamento": 16,
         "fortificazione": 7,
-        "speciale": 46,
-        "arte": 3
+        "speciale": 42,
+        "arte": 5
       },
       "per_fazione": {
-        "Capitol": 1,
+        "Fratellanza": 1,
         "Bauhaus": 1,
-        "Mishima": 1,
+        "Capitol": 1,
         "Oscura Legione": 1
       },
       "per_espansione": {
@@ -44,31 +44,33 @@
     "riepilogo_mazzi": [
       {
         "indice_mazzo": 1,
-        "totale_carte": 51,
-        "guerrieri_squadra": 12,
+        "totale_carte": 47,
+        "guerrieri_squadra": 6,
         "guerrieri_schieramento": 0,
         "fazioni_presenti": [
-          "Capitol",
+          "Fratellanza",
           "Bauhaus",
-          "Mishima"
+          "Capitol"
         ],
         "espansioni_utilizzate": [
           "Base",
           "Inquisition"
         ],
         "distribuzione_supporto": {
-          "equipaggiamento": 8,
-          "fortificazione": 4,
+          "equipaggiamento": 9,
+          "fortificazione": 3,
           "speciale": 24,
-          "arte": 3
+          "arte": 5
         },
-        "errori": []
+        "errori": [
+          "Il mazzo ha 47 carte, meno del minimo richiesto (50)"
+        ]
       },
       {
         "indice_mazzo": 2,
-        "totale_carte": 38,
+        "totale_carte": 34,
         "guerrieri_squadra": 0,
-        "guerrieri_schieramento": 6,
+        "guerrieri_schieramento": 5,
         "fazioni_presenti": [
           "Oscura Legione"
         ],
@@ -78,11 +80,11 @@
         ],
         "distribuzione_supporto": {
           "equipaggiamento": 7,
-          "fortificazione": 3,
-          "speciale": 22
+          "fortificazione": 4,
+          "speciale": 18
         },
         "errori": [
-          "Il mazzo ha 38 carte, meno del minimo richiesto (50)"
+          "Il mazzo ha 34 carte, meno del minimo richiesto (50)"
         ]
       }
     ]
@@ -91,116 +93,41 @@
     {
       "indice_mazzo": 1,
       "statistiche_mazzo": {
-        "numero_totale_carte": 51,
-        "guerrieri_squadra": 12,
+        "numero_totale_carte": 47,
+        "guerrieri_squadra": 6,
         "guerrieri_schieramento": 0,
         "distribuzione_per_tipo": {
-          "equipaggiamento": 8,
-          "fortificazione": 4,
+          "equipaggiamento": 9,
+          "fortificazione": 3,
           "speciale": 24,
-          "arte": 3
+          "arte": 5
         },
         "fazioni_presenti": [
-          "Capitol",
+          "Fratellanza",
           "Bauhaus",
-          "Mishima"
+          "Capitol"
         ],
         "espansioni_utilizzate": [
           "Base",
           "Inquisition"
         ]
       },
-      "errori": [],
+      "errori": [
+        "Il mazzo ha 47 carte, meno del minimo richiesto (50)"
+      ],
       "distribuzione_utilizzata": {
-        "guerriero": 12,
-        "equipaggiamento": 8,
+        "guerriero": 11,
+        "equipaggiamento": 9,
         "speciale": 24,
-        "fortificazione": 4,
+        "fortificazione": 3,
         "oscura_simmetria": 0,
         "arte": 5,
-        "reliquia": 3,
+        "reliquia": 4,
         "warzone": 0,
         "missione": 1
       },
       "inventario_guerrieri": {
         "squadra": {
-          "Mishima Hatamoto": {
-            "copie": 2,
-            "fazione": "Mishima",
-            "set_espansione": "Base",
-            "rarity": "Uncommon",
-            "tipo": "Normale",
-            "combattimento": 15,
-            "sparare": 11,
-            "armatura": 13,
-            "valore": 6,
-            "valor_destino": 0,
-            "valor_promozione": 0,
-            "e_personalita": false,
-            "keywords": [
-              "Samurai"
-            ],
-            "numero_carta": "40"
-          },
-          "Mitch Hunter": {
-            "copie": 3,
-            "fazione": "Capitol",
-            "set_espansione": "Base",
-            "rarity": "Ultra Rare",
-            "tipo": "Personalita",
-            "combattimento": 18,
-            "sparare": 18,
-            "armatura": 14,
-            "valore": 10,
-            "valor_destino": 0,
-            "valor_promozione": 0,
-            "e_personalita": false,
-            "keywords": [
-              "Personalita",
-              "Unico",
-              "Leggenda"
-            ],
-            "numero_carta": "11"
-          },
-          "Takashi Mugan": {
-            "copie": 2,
-            "fazione": "Mishima",
-            "set_espansione": "Base",
-            "rarity": "Rare",
-            "tipo": "Personalita",
-            "combattimento": 19,
-            "sparare": 13,
-            "armatura": 15,
-            "valore": 10,
-            "valor_destino": 0,
-            "valor_promozione": 0,
-            "e_personalita": false,
-            "keywords": [
-              "Personalita",
-              "Unico",
-              "Maestro di Spada"
-            ],
-            "numero_carta": "41"
-          },
-          "Ilian Paladini": {
-            "copie": 2,
-            "fazione": "Bauhaus",
-            "set_espansione": "Base",
-            "rarity": "Rare",
-            "tipo": "Personalita",
-            "combattimento": 16,
-            "sparare": 14,
-            "armatura": 12,
-            "valore": 8,
-            "valor_destino": 0,
-            "valor_promozione": 0,
-            "e_personalita": false,
-            "keywords": [
-              "Personalita",
-              "Unico"
-            ],
-            "numero_carta": "03"
-          },
           "Bauhaus Ducal Militia": {
             "copie": 3,
             "fazione": "Bauhaus",
@@ -218,28 +145,47 @@
               "Milizia"
             ],
             "numero_carta": "04"
+          },
+          "Capitol Purple Shark": {
+            "copie": 2,
+            "fazione": "Capitol",
+            "set_espansione": "Base",
+            "rarity": "Uncommon",
+            "tipo": "Normale",
+            "combattimento": 12,
+            "sparare": 13,
+            "armatura": 11,
+            "valore": 5,
+            "valor_destino": 0,
+            "valor_promozione": 0,
+            "e_personalita": false,
+            "keywords": [
+              "Elite"
+            ],
+            "numero_carta": "12"
+          },
+          "Cardinale durand": {
+            "copie": 1,
+            "fazione": "Fratellanza",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "tipo": "Personalita",
+            "combattimento": 11,
+            "sparare": 11,
+            "armatura": 11,
+            "valore": 14,
+            "valor_destino": 0,
+            "valor_promozione": 0,
+            "e_personalita": false,
+            "keywords": [],
+            "numero_carta": ""
           }
         },
         "schieramento": {}
       },
       "inventario_supporto": {
-        "Fucile di Precisione": {
-          "copie": 4,
-          "tipo": "Equipaggiamento",
-          "set_espansione": "Base",
-          "rarity": "Uncommon",
-          "numero_carta": "",
-          "keywords": [
-            "Arma",
-            "Da Fuoco",
-            "Fucile",
-            "Precisione"
-          ],
-          "costo_destino": 0,
-          "valore": 4
-        },
         "Armatura da Combattimento": {
-          "copie": 4,
+          "copie": 2,
           "tipo": "Equipaggiamento",
           "set_espansione": "Base",
           "rarity": "Uncommon",
@@ -253,19 +199,49 @@
           "costo_destino": 0,
           "valore": 4
         },
-        "Base Operativa": {
-          "copie": 1,
-          "tipo": "Fortificazione",
+        "Fucile di Precisione": {
+          "copie": 3,
+          "tipo": "Equipaggiamento",
           "set_espansione": "Base",
           "rarity": "Uncommon",
-          "numero_carta": "F014",
+          "numero_carta": "",
           "keywords": [
-            "Base",
-            "Comando",
-            "Doomtrooper",
-            "Tattica"
+            "Arma",
+            "Da Fuoco",
+            "Fucile",
+            "Precisione"
           ],
-          "costo_destino": 4
+          "costo_destino": 0,
+          "valore": 4
+        },
+        "Ascia da Battaglia": {
+          "copie": 1,
+          "tipo": "Equipaggiamento",
+          "set_espansione": "Base",
+          "rarity": "Common",
+          "numero_carta": "",
+          "keywords": [
+            "Arma",
+            "Corpo a Corpo",
+            "Ascia",
+            "Devastazione"
+          ],
+          "costo_destino": 0,
+          "valore": 3
+        },
+        "Pistola Automatica": {
+          "copie": 3,
+          "tipo": "Equipaggiamento",
+          "set_espansione": "Base",
+          "rarity": "Common",
+          "numero_carta": "",
+          "keywords": [
+            "Arma",
+            "Da Fuoco",
+            "Pistola"
+          ],
+          "costo_destino": 0,
+          "valore": 2
         },
         "Torretta di Guardia": {
           "copie": 3,
@@ -281,8 +257,21 @@
           ],
           "costo_destino": 1
         },
+        "Devastating Assault": {
+          "copie": 6,
+          "tipo": "Speciale",
+          "set_espansione": "Base",
+          "rarity": "Ultra Rare",
+          "numero_carta": "S022",
+          "keywords": [
+            "Devastazione",
+            "Morte"
+          ],
+          "costo_destino": 0,
+          "valore": 3
+        },
         "Combat Fury": {
-          "copie": 7,
+          "copie": 5,
           "tipo": "Speciale",
           "set_espansione": "Base",
           "rarity": "Uncommon",
@@ -294,21 +283,21 @@
           "costo_destino": 0,
           "valore": 1
         },
-        "Precise Shot": {
-          "copie": 2,
+        "Duck and Cover": {
+          "copie": 6,
           "tipo": "Speciale",
           "set_espansione": "Base",
           "rarity": "Common",
-          "numero_carta": "S005",
+          "numero_carta": "S003",
           "keywords": [
-            "Precisione",
-            "Armi da Fuoco"
+            "Protezione",
+            "Tattica"
           ],
           "costo_destino": 0,
-          "valore": 1
+          "valore": 0
         },
         "Aim": {
-          "copie": 7,
+          "copie": 5,
           "tipo": "Speciale",
           "set_espansione": "Base",
           "rarity": "Common",
@@ -320,34 +309,21 @@
           "costo_destino": 0,
           "valore": 0
         },
-        "Mishima Honor": {
-          "copie": 7,
-          "tipo": "Speciale",
-          "set_espansione": "Base",
-          "rarity": "Common",
-          "numero_carta": "S020",
-          "keywords": [
-            "Mishima",
-            "Onore"
-          ],
-          "costo_destino": 0,
-          "valore": 0
-        },
-        "Healing": {
-          "copie": 1,
+        "Resourcefulness": {
+          "copie": 2,
           "tipo": "Speciale",
           "set_espansione": "Base",
           "rarity": "Rare",
-          "numero_carta": "S006",
+          "numero_carta": "S014",
           "keywords": [
-            "Guarigione",
-            "Supporto"
+            "Risorse",
+            "Punti Destino"
           ],
           "costo_destino": 0,
           "valore": 3
         },
         "Ancient Wisdom": {
-          "copie": 3,
+          "copie": 5,
           "tipo": "Arte",
           "set_espansione": "Base",
           "rarity": "Common",
@@ -365,13 +341,13 @@
     {
       "indice_mazzo": 2,
       "statistiche_mazzo": {
-        "numero_totale_carte": 38,
+        "numero_totale_carte": 34,
         "guerrieri_squadra": 0,
-        "guerrieri_schieramento": 6,
+        "guerrieri_schieramento": 5,
         "distribuzione_per_tipo": {
           "equipaggiamento": 7,
-          "fortificazione": 3,
-          "speciale": 22
+          "fortificazione": 4,
+          "speciale": 18
         },
         "fazioni_presenti": [
           "Oscura Legione"
@@ -382,14 +358,14 @@
         ]
       },
       "errori": [
-        "Il mazzo ha 38 carte, meno del minimo richiesto (50)"
+        "Il mazzo ha 34 carte, meno del minimo richiesto (50)"
       ],
       "distribuzione_utilizzata": {
-        "guerriero": 12,
+        "guerriero": 11,
         "equipaggiamento": 7,
-        "speciale": 22,
-        "fortificazione": 3,
-        "oscura_simmetria": 5,
+        "speciale": 18,
+        "fortificazione": 4,
+        "oscura_simmetria": 6,
         "arte": 0,
         "reliquia": 3,
         "warzone": 0,
@@ -398,26 +374,6 @@
       "inventario_guerrieri": {
         "squadra": {},
         "schieramento": {
-          "Razide": {
-            "copie": 3,
-            "fazione": "Oscura Legione",
-            "set_espansione": "Base",
-            "rarity": "Uncommon",
-            "tipo": "Seguace",
-            "combattimento": 12,
-            "sparare": 10,
-            "armatura": 10,
-            "valore": 3,
-            "valor_destino": 0,
-            "valor_promozione": 0,
-            "e_personalita": false,
-            "keywords": [
-              "Mutante",
-              "Corrotto",
-              "Seguace di Algeroth"
-            ],
-            "numero_carta": "65"
-          },
           "Nepharita di Semai": {
             "copie": 1,
             "fazione": "Oscura Legione",
@@ -436,30 +392,62 @@
             ],
             "numero_carta": ""
           },
-          "Billy": {
+          "Rampollo di ilian": {
             "copie": 2,
             "fazione": "Oscura Legione",
-            "set_espansione": "Base",
-            "rarity": "Rare",
-            "tipo": "Personalita",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "tipo": "Seguace",
             "combattimento": 4,
-            "sparare": 4,
+            "sparare": 5,
             "armatura": 4,
             "valore": 5,
             "valor_destino": 0,
             "valor_promozione": 0,
             "e_personalita": false,
             "keywords": [
-              "Eretico",
-              "Personalita"
+              "Seguace di Ilian"
+            ],
+            "numero_carta": ""
+          },
+          "Cacciatore oscuro": {
+            "copie": 2,
+            "fazione": "Oscura Legione",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "tipo": "Seguace",
+            "combattimento": 5,
+            "sparare": 5,
+            "armatura": 5,
+            "valore": 6,
+            "valor_destino": 0,
+            "valor_promozione": 0,
+            "e_personalita": false,
+            "keywords": [
+              "Seguace di Algeroth"
             ],
             "numero_carta": ""
           }
         }
       },
       "inventario_supporto": {
+        "Armatura da Combattimento": {
+          "copie": 5,
+          "tipo": "Equipaggiamento",
+          "set_espansione": "Base",
+          "rarity": "Uncommon",
+          "numero_carta": "",
+          "keywords": [
+            "Armatura",
+            "Media",
+            "Protezione",
+            "Ambientale"
+          ],
+          "costo_destino": 0,
+          "valore": 4
+        },
         "Fucile di Precisione": {
-          "copie": 3,
+          "copie": 2,
           "tipo": "Equipaggiamento",
           "set_espansione": "Base",
           "rarity": "Uncommon",
@@ -473,75 +461,48 @@
           "costo_destino": 0,
           "valore": 4
         },
-        "Moto da Ricognizione": {
+        "Rifugio Blindato": {
           "copie": 4,
-          "tipo": "Equipaggiamento",
-          "set_espansione": "Base",
-          "rarity": "Common",
-          "numero_carta": "",
-          "keywords": [
-            "Veicolo",
-            "Ricognizione",
-            "Veloce"
-          ],
-          "costo_destino": 0,
-          "valore": 1
-        },
-        "Torretta di Guardia": {
-          "copie": 3,
           "tipo": "Fortificazione",
           "set_espansione": "Base",
           "rarity": "Common",
-          "numero_carta": "F012",
+          "numero_carta": "F015",
           "keywords": [
-            "Torretta",
-            "Avvistamento",
-            "Tattica",
-            "Distanza"
+            "Rifugio",
+            "Blindatura",
+            "Protezione",
+            "Sicurezza"
           ],
-          "costo_destino": 1
+          "costo_destino": 2
         },
-        "Combat Fury": {
-          "copie": 2,
-          "tipo": "Speciale",
-          "set_espansione": "Base",
-          "rarity": "Uncommon",
-          "numero_carta": "S004",
-          "keywords": [
-            "Corpo a Corpo",
-            "Furia"
-          ],
-          "costo_destino": 0,
-          "valore": 1
-        },
-        "Duck and Cover": {
+        "Devastating Assault": {
           "copie": 1,
           "tipo": "Speciale",
           "set_espansione": "Base",
-          "rarity": "Common",
-          "numero_carta": "S003",
+          "rarity": "Ultra Rare",
+          "numero_carta": "S022",
           "keywords": [
-            "Protezione",
-            "Tattica"
+            "Devastazione",
+            "Morte"
           ],
           "costo_destino": 0,
-          "valore": 0
+          "valore": 3
         },
-        "Precise Shot": {
-          "copie": 6,
+        "Acts of Heroism": {
+          "copie": 7,
           "tipo": "Speciale",
           "set_espansione": "Base",
-          "rarity": "Common",
-          "numero_carta": "S005",
+          "rarity": "Ultra Rare",
+          "numero_carta": "S021",
           "keywords": [
-            "Precisione",
-            "Armi da Fuoco"
+            "Eroismo",
+            "Leggenda"
           ],
           "costo_destino": 0,
-          "valore": 1
+          "valore": 4
         },
         "Flanking Maneuver": {
-          "copie": 4,
+          "copie": 3,
           "tipo": "Speciale",
           "set_espansione": "Base",
           "rarity": "Rare",
@@ -552,6 +513,19 @@
           ],
           "costo_destino": 0,
           "valore": 2
+        },
+        "Precise Shot": {
+          "copie": 2,
+          "tipo": "Speciale",
+          "set_espansione": "Base",
+          "rarity": "Common",
+          "numero_carta": "S005",
+          "keywords": [
+            "Precisione",
+            "Armi da Fuoco"
+          ],
+          "costo_destino": 0,
+          "valore": 1
         },
         "Aim": {
           "copie": 2,
@@ -566,44 +540,18 @@
           "costo_destino": 0,
           "valore": 0
         },
-        "Change Defender": {
-          "copie": 2,
-          "tipo": "Speciale",
-          "set_espansione": "Base",
-          "rarity": "Rare",
-          "numero_carta": "S016",
-          "keywords": [
-            "Cambio",
-            "Sacrificio"
-          ],
-          "costo_destino": 0,
-          "valore": 2
-        },
-        "Sabotage": {
-          "copie": 2,
-          "tipo": "Speciale",
-          "set_espansione": "Base",
-          "rarity": "Common",
-          "numero_carta": "S008",
-          "keywords": [
-            "Sabotaggio",
-            "Controllo"
-          ],
-          "costo_destino": 0,
-          "valore": 1
-        },
-        "Lucky Shot": {
+        "Healing": {
           "copie": 3,
           "tipo": "Speciale",
           "set_espansione": "Base",
           "rarity": "Rare",
-          "numero_carta": "S005",
+          "numero_carta": "S006",
           "keywords": [
-            "Fortuna",
-            "Danno Extra"
+            "Guarigione",
+            "Supporto"
           ],
           "costo_destino": 0,
-          "valore": 2
+          "valore": 3
         }
       }
     }
