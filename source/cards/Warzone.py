@@ -10,9 +10,9 @@ VERSIONE CORRETTA - Allineata alle regole ufficiali del regolamento
 
 from enum import Enum
 from typing import List, Optional, Dict, Any, Union
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, AreaGioco  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, AreaGioco, Statistiche  # Import dalle classi esistenti
 
 FAZIONI_SQUADRA = [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.CYBERTRONIC, Fazione.FRATELLANZA, Fazione.IMPERIALE, Fazione.MISHIMA, Fazione.FREELANCER]
 FAZIONI_SCHIERAMENTO = [Fazione.OSCURA_LEGIONE]
@@ -50,6 +50,8 @@ class TerrenoWarzone(Enum):
 class BeneficiarioWarzone(Enum):
     """Chi può beneficiare della Warzone (solo il difensore)"""
     SOLO_DIFENSORE = "Solo Difensore"
+    SOLO_ATTACCANTE = "Solo Attaccante"
+    DIFENSORE_E_ATTACCANTE = "Difensore e Attaccante"
 
 
 class AreaCompatibileWarzone(Enum):
@@ -59,7 +61,7 @@ class AreaCompatibileWarzone(Enum):
     AVAMPOSTO = "Avamposto"
     SQUADRA_O_SCHIERAMENTO = "Squadra o Schieramento"
     QUALSIASI_AREA = "Qualsiasi Area"
-
+    SQUADRA_E_SCHIERAMENTO = "Squadra e Schieramento"
 
 @dataclass
 class ModificatoreWarzone:
@@ -68,7 +70,7 @@ class ModificatoreWarzone:
     valore: int      # valore del modificatore (+/-)
     condizione: str = ""  # condizione per applicare il modificatore
     descrizione: str = ""
-    solo_difensore: bool = True  # Sempre True per Warzone
+    solo_difensore: bool = True 
 
 
 @dataclass
@@ -117,7 +119,8 @@ class Warzone:
     sono influenzati dal testo della carta. Richiede "Grande Stratega" in gioco.
     """
     
-    def __init__(self, nome: str, costo_azione: int = 1):
+    def __init__(self, nome: str, combattimento: int = 0, sparare: int = 0, 
+                 armatura: int = 0, valore: int = 0, costo_azione: int = 1):
         """
         Inizializza una nuova carta Warzone
         
@@ -132,6 +135,8 @@ class Warzone:
         self.tipo = TipoWarzone.CAMPO_BATTAGLIA
         self.terreno = TerrenoWarzone.APERTO
         self.rarity = Rarity.COMMON
+
+        self.stats = Statistiche(combattimento, sparare, armatura, valore)
         
         # Modificatori per il difensore (C, S, A, V)
         self.modificatori_difensore: List[ModificatoreWarzone] = []
@@ -181,6 +186,7 @@ class Warzone:
             solo_difensore=True
         )
         self.modificatori_difensore.append(modificatore)
+    
     
     def aggiungi_effetto_combattimento(self, nome: str, descrizione: str, 
                                      target: str = "Tutti i combattenti",
@@ -456,6 +462,7 @@ class Warzone:
             "tipo": self.tipo.value,
             "terreno": self.terreno.value,
             "rarity": self.rarity.value,
+            "stats": self.stats,
             "modificatori_difensore": [
                 {
                     "statistica": m.statistica,
@@ -505,6 +512,8 @@ class Warzone:
         warzone.terreno = TerrenoWarzone(data["terreno"])
         warzone.rarity = Rarity(data["rarity"])
         
+        warzone.stats = data["stats"]
+
         # Modificatori difensore
         for mod_data in data["modificatori_difensore"]:
             warzone.aggiungi_modificatore_difensore(

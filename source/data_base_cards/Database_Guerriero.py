@@ -11,7 +11,7 @@ rivedi verifica vincoli in puo_associare_a_guerriero in Oscura_Simmetria.py"""
 
 
 from typing import Dict, Any, List
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, DisciplinaArte, ApostoloOscuraSimmetria
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, DisciplinaArte, ApostoloOscuraSimmetria, TipoGuerriero
 
 # Database completo dei guerrieri di Mutant Chronicles (versione corretta)
 GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
@@ -22,7 +22,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Ussaro": {
         "nome": "Ussaro",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -51,7 +51,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Mercenario Ex-Bauhaus": {
         "nome": "Mercenario Ex-Bauhaus",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -80,7 +80,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Incursore Bauhaus": {
         "nome": "Incursore Bauhaus",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -109,7 +109,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Ranger Venusiano": {
         "nome": "Ranger Venusiano",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -147,7 +147,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Etoiles Mortant": {
         "nome": "Etoiles Mortant",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -176,7 +176,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Dragone": {
         "nome": "Dragone",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -206,7 +206,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Maresciallo Venusiano": {
         "nome": "Maresciallo Venusiano",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -245,7 +245,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Comandante": {
         "nome": "Comandante",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -283,7 +283,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Aiuto Di Campo": {
         "nome": "Aiuto Di Campo",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -367,7 +367,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Poliziotto Bauhaus": {
         "nome": "Poliziotto Bauhaus",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -396,7 +396,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Capitano Bauhaus": {
         "nome": "Capitano Bauhaus",
         "fazione": "Bauhaus", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -438,7 +438,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Mercenario Ex-Capitol": {
         "nome": "Mercenario Ex-Capitol",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -467,7 +467,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Fanteria": {
         "nome": "Fanteria",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -580,7 +580,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Free Marine": {
         "nome": "Free Marine",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -609,7 +609,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Sea Lion": {
         "nome": "Sea Lion",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -676,7 +676,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Martian Banshee": {
         "nome": "Martian Banshee",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -707,7 +707,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Capitano Capitol": {
         "nome": "Capitano Capitol",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -745,7 +745,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Sergente": {
         "nome": "Sergente",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -783,7 +783,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Capo Squadriglia": {
         "nome": "Capo Squadriglia",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -909,7 +909,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Mercenario ex-cybertronic": {
         "nome": "Mercenario ex-cybertronic",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -985,7 +985,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Contorsionista": {
         "nome": "Contorsionista",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1023,7 +1023,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Capitano cybertronic": {
         "nome": "Capitano cybertronic",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -1077,7 +1077,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Chemiman": {
         "nome": "Chemiman",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1123,7 +1123,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Droide eradicator": {
         "nome": "Droide eradicator",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -1161,7 +1161,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Gestore occulto": {
         "nome": "Gestore occulto",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1199,7 +1199,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Sicurezza cybertronic": {
         "nome": "Sicurezza cybertronic",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1275,7 +1275,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Tecnico vac": {
         "nome": "Tecnico vac",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -1321,7 +1321,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Cacciatore": {
         "nome": "Cacciatore",
         "fazione": "Cybertronic", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1409,7 +1409,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Maresciallo di Campo Johnstone": {
         "nome": "Maresciallo di campo johnstone",
-        "fazione": "Imperiali", 
+        "fazione": "Imperiale", 
         "tipo": "Personalita",
         "rarity": "Common",
         "set_espansione": "Warzone",
@@ -1446,7 +1446,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Porta Stendardo": {
         "nome": "Porta Stendardo",
         "fazione": "Capitol", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -1483,8 +1483,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     
     "Esperto in Trincee": {
         "nome": "Esperto in Trincee",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1519,8 +1519,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     
     "Guardia Inesperta": {
         "nome": "Guardia Inesperta",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1548,8 +1548,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Membro del Clan": {
         "nome": "Membro del Clan",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1584,8 +1584,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Blood Beret": {
         "nome": "Blood Beret",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1620,7 +1620,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Sgt McBride": {
         "nome": "Sgt McBride",
-        "fazione": "Imperiali", 
+        "fazione": "Imperiale", 
         "tipo": "Personalita",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -1658,8 +1658,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Golden Lion": {
         "nome": "Golden Lion",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1687,8 +1687,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Farabutto": {
         "nome": "Farabutto",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1716,7 +1716,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Sean Gallagher": {
         "nome": "Sean Gallagher",
-        "fazione": "Imperiali", 
+        "fazione": "Imperiale", 
         "tipo": "Personalita",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -1752,8 +1752,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Cavalleria Aerea": {
         "nome": "Cavalleria Aerea",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1781,7 +1781,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Pilota Trevor Bartholomew": {
         "nome": "Pilota Trevor Bartholomew",
-        "fazione": "Imperiali", 
+        "fazione": "Imperiale", 
         "tipo": "Personalita",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -1817,8 +1817,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Sunset Striker": {
         "nome": "Sunset Striker",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1846,8 +1846,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Cavalleria Leggera Wolfbane": {
         "nome": "Cavalleria Leggera Wolfbane",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1882,8 +1882,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Mercenario Ex-Imperiale": {
         "nome": "Mercenario Ex-Imperiale",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1912,8 +1912,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     # Warzone
     "Comandante di Reparto": {
         "nome": "Comandante di Reparto",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -1950,8 +1950,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Comandante in Capo": {
         "nome": "Comandante in Capo",
-        "fazione": "Imperiali", 
-        "tipo": "",
+        "fazione": "Imperiale", 
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -1994,7 +1994,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Samurai": {
         "nome": "Samurai",
         "fazione": "Mishima", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2023,7 +2023,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Mercenario Ex-Mishima": {
         "nome": "Mercenario Ex-Mishima",
         "fazione": "Mishima", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2166,7 +2166,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Hatamoto": {
         "nome": "Hatamoto",
         "fazione": "Mishima", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2196,7 +2196,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Ninja": {
         "nome": "Ninja",
         "fazione": "Mishima", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -2225,7 +2225,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Mentore": {
         "nome": "Mentore",
         "fazione": "Mishima", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -2264,7 +2264,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Jito": {
         "nome": "Jito",
         "fazione": "Mishima", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -2310,7 +2310,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Bushi": {
         "nome": "Bushi",
         "fazione": "Mishima", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -2348,7 +2348,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Shugo": {
         "nome": "Shugo",
         "fazione": "Mishima", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -2558,7 +2558,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Mortificator": {
         "nome": "Mortificator",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2596,7 +2596,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Mistico": {
         "nome": "Mistico",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2634,7 +2634,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Arcangelo": {
         "nome": "Arcangelo",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2672,7 +2672,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Revisore": {
         "nome": "Revisore",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2710,7 +2710,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Valkiria": {
         "nome": "Valkiria",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2748,7 +2748,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Inquisitore": {
         "nome": "Inquisitore",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2786,7 +2786,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Custode dell'arte": {
         "nome": "Custode dell'arte",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2878,7 +2878,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Guerrieri sacri": {
         "nome": "Guerrieri sacri",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -2917,7 +2917,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Antiquario": {
         "nome": "Antiquario",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -3001,7 +3001,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Famoso evocatore": {
         "nome": "Famoso evocatore",
         "fazione": "Fratellanza", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -4707,7 +4707,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Guardia del corpo": {
         "nome": "Guardia del corpo",
         "fazione": "Freelancer", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -4735,7 +4735,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Paparazzo": {
         "nome": "Paparazzo",
         "fazione": "Freelancer", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -4763,7 +4763,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Medico da campo": {
         "nome": "Medico da campo",
         "fazione": "Freelancer", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -4808,7 +4808,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Apostata rinnegato": {
         "nome": "Apostata rinnegato",
         "fazione": "Freelancer", 
-        "tipo": "",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -4844,323 +4844,6 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
 
 
-
-
-    # === ESPANSIONI WARZONE ===
-    "Heavy Tank Commander": {
-        "nome": "Heavy Tank Commander",
-        "fazione": "Bauhaus",
-        "tipo": "Normale",
-        "rarity": "Rare",
-        "set_espansione": "Warzone",
-        "numero_carta": "W10",
-        "stats": {
-            "combattimento": 12,
-            "sparare": 16,
-            "armatura": 12,
-            "valore": 8
-        },
-        "abilita": [
-            {
-                "nome": "Comando Corazzato",
-                "descrizione": "+2 Combattimento quando equipaggiato con veicoli corazzati",
-                "tipo": "Comando",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            },
-            {
-                "nome": "Fuoco di Supporto",
-                "descrizione": "Può attaccare bersagli in qualsiasi area del campo di battaglia",
-                "tipo": "Attacco",
-                "costo_destino": 2,
-                "target": "Qualsiasi nemico",
-                "timing": "Azione"
-            }
-        ],
-        "testo_carta": "Comandante di carri armati pesanti, specialista nella guerra corazzata.",
-        "flavour_text": "L'acciaio parla più forte delle parole.",
-        "keywords": ["Veicolo", "Comandante", "Corazzato"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Capitol Air Cavalry": {
-        "nome": "Capitol Air Cavalry",
-        "fazione": "Capitol",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
-        "set_espansione": "Warzone",
-        "numero_carta": "W15",
-        "stats": {
-            "combattimento": 11,
-            "sparare": 15,
-            "armatura": 14,
-            "valore": 6
-        },
-        "abilita": [
-            {
-                "nome": "Attacco Aereo",
-                "descrizione": "Può attaccare senza subire contrattacco",
-                "tipo": "Attacco",
-                "costo_destino": 1,
-                "target": "Nemico",
-                "timing": "Durante l'attacco"
-            },
-            {
-                "nome": "Mobilità Aerea",
-                "descrizione": "Non può essere bloccato da ostacoli terrestri",
-                "tipo": "Movimento",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            }
-        ],
-        "testo_carta": "Cavalleria aerea della Capitol, domina i cieli del campo di battaglia.",
-        "flavour_text": "Dal cielo, tutto appare piccolo e vulnerabile.",
-        "keywords": ["Aereo", "Cavalleria"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Cyber Assassin": {
-        "nome": "Cyber Assassin",
-        "fazione": "Cybertronic",
-        "tipo": "Normale",
-        "rarity": "Rare",
-        "set_espansione": "Warzone",
-        "numero_carta": "W20",
-        "stats": {
-            "combattimento": 15,
-            "sparare": 16,
-            "armatura": 13,
-            "valore": 7
-        },
-        "abilita": [
-            {
-                "nome": "Assassinio",
-                "descrizione": "Se attacca per primo ed è nascosto, elimina automaticamente il bersaglio",
-                "tipo": "Attacco",
-                "costo_destino": 3,
-                "target": "Guerriero nemico",
-                "timing": "Primo attacco"
-            },
-            {
-                "nome": "Occultamento Ottico",
-                "descrizione": "Non può essere attaccato finché non attacca per primo",
-                "tipo": "Difesa",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Finché non attacca"
-            }
-        ],
-        "testo_carta": "Assassino cyber-potenziato specializzato nell'eliminazione silenziosa.",
-        "flavour_text": "La morte digitale non fa rumore.",
-        "keywords": ["Cyborg", "Assassino", "Stealth"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Warzone Lieutenant": {
-        "nome": "Warzone Lieutenant",
-        "fazione": "Imperiale",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
-        "set_espansione": "Warzone",
-        "numero_carta": "W01",
-        "stats": {
-            "combattimento": 13,
-            "sparare": 14,
-            "armatura": 11,
-            "valore": 7
-        },
-        "abilita": [
-            {
-                "nome": "Comando di Campo",
-                "descrizione": "Un alleato entro portata può agire immediatamente dopo di lui",
-                "tipo": "Comando",
-                "costo_destino": 1,
-                "target": "Alleato",
-                "timing": "Dopo l'azione"
-            }
-        ],
-        "testo_carta": "Ufficiale veterano delle zone di guerra più pericolose.",
-        "flavour_text": "Sul campo di battaglia, un secondo può fare la differenza.",
-        "keywords": ["Ufficiale", "Veterano"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Mishima Ninja": {
-        "nome": "Mishima Ninja",
-        "fazione": "Mishima",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
-        "set_espansione": "Warzone",
-        "numero_carta": "W25",
-        "stats": {
-            "combattimento": 13,
-            "sparare": 12,
-            "armatura": 15,
-            "valore": 5
-        },
-        "abilita": [
-            {
-                "nome": "Arte del Ninjutsu",
-                "descrizione": "Può muoversi e attaccare nello stesso turno",
-                "tipo": "Movimento",
-                "costo_destino": 1,
-                "target": "Self",
-                "timing": "Durante il turno"
-            },
-            {
-                "nome": "Shuriken",
-                "descrizione": "Può attaccare a distanza senza equipaggiamento",
-                "tipo": "Attacco",
-                "costo_destino": 0,
-                "target": "Nemico a distanza",
-                "timing": "Azione"
-            }
-        ],
-        "testo_carta": "Guerriero ombra della Mishima, maestro delle arti marziali segrete.",
-        "flavour_text": "L'ombra che si muove potrebbe essere la tua morte.",
-        "keywords": ["Ninja", "Stealth"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Brotherhood Templar": {
-        "nome": "Brotherhood Templar",
-        "fazione": "Fratellanza",
-        "tipo": "Normale",
-        "rarity": "Uncommon",
-        "set_espansione": "Warzone",
-        "numero_carta": "W30",
-        "stats": {
-            "combattimento": 15,
-            "sparare": 12,
-            "armatura": 12,
-            "valore": 8
-        },
-        "abilita": [
-            {
-                "nome": "Furia Sacra",
-                "descrizione": "+4 Combattimento quando attacca guerrieri della Oscura Legione",
-                "tipo": "Attacco",
-                "costo_destino": 0,
-                "target": "Oscura Legione",
-                "timing": "Durante l'attacco"
-            },
-            {
-                "nome": "Protezione Divina",
-                "descrizione": "Immune agli effetti di corruzione",
-                "tipo": "Difesa",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            }
-        ],
-        "testo_carta": "Templare della Fratellanza, guerriero sacro nella lotta contro il Male.",
-        "flavour_text": "La Luce è la mia armatura, la fede la mia spada.",
-        "keywords": ["Templare", "Sacro"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # === TRIBÙ DI DARK EDEN ===
-    "Dark Eden Tribesman": {
-        "nome": "Dark Eden Tribesman",
-        "fazione": "Freelancer",
-        "tipo": "Normale",
-        "rarity": "Common",
-        "set_espansione": "Warzone",
-        "numero_carta": "W40",
-        "stats": {
-            "combattimento": 10,
-            "sparare": 11,
-            "armatura": 12,
-            "valore": 3
-        },
-        "abilita": [
-            {
-                "nome": "Sopravvivenza Selvaggia",
-                "descrizione": "Immune agli effetti ambientali di Dark Eden",
-                "tipo": "Speciale",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Permanente"
-            },
-            {
-                "nome": "Conoscenza Tribale",
-                "descrizione": "+2 a tutte le statistiche quando combatte su Dark Eden",
-                "tipo": "Ambientale",
-                "costo_destino": 0,
-                "target": "Self",
-                "timing": "Su Dark Eden"
-            }
-        ],
-        "testo_carta": "Guerriero tribale di Dark Eden, adattato alla vita sul pianeta maledetto.",
-        "flavour_text": "Su Dark Eden, la natura stessa è nemica dell'uomo.",
-        "keywords": ["Tribale", "Selvaggio"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False,
-            "pronto": True
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    }
 }
 
 

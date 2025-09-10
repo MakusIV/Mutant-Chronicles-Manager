@@ -161,202 +161,7 @@ class CreatoreMazzo:
         potenza_assoluta = ((combattimento + sparo + armatura) * 1.5) / valore
         
         # Bonus per abilità speciali
-        """
-                abilita:
-
-                {
-                "nome": "Scarta Carte",
-                "descrizione": "Può scartare qualsiasi carta in gioco al costo di tre azioni",
-                "tipo": "Scarta Carte",
-                "costo_destino": 0,
-                "target": "Tutti i Guerrieri",
-                "timing": "Turno"
-                }
-                {
-                "nome": "Scarta Carte",
-                "descrizione": "Può scartare un qualsiasi Doomtrooper in gioco al costo di tre azioni",
-                "tipo": "Scarta Carte",
-                "costo_destino": 0,
-                "target": "Tutti i Doomtrooper",
-                "timing": "Turno"
-                }
-                {
-                "nome": "Assegna carte Equipaggiamento",
-                "descrizione": "Equipaggia qualsiasi guerriero dell'Oscura Legione",
-                "tipo": "Assegnazione Carte",
-                "costo_destino": 0,
-                "target": "Guerrieri Oscura Legione",
-                "timing": "Ogni Momento"
-                },                
-                {
-                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
-                "descrizione": "Equipaggia qualsiasi seguace di Algeroth",
-                "tipo": "Assegnazione Carte",
-                "costo_destino": 0,
-                "target": "Seguaci di ALgeroth",
-                "timing": "Ogni Momento"
-                }                
-                {
-                "nome": "Sostituisce Eretici",
-                "descrizione": "Può sostituire un Eretico con un Seguace di Algeroth al costo di tre azioni",
-                "tipo": "Sostituzione Guerrieri",
-                "costo_destino": 0,
-                "target": "Eretici",
-                "timing": "Turno"
-                }
-                {
-                "nome": "Ataccabile solo dalla Fratellanza",
-                "descrizione": "Solo i membri della Fratellamza possono attaccarlo con penalità in A di -1",
-                "tipo": "Combattimento", 
-                "costo_destino": 0,
-                "target": "Guerriero",
-                "timing": "Fase Combattimento"
-                }
-                {
-                "nome": "Attaccare per primi",
-                "descrizione": "I guerrieri dell'Oscura Legione possono Attaccare per primi i loro avversari in combattimento",
-                "tipo": "Combattimento",
-                "costo_destino": 0,
-                "target": "Tutti i Guerrieri",
-                "timing": "Turno"
-                }
-                {
-                "nome": "Uccide Automaticamente",
-                "descrizione": "Se ferisce, uccide automaticamente",
-                "tipo": "Combattimento", 
-                "costo_destino": 0,
-                "target": "Guerriero",
-                "timing": "Fase Combattimento"
-                }
-                {
-                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
-                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
-                "tipo": "Incantesimi",
-                "costo_destino": 0,
-                "target": "Tutti i Guerrieri",
-                "timing": "Turno"
-                }
-                {
-                "nome": "Guarisce se stesso",
-                "descrizione": "Se ferito, può guarire se stesso. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.",
-                "tipo": "Guarigione",
-                "costo_destino": 0,
-                "target": "Guerriero",
-                "timing": "Sempre"
-                }                
-            {
-                "nome": "Aumenta effetto su se stesso",
-                "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
-                "tipo": "Modificatore",
-                "costo_destino": 1,
-                "target": "",
-                "timing": "Sempre"
-            },           
-            {
-                "nome": "Immune agli effetti dell'Arte",
-                "descrizione": "Immune agli effetti dell'Arte",
-                "tipo": "Immunita",
-                "costo_destino": 0,
-                "target": "Arte",
-                "timing": "Sempre"
-            },
-            {
-                "nome": "Annulla Immunita",
-                "descrizione": "Può annullare qualsiasi immuntità dell'Oscura Simmetria",
-                "tipo": "Immunita",
-                "costo_destino": 0,
-                "target": "Oscura Simmetria",
-                "timing": "Ogni Momento"
-            },
-            {
-                "nome": "Modificatore",
-                "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
-                "tipo": "Incantesimi",
-                "costo_destino": 1,
-                "target": "",
-                "timing": "Sempre"
-            },
-            {
-                "nome": "Guarisce se stesso",
-                "descrizione": "Se Ferito, il Nefarita può guarire se stesso spendendo 7D",
-                "tipo": "Guarigione",
-                "costo_destino": 7,
-                "target": "",
-                "timing": "Sempre"
-            }            
-            {
-                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
-                "descrizione": "Equipaggia qualsiasi seguace di Ilian",
-                "tipo": "Assegnazione Carte",
-                "costo_destino": 0,
-                "target": "Guerrieri Oscura Legione",
-                "timing": "Ogni Momento"
-            },
-            {
-                "nome": "Combattimento tra Doomtrooper",
-                "descrizione": "I Doomtrooper possono attaccare qualsiasi Doomtrooper non della tua squadra ma devono pagare 4D per attaccare Guerriri dell'Oscura Legione",
-                "tipo": "Combattimento",
-                "costo_destino": 0,
-                "target": "Guerrieri Doomtrooper",
-                "timing": "Ogni Momento"
-            },
-            {
-                "nome": "Assegna carte Oscura Simmetria e Doni degli Apostoli",
-                "descrizione": "Equipaggia qualsiasi seguace di Ilian",
-                "tipo": "Assegnazione Carte",
-                "costo_destino": 0,
-                "target": "Guerrieri Oscura Legione",
-                "timing": "Ogni Momento"
-            },
-            {
-                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
-                "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
-                "tipo": "Incantesimi",
-                "costo_destino": 0,
-                "target": "Arte",
-                "timing": "Turno"
-            },
-            {
-                "nome": "Assegna carte Equipaggiamento",
-                "descrizione": "Equipaggia qualsiasi guerriero dell'Oscura Legione",
-                "tipo": "Assegnazione Carte",
-                "costo_destino": 0,
-                "target": "Guerrieri Oscura Legione",
-                "timing": "Ogni Momento"
-                },
-                {
-                "nome": "Scarta Carte",
-                "descrizione": "Può scartare qualsiasi carta in gioco al costo di tre azioni",
-                "tipo": "Scarta Carte",
-                "costo_destino": 0,
-                "target": "Tutti i Guerrieri",
-                "timing": "Turno"
-            },
-            {
-                "nome": "I Zenithiani Assassini dell'Anima uccidono automaticamente i guerrieri feriti",
-                "descrizione": "Mentre è in gioco Zenithiani Assassini dell'Anima uccidono automaticamente i guerrieri feriti",
-                "tipo": "Potenziamento Guerrieri", 
-                "costo_destino": 0,
-                "target": "Zenithiani Assassini dell'Anima",
-                "timing": "Fase Combattimento"
-            },
-                     {
-                "nome": "Converte Azioni in Azioni d'Attacco",
-                "descrizione": "Mentre il Maresciallo è in gioco tu puoi convertire ogni numero di Azioni non di attacco in Azioni d'attacco",
-                "tipo": "Azioni",
-                "costo_destino": 0,
-                "target": "Guerrieri Imperiali",
-                "timing": "Mentre questo guerriero è presente"
-            }
-   
-
-
-                restrizioni:
-                "restrizioni": ["Carte Oscura Simmetria non Assegnabili", "Può attaccare solo una volta per turno", "Equipaggiamenti non assegnabili", "Non guadagnano bonus Fortificazione", "Carte Speciale non giocabili su di esso"],
-                ["Carte Oscura Simmetria non Assegnabili"]
-                ["Non può prendere parte al combattimento", "Non può andare in copertura"],
-
-        """
+       
         for abilita in guerriero.abilita:
             # Potenziamento altri guerrieri
             keywords = abilita.descrizione.lower()
@@ -653,24 +458,27 @@ class CreatoreMazzo:
             float: Potenza relativa (0-1)
         """
         # Statistiche base della warzone
-        combattimento = warzone.stats_difensori.get('combattimento', 0)
-        sparo = warzone.stats_difensori.get('sparare', 0)
-        armatura = warzone.stats_difensori.get('armatura', 0)
         
-        potenza = combattimento + sparo + armatura
+
+        potenza = warzone.stats.combattimento + warzone.stats.sparo + warzone.stats.armatura
         
         # Bonus per fazioni/tipi specifici
-        if hasattr(warzone, 'bonus_fazioni'):
-            for bonus in warzone.bonus_fazioni.values():
-                potenza += sum([bonus.get('combattimento', 0), 
+        if hasattr(warzone, 'modificatore_difensore'):
+            for bonus in warzone.modificatori_difensore.values():
+                potenza += sum([bonus.get('valore', 0), 
                                bonus.get('sparare', 0), 
                                bonus.get('armatura', 0)])
         
         # Bonus per uccisione automatica
         if hasattr(warzone, 'effetti_combattimento'):
             for effetto in warzone.effetti_combattimento:
-                if 'uccide' in effetto.descrizione.lower() and 'automaticamente' in effetto.descrizione.lower():
-                    potenza *= 2.0
+                if 'uccide automaticamente' == effetto.nome.lower():
+                    potenza *= 1.5
+                elif effetto.nome.lower() in ['equipaggiamento gratuito', 'riceve carte oscura simmetria']:
+                    potenza *= 1.3
+                elif effetto.nome.lower() in ["Aumenta Punti Vittoria", "Guadagna Punti Promozione", "Guadagna Punti Aggiuntivi"]:
+                    potenza *= 1.2
+                
         
         # Default per warzone con effetti diversi
         if potenza == 0:
@@ -3446,22 +3254,19 @@ def menu_interattivo_mazzi():
         print("="*60)
         print("1. Crea mazzi di esempio")
         print("2. Stampa riepilogo mazzi")
-        print("3. Salva mazzi in JSON (standard)")
-        print("4. Salva mazzi in JSON (sicuro)")
-        print("5. Carica mazzi da JSON (visualizzazione)")
-
-        print("6. Salva mazzi in JSON con conteggio (standard)")
-        print("7. Salva mazzi in JSON con conteggio(sicuro)")
-        print("8. Carica e visualizza mazzi da JSON con conteggio")
+       
+        print("3. Salva mazzi in JSON con conteggio (standard)")
+        print("4. Salva mazzi in JSON con conteggio(sicuro)")
+        print("5. Carica e visualizza mazzi da JSON con conteggio")
         
 
-        print("9. Verifica integrità mazzi")
-        print("10. Analizza bilanciamento")
-        print("11. Diagnostica completa mazzi")
-        print("12. Test compatibilità")
-        print("13. Cerca carta nei mazzi")
-        print("14. Esempio completo salvataggio")
-        print("15. Pulisci mazzi correnti")
+        print("6. Verifica integrità mazzi")
+        print("7. Analizza bilanciamento")
+        print("8. Diagnostica completa mazzi")
+        print("9. Test compatibilità")
+        print("10. Cerca carta nei mazzi")
+        print("11. Esempio completo salvataggio")
+        print("12. Pulisci mazzi correnti")
         print("0. Esci")
         
         

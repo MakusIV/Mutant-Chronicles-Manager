@@ -17,440 +17,671 @@ from source.cards.Guerriero import Fazione, Rarity, AreaGioco, Set_Espansione
 # Database completo delle carte Warzone
 DATABASE_WARZONE = {
    
-    
-    "Trincea Difensiva": {
-        "nome": "Trincea Difensiva",
-        "costo_azione": 1,
-        "tipo": "Trincea",
-        "terreno": "Coperto",
+    "Foresta Di Shinrikyo": {
+        "nome": "Foresta Di Shinrikyo",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Mercurio",
         "rarity": "Common",
-        "set_espansione": Set_Espansione.WARZONE.value,
-        "numero_carta": "WZ001",
-        "modificatori_difensore": [
-            {"statistica": "A", "valore": 3, "descrizione": "+3 Armatura in difesa"},
-            {"statistica": "C", "valore": -1, "descrizione": "-1 Combattimento in trincea"}
-        ],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3,
+            "armatura": -2,
+            "valore": 3
+        },
+        "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Nessun Bonus Fortificazioni",
-                "descrizione": "Nessuno dei combattenti può beneficiare di bonus da Fortificazioni",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Restrizione"
+                "nome": "Equipaggiamento Gratuito",
+                "descrizione": "Guerrieri che si difendono in questa WARZONE potranno essere equipaggiati gratuitamente durante la fase Modificare le caratteristiche del guerriero",
+                "target": "Guerrieri che si difendono",
+                "tipo_effetto": "Carte"
             }
         ],
-        "testo_carta": "Il guerriero in difesa guadagna +3 Armatura e -1 Combattimento. Nessuno dei combattenti può beneficiare di bonus da Fortificazioni.",
-        "flavour_text": "Nella trincea, la sopravvivenza viene prima dell'attacco.",
-        "keywords": ["Difensiva", "Trincea", "Copertura"],
+        "testo_carta": "WARZONE: MERCURIO. ASSEGNABILE ALLA TUA SQUADRA O AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Guerrieri che si difendono in questa WARZONE potranno essere equipaggiati gratuitamente durante la fase Modificare le caratteristiche del guerriero.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": [],
-            "soggetti_avvantaggiati": ['Ranger_Venusiano'],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
             "solo_una_per_area": True,
-            "limiti_utilizzo": [] # # 'Solo Seguaci di <Apostolo>', 'Solo Doomtrooper', 'Solo Oscura Legione', 'Solo Eretici'
+            "limiti_utilizzo": []
         },
-        "valore_strategico": 3,
-        "frequenza_utilizzo": "Alta",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Bunker Corazzato": {
-        "nome": "Bunker Corazzato",
-        "costo_azione": 1,
-        "tipo": "Bunker",
-        "terreno": "Coperto",
-        "rarity": "Uncommon",
-        "set_espansione": "Base",
-        "numero_carta": "WZ002",
-        "modificatori_difensore": [
-            {"statistica": "A", "valore": 5, "descrizione": "+5 Armatura nel bunker"},
-            {"statistica": "S", "valore": -3, "descrizione": "-3 Sparare da posizioni chiuse"}
-        ],
+    "Cratere Di Anatholia": {
+        "nome": "Cratere Di Anatholia",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Mercurio",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": -3,
+            "sparare": 1,
+            "armatura": 2,
+            "valore": 2
+        },
+        "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Protezione Totale",
-                "descrizione": "Equipaggiamenti considerati anche Fortificazione non possono essere usati",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Restrizione"
+                "nome": "Riceve Carte Oscura Simmetria",
+                "descrizione": "Guerrieri che si difendono in questa WARZONE possono gratuitamente ricevere carte dell'Oscura Simmetria durante i combattimenti",
+                "target": "Guerrieri che si difendono",
+                "tipo_effetto": "Carte"
+            },
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "uccidono istantaneamente ogni guerriero che riescono a ferire in Corpo a Corpo",
+                "target": "Guerrieri che si difendono",
+                "tipo_effetto": "Combattimento"
             }
         ],
-        "testo_carta": "Il difensore guadagna +5 Armatura e -3 Sparare. Equipaggiamenti considerati anche Fortificazione non possono essere usati.",
-        "flavour_text": "Il cemento armato è l'ultimo amico del soldato.",
-        "keywords": ["Bunker", "Corazzato", "Difensiva"],
+        "testo_carta": "WARZONE: MERCURIO. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Guerrieri che si difendono in questa WARZONE possono gratuitamente ricevere carte dell'Oscura Simmetria durante i combattimenti, inoltre, uccidono istantaneamente ogni guerriero che riescono a ferire in Corpo a Corpo.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": {
+            "richiede_grande_stratega": True,
+            "aree_utilizzabili": ["Schieramento"],
+            "fazioni_permesse": ["Oscura Legione"],
+            "solo_una_per_area": True,
+            "limiti_utilizzo": []
+        },
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Phobos & Deimos": {
+        "nome": "Phobos & Deimos",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Marte",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 1,
+            "sparare": 1,
+            "armatura": -1,
+            "valore": 2
+        },
+        "modificatori_difensore": [
+            {
+                "statistica": "C",
+                "valore": 5,
+                "descrizione": "SEGUACI DI SEMAI e MUAWIJHE che si difendono in questa WARZONE dall'attacco di Doomtrooper, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "SEGUACI DI SEMAI e MUAWIJHE"
+            },
+            {
+                "statistica": "S",
+                "valore": 5,
+                "descrizione": "SEGUACI DI SEMAI e MUAWIJHE che si difendono in questa WARZONE dall'attacco di Doomtrooper, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "SEGUACI DI SEMAI e MUAWIJHE"
+            },
+            {
+                "statistica": "A",
+                "valore": 5,
+                "descrizione": "SEGUACI DI SEMAI e MUAWIJHE che si difendono in questa WARZONE dall'attacco di Doomtrooper, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "SEGUACI DI SEMAI e MUAWIJHE"
+            }
+        ],
+        "effetti_combattimento": [],
+        "testo_carta": "WARZONE: MARTE. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. SEGUACI DI SEMAI e MUAWIJHE che si difendono in questa WARZONE dall'attacco di Doomtrooper, guadagnano un ulteriore + 5 in C, S e A.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": {
+            "richiede_grande_stratega": True,
+            "aree_utilizzabili": ["Schieramento"],
+            "fazioni_permesse": ["Oscura Legione"],
+            "solo_una_per_area": True,
+            "limiti_utilizzo": []
+        },
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Asteroide Infestato": {
+        "nome": "Asteroide Infestato",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Fascia di Asteroidi",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": 0,
+            "armatura": 3,
+            "valore": 2
+        },
+        "modificatori_difensore": [
+            {
+                "statistica": "C",
+                "valore": 5,
+                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiali, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "Guerrieri contro attaccanti Imperiali"
+            },
+            {
+                "statistica": "S",
+                "valore": 5,
+                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiali, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "Guerrieri contro attaccanti Imperiali"
+            },
+            {
+                "statistica": "A",
+                "valore": 5,
+                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiali, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "Guerrieri contro attaccanti Imperiali"
+            }
+        ],
+        "effetti_combattimento": [],
+        "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiali, guadagnano un ulteriore + 5 in C, S e A.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": {
+            "richiede_grande_stratega": True,
+            "aree_utilizzabili": ["Schieramento"],
+            "fazioni_permesse": ["Oscura Legione"],
+            "solo_una_per_area": True,
+            "limiti_utilizzo": []
+        },
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Giungla Di Venere": {
+        "nome": "Giungla Di Venere",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Venere",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": -2,
+            "armatura": 3,
+            "valore": 3
+        },
+        "modificatori_difensore": [
+            {
+                "statistica": "C",
+                "valore": 3,
+                "descrizione": "I Ranger Venusiani che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Ranger Venusiani"
+            },
+            {
+                "statistica": "S",
+                "valore": 3,
+                "descrizione": "I Ranger Venusiani che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Ranger Venusiani"
+            },
+            {
+                "statistica": "A",
+                "valore": 3,
+                "descrizione": "I Ranger Venusiani che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Ranger Venusiani"
+            }
+        ],
+        "effetti_combattimento": [],
+        "testo_carta": "WARZONE: VENERE. ASSEGNABILE ALLA TUA SQUADRA O AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. I guerrieri che combattono nelle Giungle di Venere non possono utilizzare i VEICOLI (sia l'attaccante che il difensore). I Ranger Venusiani che si difendono in questa WARZONE guadagnano un + 3 in C, S e A.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": [],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
             "solo_una_per_area": True,
-            "limiti_utilizzo": []
+            "limiti_utilizzo": ["VEICOLI non utilizzabili"]
         },
-        "valore_strategico": 5,
-        "frequenza_utilizzo": "Media",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Città Devastata": {
-        "nome": "Città Devastata",
-        "costo_azione": 1,
-        "tipo": "Citta Devastata",
-        "terreno": "Difficile",
+    "Victoria": {
+        "nome": "Victoria",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Fascia di Asteroidi",
         "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "WZ003",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": -1,
+            "armatura": 2,
+            "valore": 2
+        },
         "modificatori_difensore": [
-            {"statistica": "C", "valore": 2, "descrizione": "+2 Combattimento tra le rovine"},
-            {"statistica": "A", "valore": 1, "descrizione": "+1 Armatura dalle coperture"}
-        ],
-        "effetti_combattimento": [
             {
-                "nome": "Combattimento Urbano",
-                "descrizione": "Veicoli non possono essere utilizzati in combattimento",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Restrizione"
+                "statistica": "C",
+                "valore": 3,
+                "descrizione": "Guerrieri Imperiali che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Guerrieri Imperiali"
+            },
+            {
+                "statistica": "S",
+                "valore": 3,
+                "descrizione": "Guerrieri Imperiali che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Guerrieri Imperiali"
+            },
+            {
+                "statistica": "A",
+                "valore": 3,
+                "descrizione": "Guerrieri Imperiali che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Guerrieri Imperiali"
             }
         ],
-        "testo_carta": "Il difensore guadagna +2 Combattimento e +1 Armatura. I Veicoli non possono essere utilizzati in combattimento.",
-        "flavour_text": "Nelle rovine della civiltà, ogni angolo nasconde pericoli e opportunità.",
-        "keywords": ["Urbano", "Rovine", "Tattico"],
+        "effetti_combattimento": [],
+        "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE ALLA TUA SQUADRA SE SEI UN GRANDE STRATEGA. Guerrieri Imperiali che si difendono in questa WARZONE guadagnano un + 3 in C, S e A.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
-            "aree_utilizzabili": ["Qualsiasi Area"],
-            "fazioni_permesse": [],
+            "aree_utilizzabili": ["Squadra"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 4,
-        "frequenza_utilizzo": "Alta",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Campo Aperto": {
-        "nome": "Campo Aperto",
-        "costo_azione": 1,
-        "tipo": "Campo di Battaglia",
-        "terreno": "Aperto",
+    "Il Grande Deserto": {
+        "nome": "Il Grande Deserto",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Marte",
         "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "WZ004",
-        "modificatori_difensore": [
-            {"statistica": "S", "valore": 3, "descrizione": "+3 Sparare in campo aperto"},
-            {"statistica": "A", "valore": -2, "descrizione": "-2 Armatura senza coperture"}
-        ],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 6,
+            "armatura": -2,
+            "valore": 2
+        },
+        "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Campo di Tiro Libero",
-                "descrizione": "Entrambi i combattenti devono usare Sparare se possibile",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Forzatura Tattica"
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Ogni guerriero ferito in questa WARZONE è automaticamente morto",
+                "target": "Tutti i guerrieri",
+                "tipo_effetto": "Combattimento"
             }
         ],
-        "testo_carta": "Il difensore guadagna +3 Sparare e -2 Armatura. Entrambi i combattenti devono usare Sparare se possibile.",
-        "flavour_text": "In campo aperto, vince chi spara per primo e più accurato.",
-        "keywords": ["Aperto", "Tiratori", "Tattico"],
+        "testo_carta": "WARZONE: MARTE. ASSEGNABILE ALLA TUA SQUADRA O AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Ogni guerriero ferito in questa WARZONE è automaticamente morto.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
-            "aree_utilizzabili": ["Qualsiasi Area"],
-            "fazioni_permesse": [],
+            "aree_utilizzabili": ["Squadra", "Schieramento"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 3,
-        "frequenza_utilizzo": "Media",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Giungla Ostile": {
-        "nome": "Giungla Ostile",
-        "costo_azione": 1,
-        "tipo": "Foresta",
-        "terreno": "Difficile",
-        "rarity": "Uncommon",
-        "set_espansione": "Base",
-        "numero_carta": "WZ005",
-        "modificatori_difensore": [
-            {"statistica": "S", "valore": -2, "descrizione": "-2 Sparare per visibilità limitata"},
-            {"statistica": "A", "valore": 1, "descrizione": "+1 Armatura dalla vegetazione"},
-            {"statistica": "C", "valore": 1, "descrizione": "+1 Combattimento nel sottobosco"}
-        ],
-        "effetti_combattimento": [
-            {
-                "nome": "Visibilità Limitata",
-                "descrizione": "Tutti i combattimenti devono essere risolti con Combattimento",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Forzatura Tattica"
-            }
-        ],
-        "testo_carta": "Il difensore guadagna -2 Sparare, +1 Armatura e +1 Combattimento. Tutti i combattimenti devono essere risolti con Combattimento.",
-        "flavour_text": "Nella giungla, il nemico può essere dietro ogni albero.",
-        "keywords": ["Giungla", "Difficile", "Corpo a Corpo"],
-        "restrizioni": {
-            "richiede_grande_stratega": True,
-            "aree_utilizzabili": ["Qualsiasi Area"],
-            "fazioni_permesse": [],
-            "solo_una_per_area": True,
-            "limiti_utilizzo": []
+    "Citadella Sanctum": {
+        "nome": "Citadella Sanctum",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Generico",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3,
+            "armatura": 3,
+            "valore": 2
         },
-        "valore_strategico": 4,
-        "frequenza_utilizzo": "Media",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Complesso Industriale": {
-        "nome": "Complesso Industriale",
-        "costo_azione": 1,
-        "tipo": "Complesso Industriale",
-        "terreno": "Pericoloso",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "WZ006",
-        "modificatori_difensore": [
-            {"statistica": "C", "valore": 1, "descrizione": "+1 Combattimento tra i macchinari"},
-            {"statistica": "S", "valore": 1, "descrizione": "+1 Sparare dalle postazioni"},
-            {"statistica": "V", "valore": 1, "descrizione": "+1 Valore per controllo strategico"}
-        ],
+        "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Ambiente Pericoloso",
-                "descrizione": "Ogni combattente deve tirare 1d6 dopo il combattimento: con 1, subisce 1 ferita",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Rischio Ambientale"
+                "nome": "Uccide Automaticamente",
+                "descrizione": "I guerrieri che si difendono in questa Warzone uccidono automaticamente i Doomtrooper che feriscono",
+                "target": "Guerrieri che si difendono",
+                "tipo_effetto": "Combattimento"
+            },
+            {
+                "nome": "Aumenta Punti Vittoria",
+                "descrizione": "I guerrieri che uccidono un Doomtrooper mentre si difendono in questa Warzone guadagnano il doppio dei punti V dell'avversario",
+                "target": "Guerrieri che si difendono",
+                "tipo_effetto": "Modificatore"
             }
         ],
-        "testo_carta": "Il difensore guadagna +1 a tutte le statistiche. Dopo il combattimento, ogni combattente tira 1d6: con 1, subisce 1 ferita.",
-        "flavour_text": "Tra i fumi tossici e i macchinari, la guerra diventa ancora più letale.",
-        "keywords": ["Industriale", "Pericoloso", "Tossico"],
+        "testo_carta": "WARZONE: GENERICO. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. I guerrieri che si difendono in questa Warzone uccidono automaticamente i Doomtrooper che feriscono. I guerrieri che uccidono un Doomtrooper mentre si difendono in questa Warzone guadagnano il doppio dei punti V dell'avversario",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Schieramento"],
-            "fazioni_permesse": [],
-            "solo_una_per_area": True,
-            "limiti_utilizzo": ["Solo guerrieri con Valore 4+"]
-        },
-        "valore_strategico": 6,
-        "frequenza_utilizzo": "Bassa",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # === WARZONE ESPANSIONI ===
-
-    "Cratere Lunare": {
-        "nome": "Cratere Lunare",
-        "costo_azione": 1,
-        "tipo": "Cratere",
-        "terreno": "Estremo",
-        "rarity": "Rare",
-        "set_espansione": Set_Espansione.WARZONE.value,
-        "numero_carta": "WZ010",
-        "modificatori_difensore": [
-            {"statistica": "A", "valore": 2, "descrizione": "+2 Armatura dalla posizione elevata"},
-            {"statistica": "S", "valore": 4, "descrizione": "+4 Sparare dalla posizione dominante"},
-            {"statistica": "C", "valore": -3, "descrizione": "-3 Combattimento in ambiente ostile"}
-        ],
-        "effetti_combattimento": [
-            {
-                "nome": "Gravità Ridotta",
-                "descrizione": "Tutti gli attacchi Combattimento subiscono -2",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Modifica Ambientale"
-            },
-            {
-                "nome": "Vuoto Spaziale",
-                "descrizione": "Guerrieri senza tute spaziali non possono combattere",
-                "target": "Guerrieri non equipaggiati",
-                "tipo_effetto": "Restrizione Ambientale"
-            }
-        ],
-        "testo_carta": "Il difensore guadagna +2 Armatura, +4 Sparare e -3 Combattimento. Tutti gli attacchi Combattimento -2. Richiede tute spaziali.",
-        "flavour_text": "Nel vuoto dello spazio, ogni respiro potrebbe essere l'ultimo.",
-        "keywords": ["Spazio", "Lunare", "Estremo"],
-        "restrizioni": {
-            "richiede_grande_stratega": True,
-            "aree_utilizzabili": ["Avamposto"],
-            "fazioni_permesse": [],
-            "solo_una_per_area": True,
-            "limiti_utilizzo": ["Richiede equipaggiamento spaziale"]
-        },
-        "valore_strategico": 7,
-        "frequenza_utilizzo": "Bassa",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Palude Tossica": {
-        "nome": "Palude Tossica",
-        "costo_azione": 1,
-        "tipo": "Palude",
-        "terreno": "Pericoloso",
-        "rarity": "Uncommon",
-        "set_espansione": "Warzone",
-        "numero_carta": "WZ015",
-        "modificatori_difensore": [
-            {"statistica": "C", "valore": -1, "descrizione": "-1 Combattimento nel fango"},
-            {"statistica": "S", "valore": -2, "descrizione": "-2 Sparare per i vapori tossici"},
-            {"statistica": "A", "valore": 3, "descrizione": "+3 Armatura dalla copertura naturale"}
-        ],
-        "effetti_combattimento": [
-            {
-                "nome": "Vapori Tossici",
-                "descrizione": "Inizio turno: ogni combattente tira 1d6, con 1-2 non può agire questo turno",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Effetto Continuo"
-            }
-        ],
-        "testo_carta": "Il difensore guadagna -1 Combattimento, -2 Sparare e +3 Armatura. I vapori tossici possono impedire le azioni.",
-        "flavour_text": "La palude rivendica tanto quanto la guerra.",
-        "keywords": ["Palude", "Tossico", "Ambientale"],
-        "restrizioni": {
-            "richiede_grande_stratega": True,
-            "aree_utilizzabili": ["Qualsiasi Area"],
-            "fazioni_permesse": [],
+            "fazioni_permesse": ["Oscura Legione"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 4,
-        "frequenza_utilizzo": "Media",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Montagne Ghiacciate": {
-        "nome": "Montagne Ghiacciate",
-        "costo_azione": 1,
-        "tipo": "Montagne",
-        "terreno": "Estremo",
-        "rarity": "Uncommon",
+    "Fascia Di Asteroidi": {
+        "nome": "Fascia Di Asteroidi",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Fascia di Asteroidi",
+        "rarity": "Common",
         "set_espansione": "Warzone",
-        "numero_carta": "WZ020",
-        "modificatori_difensore": [
-            {"statistica": "A", "valore": 4, "descrizione": "+4 Armatura dalla posizione elevata"},
-            {"statistica": "S", "valore": 2, "descrizione": "+2 Sparare dal vantaggio dell'altezza"},
-            {"statistica": "C", "valore": -2, "descrizione": "-2 Combattimento per il freddo estremo"}
-        ],
-        "effetti_combattimento": [
-            {
-                "nome": "Freddo Estremo",
-                "descrizione": "Ogni turno, i combattenti perdono 1 punto da una statistica a scelta del proprietario della Warzone",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Degrado Ambientale"
-            }
-        ],
-        "testo_carta": "Il difensore guadagna +4 Armatura, +2 Sparare e -2 Combattimento. Il freddo degrada le prestazioni ogni turno.",
-        "flavour_text": "In alta montagna, il nemico più pericoloso è spesso il clima.",
-        "keywords": ["Montagna", "Freddo", "Altitudine"],
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": -1,
+            "armatura": 1,
+            "valore": 2
+        },
+        "modificatori_difensore": [],
+        "effetti_combattimento": [],
+        "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE ALLA TUA SQUADRA O AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. I guerrieri non possono usare armi da FUOCO o armi da FUOCO/CORPO A CORPO mentre combattono in questa WARZONE (sia l'attaccante che il difensore).",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
-            "aree_utilizzabili": ["Qualsiasi Area"],
-            "fazioni_permesse": [],
+            "aree_utilizzabili": ["Squadra", "Schieramento"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "solo_una_per_area": True,
+            "limiti_utilizzo": ["Armi da FUOCO non utilizzabili", "Armi da FUOCO/CORPO A CORPO non utilizzabili"]
+        },
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Caverne Di Diamanti": {
+        "nome": "Caverne Di Diamanti",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Mercurio",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": -2,
+            "sparare": -2,
+            "armatura": 5,
+            "valore": 4
+        },
+        "modificatori_difensore": [],
+        "effetti_combattimento": [
+            {
+                "nome": "Guadagna Punti Promozione",
+                "descrizione": "Se un guerriero Mishima che si difende in questa WARZONE uccide un avversario, il guerriero guadagna 3 punti Promozione addizionali",
+                "target": "Guerrieri Mishima",
+                "tipo_effetto": "Modificatore"
+            }
+        ],
+        "testo_carta": "WARZONE: MERCURIO. ASSEGNABILE ALLA TUA SQUADRA SE SEI UN GRANDE STRATEGA. Se un guerriero Mishima che si difende in questa WARZONE uccide un avversario, il guerriero guadagna 3 punti Promozione addizionali.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": {
+            "richiede_grande_stratega": True,
+            "aree_utilizzabili": ["Squadra"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 5,
-        "frequenza_utilizzo": "Bassa",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Laboratorio Abbandonato": {
-        "nome": "Laboratorio Abbandonato",
-        "costo_azione": 1,
-        "tipo": "Complesso Industriale",
-        "terreno": "Pericoloso",
-        "rarity": "Rare",
-        "set_espansione": "Inquisition",
-        "numero_carta": "WZ025",
+    "Rifugio Sacro": {
+        "nome": "Rifugio Sacro",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Generica",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3,
+            "armatura": 3,
+            "valore": 6
+        },
         "modificatori_difensore": [
-            {"statistica": "S", "valore": 3, "descrizione": "+3 Sparare con attrezzature del laboratorio"},
-            {"statistica": "A", "valore": 1, "descrizione": "+1 Armatura dalle strutture"},
-            {"statistica": "V", "valore": 2, "descrizione": "+2 Valore per scoperte tecnologiche"}
+            {
+                "statistica": "C",
+                "valore": -2,
+                "descrizione": "Doomtrooper che attaccano guerrieri della Fratellanza che si difendono in questa Warzone subiscono una modifica di - 2 in C, S e A",
+                "difensore": "Doomtrooper che attaccano Fratellanza"
+            },
+            {
+                "statistica": "S",
+                "valore": -2,
+                "descrizione": "Doomtrooper che attaccano guerrieri della Fratellanza che si difendono in questa Warzone subiscono una modifica di - 2 in C, S e A",
+                "difensore": "Doomtrooper che attaccano Fratellanza"
+            },
+            {
+                "statistica": "A",
+                "valore": -2,
+                "descrizione": "Doomtrooper che attaccano guerrieri della Fratellanza che si difendono in questa Warzone subiscono una modifica di - 2 in C, S e A",
+                "difensore": "Doomtrooper che attaccano Fratellanza"
+            }
         ],
         "effetti_combattimento": [
             {
-                "nome": "Esperimenti Instabili",
-                "descrizione": "Una volta per combattimento, il difensore può forzare entrambi i combattenti a rilanciare tutti i dadi",
-                "target": "Combattenti attivi",
-                "tipo_effetto": "Abilità Unica"
-            },
-            {
-                "nome": "Tecnologia Avanzata",
-                "descrizione": "Carte Equipaggiamento costano 1 azione in meno se giocate qui",
-                "target": "Proprietario",
-                "tipo_effetto": "Bonus Economico"
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Ogni guerriero della Fratellanza che si difende in questa WARZONE uccide automaticamente ogni guerriero che ferisce",
+                "target": "Guerrieri della Fratellanza",
+                "tipo_effetto": "Combattimento"
             }
         ],
-        "testo_carta": "Il difensore guadagna +3 Sparare, +1 Armatura e +2 Valore. Può forzare rilanci e riduce costi Equipaggiamento.",
-        "flavour_text": "Nella scienza abbandonata giacciono sia tesori che orrori.",
-        "keywords": ["Laboratorio", "Tecnologia", "Scientifico"],
+        "testo_carta": "WARZONE: GENERICA. ASSEGNABILE AD UNA TUA SQUADRA SE SEI UN GRANDE STRATEGA. Ogni guerriero della Fratellanza che si difende in questa WARZONE uccide automaticamente ogni guerriero che ferisce. Doomtrooper che attaccano guerrieri della Fratellanza che si difendono in questa Warzone subiscono una modifica di - 2 in C, S e A.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": {
+            "richiede_grande_stratega": True,
+            "aree_utilizzabili": ["Squadra"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "solo_una_per_area": True,
+            "limiti_utilizzo": []
+        },
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Terra Di Nessuno": {
+        "nome": "Terra Di Nessuno",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Generico",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 1,
+            "sparare": 1,
+            "armatura": 1,
+            "valore": 4
+        },
+        "modificatori_difensore": [],
+        "effetti_combattimento": [
+            {
+                "nome": "Guadagna Punti Promozione",
+                "descrizione": "Mercenari che uccidono i loro avversari mentre si difendono nella terra di Nessuno possono guadagnare punti Promozione",
+                "target": "Mercenari",
+                "tipo_effetto": "Modificatore"
+            }
+        ],
+        "testo_carta": "WARZONE: GENERICO. ASSEGNABILE ALLA TUA SQUADRA O AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Mercenari che uccidono i loro avversari mentre si difendono nella terra di Nessuno possono guadagnare punti Promozione.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": {
+            "richiede_grande_stratega": True,
+            "aree_utilizzabili": ["Squadra", "Schieramento"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "solo_una_per_area": True,
+            "limiti_utilizzo": []
+        },
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Montagne Di Helstrom": {
+        "nome": "Montagne Di Helstrom",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Venere",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 2,
+            "sparare": -3,
+            "armatura": 3,
+            "valore": 4
+        },
+        "modificatori_difensore": [],
+        "effetti_combattimento": [
+            {
+                "nome": "Guadagna Punti Aggiuntivi",
+                "descrizione": "Se i tuoi guerrieri uccidono un Doomtrooper sparando (S) mentre si difendono in questa WARZONE, guadagni il doppio dei punti",
+                "target": "Guerrieri che si difendono",
+                "tipo_effetto": "Modificatore"
+            }
+        ],
+        "testo_carta": "WARZONE: VENERE. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Se i tuoi guerrieri uccidono un Doomtrooper sparando (S) mentre si difendono in questa WARZONE, guadagni il doppio dei punti.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Schieramento"],
-            "fazioni_permesse": ["Cybertronic", "Capitol"],
+            "fazioni_permesse": ["Oscura Legione"],
             "solo_una_per_area": True,
-            "limiti_utilizzo": ["Solo fazioni tecnologiche"]
+            "limiti_utilizzo": []
         },
-        "valore_strategico": 8,
-        "frequenza_utilizzo": "Bassa",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Arena Gladiatoria": {
-        "nome": "Arena Gladiatoria",
-        "costo_azione": 1,
-        "tipo": "Campo di Battaglia",
-        "terreno": "Aperto",
-        "rarity": "Ultra Rare",
-        "set_espansione": "Golgotha",
-        "numero_carta": "WZ030",
+    "Cyberopolis": {
+        "nome": "Cyberopolis",
+        "costo_azione": 0,
+        "tipo": "",
+        "terreno": "Marte",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": -1,
+            "sparare": -1,
+            "armatura": 3,
+            "valore": 2
+        },
         "modificatori_difensore": [
-            {"statistica": "C", "valore": 5, "descrizione": "+5 Combattimento nell'arena"},
-            {"statistica": "V", "valore": 3, "descrizione": "+3 Valore per lo spettacolo"}
+            {
+                "statistica": "C",
+                "valore": 3,
+                "descrizione": "I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V",
+                "difensore": "Guerrieri Cybertronic"
+            },
+            {
+                "statistica": "S",
+                "valore": 3,
+                "descrizione": "I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V",
+                "difensore": "Guerrieri Cybertronic"
+            },
+            {
+                "statistica": "A",
+                "valore": 3,
+                "descrizione": "I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V",
+                "difensore": "Guerrieri Cybertronic"
+            },
+            {
+                "statistica": "V",
+                "valore": 3,
+                "descrizione": "I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V",
+                "difensore": "Guerrieri Cybertronic"
+            }
         ],
         "effetti_combattimento": [
             {
-                "nome": "Duello all'Ultimo Sangue",
-                "descrizione": "Solo combattimenti Combattimento. Il vincitore guadagna +2 Punti Promozione extra",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Regola Speciale"
+                "nome": "Ignora Modificatori Negativi",
+                "descrizione": "Se l'Avamposto Turf di Marte è giocato su questa WARZONE, solo i guerrieri Cybertronic (non quelli Capitol) potranno ignorare i modificatori negativi e uccidere automaticamente tutti i guerrieri avversari feriti in combattimento",
+                "target": "Guerrieri Cybertronic",
+                "tipo_effetto": "Condizione"
             },
             {
-                "nome": "Folla in Delirio",
-                "descrizione": "Ogni ferita inflitta fa guadagnare +1 Punto Destino",
-                "target": "Tutti i combattenti",
-                "tipo_effetto": "Bonus Economico"
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se l'Avamposto Turf di Marte è giocato su questa WARZONE, solo i guerrieri Cybertronic (non quelli Capitol) potranno ignorare i modificatori negativi e uccidere automaticamente tutti i guerrieri avversari feriti in combattimento",
+                "target": "Guerrieri Cybertronic",
+                "tipo_effetto": "Condizione"
             }
         ],
-        "testo_carta": "Il difensore guadagna +5 Combattimento e +3 Valore. Solo duelli Combattimento. Bonus Punti Promozione e Destino.",
-        "flavour_text": "Nell'arena, la morte è spettacolo e la gloria è eterna.",
-        "keywords": ["Arena", "Gladiatorio", "Spettacolo"],
+        "testo_carta": "WARZONE: MARTE. ASSEGNABILE ALLA TUA SQUADRA SE SEI UN GRANDE STRATEGA. I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V. Se l'Avamposto Turf di Marte è giocato su questa WARZONE, solo i guerrieri Cybertronic (non quelli Capitol) potranno ignorare i modificatori negativi e uccidere automaticamente tutti i guerrieri avversari feriti in combattimento.",
+        "flavour_text": "",
+        "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
-            "aree_utilizzabili": ["Qualsiasi Area"],
-            "fazioni_permesse": [],
+            "aree_utilizzabili": ["Squadra"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
             "solo_una_per_area": True,
-            "limiti_utilizzo": ["Solo combattimenti singoli"]
+            "limiti_utilizzo": []
         },
-        "valore_strategico": 9,
-        "frequenza_utilizzo": "Molto Bassa",
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "frequenza_utilizzo": "",
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     }
+
+
+# Dizionario completo con tutte le 15 carte Warzone analizzate dalle immagini
 }
 
 

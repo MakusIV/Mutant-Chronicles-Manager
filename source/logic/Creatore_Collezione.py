@@ -2152,7 +2152,6 @@ def test_creazioni_individuali():
     print(f"{'='*80}")
     
 
-
 # ==================== MAIN ====================
 
 if __name__ == "__main__":
