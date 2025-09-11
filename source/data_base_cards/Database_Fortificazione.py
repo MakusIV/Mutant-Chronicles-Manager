@@ -16,892 +16,967 @@ from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadr
 
 # Database completo delle carte Fortificazione
 DATABASE_FORTIFICAZIONI = {
-    # CITTÀ DELLE CORPORAZIONI
-    "Heimburg": {
-        "nome": "Heimburg",
-        "costo_destino": 3,
-        "tipo": "Città Corporazione",
+    
+    "Cittadella Di Algeroth": {
+        "nome": "Cittadella Di Algeroth",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
         "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "F001",
-        "area_compatibile": "Squadra o Schieramento",
+        "numero_carta": "",
+        "area_compatibile": "Schieramento",
         "beneficiario": "Corporazione Specifica",
-        "corporazione_specifica": "Bauhaus",
-        "apostolo_specifico": None,
+        "corporazione_specifica": "Seguaci di Algeroth",
+        "apostolo_specifico": "Algeroth",
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 2,
-        "punti_struttura": 8,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
         "resistenza_attacchi": False,
         "modificatori": [
             {
                 "statistica": "A",
-                "valore": 2,
+                "valore": "+2",
                 "condizione": "sempre",
-                "descrizione": "Bonus armatura Bauhaus",
+                "descrizione": "Tutti i Seguaci di Algeroth nel Tuo Schieramento guadagnano un +2 in A mentre la Cittadella di Algeroth è in gioco",
                 "permanente": True
             }
         ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Algeroth nel Tuo Schieramento guadagnano un +2 in A mentre la Cittadella di Algeroth è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Algeroth", "Seguace di Algeroth", "Cittadella", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "La Cattedrale Di Longshore": {
+        "nome": "La Cattedrale Di Longshore",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
         "abilita_speciali": [
             {
-                "nome": "Mura Fortificate",
-                "descrizione": "I guerrieri Bauhaus guadagnano +2 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte degli Elementi",
+                "tipo_abilita": "Arte",
+                "costo_attivazione": None,
                 "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura guerrieri Bauhaus"]
+                "effetti_speciali": ["Permette uso Arte degli Elementi"]
             }
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Bauhaus"],
-        "testo_carta": "La città fortezza di Heimburg protegge i guerrieri Bauhaus con le sue possenti mura.",
-        "flavour_text": "Nelle profondità di Venere, Heimburg rappresenta la potenza industriale Bauhaus.",
-        "keywords": ["Bauhaus", "Città", "Fortificazione", "Difesa"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "fazioni_permesse": ["Doomtrooper"],
+        "testo_carta": "ASSEGNABILE ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte degli Elementi. Puoi avere solo una Cattedrale di Longshore in gioco.",
+        "flavour_text": "",
+        "keywords": ["Cattedrale", "Longshore", "Arte", "Elementi", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-    
-    "Citadel": {
-        "nome": "Citadel",
-        "costo_destino": 4,
-        "tipo": "Città Corporazione",
-        "rarity": "Uncommon",
-        "set_espansione": "Base",
-        "numero_carta": "F002",
-        "area_compatibile": "Squadra o Schieramento",
-        "beneficiario": "Corporazione Specifica",
-        "corporazione_specifica": "Imperiale",
-        "apostolo_specifico": None,
-        "unica_per_giocatore": True,
-        "distruttibile": True,
-        "bonus_armatura": 3,
-        "punti_struttura": 10,
-        "resistenza_attacchi": True,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 3,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura Imperiale",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Fortezza Imperiale",
-                "descrizione": "I guerrieri Imperiali guadagnano +3 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura guerrieri Imperiali"]
-            },
-            {
-                "nome": "Resistenza agli Attacchi",
-                "descrizione": "La Citadel resiste ai primi 2 danni subiti",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Resistenza danni", "Protezione strutturale"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": ["Solo guerrieri Imperiali"],
-        "fazioni_permesse": ["Imperiale"],
-        "testo_carta": "La Citadel rappresenta la supremazia militare e spirituale dell'Impero.",
-        "flavour_text": "Nel cuore della Terra, la Citadel vigila sui fedeli dell'Imperatore.",
-        "keywords": ["Imperiale", "Città", "Fortificazione", "Difesa", "Resistenza"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Ilian": {
-        "nome": "Ilian",
-        "costo_destino": 2,
-        "tipo": "Città Corporazione",
+
+    "La Cattedrale Di Heimburg": {
+        "nome": "La Cattedrale Di Heimburg",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
         "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "F003",
-        "area_compatibile": "Squadra o Schieramento",
-        "beneficiario": "Corporazione Specifica",
-        "corporazione_specifica": "Mishima",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 1,
-        "punti_struttura": 6,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 1,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura Mishima",
-                "permanente": True
-            },
-            {
-                "statistica": "V",
-                "valore": 1,
-                "condizione": "sempre",
-                "descrizione": "Bonus velocità Mishima",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [
             {
-                "nome": "Velocità di Mercurio",
-                "descrizione": "I guerrieri Mishima guadagnano +1 Armatura e +1 Velocità",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte dell'Esorcismo",
+                "tipo_abilita": "Arte",
+                "costo_attivazione": None,
                 "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus velocità e armatura Mishima"]
+                "effetti_speciali": ["Permette uso Arte dell'Esorcismo"]
             }
         ],
         "requisiti": [],
-        "restrizioni": ["Solo guerrieri Mishima"],
-        "fazioni_permesse": ["Mishima"],
-        "testo_carta": "Ilian, la città di cristallo di Mercurio, conferisce velocità ai suoi difensori.",
-        "flavour_text": "Come il mercurio scorre veloce, così i guerrieri di Ilian si muovono.",
-        "keywords": ["Mishima", "Città", "Fortificazione", "Velocità"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "restrizioni": [],
+        "fazioni_permesse": ["Doomtrooper"],
+        "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte dell'Esorcismo. Puoi solo avere una Cattedrale di Heimburg in gioco.",
+        "flavour_text": "",
+        "keywords": ["Cattedrale", "Heimburg", "Arte", "Esorcismo", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-    
-    "Capitol": {
-        "nome": "Capitol",
-        "costo_destino": 3,
-        "tipo": "Città Corporazione",
+
+    "San Dorado": {
+        "nome": "San Dorado",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
         "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "F004",
-        "area_compatibile": "Squadra o Schieramento",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
         "beneficiario": "Corporazione Specifica",
         "corporazione_specifica": "Capitol",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 2,
-        "punti_struttura": 7,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
         "resistenza_attacchi": False,
         "modificatori": [
             {
                 "statistica": "A",
-                "valore": 2,
+                "valore": "+2",
                 "condizione": "sempre",
-                "descrizione": "Bonus armatura Capitol",
+                "descrizione": "Tutti i Tuoi membri della Corporazione Capitol guadagnano un +2 in A mentre San Dorado è in gioco",
                 "permanente": True
             }
         ],
-        "abilita_speciali": [
-            {
-                "nome": "Tecnologia Avanzata",
-                "descrizione": "I guerrieri Capitol guadagnano +2 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura guerrieri Capitol"]
-            }
-        ],
+        "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": [],
         "fazioni_permesse": ["Capitol"],
-        "testo_carta": "Capitol, centro del progresso tecnologico e commerciale.",
-        "flavour_text": "Dove la tecnologia incontra l'ambizione, nasce Capitol.",
-        "keywords": ["Capitol", "Città", "Fortificazione", "Tecnologia"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ CAPITOL. Tutti i Tuoi membri della Corporazione Capitol guadagnano un +2 in A mentre San Dorado è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Capitol", "Città", "San Dorado", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-    
-    "Saguenay": {
-        "nome": "Saguenay",
-        "costo_destino": 2,
-        "tipo": "Città Corporazione",
-        "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "F005",
-        "area_compatibile": "Squadra o Schieramento",
-        "beneficiario": "Corporazione Specifica",
-        "corporazione_specifica": "Cybertronic",
-        "apostolo_specifico": None,
-        "unica_per_giocatore": True,
-        "distruttibile": True,
-        "bonus_armatura": 1,
-        "punti_struttura": 5,
-        "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 1,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura Cybertronic",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Interfaccia Cibernetica",
-                "descrizione": "I guerrieri Cybertronic guadagnano +1 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura guerrieri Cybertronic"]
-            },
-            {
-                "nome": "Rigenerazione Dati",
-                "descrizione": "Una volta per turno, pesca una carta extra",
-                "tipo_abilita": "Attivabile",
-                "costo_attivazione": 1,
-                "condizioni_attivazione": ["Una volta per turno"],
-                "effetti_speciali": ["Pesca carta extra"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": [],
-        "fazioni_permesse": ["Cybertronic"],
-        "testo_carta": "Saguenay, centro dell'innovazione cibernetica di Cybertronic.",
-        "flavour_text": "Nel silenzio digitale di Saguenay, il futuro prende forma.",
-        "keywords": ["Cybertronic", "Città", "Fortificazione", "Cibernetico"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    # CITTADELLE DEGLI APOSTOLI
-    "Cittadella di Algeroth": {
-        "nome": "Cittadella di Algeroth",
-        "costo_destino": 4,
-        "tipo": "Cittadella Apostolo",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "F006",
-        "area_compatibile": "Schieramento",
-        "beneficiario": "Apostolo Specifico",
-        "corporazione_specifica": None,
-        "apostolo_specifico": "Algeroth",
-        "unica_per_giocatore": True,
-        "distruttibile": True,
-        "bonus_armatura": 3,
-        "punti_struttura": 12,
-        "resistenza_attacchi": True,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 3,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura seguaci Algeroth",
-                "permanente": True
-            },
-            {
-                "statistica": "C",
-                "valore": 1,
-                "condizione": "in_combattimento",
-                "descrizione": "Bonus combattimento in guerra",
-                "permanente": False
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Fortezza della Guerra",
-                "descrizione": "I seguaci di Algeroth guadagnano +3 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura seguaci Algeroth"]
-            },
-            {
-                "nome": "Chiamata alla Guerra",
-                "descrizione": "I guerrieri Oscura Legione guadagnano +1 Combattimento durante i combattimenti",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus combattimento in battaglia"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": ["Solo Seguaci di Algeroth"],
-        "fazioni_permesse": ["Oscura Legione"],
-        "testo_carta": "Nel nome di Algeroth, le armi parlano e la guerra non ha fine.",
-        "flavour_text": "Dalle fondamenta della Cittadella echeggia l'eterno rumore della battaglia.",
-        "keywords": ["Algeroth", "Cittadella", "Guerra", "Oscura Legione"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Cittadella di Ilian": {
-        "nome": "Cittadella di Ilian",
-        "costo_destino": 3,
-        "tipo": "Cittadella Apostolo",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "F007",
-        "area_compatibile": "Schieramento",
-        "beneficiario": "Apostolo Specifico",
-        "corporazione_specifica": None,
-        "apostolo_specifico": "Ilian",
-        "unica_per_giocatore": True,
-        "distruttibile": True,
-        "bonus_armatura": 2,
-        "punti_struttura": 10,
-        "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 2,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura seguaci Ilian",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Labirinto delle Bugie",
-                "descrizione": "I seguaci di Ilian guadagnano +2 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura seguaci Ilian"]
-            },
-            {
-                "nome": "Inganno",
-                "descrizione": "Una volta per turno, forza l'avversario a scartare una carta",
-                "tipo_abilita": "Attivabile",
-                "costo_attivazione": 2,
-                "condizioni_attivazione": ["Una volta per turno"],
-                "effetti_speciali": ["Scarta carta avversario"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": ["Solo Seguaci di Ilian"],
-        "fazioni_permesse": ["Oscura Legione"],
-        "testo_carta": "Nella Cittadella di Ilian, la verità si dissolve come nebbia.",
-        "flavour_text": "Chi entra nel labirinto di Ilian, perde se stesso nelle bugie.",
-        "keywords": ["Ilian", "Cittadella", "Inganno", "Oscura Legione"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Cittadella di Demnogonis": {
-        "nome": "Cittadella di Demnogonis",
-        "costo_destino": 5,
-        "tipo": "Cittadella Apostolo",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "F008",
-        "area_compatibile": "Schieramento",
-        "beneficiario": "Apostolo Specifico",
-        "corporazione_specifica": None,
-        "apostolo_specifico": "Demnogonis",
-        "unica_per_giocatore": True,
-        "distruttibile": True,
-        "bonus_armatura": 4,
-        "punti_struttura": 15,
-        "resistenza_attacchi": True,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 4,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura seguaci Demnogonis",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Inferno Congelato",
-                "descrizione": "I seguaci di Demnogonis guadagnano +4 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura seguaci Demnogonis"]
-            },
-            {
-                "nome": "Aura di Terrore",
-                "descrizione": "I guerrieri avversari subiscono -1 a tutte le statistiche",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Malus statistiche avversari"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": ["Solo Seguaci di Demnogonis"],
-        "fazioni_permesse": ["Oscura Legione"],
-        "testo_carta": "Il gelo eterno di Demnogonis preserva i suoi servitori.",
-        "flavour_text": "Nel cuore della Cittadella, l'inverno non ha mai fine.",
-        "keywords": ["Demnogonis", "Cittadella", "Gelo", "Terrore", "Oscura Legione"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Cittadella di Muawijhe": {
-        "nome": "Cittadella di Muawijhe",
-        "costo_destino": 3,
-        "tipo": "Cittadella Apostolo",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "F009",
-        "area_compatibile": "Schieramento",
-        "beneficiario": "Apostolo Specifico",
-        "corporazione_specifica": None,
-        "apostolo_specifico": "Muawijhe",
-        "unica_per_giocatore": True,
-        "distruttibile": True,
-        "bonus_armatura": 2,
-        "punti_struttura": 8,
-        "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 2,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura seguaci Muawijhe",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Sussurri della Follia",
-                "descrizione": "I seguaci di Muawijhe guadagnano +2 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura seguaci Muawijhe"]
-            },
-            {
-                "nome": "Corruzione Mentale",
-                "descrizione": "Una volta per turno, converti un guerriero avversario",
-                "tipo_abilita": "Attivabile",
-                "costo_attivazione": 3,
-                "condizioni_attivazione": ["Una volta per turno", "Guerriero bersaglio in gioco"],
-                "effetti_speciali": ["Conversione guerriero"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": ["Solo Seguaci di Muawijhe"],
-        "fazioni_permesse": ["Oscura Legione"],
-        "testo_carta": "I sussurri di Muawijhe portano follia e corruzione.",
-        "flavour_text": "Chi ascolta troppo a lungo, dimentica chi era.",
-        "keywords": ["Muawijhe", "Cittadella", "Follia", "Corruzione", "Oscura Legione"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Cittadella di Semai": {
-        "nome": "Cittadella di Semai",
-        "costo_destino": 4,
-        "tipo": "Cittadella Apostolo",
-        "rarity": "Rare",
-        "set_espansione": "Base",
-        "numero_carta": "F010",
-        "area_compatibile": "Schieramento",
-        "beneficiario": "Apostolo Specifico",
-        "corporazione_specifica": None,
-        "apostolo_specifico": "Semai",
-        "unica_per_giocatore": True,
-        "distruttibile": True,
-        "bonus_armatura": 3,
-        "punti_struttura": 11,
-        "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 3,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura seguaci Semai",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Tempio del Destino",
-                "descrizione": "I seguaci di Semai guadagnano +3 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura seguaci Semai"]
-            },
-            {
-                "nome": "Manipolazione del Fato",
-                "descrizione": "Una volta per turno, ridisegna una carta dal mazzo",
-                "tipo_abilita": "Attivabile",
-                "costo_attivazione": 1,
-                "condizioni_attivazione": ["Una volta per turno"],
-                "effetti_speciali": ["Ridisegna carta"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": ["Solo Seguaci di Semai"],
-        "fazioni_permesse": ["Oscura Legione"],
-        "testo_carta": "Nel Tempio di Semai, il destino prende forma.",
-        "flavour_text": "Le trame del fato si intrecciano nella Cittadella del Destino.",
-        "keywords": ["Semai", "Cittadella", "Destino", "Fato", "Oscura Legione"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    # FORTIFICAZIONI GENERICHE
-    "Bunker Difensivo": {
-        "nome": "Bunker Difensivo",
-        "costo_destino": 2,
+
+    "Complesso Industriale": {
+        "nome": "Complesso Industriale",
+        "costo_destino": 0,
         "tipo": "Fortificazione Generica",
         "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "F011",
-        "area_compatibile": "Qualsiasi Area",
-        "beneficiario": "Guerrieri Area",
-        "corporazione_specifica": None,
-        "apostolo_specifico": None,
-        "unica_per_giocatore": False,
-        "distruttibile": True,
-        "bonus_armatura": 1,
-        "punti_struttura": 5,
-        "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 1,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura difensivo",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Protezione Base",
-                "descrizione": "Tutti i guerrieri nell'area guadagnano +1 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura area"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": [],
-        "fazioni_permesse": [],
-        "testo_carta": "Un rifugio sicuro contro le tempeste della guerra.",
-        "flavour_text": "Spesse pareti di ferro proteggono chi vi si rifugia.",
-        "keywords": ["Bunker", "Fortificazione", "Difesa", "Universale"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Torretta di Guardia": {
-        "nome": "Torretta di Guardia",
-        "costo_destino": 1,
-        "tipo": "Installazione Difensiva",
-        "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "F012",
+        "numero_carta": "",
         "area_compatibile": "Squadra o Schieramento",
-        "beneficiario": "Guerrieri Area",
+        "beneficiario": "Tutti",
         "corporazione_specifica": None,
         "apostolo_specifico": None,
         "unica_per_giocatore": False,
         "distruttibile": True,
         "bonus_armatura": 0,
-        "punti_struttura": 3,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": ["Non c'è limite al numero di complessi Industriali che puoi avere in gioco contemporaneamente"],
+        "fazioni_permesse": ["Tutte"],
+        "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA O AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre il Complesso Industriale è in gioco, guadagni 3D ogni tua Fase Pescare. Non c'è limite al numero di complessi Industriali che puoi avere in gioco contemporaneamente.",
+        "flavour_text": "",
+        "keywords": ["Industriale", "Complesso", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Longshore": {
+        "nome": "Longshore",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Mishima",
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
+            {
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Tutti i Tuoi membri della Corporazione Mishima guadagnano un +2 in A mentre Longshore è in gioco",
+                "permanente": True
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Mishima"],
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ MISHIMA. Tutti i Tuoi membri della Corporazione Mishima guadagnano un +2 in A mentre Longshore è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Mishima", "Città", "Longshore", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Trincea": {
+        "nome": "Trincea",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra o Schieramento",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": False,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
+            {
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Il guerriero guadagna un +2 in A, e un +2 in C",
+                "permanente": True
+            },
+            {
+                "statistica": "C",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Il guerriero guadagna un +2 in A, e un +2 in C",
+                "permanente": True
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": ["Non può cominciare un combattimento Corpo a Corpo", "Può essere mossa su un altro guerriero al costo di un'Azione"],
+        "fazioni_permesse": ["Tutte"],
+        "testo_carta": "ASSEGNA QUESTA CARTA A UN GUERRIERO AL COSTO DI UN'AZIONE. Il guerriero trova protezione in una Trincea. Questo guerriero guadagna un +2 in A, e un +2 in C. Il guerriero non può cominciare un combattimento Corpo a Corpo, (ma può difendersi se è attaccato). Questa carta può essere mossa su un altro guerriero al costo di un'Azione.",
+        "flavour_text": "",
+        "keywords": ["Trincea", "Protezione", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Campo Di Prigionia": {
+        "nome": "Campo Di Prigionia",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": ["I prigionieri non possono attaccare o essere attaccati", "Quando lo imprigioni tutte le carte assegnate o associate al guerriero vengono scartate"],
+        "fazioni_permesse": ["Tutte"],
+        "testo_carta": "AL COSTO DI UN'AZIONE PUÒ ESSERE ASSEGNATO ALLA TUA SQUADRA. Se uno dei tuoi Doomtrooper ferisce (non uccide) un guerriero Doomtrooper avversario e sopravvive allo scontro, può imprigionarlo. Quando lo imprigioni tutte le carte assegnate o associate al guerriero vengono scartate. I prigionieri non possono attaccare o essere attaccati. Se il Campo di Prigionia viene scartato tutti i suoi prigionieri tornano nella Squadra di appartenenza.",
+        "flavour_text": "",
+        "keywords": ["Prigionia", "Campo", "Prigionieri", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Cattedrale": {
+        "nome": "Cattedrale",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Fratellanza",
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
+            {
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Tutti i Tuoi membri della Fratellanza guadagnano un +2 in A mentre la CATTEDRALE è in gioco",
+                "permanente": True
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Fratellanza"],
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ DELLA FRATELLANZA. Tutti i Tuoi membri della Fratellanza guadagnano un +2 in A mentre la CATTEDRALE è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Fratellanza", "Cattedrale", "Città", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Industria Bellica": {
+        "nome": "Industria Bellica",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra o Schieramento",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": False,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": ["Non c'è limite al numero di Industrie Belliche che puoi avere in gioco contemporaneamente"],
+        "fazioni_permesse": ["Tutte"],
+        "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA O AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre l'Industria Bellica è in gioco, guadagni 1D durante la Tua Fase Pescare. Non c'è limite al numero di Industrie Belliche che puoi avere in gioco contemporaneamente.",
+        "flavour_text": "",
+        "keywords": ["Industria", "Bellica", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Luna": {
+        "nome": "Luna",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra o Schieramento",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
+            {
+                "statistica": "A",
+                "valore": "+1",
+                "condizione": "sempre",
+                "descrizione": "Per il resto della partita, tutti i tuoi guerrieri guadagnano un +1 in A",
+                "permanente": True
+            },
+            {
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "Mercenari",
+                "descrizione": "Tutti i tuoi Mercenari guadagnano +2 in A",
+                "permanente": True
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Tutte"],
+        "testo_carta": "GIOCABILE AL COSTO DI UN'AZIONE Per il resto della partita, tutti i tuoi guerrieri guadagnano un +1 in A; tutti i tuoi Mercenari guadagnano +2 in A.",
+        "flavour_text": "",
+        "keywords": ["Luna", "Mercenari", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "La Cattedrale Di Burroughs": {
+        "nome": "La Cattedrale Di Burroughs",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
         "resistenza_attacchi": False,
         "modificatori": [],
         "abilita_speciali": [
             {
-                "nome": "Posizione Elevata",
-                "descrizione": "I guerrieri con armi a distanza guadagnano +1 Combattimento",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte della Premonizione",
+                "tipo_abilita": "Arte",
+                "costo_attivazione": None,
                 "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus combattimento armi distanza"]
-            },
-            {
-                "nome": "Avvistamento",
-                "descrizione": "Rivela la prima carta pescata dall'avversario ogni turno",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Rivela carta avversario"]
+                "effetti_speciali": ["Permette uso Arte della Premonizione"]
             }
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": [],
-        "testo_carta": "Una posizione elevata conferisce vantaggi tattici significativi.",
-        "flavour_text": "Dall'alto, ogni movimento nemico è visibile.",
-        "keywords": ["Torretta", "Avvistamento", "Tattica", "Distanza"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "fazioni_permesse": ["Doomtrooper"],
+        "testo_carta": "PUOI AGGIUNGERLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte della Premonizione. Puoi solo avere una Cattedrale Burroughs in gioco.",
+        "flavour_text": "",
+        "keywords": ["Cattedrale", "Burroughs", "Arte", "Premonizione", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-    
-    "Complesso Industriale": {
-        "nome": "Complesso Industriale",
-        "costo_destino": 3,
-        "tipo": "Complesso Industriale",
-        "rarity": "Uncommon",
-        "set_espansione": "Base",
-        "numero_carta": "F013",
-        "area_compatibile": "Squadra o Schieramento",
-        "beneficiario": "Guerrieri Area",
-        "corporazione_specifica": None,
-        "apostolo_specifico": None,
-        "unica_per_giocatore": False,  # Eccezione: possibili più copie
-        "distruttibile": True,
-        "bonus_armatura": 1,
-        "punti_struttura": 6,
-        "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 1,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura industriale",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Produzione Equipaggiamenti",
-                "descrizione": "Una volta per turno, pesca una carta Equipaggiamento",
-                "tipo_abilita": "Attivabile",
-                "costo_attivazione": 1,
-                "condizioni_attivazione": ["Una volta per turno"],
-                "effetti_speciali": ["Pesca equipaggiamento"]
-            },
-            {
-                "nome": "Rifornimenti",
-                "descrizione": "I guerrieri nell'area guadagnano +1 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura area"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": [],
-        "fazioni_permesse": [],
-        "testo_carta": "L'industria alimenta la macchina bellica con risorse continue.",
-        "flavour_text": "Dalle fabbriche escono armi e speranza in egual misura.",
-        "keywords": ["Industria", "Produzione", "Equipaggiamenti", "Rifornimenti"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Base Operativa": {
-        "nome": "Base Operativa",
-        "costo_destino": 4,
-        "tipo": "Base Operativa",
-        "rarity": "Uncommon",
-        "set_espansione": "Base",
-        "numero_carta": "F014",
-        "area_compatibile": "Squadra o Schieramento",
-        "beneficiario": "Doomtrooper",
-        "corporazione_specifica": None,
-        "apostolo_specifico": None,
-        "unica_per_giocatore": True,
-        "distruttibile": True,
-        "bonus_armatura": 2,
-        "punti_struttura": 8,
-        "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 2,
-                "condizione": "sempre",
-                "descrizione": "Bonus armatura Doomtrooper",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Comando Centrale",
-                "descrizione": "Tutti i Doomtrooper guadagnano +2 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura Doomtrooper"]
-            },
-            {
-                "nome": "Coordinamento Tattico",
-                "descrizione": "Una volta per turno, riorganizza l'ordine di battaglia",
-                "tipo_abilita": "Attivabile",
-                "costo_attivazione": 2,
-                "condizioni_attivazione": ["Una volta per turno"],
-                "effetti_speciali": ["Riorganizza battaglia"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": ["Solo Doomtrooper"],
-        "fazioni_permesse": ["Bauhaus", "Capitol", "Cybertronic", "Imperiale", "Mishima"],
-        "testo_carta": "Il cuore operativo delle forze Doomtrooper sul campo.",
-        "flavour_text": "Da qui partono gli ordini che cambiano il corso della battaglia.",
-        "keywords": ["Base", "Comando", "Doomtrooper", "Tattica"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    "Rifugio Blindato": {
-        "nome": "Rifugio Blindato",
-        "costo_destino": 2,
-        "tipo": "Rifugio",
+
+    "La Cattedrale Di Volksburg": {
+        "nome": "La Cattedrale Di Volksburg",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
         "rarity": "Common",
         "set_espansione": "Base",
-        "numero_carta": "F015",
-        "area_compatibile": "Qualsiasi Area",
-        "beneficiario": "Guerrieri Area",
-        "corporazione_specifica": None,
-        "apostolo_specifico": None,
-        "unica_per_giocatore": False,
-        "distruttibile": True,
-        "bonus_armatura": 3,
-        "punti_struttura": 4,
-        "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 3,
-                "condizione": "non_in_veicolo",
-                "descrizione": "Bonus armatura se non in veicolo",
-                "permanente": True
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Protezione Pesante",
-                "descrizione": "I guerrieri non in veicolo guadagnano +3 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura fuori veicolo"]
-            }
-        ],
-        "requisiti": [],
-        "restrizioni": ["Non utilizzabile da guerrieri in veicolo"],
-        "fazioni_permesse": [],
-        "testo_carta": "Spesse piastre di blindatura proteggono chi si rifugia all'interno.",
-        "flavour_text": "Quando le bombe cadono, il rifugio è l'unica salvezza.",
-        "keywords": ["Rifugio", "Blindatura", "Protezione", "Sicurezza"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-    
-    # FORTIFICAZIONI SPECIALI DELL'AVAMPOSTO
-    "Club Arkadin": {
-        "nome": "Club Arkadin",
-        "costo_destino": 3,
-        "tipo": "Struttura Speciale",
-        "rarity": "Rare",
-        "set_espansione": "Paradise Lost",
-        "numero_carta": "F016",
-        "area_compatibile": "Solo Avamposto",
-        "beneficiario": "Tutte Tribù",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
         "corporazione_specifica": None,
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 1,
-        "punti_struttura": 6,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [
+            {
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte Cinetica",
+                "tipo_abilita": "Arte",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Permette uso Arte Cinetica"]
+            }
+        ],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Doommtrooper"],
+        "testo_carta": "PUOI ASSEGNARE QUESTA CARTA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte Cinetica. Puoi solo avere una Cattedrale Volksburg in gioco.",
+        "flavour_text": "",
+        "keywords": ["Cattedrale", "Volksburg", "Arte", "Cinetica", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Fogne": {
+        "nome": "Fogne",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Schieramento",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Eretici",
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [
+            {
+                "nome": "Andare in Copertura",
+                "descrizione": "I tuoi Eretici possono uscire dalla Copertura e Attaccare nello stesso Turno",
+                "tipo_abilita": "Movimento",
+                "costo_attivazione": "1 Azione",
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Entrambe le operazioni costano un'Azione"]
+            }
+        ],
+        "requisiti": [],
+        "restrizioni": ["Solo Eretici"],
+        "fazioni_permesse": ["Tutte"],
+        "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre la carta è in gioco, i tuoi Eretici possono uscire dalla Copertura e Attaccare nello stesso Turno. Entrambe le operazioni costano un'Azione.",
+        "flavour_text": "",
+        "keywords": ["Fogne", "Eretici", "Copertura", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "La Cattedrale Di Fukido": {
+        "nome": "La Cattedrale Di Fukido",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [
+            {
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte Mentale",
+                "tipo_abilita": "Arte",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Permette uso Arte Mentale"]
+            }
+        ],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Doomtrooper"],
+        "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte Mentale. Puoi solo avere una Cattedrale Fukido in gioco.",
+        "flavour_text": "",
+        "keywords": ["Cattedrale", "Fukido", "Arte", "Mentale", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Heimburg": {
+        "nome": "Heimburg",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Bauhaus",
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
         "resistenza_attacchi": False,
         "modificatori": [
             {
                 "statistica": "A",
-                "valore": 1,
+                "valore": "+2",
                 "condizione": "sempre",
-                "descrizione": "Bonus armatura Tribù",
+                "descrizione": "Tutti i Tuoi membri della Corporazione Bauhaus guadagnano un +2 in A mentre Heimburg è in gioco",
                 "permanente": True
             }
         ],
-        "abilita_speciali": [
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Bauhaus"],
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ BAUHAUS. Tutti i Tuoi membri della Corporazione Bauhaus guadagnano un +2 in A mentre Heimburg è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Bauhaus", "Città", "Heimburg", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Cittadella Di Muawijhe": {
+        "nome": "Cittadella Di Muawijhe",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Schieramento",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Seguaci di Muawijhe",
+        "apostolo_specifico": "Muawijhe",
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
             {
-                "nome": "Rifugio delle Tribù",
-                "descrizione": "Tutti i guerrieri delle Tribù guadagnano +1 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura Tribù"]
-            },
-            {
-                "nome": "Commercio di Informazioni",
-                "descrizione": "Una volta per turno, guarda le prime 3 carte dell'avversario",
-                "tipo_abilita": "Attivabile",
-                "costo_attivazione": 2,
-                "condizioni_attivazione": ["Una volta per turno"],
-                "effetti_speciali": ["Spia carte avversario"]
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Tutti i Seguaci di Muawijhe guadagnano un +2 in A mentre la CITTADELLA DI MUAWIJHE è in gioco",
+                "permanente": True
             }
         ],
+        "abilita_speciali": [],
         "requisiti": [],
-        "restrizioni": ["Solo nell'Avamposto", "Solo guerrieri delle Tribù"],
-        "fazioni_permesse": [],
-        "testo_carta": "Nel Club Arkadin, informazioni e favori sono la moneta corrente.",
-        "flavour_text": "Dove le Tribù si incontrano, i segreti cambiano di mano.",
-        "keywords": ["Club", "Tribù", "Informazioni", "Avamposto"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "restrizioni": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Muawijhe guadagnano un +2 in A mentre la CITTADELLA DI MUAWIJHE è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Muawijhe", "Seguace di Muawijhe", "Cittadella", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
-    
-    "Santuario Templare": {
-        "nome": "Santuario Templare",
-        "costo_destino": 4,
-        "tipo": "Struttura Speciale",
-        "rarity": "Rare",
-        "set_espansione": "Paradise Lost",
-        "numero_carta": "F017",
-        "area_compatibile": "Assegnata a Guerriero",
-        "beneficiario": "Guerriero Singolo",
+
+    "Barriera Rinforzata": {
+        "nome": "Barriera Rinforzata",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra o Schieramento",
+        "beneficiario": "Tutti",
         "corporazione_specifica": None,
         "apostolo_specifico": None,
         "unica_per_giocatore": False,
         "distruttibile": True,
-        "bonus_armatura": 4,
-        "punti_struttura": 8,
-        "resistenza_attacchi": True,
+        "bonus_armatura": 1,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
         "modificatori": [
             {
                 "statistica": "A",
-                "valore": 4,
+                "valore": "+1",
                 "condizione": "sempre",
-                "descrizione": "Bonus armatura Templare",
+                "descrizione": "Il guerriero è protetto dietro una barriera in cemento armato e filo spinato guadagnando un +1 in A",
                 "permanente": True
             }
         ],
-        "abilita_speciali": [
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": ["Non potrà attaccare i nemici in Corpo a Corpo", "Potrà difendersi", "Potrai spostare la barriera su un altro guerriero al costo di un'Azione"],
+        "fazioni_permesse": ["Tutte"],
+        "testo_carta": "ASSOCIARE QUESTA CARTA A UN GUERRIERO COSTA UN'AZIONE. Il guerriero è protetto dietro una barriera in cemento armato e filo spinato guadagnando un +1 in A. Il guerriero non potrà attaccare i nemici in Corpo a Corpo, ma potrà difendersi. Potrai spostare la barriera su un altro guerriero al costo di un'Azione.",
+        "flavour_text": "",
+        "keywords": ["Barriera", "Rinforzata", "Protezione", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Nascondiglio": {
+        "nome": "Nascondiglio",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Schieramento",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Eretici",
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
             {
-                "nome": "Benedizione Sacra",
-                "descrizione": "Il guerriero assegnato guadagna +4 Armatura",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Bonus armatura guerriero"]
-            },
-            {
-                "nome": "Immunità all'Oscura Simmetria",
-                "descrizione": "Il guerriero diventa immune alle carte Oscura Simmetria",
-                "tipo_abilita": "Passiva",
-                "costo_attivazione": 0,
-                "condizioni_attivazione": [],
-                "effetti_speciali": ["Immunità Oscura Simmetria"]
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Tutti i Tuoi Eretici guadagnano un +2 in A",
+                "permanente": True
             }
         ],
-        "requisiti": ["Guerriero Templare"],
-        "restrizioni": ["Solo guerrieri Templari", "Assegnabile nell'Avamposto"],
-        "fazioni_permesse": [],
-        "testo_carta": "La fede purifica e protegge dal male oscuro.",
-        "flavour_text": "Nel Santuario, la luce scaccia ogni ombra.",
-        "keywords": ["Santuario", "Templari", "Fede", "Immunità"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": ["Puoi introdurre in gioco un solo Nascondiglio"],
+        "fazioni_permesse": ["Oscura Legione"],
+        "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA AL TUO SCHIERAMENTO AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Eretici guadagnano un +2 in A. Puoi introdurre in gioco un solo Nascondiglio.",
+        "flavour_text": "",
+        "keywords": ["Nascondiglio", "Eretici", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "La Cattedrale Di Gibson": {
+        "nome": "La Cattedrale Di Gibson",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [
+            {
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte del Cambiamento",
+                "tipo_abilita": "Arte",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Permette uso Arte del Cambiamento"]
+            }
+        ],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Doomtrooper"],
+        "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte del Cambiamento. Puoi solo avere una Cattedrale Gibson in gioco.",
+        "flavour_text": "",
+        "keywords": ["Cattedrale", "Gibson", "Arte", "Cambiamento", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Cittadella Di Semai": {
+        "nome": "Cittadella Di Semai",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Schieramento",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Seguaci di Semai",
+        "apostolo_specifico": "Semai",
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
+            {
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Tutti i Seguaci di Semai nel Tuo Schieramento guadagnano un +2 in A mentre la CITTADELLA DI SEMAI è in gioco",
+                "permanente": True
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Semai nel Tuo Schieramento guadagnano un +2 in A mentre la CITTADELLA DI SEMAI è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Semai", "Seguace di Semai", "Cittadella", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Gli Archivi Di Pietra": {
+        "nome": "Gli Archivi Di Pietra",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [
+            {
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte d'Evocazione",
+                "tipo_abilita": "Arte",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Permette uso Arte d'Evocazione"]
+            }
+        ],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Doomtrooper"],
+        "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte d'Evocazione. Puoi solo avere un Archivio di Pietra in gioco.",
+        "flavour_text": "",
+        "keywords": ["Archivi", "Pietra", "Arte", "Evocazione", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "La Riserva Del Cardinale": {
+        "nome": "La Riserva Del Cardinale",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [
+            {
+                "nome": "Protezione Punti",
+                "descrizione": "I Punti Destino e i Punti Promozione guadagnati, non possono essere influenzati da carte degli altri giocatori",
+                "tipo_abilita": "Protezione",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Immunità da interferenze sui punti"]
+            }
+        ],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Doomtrooper"],
+        "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, i Punti Destino e i Punti Promozione guadagnati, non possono essere influenzati da carte degli altri giocatori. Puoi solo avere una Riserva in gioco.",
+        "flavour_text": "",
+        "keywords": ["Riserva", "Cardinale", "Protezione", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Quartier Generale": {
+        "nome": "Quartier Generale",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Cybertronic",
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
+            {
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Tutti i Tuoi membri della Corporazione Cybertronic guadagnano un +2 in A mentre il Quartier Generale è in gioco",
+                "permanente": True
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Cybertronic"],
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ CYBERTRONIC. Tutti i Tuoi membri della Corporazione Cybertronic guadagnano un +2 in A mentre il Quartier Generale è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Cybertronic", "Quartier Generale", "Città", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Fukido": {
+        "nome": "Fukido",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Corporazione Specifica",
+        "corporazione_specifica": "Imperiale",
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [
+            {
+                "statistica": "A",
+                "valore": "+2",
+                "condizione": "sempre",
+                "descrizione": "Tutti i Tuoi membri della Corporazione Imperiale guadagnano un +2 in A mentre Fukido è in gioco",
+                "permanente": True
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Imperiale"],
+        "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UNA AZIONE. CITTÀ IMPERIALE. Tutti i Tuoi membri della Corporazione Imperiale guadagnano un +2 in A mentre Fukido è in gioco.",
+        "flavour_text": "",
+        "keywords": ["Imperiale", "Fukido", "Città", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "La Cattedrale Di San Dorado": {
+        "nome": "La Cattedrale Di San Dorado",
+        "costo_destino": 0,
+        "tipo": "Fortificazione Generica",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "area_compatibile": "Squadra",
+        "beneficiario": "Tutti",
+        "corporazione_specifica": None,
+        "apostolo_specifico": None,
+        "unica_per_giocatore": True,
+        "distruttibile": True,
+        "bonus_armatura": 0,
+        "punti_struttura": 0,
+        "resistenza_attacchi": False,
+        "modificatori": [],
+        "abilita_speciali": [
+            {
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte della Manipolazione",
+                "tipo_abilita": "Arte",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Permette uso Arte della Manipolazione"]
+            }
+        ],
+        "requisiti": [],
+        "restrizioni": [],
+        "fazioni_permesse": ["Doomtrooper"],
+        "testo_carta": "PUOI AGGIUNGERLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte della Manipolazione. Puoi solo avere una Cattedrale di San Dorado in gioco.",
+        "flavour_text": "",
+        "keywords": ["Cattedrale", "San Dorado", "Arte", "Manipolazione", "Fortificazione"],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     }
 }
 

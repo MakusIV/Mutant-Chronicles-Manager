@@ -15,6 +15,8 @@ from dataclasses import dataclass
 import json
 from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre  # Import dalle classi esistenti
 
+DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol", "Freelancer", "Fratellanza"]
+
 class TipoFortificazione(Enum):
     """Tipi di carte Fortificazione secondo il regolamento"""
     CITTA_CORPORAZIONE = "Città Corporazione"  # Città delle singole Corporazioni
@@ -96,7 +98,7 @@ class Fortificazione:
         self.costo_destino: int = costo_destino
         
         # Tipo e classificazione
-        self.tipo: TipoFortificazione = TipoFortificazione.FORTIFICAZIONE_GENERICA
+        self.tipo: str = TipoFortificazione.FORTIFICAZIONE_GENERICA
         self.rarity: Rarity = Rarity.COMMON
         self.set_espansione: Set_Espansione = Set_Espansione.BASE
         self.numero_carta: str = ""
@@ -158,10 +160,29 @@ class Fortificazione:
             # Se l'equipaggiamento ha fazioni_permesse specifiche
             if all( a != guerriero.fazione for a in self.fazioni_permesse):
                 # Verifica se è equipaggiamento generico utilizzabile da tutti
-                if self.fazioni_permesse != ["Generica"]:
+                if self.fazioni_permesse != ["Tutte"] or (self.fazioni_permesse == ["Doomtrooper"] and guerriero.fazione not in DOOMTROOPER):
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse}")
-        
+    
+        # Nota: questi controlli possono essere ridondanti con il precedente. Da ottimizzare
+
+        if self.beneficiario == "Corporazione Specifica":
+            if "Doomtrooper" in self.corporazione_specifica:
+                if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Doomtrooper")
+
+            if "Eretici" in self.corporazione_specifica:
+                if "Eretico" not in guerriero.keywords:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Eretici")
+
+            if "Seguaci di " in self.corporazione_specifica:
+                apostolo_richiesto = restrizione.split("Seguaci di ")[1].strip()
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
+
         # Controllo restrizioni specifiche
         for restrizione in self.restrizioni:
             if "Solo Doomtrooper" in restrizione: 
