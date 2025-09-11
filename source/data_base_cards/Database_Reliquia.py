@@ -15,728 +15,807 @@ from source.cards.Guerriero import Fazione, Rarity, Set_Espansione
 
 # Database completo delle carte Reliquia
 DATABASE_RELIQUIE = {
-    # RELIQUIE DI COMBATTIMENTO - ARMI ANTICHE
-    "Spada del Destino": {
-        "nome": "Spada del Destino",
-        "valore": 0,  # Reliquie non costano DP, solo 1 Azione
-        "tipo": "Equipaggiamento Speciale",
-        "rarity": Rarity.ULTRA_RARE,
+
+    "Dai-Sho Degli Antichi Imperatori": {
+        "nome": "Dai-Sho Degli Antichi Imperatori",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.IMPERIALE, Fazione.MISHIMA],
-            "corporazioni_specifiche": [], # corporazioni_specifiche: List[str] = None # 'Solo Seguaci di <Apostolo>, 'Solo Doomtrooper', 'Solo Oscura Legione', 'Solo Eretici'
-            "tipi_guerriero": ["Doomtrooper", "Personalita", "Eroe"],
+            "fazioni_permesse": ["Mishima"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
         "modificatori": [
             {
                 "statistica": "C",
-                "valore": 3,
-                "condizione": "",
-                "descrizione": "+3 Corpo a corpo",
+                "valore": "+6",
+                "condizione": "Sempre attivo",
+                "descrizione": "Il guerriero guadagna un +6 in C",
+                "permanente": True
+            }
+        ],
+        "poteri": [
+            {
+                "nome": "Uscire dalla Copertura e Attaccare",
+                "descrizione": "Mentre questa carta è in gioco, tutti i Tuoi guerrieri Mishima possono uscire dalla Copertura e Attaccare in un'Azione sola",
+                "tipo_potere": "Combattimento",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Automatico",
+                "limitazioni": ["Solo guerrieri Mishima"],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO MISHIMA, SE SEI UN FAMOSO COLLEZIONISTA. ARMA DA CORPO A CORPO. Il guerriero guadagna un +6 in C. Mentre questa carta è in gioco, tutti i Tuoi guerrieri Mishima possono uscire dalla Copertura e Attaccare in un'Azione sola.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Pugnale Sacrificale": {
+        "nome": "Pugnale Sacrificale",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Legioni Oscure"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [],
+        "poteri": [
+            {
+                "nome": "Annulla Incantesimo Arte",
+                "descrizione": "Mentre in gioco tu puoi annullare l'effetto di un incantesimo dell'Arte appena lanciato (o scartare un incantesimo dell'Arte in gioco) scartando un tuo guerriero della Fratellanza",
+                "tipo_potere": "Annullamento",
+                "costo_attivazione": "Scarta un guerriero della Fratellanza",
+                "tipo_attivazione": "Quando viene lanciato un incantesimo dell'Arte",
+                "limitazioni": ["Richiede guerriero della Fratellanza da scartare"],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE AD UN GUERRIERO DELL'OSCURA LEGIONE SE SEI UN FAMOSO COLLEZIONISTA. Mentre in gioco tu puoi annullare l'effetto di un incantesimo dell'Arte appena lanciato (o scartare un incantesimo dell'Arte in gioco) scartando un tuo guerriero della Fratellanza.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Codice Di Percezione Occulta": {
+        "nome": "Codice Di Percezione Occulta",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Fratellanza"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [],
+        "poteri": [
+            {
+                "nome": "Lancia Arte",
+                "descrizione": "Mentre il Codice è in gioco, tutti i Tuoi guerrieri della Fratellanza possono lanciare tutti gli incantesimi dell'Arte e possono considerare tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO",
+                "tipo_potere": "Arte",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Passivo",
+                "limitazioni": ["Solo guerrieri della Fratellanza"],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELLA FRATELLANZA, SE SEI UN FAMOSO COLLEZIONISTA. Mentre il Codice è in gioco, tutti i Tuoi guerrieri della Fratellanza possono lanciare tutti gli incantesimi dell'Arte e possono considerare tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Armatura Del Vero Assassino": {
+        "nome": "Armatura Del Vero Assassino",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Doomtrooper"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [
+            {
+                "statistica": "A",
+                "valore": "+4",
+                "condizione": "Sempre attivo",
+                "descrizione": "Armatura +4 in A",
+                "permanente": True
+            }
+        ],
+        "poteri": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "D'ora in poi il guerriero è considerato un MORTIFICATORE. Può Attaccare qualsiasi guerriero in gioco e uccide automaticamente i guerrieri che ferisce. Il guerriero mantiene l'ICONA DI LEGAME, e quando viene Attaccato si applicano le normali restrizioni. Il guerriero Attacca per primo. Se l'avversario sopravvive, può rispondere all'Attacco",
+                "tipo_potere": "Combattimento",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Passivo",
+                "limitazioni": ["Può avere una sola ARMATURA"],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A OGNI DOOMTROOPER, SE SEI UN FAMOSO COLLEZIONISTA. ARMATURA. +4 in A. D'ora in poi il guerriero è considerato un MORTIFICATOR. Può Attaccare qualsiasi guerriero in gioco e uccide automaticamente i guerrieri che ferisce. Il guerriero mantiene l'ICONA DI LEGAMO, e quando viene Attaccato si applicano le normali restrizioni. Il guerriero Attacca per primo. Se l'avversario sopravvive, può rispondere all'Attacco. Un guerriero può avere una sola ARMATURA.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Guanto Dell'Esorcista": {
+        "nome": "Guanto Dell'Esorcista",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": [],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [
+            {
+                "statistica": "C",
+                "valore": "+5",
+                "condizione": "Quando combatte Eretici",
+                "descrizione": "Il guerriero guadagna un +5 in C e S, quando combatte gli Eretici",
+                "permanente": True
+            },
+            {
+                "statistica": "S",
+                "valore": "+5",
+                "condizione": "Quando combatte Eretici",
+                "descrizione": "Il guerriero guadagna un +5 in C e S, quando combatte gli Eretici",
+                "permanente": True
+            },
+            {
+                "statistica": "C",
+                "valore": "+3",
+                "condizione": "Quando combatte guerrieri dell'Oscura Legione",
+                "descrizione": "E un +3 in C e S, quando combatte guerrieri dell'Oscura Legione",
+                "permanente": True
+            },
+            {
+                "statistica": "S",
+                "valore": "+3",
+                "condizione": "Quando combatte guerrieri dell'Oscura Legione",
+                "descrizione": "E un +3 in C e S, quando combatte guerrieri dell'Oscura Legione",
+                "permanente": True
+            }
+        ],
+        "poteri": [
+            {
+                "nome": "Lancia Arte dell'Esorcismo",
+                "descrizione": "Il guerriero può lanciare tutti gli incantesimi dell'Arte dell'Esorcismo. Ogni 1D speso per gli incantesimi di Esorcismo vale 2D",
+                "tipo_potere": "Arte",
+                "costo_attivazione": "1D = 2D per Esorcismo",
+                "tipo_attivazione": "Quando lancia incantesimi di Esorcismo",
+                "limitazioni": [],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO, SE SEI UN FAMOSO COLLEZIONISTA. Il guerriero può lanciare tutti gli incantesimi dell'Arte dell'Esorcismo. Ogni 1D speso per gli incantesimi di Esorcismo vale 2D. Il guerriero guadagna un +5 in C e S, quando combatte gli Eretici, e un +3 in C e S, quando combatte guerrieri dell'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Il Portale Nero": {
+        "nome": "Il Portale Nero",
+        "valore": "5D",
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Legioni Oscure"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [],
+        "poteri": [
+            {
+                "nome": "Portare rinforzi",
+                "descrizione": "Ogni 5D spesi, questo guerriero può portare in combattimento un altro dei Tuoi guerrieri dell'Oscura Legione come rinforzo. Il gruppo somma i valori C e S per il combattimento. L'avversario può scegliere quale guerriero combattere",
+                "tipo_potere": "Rinforzi",
+                "costo_attivazione": "5D",
+                "tipo_attivazione": "Durante il combattimento",
+                "limitazioni": ["Solo guerrieri dell'Oscura Legione"],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "PUOI ASSEGNARLO A UN GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Ogni 5D spesi, questo guerriero può portare in combattimento un altro dei Tuoi guerrieri dell'Oscura Legione come rinforzo. Il gruppo somma i valori C e S per il combattimento. L'avversario può scegliere quale guerriero combattere.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Shillelagh": {
+        "nome": "Shillelagh",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": [],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [
+            {
+                "statistica": "C",
+                "valore": "+4",
+                "condizione": "Sempre attivo",
+                "descrizione": "Il guerriero guadagna un +4 in C",
+                "permanente": True
+            }
+        ],
+        "poteri": [
+            {
+                "nome": "Scartare guerriero non Imperiale non Personalità",
+                "descrizione": "Può far scartare un qualsiasi guerriero non Imperiale non Personalità al costo di tre Azioni e 5D. Non guadagni Punti e questo non viene considerato un Attacco",
+                "tipo_potere": "Eliminazione",
+                "costo_attivazione": "3 Azioni e 5D",
+                "tipo_attivazione": "Azione",
+                "limitazioni": ["Solo guerrieri non Imperiali non Personalità"],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A UN QUALSIASI GUERRIERO, SE SEI UN FAMOSO COLLEZIONISTA. ARMA DA CORPO A CORPO. Il guerriero guadagna un +4 in C e può far scartare un qualsiasi guerriero non Imperiale non Personalità al costo di tre Azioni e 5D. Non guadagni Punti e questo non viene considerato un Attacco.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Frammento Del Vero Chip": {
+        "nome": "Frammento Del Vero Chip",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Cybertronic"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [
+            {
+                "statistica": "C",
+                "valore": "uguale alla più elevata",
+                "condizione": "Sempre attivo",
+                "descrizione": "Le caratteristiche C, S, A e V del guerriero diventano uguali alla più elevata caratteristica delle quattro",
+                "permanente": True
+            },
+            {
+                "statistica": "S",
+                "valore": "uguale alla più elevata",
+                "condizione": "Sempre attivo",
+                "descrizione": "Le caratteristiche C, S, A e V del guerriero diventano uguali alla più elevata caratteristica delle quattro",
                 "permanente": True
             },
             {
                 "statistica": "A",
-                "valore": 1,
-                "condizione": "",
-                "descrizione": "+1 Armatura",
+                "valore": "uguale alla più elevata",
+                "condizione": "Sempre attivo",
+                "descrizione": "Le caratteristiche C, S, A e V del guerriero diventano uguali alla più elevata caratteristica delle quattro",
+                "permanente": True
+            },
+            {
+                "statistica": "V",
+                "valore": "uguale alla più elevata",
+                "condizione": "Sempre attivo",
+                "descrizione": "Le caratteristiche C, S, A e V del guerriero diventano uguali alla più elevata caratteristica delle quattro",
                 "permanente": True
             }
         ],
         "poteri": [],
-        "set_espansione": Set_Espansione.INQUISITION,
-        "numero_carta": "R001",
-        "testo_carta": "+3 Corpo a corpo, +1 Armatura. Solo per Doomtrooper delle Corporazioni.",
-        "flavour_text": "Forgiata nelle prime guerre corporative, la sua lama non conosce sconfitta.",
-        "keywords": ["Artefatto", "Arma Antica", "Leggendaria"],
-        "origine_storica": "Reliquia delle guerre dei primi giorni",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "PUOI ASSEGNARLO A QUALSIASI GUERRIERO CYBERTRONIC, SE SEI UN FAMOSO COLLEZIONISTA. Le caratteristiche C, S, A e V del guerriero diventano uguali alla più elevata caratteristica delle quattro.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
         "requisiti_speciali": [],
         "immunita": [],
         "vulnerabilita": [],
         "incompatibile_con": [],
-        "potenzia": ["Abilità di combattimento corpo a corpo"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Martello di Algeroth": {
-        "nome": "Martello di Algeroth",
+    "Arsenale Infame": {
+        "nome": "Arsenale Infame",
         "valore": 0,
-        "tipo": "Cimelio di Battaglia",
-        "rarity": Rarity.ULTRA_RARE,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Oscura Legione"],
+            "fazioni_permesse": ["Legioni Oscure"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Nepharite", "Centurion", "Personalita"],
-            "keywords_richieste": ["Solo Seguaci di Algeroth"],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": ["Carte Equipaggiamento non Assegnabili"],
+            "livello_minimo": 0
+        },
+        "modificatori": [],
+        "poteri": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Mentre è in gioco, le carte Equipaggiamento giocate sui guerrieri dell'Oscura Legione che vengono uccisi, non sono scartate. Puoi invece mescolarle nel Tuo mazzo di carte da Pescare. Se questo guerriero viene ucciso, il suo equipaggiamento è scartato insieme a questa carta.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Teschio Di Krynston": {
+        "nome": "Teschio Di Krynston",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Legioni Oscure"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [
+            {
+                "statistica": "V",
+                "valore": "+4",
+                "condizione": "Quando uccide Seguaci di Apostoli diversi",
+                "descrizione": "Mentre in gioco, i Tuoi guerrieri dell'Oscura Legione che uccidono Seguaci di Apostoli diversi guadagnano 4 punti in più",
+                "permanente": True
+            }
+        ],
+        "poteri": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "PUOI ASSEGNARLO A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Mentre in gioco, i Tuoi guerrieri dell'Oscura Legione che uccidono Seguaci di Apostoli diversi guadagnano 4 punti in più.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Globo Dei Servi Minori": {
+        "nome": "Globo Dei Servi Minori",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Legioni Oscure"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
             "livello_minimo": 0
         },
         "modificatori": [
             {
                 "statistica": "C",
-                "valore": 4,
-                "condizione": "",
-                "descrizione": "+4 Corpo a corpo",
+                "valore": "x3",
+                "condizione": "Per Legionari non morti, Urlanti, Benedetti, di Semai e Figli di Ilian",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi LEGIONARI NON MORTI, URLANTI, BENEDETTI, DI SEMAI e i Tuoi FIGLI DI ILIAN triplicano i loro valori normali C, S, A e V",
+                "permanente": True
+            },
+            {
+                "statistica": "S",
+                "valore": "x3",
+                "condizione": "Per Legionari non morti, Urlanti, Benedetti, di Semai e Figli di Ilian",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi LEGIONARI NON MORTI, URLANTI, BENEDETTI, DI SEMAI e i Tuoi FIGLI DI ILIAN triplicano i loro valori normali C, S, A e V",
+                "permanente": True
+            },
+            {
+                "statistica": "A",
+                "valore": "x3",
+                "condizione": "Per Legionari non morti, Urlanti, Benedetti, di Semai e Figli di Ilian",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi LEGIONARI NON MORTI, URLANTI, BENEDETTI, DI SEMAI e i Tuoi FIGLI DI ILIAN triplicano i loro valori normali C, S, A e V",
                 "permanente": True
             },
             {
                 "statistica": "V",
-                "valore": 2,
-                "condizione": "",
-                "descrizione": "+2 Valore",
+                "valore": "x3",
+                "condizione": "Per Legionari non morti, Urlanti, Benedetti, di Semai e Figli di Ilian",
+                "descrizione": "Mentre è in gioco, tutti i Tuoi LEGIONARI NON MORTI, URLANTI, BENEDETTI, DI SEMAI e i Tuoi FIGLI DI ILIAN triplicano i loro valori normali C, S, A e V",
                 "permanente": True
             }
         ],
-        "poteri": [
-            {
-                "nome": "Devastazione",
-                "descrizione": "Uccide automaticamente guerrieri con Armatura 8 o meno",
-                "tipo_potere": "Potenziamento Combattimento",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Combattimento",
-                "limitazioni": ["Solo in corpo a corpo"],
-                "una_volta_per_turno": False
-            }
-        ],
-        "set_espansione": Set_Espansione.INQUISITION,
-        "numero_carta": "R002",
-        "testo_carta": "+4 Corpo a corpo, +2 Valore. Uccide automaticamente guerrieri con A≤8.",
-        "flavour_text": "L'arma personale dell'Apostolo della Guerra, forgiata nella Prima Cittadella.",
-        "keywords": ["Artefatto", "Arma Apostolica", "Devastante"],
-        "origine_storica": "Arma personale di Algeroth, Apostolo della Guerra",
-        "requisiti_speciali": ["Deve essere Seguace di Algeroth"],
+        "poteri": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A UN GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Mentre è in gioco, tutti i Tuoi LEGIONARI NON MORTI, URLANTI, BENEDETTI, DI SEMAI e i Tuoi FIGLI DI ILIAN triplicano i loro valori normali C, S, A e V. Quando li introduci in gioco, paga solo il V normale.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
         "immunita": [],
         "vulnerabilita": [],
-        "incompatibile_con": ["Altre armi Apostoliche"],
-        "potenzia": ["Attacchi corpo a corpo letali"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # RELIQUIE TECNOLOGICHE
-    "Impianto Neurale Avanzato": {
-        "nome": "Impianto Neurale Avanzato",
-        "valore": 0,
-        "tipo": "Tecnologia Perduta",
-        "rarity": Rarity.ULTRA_RARE,
-        "restrizioni": {
-            "fazioni_permesse": ["Cybertronic"],
-            "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalita"],
-            "keywords_richieste": ["Cyborg", "Techno"],
-            "livello_minimo": 0
-        },
-        "modificatori": [
-            {
-                "statistica": "S",
-                "valore": 4,
-                "condizione": "con armi tecnologiche",
-                "descrizione": "+4 Sparare con armi tecnologiche",
-                "permanente": True
-            },
-            {
-                "statistica": "C",
-                "valore": 2,
-                "condizione": "interfaccia diretta",
-                "descrizione": "+2 Corpo a corpo con armi cyber",
-                "permanente": True
-            }
-        ],
-        "poteri": [
-            {
-                "nome": "Controllo Tecnologico",
-                "descrizione": "Prendi controllo di un equipaggiamento tecnologico nemico per 1 turno",
-                "tipo_potere": "Comando",
-                "costo_attivazione": 2,
-                "tipo_attivazione": "Attivo",
-                "limitazioni": ["Solo equipaggiamento tecnologico"],
-                "una_volta_per_turno": True
-            },
-            {
-                "nome": "Interfaccia Diretta",
-                "descrizione": "Ignora penalità per uso multiplo di equipaggiamento cyber",
-                "tipo_potere": "Abilità Speciale",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": [],
-                "una_volta_per_turno": False
-            }
-        ],
-        "set_espansione": Set_Espansione.INQUISITION,
-        "numero_carta": "R003",
-        "testo_carta": "+4 Sparare con tecnologia, +2 C con cyber. Può controllare tech nemico.",
-        "flavour_text": "L'interfaccia definitiva tra mente e macchina.",
-        "keywords": ["Tecnologia", "Cyborg", "Interfaccia"],
-        "origine_storica": "Prototipo dei laboratori Cybertronic di ricerca avanzata",
-        "requisiti_speciali": [],
-        "immunita": ["Controllo mentale", "Paura tecnologica"],
-        "vulnerabilita": ["EMP", "Interferenze", "Sovraccarico"],
         "incompatibile_con": [],
-        "potenzia": ["Equipaggiamento Cybertronic"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    # RELIQUIE MISTICHE - FRATELLANZA
-    "Sigillo di Cardinal": {
-        "nome": "Sigillo di Cardinal",
+    "Maschera Delle Vestali": {
+        "nome": "Maschera Delle Vestali",
         "valore": 0,
-        "tipo": "Reliquia Sacra",
-        "rarity": Rarity.ULTRA_RARE,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalita", "Cardinal"],
-            "keywords_richieste": ["Mystic"],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
             "livello_minimo": 0
         },
-        "modificatori": [
-            {
-                "statistica": "V",
-                "valore": 3,
-                "condizione": "",
-                "descrizione": "+3 Valore",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "poteri": [
             {
-                "nome": "Benedizione Sacra",
-                "descrizione": "Tutti i guerrieri alleati nell'area guadagnano +1 a tutte le statistiche",
-                "tipo_potere": "Comando",
+                "nome": "Assegna Carte",
+                "descrizione": "Ogni volta che il possessore di questo guerriero introduce in gioco una carta, può subito pescarne dal mazzo un'altra per rimpiazzarla. Le carte scartate non vengono rimpiazzate in questo modo",
+                "tipo_potere": "Carte",
                 "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": ["Solo alleati nell'area"],
-                "una_volta_per_turno": False
-            },
-            {
-                "nome": "Esorcismo",
-                "descrizione": "Rimuovi tutti i Doni dell'Oscura Simmetria da un guerriero",
-                "tipo_potere": "Abilità Speciale",
-                "costo_attivazione": 3,
-                "tipo_attivazione": "Attivo",
-                "limitazioni": ["Solo una volta per partita"],
-                "una_volta_per_turno": False
-            },
-            {
-                "nome": "Santuario",
-                "descrizione": "L'area è immune agli effetti dell'Oscura Simmetria",
-                "tipo_potere": "Protezione",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": ["Solo area corrente"],
+                "tipo_attivazione": "Quando introduce una carta in gioco",
+                "limitazioni": ["Le carte scartate non vengono rimpiazzate"],
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": Set_Espansione.INQUISITION,
-        "numero_carta": "R004",
-        "testo_carta": "+3 Valore. Alleati +1 tutte stats. Può esorcizzare. Area immune Oscura Simmetria.",
-        "flavour_text": "Il simbolo del potere supremo della Fratellanza, benedetto dal Cardinal stesso.",
-        "keywords": ["Sacro", "Benedizione", "Autorità"],
-        "origine_storica": "Sigillo personale del primo Cardinal della Fratellanza",
-        "requisiti_speciali": [],
-        "immunita": ["Oscura Simmetria", "Corruzione", "Paura"],
-        "vulnerabilita": [],
-        "incompatibile_con": ["Doni dell'Oscura Simmetria"],
-        "potenzia": ["Arti della Fratellanza", "Abilità mistiche"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Amuleto di Protezione": {
-        "nome": "Amuleto di Protezione",
-        "valore": 0,
-        "tipo": "Artefatto Antico",
-        "rarity": Rarity.RARE,
-        "restrizioni": {
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Capitol", "Imperiale", "Mishima"],
-            "corporazioni_specifiche": [],
-            "tipi_guerriero": [],
-            "keywords_richieste": ["Mystic"],
-            "livello_minimo": 0
-        },
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": 2,
-                "condizione": "contro attacchi mistici",
-                "descrizione": "+2 Armatura contro attacchi mistici",
-                "permanente": True
-            }
-        ],
-        "poteri": [
-            {
-                "nome": "Scudo Mistico",
-                "descrizione": "Una volta per turno, annulla completamente un attacco diretto",
-                "tipo_potere": "Protezione",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Reazione",
-                "limitazioni": ["Una volta per turno"],
-                "una_volta_per_turno": True
-            },
-            {
-                "nome": "Immunità Paura",
-                "descrizione": "Il guerriero è immune a tutti gli effetti di paura e terrore",
-                "tipo_potere": "Protezione",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": [],
-                "una_volta_per_turno": False
-            }
-        ],
-        "set_espansione": Set_Espansione.INQUISITION,
-        "numero_carta": "R005",
-        "testo_carta": "+2 A vs mistici. Immune paura. Una volta/turno annulla attacco.",
-        "flavour_text": "Un antico simbolo che protegge chi lo porta dalle forze oscure.",
-        "keywords": ["Protezione", "Mistico", "Antico"],
-        "origine_storica": "Creato dai primi mistici per proteggersi dall'Oscura Simmetria",
-        "requisiti_speciali": [],
-        "immunita": ["Paura", "Terrore", "Intimidazione"],
-        "vulnerabilita": [],
-        "incompatibile_con": [],
-        "potenzia": ["Resistenza mistica"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # RELIQUIE CORPORATIVE SPECIFICHE
-    "Sigillo Imperiale": {
-        "nome": "Sigillo Imperiale",
-        "valore": 0,
-        "tipo": "Cimelio di Battaglia",
-        "rarity": Rarity.ULTRA_RARE,
-        "restrizioni": {
-            "fazioni_permesse": ["Imperiale"],
-            "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalita", "Ufficiale"],
-            "keywords_richieste": ["Comando"],
-            "livello_minimo": 0
-        },
-        "modificatori": [
-            {
-                "statistica": "V",
-                "valore": 4,
-                "condizione": "",
-                "descrizione": "+4 Valore",
-                "permanente": True
-            },
-            {
-                "statistica": "C",
-                "valore": 2,
-                "condizione": "quando comanda",
-                "descrizione": "+2 Corpo a corpo quando ha alleati nell'area",
-                "permanente": True
-            }
-        ],
-        "poteri": [
-            {
-                "nome": "Autorità Imperiale",
-                "descrizione": "Tutti i guerrieri Imperiali nell'area sono immuni alla paura",
-                "tipo_potere": "Comando",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": ["Solo guerrieri Imperiali"],
-                "una_volta_per_turno": False
-            },
-            {
-                "nome": "Ordine di Battaglia",
-                "descrizione": "Una volta per turno, dai un'azione extra a un alleato Imperiale",
-                "tipo_potere": "Comando",
-                "costo_attivazione": 2,
-                "tipo_attivazione": "Attivo",
-                "limitazioni": ["Solo alleati Imperiali"],
-                "una_volta_per_turno": True
-            }
-        ],
-        "set_espansione": "Paradise Lost",
-        "numero_carta": "R006",
-        "testo_carta": "+4 Valore, +2 C con alleati. Imperiali immune paura. Azione extra alleato.",
-        "flavour_text": "Il simbolo dell'autorità suprema dell'Impero, rispettato da tutti i soldati.",
-        "keywords": ["Imperiale", "Comando", "Autorità"],
-        "origine_storica": "Sigillo del primo Duca Imperiale, simbolo di comando supremo",
-        "requisiti_speciali": [],
-        "immunita": ["Insubordinazione"],
-        "vulnerabilita": [],
-        "incompatibile_con": ["Tradimento"],
-        "potenzia": ["Abilità di comando", "Morale delle truppe"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Dispositivo Bauhaus": {
-        "nome": "Dispositivo Bauhaus",
-        "valore": 0,
-        "tipo": "Tecnologia Perduta",
-        "rarity": Rarity.RARE,
-        "restrizioni": {
-            "fazioni_permesse": ["Bauhaus"],
-            "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalita"],
-            "keywords_richieste": ["Techno"],
-            "livello_minimo": 0
-        },
-        "modificatori": [
-            {
-                "statistica": "S",
-                "valore": 3,
-                "condizione": "",
-                "descrizione": "+3 Sparare",
-                "permanente": True
-            },
-            {
-                "statistica": "A",
-                "valore": 2,
-                "condizione": "contro esplosivi",
-                "descrizione": "+2 Armatura contro esplosivi",
-                "permanente": True
-            }
-        ],
-        "poteri": [
-            {
-                "nome": "Precisione Balistica",
-                "descrizione": "Ignora le penalità di copertura e distanza negli attacchi",
-                "tipo_potere": "Potenziamento Combattimento",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": ["Solo attacchi a distanza"],
-                "una_volta_per_turno": False
-            }
-        ],
-        "set_espansione": Set_Espansione.INQUISITION,
-        "numero_carta": "R007",
-        "testo_carta": "+3 Sparare, +2 A vs esplosivi. Ignora copertura e distanza.",
-        "flavour_text": "L'ingegneria tedesca al suo apice: precisione e affidabilità assolute.",
-        "keywords": ["Bauhaus", "Precisione", "Ingegneria"],
-        "origine_storica": "Prototipo dei laboratori di ricerca Bauhaus",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "PUOI ASSEGNARLA A QUALSIASI GUERRIERO DELLA FRATELLANZA, SE SEI UN FAMOSO COLLEZIONISTA. Ogni volta che il possessore di questo guerriero introduce in gioco una carta, può subito pescarne dal mazzo un'altra per rimpiazzarla. Le carte scartate non vengono rimpiazzate in questo modo.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
         "requisiti_speciali": [],
         "immunita": [],
-        "vulnerabilita": ["Interferenze magnetiche"],
+        "vulnerabilita": [],
         "incompatibile_con": [],
-        "potenzia": ["Armi da fuoco Bauhaus"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Katana Ancestrale": {
-        "nome": "Katana Ancestrale",
+    "Portatore Di Luce": {
+        "nome": "Portatore Di Luce",
         "valore": 0,
-        "tipo": "Cimelio di Battaglia",
-        "rarity": Rarity.ULTRA_RARE,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Mishima"],
+            "fazioni_permesse": ["Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalita", "Samurai"],
-            "keywords_richieste": ["Onore"],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
             "livello_minimo": 0
         },
         "modificatori": [
             {
                 "statistica": "C",
-                "valore": 5,
-                "condizione": "in duello",
-                "descrizione": "+5 Corpo a corpo in combattimento singolo",
+                "valore": "+7",
+                "condizione": "Sempre attivo",
+                "descrizione": "Il guerriero guadagna un +7 in C e un +3 in A",
                 "permanente": True
             },
             {
                 "statistica": "A",
-                "valore": 1,
-                "condizione": "",
-                "descrizione": "+1 Armatura",
+                "valore": "+3",
+                "condizione": "Sempre attivo",
+                "descrizione": "Il guerriero guadagna un +7 in C e un +3 in A",
                 "permanente": True
             }
         ],
         "poteri": [
             {
-                "nome": "Iaijutsu",
-                "descrizione": "Attacca sempre per primo, anche se difensore",
-                "tipo_potere": "Potenziamento Combattimento",
+                "nome": "Uccide Automaticamente",
+                "descrizione": "I guerrieri dell'Oscura Legione feriti dal Portatore di Luce sono automaticamente uccisi",
+                "tipo_potere": "Combattimento",
                 "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": ["Solo corpo a corpo"],
+                "tipo_attivazione": "Automatico quando ferisce guerrieri dell'Oscura Legione",
+                "limitazioni": ["Solo contro guerrieri dell'Oscura Legione"],
                 "una_volta_per_turno": False
             },
             {
-                "nome": "Taglio Perfetto",
-                "descrizione": "Una volta per turno, ignora completamente l'armatura del nemico",
-                "tipo_potere": "Potenziamento Combattimento",
-                "costo_attivazione": 1,
-                "tipo_attivazione": "Combattimento",
-                "limitazioni": ["Una volta per turno"],
-                "una_volta_per_turno": True
+                "nome": "Lancia Arte",
+                "descrizione": "Se assegnata a un CARDINALE, i Tuoi guerrieri della Fratellanza considerano tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO",
+                "tipo_potere": "Arte",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Se assegnata a un Cardinale",
+                "limitazioni": ["Solo se assegnata a un Cardinale"],
+                "una_volta_per_turno": False
             }
         ],
-        "set_espansione": Set_Espansione.WARZONE,
-        "numero_carta": "R008",
-        "testo_carta": "+5 C in duello, +1 A. Attacca sempre prima. Può ignorare armatura.",
-        "flavour_text": "Forgiata dai maestri spadai Mishima, porta con sé l'onore di mille guerrieri.",
-        "keywords": ["Mishima", "Onore", "Iaijutsu", "Katana"],
-        "origine_storica": "Lama ancestrale tramantata di generazione in generazione",
-        "requisiti_speciali": ["Deve seguire il codice d'onore Mishima"],
-        "immunita": ["Disonore"],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A UN GUERRIERO DELLA FRATELLANZA, SE SEI UN FAMOSO COLLEZIONISTA. ARMA DA CORPO A CORPO. Il guerriero guadagna un +7 in C e un +3 in A. I guerrieri dell'Oscura Legione feriti dal Portatore di Luce sono automaticamente uccisi. Se assegnata a un CARDINALE, i Tuoi guerrieri della Fratellanza considerano tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
         "vulnerabilita": [],
-        "incompatibile_con": ["Azioni disonorevoli"],
-        "potenzia": ["Abilità di duello", "Tecniche Mishima"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Emblema Capitol": {
-        "nome": "Emblema Capitol",
+    "Missione Modificata": {
+        "nome": "Missione Modificata",
         "valore": 0,
-        "tipo": "Cimelio di Battaglia",
-        "rarity": Rarity.RARE,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Capitol"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalita"],
-            "keywords_richieste": ["Veterano"],
-            "livello_minimo": 0
-        },
-        "modificatori": [
-            {
-                "statistica": "S",
-                "valore": 2,
-                "condizione": "",
-                "descrizione": "+2 Sparare",
-                "permanente": True
-            },
-            {
-                "statistica": "V",
-                "valore": 2,
-                "condizione": "",
-                "descrizione": "+2 Valore",
-                "permanente": True
-            }
-        ],
-        "poteri": [
-            {
-                "nome": "Spirito Americano",
-                "descrizione": "Una volta per turno, ripristina 1 punto ferita",
-                "tipo_potere": "Abilità Speciale",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Attivo",
-                "limitazioni": ["Una volta per turno"],
-                "una_volta_per_turno": True
-            },
-            {
-                "nome": "Determinazione",
-                "descrizione": "Immune agli effetti che causano ritirata o fuga",
-                "tipo_potere": "Protezione",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": [],
-                "una_volta_per_turno": False
-            }
-        ],
-        "set_espansione": Set_Espansione.INQUISITION,
-        "numero_carta": "R009",
-        "testo_carta": "+2 Sparare, +2 Valore. Ripristina ferite. Immune ritirata.",
-        "flavour_text": "Il simbolo dell'indomito spirito americano che non si arrende mai.",
-        "keywords": ["Capitol", "Determinazione", "Veterano"],
-        "origine_storica": "Emblema dei primi coloni Capitol su Venere",
-        "requisiti_speciali": [],
-        "immunita": ["Ritirata forzata", "Demoralizzazione"],
-        "vulnerabilita": [],
-        "incompatibile_con": [],
-        "potenzia": ["Morale Capitol", "Resistenza"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # RELIQUIE DELL'OSCURA LEGIONE
-    "Frammento del Vuoto": {
-        "nome": "Frammento del Vuoto",
-        "valore": 0,
-        "tipo": "Artefatto Antico",
-        "rarity": Rarity.ULTRA_RARE,
-        "restrizioni": {
-            "fazioni_permesse": ["Oscura Legione"],
-            "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Nepharite", "Centurion", "Personalita"],
-            "keywords_richieste": ["Oscuro"],
-            "livello_minimo": 0
-        },
-        "modificatori": [
-            {
-                "statistica": "C",
-                "valore": 3,
-                "condizione": "",
-                "descrizione": "+3 Corpo a corpo",
-                "permanente": True
-            },
-            {
-                "statistica": "S",
-                "valore": 3,
-                "condizione": "",
-                "descrizione": "+3 Sparare",
-                "permanente": True
-            },
-            {
-                "statistica": "V",
-                "valore": 5,
-                "condizione": "",
-                "descrizione": "+5 Valore",
-                "permanente": True
-            }
-        ],
-        "poteri": [
-            {
-                "nome": "Corruzione del Vuoto",
-                "descrizione": "Tutti i nemici nell'area subiscono -2 a tutte le statistiche",
-                "tipo_potere": "Manipolazione Destino",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
-                "limitazioni": ["Solo nemici nell'area"],
-                "una_volta_per_turno": False
-            },
-            {
-                "nome": "Risucchio Vitale",
-                "descrizione": "Quando uccide un nemico, recupera tutte le ferite",
-                "tipo_potere": "Abilità Speciale",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Reazione",
-                "limitazioni": ["Solo quando uccide"],
-                "una_volta_per_turno": False
-            }
-        ],
-        "set_espansione": "Apostles of War",
-        "numero_carta": "R010",
-        "testo_carta": "+3 C/S, +5 V. Nemici nell'area -2 tutte stats. Recupera ferite uccidendo.",
-        "flavour_text": "Un frammento della sostanza primordiale del Vuoto, fonte di potere infinito.",
-        "keywords": ["Vuoto", "Corruzione", "Oscuro"],
-        "origine_storica": "Frammento della dimensione del Vuoto, fonte dell'Oscura Simmetria",
-        "requisiti_speciali": [],
-        "immunita": ["Arti della Fratellanza", "Benedizioni"],
-        "vulnerabilita": ["Simboli sacri", "Luce pura"],
-        "incompatibile_con": ["Reliquie sacre"],
-        "potenzia": ["Doni dell'Oscura Simmetria"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # RELIQUIE UNIVERSALI
-    "Cristallo del Destino": {
-        "nome": "Cristallo del Destino",
-        "valore": 0,
-        "tipo": "Artefatto Antico",
-        "rarity": Rarity.ULTRA_RARE,
-        "restrizioni": {
-            "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic", "Fratellanza"],
-            "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Personalita", "Eroe"],
+            "tipi_guerriero": ["Normale"],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
-        "modificatori": [
-            {
-                "statistica": "V",
-                "valore": 3,
-                "condizione": "",
-                "descrizione": "+3 Valore",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "poteri": [
             {
-                "nome": "Manipolazione del Destino",
-                "descrizione": "Una volta per partita, cambia il risultato di un dado in qualsiasi valore",
-                "tipo_potere": "Manipolazione Destino",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Reazione",
-                "limitazioni": ["Una volta per partita"],
-                "una_volta_per_turno": False
-            },
-            {
-                "nome": "Preveggenza",
-                "descrizione": "Guarda le prime 3 carte del mazzo avversario, rimettile nell'ordine che preferisci",
-                "tipo_potere": "Abilità Speciale",
-                "costo_attivazione": 3,
-                "tipo_attivazione": "Attivo",
-                "limitazioni": ["Una volta per turno"],
+                "nome": "Trasformare Azioni",
+                "descrizione": "Mentre questa carta è in gioco, durante il Tuo Turno puoi trasformare fino a tre Azioni in Azioni di Attacco. Solo i guerrieri Capitol possono compiere Azioni di Attacco extra. Tutte le Azioni trasformate si aggiungono alla Tua Azione di Attacco normale",
+                "tipo_potere": "Azioni",
+                "costo_attivazione": "Fino a 3 Azioni",
+                "tipo_attivazione": "Durante il proprio turno",
+                "limitazioni": ["Solo guerrieri Capitol possono compiere Azioni di Attacco extra"],
                 "una_volta_per_turno": True
             }
         ],
-        "set_espansione": Set_Espansione.GOLGOTHA,
-        "numero_carta": "R011",
-        "testo_carta": "+3 Valore. Una volta/partita cambia dado. Può vedere carte avversario.",
-        "flavour_text": "Un cristallo che riflette le infinite possibilità del destino.",
-        "keywords": ["Destino", "Preveggenza", "Universale"],
-        "origine_storica": "Cristallo misterioso di origine sconosciuta",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO CAPITOL, SE SEI UN FAMOSO COLLEZIONISTA. Mentre questa carta è in gioco, durante il Tuo Turno puoi trasformare fino a tre Azioni in Azioni di Attacco. Solo i guerrieri Capitol possono compiere Azioni di Attacco extra. Tutte le Azioni trasformate si aggiungono alla Tua Azione di Attacco normale.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
         "requisiti_speciali": [],
         "immunita": [],
         "vulnerabilita": [],
         "incompatibile_con": [],
-        "potenzia": ["Controllo del destino", "Fortuna"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "Armatura Antica": {
-        "nome": "Armatura Antica",
+    "Armatura Di Empietà": {
+        "nome": "Armatura Di Empietà",
         "valore": 0,
-        "tipo": "Equipaggiamento Speciale",
-        "rarity": Rarity.RARE,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Fratellanza"],
+            "fazioni_permesse": ["Legioni Oscure"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Doomtrooper", "Personalita"],
-            "keywords_richieste": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": ["Carte delle Arti non Assegnabili", "Carte Doni degli Apostoli non Assegnabili"],
             "livello_minimo": 0
         },
         "modificatori": [
             {
                 "statistica": "A",
-                "valore": 4,
-                "condizione": "",
-                "descrizione": "+4 Armatura",
-                "permanente": True
-            },
-            {
-                "statistica": "C",
-                "valore": -1,
-                "condizione": "",
-                "descrizione": "-1 Corpo a corpo (peso)",
+                "valore": "+4",
+                "condizione": "Sempre attivo",
+                "descrizione": "Armatura +4 in A",
                 "permanente": True
             }
         ],
         "poteri": [
             {
-                "nome": "Protezione Totale",
-                "descrizione": "Immune ai primi 2 punti di danno ricevuti ogni turno",
-                "tipo_potere": "Protezione",
+                "nome": "Immune agli effetti dell'Arte",
+                "descrizione": "Chi la utilizza è immune a tutti gli effetti dell'Arte e può ricevere tutti i Doni degli Apostoli",
+                "tipo_potere": "Immunita",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Passivo",
+                "limitazioni": ["Un guerriero può essere equipaggiato con una sola ARMATURA"],
+                "una_volta_per_turno": False
+            },
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Può ricevere tutti i Doni degli Apostoli",
+                "tipo_potere": "Carte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Passivo",
                 "limitazioni": [],
                 "una_volta_per_turno": False
             }
         ],
-        "set_espansione": Set_Espansione.INQUISITION,
-        "numero_carta": "R012",
-        "testo_carta": "+4 Armatura, -1 Corpo a corpo. Immune primi 2 danni/turno.",
-        "flavour_text": "Forgiata in tempi dimenticati, offre protezione a costo della mobilità.",
-        "keywords": ["Protezione", "Armatura", "Antica"],
-        "origine_storica": "Armatura delle antiche guerre pre-corporative",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. ARMATURA. +4 in A. Chi la utilizza è immune a tutti gli effetti dell'Arte e può ricevere tutti i Doni degli Apostoli. Un guerriero può essere equipaggiato con una sola ARMATURA.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
         "requisiti_speciali": [],
-        "immunita": ["Primi 2 danni per turno"],
-        "vulnerabilita": ["Ridotta mobilità"],
-        "incompatibile_con": ["Altre armature"],
-        "potenzia": ["Sopravvivenza"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Liber Ereticus": {
+        "nome": "Liber Ereticus",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Fratellanza"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": ["Eretici scartati", "Eretici non introducibili"],
+            "livello_minimo": 6
+        },
+        "modificatori": [],
+        "poteri": [
+            {
+                "nome": "Scarta tutti gli Eretici",
+                "descrizione": "Quando la carta è in gioco, tutti gli Eretici vengono scartati. Mentre è in gioco, non si possono introdurre Eretici, e i guerrieri convertiti Eretici, sono scartati senza guadagnare alcun punto",
+                "tipo_potere": "Eliminazione",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Quando entra in gioco e passivo",
+                "limitazioni": ["Solo contro Eretici"],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELLA FRATELLANZA DI VALORE 6 O MAGGIORE, SE SEI UN FAMOSO COLLEZIONISTA. Quando la carta è in gioco, tutti gli Eretici vengono scartati. Mentre è in gioco, non si possono introdurre Eretici, e i guerrieri convertiti Eretici, sono scartati senza guadagnare alcun punto.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Necromacchina": {
+        "nome": "Necromacchina",
+        "valore": 0,
+        "tipo": "Fortificazione",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": [],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": ["Normale"],
+            "keywords_richieste": [],
+            "livello_minimo": 0
+        },
+        "modificatori": [],
+        "poteri": [
+            {
+                "nome": "Cercare guerriero dell'Oscura Legione non-Personalità",
+                "descrizione": "Puoi associarla a una cittadella nel tuo schieramento. Ogni volta che uccidi un Doomtrooper, PUOI cercare un guerriero dell'Oscura Legione non-Personalità nella Tua Collezione, il cui V non sia più alto di quello del guerriero ucciso, e metterlo nel Tuo Schieramento. Se fai questo, non guadagni punti per l'uccisione",
+                "tipo_potere": "Evocazione",
+                "costo_attivazione": "Non guadagnare punti per l'uccisione",
+                "tipo_attivazione": "Quando uccidi un Doomtrooper",
+                "limitazioni": ["V del guerriero evocato non superiore a quello ucciso"],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "PUOI ASSOCIARLA A UNA CITTADELLA NEL TUO SCHIERAMENTO, SE SEI UN FAMOSO COLLEZIONISTA. Ogni volta che uccidi un Doomtrooper, PUOI cercare un guerriero dell'Oscura Legione non-Personalità nella Tua Collezione, il cui V non sia più alto di quello del guerriero ucciso, e metterlo nel Tuo Schieramento. Se fai questo, non guadagni punti per l'uccisione.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     }
+
 }
 
 
