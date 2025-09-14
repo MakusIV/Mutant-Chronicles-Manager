@@ -161,56 +161,54 @@ class CreatoreMazzo:
         potenza_assoluta = ((combattimento + sparo + armatura) * 1.5) / valore
         
         # Bonus per abilità speciali
-       
         for abilita in guerriero.abilita:
             # Potenziamento altri guerrieri
-            keywords = abilita.descrizione.lower()
+            descrizione = abilita.descrizione.lower()
+            nome = abilita.nome.lower()
+            tipo = abilita.tipo.lower()
 
-            if abilita.tipo == "Combattimento":
-                if abilita.nome == "Uccide Automaticamente":
-                    potenza_assoluta *= 1.5
-                if abilita.nome in ["Permette ai guerrieri di attaccare per primi", "I guerrieri alleati uccidono automaticamente"]:
-                    potenza_assoluta *= 1.3
+            if tipo == "combattimento":
+                    if nome == "uccide automaticamente":
+                        potenza_assoluta *= 1.5
+                    if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
+                        potenza_assoluta *= 1.3
+                    
+            if tipo == "immunita":
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
+                    potenza_assoluta *= 1.4                
+                elif ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione"] in nome:
+                    potenza_assoluta *= 1.2
                 
-            if abilita.tipo == "Immunita":
-                if abilita.nome in ["Immune agli effetti dell'Arte", "Immune agli effetti dell'Oscura Simmetria", "Annulla Immunita dell'Oscura Simmetria", "Immune ai Doni degli Apostoli"]:
-                    potenza_assoluta *= 1.4
-                elif "Immune agli effetti della specifica arte" in abilita.nome:
-                    potenza_assoluta *= 1.2                        
                         
-            if abilita.tipo == "Modificatore":
-                if abilita.nome in ["Aumenta effetto", "Aumenta caratteristica"]:
+            if tipo == "modificatore":        
+                if nome in ["aumenta effetto", "aumenta caratteristica"]:
                     potenza_assoluta *= 1.3
-                elif abilita.nome == "Trasforma guerrieri uccisi in alleati":
+                elif nome == "trasforma guerrieri uccisi in alleati":
                     potenza_assoluta *= 1.1
-                elif abilita.nome == "Sostituisce guerrieri":
+                elif nome == "sostituisce guerrieri":
                     potenza_assoluta *= 1.2
 
-            if abilita.tipo == "Guarigione" :
-                if "Guarisce se stesso" in abilita.nome:
-                    potenza_assoluta *= 1.3
+            if tipo == "guarigione" :
+                    if "guarisce se stesso" in nome:
+                        potenza_assoluta *= 1.3
 
-            if abilita.tipo == "Arte":
-                if "Lancia Arte e/o Incantesimo dell'Arte" == abilita.nome:
-                    potenza_assoluta *= 1.3
-                
-                elif "Lancia Arte e/o Incantesimo dell'Arte specifica" == abilita.nome:
+            if tipo == "arte":                
+                if "lancia arte e/o incantesimo dell'arte" == nome:
+                    potenza_assoluta *= 1.3                
+                elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
                     potenza_assoluta *= 1.2
-
-            if abilita.tipo == "Oscura Simmetria" or abilita.tipo == "Dono degli Apostoli":                
+            if tipo == "oscura simmetria" or tipo == "dono degli apostoli":                
                     potenza_assoluta *= 1.3            
 
-            if abilita.tipo == "Carte":
-
-                if abilita.nome in ["Assegna Carta", "Scarta Carta", "Elimina Carta"]:
+            if tipo == "carte":
+                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
                     potenza_assoluta *= 1.3    
 
-            if abilita.tipo == "Azioni":
-
-                if abilita.nome in ["Converte Azioni in Azioni d'Attacco"]:
+            if tipo == "azioni":
+                if nome in ["converte azioni in azioni d'attacco"]:
                     potenza_assoluta *= 1.3    
-                    
-         
+                        
+        
         # Normalizza rispetto al massimo della collezione
         max_potenza = self._calcola_max_potenza_guerrieri()
         if max_potenza > 0:
@@ -249,32 +247,101 @@ class CreatoreMazzo:
         Returns:
             float: Potenza relativa (0-1)
         """
-        potenza = 0
+        potenza_assoluta = 0
         
         # Somma modificatori statistiche
-        modifiche_guerriero = {
+        statistiche = {
             'combattimento':    equipaggiamento.modificatori_combattimento,
             'sparare':          equipaggiamento.modificatori_sparare,
             'armatura':         equipaggiamento.modificatori_armatura,
             'valore':           equipaggiamento.modificatori_valore
         }
-        for modifica in modifiche_guerriero:
+        for modifica in statistiche:
             if modifica in ['combattimento', 'sparare', 'armatura']:
-                potenza += abs(modifiche_guerriero[modifica])
+                potenza_assoluta += abs(statistiche[modifica])
+
+        statistiche = True if potenza_assoluta > 1 else False    
+
+        # Bonus per modificatori speciali
+        for modificatore in equipaggiamento.modificatori_speciali:
+            # Potenziamento altri guerrieri
+            statistica = modificatore.statistica.lower()
+            descrizione = modificatore.descrizione.lower()
+            valore = modificatore.valore.lower()
+            condizione = modificatore.condizione.lower()            
+
+            if ["raddoppiate", "+5", "+6", "+7", "+8", "+9"] in descrizione and statistica in ["sparare", "combattimento", "armatura", "valore"] :
+                if statistiche:
+                    potenza_assoluta *= 1.3
+                else:    
+                    potenza_assoluta += 4
+            
+            if statistica in ["sparare", "combattimento", "armatura", "valore"]:                                   
+                if ["+3", "+4"] in descrizione:
+                    if statistiche:
+                        potenza_assoluta *= 1.2
+                    else:    
+                        potenza_assoluta += 2
+                elif ["+1", "+2"] in descrizione:
+                    if statistiche:
+                        potenza_assoluta *= 1.1
+                    else:    
+                        potenza_assoluta += 1
+                            
         
         # Bonus per abilita speciali
-        if hasattr(equipaggiamento, 'abilita_speciali'):
-            for effetto in equipaggiamento.abilita_speciali:
-                desc = effetto.descrizione.lower()
-                if 'ferisce' in desc and 'automaticamente' in desc:
-                    potenza *= 1.4
-                elif 'uccide' in desc and 'automaticamente' in desc:
-                    potenza *= 2.0
+        for abilita in equipaggiamento.abilita_speciali:
+            # Potenziamento altri guerrieri
+            descrizione = abilita.descrizione.lower()
+            nome = abilita.nome.lower()
+            tipo = abilita.tipo.lower()
+
+            if tipo == "combattimento":
+                    if nome == "uccide automaticamente":
+                        potenza_assoluta *= 1.5
+                    if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
+                        potenza_assoluta *= 1.3
+                    
+            if tipo == "immunita":
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                    potenza_assoluta *= 1.4
+                elif ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione"] in nome:
+                    potenza_assoluta *= 1.2
+                                                                                    
+            if tipo == "modificatore":        
+                if nome in ["aumenta effetto", "aumenta caratteristica"]:
+                    potenza_assoluta *= 1.3
+                elif nome == "trasforma guerrieri uccisi in alleati":
+                    potenza_assoluta *= 1.1
+                elif nome == "sostituisce guerrieri":
+                    potenza_assoluta *= 1.2
+
+            if tipo == "guarigione" :
+                    if "guarisce se stesso" in nome:
+                        potenza_assoluta *= 1.3
+
+
+            if tipo == "arte":                
+                if "lancia arte e/o incantesimo dell'arte" == nome:
+                    potenza_assoluta *= 1.3                
+                elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
+                    potenza_assoluta *= 1.2
+
+            if tipo == "oscura simmetria" or tipo == "dono degli apostoli":                
+                    potenza_assoluta *= 1.3            
+            
+            if tipo == "carte":
+                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
+                    potenza_assoluta *= 1.3    
+
+            if tipo == "azioni":
+                if nome in ["converte azioni in azioni d'attacco"]:
+                    potenza_assoluta *= 1.3    
+                elif nome in ["modifica azione", "modifica stato"]:
+                    potenza_assoluta *= 1.1    
+
         
-        # Se non influenza l'armatura
-        #influenza_armatura = any(m['tipo'] == 'armatura' for m in equipaggiamento.modifiche_guerriero)
-        #if not influenza_armatura:
-        #    potenza = 0.5
+                
         
         # Normalizza
         max_potenza = self._calcola_max_potenza_equipaggiamenti()
@@ -408,7 +475,7 @@ class CreatoreMazzo:
         Returns:
             float: Potenza relativa (0-1)
         """
-        potenza = 0
+        potenza = 1
         
         # Somma modificatori statistiche
         if hasattr(reliquia, 'modifiche_guerriero'):
@@ -421,9 +488,9 @@ class CreatoreMazzo:
             for effetto in reliquia.effetti_speciali:
                 desc = effetto.get('descrizione', '').lower()
                 if 'ferisce' in desc and 'automaticamente' in desc:
-                    potenza *= 1.4
+                    potenza *= 1.3
                 elif 'uccide' in desc:
-                    potenza *= 2.0
+                    potenza *= 1.5
         
         # Se non influenza le statistiche base
         if potenza == 0:

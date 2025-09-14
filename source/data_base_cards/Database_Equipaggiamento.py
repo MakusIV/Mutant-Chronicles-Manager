@@ -23,781 +23,4725 @@ DATABASE_EQUIPAGGIAMENTO = {
     
     # ========== ARMI CORPO A CORPO - SET BASE ==========
     
-    "spada_combattimento": {
-        "nome": "Spada da Combattimento",
-        "valore": 1,
-        "tipo": "Arma da Corpo a Corpo",  # CORRETTO: secondo regolamento
-        "categoria_arma": "Lama",
+    # Base
+
+    "AH/UH-19 Mitraglia Guardiano": {
+        "nome": "AH/UH-19 Mitraglia Guardiano",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Aeronave",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Aeronave",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+S, A e V raddoppiate",
+                "condizione": "Quando il guerriero pilota l'Aeronave",
+                "descrizione": "S, A e V sono raddoppiate quando usa il Guardiano"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Può essere assegnata a ogni Doomtrooper Capitol",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Carte",
+                "limitazioni": ["Solo Doomtrooper Capitol"]
+            }
+        ],
+        "requisiti": ["Un guerriero non può essere equipaggiato da più di un'Aeronave", "Quando usi il Guardiano, nessun altra Arma può essere usata"],
+        "fazioni_permesse": ["Capitol"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "AERONAVE. Può essere assegnata a ogni Doomtrooper Capitol. Un guerriero non può essere equipaggiato da più di un'Aeronave. Quando il guerriero pilota l'Aeronave, S, A e V sono raddoppiate. Quando usi il Guardiano, nessun altra Arma può essere usata.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Scalper": {
+        "nome": "Scalper",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Corpo a Corpo",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 1,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+1",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +1 in C, mentre il suo avversario deve penalizzare il proprio C di un -1, a causa degli effetti devastanti dell'Arma"
+            },
+            {
+                "statistica": "combattimento",
+                "valore": "-1",
+                "condizione": "Avversario del guerriero equipaggiato",
+                "descrizione": "L'avversario deve penalizzare il proprio C di un -1"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Mishima"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "PUÒ ESSERE ASSEGNATO SOLO A UN DOOMTROOPER MISHIMA. ARMA DA CORPO A CORPO. Il guerriero guadagna un +1 in C, mentre il suo avversario deve penalizzare il proprio C di un -1, a causa degli effetti devastanti dell'Arma.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Kratac": {
+        "nome": "Kratac",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Mitragliatrice",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 3,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+3",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +3 in S"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Quest'Arma si comporta come una Mitragliatrice e può ricevere tutte le carte relative alle Mitragliatrici",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Carte",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "PUÒ SOLO ESSERE ASSEGNATA A UN GUERRIERO DELL'OSCURA LEGIONE. ARMA DA FUOCO. Il guerriero guadagna un +3 in S. Quest'Arma si comporta come una Mitragliatrice e può ricevere tutte le carte relative alle Mitragliatrici.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Mitragliatrice"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Granata Batteriologica": {
+        "nome": "Granata Batteriologica",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Granata",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 4,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+4",
+                "condizione": "Quando usata",
+                "descrizione": "Il guerriero guadagna un +4 in C e S"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Quando usata",
+                "descrizione": "Il guerriero guadagna un +4 in C e S"
+            },
+            {
+                "statistica": "valore",
+                "valore": "-1",
+                "condizione": "Se l'avversario non è stato ucciso",
+                "descrizione": "Subisce un -1 in V ogni Turno, a meno che il giocatore spenda 3D ogni Turno"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Stato",
+                "descrizione": "Scarta quest'Arma dopo averla usata. Se l'avversario non è stato ucciso, subisce un -1 in V ogni Turno, a meno che il giocatore spenda 3D ogni Turno. Se la V del guerriero diventa zero, viene scartata la sua carta",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Si scarta dopo l'uso"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "PUÒ SOLO ESSERE ASSEGNATA A UN GUERRIERO DELL'OSCURA LEGIONE. ARMA DA CORPO A CORPO E DA FUOCO. Scarta quest'Arma dopo averla usata. Con la Granata Batteriologica il guerriero guadagna un +4 in C e S. Se l'avversario non è stato ucciso, subisce un -1 in V ogni Turno, a meno che il giocatore spenda 3D ogni Turno. Se la V del guerriero diventa zero, viene scartata la sua carta.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Ticker": {
+        "nome": "Ticker",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
             "combattimento": 2,
+            "sparare": 2,
             "armatura": 0,
-            "sparare": 0,            
-            "valore": 3
+            "valore": 0
         },
-        "modificatori_speciali": [],
-        "abilita_speciali": [],
-        "requisiti": ["Nessuno"],
-        "fazioni_permesse": [],  # Tutte le fazioni possono usare
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+2",
+                "condizione": "Quando ingerita",
+                "descrizione": "Questa droga incrementa un +2 in C, S e A"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+2",
+                "condizione": "Quando ingerita",
+                "descrizione": "Questa droga incrementa un +2 in C, S e A"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Immune agli effetti dell'Arte",
+                "descrizione": "Durante il combattimento in cui viene ingerita, il guerriero è immune alle ferite, ma alla fine sarà ferito indipendentemente dall'esito",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Immunita",
+                "limitazioni": ["Ferito alla fine del combattimento indipendentemente dall'esito"]
+            },
+            {
+                "nome": "Modifica Stato",
+                "descrizione": "Scarta il Ticker dopo l'uso",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Si scarta dopo l'uso"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO: era "forza_minima_richiesta"
-        "meccaniche_armi": {
-            "munizioni_richieste": None,
-            "gittata_massima": 0,  # Corpo a corpo = 0
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 0,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
         "stato": {
             "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 0,
-            "usure_accumulate": 0,
             "assegnato_a": None,
             "in_gioco": False,
             "utilizzato_questo_turno": False
         },
-        "testo_carta": "+2 Combattimento in corpo a corpo. Arma standard dell'esercito.",
-        "flavour_text": "L'acciaio temperato non conosce pietà.",
-        "keywords": ["Arma", "Corpo a Corpo", "Lama"],
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-001",
-        "costo_produzione": 2,
+        "testo_carta": "PUÒ ESSERE ASSEGNATA A UN DOOMTROOPER AL COSTO DI UN'AZIONE. Il guerriero può ingerirla in ogni momento. Questa droga incrementa di un +2 in C, S e A. Durante il combattimento in cui viene ingerita, il guerriero è immune alle ferite, ma alla fine sarà ferito indipendentemente dall'esito. Scarta il Ticker dopo l'uso.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
         "compatibilita": {
-            "compatibile_con": ["Armatura da Combattimento"],
-            "upgrade_disponibili": ["Spada Energetica"],
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "ascia_da_battaglia": {
-        "nome": "Ascia da Battaglia",
-        "valore": 2,
-        "tipo": "Arma da Corpo a Corpo",  # CORRETTO
-        "categoria_arma": "Ascia",
+    "Scanner Radar": {
+        "nome": "Scanner Radar",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Scanner",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Immune allo specifico Equipaggiamento",
+                "descrizione": "Il guerriero non potrà essere attaccato da Aeronavi",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Immunita",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A OGNI GUERRIERO. Il guerriero non potrà essere attaccato da Aeronavi.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Spada Del Tutore": {
+        "nome": "Spada Del Tutore",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Spada",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 2,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+        
+            {
+                "statistica": "combattimento",
+                "valore": "+4",
+                "condizione": "Contro un Tutore",
+                "descrizione": "Un Tutore con questa Spada ottiene invece un +4 in C"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Un guerriero ferito dalla Spada del Tutore è automaticamente ucciso",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "PUÒ SOLO ESSERE ASSEGNATA A UN GUERRIERO DELL'OSCURA LEGIONE. ARMA DA CORPO A CORPO. Il guerriero guadagna un +2 in C. Un Tutore con questa Spada ottiene invece un +4 in C. Un guerriero ferito dalla Spada del Tutore è automaticamente ucciso.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Fukimura No.12 Kamikaze": {
+        "nome": "Fukimura No.12 Kamikaze",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Aeronave",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Aeronave",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "S, A e V raddoppiate",
+                "condizione": "Quando pilota questa Aeronave",
+                "descrizione": "S, A e V del guerriero sono raddoppiate"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Può essere assegnata a ogni Mishima Doomtrooper",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Carte",
+                "limitazioni": ["Solo Mishima Doomtrooper"]
+            }
+        ],
+        "requisiti": ["Un guerriero non può essere equipaggiato con più di un'Aeronave", "Quando usi il Kamikaze durante un combattimento, nessun altra Arma può essere utilizzata"],
+        "fazioni_permesse": ["Mishima"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "AERONAVE. PUÒ ESSERE ASSEGNATA A OGNI MISHIMA DOOMTROOPER. Un guerriero non può essere equipaggiato con più di un'Aeronave. Quando pilota questa Aeronave, S, A e V del guerriero sono raddoppiate. Quando usi il Kamikaze durante un combattimento, nessun altra Arma può essere utilizzata.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Vassht": {
+        "nome": "Vassht",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Arma Speciale",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 2,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+2",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +2 in C"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": ["Una volta assegnato, il Vassht non potrà essere mosso su un altro guerriero", "Il guerriero non potrà possedere altre Armi da Corpo a Corpo o Corpo a Corpo/Fuoco"],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "PUÒ SOLO ESSERE ASSEGNATA A UN GUERRIERO DELL'OSCURA LEGIONE. ARMA DA CORPO A CORPO. Una volta assegnato, il Vassht non potrà essere mosso su un altro guerriero. Il guerriero non potrà possedere altre Armi da Corpo a Corpo o Corpo a Corpo/Fuoco. Il guerriero guadagna un +2 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Shrieketh": {
+        "nome": "Shrieketh",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Arma Speciale",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 1,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+1",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +1 in S"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Stato",
+                "descrizione": "I guerrieri uccisi con il Shrieketh diventano Eretici sotto il Tuo controllo. Il guerriero morto è scartato. Puoi esaminare la Tua Collezione, prendere un Eretico e metterlo direttamente nel Tuo Schieramento. Se non hai una carta Eretico per rappresentarlo perdi questa possibilità",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Richiede una carta Eretico nella collezione"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "PUÒ SOLO ESSERE ASSEGNATA A UN GUERRIERO DELL'OSCURA LEGIONE. ARMA DA FUOCO. Il guerriero guadagna un +1 in S. I guerrieri uccisi con il Shrieketh diventano Eretici sotto il Tuo controllo. Il guerriero morto è scartato. Puoi esaminare la Tua Collezione, prendere un Eretico e metterlo direttamente nel Tuo Schieramento. Se non hai una carta Eretico per rappresentarlo perdi questa possibilità.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Lama Mortis": {
+        "nome": "Lama Mortis",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Lama",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 1,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+1",
+                "condizione": "Normalmente",
+                "descrizione": "Normalmente questa Lama incrementa C di un +1"
+            },
+            {
+                "statistica": "combattimento",
+                "valore": "+1 ulteriore",
+                "condizione": "Se però, al costo di un'azione assegni alla Lama un Incantesimo che potresti lanciare",
+                "descrizione": "Il valore C sarà incrementato di un ulteriore +1"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Lancia Arte",
+                "descrizione": "Se però, al costo di un'azione assegni alla Lama un Incantesimo che potresti lanciare, allora il valore C sarà incrementato di un ulteriore +1",
+                "costo_attivazione": 1,
+                "tipo_attivazione": "Arte",
+                "limitazioni": ["Richiede un Incantesimo assegnabile"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "PUÒ SOLO ESSERE ASSEGNATA A UN GUERRIERO DELLA FRATELLANZA. ARMA DA CORPO A CORPO. Normalmente questa Lama incrementa C di un +1. Se però, al costo di un'azione assegni alla Lama un Incantesimo che potresti lanciare, allora il valore C sarà incrementato di un ulteriore +1. Lascia la carta Arte sotto la LAMA MORTIS.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Arte"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "SMG MK.III Interceptor": {
+        "nome": "SMG MK.III Interceptor",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Mitragliatrice",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 2,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+2",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +2 in S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "MITRAGLIATRICE. ARMA DA FUOCO. Il guerriero guadagna un +2 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Purple Shark": {
+        "nome": "Purple Shark",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Aeronave",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Aeronave",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 4,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Quando pilota l'Aeronave",
+                "descrizione": "S e A del guerriero guadagnano un +4"
+            },
+            {
+                "statistica": "armatura",
+                "valore": "+4",
+                "condizione": "Quando pilota l'Aeronave",
+                "descrizione": "S e A del guerriero guadagnano un +4"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Il guerriero può evadere ogni combattimento Corpo a Corpo spendendo 5D. Ogni volta che il guerriero usa il Purple Shark in un combattimento, lancia una moneta. Se il risultato è testa il guerriero è ferito e la carta Purple Shark è scartata",
+                "costo_attivazione": 5,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Rischio di essere ferito e perdere la carta"]
+            }
+        ],
+        "requisiti": ["Un guerriero non può essere equipaggiato con più di un'Aeronave"],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "AERONAVE. Un guerriero non può essere equipaggiato con più di un'Aeronave. Quando pilota l'Aeronave, S e A del guerriero guadagnano un +4. Il guerriero può evadere ogni combattimento Corpo a Corpo spendendo 5D. Ogni volta che il guerriero usa il Purple Shark in un combattimento, lancia una moneta. Se il risultato è testa il guerriero è ferito e la carta Purple Shark è scartata.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "AC-40 Justifier": {
+        "nome": "AC-40 Justifier",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Mitragliatrice",
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
             "combattimento": 3,
+            "sparare": 3,
             "armatura": 0,
-            "sparare": 0,              
-            "valore": 4
+            "valore": 0
         },
         "modificatori_speciali": [
             {
                 "statistica": "combattimento",
-                "valore": 1,
-                "condizione": "primo round di combattimento",
-                "descrizione": "+1 Combattimento nel primo round"
-            }
-        ],
-        "abilita_speciali": [
+                "valore": "+3",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +3 in C e S"
+            },
             {
-                "nome": "Devastazione",
-                "descrizione": "Ignora +1 punto Armatura del bersaglio",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Automatica",
-                "limitazioni": []
+                "statistica": "sparare",
+                "valore": "+3",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +3 in C e S"
             }
         ],
-        "requisiti": ["Nessuno"],
-        "fazioni_permesse": [],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
         "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 2,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": None,
-            "gittata_massima": 0,
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 1,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
         "stato": {
             "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 0,
-            "usure_accumulate": 0,
             "assegnato_a": None,
             "in_gioco": False,
             "utilizzato_questo_turno": False
         },
-        "testo_carta": "+3 Combattimento corpo a corpo. +1 aggiuntivo nel primo round. Ignora 1 punto Armatura.",
-        "flavour_text": "La forza bruta ha il suo fascino primitivo.",
-        "keywords": ["Arma", "Corpo a Corpo", "Ascia", "Devastazione"],
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-002",
-        "costo_produzione": 3,
+        "testo_carta": "MITRAGLIATRICE LEGGERA CON BAIONETTA INTEGRATA. Arma da Corpo a Corpo e da Fuoco. Il guerriero guadagna un +3 in C e S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
         "compatibilita": {
-            "compatibile_con": ["Giubbotto Antiproiettile"],
-            "upgrade_disponibili": ["Ascia Energetica"],
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    # ========== ARMI DA FUOCO - SET BASE ==========
-    
-    "pistola_automatica": {
-        "nome": "Pistola Automatica",
-        "valore": 1,
-        "tipo": "Arma da Fuoco",  # CORRETTO: secondo regolamento
+    "Sherman.74 Modello 13 Bolter": {
+        "nome": "Sherman.74 Modello 13 Bolter",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
         "categoria_arma": "Pistola",
         "tipo_armatura": None,
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
             "combattimento": 2,
+            "sparare": 2,
             "armatura": 0,
-            "sparare": 0,
-            
-            "valore": 2
-        },
-        "modificatori_speciali": [],
-        "abilita_speciali": [
-            {
-                "nome": "Fuoco Rapido",
-                "descrizione": "Può sparare due volte per turno",
-                "costo_attivazione": 1,
-                "tipo_attivazione": "Azione",
-                "limitazioni": ["Richiede munizioni aggiuntive"]
-            }
-        ],
-        "requisiti": ["Nessuno"],
-        "fazioni_permesse": [],
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 0,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": "Munizioni Standard",
-            "gittata_massima": 4,
-            "cadenza_fuoco": 2,
-            "penetrazione_armatura": 0,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 15,
-            "usure_accumulate": 0,
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "+2 Combattimento a distanza (4 caselle). Può sparare due volte per turno.",
-        "flavour_text": "Affidabile, precisa, mortale.",
-        "keywords": ["Arma", "Da Fuoco", "Pistola"],  # CORRETTO: "Da Fuoco" non "A Distanza"
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-003",
-        "costo_produzione": 2,
-        "compatibilita": {
-            "compatibile_con": ["Silenziatore", "Mirino Laser"],
-            "upgrade_disponibili": ["Pistola Plasma"],
-            "equipaggiamenti_richiesti": []
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
-    },
-
-    "fucile_dassalto": {
-        "nome": "Fucile d'Assalto",
-        "valore": 2,
-        "tipo": "Arma da Fuoco",  # CORRETTO
-        "categoria_arma": "Fucile",
-        "tipo_armatura": None,
-        "tipo_veicolo": None,
-        "rarity": "Common",
-        "statistiche": {
-            "combattimento": 3,
-            "armatura": 0,
-            "sparare": 0,
-            
-            "valore": 3
-        },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": 1,
-                "condizione": "gittata massima",
-                "descrizione": "+1 Combattimento a lunga distanza"
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Fuoco di Soppressione",
-                "descrizione": "Tutti i nemici in vista subiscono -1 Combattimento",
-                "costo_attivazione": 2,
-                "tipo_attivazione": "Azione",
-                "limitazioni": ["Una volta per turno", "Richiede munizioni"]
-            }
-        ],
-        "requisiti": ["Addestramento Militare"],
-        "fazioni_permesse": [],
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 0,
-        "valore_minimo_richiesto_sparare": 2,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": "Munizioni Standard",
-            "gittata_massima": 8,
-            "cadenza_fuoco": 3,
-            "penetrazione_armatura": 1,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 30,
-            "usure_accumulate": 0,
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "+3 Combattimento a distanza (8 caselle). +1 aggiuntivo a lunga distanza. Fuoco di soppressione.",
-        "flavour_text": "L'arma standard dei soldati veterani.",
-        "keywords": ["Arma", "Da Fuoco", "Fucile", "Militare"],  # CORRETTO
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-004",
-        "costo_produzione": 4,
-        "compatibilita": {
-            "compatibile_con": ["Granate", "Baionetta"],
-            "upgrade_disponibili": ["Fucile Plasma"],
-            "equipaggiamenti_richiesti": []
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
-    },
-
-    "fucile_di_precisione": {
-        "nome": "Fucile di Precisione",
-        "valore": 3,
-        "tipo": "Arma da Fuoco",  # CORRETTO
-        "categoria_arma": "Fucile",
-        "tipo_armatura": None,
-        "tipo_veicolo": None,
-        "rarity": "Uncommon",
-        "statistiche": {
-            "combattimento": 4,
-            "armatura": 0,
-            "sparare": -1,
-            
-            "valore": 3
-        },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": 2,
-                "condizione": "non mosso questo turno",
-                "descrizione": "+2 Combattimento se non si è mossi"
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Colpo al Cuore",
-                "descrizione": "Elimina il bersaglio invece di ferirlo con 6 naturale",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Automatica",
-                "limitazioni": []
-            }
-        ],
-        "requisiti": ["Addestramento Militare"],
-        "fazioni_permesse": [],
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 3,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": "Munizioni Speciali",
-            "gittata_massima": 12,
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 2,
-            "danni_critici": True
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 8,
-            "usure_accumulate": 0,
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "+4 Combattimento a distanza (12 caselle). +2 aggiuntivo se non si muove. Colpo critico con 6.",
-        "flavour_text": "Un colpo, una vita.",
-        "keywords": ["Arma", "Da Fuoco", "Fucile", "Precisione"],  # CORRETTO
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-005",
-        "costo_produzione": 6,
-        "compatibilita": {
-            "compatibile_con": ["Mirino Telescopico"],
-            "upgrade_disponibili": ["Fucile Gauss"],
-            "equipaggiamenti_richiesti": []
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
-    },
-
-    # ========== ARMATURE - SET BASE ==========
-    
-    "giubbotto_antiproiettile": {
-        "nome": "Giubbotto Antiproiettile",
-        "valore": 1,
-        "tipo": "Armatura",
-        "categoria_arma": None,
-        "tipo_armatura": "Leggera",
-        "tipo_veicolo": None,
-        "rarity": "Common",
-        "statistiche": {
-            "combattimento": 0,
-            "armatura": 2,
-            "sparare": 0,
-            
-            "valore": 3
-        },
-        "modificatori_speciali": [],
-        "abilita_speciali": [],
-        "requisiti": ["Nessuno"],
-        "fazioni_permesse": [],
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 0,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": None,
-            "gittata_massima": 0,
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 0,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 0,
-            "usure_accumulate": 0,
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "+2 Armatura. Protezione leggera ma efficace.",
-        "flavour_text": "Meglio averla e non servirsene che servirtene e non averla.",
-        "keywords": ["Armatura", "Leggera", "Protezione"],
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-006",
-        "costo_produzione": 2,
-        "compatibilita": {
-            "compatibile_con": ["Tutte le armi"],
-            "upgrade_disponibili": ["Armatura da Combattimento"],
-            "equipaggiamenti_richiesti": []
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,       
-    },
-
-    "armatura_da_combattimento": {
-        "nome": "Armatura da Combattimento",
-        "valore": 3,
-        "tipo": "Armatura",
-        "categoria_arma": None,
-        "tipo_armatura": "Media",
-        "tipo_veicolo": None,
-        "rarity": "Uncommon",
-        "statistiche": {
-            "combattimento": 0,
-            "armatura": 4,
-            "sparare": -1,  # Pesante riduce movimento
-            
-            "valore": 6
-        },
-        "modificatori_speciali": [],
-        "abilita_speciali": [
-            {
-                "nome": "Protezione Ambientale",
-                "descrizione": "Immune a gas tossici e radiazioni",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Automatica",
-                "limitazioni": []
-            }
-        ],
-        "requisiti": ["Addestramento Militare"],
-        "fazioni_permesse": [],
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 2,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": None,
-            "gittata_massima": 0,
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 0,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 0,
-            "usure_accumulate": 0,
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "+4 Armatura, -1 Movimento. Immune a gas e radiazioni.",
-        "flavour_text": "La migliore protezione che la tecnologia possa offrire.",
-        "keywords": ["Armatura", "Media", "Protezione", "Ambientale"],
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-007",
-        "costo_produzione": 6,
-        "compatibilita": {
-            "compatibile_con": ["Armi leggere"],
-            "upgrade_disponibili": ["Armatura Powered"],
-            "equipaggiamenti_richiesti": []
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
-    },
-
-    # ========== VEICOLI - SET BASE ==========
-    
-    "moto_da_ricognizione": {
-        "nome": "Moto da Ricognizione",
-        "valore": 2,
-        "tipo": "Veicolo",
-        "categoria_arma": None,
-        "tipo_armatura": None,
-        "tipo_veicolo": "Generico",
-        "rarity": "Common",
-        "statistiche": {
-            "combattimento": 0,
-            "armatura": 1,
-            "sparare": 3,  # +3 Movimento
-            "valore": 4
-        },
-        "modificatori_speciali": [
-            {
-                "statistica": "movimento",
-                "valore": 3,
-                "condizione": "sempre",
-                "descrizione": "+3 Movimento"
-            }
-        ],
-        "abilita_speciali": [
-            {
-                "nome": "Fuga Rapida",
-                "descrizione": "Può ritirarsi automaticamente dal combattimento",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Reazione",
-                "limitazioni": ["Una volta per combattimento"]
-            }
-        ],
-        "requisiti": ["Addestramento Veicoli"],
-        "fazioni_permesse": [],
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 1,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": None,
-            "gittata_massima": 0,
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 0,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 1,
-            "armi_integrate": [],
-            "blindatura": 1
-        },
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 0,
-            "usure_accumulate": 0,
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "+3 Movimento, +1 Armatura. Fuga automatica dal combattimento.",
-        "flavour_text": "Veloce, agile, perfetta per le ricognizioni.",
-        "keywords": ["Veicolo", "Ricognizione", "Veloce"],
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-008",
-        "costo_produzione": 4,
-        "compatibilita": {
-            "compatibile_con": ["Armi leggere"],
-            "upgrade_disponibili": ["Moto da Guerra"],
-            "equipaggiamenti_richiesti": ["Addestramento Veicoli"]
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,
-    },
-
-    # ========== EQUIPAGGIAMENTO GENERICO - SET BASE ==========
-    
-    "kit_medico": {
-        "nome": "Kit Medico",
-        "valore": 1,
-        "tipo": "Equipaggiamento",  # CORRETTO: regolamento usa "Equipaggiamento"
-        "categoria_arma": None,
-        "tipo_armatura": None,
-        "tipo_veicolo": None,
-        "rarity": "Common",
-        "statistiche": {
-            "combattimento": 0,
-            "armatura": 0,
-            "sparare": 0,
-            
-            "valore": 1
-        },
-        "modificatori_speciali": [],
-        "abilita_speciali": [
-            {
-                "nome": "Guarigione",
-                "descrizione": "Cura un guerriero ferito",
-                "costo_attivazione": 1,
-                "tipo_attivazione": "Azione",
-                "limitazioni": ["Una volta per turno", "Solo guerrieri feriti"]
-            }
-        ],
-        "requisiti": ["Nessuno"],
-        "fazioni_permesse": [],
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 0,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": None,
-            "gittata_massima": 0,
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 0,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 0,
-            "usure_accumulate": 0,
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "Cura un guerriero ferito. Azione una volta per turno.",
-        "flavour_text": "La vita è preziosa, anche in guerra.",
-        "keywords": ["Equipaggiamento", "Medico", "Guarigione"],  # CORRETTO
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "EQ-009",
-        "costo_produzione": 1,
-        "compatibilita": {
-            "compatibile_con": ["Tutti gli equipaggiamenti"],
-            "upgrade_disponibili": ["Kit Medico Avanzato"],
-            "equipaggiamenti_richiesti": []
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # ========== ESPANSIONI ==========
-    
-    # WARZONE
-    "fucile_plasma": {
-        "nome": "Fucile Plasma",
-        "valore": 4,
-        "tipo": "Arma da Fuoco",  # CORRETTO
-        "categoria_arma": "Fucile",
-        "tipo_armatura": None,
-        "tipo_veicolo": None,
-        "rarity": "Rare",
-        "statistiche": {
-            "valore_combattimento": 5,
-            "armatura": 0,
-            "sparare": -1,
-            
-            "valore": 4
-        },
-        "modificatori_speciali": [],
-        "abilita_speciali": [
-            {
-                "nome": "Cauterizzazione",
-                "descrizione": "Ignora completamente l'Armatura del bersaglio",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Automatica",
-                "limitazioni": []
-            },
-            {
-                "nome": "Surriscaldamento",
-                "descrizione": "Non può sparare per un turno dopo ogni utilizzo",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Automatica",
-                "limitazioni": ["Effetto collaterale"]
-            }
-        ],
-        "requisiti": ["Addestramento Avanzato"],
-        "fazioni_permesse": ["Capitol", "Bauhaus", "Cybertronic"],  # Solo fazioni tecnologicamente avanzate
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 4,
-        "valore_minimo_richiesto_sparare": 3,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": "Celle Energetiche",
-            "gittata_massima": 10,
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 99,  # Ignora armatura
-            "danni_critici": True
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 6,
-            "usure_accumulate": 0,
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "+5 Combattimento a distanza (10 caselle). Ignora Armatura. Surriscaldamento.",
-        "flavour_text": "Il calore del sole concentrato in un colpo.",
-        "keywords": ["Arma", "Da Fuoco", "Plasma", "Avanzata"],  # CORRETTO
-        "set_espansione": Set_Espansione.WARZONE.value,
-        "numero_carta": "EQ-W01",
-        "costo_produzione": 8,
-        "compatibilita": {
-            "compatibile_con": ["Armatura Powered"],
-            "upgrade_disponibili": [],
-            "equipaggiamenti_richiesti": ["Addestramento Avanzato"]
-        },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "armatura_powered": {
-        "nome": "Armatura Powered",
-        "valore": 5,
-        "tipo": "Armatura",
-        "categoria_arma": None,
-        "tipo_armatura": "Powered",
-        "tipo_veicolo": None,
-        "rarity": "Rare",
-        "statistiche": {
-            "combattimento": 2,  # Bonus forza
-            "armatura": 6,
-            "sparare": 0,  # Servo-motori compensano il peso            
             "valore": 0
         },
         "modificatori_speciali": [
             {
                 "statistica": "combattimento",
-                "valore": 2,
-                "condizione": "sempre",
-                "descrizione": "+2 Combattimento per servo-motori"
+                "valore": "+2",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +2 in C e S"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+2",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +2 in C e S"
             }
         ],
         "abilita_speciali": [
             {
-                "nome": "Servo-Motori",
-                "descrizione": "Bonus +2 Combattimento e +1 Movimento",
+                "nome": "Modifica Azione",
+                "descrizione": "Un guerriero può attaccare usando due Pistole",
                 "costo_attivazione": 0,
-                "tipo_attivazione": "Automatica",
-                "limitazioni": []
-            },
-            {
-                "nome": "Sigillata",
-                "descrizione": "Immune a gas, radiazioni e vuoto",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Automatica",
+                "tipo_attivazione": "Modificatore",
                 "limitazioni": []
             }
         ],
-        "requisiti": ["Addestramento Avanzato", "Valore ≥ 4"],
-        "fazioni_permesse": ["Capitol", "Cybertronic"],  # Solo fazioni high-tech
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
         "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 4,
-        "valore_minimo_richiesto_sparare": 0,  # CORRETTO
-        "meccaniche_armi": {
-            "munizioni_richieste": None,
-            "gittata_massima": 0,
-            "cadenza_fuoco": 1,
-            "penetrazione_armatura": 0,
-            "danni_critici": False
-        },
-        "meccaniche_veicoli": {
-            "equipaggio_richiesto": 1,
-            "passeggeri_massimi": 0,
-            "armi_integrate": [],
-            "blindatura": 0
-        },
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
         "stato": {
             "stato_operativo": "Funzionante",
-            "munizioni_rimanenti": 0,
-            "usure_accumulate": 0,
             "assegnato_a": None,
             "in_gioco": False,
             "utilizzato_questo_turno": False
         },
-        "testo_carta": "+6 Armatura, +2 Combattimento, +1 Movimento. Immune a ambienti ostili.",
-        "flavour_text": "L'evoluzione dell'armatura da battaglia.",
-        "keywords": ["Armatura", "Powered", "Avanzata", "Servo-Motori"],
-        "set_espansione": Set_Espansione.WARZONE.value,
-        "numero_carta": "EQ-W02",
-        "costo_produzione": 10,
+        "testo_carta": "PISTOLA. Arma da Corpo a Corpo e da Fuoco. Il guerriero guadagna un +2 in C e S. Un guerriero può attaccare usando due Pistole.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
         "compatibilita": {
-            "compatibile_con": ["Armi pesanti"],
+            "compatibile_con": ["Pistola"],
             "upgrade_disponibili": [],
-            "equipaggiamenti_richiesti": ["Addestramento Avanzato"]
+            "equipaggiamenti_richiesti": []
         },
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Braccio Cibernetico": {
+        "nome": "Braccio Cibernetico",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Corpo a Corpo",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 6,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+6",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +6 in C"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ARMA DA CORPO A CORPO. Il guerriero guadagna un +6 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Affilata": {
+        "nome": "Affilata",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Accessorio",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 1,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+1",
+                "condizione": "Quando associata a un'Arma da Corpo a Corpo ma non a quelle promiscue Corpo a Corpo/Fuoco",
+                "descrizione": "Il guerriero guadagna un +1 in C"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A OGNI ARMA DA CORPO A CORPO MA NON A QUELLE PROMISCUE CORPO A CORPO/FUOCO. Il guerriero guadagna un +1 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Arma da Corpo a Corpo"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Fumogeno": {
+        "nome": "Fumogeno",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Un guerriero può detonare un Fumogeno scartando questa carta. Il guerriero può ritirarsi da un combattimento prima che questo abbia inizio, ponendo fine all'Azione d'Attacco dell'avversario",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Si scarta dopo l'uso"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "Un guerriero può detonare un Fumogeno scartando questa carta. Il guerriero può ritirarsi da un combattimento prima che questo abbia inizio, ponendo fine all'Azione d'Attacco dell'avversario.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Mine Anti Uomo": {
+        "nome": "Mine Anti Uomo",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Un guerriero può uccidere automaticamente un avversario scartando questa carta. Il guerriero, però, sarà investito a sua volta dall'esplosione. Gira la Sua carta per mostrare che è ferito",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Il guerriero che la usa viene ferito", "Si scarta dopo l'uso"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "Un guerriero può uccidere automaticamente un avversario scartando questa carta. Il guerriero, però, sarà investito a sua volta dall'esplosione. Gira la Sua carta per mostrare che è ferito.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Kit Pronto Soccorso": {
+        "nome": "Kit Pronto Soccorso",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Guarisce Guerriero",
+                "descrizione": "Questo guerriero potrà scartare il KIT DI PRONTO SOCCORSO per guarire un compagno ferito. Un Doomtrooper non guarirà mai un seguace dell'Oscura Legione, e viceversa. Il KIT non può essere usato su un morto, anche se appena ucciso",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Guarigione",
+                "limitazioni": ["Non su morti", "Doomtrooper non guarisce Oscura Legione e viceversa", "Si scarta dopo l'uso"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "Questo guerriero potrà scartare il KIT DI PRONTO SOCCORSO per guarire un compagno ferito. Un Doomtrooper non guarirà mai un seguace dell'Oscura Legione, e viceversa. Il KIT non può essere usato su un morto, anche se appena ucciso.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Mirino Telescopico": {
+        "nome": "Mirino Telescopico",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Accessorio",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 1,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+1",
+                "condizione": "Quando associabile a ogni arma da fuoco",
+                "descrizione": "Il guerriero guadagna un +1 in S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSOCIABILE A OGNI ARMA DA FUOCO. Il guerriero guadagna un +1 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Arma da Fuoco"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "L&A Carabina Al Plasma": {
+        "nome": "L&A Carabina Al Plasma",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Fucile",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 3,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+3",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +3 in S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "FUCILE D'ASSALTO. ARMA DA FUOCO. Il guerriero guadagna un +3 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Armatura Da Combattimento": {
+        "nome": "Armatura Da Combattimento",
+        "valore": 0,
+        "tipo": "Armatura",
+        "categoria_arma": "Armatura",
+        "tipo_armatura": "Leggera",
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 1,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "armatura",
+                "valore": "+1",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "I guerrieri guadagnano un +1 in A"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "I guerrieri guadagnano un +1 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Baionetta": {
+        "nome": "Baionetta",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Accessorio",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 2,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+2",
+                "condizione": "Quando associata a un'Arma da Fuoco che permette di utilizzare un'Arma da fuoco anche nei combattimenti Corpo a Corpo",
+                "descrizione": "Incrementa la Tua caratteristica C di +2"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Questa conversione ti permette di utilizzare un'Arma da fuoco anche nei combattimenti Corpo a Corpo",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSOCIABILE A OGNI ARMA DA FUOCO. Questa conversione ti permette di utilizzare un'Arma da fuoco anche nei combattimenti Corpo a Corpo. Incrementa la Tua caratteristica C di +2.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Arma da Fuoco"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Armatura Composita": {
+        "nome": "Armatura Composita",
+        "valore": 0,
+        "tipo": "Armatura",
+        "categoria_arma": "Armatura",
+        "tipo_armatura": "Pesante",
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 4,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "armatura",
+                "valore": "+4",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +4 in A"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "Il guerriero guadagna un +4 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Spada Punisher": {
+        "nome": "Spada Punisher",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Spada",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 1,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+1",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +1 in C"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ARMA DA CORPO A CORPO. Il guerriero guadagna un +1 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Lancia Granate": {
+        "nome": "Lancia Granate",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Fucile",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 3,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+3",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +3 in S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI ARMA DA FUOCO. Il guerriero guadagna un +3 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Arma da Fuoco"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Psycoscanner": {
+        "nome": "Psycoscanner",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Scanner",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Se questo guerriero è attaccato, può immediatamente Andare in Copertura. Gira la carta del guerriero a faccia in giù",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "Se questo guerriero è attaccato, può immediatamente Andare in Copertura. Gira la carta del guerriero a faccia in giù.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Pistola Punisher": {
+        "nome": "Pistola Punisher",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Pistola",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 1,
+            "sparare": 1,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+1",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +1 in C e un +1 in S"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+1",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +1 in C e un +1 in S"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Si possono utilizzare due Pistole contemporaneamente",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "PISTOLA. ARMA DA CORPO A CORPO E DA FUOCO. Il guerriero guadagna un +1 in C e un +1 in S. Si possono utilizzare due Pistole contemporaneamente.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Pistola"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # Inquisition
+
+    "Cura Oscura": {
+        "nome": "Cura Oscura",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Guarisce Guerriero",
+                "descrizione": "Al costo di tre Azioni, questo guerriero può curare un qualsiasi guerriero dell'Oscura Legione. Devi pagare la metà del Valore del guerriero curato in Punti Destino (arrotondando per eccesso). Non ha effetto sui morti.",
+                "costo_attivazione": 3,
+                "tipo_attivazione": "Guarigione",
+                "limitazioni": ["Solo guerrieri Oscura Legione", "Costo in Punti Destino", "Non sui morti"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. Al costo di tre Azioni, questo guerriero può curare un qualsiasi guerriero dell'Oscura Legione. Devi pagare la metà del Valore del guerriero curato in Punti Destino (arrotondando per eccesso). Non ha effetto sui morti.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Hellhound": {
+        "nome": "Hellhound",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Carro Armato",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Carro Armato",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 5,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+5",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un +5 in C, S, A e V, ma non può usare altre CARTE Equipaggiamento"
+            },
+            {
+                "statistica": "combattimento",
+                "valore": "+5",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un +5 in C, S, A e V, ma non può usare altre CARTE Equipaggiamento"
+            },
+            {
+                "statistica": "armatura",
+                "valore": "+5",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un +5 in C, S, A e V, ma non può usare altre CARTE Equipaggiamento"
+            },
+            {
+                "statistica": "valore",
+                "valore": "+5",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un +5 in C, S, A e V, ma non può usare altre CARTE Equipaggiamento"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Gli avversari feriti dall'Hellblaster sono automaticamente uccisi. Spendendo un'Azione, puoi scartare una Fortificazione in gioco. Puoi spendere più di un'azione in questo modo.",
+                "costo_attivazione": 1,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": ["Non può usare altre CARTE Equipaggiamento"],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSOCIABILE A QUALSIASI VEICOLO DELL'OSCURA LEGIONE. Il guerriero guadagna un +7 in S. Gli avversari feriti dall'Hellblaster sono automaticamente uccisi. Spendendo un'Azione, puoi scartare una Fortificazione in gioco. Puoi spendere più di un'azione in questo modo.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Kratach Migliorato": {
+        "nome": "Kratach Migliorato",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Mitragliatrice",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 5,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+5",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +5 in S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. ARMA DA FUOCO. MITRAGLIATRICE. Il guerriero guadagna un +5 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Mitragliatrice"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Nazgaroth": {
+        "nome": "Nazgaroth",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Mitragliatrice Pesante",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 8,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+8",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +8 in S"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Gli avversari feriti dal Nazgaroth sono automaticamente uccisi. Il Nazgaroth finisce le munizioni dopo ogni combattimento a Fuoco nel quale viene usato. Per ricaricarlo, devi spendere o un'Azione, o 5D. Il Nazgaroth entra in gioco carico.",
+                "costo_attivazione": "1 Azione o 5D",
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Finisce le munizioni dopo ogni combattimento"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. ARMA DA FUOCO. MITRAGLIATRICE PESANTE. Il guerriero guadagna un +8 in S. Gli avversari feriti dal Nazgaroth sono automaticamente uccisi. Il Nazgaroth finisce le munizioni dopo ogni combattimento a Fuoco nel quale viene usato. Per ricaricarlo, devi spendere o un'Azione, o 5D. Il Nazgaroth entra in gioco carico.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Plague Gun": {
+        "nome": "Plague Gun",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Arma Speciale",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "I Doomtrooper feriti dal Plague Gun, sono automaticamente uccisi e un Doomtrooper nella stessa Squadra, scelto dal giocatore del Doomtrooper, viene ferito. I guerrieri uccisi dalla piaga fanno guadagnare punti.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Infetta altri membri della squadra"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": ["Seguace di Demnogonis"],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI SEGUACE DI DEMNOGONIS. I Doomtrooper feriti dal Plague Gun, sono automaticamente uccisi e un Doomtrooper nella stessa Squadra, scelto dal giocatore del Doomtrooper, viene ferito. I guerrieri uccisi dalla piaga fanno guadagnare punti.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Demnogonis"],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "AG-17 Panzerknacker": {
+        "nome": "AG-17 Panzerknacker",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Fucile d'Assalto",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 4,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +4 in S e può Attaccare due avversari diversi nella stessa Azione"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Gli Attacchi sono condotti separatamente. Annuncia entrambi gli attacchi, prima di risolvere il primo. Qualsiasi modificatore giocato per il primo combattimento, vale anche per il secondo. Altri modificatori possono essere aggiunti nel secondo combattimento.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Bauhaus"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A UN GUERRIERO BAUHAUS. ARMA DA FUOCO FUCILE D'ASSALTO. Il guerriero guadagna un +4 in S e può Attaccare due avversari diversi nella stessa Azione. Gli Attacchi sono condotti separatamente. Annuncia entrambi gli attacchi, prima di risolvere il primo. Qualsiasi modificatore giocato per il primo combattimento, vale anche per il secondo. Altri modificatori possono essere aggiunti nel secondo combattimento.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Azogar": {
+        "nome": "Azogar",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Corpo a Corpo",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 3,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+3",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +3 in C"
+            },
+            {
+                "statistica": "combattimento",
+                "valore": "+5",
+                "condizione": "Se assegnata a un NEFARITA DI ALGEROTH",
+                "descrizione": "allora l'Azogar conferisce un +5 in C"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. ARMA DA CORPO A CORPO. Il guerriero guadagna un +3 in C. Se assegnata a un NEFARITA DI ALGEROTH, allora l'Azogar conferisce un +5 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Hellblaster": {
+        "nome": "Hellblaster",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Accessorio",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 7,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+7",
+                "condizione": "Quando associato a qualsiasi veicolo dell'Oscura Legione",
+                "descrizione": "Il guerriero guadagna un +7 in S"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Gli avversari feriti dall'Hellblaster sono automaticamente uccisi",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": []
+            },
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Spendendo un'Azione, puoi scartare una Fortificazione in gioco",
+                "costo_attivazione": 1,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSOCIABILE A QUALSIASI VEICOLO DELL'OSCURA LEGIONE. Il guerriero guadagna un +7 in S. Gli avversari feriti dall'Hellblaster sono automaticamente uccisi. Spendendo un'Azione, puoi scartare una Fortificazione in gioco. Puoi spendere più di un'azione in questo modo.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Veicolo"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Combat Coordinator": {
+        "nome": "Combat Coordinator",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 8,
+            "sparare": 8,
+            "armatura": 8,
+            "valore": 8
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+8",
+                "condizione": "Quando assegnabile a un Tutore",
+                "descrizione": "Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+8",
+                "condizione": "Quando assegnabile a un Tutore",
+                "descrizione": "Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita"
+            },
+            {
+                "statistica": "armatura",
+                "valore": "+8",
+                "condizione": "Quando assegnabile a un Tutore",
+                "descrizione": "Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita"
+            },
+            {
+                "statistica": "valore",
+                "valore": "+8",
+                "condizione": "Quando assegnabile a un Tutore",
+                "descrizione": "Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Ogni ferita inflitta uccide l'avversario. I guerrieri uccisi in questo modo, sono eliminati dal gioco, non solo scartati.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": ["Tutore"],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A UN TUTORE. Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita. Ogni ferita inflitta uccide l'avversario. I guerrieri uccisi in questo modo, sono eliminati dal gioco, non solo scartati.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Baionetta a Catena": {
+        "nome": "Baionetta a Catena",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Accessorio",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 6,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+6",
+                "condizione": "Quando associabile a qualsiasi arma da fuoco dell'Oscura Legione",
+                "descrizione": "L'arma è ora un'ARMA DA FUOCO E DA CORPO A CORPO e considera un +6 in C"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSOCIABILE A QUALSIASI ARMA DA FUOCO DELL'OSCURA LEGIONE. L'arma è ora un'ARMA DA FUOCO E DA CORPO A CORPO e considera un +6 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Arma da Fuoco"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "AC 41 Purifier": {
+        "nome": "AC 41 Purifier",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Mitragliatrice Pesante",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 5,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+5",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +5 in S e gli avversari feriti dal Purifier, sono automaticamente uccisi"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Gli avversari feriti dal Purifier, sono automaticamente uccisi",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELLA FRATELLANZA. ARMA DA FUOCO. MITRAGLIATRICE PESANTE CON LANCIAFIAMME INTEGRATO. Il guerriero guadagna un +5 in S e gli avversari feriti dal Purifier, sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Tenuta da Battaglia": {
+        "nome": "Tenuta da Battaglia",
+        "valore": 0,
+        "tipo": "Armatura",
+        "categoria_arma": "Armatura",
+        "tipo_armatura": "Leggera",
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 1,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "armatura",
+                "valore": "+1",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +1 in A"
+            },
+            {
+                "statistica": "armatura",
+                "valore": "+3",
+                "condizione": "Se è un INQUISITORE o un INQUISITORE MASSIMO",
+                "descrizione": "allora guadagna un +3 in A"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": ["Non è considerata un'ARMATURA"],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELLA FRATELLANZA. Il guerriero guadagna un +1 in A. Se è un INQUISITORE o un INQUISITORE MASSIMO, allora guadagna un +3 in A. Non è considerata un'ARMATURA.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Kit di Riparazione": {
+        "nome": "Kit di Riparazione",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Guarisce Guerriero",
+                "descrizione": "Se la carta a cui il Kit è associato viene scartata, mettila nel mazzo di carte da Pescare e mescola. Scarta il Kit dopo averlo usato.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Guarigione",
+                "limitazioni": ["Si scarta dopo l'uso"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSOCIABILE A QUALSIASI CARTA EQUIPAGGIAMENTO O FORTIFICAZIONE IN GIOCO. Se la carta a cui il Kit è associato viene scartata, mettila nel mazzo di carte da Pescare e mescola. Scarta il Kit dopo averlo usato.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Equipaggiamento", "Fortificazione"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Spada e Pistola Punisher": {
+        "nome": "Spada e Pistola Punisher",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Corpo a Corpo",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 2,
+            "sparare": 2,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+2",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +2 in C e S"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+2",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +2 in C e S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI DOOMTROOPER. È CONSIDERATA UN'ARMA DA FUOCO E DA CORPO A CORPO. Il guerriero guadagna un +2 in C e S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Mirino Laser": {
+        "nome": "Mirino Laser",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Accessorio",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 1,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+1",
+                "condizione": "Quando associato a qualsiasi arma da fuoco e da fuoco/corpo a corpo",
+                "descrizione": "Il guerriero guadagna un +1 in S, in alternativa può scegliere di spendere tutte tre le Azioni per compiere un Attacco con un +4 in S"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Se spende tutte e tre le Azioni per compiere un Attacco",
+                "descrizione": "Può scegliere di spendere tutte tre le Azioni per compiere un Attacco con un +4 in S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSOCIABILE A QUALSIASI ARMA DA FUOCO E DA FUOCO/CORPO A CORPO. Il guerriero guadagna un +1 in S, in alternativa può scegliere di spendere tutte tre le Azioni per compiere un Attacco con un +4 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Arma da Fuoco", "Arma da Fuoco/Corpo a Corpo"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Nimrod MK I": {
+        "nome": "Nimrod MK I",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Arma Pesante d'Assalto",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 4,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +4 in S. Per ogni ulteriore Azione dedicata a questo Attacco, il guerriero guadagna un ulteriore +4 in S (per esempio, puoi spendere tre Azioni e fare un Attacco con +12)."
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI DOOMTROOPER. ARMA DA FUOCO. ARMA PESANTE D'ASSALTO. Il guerriero guadagna un +4 in S. Per ogni ulteriore Azione dedicata a questo Attacco, il guerriero guadagna un ulteriore +4 in S (per esempio, puoi spendere tre Azioni e fare un Attacco con +12).",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Lancia Castigator (Doomtrooper)": {
+        "nome": "Lancia Castigator (Doomtrooper)",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Corpo a Corpo",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 2,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+2",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +2 in C"
+            },
+            {
+                "statistica": "combattimento",
+                "valore": "+4",
+                "condizione": "Se assegnata a una VALCHIRIA",
+                "descrizione": "guadagna un +4 in C"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Se assegnata a una VALCHIRIA, durante il combattimento",
+                "descrizione": "Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI DOOMTROOPER. ARMA DA CORPO A CORPO. Il guerriero guadagna un +2 in C. Se assegnata a una VALCHIRIA invece, guadagna un +4 in C. Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Libro della Legge": {
+        "nome": "Libro della Legge",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Questo guerriero può compiere un'Azione extra (compreso l'Attacco), durante ogni Tuo turno.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELLA FRATELLANZA. Questo guerriero può compiere un'Azione extra (compreso l'Attacco), durante ogni Tuo turno.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "SSW4200P": {
+        "nome": "SSW4200P",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Mitragliatrice Pesante",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 4,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +4 in S. Se il totale S del guerriero che usa l'SSW4200, è più del doppio della A del suo avversario, l'avversario ferito, è automaticamente ucciso."
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se il totale S del guerriero che usa l'SSW4200, è più del doppio della A del suo avversario, l'avversario ferito, è automaticamente ucciso.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Solo se S > doppio di A avversario"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Cybertronic"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO CYBERTRONIC. ARMA DA FUOCO. MITRAGLIATRICE PESANTE. Il guerriero guadagna un +4 in S. Se il totale S del guerriero che usa l'SSW4200, è più del doppio della A del suo avversario, l'avversario ferito, è automaticamente ucciso.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Catalizzatore di Energia": {
+        "nome": "Catalizzatore di Energia",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Lancia Arte",
+                "descrizione": "Durante ogni Fase Pescare, metti 1D dalla pila comune sul Catalizzatore. Il guerriero può spendere questi punti D solo per lanciare incantesimi. Non c'è limite al numero di CATALIZZATORI che un guerriero può avere.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Arte",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A OGNI GUERRIERO DELLA FRATELLANZA. Durante ogni Fase Pescare, metti 1D dalla pila comune sul Catalizzatore. Il guerriero può spendere questi punti D solo per lanciare incantesimi. Non c'è limite al numero di CATALIZZATORI che un guerriero può avere.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Necrobionica": {
+        "nome": "Necrobionica",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Corpo a Corpo",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 3,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+3",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +3 in C"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": ["Eretico"],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI ERETICO. Il guerriero guadagna un +3 in C.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Proiettili di Tenebra": {
+        "nome": "Proiettili di Tenebra",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Accessorio",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Stato",
+                "descrizione": "I Doomtrooper feriti dall'Arma d'ora in poi sono considerati Eretici, perdono ogni Legame e non sono più Doomtrooper. Essi possono Attaccare (ed essere Attaccati da) qualsiasi guerriero e possono ricevere i DONI DELL'OSCURA SIMMETRIA. Armi legate ad un'ICONA specifica sono scartate.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSOCIABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. ARMA DA FUOCO E DA FUOCO/CORPO A CORPO. I Doomtrooper feriti dall'Arma d'ora in poi sono considerati Eretici, perdono ogni Legame e non sono più Doomtrooper. Essi possono Attaccare (ed essere Attaccati da) qualsiasi guerriero e possono ricevere i DONI DELL'OSCURA SIMMETRIA. Armi legate ad un'ICONA specifica sono scartate.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": ["Arma da Fuoco", "Arma da Fuoco/Corpo a Corpo"],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Lancia Castigator": {
+        "nome": "Lancia Castigator",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Corpo a Corpo",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 2,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+2",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +2 in C"
+            },
+            {
+                "statistica": "combattimento",
+                "valore": "+4",
+                "condizione": "Se assegnata a una VALCHIRIA",
+                "descrizione": "guadagna un +4 in C"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Se assegnata a una VALCHIRIA, durante il combattimento",
+                "descrizione": "Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI DOOMTROOPER. ARMA DA CORPO A CORPO. Il guerriero guadagna un +2 in C. Se assegnata a una VALCHIRIA invece, guadagna un +4 in C. Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Icarus": {
+        "nome": "Icarus",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Aeronave",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Aeronave",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 5,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+5",
+                "condizione": "Quando pilota l'Aeronave",
+                "descrizione": "Il guerriero guadagna un +5 in S e A e può scartare una qualsiasi Fortificazione o VEICOLO in gioco, al costo di tre Azioni"
+            },
+            {
+                "statistica": "armatura",
+                "valore": "+5",
+                "condizione": "Quando pilota l'Aeronave",
+                "descrizione": "Il guerriero guadagna un +5 in S e A e può scartare una qualsiasi Fortificazione o VEICOLO in gioco, al costo di tre Azioni"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Quando utilizzi l'Icarus non si possono usare altre Armi.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Non si possono usare altre Armi"]
+            }
+        ],
+        "requisiti": ["Un guerriero può avere un solo VEICOLO", "Quando utilizzi l'Icarus non si possono usare altre Armi"],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": ["Arcangelo"],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI ARCANGELO. AERONAVE E VEICOLO. Un guerriero può avere un solo VEICOLO. Il guerriero guadagna un +5 in S e A e può scartare una qualsiasi Fortificazione o VEICOLO in gioco, al costo di tre Azioni. Quando utilizzi l'Icarus non si possono usare altre Armi.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Fucile di Precisione Archer": {
+        "nome": "Fucile di Precisione Archer",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Fucile di Precisione",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 2,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+2",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +2 in S. Se il guerriero spende anche un'Azione per prendere la mira, guadagna un ulteriore +3 in S per quel combattimento."
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+3",
+                "condizione": "Se il guerriero spende anche un'Azione per prendere la mira",
+                "descrizione": "L'Azione 'prendere la mira' deve avvenire immediatamente prima dell'Azione di Attacco."
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": ["L'Azione 'prendere la mira' deve avvenire immediatamente prima dell'Azione di Attacco"],
+        "fazioni_permesse": ["Mishima"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO MISHIMA. ARMA DA FUOCO. FUCILE DI PRECISIONE. Il guerriero guadagna un +2 in S. Se il guerriero spende anche un'Azione per prendere la mira, guadagna un ulteriore +3 in S per quel combattimento. L'Azione 'prendere la mira' deve avvenire immediatamente prima dell'Azione di Attacco.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "DPAT-9 Deuce": {
+        "nome": "DPAT-9 Deuce",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Lancia Razzi",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 6,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+6",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +6 in S e può usare un'Azione di Attacco per scartare un VEICOLO o una Fortificazione in gioco"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Il guerriero non può farlo se viene Attaccato.",
+                "costo_attivazione": 1,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Non può essere usato se viene attaccato"]
+            }
+        ],
+        "requisiti": ["Il guerriero non può farlo se viene Attaccato"],
+        "fazioni_permesse": ["Capitol"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO CAPITOL. ARMA DA FUOCO. LANCIA RAZZI. Il guerriero guadagna un +6 in S e può usare un'Azione di Attacco per scartare un VEICOLO o una Fortificazione in gioco. Il guerriero non può farlo se viene Attaccato.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Necromower": {
+        "nome": "Necromower",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Generico",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Generico",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 5,
+            "sparare": 0,
+            "armatura": 3,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+5",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Un guerriero può avere un solo VEICOLO. Considera un +5 in C e un +3 in A"
+            },
+            {
+                "statistica": "armatura",
+                "valore": "+3",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Un guerriero può avere un solo VEICOLO. Considera un +5 in C e un +3 in A"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": ["Un guerriero può avere un solo VEICOLO"],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI DOOMTROOPER. VEICOLO. Un guerriero può avere un solo VEICOLO. Considera un +5 in C e un +3 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Pistola Coagulante": {
+        "nome": "Pistola Coagulante",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Guarisce Guerriero",
+                "descrizione": "Metti tre Segnalini sulla Pistola quando la giochi. Può curare un qualsiasi altro guerriero al costo di un'Azione, togli un Segnalino per ogni guarigione. Scarta la carta quando non ha più Segnalini. I Doomtrooper non possono curare guerrieri dell'Oscura Legione e viceversa.",
+                "costo_attivazione": 1,
+                "tipo_attivazione": "Guarigione",
+                "limitazioni": ["Doomtrooper non curano Oscura Legione e viceversa", "Limitata a 3 usi"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO. Metti tre Segnalini sulla Pistola quando la giochi. Può curare un qualsiasi altro guerriero al costo di un'Azione, togli un Segnalino per ogni guarigione. Scarta la carta quando non ha più Segnalini. I Doomtrooper non possono curare guerrieri dell'Oscura Legione e viceversa.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+    },
+
+    "Paramenti Sacri": {
+        "nome": "Paramenti Sacri",
+        "valore": 0,
+        "tipo": "Armatura",
+        "categoria_arma": "Armatura",
+        "tipo_armatura": "Speciale",
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 1,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "armatura",
+                "valore": "+1",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +1 in A. Se il guerriero è un MISTICO o un CUSTODE DELL'ARTE quando viene ferito può spendere 3D alla fine del combattimento per curarsi"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Guarisce se stesso",
+                "descrizione": "Se il guerriero è un MISTICO o un CUSTODE DELL'ARTE quando viene ferito può spendere 3D alla fine del combattimento per curarsi. Questa carta non è considerata un'Armatura.",
+                "costo_attivazione": 3,
+                "tipo_attivazione": "Guarigione",
+                "limitazioni": ["Solo per MISTICO o CUSTODE DELL'ARTE"]
+            }
+        ],
+        "requisiti": ["Questa carta non è considerata un'Armatura"],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A OGNI GUERRIERO DELLA FRATELLANZA. Il guerriero guadagna un +1 in A. Se il guerriero è un MISTICO o un CUSTODE DELL'ARTE quando viene ferito può spendere 3D alla fine del combattimento per curarsi. Questa carta non è considerata un'Armatura.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Spada Avenger": {
+        "nome": "Spada Avenger",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Corpo a Corpo",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 3,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+3",
+                "condizione": "Quando equipaggiata",
+                "descrizione": "Il guerriero guadagna un +3 in C"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": [],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELLA FRATELLANZA. ARMA DA CORPO A CORPO. Il guerriero guadagna un +3 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # Warzone
+
+    "Elmetto Comando": {
+        "nome": "Elmetto Comando",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Un guerriero può avere solo un Elmetto Comando. Questo guerriero può fare, ogni turno, un'azione extra di combattimento.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Un guerriero può avere solo un Elmetto Comando"]
+            }
+        ],
+        "requisiti": ["Un guerriero può avere solo un Elmetto Comando"],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI COMANDANTE. Un guerriero può avere solo un Elmetto Comando. Questo guerriero può fare, ogni turno, un'azione extra di combattimento.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Computer Tattico": {
+        "nome": "Computer Tattico",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Strumento",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Un guerriero può avere solo un Computer Tattico. Questo guerriero può cambiare, una volta, la tattica di combattimento durante ogni fase di combattimento a cui partecipa.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Un guerriero può avere solo un Computer Tattico", "Solo una volta per fase di combattimento"]
+            }
+        ],
+        "requisiti": ["Un guerriero può avere solo un Computer Tattico"],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI COMANDANTE. Un guerriero può avere solo un Computer Tattico. Questo guerriero può cambiare, una volta, la tattica di combattimento durante ogni fase di combattimento a cui partecipa.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Mezzo D'Esplorazione Pegasus": {
+        "nome": "Mezzo D'Esplorazione Pegasus",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Aeronave",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Aeronave",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 3,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "armatura",
+                "valore": "+3",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Questo guerriero esegue un volo di ricognizione facendo guadagnare ai guerrieri della propria Squadra (compreso se stesso) un + 3 in A."
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": ["Un guerriero può avere assegnato solo un veicolo"],
+        "fazioni_permesse": ["Capitol"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 4,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO CAPITOL CON V PARI A 4 O MENO. AERONAVE e VEICOLO. Un guerriero può avere assegnato solo un veicolo. Il guerriero può utilizzare altre carte equipaggiamento anche se utilizza il Pegasus. Questo guerriero esegue un volo di ricognizione facendo guadagnare ai guerrieri della propria Squadra (compreso se stesso) un + 3 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Incrociatore Leggero Lancelot": {
+        "nome": "Incrociatore Leggero Lancelot",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Aeronave",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Aeronave",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Può trasportare carte equipaggiamento prelevate dalla tua squadra o direttamente dalla tua mano di carte, al costo di un'Azione per carta. Le carte non hanno effetto sul Lancelot ma possono essere assegnate gratuitamente ad un guerriero (o scartate) in ogni momento. Al massimo, il Lancelot può trasportare tre carte Equipaggiamenti. Se il Lancelot viene scartato, tutto quello che trasporta viene scartato con lui.",
+                "costo_attivazione": 1,
+                "tipo_attivazione": "Carte",
+                "limitazioni": ["Massimo 3 carte equipaggiamento trasportabili"]
+            }
+        ],
+        "requisiti": ["Può trasportare carte equipaggiamento dalla squadra"],
+        "fazioni_permesse": ["Imperiali"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE ALLA TUA SQUADRA AL COSTO DI UN' AZIONE. AERONAVE e VEICOLO. Può trasportare carte equipaggiamento prelevate dalla tua squadra o direttamente dalla tua mano di carte, al costo di un'Azione per carta. Le carte non hanno effetto sul Lancelot ma possono essere assegnate gratuitamente ad un guerriero (o scartate) in ogni momento. Al massimo, il Lancelot può trasportare tre carte Equipaggiamenti. Se il Lancelot viene scartato, tutto quello che trasporta viene scartato con lui.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Furga 750": {
+        "nome": "Furga 750",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Generico",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Generico",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Il guerriero non può utilizzare altre carte Equipaggiamento mentre utilizza il Furga ma attacca sempre per primo nelle sparatorie (S). Se l'avversario sopravvive potrà rispondere al fuoco.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Non può utilizzare altre carte Equipaggiamento"]
+            }
+        ],
+        "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Non può utilizzare altre carte Equipaggiamento mentre utilizza il Furga"],
+        "fazioni_permesse": ["Mercenari", "Eretici"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI MERCENARIO O ERETICO. VEICOLO. Un guerriero può avere assegnato solo un veicolo. Il guerriero non può utilizzare altre carte Equipaggiamento mentre utilizza il Furga ma attacca sempre per primo nelle sparatorie (S). Se l'avversario sopravvive potrà rispondere al fuoco.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Dragonbike Mishima": {
+        "nome": "Dragonbike Mishima",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Generico",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Generico",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 2,
+            "sparare": 5,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+2",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Guadagna un + 2 in C e un + 5 in S, inoltre attacca sempre per primo se sceglie di Sparare"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+5",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Guadagna un + 2 in C e un + 5 in S, inoltre attacca sempre per primo se sceglie di Sparare"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Attacca sempre per primo se sceglie di Sparare. Se il guerriero avversario sopravvive, potrà rispondere al fuoco.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": ["Un guerriero può avere assegnato solo un VEICOLO", "Il guerriero che utilizza la Dragonbike non può utilizzare altre carte equipaggiamento"],
+        "fazioni_permesse": ["Mishima"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO MISHIMA. VEICOLO. Un guerriero può avere assegnato solo un VEICOLO. Il guerriero che utilizza la Dragonbike non può utilizzare altre carte equipaggiamento. Guadagna un + 2 in C e un + 5 in S, inoltre attacca sempre per primo se sceglie di Sparare. Se il guerriero avversario sopravvive, potrà rispondere al fuoco.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Klein Helitek Dragonfly": {
+        "nome": "Klein Helitek Dragonfly",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Aeronave",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Aeronave",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 5,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "armatura",
+                "valore": "+5",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Può trasportare fino a tre guerrieri Bauhaus (entrare ed uscire dal Dragonfly costa un'azione) che guadagnano un +5 in A"
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Guerrieri trasportati non possono utilizzare altre carte Equipaggiamento, ma possono essere feriti solo da armi da fuoco o da VEICOLI. Se il Dragonfly viene scartato tutti i guerrieri trasportati muoiono e l'avversario guadagna normalmente i punti.",
+                "costo_attivazione": 1,
+                "tipo_attivazione": "Carte",
+                "limitazioni": ["Massimo 3 guerrieri trasportabili", "Guerrieri feriti solo da armi da fuoco o veicoli"]
+            }
+        ],
+        "requisiti": ["Un guerriero può avere assegnato solo un veicolo"],
+        "fazioni_permesse": ["Bauhaus"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE ALLA TUA SQUADRA AL COSTO DI UN' AZIONE. AERONAVE e VEICOLO. Può trasportare fino a tre guerrieri Bauhaus (entrare ed uscire dal Dragonfly costa un'azione) che guadagnano un +5 in A. Guerrieri trasportati non possono utilizzare altre carte Equipaggiamento, ma possono essere feriti solo da armi da fuoco o da VEICOLI. Se il Dragonfly viene scartato tutti i guerrieri trasportati muoiono e l'avversario guadagna normalmente i punti.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Dragonfish": {
+        "nome": "Dragonfish",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Sottomarino",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Sottomarino",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Il guerriero non può utilizzare carte Equipaggiamento quando utilizza il Dragonfish. Questo guerriero attacca sempre per primo, se l'avversario sopravvive può rispondere all'Attacco. Avversari feriti dal Dragonfish sono automaticamente uccisi.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Non può utilizzare altre carte Equipaggiamento"]
+            },
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Avversari feriti dal Dragonfish sono automaticamente uccisi.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": ["Non può utilizzare carte Equipaggiamento quando utilizza il Dragonfish"],
+        "fazioni_permesse": ["Mishima"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO MISHIMA. VEICOLO E SOTTOMARINO. Il guerriero non può utilizzare carte Equipaggiamento quando utilizza il Dragonfish. Questo guerriero attacca sempre per primo, se l'avversario sopravvive può rispondere all'Attacco. Avversari feriti dal Dragonfish sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "TA 6500 Cybermech": {
+        "nome": "TA 6500 Cybermech",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Carro Armato",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Carro Armato",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Spendendo tre azioni un punto Promozione, questo Carro può scartare una qualsiasi carta Equipaggiamento, Fortificazione o Warzone.",
+                "costo_attivazione": 3,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Costo: 3 azioni + 1 punto Promozione"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Cybertronic"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE ALLA TUA SQUADRA AL COSTO DI UN' AZIONE. CARRO ARMATO E VEICOLO. Spendendo tre azioni un punto Promozione, questo Carro può scartare una qualsiasi carta Equipaggiamento, Fortificazione o Warzone.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Lanciamissili SP Crusader": {
+        "nome": "Lanciamissili SP Crusader",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Artiglieria",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Artiglieria",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Al costo di tre azioni questo guerriero può scartare una Fortificazione, una WARZONE e un Veicolo. Guerrieri trasportati da un Veicolo che viene scartato sono uccisi e i punti vengono guadagnati normalmente. Questa è considerata un'Azione d'Attacco. Rimuovere questa carta dal gioco dopo l'uso.",
+                "costo_attivazione": 3,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Si rimuove dal gioco dopo l'uso"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Imperiali"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO IMPERIALE. VEICOLO e ARTIGLIERIA. Al costo di tre azioni questo guerriero può scartare una Fortificazione, una WARZONE e un Veicolo. Guerrieri trasportati da un Veicolo che viene scartato sono uccisi e i punti vengono guadagnati normalmente. Questa è considerata un'Azione d'Attacco. Rimuovere questa carta dal gioco dopo l'uso.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Black Widow": {
+        "nome": "Black Widow",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Generico",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Generico",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 4,
+            "sparare": 4,
+            "armatura": 4,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+4",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un + 4 in C, S e A"
+            },
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un + 4 in C, S e A"
+            },
+            {
+                "statistica": "armatura",
+                "valore": "+4",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un + 4 in C, S e A"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Il guerriero non può usare altre carte equipaggiamento mentre utilizza la Black Widow", "I guerrieri avversari non guadagnano i benefici delle Fortificazioni"],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO DELL'OSCURA LEGIONE. Un guerriero può avere assegnato solo un veicolo. Il guerriero non può usare altre carte equipaggiamento mentre utilizza la Black Widow ma guadagna un + 4 in C, S e A. I guerrieri avversari non guadagnano i benefici delle Fortificazioni.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Lanciaflamme Tormentor": {
+        "nome": "Lanciaflamme Tormentor",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Lanciafiamme",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 6,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+6",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un + 6 in C. Se C è più del doppio della caratteristica A dell'avversario ogni ferita uccide automaticamente."
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se C è più del doppio della caratteristica A dell'avversario ogni ferita uccide automaticamente.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Solo se C > doppio di A avversario"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 5,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO DELL'OSCURA LEGIONE CON UNA CARATTERISTICA V DI 5 O MENO. LANCIAFIAMME. Considerato un Arma da Fuoco ma utilizzabile solo per combattimenti Corpo a Corpo. Il guerriero guadagna un + 6 in C. Se C è più del doppio della caratteristica A dell'avversario ogni ferita uccide automaticamente.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Mandible/SA-SG 7200": {
+        "nome": "Mandible/SA-SG 7200",
+        "valore": 0,
+        "tipo": "Arma da Corpo a Corpo",
+        "categoria_arma": "Fucile a Pompa",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 5,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+5",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un + 5 in C e, se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente."
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Solo se C totale > doppio di A avversario"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Imperiali", "Cybertronic"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE SOLO A COMANDANTI IMPERIALI O CYBERTRONIC. FUCILE A POMPA. Considerato un arma da FUOCO ma utilizzabile solo nei combattimenti Corpo a Corpo. Il guerriero guadagna un + 5 in C e, se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Meta Cannon": {
+        "nome": "Meta Cannon",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Arma Speciale",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 4,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+4",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un + 4 in S e ogni guerriero ferito da quest'arma è automaticamente ucciso. Se il guerriero che possiede quest'arma viene ucciso o scartato mescola il META CANNON nel tuo mazzo di carte da pescare."
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Ogni guerriero ferito da quest'arma è automaticamente ucciso.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": []
+            },
+            {
+                "nome": "Modifica Stato",
+                "descrizione": "Se il guerriero che possiede quest'arma viene ucciso o scartato mescola il META CANNON nel tuo mazzo di carte da pescare. Se il guerriero è invece permanentemente rimosso dal gioco, il Meta Cannon viene posto nella pila delle carte scartate.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 6,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO DELL'OSCURA LEGIONE CON V PARI A 6 O MENO. ARMA DA FUOCO. Il guerriero guadagna un + 4 in S e ogni guerriero ferito da quest'arma è automaticamente ucciso. Se il guerriero che possiede quest'arma viene ucciso o scartato mescola il META CANNON nel tuo mazzo di carte da pescare. Se il guerriero è invece permanentemente rimosso dal gioco, il Meta Cannon viene posto nella pila delle carte scartate.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Fuoristrada GT B52": {
+        "nome": "Fuoristrada GT B52",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Carro Armato",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Carro Armato",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 2,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+2",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un +2 in S e A. Questo guerriero attacca sempre per primo negli scontri a fuoco (S); se l'avversario sopravvive può rispondere al fuoco."
+            },
+            {
+                "statistica": "armatura",
+                "valore": "+2",
+                "condizione": "Quando pilota il veicolo",
+                "descrizione": "Il guerriero guadagna un +2 in S e A. Questo guerriero attacca sempre per primo negli scontri a fuoco (S); se l'avversario sopravvive può rispondere al fuoco."
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Il guerriero non può usare altre carte equipaggiamento mentre utilizza il B52 ma attacca sempre per primo negli scontri a fuoco (S).",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Non può usare altre carte equipaggiamento"]
+            }
+        ],
+        "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Il guerriero non può usare altre carte equipaggiamento mentre utilizza il B52"],
+        "fazioni_permesse": ["Doomtrooper"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI DOOMTROOPER. CARRO ARMATO E VEICOLO. Un guerriero può avere assegnato solo un veicolo. Un guerriero può avere assegnato solo un veicolo. Il guerriero non può usare altre carte equipaggiamento mentre utilizza il B52 ma guadagna un +2 in S e A. Questo guerriero attacca sempre per primo negli scontri a fuoco (S); se l'avversario sopravvive può rispondere al fuoco.",
+        "flavour_text": "",
+        "keywords": ["Doomtrooper"],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Jet Pack": {
+        "nome": "Jet Pack",
+        "valore": 0,
+        "tipo": "Equipaggiamento",
+        "categoria_arma": "Aeronave",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Aeronave",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Guerrieri che utilizzano il Jet Pack non possono utilizzare altre carte equipaggiamento e non usufruscono dei bonus delle fortificazioni. I guerrieri avversari non ricevono i bonus positivi dei WARZONE.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": ["Non può utilizzare altre carte equipaggiamento", "Non usufruscono dei bonus delle fortificazioni"]
+            }
+        ],
+        "requisiti": ["Un guerriero può avere assegnato solo un Veicolo", "Guerrieri che utilizzano il Jet Pack non possono utilizzare altre carte equipaggiamento e non usufruscono dei bonus delle fortificazioni"],
+        "fazioni_permesse": ["Doomtrooper"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 5,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO CON UN V PARI A 5 O MENO. AERONAVE e VEICOLO. Un guerriero può avere assegnato solo un Veicolo. Guerrieri che utilizzano il Jet Pack non possono utilizzare altre carte equipaggiamento e non usufruscono dei bonus delle fortificazioni. I guerrieri avversari non ricevono i bonus positivi dei WARZONE.",
+        "flavour_text": "",
+        "keywords": ["Doomtrooper"],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Death Angel": {
+        "nome": "Death Angel",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Generico",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Generico",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 12,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "sparare",
+                "valore": "+12",
+                "condizione": "Se in combattimento contro i guerrieri dell' Oscura Legione",
+                "descrizione": "Il guerriero guadagna un +12 in S se in combattimento contro i guerrieri dell' Oscura Legione"
+            }
+        ],
+        "abilita_speciali": [],
+        "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Il guerriero non può usare altre carte equipaggiamento mentre utilizza il Death Angel"],
+        "fazioni_permesse": ["Fratellanza"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 3,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO DELLA FRATELLANZA CON V PARI A 3 O MENO. VEICOLO. Un guerriero può avere assegnato solo un veicolo. Il guerriero non può usare altre carte equipaggiamento mentre utilizza il Death Angel ma guadagna un + 12 in S se in combattimento contro i guerrieri dell' Oscura Legione.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Unholy Carronade": {
+        "nome": "Unholy Carronade",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Generico",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Generico",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Modifica Azione",
+                "descrizione": "Al costo di tre azioni il Carronade può scartare una WARZONE o una Fortificazione in gioco.",
+                "costo_attivazione": 3,
+                "tipo_attivazione": "Modificatore",
+                "limitazioni": []
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AL TUO SCHIERAMENTO VEICOLO. Al costo di tre azioni il Carronade può scartare una WARZONE o una Fortificazione in gioco.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Reaver Trasporta Truppe": {
+        "nome": "Reaver Trasporta Truppe",
+        "valore": 0,
+        "tipo": "Veicolo",
+        "categoria_arma": "Carro Armato",
+        "tipo_armatura": None,
+        "tipo_veicolo": "Carro Armato",
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 0,
+            "sparare": 5,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "armatura",
+                "valore": "+5",
+                "condizione": "Guerrieri trasportati",
+                "descrizione": "Può trasportare fino a tre guerrieri dell'Oscura Legione. Entrare ed uscire dal REAVER costa un'azione per guerriero. I guerrieri trasportati guadagnano un +5 in A ma non possono utilizzare altre carte equipaggiamento, inoltre possono solo venir feriti da armi da FUOCO e da VEICOLI. Se il Reaver viene scartato tutti i guerrieri trasportati sono uccisi e l'avversario guadagna normalmente i punti."
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Può trasportare fino a tre guerrieri dell'Oscura Legione. I guerrieri trasportati non possono utilizzare altre carte equipaggiamento, inoltre possono solo venir feriti da armi da FUOCO e da VEICOLI.",
+                "costo_attivazione": 1,
+                "tipo_attivazione": "Carte",
+                "limitazioni": ["Massimo 3 guerrieri", "Solo guerrieri Oscura Legione", "Feriti solo da armi da fuoco e veicoli"]
+            }
+        ],
+        "requisiti": ["Costo un'azione per guerriero per entrare/uscire"],
+        "fazioni_permesse": ["Oscura Legione"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AL TUO SCHIERAMENTO AL COSTO DI UN'AZIONE. CARRO ARMATO E VEICOLO. Può trasportare fino a tre guerrieri dell'Oscura Legione. Entrare ed uscire dal REAVER costa un'azione per guerriero. I guerrieri trasportati guadagnano un +5 in A ma non possono utilizzare altre carte equipaggiamento, inoltre possono solo venir feriti da armi da FUOCO e da VEICOLI. Se il Reaver viene scartato tutti i guerrieri trasportati sono uccisi e l'avversario guadagna normalmente i punti.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Airbrush/M516 S": {
+        "nome": "Airbrush/M516 S",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Fucile a Pompa",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 3,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+3",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +3 in C e, se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente."
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Solo se C totale > doppio di A avversario"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO. FUCILE A POMPA. Considerato un arma da FUOCO, ma utilizzabile solo nei combattimenti Corpo a Corpo. Il guerriero guadagna un +3 in C e, se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Hagelsturm/M516 D": {
+        "nome": "Hagelsturm/M516 D",
+        "valore": 0,
+        "tipo": "Arma da Fuoco",
+        "categoria_arma": "Fucile a Pompa",
+        "tipo_armatura": None,
+        "tipo_veicolo": None,
+        "rarity": "Common",
+        "statistiche": {
+            "combattimento": 4,
+            "sparare": 0,
+            "armatura": 0,
+            "valore": 0
+        },
+        "modificatori_speciali": [
+            {
+                "statistica": "combattimento",
+                "valore": "+4",
+                "condizione": "Quando equipaggiato",
+                "descrizione": "Il guerriero guadagna un +4 in C e se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente."
+            }
+        ],
+        "abilita_speciali": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente.",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Combattimento",
+                "limitazioni": ["Solo se C totale > doppio di A avversario"]
+            }
+        ],
+        "requisiti": [],
+        "fazioni_permesse": ["Bauhaus", "Capitol"],
+        "restrizioni_guerriero": [],
+        "valore_minimo_richiesto": 0,
+        "valore_minimo_richiesto_sparare": 0,
+        "meccaniche_armi": {},
+        "meccaniche_veicoli": {},
+        "stato": {
+            "stato_operativo": "Funzionante",
+            "assegnato_a": None,
+            "in_gioco": False,
+            "utilizzato_questo_turno": False
+        },
+        "testo_carta": "ASSEGNABILE SOLO A COMANDANTI BAUHAUS O CAPITOL. FUCILE A POMPA. Considerato un arma da FUOCO, ma utilizzabile solo nei combattimenti Corpo a Corpo. Il guerriero guadagna un +4 in C e se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente.",
+        "flavour_text": "",
+        "keywords": [],
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "costo_produzione": 0,
+        "compatibilita": {
+            "compatibile_con": [],
+            "upgrade_disponibili": [],
+            "equipaggiamenti_richiesti": []
+        },
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     }
 }
 
