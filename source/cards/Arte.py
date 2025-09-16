@@ -35,6 +35,7 @@ class BersaglioArte(Enum):
     GIOCATORE = "Giocatore"
     ENTRAMBI_GIOCATORI = "Entrambi i Giocatori"
     SENZA_BERSAGLIO = "Senza Bersaglio"
+    MAESTRO = "Maestro che lancia l'incantesimo"
 
 
 class DurataArte(Enum):
@@ -51,11 +52,15 @@ class TimingArte(Enum):
     """Quando può essere giocata una carta Arte"""
     TURNO_PROPRIO = "Turno Proprio"
     TURNO_AVVERSARIO = "Turno Avversario"
-    QUALSIASI_MOMENTO = "Qualsiasi Momento"
+    PROSSIMO_TURNO = "Prossimo Turno Proprio"
+    IN_OGNI_MOMENTO = "In ogni momento"
     IN_COMBATTIMENTO = "In Combattimento"
     PRIMA_COMBATTIMENTO = "Prima del Combattimento"
     DOPO_COMBATTIMENTO = "Dopo il Combattimento"
     DURANTE_MODIFICATORI = "Durante Modificatori Combattimento"
+    DURANTE_FASI_GIOCO = "Durante Fasi Gioco"
+    PARTITA = "Partita"
+
 
 
 class TipoIcona(Enum):

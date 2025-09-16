@@ -4988,7 +4988,7 @@ def verifica_integrita_database_equipaggiamenti() -> dict:
                 errori["statistiche_invalide"].append(f"{nome}: {stat}={valore}")
         
         # Verifica encoding corretto
-        if "quantita" in str(eq):
+        if "quantità" in str(eq):
             errori["encoding_errato"].append(f"{nome}: contiene caratteri non ASCII")
     
     return errori
@@ -5109,7 +5109,7 @@ if __name__ == "__main__":
     
     # Test creazione equipaggiamento
     print(f"\n=== TEST CREAZIONE EQUIPAGGIAMENTO ===")
-    spada = crea_equipaggiamento_da_database("spada_combattimento")
+    spada = crea_equipaggiamento_da_database("Death Angel")
     if spada:
         print(f"✓ Equipaggiamento creato: {spada.nome}")
         print(f"  Tipo: {spada.tipo.value}")

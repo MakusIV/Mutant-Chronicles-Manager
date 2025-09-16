@@ -25,6 +25,7 @@ class TipoSpeciale(Enum):
     FORTUNA = "Fortuna"
     SFORTUNA = "Sfortuna"
     TATTICA_SPECIALE = "Tattica Speciale"
+    SPECIALE = "Speciale"
 
 
 class BersaglioSpeciale(Enum):
@@ -54,6 +55,7 @@ class DurataSpeciale(Enum):
     PERMANENTE = "Permanente"
     CONTINUA = "Continua"
     FINO_PROSSIMO_TURNO = "Fino Prossimo Turno"
+
 
 
 class TimingSpeciale(Enum):
