@@ -5282,8 +5282,8 @@ DATABASE_SPECIALI = {
         "fondamentale": False
     },
 
-    "Grande Strategia": {
-        "nome": "Grande Strategia",
+    "Grande Stratega": {
+        "nome": "Grande Stratega",
         "valore": 0,
         "tipo": "Speciale",
         "rarity": "Common",
@@ -5877,41 +5877,8 @@ DATABASE_SPECIALI = {
         "fondamentale": False
     },
 
-    "Sedile Eiettabile": {
-        "nome": "Sedile Eiettabile",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Guerriero immediatamente dopo che un guerriero che utilizza un veicolo viene ferito o ucciso",
-        "durata": "Immediata, poi permanente se era già ferito",
-        "timing": "Immediatamente dopo che un guerriero che utilizza un veicolo viene ferito o ucciso",
-        "set_espansione": "Warzone",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Guarisce se stesso",
-                "tipo_effetto": "Guarigione",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Il guerriero aziona il sedile eiettabile ed evita di essere ferito. Questa opzione è applicabile anche per ferite che uccidono istantaneamente o per ferite che portano alla morte del guerriero. SCARTA IL VEICOLO. Se il guerriero era già ferito rimane ferito",
-                "condizioni": ["Guerriero con veicolo", "Appena ferito o ucciso"],
-                "limitazioni": ["Veicolo scartato", "Se era già ferito rimane ferito"]
-            }
-        ],
-        "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN GUERRIERO CHE UTILIZZA UN VEICOLO VIENE FERITO O UCCISO. Il guerriero aziona il sedile eiettabile ed evita di essere ferito. Questa opzione è applicabile anche per ferite che uccidono istantaneamente o per ferite che portano alla morte del guerriero. SCARTA IL VEICOLO. Se il guerriero era già ferito rimane ferito.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 1,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    }, 
-
+    # verificare queste sotto
+    
     "Addestramento Elite": {
         "nome": "Addestramento Elite",
         "valore": 0,

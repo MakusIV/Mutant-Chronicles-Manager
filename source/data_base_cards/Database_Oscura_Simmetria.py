@@ -13,423 +13,1553 @@ from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloOscu
 
 DATABASE_OSCURA_SIMMETRIA = {
      
-    # ========== CARTE GENERICHE ==========
     
-    # SET BASE
-    "corruzione_minore": {
-        "nome": "Corruzione Minore",
-        "costo_destino": 0,
-        "tipo": "Generica",
-        "rarity": "Common",
-        "apostolo_padre": "Nessuno",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO: era "Legione Oscura"
-        "bersaglio": "Guerriero Avversario",
+    # Base
+ 
+    "Dormire": {
+        "nome": "Dormire",
+        "costo_destino": "1 Azione",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Muawijhe",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero avversario",
         "durata": "Permanente",
-        "timing": "Turno Proprio",
+        "timing": "In Ogni Momento",
         "set_espansione": "Base",
-        "numero_carta": "DS-001",
+        "numero_carta": "",       
         "effetti": [
             {
-                "tipo_effetto": "Corruzione",
-                "valore": 1,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Il bersaglio subisce -1 al Combattimento permanentemente",
-                "condizioni": [],
+                "nome_effetto": "Addormentare Guerriero",
+                "tipo_effetto": "Controllo",
+                "valore": "1",
+                "statistica_target": "azione",
+                "descrizione_effetto": "Il guerriero addormentato non potrà attaccare o essere attaccato",
+                "condizioni": ["Pagare 1 Azione"],
+                "limitazioni": ["Il guerriero non può attaccare", "Il guerriero non può essere attaccato"],
                 "effetti_collaterali": []
             }
-        ],
-        "testo_carta": "Assegna al bersaglio. Il guerriero bersaglio subisce -1 al Combattimento.",
-        "flavour_text": "La corruzione inizia sempre con piccoli compromessi.",
-        "keywords": ["Corruzione"],
-        "restrizioni": [],
+        ],	 
+        "testo_carta": "DONO DI MUAWIJHE. Al costo di un'Azione questo guerriero può addormentare un guerriero avversario. Il guerriero addormentato non potrà attaccare o essere attaccato.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
             "bersagli_attuali": []
         },
-        "corruzione_applicata": {},
-        "mutazioni_applicate": {},
-        "penalita_giocatore": {},
-        "contatori_oscura": {},
-        "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)          # CORRETTO: era "quantità"
-    },
-    
-    "tentazione": {
-        "nome": "Tentazione",
-        "costo_destino": 1,
-        "tipo": "Generica",
-        "rarity": "Common",
-        "apostolo_padre": "Nessuno",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Guerriero Avversario",
-        "durata": "Istantanea",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "DS-002",
-        "effetti": [
-            {
-                "tipo_effetto": "Controllo",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Tappa il guerriero bersaglio",
-                "condizioni": [],
-                "effetti_collaterali": ["Perdi 1 Destiny Point se il bersaglio ha Valore ≥ 5"]
-            }
-        ],
-        "testo_carta": "Tappa il guerriero bersaglio. Se il bersaglio ha Valore 5 o più, perdi 1 DP.",
-        "flavour_text": "Anche i più virtuosi possono cadere.",
-        "keywords": ["Tentazione", "Controllo"],
-        "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "corruzione_applicata": {},
-        "mutazioni_applicate": {},
-        "penalita_giocatore": {},
-        "contatori_oscura": {},
-        "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "possessione_demoniaca": {
-        "nome": "Possessione Demoniaca",
-        "costo_destino": 4,
-        "tipo": "Possessione",
-        "rarity": "Rare",
-        "apostolo_padre": ApostoloOscuraSimmetria.DEMNOGONIS.value,
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Guerriero Avversario",
-        "durata": "Fino Eliminazione",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "DS-003",
-        "effetti": [
-            {
-                "tipo_effetto": "Possessione",
-                "valore": 3,
-                "statistica_target": "valore",
-                "descrizione_effetto": "Prendi il controllo del guerriero bersaglio",
-                "condizioni": ["Solo guerrieri con Valore ≤ 3"],
-                "effetti_collaterali": ["Scarta 2 carte per mantenere il controllo ogni turno"]
-            }
-        ],
-        "testo_carta": "Prendi il controllo del guerriero bersaglio con Valore 3 o meno. Scarta 2 carte ogni turno per mantenerlo.",
-        "flavour_text": "La mente debole cede alla volontà superiore del demone.",
-        "keywords": ["Possessione", "Demnogonis", "Controllo"],
-        "restrizioni": ["Solo guerrieri con Valore ≤ 3"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "corruzione_applicata": {},
-        "mutazioni_applicate": {},
-        "penalita_giocatore": {},
-        "contatori_oscura": {},
-        "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # ========== DONI DEGLI APOSTOLI ==========
-    
-    "furia_di_algeroth": {
-        "nome": "Furia di Algeroth",
-        "costo_destino": 1,
-        "tipo": "Dono dell'Apostolo",
-        "rarity": "Uncommon",
-        "apostolo_padre": "Algeroth",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Seguace dell'Apostolo",  # CORRETTO: specifica Seguaci
-        "durata": "Assegnata",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "DS-A01",
-        "effetti": [
-            {
-                "tipo_effetto": "Modificatore",
-                "valore": 2,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Il guerriero ottiene +2 Combattimento",
-                "condizioni": ["Solo Seguaci di Algeroth"],
-                "effetti_collaterali": ["Il guerriero non può ritirarsi dal combattimento"]
-            }
-        ],
-        "testo_carta": "Assegna a un Seguace di Algeroth. +2 Combattimento. Non può ritirarsi.",
-        "flavour_text": "La rabbia dell'Apostolo della Guerra scorre nelle vene del seguace.",
-        "keywords": ["Dono", "Algeroth", "Combattimento"],
-        "restrizioni": ["Solo Seguaci di Algeroth"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "corruzione_applicata": {},
-        "mutazioni_applicate": {},
-        "penalita_giocatore": {},
-        "contatori_oscura": {},
-        "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "benedizione_di_semai": {
-        "nome": "Benedizione di Semai",
-        "costo_destino": 2,
-        "tipo": "Dono dell'Apostolo",
-        "rarity": "Uncommon",
-        "apostolo_padre": "Semai",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Seguace dell'Apostolo",
-        "durata": "Assegnata",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "DS-S01",
-        "effetti": [
-            {
-                "tipo_effetto": "Immunita",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Immune alle malattie e ai veleni",
-                "condizioni": ["Solo Seguaci di Semai"],
-                "effetti_collaterali": ["Infetta guerrieri adiacenti quando eliminato"]
-            }
-        ],
-        "testo_carta": "Assegna a un Seguace di Semai. Immune a malattie e veleni. Quando eliminato, infetta guerrieri adiacenti.",
-        "flavour_text": "Il morbo protegge i suoi fedeli servitori.",
-        "keywords": ["Dono", "Semai", "Immunità", "Malattia"],
-        "restrizioni": ["Solo Seguaci di Semai"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "corruzione_applicata": {},
-        "mutazioni_applicate": {},
-        "penalita_giocatore": {},
-        "contatori_oscura": {},
-        "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "artigli_di_muawijhe": {
-        "nome": "Artigli di Muawijhe",
-        "costo_destino": 2,
-        "tipo": "Dono dell'Apostolo",
-        "rarity": "Uncommon",
-        "apostolo_padre": "Muawijhe",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Seguace dell'Apostolo",
-        "durata": "Assegnata",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "DS-M01",
-        "effetti": [
-            {
-                "tipo_effetto": "Mutazione",
-                "valore": 2,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Artigli mutanti che ignorano l'armatura",
-                "condizioni": ["Solo Seguaci di Muawijhe"],
-                "effetti_collaterali": ["Ignora Armatura nel primo round di combattimento"]
-            }
-        ],
-        "testo_carta": "Assegna a un Seguace di Muawijhe. +2 Combattimento corpo a corpo. Ignora l'Armatura nel primo round.",
-        "flavour_text": "Artigli che possono squarciare qualsiasi difesa.",
-        "keywords": ["Dono", "Muawijhe", "Mutazione", "Artigli"],
         "restrizioni": ["Solo Seguaci di Muawijhe"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
         "corruzione_applicata": {},
         "mutazioni_applicate": {},
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
     },
-
-    "vuoto_di_ilian": {
-        "nome": "Vuoto di Ilian",
-        "costo_destino": 3,
-        "tipo": "Dono dell'Apostolo",
-        "rarity": "Rare",
-        "apostolo_padre": "Ilian",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Seguace dell'Apostolo",
-        "durata": "Assegnata",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "DS-I01",
-        "effetti": [
-            {
-                "tipo_effetto": "Assorbimento",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Assorbe carte Arte nemiche",
-                "condizioni": ["Solo Seguaci di Ilian"],
-                "effetti_collaterali": ["Le carte assorbite vanno nel mazzo Oscura Simmetria"]
-            }
-        ],
-        "testo_carta": "Assegna a un Seguace di Ilian. Può assorbire carte Arte giocate contro di lui.",
-        "flavour_text": "Il vuoto consuma anche la luce della speranza.",
-        "keywords": ["Dono", "Ilian", "Assorbimento", "Vuoto"],
-        "restrizioni": ["Solo Seguaci di Ilian"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "corruzione_applicata": {},
-        "mutazioni_applicate": {},
-        "penalita_giocatore": {},
-        "contatori_oscura": {},
-        "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "follia_di_demnogonis": {
-        "nome": "Follia di Demnogonis",
-        "costo_destino": 1,
-        "tipo": "Dono dell'Apostolo",
-        "rarity": "Common",
-        "apostolo_padre": "Demnogonis",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Seguace dell'Apostolo",
-        "durata": "Assegnata",
-        "timing": "Quando Ferito",
-        "set_espansione": "Base",
-        "numero_carta": "DS-D01",
-        "effetti": [
-            {
-                "tipo_effetto": "Reazione",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Attacca alleato adiacente quando ferito",
-                "condizioni": ["Solo Seguaci di Demnogonis", "Quando viene ferito"],
-                "effetti_collaterali": ["Attacco obbligatorio"]
-            }
-        ],
-        "testo_carta": "Assegna a un Seguace di Demnogonis. Quando ferito, deve attaccare un alleato adiacente.",
-        "flavour_text": "Il dolore scatena una follia omicida incontrollabile.",
-        "keywords": ["Dono", "Demnogonis", "Follia", "Reazione"],
-        "restrizioni": ["Solo Seguaci di Demnogonis"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "corruzione_applicata": {},
-        "mutazioni_applicate": {},
-        "penalita_giocatore": {},
-        "contatori_oscura": {},
-        "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # ========== ESPANSIONI ==========
     
-    # WARZONE
-    "campo_di_distorsione": {
-        "nome": "Campo di Distorsione",
-        "costo_destino": 3,
-        "tipo": "Mutazione",
-        "rarity": "Rare",
-        "apostolo_padre": "Muawijhe",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Senza Bersaglio",
-        "durata": "Continua",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "DS-W02",
+    "Cecità": {
+        "nome": "Cecità",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Legione",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Avversari del guerriero",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
         "effetti": [
             {
-                "tipo_effetto": "Modificatore Globale",
-                "valore": 1,
-                "statistica_target": "movimento",
-                "descrizione_effetto": "Tutti i movimenti costano +1 azione",
+                "nome_effetto": "Penalità Caratteristiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "-2",
+                "statistica_target": "combattimento e sparare",
+                "descrizione_effetto": "Gli avversari del guerriero soffrono un -2 di penalità sulle loro caratteristiche C e S",
                 "condizioni": [],
-                "effetti_collaterali": ["I tuoi guerrieri sono immuni"]
+                "limitazioni": [],
+                "effetti_collaterali": []
             }
-        ],
-        "testo_carta": "Rimane in gioco. Tutti i movimenti costano 1 azione aggiuntiva. I tuoi guerrieri sono immuni.",
-        "flavour_text": "La realtà stessa si contorce e rallenta.",
-        "keywords": ["Mutazione", "Globale", "Movimento"],
-        "restrizioni": [],
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA LEGIONE. Gli avversari del guerriero soffrono un -2 di penalità sulle loro caratteristiche C e S.",
+        "flavour_text": "",
+        "keywords": [],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
             "bersagli_attuali": []
         },
+        "restrizioni": [],
         "corruzione_applicata": {},
         "mutazioni_applicate": {},
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Terrore": {
+        "nome": "Terrore",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Avversari di questo guerriero",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Paralizzare per Terrore",
+                "tipo_effetto": "Controllo",
+                "valore": "-1",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Gli avversari di questo guerriero sono paralizzati dal Terrore e subiscono un -1 in A",
+                "condizioni": [],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. Gli avversari di questo guerriero sono paralizzati dal Terrore e subiscono un -1 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Apertura Dimensionale": {
+        "nome": "Apertura Dimensionale",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Ilian",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerrieri feriti",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Uccide Automaticamente",
+                "tipo_effetto": "Combattimento",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "I guerrieri feriti dal possessore di questo Dono sono automaticamente uccisi",
+                "condizioni": ["Guerriero deve essere ferito dal possessore"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ILIAN. I guerrieri feriti dal possessore di questo Dono sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Ilian"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Fuoco Oscuro": {
+        "nome": "Fuoco Oscuro",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Crea Magico Fuoco Oscuro",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1",
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Nelle mani del guerriero si crea un Magico Fuoco Oscuro che gli conferisce un +1 in C",
+                "condizioni": [],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. Nelle mani del guerriero si crea un Magico Fuoco Oscuro che gli conferisce un +1 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Disturbo": {
+        "nome": "Disturbo",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Ilian",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo_effetto": "Immunita",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Il guerriero in possesso di questo Dono sarà immune agli effetti dell'Oscura Simmetria e alle Magiche Arti",
+                "condizioni": [],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ILIAN. Il guerriero in possesso di questo Dono sarà immune agli effetti dell'Oscura Simmetria e alle Magiche Arti.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Ilian"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Fusione Mentale": {
+        "nome": "Fusione Mentale",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Semai",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Caratteristiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2",
+                "statistica_target": "combattimento e sparare",
+                "descrizione_effetto": "Il guerriero guadagna un +2 in C e S",
+                "condizioni": [],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI SEMAI. Il guerriero guadagna un +2 in C e S.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Semai"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Illusione": {
+        "nome": "Illusione",
+        "costo_destino": "3 Punti Destino",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Semai",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Combattimento",
+        "durata": "Immediata",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Cancella Combattimento",
+                "tipo_effetto": "Controllo",
+                "valore": "3",
+                "statistica_target": "destino",
+                "descrizione_effetto": "Il guerriero può, in ogni momento, cancellare un combattimento nel quale è coinvolto. Tutte le carte giocate dai giocatori durante il combattimento sono scartate. La fase di combattimento è finita, e il guerriero deve immediatamente andare in copertura. Questo gli costerà 3D, ma non richiederà la spesa di alcuna Azione",
+                "condizioni": ["Guerriero coinvolto in combattimento"],
+                "limitazioni": ["Costa 3 Punti Destino", "Guerriero va automaticamente in copertura", "Non richiede spesa di Azioni"],
+                "effetti_collaterali": ["Tutte le carte del combattimento sono scartate"]
+            }
+        ],	 
+        "testo_carta": "DONO DI SEMAI. Il guerriero può, in ogni momento, cancellare un combattimento nel quale è coinvolto. Tutte le carte giocate dai giocatori durante il combattimento sono scartate. La fase di combattimento è finita, e il guerriero deve immediatamente andare in copertura. Questo gli costerà 3D, ma non richiederà la spesa di alcuna Azione.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Semai"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Resistere Al Dolore": {
+        "nome": "Resistere Al Dolore",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Azioni",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Il guerriero guadagna un +1 in A",
+                "condizioni": [],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. Il guerriero guadagna un +1 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Controllo Della Mente": {
+        "nome": "Controllo Della Mente",
+        "costo_destino": "3 Azioni",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Semai",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero nemico",
+        "durata": "1 Turno",
+        "timing": "Turno",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Controlla Guerriero Nemico",
+                "tipo_effetto": "Controllo",
+                "valore": "3",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Una volta per Turno, al costo di 3 Azioni, puoi ordinare a un Guerriero nemico di attaccare o di non attaccare durante il Suo Turno. Chiaramente il giocatore avversario sarà libera di agire con gli altri guerrieri in Suo possesso",
+                "condizioni": ["Una volta per turno", "Costo di 3 Azioni"],
+                "limitazioni": ["Solo un guerriero nemico per turno", "Altri guerrieri dell'avversario rimangono liberi"],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI SEMAI. Una volta per Turno, al costo di 3 Azioni, puoi ordinare a un Guerriero nemico di attaccare o di non attaccare durante il Suo Turno. Chiaramente il giocatore avversario sarà libera di agire con gli altri guerrieri in Suo possesso.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Semai"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
     },
 
-    "corruzione_maggiore": {
-        "nome": "Corruzione Maggiore",
-        "costo_destino": 2,
-        "tipo": "Corruzione",
-        "rarity": "Uncommon",
-        "apostolo_padre": "Nessuno",
-        "fazioni_permesse": ["Oscura Legione"],  # CORRETTO
-        "bersaglio": "Guerriero Avversario",
+    "Deformazione": {
+        "nome": "Deformazione",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Demnogonis",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerrieri che combattono contro il possessore",
         "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "DS-W03",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
         "effetti": [
             {
-                "tipo_effetto": "Corruzione",
-                "valore": 2,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Il bersaglio subisce -2 al Combattimento permanentemente",
-                "condizioni": [],
-                "effetti_collaterali": ["Può diffondersi a guerrieri adiacenti"]
+                "nome_effetto": "Penalità Azioni",
+                "tipo_effetto": "Modificatore",
+                "valore": "-2",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Tutti i guerrieri che combattono contro il possessore di questo Dono ricevono una penalità di -2 in A",
+                "condizioni": ["Guerrieri devono combattere contro il possessore"],
+                "limitazioni": [],
+                "effetti_collaterali": []
             }
-        ],
-        "testo_carta": "Assegna al bersaglio. -2 Combattimento permanente. Può diffondersi.",
-        "flavour_text": "La corruzione si diffonde come un cancro spirituale.",
-        "keywords": ["Corruzione", "Diffusione"],
-        "restrizioni": [],
+        ],	 
+        "testo_carta": "DONO DI DEMNOGONIS. Tutti i guerrieri che combattono contro il possessore di questo Dono ricevono una penalità di -2 in A.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Demnogonis"],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
             "bersagli_attuali": []
         },
+        "restrizioni": ["Solo Seguaci di Demnogonis"],
         "corruzione_applicata": {},
         "mutazioni_applicate": {},
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    }
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Sogni Orribili": {
+        "nome": "Sogni Orribili",
+        "costo_destino": "5 Punti Destino",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Muawijhe",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero nemico",
+        "durata": "Immediata",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Invia Sogni Orribili",
+                "tipo_effetto": "Controllo",
+                "valore": "5",
+                "statistica_target": "destino",
+                "descrizione_effetto": "Spendendo 5D, in ogni momento, questo guerriero può inviare Sogni Orribili a un guerriero nemico, costringendo ad Andare in Copertura. Gira la carta del guerriero a faccia in giù",
+                "condizioni": ["Costo di 5 Punti Destino", "In ogni momento"],
+                "limitazioni": ["Guerriero bersaglio va in copertura", "Carta del guerriero girata a faccia in giù"],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI MUAWIJHE. Spendendo 5D, in ogni momento, questo guerriero può inviare Sogni Orribili a un guerriero nemico, costringendo ad Andare in Copertura. Gira la carta del guerriero a faccia in giù.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Muawijhe"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Portale Della Cura Oscura": {
+        "nome": "Portale Della Cura Oscura",
+        "costo_destino": "3 Azioni",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Algeroth",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Nefarita ferito",
+        "durata": "Immediata",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Guarisce Nefarita",
+                "tipo_effetto": "Guarigione",
+                "valore": "3",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Può solo essere assegnato a un Nefarita di qualsiasi Apostolo. Se il Nefarita è ferito, può guarire al costo di tre Azioni",
+                "condizioni": ["Solo Nefarita di qualsiasi Apostolo", "Nefarita deve essere ferito"],
+                "limitazioni": ["Costa 3 Azioni"],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ALGEROTH. Può solo essere assegnato a un Nefarita di qualsiasi Apostolo. Se il Nefarita è ferito, può guarire al costo di tre Azioni",
+        "flavour_text": "",
+        "keywords": ["Nefarita", "Seguace di Algeroth"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Algeroth", "Solo Nefarita"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Indigestione": {
+        "nome": "Indigestione",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Algeroth",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Avversari del guerriero",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Penalità Azioni Avversari",
+                "tipo_effetto": "Modificatore",
+                "valore": "-2",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Tutti gli avversari di questo guerriero subiscono una penalità un -2 in A",
+                "condizioni": [],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ALGEROTH. Tutti gli avversari di questo guerriero subiscono una penalità un -2 in A.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Algeroth"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Vento Della Pazzia": {
+        "nome": "Vento Della Pazzia",
+        "costo_destino": "1 Azione",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Muawijhe",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Tutti i guerrieri in gioco",
+        "durata": "Immediata",
+        "timing": "Turno",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Infligge Danno a Tutti",
+                "tipo_effetto": "Combattimento",
+                "valore": "1",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Una volta per Turno, al costo di un'Azione, questo guerriero può invocare il VENTO DELLA PAZZIA. Invocare il Vento non viene considerato un'Azione d'Attacco. Per ogni 5D spesi, è inflitto un Punto Danno su ogni guerriero in gioco, incluso l'Evocatore. Se i Punti Danno eguagliano o superano A, allora il guerriero è ferito",
+                "condizioni": ["Una volta per turno", "Costo di 1 Azione per invocare", "5 Punti Destino per ogni punto danno"],
+                "limitazioni": ["Non è considerata Azione d'Attacco", "Colpisce anche l'evocatore"],
+                "effetti_collaterali": ["Tutti i guerrieri in gioco subiscono danno"]
+            }
+        ],	 
+        "testo_carta": "DONO DI MUAWIJHE. Una volta per Turno, al costo di un'Azione, questo guerriero può invocare il VENTO DELLA PAZZIA. Invocare il Vento non viene considerato un'Azione d'Attacco. Per ogni 5D spesi, è inflitto un Punto Danno su ogni guerriero in gioco, incluso l'Evocatore. Se i Punti Danno eguagliano o superano A, allora il guerriero è ferito.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Muawijhe"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Distorsione": {
+        "nome": "Distorsione",
+        "costo_destino": "10 Punti Destino",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Algeroth",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Arma o carta Equipaggiamento",
+        "durata": "Immediata",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": "10",
+                "statistica_target": "destino",
+                "descrizione_effetto": "Spendendo in qualsiasi momento 10D, questo guerriero potrà scegliere un'Arma o una carta di Equipaggiamento in gioco e scartarla",
+                "condizioni": ["Costo di 10 Punti Destino", "In qualsiasi momento"],
+                "limitazioni": ["Solo Armi o Equipaggiamenti in gioco"],
+                "effetti_collaterali": ["La carta scelta viene scartata"]
+            }
+        ],	 
+        "testo_carta": "DONO DI ALGEROTH. Spendendo in qualsiasi momento 10D, questo guerriero potrà scegliere un'Arma o una carta di Equipaggiamento in gioco e scartarla.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Algeroth"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Ruggine": {
+        "nome": "Ruggine",
+        "costo_destino": "10 Punti Destino",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Demnogonis",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Arma o carta Equipaggiamento del nemico",
+        "durata": "Immediata",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": "10",
+                "statistica_target": "destino",
+                "descrizione_effetto": "Spendendo 10D questo guerriero potrà scegliere un'Arma o una carta Equipaggiamento del nemico e scartarla",
+                "condizioni": ["Costo di 10 Punti Destino"],
+                "limitazioni": ["Solo Armi o Equipaggiamenti nemici"],
+                "effetti_collaterali": ["La carta scelta viene scartata"]
+            }
+        ],	 
+        "testo_carta": "DONO DI DEMNOGONIS. Spendendo 10D questo guerriero potrà scegliere un'Arma o una carta Equipaggiamento del nemico e scartarla.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Demnogonis"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Demnogonis"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Deformazione Dimensionale": {
+        "nome": "Deformazione Dimensionale",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Algeroth",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerrieri feriti dal possessore",
+        "durata": "Permanente",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Uccide Automaticamente",
+                "tipo_effetto": "Combattimento",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "I guerrieri feriti dal possessore di questo Dono sono automaticamente uccisi",
+                "condizioni": ["Guerriero deve essere ferito dal possessore"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ALGEROTH. I guerrieri feriti dal possessore di questo Dono sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Algeroth"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Mano Della Morte": {
+        "nome": "Mano Della Morte",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Ilian",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Caratteristiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2",
+                "statistica_target": "combattimento e sparare",
+                "descrizione_effetto": "Le C e S del guerriero guadagnano un bonus di un +2",
+                "condizioni": [],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ILIAN. Le C e S del guerriero guadagnano un bonus di un +2.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Ilian"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Infezione": {
+        "nome": "Infezione",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Demnogonis",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Avversari feriti dal guerriero",
+        "durata": "Permanente",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Uccide Automaticamente",
+                "tipo_effetto": "Combattimento",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Gli avversari feriti da questo guerriero, sono automaticamente morti",
+                "condizioni": ["Avversario deve essere ferito da questo guerriero"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI DEMNOGONIS. Gli avversari feriti da questo guerriero, sono automaticamente morti.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Demnogonis"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Demnogonis"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Legame Necrovisuale": {
+        "nome": "Legame Necrovisuale",
+        "costo_destino": "1 Azione",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Algeroth",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Altro giocatore",
+        "durata": "Immediata",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Osserva Carte Avversario",
+                "tipo_effetto": "Carte",
+                "valore": "1",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Può solo essere assegnato a un Nefarita di qualsiasi Apostolo. Al costo di un'Azione, puoi guardare le carte in mano a un altro giocatore",
+                "condizioni": ["Solo Nefarita di qualsiasi Apostolo", "Costo di 1 Azione"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ALGEROTH. Può solo essere assegnato a un Nefarita di qualsiasi Apostolo. Al costo di un'Azione, puoi guardare le carte in mano a un altro giocatore.",
+        "flavour_text": "",
+        "keywords": ["Nefarita", "Seguace di Algeroth"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Algeroth", "Solo Nefarita"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Confondere": {
+        "nome": "Confondere",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Muawijhe",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Tattica Combattimento",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Questo guerriero può cambiare la Tattica di Combattimento scelta per quel combattimento",
+                "condizioni": [],
+                "limitazioni": ["Solo per il combattimento corrente"],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI MUAWIJHE. Questo guerriero può cambiare la Tattica di Combattimento scelta per quel combattimento.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Muawijhe"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Danza Folle": {
+        "nome": "Danza Folle",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Muawijhe",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerrieri che combattono contro il possessore",
+        "durata": "Permanente",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Penalità Caratteristiche Avversari",
+                "tipo_effetto": "Modificatore",
+                "valore": "-2",
+                "statistica_target": "combattimento e sparare",
+                "descrizione_effetto": "Tutti i guerrieri che combattono contro il possessore di questo Dono ricevono una penalità di -2 in C e S",
+                "condizioni": ["Guerrieri devono combattere contro il possessore"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI MUAWIJHE. Tutti i guerrieri che combattono contro il possessore di questo Dono ricevono una penalità di -2 in C e S.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Muawijhe"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    }.
+
+    # Inquisition
+
+    "Evocazione Oscura": {
+        "nome": "Evocazione Oscura",
+        "costo_destino": "3 Azioni",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Algeroth",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Mazzo di carte da Pescare",
+        "durata": "Immediata",
+        "timing": "Turno",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta Equipaggiamento",
+                "tipo_effetto": "Carte",
+                "valore": "3",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Al costo di tre Azioni, questo guerriero può cercare nel tuo mazzo di carte da Pescare una qualsiasi carta Equipaggiamento dell'Oscura Legione ed equipaggiarsi con quella. Scarta questa carta dopo l'uso.",
+                "condizioni": ["Costo di 3 Azioni"],
+                "limitazioni": ["Solo carta Equipaggiamento dell'Oscura Legione", "Scarta questa carta dopo l'uso"],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ALGEROTH. Al costo di tre Azioni, questo guerriero può cercare nel tuo mazzo di carte da Pescare una qualsiasi carta Equipaggiamento dell'Oscura Legione ed equipaggiarsi con quella. Scarta questa carta dopo l'uso.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Algeroth"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Potere Mostruoso": {
+        "nome": "Potere Mostruoso",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Eretici"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Caratteristiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2",
+                "statistica_target": "combattimento, sparare, azioni e velocità",
+                "descrizione_effetto": "Può solo essere assegnata agli Eretici. L'Eretico guadagna un +2 in C, S, A e V.",
+                "condizioni": ["Solo Eretici"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. PUÒ SOLO ESSERE ASSEGNATA AGLI ERETICI. L'Eretico guadagna un +2 in C, S, A e V.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Eretici"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Forza Primordiale": {
+        "nome": "Forza Primordiale",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Eretici"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Caratteristiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1",
+                "statistica_target": "combattimento, sparare, azioni e velocità",
+                "descrizione_effetto": "Può solo essere assegnata agli Eretici. L'Eretico guadagna un +1 in C, S, A e V.",
+                "condizioni": ["Solo Eretici"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. PUÒ SOLO ESSERE ASSEGNATA AGLI ERETICI. L'Eretico guadagna un +1 in C, S, A e V.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Eretici"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Plagio": {
+        "nome": "Plagio",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Ilian",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Guerriero non-Personalità",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Copia Abilità Guerriero",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "varie",
+                "descrizione_effetto": "Scegli un guerriero non-Personalità in gioco. Il guerriero che riceve questo dono, ha ora tutte le abilità (non C, S, A e V) segnate sulla carta del guerriero scelto, finché questa carta è in gioco. Puoi scegliere il guerriero che desideri copiare solo al momento in cui giochi questa carta e non lo puoi più modificare in seguito.",
+                "condizioni": ["Scegliere un guerriero non-Personalità in gioco"],
+                "limitazioni": ["Non copia le caratteristiche C, S, A e V", "Non può modificare la scelta dopo aver giocato la carta"],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI ILIAN. Scegli un guerriero non-Personalità in gioco. Il guerriero che riceve questo dono, ha ora tutte le abilità (non C, S, A e V) segnate sulla carta del guerriero scelto, finché questa carta è in gioco. Puoi scegliere il guerriero che desideri copiare solo al momento in cui giochi questa carta e non lo puoi più modificare in seguito.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Ilian", "Non può essere usato su Personalità"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Autorità": {
+        "nome": "Autorità",
+        "costo_destino": "2 Azioni",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Semai",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Avversario",
+        "durata": "Immediata",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Osserva Carte Avversario",
+                "tipo_effetto": "Carte",
+                "valore": "2",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Al costo di due Azioni, questo guerriero Ti permette di vedere le carte in mano ad un Tuo avversario.",
+                "condizioni": ["Costo di 2 Azioni"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DI SEMAI. Al costo di due Azioni, questo guerriero Ti permette di vedere le carte in mano ad un Tuo avversario.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Semai"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Forza Empia": {
+        "nome": "Forza Empia",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Eretici"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Caratteristiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "+4",
+                "statistica_target": "combattimento, sparare, azioni e velocità",
+                "descrizione_effetto": "Può solo essere assegnato agli Eretici. L'Eretico guadagna un +4 in C, S, A e V.",
+                "condizioni": ["Solo Eretici"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. PUÒ SOLO ESSERE ASSEGNATO AGLI ERETICI. L'Eretico guadagna un +4 in C, S, A e V.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Eretici"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Occhio Sacrilego": {
+        "nome": "Occhio Sacrilego",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Eretici"],
+        "bersaglio": "Avversari dell'Eretico",
+        "durata": "Permanente",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Azione Avversari",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Può solo essere assegnato agli Eretici. Gli avversari dell'Eretico sono accecati. Se l'avversario non paga 3D, il combattimento termina dopo l'Attacco dell'Eretico e l'avversario non può contrattaccare. Se li paga il combattimento è normale.",
+                "condizioni": ["Solo Eretici"],
+                "limitazioni": ["Avversario deve pagare 3D per contrattaccare"],
+                "effetti_collaterali": ["Se non paga, combattimento termina dopo attacco dell'Eretico"]
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. PUÒ SOLO ESSERE ASSEGNATO AGLI ERETICI. Gli avversari dell'Eretico sono accecati. Se l'avversario non paga 3D, il combattimento termina dopo l'Attacco dell'Eretico e l'avversario non può contrattaccare. Se li paga il combattimento è normale.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Eretici"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Forza Malvagia": {
+        "nome": "Forza Malvagia",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Eretici"],
+        "bersaglio": "Guerriero possessore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Caratteristiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "+5",
+                "statistica_target": "combattimento, sparare, azioni e velocità",
+                "descrizione_effetto": "Può solo essere assegnato agli Eretici. L'Eretico guadagna un +5 in C, S, A e V.",
+                "condizioni": ["Solo Eretici"],
+                "limitazioni": [],
+                "effetti_collaterali": []
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. PUÒ SOLO ESSERE ASSEGNATA AGLI ERETICI. L'Eretico guadagna un +5 in C, S, A e V.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Eretici"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Occhio Malvagio": {
+        "nome": "Occhio Malvagio",
+        "costo_destino": "",
+        "tipo": "Dono dell'Oscura Simmetria",
+        "apostolo_padre": "",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Eretici"],
+        "bersaglio": "Avversari dell'Eretico",
+        "durata": "Permanente",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Azione Avversari",
+                "tipo_effetto": "Modificatore",
+                "valore": "3",
+                "statistica_target": "destino",
+                "descrizione_effetto": "Può solo essere assegnato agli Eretici. Gli avversari dell'Eretico sono accecati. Se l'avversario non paga 3D, il combattimento termina dopo l'Attacco dell'Eretico e l'avversario non può contrattaccare. Se li paga il combattimento è normale.",
+                "condizioni": ["Solo Eretici"],
+                "limitazioni": ["Avversario deve pagare 3D per contrattaccare"],
+                "effetti_collaterali": ["Se non paga, combattimento termina dopo attacco dell'Eretico"]
+            }
+        ],	 
+        "testo_carta": "DONO DELL'OSCURA SIMMETRIA. PUÒ SOLO ESSERE ASSEGNATO AGLI ERETICI. Gli avversari dell'Eretico sono accecati. Se l'avversario non paga 3D, il combattimento termina dopo l'Attacco dell'Eretico e l'avversario non può contrattaccare. Se li paga il combattimento è normale.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Eretici"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Untore": {
+        "nome": "Untore",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Demnogonis",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Doomtroopers che combattono questo guerriero",
+        "durata": "Permanente",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Applica Segnalini",
+                "tipo_effetto": "Modificatore",
+                "valore": "-2",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Ogni Doomtrooper che combatte questo guerriero è infetto. Metti un Segnalino sul guerriero. I Segnalini danno un -2 in A e possono essere rimossi solo quando il giocatore deve mettere un Segnalino su un Doomtrooper non infetto durante ognuna delle sue Fasi Pescare. I Segnalini possono essere rimossi in ogni momento, spendendo 4D per ognuno.",
+                "condizioni": ["Doomtrooper deve combattere questo guerriero"],
+                "limitazioni": ["Solo sui Doomtroopers", "Segnalini danno -2 in A"],
+                "effetti_collaterali": ["Segnalini rimossi solo in Fase Pescare o spendendo 4D"]
+            }
+        ],	 
+        "testo_carta": "DONO DI DEMNOGONIS. Ogni Doomtrooper che combatte questo guerriero è infetto. Metti un Segnalino sul guerriero. I Segnalini danno un -2 in A A partire da questo momento, il giocatore deve mettere un Segnalino su un Doomtrooper non infetto durante ognuna delle sue Fasi Pescare. I Segnalini possono essere rimossi in ogni momento, spendendo 4D per ognuno.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Demnogonis"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Demnogonis"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+    
+    "Urlo Lacerante": {
+        "nome": "Urlo Lacerante",
+        "costo_destino": "1 Azione",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Muawijhe",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Ogni guerriero",
+        "durata": "Immediata",
+        "timing": "Turno",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Infligge Segnalini Terrore",
+                "tipo_effetto": "Controllo",
+                "valore": "1",
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Puoi urlare ad ogni numero di guerrieri, al costo complessivo di un'Azione. Metti un Segnalino su ogni guerriero terrorizzato. Ogni Urlo Ti costa 2D. I guerrieri terrorizzati devono spendere 4D per Attaccare. I Segnalini saranno rimossi all'inizio del Tuo prossimo Turno.",
+                "condizioni": ["Costo complessivo di 1 Azione", "2 Punti Destino per ogni urlo"],
+                "limitazioni": ["Guerrieri terrorizzati devono spendere 4D per attaccare"],
+                "effetti_collaterali": ["Segnalini rimossi all'inizio del prossimo turno"]
+            }
+        ],	 
+        "testo_carta": "DONO DI MUAWIJHE. Puoi urlare ad ogni numero di guerrieri, al costo complessivo di un'Azione. Metti un Segnalino su ogni guerriero terrorizzato. Ogni Urlo Ti costa 2D. I guerrieri terrorizzati devono spendere 4D per Attaccare. I Segnalini saranno rimossi all'inizio del Tuo prossimo Turno.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Muawijhe"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Muawijhe"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+
+    # Warzone
+
+    "Il Potere Della Percezione": {
+        "nome": "Il Potere Della Percezione",
+        "costo_destino": "",
+        "tipo": "Dono degli Apostoli",
+        "apostolo_padre": "Ilian",
+        "rarity": "Common",     
+        "fazioni_permesse": ["Oscura Legione"],
+        "bersaglio": "Avversario che pesca carte",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Warzone",
+        "numero_carta": "",       
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Giocabile in qualsiasi momento mentre il tuo avversario prende una carta dal mazzo, dagli scarti o dalla collezione. Scartando questo dono il tuo avversario è costretto a eliminare la carta dal gioco. Non ti è concesso guardare la carta.",
+                "condizioni": ["Avversario deve star prendendo una carta dal mazzo, scarti o collezione"],
+                "limitazioni": ["Non puoi guardare la carta eliminata", "Scarta questo dono dopo l'uso"],
+                "effetti_collaterali": ["La carta dell'avversario viene eliminata dal gioco"]
+            }
+        ],	 
+        "testo_carta": "DONO DI ILIAN. Giocabile in qualsiasi momento mentre il tuo avversario prende una carta dal mazzo, dagli scarti o dalla collezione. Scartando questo dono il tuo avversario è costretto a eliminare la carta dal gioco. Non ti è concesso guardare la carta.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Ilian"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": ["Solo Seguaci di Ilian"],
+        "corruzione_applicata": {},
+        "mutazioni_applicate": {},
+        "penalita_giocatore": {},
+        "contatori_oscura": {},
+        "livello_corruzione": 0,
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False       
+    },
+
 }
 
 

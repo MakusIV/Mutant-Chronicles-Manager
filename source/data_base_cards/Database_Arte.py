@@ -8,570 +8,2766 @@ from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, DisciplinaAr
 
 
 CARTE_ARTE_DATABASE = {
-    # === CARTE ARTE BASE SET ===
-    "mystical_shield": {
-        "nome": "Mystical Shield",
-        "valore": 1,  # Costo in Destiny Points (campo V delle carte)
-        "tipo": "Benedizione",
-        "rarity": "Common",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": [Fazione.FRATELLANZA.value, Fazione.FREELANCER.value],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": Set_Espansione.BASE.value,
-        "numero_carta": "A001",
-        "effetti": [
-            {
-                "tipo_effetto": "Modificatore",
-                "valore": 1,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Il guerriero bersaglio ottiene +1 Combattimento",
-                "condizioni": []
-            }
-        ],
-        "testo_carta": "Il guerriero bersaglio ottiene +1 Combattimento fino alla fine del gioco.",
-        "flavour_text": "La protezione del Cardinale avvolge i fedeli come un manto di luce.",
-        "keywords": ["Benedizione", "Protezione"],
-        "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
+   
+   # Base
 
-    "dark_curse": {
-        "nome": "Dark Curse",
-        "valore": 2,
-        "tipo": "Maledizione",
-        "rarity": "Uncommon",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": [Fazione.FRATELLANZA.value, Fazione.FREELANCER.value],
-        "bersaglio": "Guerriero Avversario",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "A002",
-        "effetti": [
-            {
-                "tipo_effetto": "Modificatore",
-                "valore": -1,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Il guerriero bersaglio subisce -1 Combattimento",
-                "condizioni": []
-            }
-        ],
-        "testo_carta": "Il guerriero bersaglio subisce -1 Combattimento fino alla fine del gioco.",
-        "flavour_text": "L'ombra della Simmetria Oscura contamina anche i più valorosi.",
-        "keywords": ["Maledizione", "Corruzione"],
-        "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9
-    },
-
-    "healing_light": {
-        "nome": "Healing Light",
-        "valore": 1,
+    "Barriera Mentale": {
+        "nome": "Barriera Mentale",
+        "valore": 0,
         "tipo": "Normale",
+        "disciplina": "Arte del Cambiamento",
         "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Istantanea",
-        "timing": "Qualsiasi Momento",
+        "bersaglio": "Guerriero in combattimento",
+        "durata": "Fino all'inizio del tuo prossimo turno",
+        "timing": "In ogni momento",
         "set_espansione": "Base",
-        "numero_carta": "A003",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
         "effetti": [
             {
+                "nome_effetto": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo_effetto": "Immunita",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Per ogni Punto D speso, il guerriero è immune agli effetti di una carta dell'Oscura Simmetria. L'effetto dura fino all'inizio del Tuo prossimo Turno",
+                "condizioni": ["Guerriero in combattimento"],
+                "limitazioni": ["Durata limitata al prossimo turno"]
+            }
+        ],
+        "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE IN OGNI MOMENTO. PUÒ ESSERE ASSEGNATA A UN GUERRIERO IN COMBATTIMENTO. Per ogni Punto D speso, il guerriero è immune agli effetti di una carta dell'Oscura Simmetria. L'effetto dura fino all'inizio del Tuo prossimo Turno.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Empatia": {
+        "nome": "Empatia",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte del Cambiamento",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediata",
+        "timing": "Al costo di un'azione",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Azione",
+                "tipo_effetto": "Modificatore",
+                "valore": "10D per attacco",
+                "statistica_target": "",
+                "descrizione_effetto": "Per ogni 10D spesi, un giocatore deve raccontarti i dettagli del Suo prossimo Attacco: deve dirti se intende attaccare, chi sarà l'attaccante e il difensore, e anche la Tattica del Combattimento. Quando tutto è stato annunciato, il giocatore dovrà condurre nel suo Turno, l'Attacco come programmato, salvo che questa azione diventi proibita",
+                "condizioni": ["Costo 10D per attacco"],
+                "limitazioni": ["L'attacco può diventare proibito"]
+            }
+        ],
+        "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE AL COSTO DI UN'AZIONE. Per ogni 10D spesi, un giocatore deve raccontarti i dettagli del Suo prossimo Attacco: deve dirti se intende attaccare, chi sarà l'attaccante e il difensore, e anche la Tattica del Combattimento. Quando tutto è stato annunciato, il giocatore dovrà condurre nel suo Turno, l'Attacco come programmato, salvo che questa azione diventi proibita.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Ipnosi Maggiore": {
+        "nome": "Ipnosi Maggiore",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte del Cambiamento",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero in combattimento",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Puoi cambiare il difensore del combattimento con qualsiasi altro guerriero in gioco, indifferentemente dal fatto di far parte di una Corporazione o dell'Oscura Legione",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEL CAMBIAMENTO. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare il difensore del combattimento con qualsiasi altro guerriero in gioco, indifferentemente dal fatto di far parte di una Corporazione o dell'Oscura Legione.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcismo": {
+        "nome": "Esorcismo",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte del Cambiamento",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Doomtrooper convertito in Eretico",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "5D",
+                "statistica_target": "",
+                "descrizione_effetto": "Al costo di 5D, potrai riportare alla normalità un Doomtrooper che era stato convertito in Eretico. Per poter eseguire l'Esorcismo dovrai, prima di tutto, scartare tutte le carte dell'Oscura Simmetria che gli erano state assegnate, al costo di 3D ognuna",
+                "condizioni": ["Doomtrooper convertito in Eretico", "Costo 5D + 3D per carta Oscura Simmetria"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE IN OGNI MOMENTO. Al costo di 5D, potrai riportare alla normalità un Doomtrooper che era stato convertito in Eretico. Per poter eseguire l'Esorcismo dovrai, prima di tutto, scartare tutte le carte dell'Oscura Simmetria che gli erano state assegnate, al costo di 3D ognuna.",
+        "flavour_text": "",
+        "keywords": ["Eretico"],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Comandare": {
+        "nome": "Comandare",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte del Cambiamento",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero nemico",
+        "durata": "Fino all'inizio della tua fase pescare",
+        "timing": "All'inizio della tua azione d'attacco",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Azione",
+                "tipo_effetto": "Modificatore",
+                "valore": "6D",
+                "statistica_target": "",
+                "descrizione_effetto": "Puoi forzare un guerriero nemico ad attaccare un guerriero a tua scelta. Se l'attaccante è ferito o ucciso, il possessore del guerriero guadagna il doppio di V in Punti Destino. Se il difensore è ferito o ucciso, Tu riceverai un numero di Punti Destino pari al V del guerriero. Il possessore di questo guerriero guadagna tutti i punti promozione",
+                "condizioni": ["Costo 6D", "All'inizio dell'azione d'attacco"],
+                "limitazioni": ["Il possessore del guerriero guadagna il doppio di V in Punti Destino se l'attaccante è ferito o ucciso"]
+            }
+        ],
+        "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE ALL'INIZIO DELLA TUA AZIONE D'ATTACCO AL COSTO DI 6D. Puoi forzare un guerriero nemico ad attaccare un guerriero a tua scelta. Se l'attaccante è ferito o ucciso, il possessore del guerriero guadagna il doppio di V in Punti Destino. Se il difensore è ferito o ucciso, Tu riceverai un numero di Punti Destino pari al V del guerriero. Il possessore di questo guerriero guadagna tutti i punti promozione.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Dominazione Minore": {
+        "nome": "Dominazione Minore",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte del Cambiamento",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Avversario",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": "8D",
+                "statistica_target": "",
+                "descrizione_effetto": "Per ogni 8D spesi puoi, dopo aver esaminato le carte in mano al Tuo avversario, scartarne una",
+                "condizioni": ["Costo 8D per carta"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE IN OGNI MOMENTO. Per ogni 8D spesi puoi, dopo aver esaminato le carte in mano al Tuo avversario, scartarne una.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Ipnosi": {
+        "nome": "Ipnosi",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Avversario",
+        "durata": "Immediata",
+        "timing": "Per ogni 10D",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "10D per esame",
+                "statistica_target": "",
+                "descrizione_effetto": "Puoi esaminare il mazzo di carte dell'avversario che dopo potrà nuovamente mescolare e tagliare il mazzo",
+                "condizioni": ["Costo 10D per esame"],
+                "limitazioni": ["L'avversario può rimescolare dopo"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA PREMONIZIONE. ASSEGNABILE IN OGNI MOMENTO. Per ogni 10D, puoi esaminare il mazzo di carte dell'avversario che dopo potrà nuovamente mescolare e tagliare il mazzo.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Visione": {
+        "nome": "Visione",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Avversario",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "4D",
+                "statistica_target": "",
+                "descrizione_effetto": "Spendendo 4D, potrai guardare le carte in mano al Tuo avversario",
+                "condizioni": ["Costo 4D"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA PREMONIZIONE. Giocabile in ogni momento. Spendendo 4D, potrai guardare le carte in mano al Tuo avversario.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Presenza": {
+        "nome": "Presenza",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero che sta combattendo l'Oscura Legione",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Statistiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni D speso",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Può essere assegnata a un guerriero che sta combattendo l'Oscura Legione. Per ogni Punto D speso, il guerriero guadagna un +1 in A",
+                "condizioni": ["Incantesimo di combattimento", "Guerriero combatte Oscura Legione"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. PUÒ ESSERE ASSEGNATA A UN GUERRIERO CHE STA COMBATTENDO L'OSCURA LEGIONE. Per ogni Punto D speso, il guerriero guadagna un +1 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Malattie": {
+        "nome": "Esorcizzare Malattie",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte dell'Esorcismo",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento e Immunità",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni 2D spesi",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI DEMNOGONIS",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI DEMNOGONIS.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Premonizione": {
+        "nome": "Premonizione",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cambia Tattica",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "tattica",
+                "descrizione_effetto": "Puoi cambiare il difensore di un combattimento, scegliendo tra i tuoi guerrieri in gioco",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": ["Solo tra i propri guerrieri"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare il difensore di un combattimento, scegliendo tra i tuoi guerrieri in gioco.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Pensieri Malvagi": {
+        "nome": "Esorcizzare Pensieri Malvagi",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte dell'Esorcismo",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento e Immunità",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni 2D spesi",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI MUAWIJHE",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI MUAWIJHE.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Dominazione Maggiore": {
+        "nome": "Dominazione Maggiore",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Avversario",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": "5D per carta",
+                "statistica_target": "",
+                "descrizione_effetto": "Per ogni 5D, puoi guardare le carte dell'avversario e scartarne due",
+                "condizioni": ["Costo 5D per utilizzo"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Per ogni 5D, puoi guardare le carte dell'avversario e scartarne due.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Influenze Oscure": {
+        "nome": "Esorcizzare Influenze Oscure",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte dell'Esorcismo",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo_effetto": "Immunita",
+                "valore": "1D per immunità",
+                "statistica_target": "",
+                "descrizione_effetto": "Per ogni Punto D speso, il guerriero diventa immune a un DONO DELL'OSCURA SIMMETRIA",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni Punto D speso, il guerriero diventa immune a un DONO DELL'OSCURA SIMMETRIA.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Strada Della Verita": {
+        "nome": "Strada Della Verita",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediata",
+        "timing": "Giocabile durante la fase Pescare, prima che qualsiasi carta sia pescata",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "3D per carta extra",
+                "statistica_target": "",
+                "descrizione_effetto": "Per ogni 3D spesi, pesca una carta extra. Non pescare finché non avrai lanciato quest'incantesimo e deciso quante carte extra vorrai. Scarta le carte in eccesso scegliendo quelle che vuoi tenere",
+                "condizioni": ["Durante la fase Pescare", "Prima che qualsiasi carta sia pescata"],
+                "limitazioni": ["Deve essere usato prima di pescare"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA PREMONIZIONE. GIOCABILE DURANTE LA FASE \"PESCARE\", PRIMA CHE QUALSIASI CARTA SIA PESCATA. Per ogni 3D spesi, pesca una carta extra. Non pescare finché non avrai lanciato quest'incantesimo e deciso quante carte extra vorrai. Scarta le carte in eccesso scegliendo quelle che vuoi tenere.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Infezioni": {
+        "nome": "Esorcizzare Infezioni",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte dell'Esorcismo",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento e Immunità",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni 2D spesi",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ILIAN",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ILIAN.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Veleno": {
+        "nome": "Esorcizzare Veleno",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte dell'Esorcismo",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento e Immunità",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni 2D spesi",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI SEMAI",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI SEMAI.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Ferite": {
+        "nome": "Esorcizzare Ferite",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte dell'Esorcismo",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento e Immunità",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni 2D spesi",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Telepatia Minore": {
+        "nome": "Telepatia Minore",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cambia Tattica",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "tattica",
+                "descrizione_effetto": "Puoi cambiare la Tattica di Combattimento scelta per questo combattimento",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare la Tattica di Combattimento scelta per questo combattimento.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Sfera Elementare": {
+        "nome": "Sfera Elementare",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte degli Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro che lancia l'incantesimo",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2 in C per ogni 2D spesi",
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Per ogni 2D il Maestro guadagna un +2 in C",
+                "condizioni": ["Incantesimo personale di combattimento", "Solo il Maestro"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Resistenza Elementare": {
+        "nome": "Resistenza Elementare",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte degli Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro che lancia l'incantesimo",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Attacco",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni D speso",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni D speso il Maestro guadagna un +1 in A. Per ogni 2D spesi guadagna automaticamente un +1 in A",
+                "condizioni": ["Incantesimo personale di combattimento", "Solo il Maestro"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni D speso il Maestro guadagna un +1 in A. Per ogni 2D spesi guadagna automaticamente un +1 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Fulmine Elementare": {
+        "nome": "Fulmine Elementare",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte degli Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro che lancia l'incantesimo",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Sparare",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2 in S per ogni 2D spesi",
+                "statistica_target": "sparare",
+                "descrizione_effetto": "Per ogni 2D il Maestro guadagna un +2 in S",
+                "condizioni": ["Incantesimo personale di combattimento", "Solo il Maestro"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Colpire": {
+        "nome": "Colpire",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte della Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Sparare",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in S per ogni D speso",
+                "statistica_target": "sparare",
+                "descrizione_effetto": "Per ogni D speso, il guerriero guadagna un +1 in S",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Levitazione": {
+        "nome": "Levitazione",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte della Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro che lancia l'incantesimo",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Statistiche Multiple",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in C, S, A e V per ogni punto D speso",
+                "statistica_target": "tutte",
+                "descrizione_effetto": "Per ogni punto D speso, le caratteristiche del Maestro C, S, A saranno incrementate di un +1",
+                "condizioni": ["Incantesimo personale di combattimento", "Solo il Maestro"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni punto D speso, le caratteristiche del Maestro C, S, A saranno incrementate di un +1.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Messaggio Telepatico": {
+        "nome": "Messaggio Telepatico",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Avversario",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Azione",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Potrai imporre al Tuo avversario di attaccare uno specifico guerriero nel Suo prossimo Turno. Il Tuo avversario è libero di decidere l'attaccante. Se l'attacco designato, nel Turno dell'avversario, diventa proibito il Tuo avversario potrà fare quello che vuole",
+                "condizioni": [],
+                "limitazioni": ["L'avversario può scegliere l'attaccante", "Se l'attacco diventa proibito l'effetto decade"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Potrai imporre al Tuo avversario di attaccare uno specifico guerriero nel Suo prossimo Turno. Il Tuo avversario è libero di decidere l'attaccante. Se l'attacco designato, nel Turno dell'avversario, diventa proibito il Tuo avversario potrà fare quello che vuole.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Conoscere La Verita": {
+        "nome": "Conoscere La Verita",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Avversario",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "3D per domanda",
+                "statistica_target": "",
+                "descrizione_effetto": "Per ogni 3D, potrai fare una domanda riguardo le carte che tiene in mano l'avversario, che Ti dovrà rispondere \"sì\" o \"no\" (la verità). L'avversario potrà rifiutarsi di rispondere spendendo 5D. È possibile ripetere la stessa domanda più volte",
+                "condizioni": ["Costo 3D per domanda"],
+                "limitazioni": ["L'avversario può rifiutarsi spendendo 5D"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Per ogni 3D, potrai fare una domanda riguardo le carte che tiene in mano l'avversario, che Ti dovrà rispondere \"sì\" o \"no\" (la verità). L'avversario potrà rifiutarsi di rispondere spendendo 5D. È possibile ripetere la stessa domanda più volte.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Fantasma": {
+        "nome": "Fantasma",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Resto della partita",
+        "timing": "Al costo di 4D e due azioni",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Crea Copia",
+                "tipo_effetto": "Carte",
+                "valore": "4D + due azioni",
+                "statistica_target": "",
+                "descrizione_effetto": "Il Maestro può assumere le sembianze di un membro della Fratellanza già in gioco per il resto della partita. Per 6D quello di un Doomtrooper, per 10D quelle di un membro dell'Oscura Legione. Il Maestro acquisisce C, S, A e V dell'originale",
+                "condizioni": ["Costo 4D + due azioni per Fratellanza", "6D per Doomtrooper", "10D per Oscura Legione"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA CINETICA. GIOCABILE AL COSTO DI 4D E DUE AZIONI. Il Maestro può assumere le sembianze di un membro della Fratellanza già in gioco per il resto della partita. Per 6D quello di un Doomtrooper, per 10D quelle di un membro dell'Oscura Legione. Il Maestro acquisisce C, S, A e V dell'originale.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Teletrasporto": {
+        "nome": "Teletrasporto",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": "Per ogni punto D speso",
+                "statistica_target": "",
+                "descrizione_effetto": "Per ogni Punto D speso, un'Arma o una carta Equipaggiamento può essere trasferita da un Tuo Doomtrooper a un altro. È consentito anche riprendere carte Armi o Equipaggiamento in mano",
+                "condizioni": ["Per ogni D speso"],
+                "limitazioni": ["Solo tra i propri Doomtroopers"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA CINETICA. GIOCABILE IN OGNI MOMENTO. Per ogni Punto D speso, un'Arma o una carta Equipaggiamento può essere trasferita da un Tuo Doomtrooper a un altro. È consentito anche riprendere carte Armi o Equipaggiamento in mano.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Colpire": {
+        "nome": "Colpire",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte della Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Sparare",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in S per ogni D speso",
+                "statistica_target": "sparare",
+                "descrizione_effetto": "Per ogni D speso, il guerriero guadagna un +1 in S",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },   
+
+    "Volare": {
+        "nome": "Volare",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte Mentale",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro che lancia l'incantesimo",
+        "durata": "Fino all'inizio del tuo prossimo turno",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Il Maestro non può essere attaccato fino all'inizio del Tuo prossimo Turno",
+                "condizioni": ["Solo il Maestro"],
+                "limitazioni": ["Durata limitata al prossimo turno"]
+            }
+        ],
+        "testo_carta": "ARTE MENTALE. GIOCABILE IN OGNI MOMENTO. Il Maestro non può essere attaccato fino all'inizio del Tuo prossimo Turno.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Invulnerabile": {
+        "nome": "Invulnerabile",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte Mentale",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero durante il combattimento",
+        "durata": "Un combattimento",
+        "timing": "Durante il combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Immune agli effetti di ferite",
+                "tipo_effetto": "Immunita",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Il guerriero non può essere ferito o ucciso durante questo combattimento",
+                "condizioni": ["Durante il combattimento"],
+                "limitazioni": ["Solo per un combattimento"]
+            }
+        ],
+        "testo_carta": "ARTE MENTALE. GIOCABILE DURANTE IL COMBATTIMENTO. Il guerriero non può essere ferito o ucciso durante questo combattimento.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Danno": {
+        "nome": "Esorcizzare Danno",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte dell'Esorcismo",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento e Immunità",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni 2D spesi",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Risparmio": {
+        "nome": "Risparmio",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Resto della partita",
+        "timing": "Giocabile durante la fase Pescare",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Azione",
+                "tipo_effetto": "Modificatore",
+                "valore": "1D per turno",
+                "statistica_target": "punti_destino",
+                "descrizione_effetto": "Per il resto della partita, guadagni 1D ogni fase Pescare",
+                "condizioni": ["Durante la fase Pescare"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA PREMONIZIONE. GIOCABILE DURANTE LA FASE \"PESCARE\". Per il resto della partita, guadagni 1D ogni fase \"Pescare\".",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Guarire": {
+        "nome": "Guarire",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte Mentale",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero ferito",
+        "durata": "Immediata",
+        "timing": "Al costo di 5D",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Guarisce Guerriero",
+                "tipo_effetto": "Guarigione",
+                "valore": "5D",
+                "statistica_target": "",
+                "descrizione_effetto": "Al costo di 5D, un guerriero ferito guarisce",
+                "condizioni": ["Guerriero ferito", "Costo 5D"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE MENTALE. Al costo di 5D, un guerriero ferito guarisce.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Velocita": {
+        "nome": "Velocita",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte Mentale",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero durante il combattimento",
+        "durata": "Un combattimento",
+        "timing": "Durante il combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Il guerriero colpisce per primo. Se il guerriero ferisce l'avversario, il combattimento ha termine. Altrimenti, l'avversario può contrattaccare",
+                "condizioni": ["Durante il combattimento"],
+                "limitazioni": ["Se non ferisce, l'avversario può contrattaccare"]
+            }
+        ],
+        "testo_carta": "ARTE MENTALE. GIOCABILE DURANTE IL COMBATTIMENTO. Il guerriero colpisce per primo. Se il guerriero ferisce l'avversario, il combattimento ha termine. Altrimenti, l'avversario può contrattaccare.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    }, 
+
+    "Ipnosi Minore": {
+        "nome": "Ipnosi Minore",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Difensore del combattimento",
+        "durata": "Combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Azione",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Consente di cambiare il difensore del combattimento",
+                "condizioni": ["Durante il combattimento"],
+                "limitazioni": ["Puoi cambiare il difensore del combattimento con qualsiasi altro guerriero in gioco", "L'attaccante deve però, comunque, poter attaccare il nuovo difensore"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare il difensore del combattimento con qualsiasi altro guerriero in gioco. L'attaccante deve però, comunque, poter attaccare il nuovo difensore.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Se Stessi": {
+        "nome": "Esorcizzare Se Stessi",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte Mentale",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Il Maestro",
+        "durata": "Fino all'inizio del Tuo prossimo Turno",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Immune agli effetti dell'Oscura Simmetria",
+                "tipo_effetto": "Immunita",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Il Maestro è immune alle carte dell'Oscura Simmetria",
+                "condizioni": ["Giocabile in ogni momento"],
+                "limitazioni": ["Fino all'inizio del Tuo prossimo Turno"]
+            }
+        ],
+        "testo_carta": "ARTE MENTALE. GIOCABILE IN OGNI MOMENTO. Il Maestro è immune alle carte dell'Oscura Simmetria fino all'inizio del Tuo prossimo Turno.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Scudo": {
+        "nome": "Scudo",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte della Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Il Maestro",
+        "durata": "Combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Armatura",
+                "tipo_effetto": "Modificatore",
+                "valore": 1,
+                "statistica_target": "armatura",
+                "descrizione_effetto": "Per ogni Punto D speso, il Maestro guadagna un +1 in A",
+                "condizioni": ["Durante il combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni Punto D speso, il Maestro guadagna un +1 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # Inquisition
+
+    "Evocare Guerriero": {
+        "nome": "Evocare Guerriero",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte d'Evocazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "5D per Doomtrooper non-Personalità",
+                "statistica_target": "",
+                "descrizione_effetto": "Spendendo 5D, puoi introdurre nella Tua Squadra un Doomtrooper non-Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie",
+                "condizioni": ["Costo 5D"],
+                "limitazioni": ["Solo Doomtrooper non-Personalità", "Deve pagare V in D (o doppio dal mazzo da pescare)"]
+            }
+        ],
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 5D, puoi introdurre nella Tua Squadra un Doomtrooper non-Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Evocare Oggetto": {
+        "nome": "Evocare Oggetto",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte d'Evocazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "4D per equipaggiamento",
+                "statistica_target": "",
+                "descrizione_effetto": "Per 4D, puoi prendere una qualsiasi carta Equipaggiamento dal Tuo mazzo di carte Scartate, oppure, spendendo 7D, prenderla dal Tuo mazzo di carte da Pescare e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare l'Equipaggiamento scelto. Devi pagare qualsiasi D o Azione indicato sulla carta Equipaggiamento",
+                "condizioni": ["Costo 4D da scartate o 7D da mazzo"],
+                "limitazioni": ["Il guerriero deve poter usare l'equipaggiamento", "Deve pagare D o Azioni della carta"]
+            }
+        ],
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Per 4D, puoi prendere una qualsiasi carta Equipaggiamento dal Tuo mazzo di carte Scartate, oppure, spendendo 7D, prenderla dal Tuo mazzo di carte da Pescare e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare l'Equipaggiamento scelto. Devi pagare qualsiasi D o Azione indicato sulla carta Equipaggiamento.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Crescita": {
+        "nome": "Crescita",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte del Cambiamento",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero durante il combattimento",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Statistiche",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2 in C, S, A e V per ogni 6D spesi",
+                "statistica_target": "tutte",
+                "descrizione_effetto": "Ogni 6D spesi, il guerriero guadagna un +2 in C, S, A e V",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEL CAMBIAMENTO. INCANTESIMO DI COMBATTIMENTO. Ogni 6D spesi, il guerriero guadagna un +2 in C, S, A e V.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Evocare Incantesimi": {
+        "nome": "Evocare Incantesimi",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte d'Evocazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "2D per carta Arte dalle scartate, 4D dal mazzo",
+                "statistica_target": "",
+                "descrizione_effetto": "Al costo di 2D, puoi riprendere una carta Arte dal Tuo mazzo di carte da Pescare, oppure al costo di 4D, prenderla dal Tuo mazzo di carte da Pescare. Devi subito pagando i Punti D o le Azioni necessarie",
+                "condizioni": ["Costo 2D da scartate o 4D da mazzo"],
+                "limitazioni": ["Deve subito pagare i costi della carta Arte"]
+            }
+        ],
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Al costo di 2D, puoi riprendere una carta Arte dal Tuo mazzo di carte da Pescare, oppure al costo di 4D, prenderla dal Tuo mazzo di carte da Pescare. Devi subito pagando i Punti D o le Azioni necessarie.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Evocare Difesa": {
+        "nome": "Evocare Difesa",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte d'Evocazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediata",
+        "timing": "In ogni momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "3D per Fortificazione dalle scartate, 6D dal mazzo",
+                "statistica_target": "",
+                "descrizione_effetto": "Per 3D, puoi prendere dal Tuo mazzo di carte da Pescare una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione",
+                "condizioni": ["Costo 3D da scartate o 6D da mazzo"],
+                "limitazioni": ["Il guerriero deve poter usare la Fortificazione", "Deve pagare D o Azioni della carta"]
+            }
+        ],
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Per 3D, puoi prendere dal Tuo mazzo di carte da Pescare una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Premonizione Di Attacco": {
+        "nome": "Premonizione Di Attacco",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Attacco",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni D speso",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni D speso, il guerriero guadagna un +1 in A",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    # non presente
+    "Vento Elementare": {
+        "nome": "Vento Elementare",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte degli Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Attacco",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in A per ogni D speso",
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Per ogni D speso, il guerriero guadagna un +1 in A",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in A.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 0,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    # non presente
+    "Scudo Elementare": {
+        "nome": "Scudo Elementare",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte degli Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro che lancia l'incantesimo",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Valore",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2 in V per ogni 2D spesi",
+                "statistica_target": "valore",
+                "descrizione_effetto": "Per ogni 2D il Maestro guadagna un +2 in V",
+                "condizioni": ["Incantesimo personale di combattimento", "Solo il Maestro"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in V.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 0,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+    # non presente
+    "Lancia Cinetica": {
+        "nome": "Lancia Cinetica",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Arte della Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Un combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1 in C per ogni D speso",
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Per ogni D speso, il guerriero guadagna un +1 in C",
+                "condizioni": ["Incantesimo di combattimento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in C.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 0,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Glaciazione": {
+        "nome": "Glaciazione",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte degli Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Tutti i guerrieri in gioco",
+        "durata": "Fino all'inizio del prossimo turno",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Condizioni Meteorologiche",
+                "tipo_effetto": "Modificatore",
+                "valore": -2,
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Causa un -2 in C e S a tutti i guerrieri",
+                "condizioni": ["Attivo fino all'inizio del prossimo turno"],
+                "limitazioni": ["Può essere speso 4D per proseguire l'incantesimo o scartarlo"]
+            }
+        ],
+        "testo_carta": "ARTE DEGLI ELEMENTI. GIOCABILE IN OGNI MOMENTO. Il Maestro evoca condizioni meteorologiche invernali, causando un -2 in C e S a tutti i guerrieri in gioco, fino all'inizio del Tuo prossimo Turno. Allora potrai decidere se far proseguire l'incantesimo, spendendo 4D, oppure scartarlo. Puoi continuare a mantenere l'incantesimo quanti Turni vuoi.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Attacco Furioso": {
+        "nome": "Attacco Furioso",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro",
+        "durata": "Combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Combattimento",
+                "tipo_effetto": "Modificatore",
+                "valore": 1,
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Per ogni 1D speso, +1 in C, S o A",
+                "condizioni": ["Durante il combattimento"],
+                "limitazioni": ["I bonus non devono essere assegnati tutti a una sola caratteristica"]
+            }
+        ],
+        "testo_carta": "ARTE CINETICA. INCANTESIMO DI COMBATTIMENTO PERSONALE. Per ogni 1D speso, il Maestro guadagna un +1 in C, o in S, o in A. Se vengono spesi più punti, i bonus possono essere distribuiti tra le tre caratteristiche, non devono per forza essere assegnati tutti a una sola caratteristica.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Evocare Reliquia": {
+        "nome": "Evocare Reliquia",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte d'Evocazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": 7,
+                "statistica_target": "",
+                "descrizione_effetto": "Permette di cercare e assegnare Reliquie",
+                "condizioni": ["Elimina la carta dal gioco dopo l'uso"],
+                "limitazioni": ["Costo 10D per prendere dal mazzo da Pescare", "Deve pagare qualsiasi D o Azione segnata sulla carta"]
+            }
+        ],
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA LA CARTA DAL GIOCO DOPO L'USO. Per 7D, puoi cercare nel Tuo mazzo Scartate una qualsiasi Reliquia, oppure, al costo di 10D, puoi prendere la Reliquia dal Tuo mazzo da Pescare. Puoi assegnarla a un Tuo guerriero che può utilizzarla. Devi pagare qualsiasi D o Azione segnata sulla carta.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Trasmutazione": {
+        "nome": "Trasmutazione",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte Mentale",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro",
+        "durata": "Combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Statistica",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Altera i valori C, S e A del Maestro",
+                "condizioni": ["Durante il combattimento", "Somma non può superare i valori reali"],
+                "limitazioni": ["Nessuna può essere modificata al di sotto dello 0", "Al termine riceve una ferita anche se già ferito", "Non si guadagnano Punti"]
+            }
+        ],
+        "testo_carta": "ARTE MENTALE. INCANTESIMO PERSONALE DI COMBATTIMENTO. Puoi alterare i valori C, S e A del Maestro come vuoi, purché la somma non superi la somma dei valori reali. Nessuna può essere modificata al di sotto dello 0. Al termine del combattimento, il Maestro riceve una ferita, anche se era già stato ferito. Non si guadagnano Punti in questo modo.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Spinta Cinetica": {
+        "nome": "Spinta Cinetica",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Avversario",
+        "durata": "Combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Azione",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Costringe l'avversario a ritirarsi",
+                "condizioni": ["Durante il combattimento"],
+                "limitazioni": ["I guerrieri uccisi non guadagnano Punti"]
+            }
+        ],
+        "testo_carta": "ARTE CINETICA. INCANTESIMO PERSONALE DI COMBATTIMENTO. Il Maestro costringe il suo avversario a ritirarsi, ponendo subito fine al combattimento e ferendo sia l'avversario che se stesso. I guerrieri uccisi in questo modo non fanno guadagnare Punti.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Alterazione Elementare": {
+        "nome": "Alterazione Elementare",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte degli Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Tutti i guerrieri in gioco",
+        "durata": "Fino all'inizio del prossimo turno",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Condizioni Ambientali",
+                "tipo_effetto": "Modificatore",
+                "valore": 1,
+                "statistica_target": "attacco",
+                "descrizione_effetto": "Pioggia torrenziale impedisce visibilità",
+                "condizioni": ["Attivo fino all'inizio del prossimo turno"],
+                "limitazioni": ["+1 in A e -1 in C e S"]
+            }
+        ],
+        "testo_carta": "ARTE DEGLI ELEMENTI. GIOCABILE IN OGNI MOMENTO. Il Maestro crea una pioggia torrenziale, che impedisce la visibilità. Tutti i guerrieri in gioco hanno un +1 in A e un -1 in C e S fino all'inizio del Tuo prossimo Turno.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Equilibrio": {
+        "nome": "Equilibrio",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Carte Speciali",
+        "durata": "Immediato",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": 3,
+                "statistica_target": "",
+                "descrizione_effetto": "Scarta carte Speciali in gioco",
+                "condizioni": ["Giocabile in ogni momento"],
+                "limitazioni": ["Ogni 3D addizionali permette di scartare un'altra carta Speciale"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Puoi immediatamente scartare una carta Speciale in gioco. Ogni 3D addizionali, puoi scartare un'altra carta Speciale in gioco.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Pacifismo": {
+        "nome": "Pacifismo",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Arte Mentale",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerrieri nel combattimento",
+        "durata": "Combattimento",
+        "timing": "Combattimento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Scarto Immediato",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Tutti i guerrieri impegnati sono scartati",
+                "condizioni": ["Durante il combattimento"],
+                "limitazioni": ["Non guadagni alcun punto"]
+            }
+        ],
+        "testo_carta": "ARTE MENTALE. INCANTESIMO PERSONALE DI COMBATTIMENTO. Tutti i guerrieri impegnati in questo combattimento sono immediatamente scartati. Non guadagni alcun punto.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Annientamento": {
+        "nome": "Annientamento",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte Cinetica",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Tutti i guerrieri, Maestro e carte",
+        "durata": "Permanente",
+        "timing": "Turno",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Immunità Temporanea",
+                "tipo_effetto": "Immunita",
+                "valore": 3,
+                "statistica_target": "",
+                "descrizione_effetto": "Protegge dagli effetti della carta",
+                "condizioni": ["Giocabile al costo di tre azioni"],
+                "limitazioni": ["Tutti i guerrieri, Maestro e carte vengono tolti dal gioco", "Le immunità non proteggono", "Non si guadagnano Punti"]
+            }
+        ],
+        "testo_carta": "ARTE CINETICA. GIOCABILE AL COSTO DI TRE AZIONI. Ogni singola carta in gioco, inclusi tutti i guerrieri, il Maestro e questa carta, vengono tolti dal gioco e non possono più ritornarvi durante questa partita. Le immunità non proteggono dagli effetti di questa carta. Carte in mano, mazzo da Pescare e carte Scartate non vengono influenzate. Non si guadagnano Punti.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Glaciazione": {
+        "nome": "Glaciazione",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte degli Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Tutti i guerrieri in gioco",
+        "durata": "Fino all'inizio del prossimo turno",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Condizioni Meteorologiche",
+                "tipo_effetto": "Modificatore",
+                "valore": -2,
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Causa un -2 in C e S a tutti i guerrieri",
+                "condizioni": ["Attivo fino all'inizio del prossimo turno"],
+                "limitazioni": ["Può essere speso 4D per proseguire l'incantesimo o scartarlo"]
+            }
+                 ],        
+        "testo_carta": "ARTE DEGLI ELEMENTI. GIOCABILE IN OGNI MOMENTO. Il Maestro evoca condizioni meteorologiche invernali, causando un -2 in C e S a tutti i guerrieri in gioco, fino all'inizio del Tuo prossimo Turno. Allora potrai decidere se far proseguire l'incantesimo, spendendo 4D, oppure scartarlo. Puoi continuare a mantenere l'incantesimo quanti Turni vuoi.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Divinazione Maggiore": {
+        "nome": "Divinazione Maggiore",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Premonizione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Mazzo carte da Pescare",
+        "durata": "Immediato",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": 6,
+                "statistica_target": "",
+                "descrizione_effetto": "Permette di guardare il mazzo e rimuovere carte",
+                "condizioni": ["Elimina questa carta dal gioco dopo l'uso"],
+                "limitazioni": ["Spendendo 6D puoi guardare il mazzo di carte da Pescare di un altro giocatore", "Per ogni 6D addizionali puoi rimuovere dal gioco una carta"]
+            }]
+        "testo_carta": "ARTE DELLA PREMONIZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 6D, puoi guardare il mazzo di carte da Pescare di un altro giocatore. Per ogni 6D addizionali, puoi rimuovere dal gioco una carta. Dopo aver cercato nel mazzo, rendilo al suo possessore, che deve mescolarlo.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Tempesta Del Caos": {
+        "nome": "Tempesta Del Caos",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediato",
+        "timing": "Turno",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": 4,
+                "statistica_target": "",
+                "descrizione_effetto": "Fa scartare tutte le carte in mano a un giocatore",
+                "condizioni": ["Al costo di un'azione"],
+                "limitazioni": ["Spendendo 4D"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE AL COSTO DI UN'AZIONE. Spendendo 4D, puoi far scartare tutte le carte in mano a un giocatore.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Opportunità Di Nathaniel": {
+        "nome": "Opportunità Di Nathaniel",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Mazzi di carte",
+        "durata": "Immediato",
+        "timing": "Turno",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Mescola mazzi di carte per ottenere nuovo mazzo da Pescare",
+                "condizioni": ["Al costo di un'azione"],
+                "limitazioni": ["Puoi mescolare il Tuo mazzo di carte Scartate con il mazzo di carte da Pescare"]
+            }
+        ],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE AL COSTO DI UN'AZIONE. Puoi mescolare il Tuo mazzo di carte Scartate con il mazzo di carte da Pescare, per ottenere un nuovo mazzo di carte da Pescare.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Esorcizzare Lacerazioni": {
+        "nome": "Esorcizzare Lacerazioni",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte dell'Esorcismo",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Doomtrooper ferito",
+        "durata": "Immediato",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Guarisce Guerriero",
                 "tipo_effetto": "Guarigione",
                 "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Rimuovi tutti i danni dal guerriero bersaglio",
-                "condizioni": ["Il guerriero deve essere ferito"]
+                "statistica_target": "salute",
+                "descrizione_effetto": "Il Doomtrooper ferito viene guarito",
+                "condizioni": ["Su un qualsiasi Doomtrooper ferito"],
+                "limitazioni": ["Se invece il Doomtrooper è stato appena ucciso da un'Arma/guerriero che uccide in un colpo, rimane ferito"]
             }
         ],
-        "testo_carta": "Rimuovi tutti i danni da un guerriero bersaglio.",
-        "flavour_text": "La luce del Cardinale risana corpo e spirito.",
-        "keywords": ["Guarigione"],
+        "testo_carta": "ARTE DELL'ESORCISMO. GIOCABILE IN OGNI MOMENTO SU UN QUALSIASI DOOMTROOPER FERITO. Il Doomtrooper ferito viene guarito. Se invece il Doomtrooper è stato appena ucciso da un'Arma/guerriero che uccide in un colpo, rimane ferito.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
         "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
         "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "righteous_fury": {
-        "nome": "Righteous Fury",
-        "valore": 2,
+    "Manipolazione Maggiore": {
+        "nome": "Manipolazione Maggiore",
+        "valore": 0,
         "tipo": "Normale",
-        "rarity": "Uncommon",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Fino Fine Turno",
-        "timing": "In Combattimento",
-        "set_espansione": "Base",
-        "numero_carta": "A004",
+        "bersaglio": "Guerriero di un altro giocatore",
+        "durata": "Immediato",
+        "timing": "Turno",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
         "effetti": [
             {
+                "nome_effetto": "Modifica Azione",
                 "tipo_effetto": "Modificatore",
-                "valore": 3,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Il guerriero ottiene +3 Combattimento fino alla fine del turno",
-                "condizioni": ["Può essere giocata solo durante il combattimento"]
-            }
-        ],
-        "testo_carta": "Il guerriero bersaglio ottiene +3 Combattimento fino alla fine del turno. Gioca solo durante il combattimento.",
-        "flavour_text": "La collera giusta del fedele brucia più ardente di mille soli.",
-        "keywords": ["Potenziamento", "Combattimento"],
-        "restrizioni": ["Solo durante combattimento"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "divine_intervention": {
-        "nome": "Divine Intervention",
-        "valore": 4,
-        "tipo": "Invocazione",
-        "rarity": "Rare",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Senza Bersaglio",
-        "durata": "Istantanea",
-        "timing": "Qualsiasi Momento",
-        "set_espansione": "Base",
-        "numero_carta": "A005",
-        "effetti": [
-            {
-                "tipo_effetto": "Controllo",
                 "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Annulla l'ultima azione del turno avversario",
-                "condizioni": ["Può essere giocata come risposta"]
+                "statistica_target": "azioni",
+                "descrizione_effetto": "Controlla un guerriero avversario per azioni",
+                "condizioni": ["Al costo di un'azione su un guerriero di un altro giocatore"],
+                "limitazioni": ["Puoi subito far compiere fino a tre Azioni a un solo guerriero", "Solo l'ultima può essere un'Azione di Attacco", "Se il guerriero guadagna dei punti, sono Tuoi", "Tu mantieni comunque la Tua Azione Attacco"]
             }
         ],
-        "testo_carta": "Annulla l'ultima azione giocata dall'avversario in questo turno.",
-        "flavour_text": "Quando tutto sembra perduto, il Cardinale guida la mano dei suoi fedeli.",
-        "keywords": ["Controspell", "Divino"],
-        "restrizioni": ["Risposta"],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE AL COSTO DI UN'AZIONE SU UN GUERRIERO DI UN ALTRO GIOCATORE Puoi subito far compiere fino a tre Azioni a un solo guerriero di un altro giocatore. Solo l'ultima può essere un'Azione di Attacco. Se il guerriero guadagna dei punti, sono Tuoi. Tu mantieni comunque la Tua Azione Attacco.",
+        "flavour_text": "",
+        "keywords": [],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
             "bersagli_attuali": []
         },
+        "restrizioni": [],
         "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    "brotherhood_unity": {
-        "nome": "Brotherhood Unity",
-        "valore": 3,
-        "tipo": "Benedizione",
-        "rarity": "Uncommon",
+    "Momenti Di Incertezza": {
+        "nome": "Momenti Di Incertezza",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Arte della Manipolazione",
+        "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Tutti i Guerrieri Propri",
-        "durata": "Fino Fine Turno",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "A006",
+        "bersaglio": "Qualsiasi giocatore",
+        "durata": "Immediato",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
         "effetti": [
             {
-                "tipo_effetto": "Modificatore",
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
                 "valore": 1,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Tutti i guerrieri propri ottengono +1 Combattimento",
-                "condizioni": []
-            },
-            {
-                "tipo_effetto": "Modificatore",
-                "valore": 1,
-                "statistica_target": "sparare",
-                "descrizione_effetto": "Tutti i guerrieri propri ottengono +1 Sparare",
-                "condizioni": []
+                "statistica_target": "",
+                "descrizione_effetto": "Permette di scegliere e scartare carte in mano",
+                "condizioni": ["Per ogni 1D speso"],
+                "limitazioni": ["Puoi scegliere a caso una carta in mano a un qualsiasi giocatore e fargliele scartare", "Questo incantesimo non ha alcun effetto su carte appena giocate"]
             }
         ],
-        "testo_carta": "Tutti i tuoi guerrieri ottengono +1 Combattimento e +1 Sparare fino alla fine del turno.",
-        "flavour_text": "Uniti nella fede, invincibili nella battaglia.",
-        "keywords": ["Benedizione", "Massa"],
-        "restrizioni": [],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Per ogni 1D speso, puoi scegliere a caso una carta in mano a un qualsiasi giocatore e fargliela scartare. Questo incantesimo non ha alcun effetto su carte appena giocate.",
+        "flavour_text": "",
+        "keywords": [],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
             "bersagli_attuali": []
         },
+        "restrizioni": [],
         "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
-    # === CARTE ARTE UNIVERSALI ===
-    "ancient_wisdom": {
-        "nome": "Ancient Wisdom",
-        "valore": 1,
+    "Allucinazioni": {
+        "nome": "Allucinazioni",
+        "valore": 0,
         "tipo": "Normale",
-        "rarity": "Common",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza", "Imperiale", "Bauhaus", "Mishima", "Capitol"],
-        "bersaglio": "Senza Bersaglio",
-        "durata": "Istantanea",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "A007",
-        "effetti": [
-            {
-                "tipo_effetto": "Utilità",
-                "valore": 2,
-                "statistica_target": "",
-                "descrizione_effetto": "Pesca 2 carte aggiuntive",
-                "condizioni": []
-            }
-        ],
-        "testo_carta": "Pesca 2 carte. Qualsiasi fazione può giocare questa carta.",
-        "flavour_text": "La conoscenza non conosce confini di fazione o credo.",
-        "keywords": ["Universale", "Pesca"],
-        "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # === CARTE INQUISITION ===
-    "inquisitorial_seal": {
-        "nome": "Inquisitorial Seal",
-        "valore": 2,
-        "tipo": "Protezione",
-        "rarity": "Uncommon",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza", "Imperiale"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Inquisition",
-        "numero_carta": "I001",
-        "effetti": [
-            {
-                "tipo_effetto": "Protezione",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Il guerriero è immune alle carte Arte avversarie",
-                "condizioni": []
-            }
-        ],
-        "testo_carta": "Il guerriero bersaglio è immune a tutte le carte Arte giocate dagli avversari.",
-        "flavour_text": "Il sigillo dell'Inquisizione protegge i fedeli dalle eresie.",
-        "keywords": ["Protezione", "Immunità", "Inquisizione"],
-        "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "purification_rite": {
-        "nome": "Purification Rite",
-        "valore": 3,
-        "tipo": "Rituale",
-        "rarity": "Rare",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Qualsiasi Guerriero",
-        "durata": "Istantanea",
-        "timing": "Turno Proprio",
-        "set_espansione": "Inquisition",
-        "numero_carta": "I002",
-        "effetti": [
-            {
-                "tipo_effetto": "Purificazione",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Rimuovi tutte le carte Arte dal guerriero bersaglio",
-                "condizioni": []
-            }
-        ],
-        "testo_carta": "Rimuovi tutte le carte Arte (benedizioni e maledizioni) da un guerriero bersaglio.",
-        "flavour_text": "Il fuoco purificatore dell'Inquisizione brucia ogni corruzione.",
-        "keywords": ["Rituale", "Purificazione", "Rimozione"],
-        "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # === CARTE ARTE RARE E ULTRA RARE ===
-    "cardinal_blessing": {
-        "nome": "Cardinal's Blessing",
-        "valore": 5,
-        "tipo": "Benedizione",
-        "rarity": "Ultra Rare",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Base",
-        "numero_carta": "A008",
-        "effetti": [
-            {
-                "tipo_effetto": "Modificatore",
-                "valore": 2,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Il guerriero ottiene +2 Combattimento",
-                "condizioni": []
-            },
-            {
-                "tipo_effetto": "Modificatore",
-                "valore": 2,
-                "statistica_target": "sparare",
-                "descrizione_effetto": "Il guerriero ottiene +2 Sparare",
-                "condizioni": []
-            },
-            {
-                "tipo_effetto": "Modificatore",
-                "valore": 2,
-                "statistica_target": "armatura",
-                "descrizione_effetto": "Il guerriero ottiene +2 Armatura",
-                "condizioni": []
-            }
-        ],
-        "testo_carta": "Il guerriero bersaglio ottiene +2 a tutte le statistiche (C, S, A).",
-        "flavour_text": "La benedizione personale del Cardinale trasforma i mortali in eroi leggendari.",
-        "keywords": ["Benedizione", "Cardinale", "Potenziamento"],
-        "restrizioni": ["Unica"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "resurrection": {
-        "nome": "Resurrection",
-        "valore": 6,
-        "tipo": "Invocazione",
-        "rarity": "Ultra Rare",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Senza Bersaglio",
-        "durata": "Istantanea",
-        "timing": "Turno Proprio",
-        "set_espansione": "Inquisition",
-        "numero_carta": "I003",
-        "effetti": [
-            {
-                "tipo_effetto": "Resurrezione",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Riporta in gioco un guerriero dalla tua pila degli scarti",
-                "condizioni": ["Paga il costo originale del guerriero"]
-            }
-        ],
-        "testo_carta": "Riporta in gioco un guerriero dalla tua pila degli scarti. Paga il suo costo originale in Destiny Points.",
-        "flavour_text": "La morte non è che una tappa nel cammino verso la gloria eterna.",
-        "keywords": ["Resurrezione", "Invocazione"],
-        "restrizioni": ["Unica"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # === CARTE ARTE SPECIFICHE PER ESPANSIONI ===
-    "void_protection": {
-        "nome": "Void Protection",
-        "valore": 2,
-        "tipo": "Protezione",
-        "rarity": "Uncommon",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza", "Cybertronic"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "W001",
-        "effetti": [
-            {
-                "tipo_effetto": "Protezione",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Il guerriero è immune agli effetti della Legione Oscura",
-                "condizioni": []
-            }
-        ],
-        "testo_carta": "Il guerriero bersaglio è immune a tutti gli effetti delle carte della Legione Oscura.",
-        "flavour_text": "La tecnologia e la fede unite contro l'oscurità del Vuoto.",
-        "keywords": ["Protezione", "Anti-Legione", "Tecnologico"],
-        "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "mass_conversion": {
-        "nome": "Mass Conversion",
-        "valore": 4,
-        "tipo": "Rituale",
-        "rarity": "Rare",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Tutti i Guerrieri",
-        "durata": "Fino Fine Turno",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "W002",
-        "effetti": [
-            {
-                "tipo_effetto": "Conversione",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Tutti i guerrieri diventano temporaneamente della Fratellanza",
-                "condizioni": []
-            }
-        ],
-        "testo_carta": "Fino alla fine del turno, tutti i guerrieri in gioco sono considerati della Fratellanza.",
-        "flavour_text": "La parola del Cardinale tocca ogni cuore, anche il più corrotto.",
-        "keywords": ["Conversione", "Massa", "Controllo"],
-        "restrizioni": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # === CARTE COMBATTIMENTO ===
-    "mystic_strength": {
-        "nome": "Mystic Strength",
-        "valore": 1,
-        "tipo": "Normale",
+        "disciplina": "Arte della Manipolazione",
         "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Fino Fine Turno",
-        "timing": "In Combattimento",
-        "set_espansione": "Base",
-        "numero_carta": "A009",
+        "bersaglio": "Guerriero dell'Oscura Legione",
+        "durata": "Immediato",
+        "timing": "Turno",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
         "effetti": [
             {
+                "nome_effetto": "Scarto Immediato",
                 "tipo_effetto": "Modificatore",
-                "valore": 2,
-                "statistica_target": "sparare",
-                "descrizione_effetto": "Il guerriero ottiene +2 Sparare durante il combattimento",
-                "condizioni": ["Solo durante combattimento"]
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Scarta un guerriero dell'Oscura Legione in Copertura",
+                "condizioni": ["Al costo di un'azione"],
+                "limitazioni": ["Scegli un qualsiasi guerriero dell'Oscura Legione in Copertura", "Questo guerriero è scartato", "Questa NON È considerata un'Azione di Attacco", "Spesso l'arma migliore di un guerriero sono le paure del suo avversario"]
             }
         ],
-        "testo_carta": "Il guerriero bersaglio ottiene +2 Sparare fino alla fine del combattimento.",
-        "flavour_text": "La forza mistica guida la mira del fedele.",
-        "keywords": ["Potenziamento", "Sparare"],
-        "restrizioni": ["Solo durante combattimento"],
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE AL COSTO DI UN'AZIONE. Scegli un qualsiasi guerriero dell'Oscura Legione in Copertura. Questo guerriero è scartato. Questa NON È considerata un'Azione di Attacco. Spesso l'arma migliore di un guerriero sono le paure del suo avversario.",
+        "flavour_text": "",
+        "keywords": [],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
             "bersagli_attuali": []
         },
+        "restrizioni": [],
         "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
+       
 
-    "protective_ward": {
-        "nome": "Protective Ward",
-        "valore": 1,
-        "tipo": "Protezione",
-        "rarity": "Common",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Fino Fine Turno",
-        "timing": "In Combattimento",
-        "set_espansione": "Base",
-        "numero_carta": "A010",
-        "effetti": [
-            {
-                "tipo_effetto": "Modificatore",
-                "valore": 2,
-                "statistica_target": "armatura",
-                "descrizione_effetto": "Il guerriero ottiene +2 Armatura durante il combattimento",
-                "condizioni": ["Solo durante combattimento"]
-            }
-        ],
-        "testo_carta": "Il guerriero bersaglio ottiene +2 Armatura fino alla fine del combattimento.",
-        "flavour_text": "Un velo di energia protettiva avvolge il guerriero.",
-        "keywords": ["Protezione", "Armatura"],
-        "restrizioni": ["Solo durante combattimento"],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "contatori_speciali": {},
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    }
+  
+    # Warzone non presenti
 }
 
 
