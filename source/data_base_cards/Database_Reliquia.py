@@ -1323,69 +1323,6 @@ def get_reliquie_bilanciate_per_partita(numero_giocatori: int = 2) -> Dict[str, 
     return reliquie_bilanciate
 
 
-def analizza_potere_reliquia(nome_reliquia: str) -> Dict[str, Any]:
-    """
-    Analizza il livello di potere di una reliquia per bilanciamento
-    
-    Args:
-        nome_reliquia: Nome della reliquia da analizzare
-    
-    Returns:
-        Dict con analisi del potere
-    """
-    if nome_reliquia not in DATABASE_RELIQUIE:
-        return {"errore": "Reliquia non trovata"}
-    
-    dati = DATABASE_RELIQUIE[nome_reliquia]
-    
-    # Calcola punteggio modificatori
-    punteggio_modificatori = 0
-    for mod in dati["modificatori"]:
-        punteggio_modificatori += abs(mod["valore"])
-    
-    # Calcola punteggio poteri
-    punteggio_poteri = len(dati["poteri"]) * 2
-    
-    # Penalità per vulnerabilità
-    penalita_vulnerabilita = len(dati["vulnerabilita"])
-    
-    # Bonus per restrizioni (più restrittiva = più potente)
-    bonus_restrizioni = 0
-    if dati["restrizioni"]["fazioni_permesse"]:
-        bonus_restrizioni += (5 - len(dati["restrizioni"]["fazioni_permesse"]))
-    if dati["restrizioni"]["tipi_guerriero"]:
-        bonus_restrizioni += 2
-    if dati["restrizioni"]["keywords_richieste"]:
-        bonus_restrizioni += len(dati["restrizioni"]["keywords_richieste"])
-    
-    punteggio_totale = punteggio_modificatori + punteggio_poteri + bonus_restrizioni - penalita_vulnerabilita
-    
-    # Classifica potere
-    if punteggio_totale >= 15:
-        livello_potere = "Leggendario"
-    elif punteggio_totale >= 10:
-        livello_potere = "Potente"
-    elif punteggio_totale >= 6:
-        livello_potere = "Equilibrato"
-    else:
-        livello_potere = "Debole"
-    
-    return {
-        "nome": nome_reliquia,
-        "punteggio_totale": punteggio_totale,
-        "livello_potere": livello_potere,
-        "dettagli": {
-            "modificatori": punteggio_modificatori,
-            "poteri": punteggio_poteri,
-            "restrizioni_bonus": bonus_restrizioni,
-            "vulnerabilita_penalita": penalita_vulnerabilita
-        },
-        "rarità": dati["rarity"],
-        "bilanciamento": "OK" if (dati["rarity"] == Rarity.ULTRA_RARE and punteggio_totale >= 10) or 
-                                (dati["rarity"] == Rarity.RARE and 6 <= punteggio_totale <= 12) else "Da rivedere"
-    }
-
-
 def genera_report_bilanciamento() -> Dict[str, Any]:
     """Genera un report completo sul bilanciamento delle reliquie"""
     report = {
@@ -1515,10 +1452,7 @@ def cerca_reliquie_avanzata(filtri: Dict[str, Any]) -> Dict[str, Dict[str, Any]]
 if __name__ == "__main__":
     print("\n=== TEST FUNZIONI AVANZATE ===")
     
-    # Test bilanciamento
-    analisi_spada = analizza_potere_reliquia("Spada del Destino")
-    print(f"Analisi Spada del Destino: {analisi_spada['livello_potere']} (Punteggio: {analisi_spada['punteggio_totale']})")
-    
+   
     # Test ricerca avanzata
     filtri_test = {
         "fazione": "Bauhaus",

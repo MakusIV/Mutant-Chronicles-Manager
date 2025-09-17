@@ -519,7 +519,7 @@ DATABASE_OSCURA_SIMMETRIA = {
                 "valore": "5",
                 "statistica_target": "destino",
                 "descrizione_effetto": "Spendendo 5D, in ogni momento, questo guerriero può inviare Sogni Orribili a un guerriero nemico, costringendo ad Andare in Copertura. Gira la carta del guerriero a faccia in giù",
-                "condizioni": ["Costo di 5 Punti Destino", "In ogni momento"],
+                "condizioni": ["Costo di 5 Punti Destino", "In Ogni Momento"],
                 "limitazioni": ["Guerriero bersaglio va in copertura", "Carta del guerriero girata a faccia in giù"],
                 "effetti_collaterali": []
             }
@@ -1026,7 +1026,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
-    }.
+    },
 
     # Inquisition
 
@@ -1080,7 +1080,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "tipo": "Dono dell'Oscura Simmetria",
         "apostolo_padre": "",
         "rarity": "Common",     
-        "fazioni_permesse": ["Eretici"],
+        "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero possessore",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
@@ -1124,7 +1124,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "tipo": "Dono dell'Oscura Simmetria",
         "apostolo_padre": "",
         "rarity": "Common",     
-        "fazioni_permesse": ["Eretici"],
+        "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero possessore",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
@@ -1256,7 +1256,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "tipo": "Dono dell'Oscura Simmetria",
         "apostolo_padre": "",
         "rarity": "Common",     
-        "fazioni_permesse": ["Eretici"],
+        "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero possessore",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
@@ -1300,7 +1300,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "tipo": "Dono dell'Oscura Simmetria",
         "apostolo_padre": "",
         "rarity": "Common",     
-        "fazioni_permesse": ["Eretici"],
+        "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Avversari dell'Eretico",
         "durata": "Permanente",
         "timing": "Combattimento",
@@ -1344,7 +1344,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "tipo": "Dono dell'Oscura Simmetria",
         "apostolo_padre": "",
         "rarity": "Common",     
-        "fazioni_permesse": ["Eretici"],
+        "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero possessore",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
@@ -1388,7 +1388,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "tipo": "Dono dell'Oscura Simmetria",
         "apostolo_padre": "",
         "rarity": "Common",     
-        "fazioni_permesse": ["Eretici"],
+        "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Avversari dell'Eretico",
         "durata": "Permanente",
         "timing": "Combattimento",
@@ -1588,15 +1588,6 @@ def get_carte_per_rarity(rarity: str) -> dict:
     return {k: v for k, v in DATABASE_OSCURA_SIMMETRIA.items() 
             if v["rarity"] == rarity}
 
-
-def get_carte_per_costo(costo_min: int, costo_max: int = None) -> dict:
-    """Restituisce carte in un range di costo"""
-    if costo_max is None:
-        costo_max = costo_min
-    return {k: v for k, v in DATABASE_OSCURA_SIMMETRIA.items() 
-            if costo_min <= v["costo_destino"] <= costo_max}
-
-
 def get_seguaci_per_apostolo(apostolo: str) -> dict:
     """Restituisce tutti i Doni specifici per i Seguaci di un apostolo"""
     return {k: v for k, v in DATABASE_OSCURA_SIMMETRIA.items() 
@@ -1721,9 +1712,6 @@ def verifica_integrita_database() -> dict:
             if not any("Solo Seguaci di" in r for r in carta["restrizioni"]):
                 errori["doni_senza_restrizioni"].append(f"{nome}: Manca restrizione Seguaci")
         
-        # Verifica costi validi
-        if carta["costo_destino"] < 0 or carta["costo_destino"] > 10:
-            errori["costi_invalidi"].append(f"{nome}: Costo {carta['costo_destino']}")
         
         # Verifica effetti presenti
         if not carta["effetti"]:
@@ -1800,9 +1788,6 @@ if __name__ == "__main__":
     doni_algeroth = get_seguaci_per_apostolo("Algeroth")
     print(f"✓ Doni di Algeroth: {len(doni_algeroth)} ({list(doni_algeroth.keys())})")
     
-    # Carte per costo
-    carte_economiche = get_carte_per_costo(0, 1)
-    print(f"✓ Carte economiche (0-1 DP): {len(carte_economiche)}")
     
     # Carte per rarità
     carte_rare = get_carte_per_rarity("Rare")

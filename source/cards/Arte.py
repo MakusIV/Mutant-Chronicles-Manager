@@ -35,7 +35,7 @@ class BersaglioArte(Enum):
     GIOCATORE = "Giocatore"
     ENTRAMBI_GIOCATORI = "Entrambi i Giocatori"
     SENZA_BERSAGLIO = "Senza Bersaglio"
-    MAESTRO = "Maestro che lancia l'incantesimo"
+    MAESTRO = "Maestro"
 
 
 class DurataArte(Enum):
@@ -45,7 +45,8 @@ class DurataArte(Enum):
     FINO_FINE_TURNO = "Fino Fine Turno"
     FINO_PROSSIMO_TURNO = "Fino Prossimo Turno"
     CONTINUA = "Continua"
-    FINO_FINE_COMBATTIMENTO = "Fino Fine Combattimento"
+    FINE_COMBATTIMENTO = "Fine Combattimento"
+    PARTITA = "Partita"
 
 
 class TimingArte(Enum):
@@ -53,7 +54,7 @@ class TimingArte(Enum):
     TURNO_PROPRIO = "Turno Proprio"
     TURNO_AVVERSARIO = "Turno Avversario"
     PROSSIMO_TURNO = "Prossimo Turno Proprio"
-    IN_OGNI_MOMENTO = "In ogni momento"
+    IN_OGNI_MOMENTO = "In Ogni Momento"
     IN_COMBATTIMENTO = "In Combattimento"
     PRIMA_COMBATTIMENTO = "Prima del Combattimento"
     DOPO_COMBATTIMENTO = "Dopo il Combattimento"
@@ -173,7 +174,6 @@ class Arte:
 
 
         return risultato
-    
     
     def puo_essere_giocata_da_guerriero(self, guerriero: Any) -> Dict[str, Any]:
         """
@@ -295,7 +295,7 @@ class Arte:
                 risultato["errori"].extend(verifica_maestro["errori"])
         
         # Controllo timing
-        if self.timing != TimingArte.QUALSIASI_MOMENTO and self.timing != timing_corrente:
+        if self.timing != TimingArte.IN_OGNI_MOMENTO and self.timing != timing_corrente:
             risultato["puo_giocare"] = False
             risultato["errori"].append(f"Timing non corretto: richiesto {self.timing.value}, attuale {timing_corrente.value}")
         

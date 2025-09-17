@@ -35,6 +35,7 @@ class TipoWarzone(Enum):
     GHIACCIAI = "Ghiacciai"
     SPAZIO = "Spazio"
     SOTTERRANEO = "Sotterraneo"
+    NESSUNO = ""
 
 
 class TerrenoWarzone(Enum):
@@ -45,6 +46,7 @@ class TerrenoWarzone(Enum):
     PERICOLOSO = "Pericoloso"
     ESTREMO = "Estremo"
     MISTO = "Misto"
+    NESSUNO = ""
 
 
 class BeneficiarioWarzone(Enum):

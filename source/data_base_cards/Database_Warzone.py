@@ -21,7 +21,7 @@ DATABASE_WARZONE = {
         "nome": "Foresta Di Shinrikyo",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Mercurio",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -46,7 +46,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -61,7 +61,7 @@ DATABASE_WARZONE = {
         "nome": "Cratere Di Anatholia",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Mercurio",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -107,7 +107,7 @@ DATABASE_WARZONE = {
         "nome": "Phobos & Deimos",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Marte",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -159,7 +159,7 @@ DATABASE_WARZONE = {
         "nome": "Asteroide Infestato",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Fascia di Asteroidi",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -173,24 +173,24 @@ DATABASE_WARZONE = {
             {
                 "statistica": "C",
                 "valore": 5,
-                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiali, guadagnano un ulteriore + 5 in C, S e A",
-                "difensore": "Guerrieri contro attaccanti Imperiali"
+                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiale, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "Guerrieri contro attaccanti Imperiale"
             },
             {
                 "statistica": "S",
                 "valore": 5,
-                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiali, guadagnano un ulteriore + 5 in C, S e A",
-                "difensore": "Guerrieri contro attaccanti Imperiali"
+                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiale, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "Guerrieri contro attaccanti Imperiale"
             },
             {
                 "statistica": "A",
                 "valore": 5,
-                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiali, guadagnano un ulteriore + 5 in C, S e A",
-                "difensore": "Guerrieri contro attaccanti Imperiali"
+                "descrizione": "Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiale, guadagnano un ulteriore + 5 in C, S e A",
+                "difensore": "Guerrieri contro attaccanti Imperiale"
             }
         ],
         "effetti_combattimento": [],
-        "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiali, guadagnano un ulteriore + 5 in C, S e A.",
+        "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiale, guadagnano un ulteriore + 5 in C, S e A.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": {
@@ -211,7 +211,7 @@ DATABASE_WARZONE = {
         "nome": "Giungla Di Venere",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Venere",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -248,7 +248,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": ["VEICOLI non utilizzabili"]
         },
@@ -263,7 +263,7 @@ DATABASE_WARZONE = {
         "nome": "Victoria",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Fascia di Asteroidi",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -277,30 +277,30 @@ DATABASE_WARZONE = {
             {
                 "statistica": "C",
                 "valore": 3,
-                "descrizione": "Guerrieri Imperiali che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
-                "difensore": "Guerrieri Imperiali"
+                "descrizione": "Guerrieri Imperiale che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Guerrieri Imperiale"
             },
             {
                 "statistica": "S",
                 "valore": 3,
-                "descrizione": "Guerrieri Imperiali che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
-                "difensore": "Guerrieri Imperiali"
+                "descrizione": "Guerrieri Imperiale che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Guerrieri Imperiale"
             },
             {
                 "statistica": "A",
                 "valore": 3,
-                "descrizione": "Guerrieri Imperiali che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
-                "difensore": "Guerrieri Imperiali"
+                "descrizione": "Guerrieri Imperiale che si difendono in questa WARZONE guadagnano un + 3 in C, S e A",
+                "difensore": "Guerrieri Imperiale"
             }
         ],
         "effetti_combattimento": [],
-        "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE ALLA TUA SQUADRA SE SEI UN GRANDE STRATEGA. Guerrieri Imperiali che si difendono in questa WARZONE guadagnano un + 3 in C, S e A.",
+        "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE ALLA TUA SQUADRA SE SEI UN GRANDE STRATEGA. Guerrieri Imperiale che si difendono in questa WARZONE guadagnano un + 3 in C, S e A.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -315,7 +315,7 @@ DATABASE_WARZONE = {
         "nome": "Il Grande Deserto",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Marte",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -340,7 +340,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -355,7 +355,7 @@ DATABASE_WARZONE = {
         "nome": "Citadella Sanctum",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Generico",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -401,7 +401,7 @@ DATABASE_WARZONE = {
         "nome": "Fascia Di Asteroidi",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Fascia di Asteroidi",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -419,7 +419,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": ["Armi da FUOCO non utilizzabili", "Armi da FUOCO/CORPO A CORPO non utilizzabili"]
         },
@@ -434,7 +434,7 @@ DATABASE_WARZONE = {
         "nome": "Caverne Di Diamanti",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Mercurio",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -459,7 +459,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -474,7 +474,7 @@ DATABASE_WARZONE = {
         "nome": "Rifugio Sacro",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Generica",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -518,7 +518,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -533,7 +533,7 @@ DATABASE_WARZONE = {
         "nome": "Terra Di Nessuno",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Generico",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -558,7 +558,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -573,7 +573,7 @@ DATABASE_WARZONE = {
         "nome": "Montagne Di Helstrom",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Venere",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -613,7 +613,7 @@ DATABASE_WARZONE = {
         "nome": "Cyberopolis",
         "costo_azione": 0,
         "tipo": "",
-        "terreno": "Marte",
+        "terreno": "",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
@@ -669,7 +669,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiali", "Freelancer"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -1081,7 +1081,7 @@ def testa_creazione_warzone() -> None:
     print("=== TEST CREAZIONE WARZONE ===\n")
     
     # Testa alcune Warzone chiave
-    warzone_test = ["Trincea Difensiva", "Giungla Ostile", "Arena Gladiatoria"]
+    warzone_test = ["Cratere Di Anatholia", "Cyberopolis", "Il Grande Deserto"]
     
     for nome in warzone_test:
         print(f"Testando: {nome}")
