@@ -134,16 +134,12 @@ class EnumJSONEncoder(json.JSONEncoder):
         # Altrimenti usa il serializzatore di default
         return super().default(obj)
 
-
-
-
 class TipoCombinazioneFazione(Enum):
     """Combinazioni di fazioni per collezioni orientate"""
     FRATELLANZA_DOOMTROOPER_FREELANCER = ("Fratellanza", "Doomtrooper", "Freelancer")
     # FRATELLANZA_OSCURA_LEGIONE_FREELANCER = ("Fratellanza", "Oscura Legione", "Freelancer") 
     DOOMTROOPER_OSCURA_LEGIONE_FREELANCER = ("Doomtrooper", "Oscura Legione", "Freelancer")
     DOOMTROOPER_FREELANCER = ("Doomtrooper", "Freelancer")
-
 
 class StatisticheCollezione:
     """Classe per tracciare le statistiche di una collezione"""
@@ -195,7 +191,7 @@ class StatisticheCollezione:
         self.totale_carte += quantita
         
         # Aggiorna valore in DP se disponibile
-        if hasattr(carta, 'valore'):
+        if hasattr(carta, 'valore') and carta.valore and (isinstance(carta.valore, int) or isinstance(carta.valore, float)):
             self.valore_totale_dp += carta.valore * quantita
         elif hasattr(carta, 'costo_destino'):
             self.valore_totale_dp += carta.costo_destino * quantita
@@ -277,7 +273,6 @@ class StatisticheCollezione:
             - Per fazione: {dict(self.per_fazione)}
             - Per set: {dict(self.per_set)}
             - Per rarità: {dict(self.per_rarity)}"""
-
 
 class CollezioneGiocatore:
     """
@@ -681,7 +676,7 @@ def seleziona_carte_casuali_per_tipo(
     min_carte: int = 5,
     max_carte: int = 15,
     probabilita_orientamento: float = 0.7
-) -> List[Any]:
+    ) -> List[Any]:
     """
     Seleziona carte casuali per tipo (Guerriero, Equipaggiamento, ecc) da un database rispettando quantità e orientamento
     """
@@ -811,7 +806,7 @@ def creazione_Collezione_Giocatore(
     numero_giocatori: int,
     espansioni: List[Set_Espansione],
     orientamento: bool = False
-) -> List[CollezioneGiocatore]:
+    ) -> List[CollezioneGiocatore]:
     """
     Crea un numero di collezioni uguale al parametro specificato.
     

@@ -11,7 +11,7 @@ from source.cards.Fortificazione import (
     BeneficiarioFortificazione, ModificatoreFortificazione, 
     AbilitaFortificazione
 )
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, CorporazioneSpecifica
 
 
 # Database completo delle carte Fortificazione
@@ -1261,6 +1261,42 @@ def get_statistiche_database_fortificazioni() -> Dict[str, Any]:
     }
 
 
+def verifica_integrita_database() -> dict:
+    """Verifica l'integrità e la coerenza del database"""
+    errori = {
+        "area_compatibile_errata": [],
+        "beneficiario_errato": [],
+        "corporazione_specifica_errata": [],
+        "apostolo_inconsistente": [],
+        
+    }
+    
+    for nome, carta in DATABASE_FORTIFICAZIONI.items():
+       
+        
+        if carta["area_compatibile"] not in [t.value for t in AreaCompatibile]:
+           errori["area_compatibile_errata"].append(f"{nome}: {carta['area_compatibile']}")
+
+        if carta["beneficiario"] not in [t.value for t in BeneficiarioFortificazione]:
+           errori["beneficiario_errato"].append(f"{nome}: {carta['beneficiario']}")
+
+        if carta["beneficiario"] == "Corporazione Specifica":
+                      
+           corporazioni = [t.value for t in CorporazioneSpecifica]
+           corporazioni.extend(t.value for t in Fazione)
+           
+           if carta["corporazione_specifica"] not in corporazioni:
+                errori["corporazione_specifica_errata"].append(f"{nome}: {carta['corporazione_specifica']}")
+
+        if carta["apostolo_specifico"] and carta["apostolo_specifico"] not in [t.value for t in ApostoloPadre]:
+           errori["apostolo_inconsistente"].append(f"{nome}: {carta['apostolo_specifico']}")
+
+
+    
+    return errori
+
+
+
 # Test del database
 if __name__ == "__main__":
     print("=== TEST DATABASE FORTIFICAZIONI ===")
@@ -1295,15 +1331,16 @@ if __name__ == "__main__":
     print(f"Costo medio: {stats['costo_medio']}D")
     print(f"Fortificazioni uniche: {stats['percentuale_uniche']}%")
     
-    print(f"\n=== DATABASE COMPLETATO ===")
-    print("✓ Database completo delle carte Fortificazione")
-    print("✓ Città delle Corporazioni (Heimburg, Citadel, Ilian, Capitol, Saguenay)")
-    print("✓ Cittadelle degli Apostoli (Algeroth, Ilian, Demnogonis, Muawijhe, Semai)")
-    print("✓ Fortificazioni Generiche (Bunker, Torrette, Complessi)")
-    print("✓ Strutture Speciali dell'Avamposto (Club Arkadin, Santuario)")
-    print("✓ Funzioni di filtro e ricerca avanzate")
-    print("✓ Creazione automatica istanze Fortificazione")
-    print("✓ Statistiche complete del database")
-    print("✓ Compatibile con regolamento Doomtrooper ufficiale")
-    print("✓ Supporto per tutte le aree (Squadra, Schieramento, Avamposto)")
-    print("✓ Gestione completa modificatori e abilità speciali")
+    # Verifica integrità
+    print(f"\n=== VERIFICA INTEGRITÀ ===")
+    errori = verifica_integrita_database()
+    totale_errori = sum(len(lista) for lista in errori.values())
+    
+    if totale_errori == 0:
+        print("✓ Database integro - nessun errore trovato")
+    else:
+        print(f"⚠ Trovati {totale_errori} errori:")
+        for categoria, lista_errori in errori.items():
+            if lista_errori:
+                print(f"  {categoria}: {lista_errori}")
+    

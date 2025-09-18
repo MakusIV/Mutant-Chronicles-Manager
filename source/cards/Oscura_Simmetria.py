@@ -17,6 +17,9 @@ class BersaglioOscura(Enum):
     GUERRIERO_PROPRIO = "Guerriero Proprio"
     GUERRIERO_AVVERSARIO = "Guerriero Avversario"
     QUALSIASI_GUERRIERO = "Qualsiasi Guerriero"
+    GUERRIERO_ATTACCANTE = "Guerriero Attaccante"
+    GUERRIERO_DIFENSORE = "Guerriero Difensore"
+    ENTRAMBI_COMBATTENTI = "Entrambi i Combattenti"
     TUTTI_GUERRIERI = "Tutti i Guerrieri"
     TUTTI_GUERRIERI_PROPRI = "Tutti i Guerrieri Propri"
     TUTTI_GUERRIERI_AVVERSARI = "Tutti i Guerrieri Avversari"
@@ -26,7 +29,15 @@ class BersaglioOscura(Enum):
     GIOCATORE = "Giocatore"
     ENTRAMBI_GIOCATORI = "Entrambi i Giocatori"
     SENZA_BERSAGLIO = "Senza Bersaglio"
-
+    GIOCATORE_AVVERSARIO = "Giocatore Avversario"
+    COMBATTIMENTO = "Combattimento Corrente"
+    MERCENARIO = "Mercenario"
+    ERETICO = "Eretico"
+    GUERRIERO_FRATELLANZA = "Guerriero della Fratellanza"
+    DOOMTROOPER = "Doomtrooper"
+    PERSONALITA = "Personalita"
+    EQUIPAGGIAMENTO = "Equipaggiamento"
+    NEFARITA = "Nefarita"
 
 class DurataOscura(Enum):
     """Durata dell'effetto delle carte Oscura Simmetria"""
@@ -37,18 +48,24 @@ class DurataOscura(Enum):
     CONTINUA = "Continua"
     FINO_ELIMINAZIONE = "Fino Eliminazione"
     ASSEGNATA = "Assegnata"  # Per doni permanenti
+    FINO_FINE_COMBATTIMENTO = "Fino Fine Combattimento"
+    DURANTE_COMBATTIMENTO = "Durante questo Combattimento"
 
-
+    
 class TimingOscura(Enum):
     """Quando può essere giocata una carta Oscura Simmetria"""
     TURNO_PROPRIO = "Turno Proprio"
-    TURNO_AVVERSARIO = "Turno Avversario"
-    QUALSIASI_MOMENTO = "Qualsiasi Momento"
+    TURNO_AVVERSARIO = "Turno Avversario"    
+    IN_OGNI_MOMENTO = "In Ogni Momento"
     IN_COMBATTIMENTO = "In Combattimento"
     PRIMA_COMBATTIMENTO = "Prima del Combattimento"
     DOPO_COMBATTIMENTO = "Dopo il Combattimento"
     QUANDO_FERITO = "Quando Ferito"
     QUANDO_ELIMINATO = "Quando Eliminato"
+    DURANTE_MODIFICATORI = "Durante Modificatori Combattimento"
+    IN_RISPOSTA = "In Risposta"
+    DICHIARAZIONE_ATTACCO = "Dichiarazione Attacco"
+    RISOLUZIONE_COMBATTIMENTO = "Risoluzione Combattimento"
 
 
 @dataclass

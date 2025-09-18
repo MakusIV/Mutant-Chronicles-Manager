@@ -19,7 +19,7 @@ DATABASE_RELIQUIE = {
     "Dai-Sho Degli Antichi Imperatori": {
         "nome": "Dai-Sho Degli Antichi Imperatori",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Mishima"],
@@ -67,7 +67,7 @@ DATABASE_RELIQUIE = {
     "Pugnale Sacrificale": {
         "nome": "Pugnale Sacrificale",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Legioni Oscure"],
@@ -107,7 +107,7 @@ DATABASE_RELIQUIE = {
     "Codice Di Percezione Occulta": {
         "nome": "Codice Di Percezione Occulta",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
@@ -147,7 +147,7 @@ DATABASE_RELIQUIE = {
     "Armatura Del Vero Assassino": {
         "nome": "Armatura Del Vero Assassino",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Doomtrooper"],
@@ -195,7 +195,7 @@ DATABASE_RELIQUIE = {
     "Guanto Dell'Esorcista": {
         "nome": "Guanto Dell'Esorcista",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": [],
@@ -264,7 +264,7 @@ DATABASE_RELIQUIE = {
     "Il Portale Nero": {
         "nome": "Il Portale Nero",
         "valore": "5D",
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Legioni Oscure"],
@@ -304,7 +304,7 @@ DATABASE_RELIQUIE = {
     "Shillelagh": {
         "nome": "Shillelagh",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": [],
@@ -352,7 +352,7 @@ DATABASE_RELIQUIE = {
     "Frammento Del Vero Chip": {
         "nome": "Frammento Del Vero Chip",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Cybertronic"],
@@ -411,7 +411,7 @@ DATABASE_RELIQUIE = {
     "Arsenale Infame": {
         "nome": "Arsenale Infame",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Legioni Oscure"],
@@ -441,7 +441,7 @@ DATABASE_RELIQUIE = {
     "Teschio Di Krynston": {
         "nome": "Teschio Di Krynston",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Legioni Oscure"],
@@ -479,7 +479,7 @@ DATABASE_RELIQUIE = {
     "Globo Dei Servi Minori": {
         "nome": "Globo Dei Servi Minori",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Legioni Oscure"],
@@ -538,7 +538,7 @@ DATABASE_RELIQUIE = {
     "Maschera Delle Vestali": {
         "nome": "Maschera Delle Vestali",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
@@ -578,7 +578,7 @@ DATABASE_RELIQUIE = {
     "Portatore Di Luce": {
         "nome": "Portatore Di Luce",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
@@ -642,7 +642,7 @@ DATABASE_RELIQUIE = {
     "Missione Modificata": {
         "nome": "Missione Modificata",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Capitol"],
@@ -682,7 +682,7 @@ DATABASE_RELIQUIE = {
     "Armatura Di Empietà": {
         "nome": "Armatura Di Empietà",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Legioni Oscure"],
@@ -739,7 +739,7 @@ DATABASE_RELIQUIE = {
     "Liber Ereticus": {
         "nome": "Liber Ereticus",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
@@ -779,7 +779,7 @@ DATABASE_RELIQUIE = {
     "Necromacchina": {
         "nome": "Necromacchina",
         "valore": 0,
-        "tipo": "Fortificazione",
+        "tipo": "",
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": [],

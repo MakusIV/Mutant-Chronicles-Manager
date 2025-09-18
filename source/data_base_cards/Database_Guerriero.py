@@ -822,8 +822,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     # === CYBERTRONIC ===
     # fatto
     # Base
-    "Cyril dent": {
-        "nome": "Cyril dent",
+    "Cyril Dent": {
+        "nome": "Cyril Dent",
         "fazione": "Cybertronic", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -860,8 +860,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Dottoressa diana": {
-        "nome": "Dottoressa diana",
+    "Dottoressa Diana": {
+        "nome": "Dottoressa Diana",
         "fazione": "Cybertronic", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -906,8 +906,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Mercenario ex-cybertronic": {
-        "nome": "Mercenario ex-cybertronic",
+    "Mercenario Ex-Cybertronic": {
+        "nome": "Mercenario Ex-Cybertronic",
         "fazione": "Cybertronic", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -944,8 +944,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Fay & klaus": {
-        "nome": "Fay & klaus",
+    "Fay & Klaus": {
+        "nome": "Fay & Klaus",
         "fazione": "Cybertronic", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -1020,8 +1020,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Capitano cybertronic": {
-        "nome": "Capitano cybertronic",
+    "Capitano Cybertronic": {
+        "nome": "Capitano Cybertronic",
         "fazione": "Cybertronic", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -1120,8 +1120,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Droide eradicator": {
-        "nome": "Droide eradicator",
+    "Droide Eradicator": {
+        "nome": "Droide Eradicator",
         "fazione": "Cybertronic", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -1158,8 +1158,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Gestore occulto": {
-        "nome": "Gestore occulto",
+    "Gestore Occulto": {
+        "nome": "Gestore Occulto",
         "fazione": "Cybertronic", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -1196,8 +1196,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Sicurezza cybertronic": {
-        "nome": "Sicurezza cybertronic",
+    "Sicurezza Cybertronic": {
+        "nome": "Sicurezza Cybertronic",
         "fazione": "Cybertronic", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -1234,8 +1234,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Vince diamond": {
-        "nome": "Vince diamond",
+    "Vince Diamond": {
+        "nome": "Vince Diamond",
         "fazione": "Cybertronic", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -1273,7 +1273,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
     
     "Tecnico vac": {
-        "nome": "Tecnico vac",
+        "nome": "Tecnico Vac",
         "fazione": "Cybertronic", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -1356,8 +1356,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Charles sykes": {
-        "nome": "Charles sykes",
+    "Charles Sykes": {
+        "nome": "Charles Sykes",
         "fazione": "Cybertronic", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -2052,7 +2052,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Artefatto di Combattimento": {
         "nome": "Artefatto di Combattimento",
         "fazione": "Mishima", 
-        "tipo": "Equipaggiamento",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",

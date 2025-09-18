@@ -40,6 +40,7 @@ class TipoGuerriero(Enum):
     INQUISITORE = "Inquisitore"
     CACCIATORE_OSCURO = "Cacciatore Oscuro"
     MORTIFICATOR = "Mortificator"  # Aggiunto per regole speciali
+    ERETICO = "Eretico"
     
 
 class DisciplinaArte(Enum):
@@ -57,13 +58,10 @@ class DisciplinaArte(Enum):
 class TipoOscuraSimmetria(Enum):
     """Tipi di carte Oscura Simmetria"""
     GENERICA = "Generica"
-    DONO_APOSTOLO = "Dono dell'Apostolo"
-    CORRUZIONE = "Corruzione"
-    TENTAZIONE = "Tentazione"
-    MUTAZIONE = "Mutazione"
-    POSSESSIONE = "Possessione"
-    MALEDIZIONE_OSCURA = "Maledizione Oscura"
-    INVOCAZIONE_OSCURA = "Invocazione Oscura"
+    DONO_APOSTOLO = "Dono degli Apostoli"
+    DONO_OSCURA_SIMMETRIA = "Dono dell'Oscura Simmetria"
+    DONO_OSCURA_LEGIONE = "Dono dell'Oscura Legione"
+   
 
 class ApostoloOscuraSimmetria(Enum):
     """Apostoli Padri dell'Oscura Simmetria"""
@@ -73,6 +71,19 @@ class ApostoloOscuraSimmetria(Enum):
     ILIAN = "Ilian"            # Apostolo del Vuoto
     DEMNOGONIS = "Demnogonis"  # Apostolo della Follia
     NESSUNO = "Nessuno"        # Per carte generiche
+
+
+class CorporazioneSpecifica(Enum):
+    DOOMTROOPER = "Doomtrooper"
+    ERETICI = "Eretici"
+    CULTISTI = "Cultisti"
+    SEGUACI_DI_SEMAI = "Seguaci di Semai"
+    SEGUACI_DI_ILIAN = "Seguaci di Ilian"
+    SEGUACI_DI_DEMNOGONIS = "Seguaci di Demnogonis"
+    SEGUACI_DI_MUAWIJHE = "Seguaci di Muawijhe"
+    SEGUACI_DI_ALGEROTH = "Seguaci di Algeroth"
+    
+
 
 class Rarity(Enum):
     """Rarità delle carte"""

@@ -13,7 +13,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, CorporazioneSpecifica  # Import dalle classi esistenti
 
 DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol", "Freelancer", "Fratellanza"]
 
@@ -27,7 +27,6 @@ class TipoFortificazione(Enum):
     BASE_OPERATIVA = "Base Operativa"  # Basi militari
     RIFUGIO = "Rifugio"  # Bunker e rifugi
     STRUTTURA_SPECIALE = "Struttura Speciale"  # Strutture con abilità uniche
-
 
 class AreaCompatibile(Enum):
     """Aree dove può essere costruita la fortificazione"""
@@ -50,6 +49,8 @@ class BeneficiarioFortificazione(Enum):
     TUTTI_DOOMTROOPER = "Doomtrooper"
     TUTTI_OSCURA_LEGIONE = "Oscura Legione"
     TUTTE_TRIBU = "Tribù"
+    ERETICI = "Eretici"
+    TUTTI = "Tutti"
 
 
 @dataclass
@@ -106,7 +107,7 @@ class Fortificazione:
         # Regole di posizionamento
         self.area_compatibile: AreaCompatibile = AreaCompatibile.SQUADRA_O_SCHIERAMENTO
         self.beneficiario: BeneficiarioFortificazione = BeneficiarioFortificazione.GUERRIERI_AREA
-        self.corporazione_specifica: Optional[Fazione] = None  # Per Città Corporazione
+        self.corporazione_specifica: Optional[str] = None  # Per Città Corporazione
         self.apostolo_specifico: Optional[ApostoloPadre] = None  # Per Cittadelle Apostolo
         
         # Stato e limitazioni
@@ -562,7 +563,13 @@ class Fortificazione:
         fortificazione.beneficiario = BeneficiarioFortificazione(data["beneficiario"])
         
         if data["corporazione_specifica"]:
-            fortificazione.corporazione_specifica = Fazione(data["corporazione_specifica"])
+            if data["corporazione_specifica"] == "Eretici":
+                fortificazione.corporazione_specifica = "Eretici"
+            elif "Seguaci di " in data["corporazione_specifica"]:
+                fortificazione.corporazione_specifica = data["corporazione_specifica"]
+            else:    
+                fortificazione.corporazione_specifica = Fazione(data["corporazione_specifica"])
+
         if data["apostolo_specifico"]:
             fortificazione.apostolo_specifico = ApostoloPadre(data["apostolo_specifico"])
         

@@ -19,6 +19,8 @@ class TipoReliquia(Enum):
     EQUIPAGGIAMENTO_SPECIALE = "Equipaggiamento Speciale"
     RELIQUIA_SACRA = "Reliquia Sacra"
     TECNOLOGIA_PERDUTA = "Tecnologia Perduta"
+    NON_DEFINITO = ""
+
 
 
 class StatoReliquia(Enum):

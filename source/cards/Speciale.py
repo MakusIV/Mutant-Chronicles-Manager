@@ -44,6 +44,13 @@ class BersaglioSpeciale(Enum):
     ENTRAMBI_GIOCATORI = "Entrambi i Giocatori"
     COMBATTIMENTO = "Combattimento Corrente"
     SENZA_BERSAGLIO = "Senza Bersaglio"
+    MERCENARIO = "Mercenario"
+    ERETICO = "Eretico"
+    GUERRIERO_FRATELLANZA = "Guerriero della Fratellanza"
+    DOOMTROOPER = "Doomtrooper"
+    PERSONALITA = "Personalita"
+    EQUIPAGGIAMENTO = "Equipaggiamento"
+    FORTIFICAZIONE = "Fortificazione"
 
 
 class DurataSpeciale(Enum):
@@ -55,14 +62,14 @@ class DurataSpeciale(Enum):
     PERMANENTE = "Permanente"
     CONTINUA = "Continua"
     FINO_PROSSIMO_TURNO = "Fino Prossimo Turno"
-
+    
 
 
 class TimingSpeciale(Enum):
     """Quando può essere giocata una carta Speciale"""
     TURNO_PROPRIO = "Turno Proprio"
     TURNO_AVVERSARIO = "Turno Avversario"
-    QUALSIASI_MOMENTO = "Qualsiasi Momento"
+    IN_OGNI_MOMENTO = "In Ogni Momento"
     IN_COMBATTIMENTO = "In Combattimento"
     DURANTE_MODIFICATORI = "Durante Modificatori Combattimento"
     PRIMA_COMBATTIMENTO = "Prima del Combattimento"
@@ -70,6 +77,9 @@ class TimingSpeciale(Enum):
     DICHIARAZIONE_ATTACCO = "Dichiarazione Attacco"
     RISOLUZIONE_COMBATTIMENTO = "Risoluzione Combattimento"
     IN_RISPOSTA = "In Risposta"
+    QUANDO_FERITO = "Quando Ferito"
+    QUANDO_UCCISO = "Quando Ucciso"
+    QUANDO_ELIMINATO = "Quando Eliminato"
 
 
 @dataclass
@@ -120,7 +130,7 @@ class Speciale:
         # Meccaniche di gioco secondo il regolamento
         self.bersaglio = BersaglioSpeciale.SENZA_BERSAGLIO
         self.durata = DurataSpeciale.ISTANTANEA
-        self.timing = TimingSpeciale.QUALSIASI_MOMENTO
+        self.timing = TimingSpeciale.IN_OGNI_MOMENTO
         
         # Effetti della carta
         self.effetti: List[EffettoSpeciale] = []
@@ -299,7 +309,7 @@ class Speciale:
             risultato["errori"].append(f"Fazione {fazione_giocatore.value} non può giocare questa carta")
         
         # Controllo timing
-        if self.timing != TimingSpeciale.QUALSIASI_MOMENTO and self.timing != timing_corrente:
+        if self.timing != TimingSpeciale.IN_OGNI_MOMENTO and self.timing != timing_corrente:
             risultato["puo_giocare"] = False
             risultato["errori"].append(f"Timing non corretto: richiesto {self.timing.value}, attuale {timing_corrente.value if timing_corrente else 'Non specificato'}")
         

@@ -23,7 +23,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Muawijhe",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero avversario",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -67,7 +67,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Avversari del guerriero",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -111,7 +111,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Avversari di questo guerriero",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -155,7 +155,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Ilian",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerrieri feriti",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -199,7 +199,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -243,7 +243,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Ilian",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -287,7 +287,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Semai",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -331,9 +331,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Semai",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Combattimento",
-        "durata": "Immediata",
-        "timing": "Combattimento",
+        "bersaglio": "Combattimento Corrente",
+        "durata": "Istantanea",
+        "timing": "In Combattimento",
         "set_espansione": "Base",
         "numero_carta": "",       
         "effetti": [
@@ -375,7 +375,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -419,9 +419,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Semai",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero nemico",
-        "durata": "1 Turno",
-        "timing": "Turno",
+        "bersaglio": "Guerriero Avversario",
+        "durata": "Fino Fine Turno",
+        "timing": "Turno Proprio",
         "set_espansione": "Base",
         "numero_carta": "",       
         "effetti": [
@@ -463,9 +463,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Demnogonis",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerrieri che combattono contro il possessore",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
-        "timing": "Combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Base",
         "numero_carta": "",       
         "effetti": [
@@ -507,8 +507,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Muawijhe",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero nemico",
-        "durata": "Immediata",
+        "bersaglio": "Guerriero Avversario",
+        "durata": "Istantanea",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",       
@@ -551,8 +551,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Algeroth",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Nefarita ferito",
-        "durata": "Immediata",
+        "bersaglio": "Nefarita",
+        "durata": "Istantanea",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",       
@@ -595,7 +595,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Algeroth",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Avversari del guerriero",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -639,9 +639,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Muawijhe",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Tutti i guerrieri in gioco",
-        "durata": "Immediata",
-        "timing": "Turno",
+        "bersaglio": "Tutti i Guerrieri",
+        "durata": "Istantanea",
+        "timing": "Turno Proprio",
         "set_espansione": "Base",
         "numero_carta": "",       
         "effetti": [
@@ -683,8 +683,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Algeroth",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Arma o carta Equipaggiamento",
-        "durata": "Immediata",
+        "bersaglio": "Equipaggiamento",
+        "durata": "Istantanea",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",       
@@ -727,8 +727,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Demnogonis",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Arma o carta Equipaggiamento del nemico",
-        "durata": "Immediata",
+        "bersaglio": "Equipaggiamento",
+        "durata": "Istantanea",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",       
@@ -771,9 +771,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Algeroth",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerrieri feriti dal possessore",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
-        "timing": "Combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Base",
         "numero_carta": "",       
         "effetti": [
@@ -815,7 +815,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Ilian",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
@@ -859,9 +859,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Demnogonis",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Avversari feriti dal guerriero",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
-        "timing": "Combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Base",
         "numero_carta": "",       
         "effetti": [
@@ -903,8 +903,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Algeroth",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Altro giocatore",
-        "durata": "Immediata",
+        "bersaglio": "Giocatore Avversario",
+        "durata": "Istantanea",
         "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",       
@@ -947,9 +947,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Muawijhe",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
-        "timing": "Combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Base",
         "numero_carta": "",       
         "effetti": [
@@ -991,9 +991,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Muawijhe",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerrieri che combattono contro il possessore",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
-        "timing": "Combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Base",
         "numero_carta": "",       
         "effetti": [
@@ -1037,9 +1037,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Algeroth",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Mazzo di carte da Pescare",
-        "durata": "Immediata",
-        "timing": "Turno",
+        "bersaglio": "Equipaggiamento",
+        "durata": "Istantanea",
+        "timing": "Turno Proprio",
         "set_espansione": "Inquisition",
         "numero_carta": "",       
         "effetti": [
@@ -1081,7 +1081,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Inquisition",
@@ -1125,7 +1125,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Inquisition",
@@ -1169,7 +1169,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Ilian",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero non-Personalità",
+        "bersaglio": "Tutti i Guerrieri",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Inquisition",
@@ -1213,8 +1213,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Semai",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Avversario",
-        "durata": "Immediata",
+        "bersaglio": "Guerriero Avversario",
+        "durata": "Istantanea",
         "timing": "In Ogni Momento",
         "set_espansione": "Inquisition",
         "numero_carta": "",       
@@ -1257,7 +1257,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Inquisition",
@@ -1301,9 +1301,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Avversari dell'Eretico",
+        "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
-        "timing": "Combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Inquisition",
         "numero_carta": "",       
         "effetti": [
@@ -1345,7 +1345,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Guerriero possessore",
+        "bersaglio": "Guerriero Proprio",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Inquisition",
@@ -1389,9 +1389,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Avversari dell'Eretico",
+       "bersaglio": "Guerriero Avversario",
         "durata": "Permanente",
-        "timing": "Combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Inquisition",
         "numero_carta": "",       
         "effetti": [
@@ -1433,9 +1433,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Demnogonis",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Doomtroopers che combattono questo guerriero",
+        "bersaglio": "Doomtrooper",
         "durata": "Permanente",
-        "timing": "Combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Inquisition",
         "numero_carta": "",       
         "effetti": [
@@ -1477,9 +1477,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Muawijhe",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Ogni guerriero",
-        "durata": "Immediata",
-        "timing": "Turno",
+        "bersaglio": "Tutti i Guerrieri",
+        "durata": "Istantanea",
+        "timing": "Turno Proprio",
         "set_espansione": "Inquisition",
         "numero_carta": "",       
         "effetti": [
@@ -1523,7 +1523,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "apostolo_padre": "Ilian",
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
-        "bersaglio": "Avversario che pesca carte",
+        "bersaglio": "Giocatore Avversario",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
         "set_espansione": "Warzone",
@@ -1697,7 +1697,10 @@ def verifica_integrita_database() -> dict:
         "apostoli_inconsistenti": [],
         "doni_senza_restrizioni": [],
         "costi_invalidi": [],
-        "effetti_mancanti": []
+        "effetti_mancanti": [],
+        "timing_errato": [],
+        "durata_errata": [],
+        "bersaglio_errato": []
     }
     
     for nome, carta in DATABASE_OSCURA_SIMMETRIA.items():
@@ -1712,7 +1715,16 @@ def verifica_integrita_database() -> dict:
             if not any("Solo Seguaci di" in r for r in carta["restrizioni"]):
                 errori["doni_senza_restrizioni"].append(f"{nome}: Manca restrizione Seguaci")
         
-        
+        if carta["timing"] not in [t.value for t in TimingOscura]:
+           errori["timing_errato"].append(f"{nome}: {carta['timing']}")
+
+        if carta["durata"] not in [t.value for t in DurataOscura]:
+           errori["durata_errata"].append(f"{nome}: {carta['durata']}")
+
+        if carta["bersaglio"] not in [t.value for t in BersaglioOscura]:
+           errori["bersaglio_errato"].append(f"{nome}: {carta['bersaglio']}")
+
+
         # Verifica effetti presenti
         if not carta["effetti"]:
             errori["effetti_mancanti"].append(nome)
@@ -1720,6 +1732,7 @@ def verifica_integrita_database() -> dict:
     return errori
 
 
+    
 # ========== ESEMPI DI UTILIZZO ==========
 
 if __name__ == "__main__":
@@ -1744,12 +1757,7 @@ if __name__ == "__main__":
     )
     print(f"✓ Denominazione 'Oscura Legione' corretta: {fazioni_corrette}")
     
-    # Verifica encoding proprietà
-    encoding_corretto = all(
-        "quantita" in carta and "quantita" not in carta
-        for carta in DATABASE_OSCURA_SIMMETRIA.values()
-    )
-    print(f"✓ Encoding corretto (quantita vs quantità): {encoding_corretto}")
+   
     
     # Verifica Doni per Seguaci
     doni_con_restrizioni = [
@@ -1793,14 +1801,4 @@ if __name__ == "__main__":
     carte_rare = get_carte_per_rarity("Rare")
     print(f"✓ Carte Rare: {len(carte_rare)}")
     
-    print(f"\n=== CORREZIONI IMPLEMENTATE ===")
-    print("✓ 1. Denominazione corretta 'Oscura Legione' (non 'Legione Oscura')")
-    print("✓ 2. Percorsi import corretti con 'source.cards'")
-    print("✓ 3. Encoding corretto 'quantita' (non 'quantità')")
-    print("✓ 4. Doni specifici per Seguaci degli Apostoli")
-    print("✓ 5. Restrizioni corrette sui Doni")
-    print("✓ 6. Effetti collaterali implementati")
-    print("✓ 7. Sistema corruzione permanente")
-    print("✓ 8. Gestione bersagli corretta")
-    print("✓ 9. Funzioni utility complete")
-    print("✓ 10. Verifica integrità database")
+   
