@@ -49,7 +49,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -92,7 +92,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -135,7 +135,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -178,7 +178,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -221,7 +221,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -264,7 +264,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -307,7 +307,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -350,7 +350,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -393,7 +393,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -436,7 +436,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -479,7 +479,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -522,7 +522,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -565,7 +565,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -608,7 +608,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -651,7 +651,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -694,7 +694,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -737,7 +737,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -780,7 +780,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -823,7 +823,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -866,7 +866,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -909,7 +909,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -952,7 +952,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -995,7 +995,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1038,7 +1038,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1081,7 +1081,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1124,7 +1124,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1167,7 +1167,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1210,7 +1210,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1253,7 +1253,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },   
@@ -1296,7 +1296,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1339,7 +1339,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1382,7 +1382,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1425,7 +1425,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1468,7 +1468,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1511,7 +1511,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     }, 
@@ -1554,7 +1554,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1597,7 +1597,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1640,7 +1640,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1685,7 +1685,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1728,7 +1728,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1771,7 +1771,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1814,7 +1814,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1857,7 +1857,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1900,7 +1900,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2073,7 +2073,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2116,7 +2116,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2159,7 +2159,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2202,7 +2202,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2245,7 +2245,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2288,7 +2288,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2331,7 +2331,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2374,7 +2374,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2417,7 +2417,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2460,7 +2460,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2502,7 +2502,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2545,7 +2545,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2588,7 +2588,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2631,7 +2631,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2674,7 +2674,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2717,7 +2717,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2760,7 +2760,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },

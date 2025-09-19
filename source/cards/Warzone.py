@@ -507,7 +507,7 @@ class Warzone:
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Warzone':
         """Crea una istanza Warzone da dizionario"""
-        warzone = cls(data["nome"], data["costo_azione"])
+        warzone = cls(nome = data["nome"], costo_azione = data["costo_azione"])
         
         # Attributi base
         warzone.tipo = TipoWarzone(data["tipo"])

@@ -52,7 +52,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -98,7 +98,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -150,7 +150,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -202,7 +202,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -254,7 +254,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -306,7 +306,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -346,7 +346,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -392,7 +392,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -425,7 +425,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -465,7 +465,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -524,7 +524,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -564,7 +564,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -604,7 +604,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -675,13 +675,11 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     }
 
-
-# Dizionario completo con tutte le 15 carte Warzone analizzate dalle immagini
 }
 
 

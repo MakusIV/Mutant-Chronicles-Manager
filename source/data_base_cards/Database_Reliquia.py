@@ -59,7 +59,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -99,7 +99,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -139,7 +139,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -187,7 +187,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -256,7 +256,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -296,7 +296,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -344,7 +344,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -403,7 +403,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -433,7 +433,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -471,7 +471,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -530,7 +530,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -570,7 +570,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -634,7 +634,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -674,7 +674,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -731,7 +731,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -771,7 +771,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -811,7 +811,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     }

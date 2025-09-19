@@ -43,7 +43,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -72,7 +72,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -101,7 +101,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -139,7 +139,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -168,7 +168,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -197,7 +197,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -236,7 +236,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -275,7 +275,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -321,7 +321,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -359,7 +359,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -388,7 +388,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -426,7 +426,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -459,7 +459,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -488,7 +488,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -526,7 +526,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -572,7 +572,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -601,7 +601,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -630,7 +630,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -668,7 +668,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -697,7 +697,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -737,7 +737,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -775,7 +775,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -813,7 +813,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -855,7 +855,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -901,7 +901,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -939,7 +939,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -977,7 +977,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1015,7 +1015,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1069,7 +1069,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1115,7 +1115,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1153,7 +1153,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1191,7 +1191,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1229,7 +1229,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1267,7 +1267,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1313,7 +1313,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1351,7 +1351,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1397,7 +1397,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1438,7 +1438,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1476,7 +1476,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1512,7 +1512,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1541,7 +1541,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1577,7 +1577,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1613,7 +1613,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1651,7 +1651,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1680,7 +1680,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1709,7 +1709,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1745,7 +1745,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1774,7 +1774,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1810,7 +1810,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1839,7 +1839,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1875,7 +1875,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1904,7 +1904,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1943,7 +1943,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },    
@@ -1981,7 +1981,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2015,7 +2015,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2044,7 +2044,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2082,7 +2082,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2120,7 +2120,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2158,7 +2158,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2187,7 +2187,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2217,7 +2217,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2255,7 +2255,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2302,7 +2302,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2340,7 +2340,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2386,7 +2386,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2415,7 +2415,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2466,7 +2466,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2512,7 +2512,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2550,7 +2550,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2588,7 +2588,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2626,7 +2626,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2664,7 +2664,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2702,7 +2702,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2740,7 +2740,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2778,7 +2778,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2824,7 +2824,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2870,7 +2870,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2908,7 +2908,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2947,7 +2947,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2993,7 +2993,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3031,7 +3031,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3339,7 +3339,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
@@ -3426,7 +3426,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3520,7 +3520,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3789,7 +3789,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4327,7 +4327,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4394,7 +4394,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4700,7 +4700,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4728,7 +4728,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4756,7 +4756,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4801,7 +4801,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4838,7 +4838,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },

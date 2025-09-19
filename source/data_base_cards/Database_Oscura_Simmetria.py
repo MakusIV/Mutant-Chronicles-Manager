@@ -55,7 +55,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -99,7 +99,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -143,7 +143,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -187,7 +187,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -231,7 +231,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -275,7 +275,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -319,7 +319,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -363,7 +363,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -407,7 +407,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -451,7 +451,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -495,7 +495,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -539,7 +539,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -583,7 +583,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -627,7 +627,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -671,7 +671,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -715,7 +715,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -759,7 +759,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -803,7 +803,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -847,7 +847,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -891,7 +891,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -935,7 +935,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -979,7 +979,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1023,7 +1023,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1069,7 +1069,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1113,7 +1113,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1157,7 +1157,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1201,7 +1201,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1245,7 +1245,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1289,7 +1289,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1333,7 +1333,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1377,7 +1377,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1421,7 +1421,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1465,7 +1465,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1509,7 +1509,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1555,7 +1555,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "contatori_oscura": {},
         "livello_corruzione": 0,
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
