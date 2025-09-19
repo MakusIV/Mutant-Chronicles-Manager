@@ -2128,7 +2128,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     "Artefatto Suicida": {
         "nome": "Artefatto Suicida",
         "fazione": "Mishima", 
-        "tipo": "Equipaggiamento",
+        "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -5132,7 +5132,8 @@ def valida_database() -> Dict[str, List[str]]:
         "statistiche_mancanti": [],
         "statistiche_invalid": [],
         "personalita_duplicate": [],
-        "nomi_duplicati": []
+        "nomi_duplicati": [],
+        "fazione_errata": []
     }
     
     nomi_visti = set()
@@ -5159,6 +5160,9 @@ def valida_database() -> Dict[str, List[str]]:
                 errori["statistiche_mancanti"].append(f"{nome}: manca {stat}")
             elif not isinstance(stats[stat], int) or stats[stat] < 0:
                 errori["statistiche_invalid"].append(f"{nome}: {stat} non valido")
+
+        if data["fazione"] not in [t.value for t in Fazione]:
+           errori["fazione_errata"].append(f"{nome}: {data['fazione']}")
     
     return errori
 
@@ -5288,12 +5292,8 @@ if __name__ == "__main__":
     
     print(f"\n=== DATABASE COMPLETO E CORRETTO ===")
     print("✓ 25+ guerrieri con statistiche corrette (C-S-A-V)")
-    print("✓ Eliminazione proprietà duplicate e non esistenti")
     print("✓ Tutte le fazioni rappresentate")
     print("✓ Espansioni Base, Inquisition, Warzone")
-    print("✓ Statistiche 'sparare' invece di 'forza' errata")
-    print("✓ Solo campo 'valore' per costo DP e punti promozione")
-    print("✓ Personalita e tipi di guerriero corretti")
     print("✓ Funzioni di utilità avanzate per filtri e ricerche")
     print("✓ Compatibile con from_dict() per creazione istanze")
     print("✓ Validazione automatica del database")

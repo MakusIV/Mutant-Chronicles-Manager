@@ -193,7 +193,7 @@ class StatisticheCollezione:
         # Aggiorna valore in DP se disponibile
         if hasattr(carta, 'valore') and carta.valore and (isinstance(carta.valore, int) or isinstance(carta.valore, float)):
             self.valore_totale_dp += carta.valore * quantita
-        elif hasattr(carta, 'costo_destino'):
+        elif hasattr(carta, 'costo_destino') and carta.costo_destino and (isinstance(carta.costo_destino, int) or isinstance(carta.costo_destino, float)):
             self.valore_totale_dp += carta.costo_destino * quantita
         
         # Aggiorna contatori per fazione, set e rarità con gestione sicura degli enum
@@ -1215,9 +1215,9 @@ def analizza_carte_per_fazione(collezione):
                     stats_fazioni[fazione_nome]['altre_carte'] += 1
                 
                 # Aggiunge valore
-                if hasattr(carta, 'valore'):
+                if hasattr(carta, 'valore') and ( isinstance(carta.valore, int) or isinstance(carta.valore, float)):
                     stats_fazioni[fazione_nome]['valore_dp'] += carta.valore
-                elif hasattr(carta, 'costo_destino'):
+                elif hasattr(carta, 'costo_destino') and ( isinstance(carta.costo_destino, int) or isinstance(carta.costo_destino, float)):
                     stats_fazioni[fazione_nome]['valore_dp'] += carta.costo_destino
     
     return dict(stats_fazioni)
@@ -1502,12 +1502,13 @@ def crea_statistiche_fazioni_json(collezione) -> Dict[str, Any]:
                 else:
                     stats_fazioni[fazione_nome]['altre_carte'] += 1
                 
-                # Valore DP
-                if hasattr(carta, 'valore'):
+                 # Aggiunge valore
+                if hasattr(carta, 'valore') and ( isinstance(carta.valore, int) or isinstance(carta.valore, float)):
                     stats_fazioni[fazione_nome]['valore_dp'] += carta.valore
-                elif hasattr(carta, 'costo_destino'):
+                elif hasattr(carta, 'costo_destino') and ( isinstance(carta.costo_destino, int) or isinstance(carta.costo_destino, float)):
                     stats_fazioni[fazione_nome]['valore_dp'] += carta.costo_destino
-    
+
+                
     # Converte defaultdict in dict normali
     for fazione_info in stats_fazioni.values():
         fazione_info['dettaglio_carte'] = dict(fazione_info['dettaglio_carte'])
@@ -2120,15 +2121,15 @@ def test_creazioni_individuali():
     print("Testando funzioni di creazione individuali...")
     
     test_cases = [
-        ("Guerriero", crea_guerriero_da_database, "Bauhaus Blitzer"),
-        ("Equipaggiamento", crea_equipaggiamento_da_database, "spada_combattimento"),
-        ("Speciale", crea_speciale_da_database, "tactical_advance"),
+        ("Guerriero", crea_guerriero_da_database, "Dragone"),
+        ("Equipaggiamento", crea_equipaggiamento_da_database, "L&A Carabina Al Plasma"),
+        ("Speciale", crea_speciale_da_database, "Iniziativa"),
         ("Fortificazione", crea_fortificazione_da_database, "Heimburg"),
-        ("Missione", crea_missione_da_database, "recupero_intelligence"),
-        ("Arte", crea_arte_da_database, "blessing_of_light"),
-        ("Oscura Simmetria", crea_oscura_simmetria_da_database, "corruzione_minore"),
-        ("Reliquia", crea_reliquia_da_database, "antica_reliquia"),
-        ("Warzone", crea_warzone_da_database, "zona_guerra")
+        ("Missione", crea_missione_da_database, "Eliminazione"),
+        ("Arte", crea_arte_da_database, "Glaciazione"),
+        ("Oscura Simmetria", crea_oscura_simmetria_da_database, "Cecità"),
+        ("Reliquia", crea_reliquia_da_database, "Maschera Delle Vestali"),
+        ("Warzone", crea_warzone_da_database, "Cyberopolis")
     ]
     
     for tipo_carta, funzione, nome_esempio in test_cases:

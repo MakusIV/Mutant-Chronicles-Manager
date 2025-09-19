@@ -2,39 +2,23 @@
   "metadata": {
     "versione": "2.0",
     "tipo_export": "collezioni_dettagliate",
-    "data_creazione": "2025-09-18T10:52:00.773609",
+    "data_creazione": "2025-09-19T14:55:28.319654",
     "numero_collezioni": 2,
     "descrizione": "Export dettagliato collezioni con inventari completi e statistiche per fazione"
   },
   "statistiche_aggregate": {
     "panoramica_generale": {
       "numero_collezioni": 2,
-      "totale_carte": 161,
-      "totale_valore_dp": 9,
-      "media_carte_per_collezione": 80.5,
-      "media_valore_per_collezione": 4.5
+      "totale_carte": 186,
+      "totale_valore_dp": 8,
+      "media_carte_per_collezione": 93.0,
+      "media_valore_per_collezione": 4.0
     },
     "riepilogo_collezioni": [
       {
         "id_giocatore": 1,
-        "totale_carte": 76,
-        "valore_dp": 2,
-        "orientamento": {
-          "attivo": true,
-          "fazioni": [
-            "Bauhaus",
-            "Capitol",
-            "Imperiale",
-            "Mishima",
-            "Cybertronic",
-            "Freelancer"
-          ]
-        }
-      },
-      {
-        "id_giocatore": 2,
-        "totale_carte": 85,
-        "valore_dp": 7,
+        "totale_carte": 103,
+        "valore_dp": 5,
         "orientamento": {
           "attivo": true,
           "fazioni": [
@@ -47,39 +31,57 @@
             "Freelancer"
           ]
         }
+      },
+      {
+        "id_giocatore": 2,
+        "totale_carte": 83,
+        "valore_dp": 3,
+        "orientamento": {
+          "attivo": true,
+          "fazioni": [
+            "Bauhaus",
+            "Capitol",
+            "Imperiale",
+            "Mishima",
+            "Cybertronic",
+            "Freelancer"
+          ]
+        }
       }
     ],
     "distribuzione_orientamenti": {
-      "Bauhaus, Capitol, Cybertronic, Freelancer, Imperiale, Mishima": 1,
-      "Bauhaus, Capitol, Cybertronic, Freelancer, Imperiale, Mishima, Oscura Legione": 1
+      "Bauhaus, Capitol, Cybertronic, Freelancer, Imperiale, Mishima, Oscura Legione": 1,
+      "Bauhaus, Capitol, Cybertronic, Freelancer, Imperiale, Mishima": 1
     },
     "distribuzione_globale": {
       "per_tipo": {
-        "guerrieri": 46,
-        "equipaggiamenti": 10,
-        "speciali": 19,
-        "fortificazioni": 13,
-        "missioni": 56,
+        "guerrieri": 36,
+        "equipaggiamenti": 11,
+        "speciali": 22,
+        "fortificazioni": 19,
+        "missioni": 58,
         "arte": 16,
-        "reliquie": 1
+        "oscura_simmetria": 11,
+        "reliquie": 13
       },
       "per_fazione": {
+        "Cybertronic": 2,
+        "Oscura Legione": 18,
+        "Fratellanza": 6,
         "Capitol": 2,
-        "Cybertronic": 7,
-        "Oscura Legione": 26,
-        "Imperiale": 4,
-        "Fratellanza": 4,
-        "Bauhaus": 1,
-        "Mishima": 2
+        "Imperiale": 3,
+        "Mishima": 1,
+        "Freelancer": 3,
+        "Bauhaus": 1
       },
       "per_rarity": {
-        "Common": 113,
-        "Uncommon": 32,
-        "Rare": 16
+        "Common": 142,
+        "Rare": 25,
+        "Uncommon": 19
       },
       "per_set": {
-        "Base": 116,
-        "Inquisition": 45
+        "Base": 123,
+        "Inquisition": 63
       }
     }
   },
@@ -94,29 +96,30 @@
           "Imperiale",
           "Mishima",
           "Cybertronic",
+          "Oscura Legione",
           "Freelancer"
         ]
       },
       "carte_per_tipo": {
         "guerriero": {
-          "totale_carte": 16,
-          "carte_uniche": 13,
+          "totale_carte": 21,
+          "carte_uniche": 14,
           "dettaglio_carte": {
-            "Agente Speciale Hunter": {
-              "nome": "Agente Speciale Hunter",
+            "Mercenario Ex-Cybertronic": {
+              "nome": "Mercenario Ex-Cybertronic",
               "quantita": 1,
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "fazione": "Capitol",
+              "fazione": "Cybertronic",
               "statistiche": {
-                "combattimento": 9,
-                "sparare": 4,
-                "armatura": 7,
-                "valore": 7
+                "combattimento": 2,
+                "sparare": 2,
+                "armatura": 4,
+                "valore": 1
               },
-              "testo_carta": "PERSONALITÀ. IMMUNE A TUTTI I DONI DELL'OSCURA SIMMETRIA, COMPRESI I DONI DEGLI APOSTOLI. Non può mai diventare un Eretico. Può spendere due Azioni per fare un Attacco in Corpo a Corpo con il valore base C raddoppiato (18).",
+              "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA. Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Cybertronic\", ma dovrà pagare 1D per poter introdurre queste carte in gioco.",
               "keywords": []
             },
             "Cacciatore": {
@@ -136,78 +139,119 @@
               "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
               "keywords": []
             },
-            "Golem dell'oscurità": {
-              "nome": "Golem dell'oscurità",
-              "quantita": 1,
+            "Tekron": {
+              "nome": "Tekron",
+              "quantita": 2,
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Inquisition",
               "valore_dp": 0,
               "fazione": "Oscura Legione",
               "statistiche": {
-                "combattimento": 6,
-                "sparare": 5,
-                "armatura": 7,
-                "valore": 7
+                "combattimento": 4,
+                "sparare": 4,
+                "armatura": 3,
+                "valore": 6
               },
-              "testo_carta": "SEGUACE DI ALGEROTH. Il Golem non può ricevere nessuna carta dell'Oscura Simmetria. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.",
+              "testo_carta": "SEGUACE DI ALGEROTH. Mentre è in gioco, al costo di tre Azioni, il Tekron può sostituire un Eretico con qualsiasi SEGUACE DI ALGEROTH non Personalità della Tua Collezione. Devi pagare il costo V del nuovo guerriero e devi rimuovere dal gioco l'Eretico.",
               "keywords": [
                 "Seguace di Algeroth"
               ]
             },
-            "Farabutto": {
-              "nome": "Farabutto",
-              "quantita": 1,
+            "Tutore": {
+              "nome": "Tutore",
+              "quantita": 3,
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "fazione": "Imperiale",
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 3,
+                "sparare": 4,
+                "armatura": 3,
+                "valore": 4
+              },
+              "testo_carta": "Con laLame Scalper e siringhe piene di veleni mortali, i Tutori sono ben lieti di dare ai feriti l'estrema unzione",
+              "keywords": [
+                "Seguace di Demnogonis"
+              ]
+            },
+            "Billy": {
+              "nome": "Billy",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
               "statistiche": {
                 "combattimento": 4,
                 "sparare": 4,
-                "armatura": 3,
+                "armatura": 4,
                 "valore": 5
               },
-              "testo_carta": "Non puoi aggiungere il Farabutto alla tua Squadra se sono presenti Guerrieri Imperiali e viceversa.",
-              "keywords": []
+              "testo_carta": "Billy è considerato un Eretico. Egli può ricever DONI DELL'OSCURA SIMMETRIA e spendendo 5D può ricevere un DONO DEGLI APOSTOLI",
+              "keywords": [
+                "Eretico",
+                "Personalita"
+              ]
             },
-            "Mortificator": {
-              "nome": "Mortificator",
+            "Intruso Callistoniano": {
+              "nome": "Intruso Callistoniano",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 4,
+                "sparare": 4,
+                "armatura": 6,
+                "valore": 6
+              },
+              "testo_carta": "Se Ferito, l'Intruso Callistoniano può guarire se stesso spendendo, in ogni momento, 6D",
+              "keywords": [
+                "Seguace di Semai"
+              ]
+            },
+            "Famoso evocatore": {
+              "nome": "Famoso evocatore",
               "quantita": 1,
               "tipo": "Guerriero",
               "rarity": "Common",
-              "set_espansione": "Base",
+              "set_espansione": "Inquisition",
               "valore_dp": 0,
               "fazione": "Fratellanza",
               "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 3
+                "combattimento": 4,
+                "sparare": 4,
+                "armatura": 5,
+                "valore": 7
               },
-              "testo_carta": "I Mortificator possono utilizzare l'Arte della Cinetica e l'Arte della Manipolazione.",
+              "testo_carta": "Il Famoso Evocatore può usare l'Arte d'Evocazione e della Manipolazione. Quando lancia incantesimi dell'Arte d'Evocazione, paga solo la metà del loro costo D.",
               "keywords": []
             },
-            "Pilota Trevor Bartholomew": {
-              "nome": "Pilota Trevor Bartholomew",
+            "Free Marine": {
+              "nome": "Free Marine",
               "quantita": 1,
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "fazione": "Imperiale",
+              "fazione": "Capitol",
               "statistiche": {
-                "combattimento": 0,
-                "sparare": 6,
-                "armatura": 8,
-                "valore": 7
+                "combattimento": 2,
+                "sparare": 4,
+                "armatura": 2,
+                "valore": 1
               },
-              "testo_carta": "PERSONALITÀ. CONSIDERATO CAVALLERIA AEREA E AERONAVE. Può solo attaccare a distanza (Sparare), non può essere attaccato in Corpo a Corpo. Non può Andare in Copertura. Armi e Equipaggiamenti non gli possono essere assegnati. Gli avversari non guadagnano i bonus delle Fortificazioni. Quando è in gioco, tutta la Cavalleria Aerea guadagna un +1 in S e A",
+              "testo_carta": "Al di fuori di ogni inquadramento, questi guerrieri pluridecorati sono alla ricerca del proprio riscatto morale. Parecchi di loro sono infatti stati degradati dalla Corte Marziale.",
               "keywords": []
             },
-            "Cultista di ilian": {
-              "nome": "Cultista di ilian",
+            "Semai-signore dell'odio": {
+              "nome": "Semai-signore dell'odio",
               "quantita": 3,
               "tipo": "Guerriero",
               "rarity": "Common",
@@ -215,37 +259,16 @@
               "valore_dp": 0,
               "fazione": "Oscura Legione",
               "statistiche": {
-                "combattimento": 2,
-                "sparare": 4,
-                "armatura": 3,
-                "valore": 3
+                "combattimento": 0,
+                "sparare": 0,
+                "armatura": 0,
+                "valore": 20
               },
-              "testo_carta": "SEGUACE DI ILIAN. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
-              "keywords": [
-                "Seguace di Ilian",
-                "Eretico",
-                "Cultista di Ilian"
-              ]
-            },
-            "Fay & Klaus": {
-              "nome": "Fay & Klaus",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Cybertronic",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 5
-              },
-              "testo_carta": "PERSONALITÀ. IMMUNE AGLI EFFETTI DEI DONI DELL'OSCURA SIMMETRIA. Questa carta è considerata come un singolo guerriero. Puoi combattere con Fay & Klaus come se fossero una Squadra, spendendo 5D. Se lo fai, C, S, A e V guadagnano un + 3 fino alla fine del combattimento.",
+              "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, i Doomtrooper possono attaccare qualsiasi altro Doomtrooper in gioco (non nella stessa Squadra), ma devono pagare 4D, per poter Attaccare guerrieri dell'Oscura Legione.",
               "keywords": []
             },
-            "Mercenario Ex-Imperiale": {
-              "nome": "Mercenario Ex-Imperiale",
+            "Sean Gallagher": {
+              "nome": "Sean Gallagher",
               "quantita": 1,
               "tipo": "Guerriero",
               "rarity": "Common",
@@ -253,12 +276,31 @@
               "valore_dp": 0,
               "fazione": "Imperiale",
               "statistiche": {
-                "combattimento": 4,
-                "sparare": 2,
-                "armatura": 2,
-                "valore": 1
+                "combattimento": 8,
+                "sparare": 0,
+                "armatura": 8,
+                "valore": 10
               },
-              "testo_carta": "Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Imperiali\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
+              "testo_carta": "PERSONALITÀ. CONSIDERATO UN MEMBRO DEL CLAN. Deve attaccare preferibilmente un membro dell'Oscura Legione, se non ve ne sono sei libero di fare quello che vuoi. Quando Callagher è in gioco tutti i tuoi Membri del Clan sono Immuni agli effetti delle caarte dell'Oscura Simmetria",
+              "keywords": [
+                "Seguace di Bauhaus"
+              ]
+            },
+            "Mentore": {
+              "nome": "Mentore",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "fazione": "Mishima",
+              "statistiche": {
+                "combattimento": 3,
+                "sparare": 3,
+                "armatura": 3,
+                "valore": 2
+              },
+              "testo_carta": "Per ogni Tuo Mentore in gioco, i Tuoi guerrieri Mishima guadagnano un +1 in C e S. Un Mentore non può accrescere le sue caratteristiche personali, ma altri Mentori possono.",
               "keywords": []
             },
             "Mistico": {
@@ -278,55 +320,40 @@
               "testo_carta": "Il Mistico può utilizzare TUTTE le carte ARTE. Maestri in tutte le Arti, questi guerrieri dedicano la loro vita alla lotta contro l'Oscura Legione.",
               "keywords": []
             },
-            "Vince Diamond": {
-              "nome": "Vince Diamond",
+            "Pretorian Stalker": {
+              "nome": "Pretorian Stalker",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 12,
+                "sparare": 3,
+                "armatura": 8,
+                "valore": 7
+              },
+              "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ad un Pretorian Stalker. Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2",
+              "keywords": [
+                "Seguace di Algeroth"
+              ]
+            },
+            "Rampollo di ilian": {
+              "nome": "Rampollo di ilian",
               "quantita": 1,
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Inquisition",
               "valore_dp": 0,
-              "fazione": "Cybertronic",
-              "statistiche": {
-                "combattimento": 8,
-                "sparare": 11,
-                "armatura": 7,
-                "valore": 10
-              },
-              "testo_carta": "PERSONALITÀ. CONSIDERATO UN CACCIATORE. Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI. Mentre è in gioco, tutti i Tuoi CACCIATORI (ma non Vince) guadagnano un + 2 in C, S e A. Non potrà mai lanciare incantesimi dell'Arte.",
-              "keywords": []
-            },
-            "Ussaro": {
-              "nome": "Ussaro",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Bauhaus",
-              "statistiche": {
-                "combattimento": 2,
-                "sparare": 2,
-                "armatura": 3,
-                "valore": 2
-              },
-              "testo_carta": "Gli Ussari sono la fanteria regolare della Corporazione Bauhaus. Ben equipaggiati, eccezionalmente addestrati e fortemente motivati, sono dei guerrieri dalle incredibili capacità offensive.",
-              "keywords": []
-            },
-            "Templare": {
-              "nome": "Templare",
-              "quantita": 2,
-              "tipo": "Guerriero",
-              "rarity": "Uncommon",
-              "set_espansione": "Base",
-              "valore_dp": 0,
               "fazione": "Oscura Legione",
               "statistiche": {
                 "combattimento": 4,
-                "sparare": 7,
-                "armatura": 5,
-                "valore": 6
+                "sparare": 5,
+                "armatura": 4,
+                "valore": 5
               },
-              "testo_carta": "Le Guardie del Tempio di Ilian sono guerrieri estremamente potenti che pattugliano la Cittadella della Signora del Vuoto",
+              "testo_carta": "SEGUACE DI ILIAN. Considerato un FIGLIO DI ILIAN. Mentre è in gioco, i guerrieri feriti dai Tuoi FIGLI DI ILIAN sono automaticamente uccisi.",
               "keywords": [
                 "Seguace di Ilian"
               ]
@@ -337,132 +364,74 @@
           "totale_carte": 5,
           "carte_uniche": 5,
           "dettaglio_carte": {
-            "Fumogeno": {
-              "nome": "Fumogeno",
+            "Kit Pronto Soccorso": {
+              "nome": "Kit Pronto Soccorso",
               "quantita": 1,
               "tipo": "Equipaggiamento",
               "rarity": "Common",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "testo_carta": "Un guerriero può detonare un Fumogeno scartando questa carta. Il guerriero può ritirarsi da un combattimento prima che questo abbia inizio, ponendo fine all'Azione d'Attacco dell'avversario.",
+              "testo_carta": "Questo guerriero potrà scartare il KIT DI PRONTO SOCCORSO per guarire un compagno ferito. Un Doomtrooper non guarirà mai un seguace dell'Oscura Legione, e viceversa. Il KIT non può essere usato su un morto, anche se appena ucciso.",
               "keywords": []
             },
-            "Spada e Pistola Punisher": {
-              "nome": "Spada e Pistola Punisher",
+            "Plague Gun": {
+              "nome": "Plague Gun",
               "quantita": 1,
               "tipo": "Equipaggiamento",
               "rarity": "Common",
               "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI SEGUACE DI DEMNOGONIS. I Doomtrooper feriti dal Plague Gun, sono automaticamente uccisi e un Doomtrooper nella stessa Squadra, scelto dal giocatore del Doomtrooper, viene ferito. I guerrieri uccisi dalla piaga fanno guadagnare punti.",
+              "keywords": [
+                "Seguace di Demnogonis"
+              ]
+            },
+            "Proiettili di Tenebra": {
+              "nome": "Proiettili di Tenebra",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSOCIABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. ARMA DA FUOCO E DA FUOCO/CORPO A CORPO. I Doomtrooper feriti dall'Arma d'ora in poi sono considerati Eretici, perdono ogni Legame e non sono più Doomtrooper. Essi possono Attaccare (ed essere Attaccati da) qualsiasi guerriero e possono ricevere i DONI DELL'OSCURA SIMMETRIA. Armi legate ad un'ICONA specifica sono scartate.",
+              "keywords": [
+                "Eretico"
+              ]
+            },
+            "AC-40 Justifier": {
+              "nome": "AC-40 Justifier",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 3,
+              "testo_carta": "MITRAGLIATRICE LEGGERA CON BAIONETTA INTEGRATA. Arma da Corpo a Corpo e da Fuoco. Il guerriero guadagna un +3 in C e S.",
+              "keywords": []
+            },
+            "Baionetta": {
+              "nome": "Baionetta",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
               "valore_dp": 2,
-              "testo_carta": "ASSEGNABILE A QUALSIASI DOOMTROOPER. È CONSIDERATA UN'ARMA DA FUOCO E DA CORPO A CORPO. Il guerriero guadagna un +2 in C e S.",
-              "keywords": []
-            },
-            "Nazgaroth": {
-              "nome": "Nazgaroth",
-              "quantita": 1,
-              "tipo": "Equipaggiamento",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. ARMA DA FUOCO. MITRAGLIATRICE PESANTE. Il guerriero guadagna un +8 in S. Gli avversari feriti dal Nazgaroth sono automaticamente uccisi. Il Nazgaroth finisce le munizioni dopo ogni combattimento a Fuoco nel quale viene usato. Per ricaricarlo, devi spendere o un'Azione, o 5D. Il Nazgaroth entra in gioco carico.",
-              "keywords": []
-            },
-            "SSW4200P": {
-              "nome": "SSW4200P",
-              "quantita": 1,
-              "tipo": "Equipaggiamento",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO CYBERTRONIC. ARMA DA FUOCO. MITRAGLIATRICE PESANTE. Il guerriero guadagna un +4 in S. Se il totale S del guerriero che usa l'SSW4200, è più del doppio della A del suo avversario, l'avversario ferito, è automaticamente ucciso.",
-              "keywords": []
-            },
-            "AG-17 Panzerknacker": {
-              "nome": "AG-17 Panzerknacker",
-              "quantita": 1,
-              "tipo": "Equipaggiamento",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ASSEGNABILE A UN GUERRIERO BAUHAUS. ARMA DA FUOCO FUCILE D'ASSALTO. Il guerriero guadagna un +4 in S e può Attaccare due avversari diversi nella stessa Azione. Gli Attacchi sono condotti separatamente. Annuncia entrambi gli attacchi, prima di risolvere il primo. Qualsiasi modificatore giocato per il primo combattimento, vale anche per il secondo. Altri modificatori possono essere aggiunti nel secondo combattimento.",
+              "testo_carta": "ASSOCIABILE A OGNI ARMA DA FUOCO. Questa conversione ti permette di utilizzare un'Arma da fuoco anche nei combattimenti Corpo a Corpo. Incrementa la Tua caratteristica C di +2.",
               "keywords": []
             }
           }
         },
         "speciale": {
-          "totale_carte": 9,
-          "carte_uniche": 9,
+          "totale_carte": 11,
+          "carte_uniche": 11,
           "dettaglio_carte": {
-            "Empatia Mentale": {
-              "nome": "Empatia Mentale",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. Il guerriero potrà, d'ora in poi, lanciare gli Incantesimi ARTE MENTALI.",
-              "keywords": []
-            },
-            "Ricerca E Distruzione": {
-              "nome": "Ricerca E Distruzione",
+            "Mercato Nero": {
+              "nome": "Mercato Nero",
               "quantita": 1,
               "tipo": "Speciale",
               "rarity": "Common",
               "set_espansione": "Inquisition",
               "valore_dp": 0,
-              "testo_carta": "GIOCABILE IN OGNI MOMENTO. Un guerriero Al Coperto viene automaticamente ucciso.",
-              "keywords": []
-            },
-            "Intimidazione": {
-              "nome": "Intimidazione",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "GIOCABILE SU QUALSIASI GUERRIERO NON-PERSONALITÀ IN OGNI MOMENTO. QUESTA CARTA RIMANE IN GIOCO. Il guerriero è intimidito e non può compiere Azioni di Attacco.",
-              "keywords": []
-            },
-            "Empatia Di Cambiamento": {
-              "nome": "Empatia Di Cambiamento",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. Il guerriero può, d'ora in poi, lanciare gli Incantesimi ARTE DEL CAMBIAMENTO.",
-              "keywords": []
-            },
-            "Insubordinazione": {
-              "nome": "Insubordinazione",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. Il guerriero perde il legame con una Corporazione a Tua scelta. Speciali legami guadagnati attraverso l'assegnazione di carte sono i primi a decadere. Se non esistono legami, il guerriero diventa un Mercenario, e i punti che guadagna possono solo essere convertiti in Punti Destino.",
-              "keywords": [
-                "Mercenario"
-              ]
-            },
-            "Nota Efficienza": {
-              "nome": "Nota Efficienza",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE SU UN DOOMTROOPER NON DELLA FRATELLANZA E NON CYBERTRONIC, IN OGNI MOMENTO. Il guerriero sarà, d'ora in poi, considerato un membro della Cybertronic, ma rimarrà contemporaneamente legato anche alla Corporazione di partenza.",
-              "keywords": []
-            },
-            "Giurare Vendetta": {
-              "nome": "Giurare Vendetta",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN GUERRIERO MISHIMA È STATO UCCISO IN COMBATTIMENTO. Il guerriero che ha ucciso il soldato Mishima riceve una ferita. Se muore tu guadagni i Punti Promozione.",
+              "testo_carta": "GIOCABILE IN OGNI MOMENTO. Puoi scambiare le carte della Tua mano con quelle del mazzo Scartate. Ogni carta costa 5D.",
               "keywords": []
             },
             "Servizio Deferente": {
@@ -475,34 +444,189 @@
               "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER, NON MISHIMA, IN OGNI MOMENTO. Il guerriero sarà, da adesso in poi, considerato come un membro della Corporazione Mishima, ma rimarrà legato contemporaneamente anche alla Corporazione di partenza.",
               "keywords": []
             },
-            "Incantesimo Preferito": {
-              "nome": "Incantesimo Preferito",
+            "Documenti Persi": {
+              "nome": "Documenti Persi",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE SU OGNI GIOCATORE IN OGNI MOMENTO. L'avversario perde 3 Punti Promozione.",
+              "keywords": []
+            },
+            "Medico Da Campo": {
+              "nome": "Medico Da Campo",
               "quantita": 1,
               "tipo": "Speciale",
               "rarity": "Common",
               "set_espansione": "Inquisition",
               "valore_dp": 0,
-              "testo_carta": "GIOCABILE SUBITO DOPO CHE UN INCANTESIMO DELL'ARTE È STATO GIOCATO. L'incantesimo che è appena stato lanciato ritorna in mano a chi lo ha giocato. QUESTA CARTA NON HA EFFETTO SU INCANTESIMI CHE DEVONO ESSERE ELIMINATI DAL GIOCO DOPO L'USO.",
+              "testo_carta": "GIOCABILE IN OGNI MOMENTO. Un guerriero ferito guarisce.",
+              "keywords": []
+            },
+            "Carica!": {
+              "nome": "Carica!",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE SU UNO DEI TUOI GUERRIERI AL COPERTO, AL COSTO DI TRE AZIONI. Il guerriero può immediatamente uscire allo scoperto e Attaccare con un +2 in C e S. Questa è considerata un'Azione di Attacco. Dopo il combattimento, il guerriero NON È PIÙ AL COPERTO.",
+              "keywords": []
+            },
+            "Mortificazione": {
+              "nome": "Mortificazione",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE SU QUALSIASI GUERRIERO DELLA FRATELLANZA AL COSTO DI DUE AZIONI. QUESTA CARTA RIMANE IN GIOCO. Il guerriero ha imparato l'Arte segreta della Mortificazione. Gli avversari feriti in combattimento Corpo a Corpo sono automaticamente morti. NON DIVENTA COMUNQUE UN MORTIFICATOR.",
+              "keywords": []
+            },
+            "Frenesia Dei Necromutanti": {
+              "nome": "Frenesia Dei Necromutanti",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE IN OGNI MOMENTO. Per il resto della partita, tutti i Necromutanti in gioco (anche introdotti successivamente) risolvono il loro combattimento per primi. Solo se l'avversario sopravvive potrà attaccare il Necromutante.",
+              "keywords": []
+            },
+            "Degradato": {
+              "nome": "Degradato",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE SU OGNI GUERRIERO IN OGNI MOMENTO. Il guerriero perde un -2 in V. Se il V del guerriero diventa 0, la carta è scartata. Un guerriero può essere Degradato più volte.",
+              "keywords": []
+            },
+            "Ammaliatrice": {
+              "nome": "Ammaliatrice",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE QUANDO UN GIOCATORE AVVERSARIO INTRODUCE IN GIOCO UN GUERRIERO. Questa carta sostituisce il guerriero che viene rimescolato nel mazzo di carte da pescare. L'Ammaliatrice non può mai entrare in combattimento ma viene comunque considerata un guerriero ed una PERSONALITA. Mentre l'Ammaliatrice è in una Squadra/Schieramento il giocatore non può aggiungere altri guerrieri.",
+              "keywords": [
+                "Personalita"
+              ]
+            },
+            "Ritirata": {
+              "nome": "Ritirata",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE DURANTE IL COMBATTIMENTO. Il Tuo guerriero vede la futilità di questo scontro, e fugge dalla battaglia. Il combattimento è finito. Entrambi i guerrieri coinvolti nel combattimento tornano alle basi rispettive. Il Tuo avversario guadagna la metà dei punti V del guerriero codardo (arrotondati per eccesso).",
+              "keywords": []
+            },
+            "Impeto Di Giustizia": {
+              "nome": "Impeto Di Giustizia",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Per ogni 10D spesi, un guerriero qualsiasi in gioco, indipendentemente dall'ICONA DI LEGAME, è scartato. Questo non viene considerato un Attacco.",
               "keywords": []
             }
           }
         },
         "fortificazione": {
-          "totale_carte": 7,
-          "carte_uniche": 7,
+          "totale_carte": 9,
+          "carte_uniche": 9,
           "dettaglio_carte": {
-            "Heimburg": {
-              "nome": "Heimburg",
+            "Industria Bellica": {
+              "nome": "Industria Bellica",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA O AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre l'Industria Bellica è in gioco, guadagni 1D durante la Tua Fase Pescare. Non c'è limite al numero di Industrie Belliche che puoi avere in gioco contemporaneamente.",
+              "keywords": [
+                "Industria",
+                "Bellica",
+                "Fortificazione"
+              ]
+            },
+            "Trincea": {
+              "nome": "Trincea",
               "quantita": 1,
               "tipo": "Fortificazione",
               "rarity": "Common",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ BAUHAUS. Tutti i Tuoi membri della Corporazione Bauhaus guadagnano un +2 in A mentre Heimburg è in gioco.",
+              "testo_carta": "ASSEGNA QUESTA CARTA A UN GUERRIERO AL COSTO DI UN'AZIONE. Il guerriero trova protezione in una Trincea. Questo guerriero guadagna un +2 in A, e un +2 in C. Il guerriero non può cominciare un combattimento Corpo a Corpo, (ma può difendersi se è attaccato). Questa carta può essere mossa su un altro guerriero al costo di un'Azione.",
               "keywords": [
-                "Bauhaus",
+                "Trincea",
+                "Protezione",
+                "Fortificazione"
+              ]
+            },
+            "Cittadella Di Semai": {
+              "nome": "Cittadella Di Semai",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Semai nel Tuo Schieramento guadagnano un +2 in A mentre la CITTADELLA DI SEMAI è in gioco.",
+              "keywords": [
+                "Semai",
+                "Seguace di Semai",
+                "Cittadella",
+                "Fortificazione"
+              ]
+            },
+            "Quartier Generale": {
+              "nome": "Quartier Generale",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ CYBERTRONIC. Tutti i Tuoi membri della Corporazione Cybertronic guadagnano un +2 in A mentre il Quartier Generale è in gioco.",
+              "keywords": [
+                "Cybertronic",
+                "Quartier Generale",
                 "Città",
-                "Heimburg",
+                "Fortificazione"
+              ]
+            },
+            "Cittadella Di Muawijhe": {
+              "nome": "Cittadella Di Muawijhe",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Muawijhe guadagnano un +2 in A mentre la CITTADELLA DI MUAWIJHE è in gioco.",
+              "keywords": [
+                "Muawijhe",
+                "Seguace di Muawijhe",
+                "Cittadella",
+                "Fortificazione"
+              ]
+            },
+            "San Dorado": {
+              "nome": "San Dorado",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ CAPITOL. Tutti i Tuoi membri della Corporazione Capitol guadagnano un +2 in A mentre San Dorado è in gioco.",
+              "keywords": [
+                "Capitol",
+                "Città",
+                "San Dorado",
                 "Fortificazione"
               ]
             },
@@ -522,33 +646,917 @@
                 "Fortificazione"
               ]
             },
-            "Quartier Generale": {
-              "nome": "Quartier Generale",
+            "Cittadella Di Algeroth": {
+              "nome": "Cittadella Di Algeroth",
               "quantita": 1,
               "tipo": "Fortificazione",
               "rarity": "Common",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ CYBERTRONIC. Tutti i Tuoi membri della Corporazione Cybertronic guadagnano un +2 in A mentre il Quartier Generale è in gioco.",
+              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Algeroth nel Tuo Schieramento guadagnano un +2 in A mentre la Cittadella di Algeroth è in gioco.",
               "keywords": [
-                "Cybertronic",
-                "Quartier Generale",
-                "Città",
+                "Algeroth",
+                "Seguace di Algeroth",
+                "Cittadella",
                 "Fortificazione"
               ]
             },
-            "San Dorado": {
-              "nome": "San Dorado",
+            "Fukido": {
+              "nome": "Fukido",
               "quantita": 1,
               "tipo": "Fortificazione",
               "rarity": "Common",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ CAPITOL. Tutti i Tuoi membri della Corporazione Capitol guadagnano un +2 in A mentre San Dorado è in gioco.",
+              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UNA AZIONE. CITTÀ IMPERIALE. Tutti i Tuoi membri della Corporazione Imperiale guadagnano un +2 in A mentre Fukido è in gioco.",
               "keywords": [
-                "Capitol",
+                "Imperiale",
+                "Fukido",
                 "Città",
-                "San Dorado",
+                "Fortificazione"
+              ]
+            }
+          }
+        },
+        "missione": {
+          "totale_carte": 36,
+          "carte_uniche": 7,
+          "dettaglio_carte": {
+            "Esorcismo": {
+              "nome": "Esorcismo",
+              "quantita": 7,
+              "tipo": "Missione",
+              "rarity": "Rare",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "Solo Inquisitori o Mistici. Elimina 1 carta Oscura Simmetria in gioco. Ricompensa include Santificazione: +2 Armatura contro l'Oscura Legione per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Fratellanza",
+                "Esorcismo"
+              ]
+            },
+            "Purificazione": {
+              "nome": "Purificazione",
+              "quantita": 7,
+              "tipo": "Missione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri della Fratellanza. Uccidi 2 guerrieri dell'Oscura Legione. Ricompensa include Benedizione: immune alla prossima carta Oscura Simmetria.",
+              "keywords": [
+                "Missione",
+                "Fratellanza",
+                "Purificazione"
+              ]
+            },
+            "Strategia Superiore": {
+              "nome": "Strategia Superiore",
+              "quantita": 4,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Assegna questa missione a te stesso. Se vinci 3 combattimenti con guerrieri diversi nello stesso turno, ottieni la ricompensa e Comando Tattico: +1 Azione per 2 turni.",
+              "keywords": [
+                "Missione",
+                "Giocatore",
+                "Strategia"
+              ]
+            },
+            "Operazione Heimburg": {
+              "nome": "Operazione Heimburg",
+              "quantita": 5,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri Bauhaus. Controlla una Fortificazione nemica per 1 turno completo. Ricompensa: 3 Punti Promozione, 2 Punti Destino e +2 Armatura per 2 turni.",
+              "keywords": [
+                "Missione",
+                "Bauhaus",
+                "Controllo"
+              ]
+            },
+            "Corruzione": {
+              "nome": "Corruzione",
+              "quantita": 3,
+              "tipo": "Missione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri dell'Oscura Legione. Assegna 2 Doni Oscuri a guerrieri nemici. Ricompensa include Favore Oscuro: -1 costo per assegnare Doni per 2 turni.",
+              "keywords": [
+                "Missione",
+                "Oscura Legione",
+                "Corruzione"
+              ]
+            },
+            "Via del Bushido": {
+              "nome": "Via del Bushido",
+              "quantita": 3,
+              "tipo": "Missione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo Samurai o Ninja Mishima. Uccidi in singolo combattimento un guerriero con valore superiore al tuo. Ricompensa include Onore Mishima: +1 a tutte le statistiche per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Mishima",
+                "Onore",
+                "Bushido"
+              ]
+            },
+            "Dominazione": {
+              "nome": "Dominazione",
+              "quantita": 7,
+              "tipo": "Missione",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo Apostoli o Nepharite. Controlla simultaneamente 3 aree diverse del campo di battaglia. Ricompensa include Supremazia Oscura: +1 a tutte le statistiche per 3 turni.",
+              "keywords": [
+                "Missione",
+                "Oscura Legione",
+                "Dominazione"
+              ]
+            }
+          }
+        },
+        "arte": {
+          "totale_carte": 8,
+          "carte_uniche": 8,
+          "dettaglio_carte": {
+            "Pacifismo": {
+              "nome": "Pacifismo",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ARTE MENTALE. INCANTESIMO PERSONALE DI COMBATTIMENTO. Tutti i guerrieri impegnati in questo combattimento sono immediatamente scartati. Non guadagni alcun punto.",
+              "keywords": []
+            },
+            "Evocare Oggetto": {
+              "nome": "Evocare Oggetto",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Per 4D, puoi prendere una qualsiasi carta Equipaggiamento dal Tuo mazzo di carte Scartate, oppure, spendendo 7D, prenderla dal Tuo mazzo di carte da Pescare e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare l'Equipaggiamento scelto. Devi pagare qualsiasi D o Azione indicato sulla carta Equipaggiamento.",
+              "keywords": []
+            },
+            "Esorcizzare Danno": {
+              "nome": "Esorcizzare Danno",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH.",
+              "keywords": []
+            },
+            "Empatia": {
+              "nome": "Empatia",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE AL COSTO DI UN'AZIONE. Per ogni 10D spesi, un giocatore deve raccontarti i dettagli del Suo prossimo Attacco: deve dirti se intende attaccare, chi sarà l'attaccante e il difensore, e anche la Tattica del Combattimento. Quando tutto è stato annunciato, il giocatore dovrà condurre nel suo Turno, l'Attacco come programmato, salvo che questa azione diventi proibita.",
+              "keywords": []
+            },
+            "Premonizione Di Attacco": {
+              "nome": "Premonizione Di Attacco",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in A.",
+              "keywords": []
+            },
+            "Telepatia Minore": {
+              "nome": "Telepatia Minore",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare la Tattica di Combattimento scelta per questo combattimento.",
+              "keywords": []
+            },
+            "Resistenza Elementare": {
+              "nome": "Resistenza Elementare",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni D speso il Maestro guadagna un +1 in A. Per ogni 2D spesi guadagna automaticamente un +1 in A.",
+              "keywords": []
+            },
+            "Fantasma": {
+              "nome": "Fantasma",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DELLA CINETICA. GIOCABILE AL COSTO DI 4D E DUE AZIONI. Il Maestro può assumere le sembianze di un membro della Fratellanza già in gioco per il resto della partita. Per 6D quello di un Doomtrooper, per 10D quelle di un membro dell'Oscura Legione. Il Maestro acquisisce C, S, A e V dell'originale.",
+              "keywords": []
+            }
+          }
+        },
+        "oscura_simmetria": {
+          "totale_carte": 6,
+          "carte_uniche": 6,
+          "dettaglio_carte": {
+            "Fuoco Oscuro": {
+              "nome": "Fuoco Oscuro",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": "",
+              "testo_carta": "DONO DELL'OSCURA SIMMETRIA. Nelle mani del guerriero si crea un Magico Fuoco Oscuro che gli conferisce un +1 in C.",
+              "keywords": []
+            },
+            "Occhio Sacrilego": {
+              "nome": "Occhio Sacrilego",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": "",
+              "testo_carta": "DONO DELL'OSCURA SIMMETRIA. PUÒ SOLO ESSERE ASSEGNATO AGLI ERETICI. Gli avversari dell'Eretico sono accecati. Se l'avversario non paga 3D, il combattimento termina dopo l'Attacco dell'Eretico e l'avversario non può contrattaccare. Se li paga il combattimento è normale.",
+              "keywords": [
+                "Eretico"
+              ]
+            },
+            "Urlo Lacerante": {
+              "nome": "Urlo Lacerante",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": "1 Azione",
+              "testo_carta": "DONO DI MUAWIJHE. Puoi urlare ad ogni numero di guerrieri, al costo complessivo di un'Azione. Metti un Segnalino su ogni guerriero terrorizzato. Ogni Urlo Ti costa 2D. I guerrieri terrorizzati devono spendere 4D per Attaccare. I Segnalini saranno rimossi all'inizio del Tuo prossimo Turno.",
+              "keywords": [
+                "Seguace di Muawijhe"
+              ]
+            },
+            "Occhio Malvagio": {
+              "nome": "Occhio Malvagio",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": "",
+              "testo_carta": "DONO DELL'OSCURA SIMMETRIA. PUÒ SOLO ESSERE ASSEGNATO AGLI ERETICI. Gli avversari dell'Eretico sono accecati. Se l'avversario non paga 3D, il combattimento termina dopo l'Attacco dell'Eretico e l'avversario non può contrattaccare. Se li paga il combattimento è normale.",
+              "keywords": [
+                "Eretico"
+              ]
+            },
+            "Deformazione": {
+              "nome": "Deformazione",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": "",
+              "testo_carta": "DONO DI DEMNOGONIS. Tutti i guerrieri che combattono contro il possessore di questo Dono ricevono una penalità di -2 in A.",
+              "keywords": [
+                "Seguace di Demnogonis"
+              ]
+            },
+            "Deformazione Dimensionale": {
+              "nome": "Deformazione Dimensionale",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": "",
+              "testo_carta": "DONO DI ALGEROTH. I guerrieri feriti dal possessore di questo Dono sono automaticamente uccisi.",
+              "keywords": [
+                "Seguace di Algeroth"
+              ]
+            }
+          }
+        },
+        "reliquia": {
+          "totale_carte": 7,
+          "carte_uniche": 7,
+          "dettaglio_carte": {
+            "Missione Modificata": {
+              "nome": "Missione Modificata",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO CAPITOL, SE SEI UN FAMOSO COLLEZIONISTA. Mentre questa carta è in gioco, durante il Tuo Turno puoi trasformare fino a tre Azioni in Azioni di Attacco. Solo i guerrieri Capitol possono compiere Azioni di Attacco extra. Tutte le Azioni trasformate si aggiungono alla Tua Azione di Attacco normale.",
+              "keywords": []
+            },
+            "Il Portale Nero": {
+              "nome": "Il Portale Nero",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": "5D",
+              "testo_carta": "PUOI ASSEGNARLO A UN GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Ogni 5D spesi, questo guerriero può portare in combattimento un altro dei Tuoi guerrieri dell'Oscura Legione come rinforzo. Il gruppo somma i valori C e S per il combattimento. L'avversario può scegliere quale guerriero combattere.",
+              "keywords": []
+            },
+            "Globo Dei Servi Minori": {
+              "nome": "Globo Dei Servi Minori",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A UN GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Mentre è in gioco, tutti i Tuoi LEGIONARI NON MORTI, URLANTI, BENEDETTI, DI SEMAI e i Tuoi FIGLI DI ILIAN triplicano i loro valori normali C, S, A e V. Quando li introduci in gioco, paga solo il V normale.",
+              "keywords": []
+            },
+            "Guanto Dell'Esorcista": {
+              "nome": "Guanto Dell'Esorcista",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO, SE SEI UN FAMOSO COLLEZIONISTA. Il guerriero può lanciare tutti gli incantesimi dell'Arte dell'Esorcismo. Ogni 1D speso per gli incantesimi di Esorcismo vale 2D. Il guerriero guadagna un +5 in C e S, quando combatte gli Eretici, e un +3 in C e S, quando combatte guerrieri dell'Oscura Legione.",
+              "keywords": []
+            },
+            "Necromacchina": {
+              "nome": "Necromacchina",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "PUOI ASSOCIARLA A UNA CITTADELLA NEL TUO SCHIERAMENTO, SE SEI UN FAMOSO COLLEZIONISTA. Ogni volta che uccidi un Doomtrooper, PUOI cercare un guerriero dell'Oscura Legione non-Personalità nella Tua Collezione, il cui V non sia più alto di quello del guerriero ucciso, e metterlo nel Tuo Schieramento. Se fai questo, non guadagni punti per l'uccisione.",
+              "keywords": []
+            },
+            "Pugnale Sacrificale": {
+              "nome": "Pugnale Sacrificale",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE AD UN GUERRIERO DELL'OSCURA LEGIONE SE SEI UN FAMOSO COLLEZIONISTA. Mentre in gioco tu puoi annullare l'effetto di un incantesimo dell'Arte appena lanciato (o scartare un incantesimo dell'Arte in gioco) scartando un tuo guerriero della Fratellanza.",
+              "keywords": []
+            },
+            "Arsenale Infame": {
+              "nome": "Arsenale Infame",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Mentre è in gioco, le carte Equipaggiamento giocate sui guerrieri dell'Oscura Legione che vengono uccisi, non sono scartate. Puoi invece mescolarle nel Tuo mazzo di carte da Pescare. Se questo guerriero viene ucciso, il suo equipaggiamento è scartato insieme a questa carta.",
+              "keywords": []
+            }
+          }
+        }
+      },
+      "statistiche_fazioni": {
+        "Cybertronic": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Mercenario Ex-Cybertronic": 1,
+            "Cacciatore": 1
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        },
+        "Oscura Legione": {
+          "totale_carte": 14,
+          "guerrieri": 14,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Tekron": 2,
+            "Tutore": 3,
+            "Billy": 1,
+            "Intruso Callistoniano": 3,
+            "Semai-signore dell'odio": 3,
+            "Pretorian Stalker": 1,
+            "Rampollo di ilian": 1
+          },
+          "tipi_carte": {
+            "guerriero": 14
+          }
+        },
+        "Fratellanza": {
+          "totale_carte": 2,
+          "guerrieri": 2,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Famoso evocatore": 1,
+            "Mistico": 1
+          },
+          "tipi_carte": {
+            "guerriero": 2
+          }
+        },
+        "Capitol": {
+          "totale_carte": 1,
+          "guerrieri": 1,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Free Marine": 1
+          },
+          "tipi_carte": {
+            "guerriero": 1
+          }
+        },
+        "Imperiale": {
+          "totale_carte": 1,
+          "guerrieri": 1,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Sean Gallagher": 1
+          },
+          "tipi_carte": {
+            "guerriero": 1
+          }
+        },
+        "Mishima": {
+          "totale_carte": 1,
+          "guerrieri": 1,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Mentore": 1
+          },
+          "tipi_carte": {
+            "guerriero": 1
+          }
+        }
+      },
+      "totali": {
+        "carte_totali": 103,
+        "valore_totale_dp": 5,
+        "carte_uniche": 67
+      }
+    },
+    {
+      "id_giocatore": 2,
+      "orientamento": {
+        "attivo": true,
+        "fazioni": [
+          "Bauhaus",
+          "Capitol",
+          "Imperiale",
+          "Mishima",
+          "Cybertronic",
+          "Freelancer"
+        ]
+      },
+      "carte_per_tipo": {
+        "guerriero": {
+          "totale_carte": 15,
+          "carte_uniche": 13,
+          "dettaglio_carte": {
+            "Guerrieri sacri": {
+              "nome": "Guerrieri sacri",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 3,
+                "sparare": 3,
+                "armatura": 3,
+                "valore": 3
+              },
+              "testo_carta": "I Guerrieri Sacri possono utilizzare l'Arte della Premonizione e l'Arte dell'Esorcismo.",
+              "keywords": []
+            },
+            "Blood Beret": {
+              "nome": "Blood Beret",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Imperiale",
+              "statistiche": {
+                "combattimento": 4,
+                "sparare": 3,
+                "armatura": 4,
+                "valore": 4
+              },
+              "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
+              "keywords": []
+            },
+            "Legionario Non Morto": {
+              "nome": "Legionario Non Morto",
+              "quantita": 3,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 3,
+                "sparare": 1,
+                "armatura": 2,
+                "valore": 2
+              },
+              "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
+              "keywords": [
+                "Seguace di Algeroth"
+              ]
+            },
+            "Antiquario": {
+              "nome": "Antiquario",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 3,
+                "sparare": 3,
+                "armatura": 3,
+                "valore": 3
+              },
+              "testo_carta": "L'Antiquario può utilizzare l'Arte Cinetica ed d'Evocazione.",
+              "keywords": []
+            },
+            "Guardia del corpo": {
+              "nome": "Guardia del corpo",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Freelancer",
+              "statistiche": {
+                "combattimento": 2,
+                "sparare": 2,
+                "armatura": 6,
+                "valore": 4
+              },
+              "testo_carta": "CONSIDERATA ANCHE UNA FORTIFICAZIONE. Una volta in gioco, puoi assegnare la Guardia del Corpo in qualsiasi momento a qualsiasi Doomtrooper. Se vuoi, durante il combattimento combatterà al posto di quel guerriero. Puoi assegnare la Guardia del Corpo a un altro guerriero spendendo 3D.",
+              "keywords": []
+            },
+            "Nepharita di Semai": {
+              "nome": "Nepharita di Semai",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Rare",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Oscura Legione",
+              "statistiche": {
+                "combattimento": 5,
+                "sparare": 4,
+                "armatura": 5,
+                "valore": 6
+              },
+              "testo_carta": "Immune agli effetti dell'Arte. I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto, esamina la tua Collezione e introduci un Legionario di Semai nel tuo Schieramento. Se non hai una carta per rappresentarlo, perdi questa possibilità",
+              "keywords": [
+                "Seguace di Semai"
+              ]
+            },
+            "Ranger Venusiano": {
+              "nome": "Ranger Venusiano",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Bauhaus",
+              "statistiche": {
+                "combattimento": 4,
+                "sparare": 3,
+                "armatura": 4,
+                "valore": 4
+              },
+              "testo_carta": "I Ranger Venusiani sono immuni agli effetti di tutte le carte DONI DELL'OSCURA SIMMETRIA.",
+              "keywords": []
+            },
+            "Mortificator": {
+              "nome": "Mortificator",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 3,
+                "sparare": 3,
+                "armatura": 3,
+                "valore": 3
+              },
+              "testo_carta": "I Mortificator possono utilizzare l'Arte della Cinetica e l'Arte della Manipolazione.",
+              "keywords": []
+            },
+            "Medico da campo": {
+              "nome": "Medico da campo",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Freelancer",
+              "statistiche": {
+                "combattimento": 0,
+                "sparare": 0,
+                "armatura": 5,
+                "valore": 3
+              },
+              "testo_carta": "Non può utilizzare carte equipaggiamento o attaccare un guerriero avversario. Può curare un Doomtrooper ferito (facendolo tornare sano) al costo di tre azioni. Non può curare un morto.",
+              "keywords": []
+            },
+            "Mitch Hunter": {
+              "nome": "Mitch Hunter",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Capitol",
+              "statistiche": {
+                "combattimento": 4,
+                "sparare": 7,
+                "armatura": 7,
+                "valore": 7
+              },
+              "testo_carta": "PERSONALITÀ. CONSIDERATO UN GUERRIERO DI FANTERIA. Quando Hunter è in gioco, tutta la Tua fanteria è immune agli effetti delle carte dell'Oscura Simmetria.",
+              "keywords": []
+            },
+            "Mercenario Ex-Imperiale": {
+              "nome": "Mercenario Ex-Imperiale",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Imperiale",
+              "statistiche": {
+                "combattimento": 4,
+                "sparare": 2,
+                "armatura": 2,
+                "valore": 1
+              },
+              "testo_carta": "Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Imperiali\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
+              "keywords": []
+            },
+            "Apostata rinnegato": {
+              "nome": "Apostata rinnegato",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Freelancer",
+              "statistiche": {
+                "combattimento": 4,
+                "sparare": 4,
+                "armatura": 5,
+                "valore": 7
+              },
+              "testo_carta": "Può usare tutti i tipi di Arte. L'apostata Rinnegato non ha nessun Legame e non può riceverne nessuno separato dalla Tua Squadra e dal Tuo Schieramento. Può lanciare qualsiasi incantesimo su qualsiasi guerriero e Attaccare ed essere Attaccato da qualsiasi guerriero.",
+              "keywords": [
+                "Eretico"
+              ]
+            },
+            "Custode dell'arte": {
+              "nome": "Custode dell'arte",
+              "quantita": 1,
+              "tipo": "Guerriero",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "fazione": "Fratellanza",
+              "statistiche": {
+                "combattimento": 3,
+                "sparare": 3,
+                "armatura": 5,
+                "valore": 4
+              },
+              "testo_carta": "IL CUSTODE DELL'ARTE PUÒ UTILIZZARE TUTTE LE CARTE ARTE. Tutti gli Incantesimi Personali di combattimento sono considerati Incantesimi di combattimento quando sono giocati dal Custode, e ogni Punto D speso su un effetto dell'Incantesimo, vale 2D per quell'effetto.",
+              "keywords": []
+            }
+          }
+        },
+        "equipaggiamento": {
+          "totale_carte": 6,
+          "carte_uniche": 6,
+          "dettaglio_carte": {
+            "SSW4200P": {
+              "nome": "SSW4200P",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO CYBERTRONIC. ARMA DA FUOCO. MITRAGLIATRICE PESANTE. Il guerriero guadagna un +4 in S. Se il totale S del guerriero che usa l'SSW4200, è più del doppio della A del suo avversario, l'avversario ferito, è automaticamente ucciso.",
+              "keywords": []
+            },
+            "DPAT-9 Deuce": {
+              "nome": "DPAT-9 Deuce",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO CAPITOL. ARMA DA FUOCO. LANCIA RAZZI. Il guerriero guadagna un +6 in S e può usare un'Azione di Attacco per scartare un VEICOLO o una Fortificazione in gioco. Il guerriero non può farlo se viene Attaccato.",
+              "keywords": []
+            },
+            "Fucile di Precisione Archer": {
+              "nome": "Fucile di Precisione Archer",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO MISHIMA. ARMA DA FUOCO. FUCILE DI PRECISIONE. Il guerriero guadagna un +2 in S. Se il guerriero spende anche un'Azione per prendere la mira, guadagna un ulteriore +3 in S per quel combattimento. L'Azione 'prendere la mira' deve avvenire immediatamente prima dell'Azione di Attacco.",
+              "keywords": []
+            },
+            "Spada Punisher": {
+              "nome": "Spada Punisher",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 1,
+              "testo_carta": "ARMA DA CORPO A CORPO. Il guerriero guadagna un +1 in C.",
+              "keywords": []
+            },
+            "Fukimura No.12 Kamikaze": {
+              "nome": "Fukimura No.12 Kamikaze",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "AERONAVE. PUÒ ESSERE ASSEGNATA A OGNI MISHIMA DOOMTROOPER. Un guerriero non può essere equipaggiato con più di un'Aeronave. Quando pilota questa Aeronave, S, A e V del guerriero sono raddoppiate. Quando usi il Kamikaze durante un combattimento, nessun altra Arma può essere utilizzata.",
+              "keywords": []
+            },
+            "Lancia Castigator": {
+              "nome": "Lancia Castigator",
+              "quantita": 1,
+              "tipo": "Equipaggiamento",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 2,
+              "testo_carta": "ASSEGNABILE AD OGNI DOOMTROOPER. ARMA DA CORPO A CORPO. Il guerriero guadagna un +2 in C. Se assegnata a una VALCHIRIA invece, guadagna un +4 in C. Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S.",
+              "keywords": []
+            }
+          }
+        },
+        "speciale": {
+          "totale_carte": 11,
+          "carte_uniche": 11,
+          "dettaglio_carte": {
+            "Insubordinazione": {
+              "nome": "Insubordinazione",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. Il guerriero perde il legame con una Corporazione a Tua scelta. Speciali legami guadagnati attraverso l'assegnazione di carte sono i primi a decadere. Se non esistono legami, il guerriero diventa un Mercenario, e i punti che guadagna possono solo essere convertiti in Punti Destino.",
+              "keywords": [
+                "Mercenario"
+              ]
+            },
+            "Nato Fortunato": {
+              "nome": "Nato Fortunato",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN DOOMTROOPER, NON DELLA FRATELLANZA, È STATO INTRODOTTO IN UNA SQUADRA. Il nuovo arrivato ha contatti molto importanti. Spendendo 5D potrai guadagnare 3 PUNTI PROMOZIONE. Questa carta può essere giocata solo una volta per partita.",
+              "keywords": []
+            },
+            "Empatia Della Manipolazione": {
+              "nome": "Empatia Della Manipolazione",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. Il guerriero potrà, d'ora in poi, lanciare gli Incantesimi ARTE DELLA MANIPOLAZIONE.",
+              "keywords": []
+            },
+            "Malfunzionamento": {
+              "nome": "Malfunzionamento",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE SU OGNI GUERRIERO IN OGNI MOMENTO. Scegli un'Arma o un Equipaggiamento di un guerriero avversario e scartala.",
+              "keywords": []
+            },
+            "Comunicazione Errata": {
+              "nome": "Comunicazione Errata",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN GIOCATORE HA GIOCATO UNA QUALSIASI CARTA. La carta appena giocata non ha nessun effetto sul gioco. Viene immediatamente scartata.",
+              "keywords": []
+            },
+            "Empatia Mentale": {
+              "nome": "Empatia Mentale",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. Il guerriero potrà, d'ora in poi, lanciare gli Incantesimi ARTE MENTALI.",
+              "keywords": []
+            },
+            "Giurare Vendetta": {
+              "nome": "Giurare Vendetta",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN GUERRIERO MISHIMA È STATO UCCISO IN COMBATTIMENTO. Il guerriero che ha ucciso il soldato Mishima riceve una ferita. Se muore tu guadagni i Punti Promozione.",
+              "keywords": []
+            },
+            "Nota Efficienza": {
+              "nome": "Nota Efficienza",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": null,
+              "testo_carta": "GIOCABILE SU UN DOOMTROOPER NON DELLA FRATELLANZA E NON CYBERTRONIC, IN OGNI MOMENTO. Il guerriero sarà, d'ora in poi, considerato un membro della Cybertronic, ma rimarrà contemporaneamente legato anche alla Corporazione di partenza.",
+              "keywords": []
+            },
+            "Manifestazione Del Destino": {
+              "nome": "Manifestazione Del Destino",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE ALL'INIZIO DELLA TUA FASE \"PESCARE\". Per il resto della partita, durante Tua Fase \"PESCARE\", potrai pescare carte fino ad averne un massimo di 10. Ricordati che durante la Fase \"SCARTARE\" non potrai avere in mano più di 10. Scarta le eccedenti.",
+              "keywords": []
+            },
+            "Colpo Fortunato": {
+              "nome": "Colpo Fortunato",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE SU UN GUERRIERO DURANTE IL COMBATTIMENTO. Il guerriero guadagna un +2 sulla caratteristica S per questo combattimento.",
+              "keywords": []
+            },
+            "Tregua": {
+              "nome": "Tregua",
+              "quantita": 1,
+              "tipo": "Speciale",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "GIOCABILE IN OGNI MOMENTO. Nessun guerriero può compiere o subire Azioni di Attacco fino all'inizio del Tuo prossimo Turno.",
+              "keywords": []
+            }
+          }
+        },
+        "fortificazione": {
+          "totale_carte": 10,
+          "carte_uniche": 10,
+          "dettaglio_carte": {
+            "Heimburg": {
+              "nome": "Heimburg",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ BAUHAUS. Tutti i Tuoi membri della Corporazione Bauhaus guadagnano un +2 in A mentre Heimburg è in gioco.",
+              "keywords": [
+                "Bauhaus",
+                "Città",
+                "Heimburg",
                 "Fortificazione"
               ]
             },
@@ -567,910 +1575,19 @@
                 "Fortificazione"
               ]
             },
-            "Fukido": {
-              "nome": "Fukido",
-              "quantita": 1,
-              "tipo": "Fortificazione",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UNA AZIONE. CITTÀ IMPERIALE. Tutti i Tuoi membri della Corporazione Imperiale guadagnano un +2 in A mentre Fukido è in gioco.",
-              "keywords": [
-                "Imperiale",
-                "Fukido",
-                "Città",
-                "Fortificazione"
-              ]
-            },
-            "Industria Bellica": {
-              "nome": "Industria Bellica",
+            "La Cattedrale Di Volksburg": {
+              "nome": "La Cattedrale Di Volksburg",
               "quantita": 1,
               "tipo": "Fortificazione",
               "rarity": "Common",
               "set_espansione": "Inquisition",
               "valore_dp": 0,
-              "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA O AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre l'Industria Bellica è in gioco, guadagni 1D durante la Tua Fase Pescare. Non c'è limite al numero di Industrie Belliche che puoi avere in gioco contemporaneamente.",
-              "keywords": [
-                "Industria",
-                "Bellica",
-                "Fortificazione"
-              ]
-            }
-          }
-        },
-        "missione": {
-          "totale_carte": 30,
-          "carte_uniche": 9,
-          "dettaglio_carte": {
-            "Via del Bushido": {
-              "nome": "Via del Bushido",
-              "quantita": 2,
-              "tipo": "Missione",
-              "rarity": "Rare",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Solo Samurai o Ninja Mishima. Uccidi in singolo combattimento un guerriero con valore superiore al tuo. Ricompensa include Onore Mishima: +1 a tutte le statistiche per 3 turni.",
-              "keywords": [
-                "Missione",
-                "Mishima",
-                "Onore",
-                "Bushido"
-              ]
-            },
-            "Supremazia Cybertronic": {
-              "nome": "Supremazia Cybertronic",
-              "quantita": 6,
-              "tipo": "Missione",
-              "rarity": "Uncommon",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Solo guerrieri Cybertronic. Controlla simultaneamente 2 Equipaggiamenti tecnologici. Ricompensa include Efficienza Tecnologica: -1 costo per equipaggiare per 3 turni.",
-              "keywords": [
-                "Missione",
-                "Cybertronic",
-                "Tecnologia"
-              ]
-            },
-            "Dominazione": {
-              "nome": "Dominazione",
-              "quantita": 3,
-              "tipo": "Missione",
-              "rarity": "Rare",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Solo Apostoli o Nepharite. Controlla simultaneamente 3 aree diverse del campo di battaglia. Ricompensa include Supremazia Oscura: +1 a tutte le statistiche per 3 turni.",
-              "keywords": [
-                "Missione",
-                "Oscura Legione",
-                "Dominazione"
-              ]
-            },
-            "Eliminazione": {
-              "nome": "Eliminazione",
-              "quantita": 2,
-              "tipo": "Missione",
-              "rarity": "Uncommon",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero uccide 3 guerrieri nemici nello stesso turno, guadagni 5 Punti Promozione, 2 Punti Destino e peschi 1 carta.",
-              "keywords": [
-                "Missione",
-                "Uccisione",
-                "Difficile"
-              ]
-            },
-            "Operazione Heimburg": {
-              "nome": "Operazione Heimburg",
-              "quantita": 7,
-              "tipo": "Missione",
-              "rarity": "Uncommon",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Solo guerrieri Bauhaus. Controlla una Fortificazione nemica per 1 turno completo. Ricompensa: 3 Punti Promozione, 2 Punti Destino e +2 Armatura per 2 turni.",
-              "keywords": [
-                "Missione",
-                "Bauhaus",
-                "Controllo"
-              ]
-            },
-            "Risorse Infinite": {
-              "nome": "Risorse Infinite",
-              "quantita": 3,
-              "tipo": "Missione",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Assegna questa missione a te stesso. Se accumuli 10 Punti Destino simultaneamente, guadagni 2 Punti Promozione, 5 Punti Destino aggiuntivi e peschi 2 carte.",
-              "keywords": [
-                "Missione",
-                "Giocatore",
-                "Risorse"
-              ]
-            },
-            "Purificazione": {
-              "nome": "Purificazione",
-              "quantita": 2,
-              "tipo": "Missione",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Solo guerrieri della Fratellanza. Uccidi 2 guerrieri dell'Oscura Legione. Ricompensa include Benedizione: immune alla prossima carta Oscura Simmetria.",
-              "keywords": [
-                "Missione",
-                "Fratellanza",
-                "Purificazione"
-              ]
-            },
-            "Onore Imperiale": {
-              "nome": "Onore Imperiale",
-              "quantita": 4,
-              "tipo": "Missione",
-              "rarity": "Uncommon",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Solo guerrieri Imperiale. Vinci 3 combattimenti corpo a corpo. Ricompensa: 3 Punti Promozione, 1 Punto Destino e +2 Combattimento per 2 turni.",
-              "keywords": [
-                "Missione",
-                "Imperiale",
-                "Corpo a Corpo"
-              ]
-            },
-            "Esorcismo": {
-              "nome": "Esorcismo",
-              "quantita": 1,
-              "tipo": "Missione",
-              "rarity": "Rare",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "Solo Inquisitori o Mistici. Elimina 1 carta Oscura Simmetria in gioco. Ricompensa include Santificazione: +2 Armatura contro l'Oscura Legione per 3 turni.",
-              "keywords": [
-                "Missione",
-                "Fratellanza",
-                "Esorcismo"
-              ]
-            }
-          }
-        },
-        "arte": {
-          "totale_carte": 8,
-          "carte_uniche": 8,
-          "dettaglio_carte": {
-            "Equilibrio": {
-              "nome": "Equilibrio",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Puoi immediatamente scartare una carta Speciale in gioco. Ogni 3D addizionali, puoi scartare un'altra carta Speciale in gioco.",
-              "keywords": []
-            },
-            "Conoscere La Verita": {
-              "nome": "Conoscere La Verita",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Per ogni 3D, potrai fare una domanda riguardo le carte che tiene in mano l'avversario, che Ti dovrà rispondere \"sì\" o \"no\" (la verità). L'avversario potrà rifiutarsi di rispondere spendendo 5D. È possibile ripetere la stessa domanda più volte.",
-              "keywords": []
-            },
-            "Trasmutazione": {
-              "nome": "Trasmutazione",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ARTE MENTALE. INCANTESIMO PERSONALE DI COMBATTIMENTO. Puoi alterare i valori C, S e A del Maestro come vuoi, purché la somma non superi la somma dei valori reali. Nessuna può essere modificata al di sotto dello 0. Al termine del combattimento, il Maestro riceve una ferita, anche se era già stato ferito. Non si guadagnano Punti in questo modo.",
-              "keywords": []
-            },
-            "Alterazione Elementare": {
-              "nome": "Alterazione Elementare",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DEGLI ELEMENTI. GIOCABILE IN OGNI MOMENTO. Il Maestro crea una pioggia torrenziale, che impedisce la visibilità. Tutti i guerrieri in gioco hanno un +1 in A e un -1 in C e S fino all'inizio del Tuo prossimo Turno.",
-              "keywords": []
-            },
-            "Esorcizzare Pensieri Malvagi": {
-              "nome": "Esorcizzare Pensieri Malvagi",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI MUAWIJHE.",
-              "keywords": []
-            },
-            "Ipnosi Minore": {
-              "nome": "Ipnosi Minore",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELLA MANIPOLAZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare il difensore del combattimento con qualsiasi altro guerriero in gioco. L'attaccante deve però, comunque, poter attaccare il nuovo difensore.",
-              "keywords": []
-            },
-            "Manipolazione Maggiore": {
-              "nome": "Manipolazione Maggiore",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE AL COSTO DI UN'AZIONE SU UN GUERRIERO DI UN ALTRO GIOCATORE Puoi subito far compiere fino a tre Azioni a un solo guerriero di un altro giocatore. Solo l'ultima può essere un'Azione di Attacco. Se il guerriero guadagna dei punti, sono Tuoi. Tu mantieni comunque la Tua Azione Attacco.",
-              "keywords": []
-            },
-            "Divinazione Maggiore": {
-              "nome": "Divinazione Maggiore",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELLA PREMONIZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 6D, puoi guardare il mazzo di carte da Pescare di un altro giocatore. Per ogni 6D addizionali, puoi rimuovere dal gioco una carta. Dopo aver cercato nel mazzo, rendilo al suo possessore, che deve mescolarlo.",
-              "keywords": []
-            }
-          }
-        },
-        "reliquia": {
-          "totale_carte": 1,
-          "carte_uniche": 1,
-          "dettaglio_carte": {
-            "Frammento Del Vero Chip": {
-              "nome": "Frammento Del Vero Chip",
-              "quantita": 1,
-              "tipo": "Reliquia",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "PUOI ASSEGNARLO A QUALSIASI GUERRIERO CYBERTRONIC, SE SEI UN FAMOSO COLLEZIONISTA. Le caratteristiche C, S, A e V del guerriero diventano uguali alla più elevata caratteristica delle quattro.",
-              "keywords": []
-            }
-          }
-        }
-      },
-      "statistiche_fazioni": {
-        "Capitol": {
-          "totale_carte": 1,
-          "guerrieri": 1,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Agente Speciale Hunter": 1
-          },
-          "tipi_carte": {
-            "guerriero": 1
-          }
-        },
-        "Cybertronic": {
-          "totale_carte": 3,
-          "guerrieri": 3,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Cacciatore": 1,
-            "Fay & Klaus": 1,
-            "Vince Diamond": 1
-          },
-          "tipi_carte": {
-            "guerriero": 3
-          }
-        },
-        "Oscura Legione": {
-          "totale_carte": 6,
-          "guerrieri": 6,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Golem dell'oscurità": 1,
-            "Cultista di ilian": 3,
-            "Templare": 2
-          },
-          "tipi_carte": {
-            "guerriero": 6
-          }
-        },
-        "Imperiale": {
-          "totale_carte": 3,
-          "guerrieri": 3,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Farabutto": 1,
-            "Pilota Trevor Bartholomew": 1,
-            "Mercenario Ex-Imperiale": 1
-          },
-          "tipi_carte": {
-            "guerriero": 3
-          }
-        },
-        "Fratellanza": {
-          "totale_carte": 2,
-          "guerrieri": 2,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Mortificator": 1,
-            "Mistico": 1
-          },
-          "tipi_carte": {
-            "guerriero": 2
-          }
-        },
-        "Bauhaus": {
-          "totale_carte": 1,
-          "guerrieri": 1,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Ussaro": 1
-          },
-          "tipi_carte": {
-            "guerriero": 1
-          }
-        }
-      },
-      "totali": {
-        "carte_totali": 76,
-        "valore_totale_dp": 2,
-        "carte_uniche": 52
-      }
-    },
-    {
-      "id_giocatore": 2,
-      "orientamento": {
-        "attivo": true,
-        "fazioni": [
-          "Bauhaus",
-          "Capitol",
-          "Imperiale",
-          "Mishima",
-          "Cybertronic",
-          "Oscura Legione",
-          "Freelancer"
-        ]
-      },
-      "carte_per_tipo": {
-        "guerriero": {
-          "totale_carte": 30,
-          "carte_uniche": 16,
-          "dettaglio_carte": {
-            "Tatsu": {
-              "nome": "Tatsu",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Mishima",
-              "statistiche": {
-                "combattimento": 6,
-                "sparare": 6,
-                "armatura": 7,
-                "valore": 7
-              },
-              "testo_carta": "PERSONALITÀ. CONSIDERATO UN SAMURAI. Mentre Tatsu è in gioco, tutti i Tuoi Samurai sono immuni agli effetti dell'Oscura Simmetria.",
-              "keywords": []
-            },
-            "Mentore": {
-              "nome": "Mentore",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "fazione": "Mishima",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 2
-              },
-              "testo_carta": "Per ogni Tuo Mentore in gioco, i Tuoi guerrieri Mishima guadagnano un +1 in C e S. Un Mentore non può accrescere le sue caratteristiche personali, ma altri Mentori possono.",
-              "keywords": []
-            },
-            "Gestore Occulto": {
-              "nome": "Gestore Occulto",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Cybertronic",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 3
-              },
-              "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
-              "keywords": []
-            },
-            "Sicurezza Cybertronic": {
-              "nome": "Sicurezza Cybertronic",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Cybertronic",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 4,
-                "valore": 3
-              },
-              "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
-              "keywords": []
-            },
-            "Tecnico Vac": {
-              "nome": "Tecnico Vac",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "fazione": "Cybertronic",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 4
-              },
-              "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI. In ogni momento, può equipaggiare qualsiasi Doomtrooper con carte Equipaggiamento Cybertronic senza spendere Azioni. Può anche affiliare qualsiasi Doomtrooper non-Personalità alla Cybertronic. Questo causa una ferita al Tecnico, ma se muore così non si guadagnano Punti. Non può usare l'Arte.",
-              "keywords": []
-            },
-            "Apostata": {
-              "nome": "Apostata",
-              "quantita": 2,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "fazione": "Oscura Legione",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 4,
-                "valore": 7
-              },
-              "testo_carta": "CONSIDERATO UN ERETICO. L'Apostata può lanciare tutti gli incantesimi dell'Arte, ma solo a beneficio dell'Oscura Legione. L'Apostata è un guerriero della Fratellanza che ha rinnegato la Luce per unirsi all'Oscurità.",
-              "keywords": [
-                "Eretico"
-              ]
-            },
-            "Chemiman": {
-              "nome": "Chemiman",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Cybertronic",
-              "statistiche": {
-                "combattimento": 4,
-                "sparare": 4,
-                "armatura": 4,
-                "valore": 4
-              },
-              "testo_carta": "IMMUNE AGLI EFFETTI DELLE CARTE DELL'OSCURA SIMMETRIA. Ogni guerriero ferito da ChemiMan, automaticamente è morto.",
-              "keywords": []
-            },
-            "Cultista di demnogonis": {
-              "nome": "Cultista di demnogonis",
-              "quantita": 2,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "fazione": "Oscura Legione",
-              "statistiche": {
-                "combattimento": 4,
-                "sparare": 3,
-                "armatura": 2,
-                "valore": 3
-              },
-              "testo_carta": "SEGUACE DI DEMNOGONIS. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
-              "keywords": [
-                "Seguace di Demnogonis",
-                "Eretico",
-                "Cultista di Demnogonis"
-              ]
-            },
-            "Legionario Urlante": {
-              "nome": "Legionario Urlante",
-              "quantita": 2,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Oscura Legione",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 2,
-                "armatura": 1,
-                "valore": 3
-              },
-              "testo_carta": "Una volta a partita, al costo di 5D, puoi invocare il Vento della Pazzia. Ogni Urlatore causa un Punto Danno, se sommandoli il totale è >= A, tutti i guerrieri in gioco sono Feriti. Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
-              "keywords": [
-                "Seguace di Muawijhe"
-              ]
-            },
-            "Inquisitore": {
-              "nome": "Inquisitore",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Fratellanza",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 3
-              },
-              "testo_carta": "Gli Inquisitori possono utilizzare l'Arte dell'Esorcismo e l'Arte Mentale.",
-              "keywords": []
-            },
-            "Custode dell'arte": {
-              "nome": "Custode dell'arte",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Fratellanza",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 5,
-                "valore": 4
-              },
-              "testo_carta": "IL CUSTODE DELL'ARTE PUÒ UTILIZZARE TUTTE LE CARTE ARTE. Tutti gli Incantesimi Personali di combattimento sono considerati Incantesimi di combattimento quando sono giocati dal Custode, e ogni Punto D speso su un effetto dell'Incantesimo, vale 2D per quell'effetto.",
-              "keywords": []
-            },
-            "Mercenario Ex-Capitol": {
-              "nome": "Mercenario Ex-Capitol",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Capitol",
-              "statistiche": {
-                "combattimento": 2,
-                "sparare": 4,
-                "armatura": 2,
-                "valore": 1
-              },
-              "testo_carta": "Ogni punto guadagnato dal Mercenario deve essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Capitol\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
-              "keywords": []
-            },
-            "Membro del Clan": {
-              "nome": "Membro del Clan",
-              "quantita": 1,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Imperiale",
-              "statistiche": {
-                "combattimento": 3,
-                "sparare": 2,
-                "armatura": 4,
-                "valore": 4
-              },
-              "testo_carta": "Quest'uomo guadagna un +1 in C e A per ogni altro membro del Clan che è assegnato alla sua stessa sezione. Se ci sono cinque guerrieri assegnati, il Membro del Clan guadagna un +4 in C e A.",
-              "keywords": []
-            },
-            "Cacciatore oscuro": {
-              "nome": "Cacciatore oscuro",
-              "quantita": 3,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "fazione": "Oscura Legione",
-              "statistiche": {
-                "combattimento": 5,
-                "sparare": 5,
-                "armatura": 5,
-                "valore": 6
-              },
-              "testo_carta": "SEGUACE DI ALGEROTH. I membri delle cinque Corporazioni non possono Attaccare il Cacciatore, ma i guerrieri della Fratellanza possono. Se Attaccati i Doomtrooper hanno un -1 in A quando combattono contro un Cacciatore Oscuro.",
-              "keywords": [
-                "Seguace di Algeroth"
-              ]
-            },
-            "Legionario di Semai": {
-              "nome": "Legionario di Semai",
-              "quantita": 6,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Oscura Legione",
-              "statistiche": {
-                "combattimento": 1,
-                "sparare": 2,
-                "armatura": 3,
-                "valore": 2
-              },
-              "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari di Semai",
-              "keywords": [
-                "Seguace di Semai"
-              ]
-            },
-            "Eretico": {
-              "nome": "Eretico",
-              "quantita": 5,
-              "tipo": "Guerriero",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "fazione": "Oscura Legione",
-              "statistiche": {
-                "combattimento": 2,
-                "sparare": 2,
-                "armatura": 2,
-                "valore": 3
-              },
-              "testo_carta": "Puoi assegnare un DONO DELL'OSCURA SIMMETRIA agli Eretici man non un DONO DEGLI APOSTOLI",
-              "keywords": [
-                "Eretico"
-              ]
-            }
-          }
-        },
-        "equipaggiamento": {
-          "totale_carte": 5,
-          "carte_uniche": 5,
-          "dettaglio_carte": {
-            "Hellhound": {
-              "nome": "Hellhound",
-              "quantita": 1,
-              "tipo": "Equipaggiamento",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ASSOCIABILE A QUALSIASI VEICOLO DELL'OSCURA LEGIONE. Il guerriero guadagna un +7 in S. Gli avversari feriti dall'Hellblaster sono automaticamente uccisi. Spendendo un'Azione, puoi scartare una Fortificazione in gioco. Puoi spendere più di un'azione in questo modo.",
-              "keywords": []
-            },
-            "Azogar": {
-              "nome": "Azogar",
-              "quantita": 1,
-              "tipo": "Equipaggiamento",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 3,
-              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. ARMA DA CORPO A CORPO. Il guerriero guadagna un +3 in C. Se assegnata a un NEFARITA DI ALGEROTH, allora l'Azogar conferisce un +5 in C.",
-              "keywords": []
-            },
-            "AH/UH-19 Mitraglia Guardiano": {
-              "nome": "AH/UH-19 Mitraglia Guardiano",
-              "quantita": 1,
-              "tipo": "Equipaggiamento",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "AERONAVE. Può essere assegnata a ogni Doomtrooper Capitol. Un guerriero non può essere equipaggiato da più di un'Aeronave. Quando il guerriero pilota l'Aeronave, S, A e V sono raddoppiate. Quando usi il Guardiano, nessun altra Arma può essere usata.",
-              "keywords": []
-            },
-            "Granata Batteriologica": {
-              "nome": "Granata Batteriologica",
-              "quantita": 1,
-              "tipo": "Equipaggiamento",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 4,
-              "testo_carta": "PUÒ SOLO ESSERE ASSEGNATA A UN GUERRIERO DELL'OSCURA LEGIONE. ARMA DA CORPO A CORPO E DA FUOCO. Scarta quest'Arma dopo averla usata. Con la Granata Batteriologica il guerriero guadagna un +4 in C e S. Se l'avversario non è stato ucciso, subisce un -1 in V ogni Turno, a meno che il giocatore spenda 3D ogni Turno. Se la V del guerriero diventa zero, viene scartata la sua carta.",
-              "keywords": []
-            },
-            "Kratach Migliorato": {
-              "nome": "Kratach Migliorato",
-              "quantita": 1,
-              "tipo": "Equipaggiamento",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. ARMA DA FUOCO. MITRAGLIATRICE. Il guerriero guadagna un +5 in S.",
-              "keywords": []
-            }
-          }
-        },
-        "speciale": {
-          "totale_carte": 10,
-          "carte_uniche": 10,
-          "dettaglio_carte": {
-            "Sdoppiamento": {
-              "nome": "Sdoppiamento",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "GIOCABILE AL COSTO DI UN'AZIONE. Scegli un guerriero in gioco. Questa carta è considerata una sua copia esatta. Le abilità che una delle due carte ha o riceve, interessano entrambi i guerrieri. Se uno dei due viene ferito o ucciso, entrambe le carte sono coinvolte. Il guerriero non può mai attaccare il suo doppio.",
-              "keywords": []
-            },
-            "Stigmate": {
-              "nome": "Stigmate",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "GIOCABILE SU UN ERETICO GIÀ IN POSSESSO DI UN DONO, IN OGNI MOMENTO. Il Dono in suo possesso gli ha corrotto irrimediabilmente l'anima, e non potrà mai essere convertito. Questo guerriero potrà, d'ora in poi, ricevere qualsiasi Dono di qualsiasi Apostolo senza consumare Azioni.",
-              "keywords": [
-                "Eretico"
-              ]
-            },
-            "Caduto In Disgrazia": {
-              "nome": "Caduto In Disgrazia",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE SU UN GUERRIERO DELL'OSCURA LEGIONE IN OGNI MOMENTO A TUA SCELTA. Una delle carte dell'Oscura Simmetria assegnata a quel guerriero, dovrà essere immediatamente scartata.",
-              "keywords": []
-            },
-            "L'Eletto": {
-              "nome": "L'Eletto",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "GIOCABILE SU OGNI GUERRIERO DELL'OSCURA LEGIONE IN OGNI MOMENTO. A questo guerriero possono essere assegnati i Doni dell'Oscura Simmetria di qualsiasi Apostolo.",
-              "keywords": []
-            },
-            "Frenesia Dei Necromutanti": {
-              "nome": "Frenesia Dei Necromutanti",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE IN OGNI MOMENTO. Per il resto della partita, tutti i Necromutanti in gioco (anche introdotti successivamente) risolvono il loro combattimento per primi. Solo se l'avversario sopravvive potrà attaccare il Necromutante.",
-              "keywords": []
-            },
-            "Ritirata": {
-              "nome": "Ritirata",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "GIOCABILE DURANTE IL COMBATTIMENTO. Il Tuo guerriero vede la futilità di questo scontro, e fugge dalla battaglia. Il combattimento è finito. Entrambi i guerrieri coinvolti nel combattimento tornano alle basi rispettive. Il Tuo avversario guadagna la metà dei punti V del guerriero codardo (arrotondati per eccesso).",
-              "keywords": []
-            },
-            "Ingannato": {
-              "nome": "Ingannato",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN GIOCATORE HA GUADAGNATO PUNTI PROMOZIONE. Spie nemiche hanno scoperto lo scopo del guerriero e lavorano per defraudare il suo risultato. TUTTI I PUNTI PROMOZIONE appena guadagnati sono persi. Guadagna comunque il doppio del Valore del morto in PUNTI DESTINO.",
-              "keywords": []
-            },
-            "Corrotto Dall'Oscurita": {
-              "nome": "Corrotto Dall'Oscurita",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. Il guerriero è adesso, a tutti gli effetti, considerato un Eretico dell'Oscura Legione. Non è più un Doomtrooper. Tutte le carte che hanno effetto sugli Eretici, hanno effetto anche su questo guerriero, inoltre gli possono essere assegnate le carte DONI DELL'OSCURA LEGIONE.",
-              "keywords": [
-                "Eretico"
-              ]
-            },
-            "Supporto Tattico": {
-              "nome": "Supporto Tattico",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "GIOCABILE SU QUALSIASI GUERRIERO DURANTE IL COMBATTIMENTO. Per ogni 7D, un compagno della Squadra del guerriero può vedere la situazione e si unisce a lui in battaglia. Compagni che non sono nel gruppo dell'Oscura Legione e viceversa. Il gruppo somma i valori di caratteristiche di attacco. L'avversario può colpire solo uno del gruppo durante il combattimento.",
-              "keywords": []
-            },
-            "Ammaliatrice": {
-              "nome": "Ammaliatrice",
-              "quantita": 1,
-              "tipo": "Speciale",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": null,
-              "testo_carta": "GIOCABILE QUANDO UN GIOCATORE AVVERSARIO INTRODUCE IN GIOCO UN GUERRIERO. Questa carta sostituisce il guerriero che viene rimescolato nel mazzo di carte da pescare. L'Ammaliatrice non può mai entrare in combattimento ma viene comunque considerata un guerriero ed una PERSONALITA. Mentre l'Ammaliatrice è in una Squadra/Schieramento il giocatore non può aggiungere altri guerrieri.",
-              "keywords": [
-                "Personalita"
-              ]
-            }
-          }
-        },
-        "fortificazione": {
-          "totale_carte": 6,
-          "carte_uniche": 6,
-          "dettaglio_carte": {
-            "La Cattedrale Di San Dorado": {
-              "nome": "La Cattedrale Di San Dorado",
-              "quantita": 1,
-              "tipo": "Fortificazione",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "PUOI AGGIUNGERLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte della Manipolazione. Puoi solo avere una Cattedrale di San Dorado in gioco.",
+              "testo_carta": "PUOI ASSEGNARE QUESTA CARTA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte Cinetica. Puoi solo avere una Cattedrale Volksburg in gioco.",
               "keywords": [
                 "Cattedrale",
-                "San Dorado",
+                "Volksburg",
                 "Arte",
-                "Manipolazione",
-                "Fortificazione"
-              ]
-            },
-            "La Riserva Del Cardinale": {
-              "nome": "La Riserva Del Cardinale",
-              "quantita": 1,
-              "tipo": "Fortificazione",
-              "rarity": "Common",
-              "set_espansione": "Inquisition",
-              "valore_dp": 0,
-              "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, i Punti Destino e i Punti Promozione guadagnati, non possono essere influenzati da carte degli altri giocatori. Puoi solo avere una Riserva in gioco.",
-              "keywords": [
-                "Riserva",
-                "Cardinale",
-                "Protezione",
-                "Fortificazione"
-              ]
-            },
-            "Trincea": {
-              "nome": "Trincea",
-              "quantita": 1,
-              "tipo": "Fortificazione",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ASSEGNA QUESTA CARTA A UN GUERRIERO AL COSTO DI UN'AZIONE. Il guerriero trova protezione in una Trincea. Questo guerriero guadagna un +2 in A, e un +2 in C. Il guerriero non può cominciare un combattimento Corpo a Corpo, (ma può difendersi se è attaccato). Questa carta può essere mossa su un altro guerriero al costo di un'Azione.",
-              "keywords": [
-                "Trincea",
-                "Protezione",
-                "Fortificazione"
-              ]
-            },
-            "Barriera Rinforzata": {
-              "nome": "Barriera Rinforzata",
-              "quantita": 1,
-              "tipo": "Fortificazione",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ASSOCIARE QUESTA CARTA A UN GUERRIERO COSTA UN'AZIONE. Il guerriero è protetto dietro una barriera in cemento armato e filo spinato guadagnando un +1 in A. Il guerriero non potrà attaccare i nemici in Corpo a Corpo, ma potrà difendersi. Potrai spostare la barriera su un altro guerriero al costo di un'Azione.",
-              "keywords": [
-                "Barriera",
-                "Rinforzata",
-                "Protezione",
-                "Fortificazione"
-              ]
-            },
-            "Luna": {
-              "nome": "Luna",
-              "quantita": 1,
-              "tipo": "Fortificazione",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "GIOCABILE AL COSTO DI UN'AZIONE Per il resto della partita, tutti i tuoi guerrieri guadagnano un +1 in A; tutti i tuoi Mercenari guadagnano +2 in A.",
-              "keywords": [
-                "Luna",
-                "Mercenari",
+                "Cinetica",
                 "Fortificazione"
               ]
             },
@@ -1489,58 +1606,122 @@
                 "Evocazione",
                 "Fortificazione"
               ]
+            },
+            "Complesso Industriale": {
+              "nome": "Complesso Industriale",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA O AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre il Complesso Industriale è in gioco, guadagni 3D ogni tua Fase Pescare. Non c'è limite al numero di complessi Industriali che puoi avere in gioco contemporaneamente.",
+              "keywords": [
+                "Industriale",
+                "Complesso",
+                "Fortificazione"
+              ]
+            },
+            "La Cattedrale Di Longshore": {
+              "nome": "La Cattedrale Di Longshore",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte degli Elementi. Puoi avere solo una Cattedrale di Longshore in gioco.",
+              "keywords": [
+                "Cattedrale",
+                "Longshore",
+                "Arte",
+                "Elementi",
+                "Fortificazione"
+              ]
+            },
+            "Cattedrale": {
+              "nome": "Cattedrale",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ DELLA FRATELLANZA. Tutti i Tuoi membri della Fratellanza guadagnano un +2 in A mentre la CATTEDRALE è in gioco.",
+              "keywords": [
+                "Fratellanza",
+                "Cattedrale",
+                "Città",
+                "Fortificazione"
+              ]
+            },
+            "Barriera Rinforzata": {
+              "nome": "Barriera Rinforzata",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "ASSOCIARE QUESTA CARTA A UN GUERRIERO COSTA UN'AZIONE. Il guerriero è protetto dietro una barriera in cemento armato e filo spinato guadagnando un +1 in A. Il guerriero non potrà attaccare i nemici in Corpo a Corpo, ma potrà difendersi. Potrai spostare la barriera su un altro guerriero al costo di un'Azione.",
+              "keywords": [
+                "Barriera",
+                "Rinforzata",
+                "Protezione",
+                "Fortificazione"
+              ]
+            },
+            "La Cattedrale Di Fukido": {
+              "nome": "La Cattedrale Di Fukido",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte Mentale. Puoi solo avere una Cattedrale Fukido in gioco.",
+              "keywords": [
+                "Cattedrale",
+                "Fukido",
+                "Arte",
+                "Mentale",
+                "Fortificazione"
+              ]
+            },
+            "La Cattedrale Di Heimburg": {
+              "nome": "La Cattedrale Di Heimburg",
+              "quantita": 1,
+              "tipo": "Fortificazione",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte dell'Esorcismo. Puoi solo avere una Cattedrale di Heimburg in gioco.",
+              "keywords": [
+                "Cattedrale",
+                "Heimburg",
+                "Arte",
+                "Esorcismo",
+                "Fortificazione"
+              ]
             }
           }
         },
         "missione": {
-          "totale_carte": 26,
-          "carte_uniche": 8,
+          "totale_carte": 22,
+          "carte_uniche": 7,
           "dettaglio_carte": {
-            "Dominazione": {
-              "nome": "Dominazione",
-              "quantita": 4,
+            "Ultimo Baluardo": {
+              "nome": "Ultimo Baluardo",
+              "quantita": 2,
               "tipo": "Missione",
               "rarity": "Rare",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "testo_carta": "Solo Apostoli o Nepharite. Controlla simultaneamente 3 aree diverse del campo di battaglia. Ricompensa include Supremazia Oscura: +1 a tutte le statistiche per 3 turni.",
+              "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero rimane come unico guerriero in gioco per 2 turni consecutivi, guadagni la ricompensa e diventa immune alle Arti per 1 turno.",
               "keywords": [
                 "Missione",
-                "Oscura Legione",
-                "Dominazione"
-              ]
-            },
-            "Strategia Superiore": {
-              "nome": "Strategia Superiore",
-              "quantita": 5,
-              "tipo": "Missione",
-              "rarity": "Uncommon",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Assegna questa missione a te stesso. Se vinci 3 combattimenti con guerrieri diversi nello stesso turno, ottieni la ricompensa e Comando Tattico: +1 Azione per 2 turni.",
-              "keywords": [
-                "Missione",
-                "Giocatore",
-                "Strategia"
-              ]
-            },
-            "Supremazia Cybertronic": {
-              "nome": "Supremazia Cybertronic",
-              "quantita": 3,
-              "tipo": "Missione",
-              "rarity": "Uncommon",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Solo guerrieri Cybertronic. Controlla simultaneamente 2 Equipaggiamenti tecnologici. Ricompensa include Efficienza Tecnologica: -1 costo per equipaggiare per 3 turni.",
-              "keywords": [
-                "Missione",
-                "Cybertronic",
-                "Tecnologia"
+                "Sopravvivenza",
+                "Eroica"
               ]
             },
             "Esorcismo": {
               "nome": "Esorcismo",
-              "quantita": 4,
+              "quantita": 2,
               "tipo": "Missione",
               "rarity": "Rare",
               "set_espansione": "Inquisition",
@@ -1552,38 +1733,36 @@
                 "Esorcismo"
               ]
             },
-            "Purificazione": {
-              "nome": "Purificazione",
-              "quantita": 3,
-              "tipo": "Missione",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "Solo guerrieri della Fratellanza. Uccidi 2 guerrieri dell'Oscura Legione. Ricompensa include Benedizione: immune alla prossima carta Oscura Simmetria.",
-              "keywords": [
-                "Missione",
-                "Fratellanza",
-                "Purificazione"
-              ]
-            },
-            "Via del Bushido": {
-              "nome": "Via del Bushido",
-              "quantita": 2,
+            "Dominazione": {
+              "nome": "Dominazione",
+              "quantita": 1,
               "tipo": "Missione",
               "rarity": "Rare",
               "set_espansione": "Base",
               "valore_dp": 0,
-              "testo_carta": "Solo Samurai o Ninja Mishima. Uccidi in singolo combattimento un guerriero con valore superiore al tuo. Ricompensa include Onore Mishima: +1 a tutte le statistiche per 3 turni.",
+              "testo_carta": "Solo Apostoli o Nepharite. Controlla simultaneamente 3 aree diverse del campo di battaglia. Ricompensa include Supremazia Oscura: +1 a tutte le statistiche per 3 turni.",
               "keywords": [
                 "Missione",
-                "Mishima",
-                "Onore",
-                "Bushido"
+                "Oscura Legione",
+                "Dominazione"
+              ]
+            },
+            "Resistenza Eroica": {
+              "nome": "Resistenza Eroica",
+              "quantita": 4,
+              "tipo": "Missione",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero sopravvive per 3 turni consecutivi mentre è sotto attacco, guadagni 2 Punti Promozione e 1 Punto Destino.",
+              "keywords": [
+                "Missione",
+                "Sopravvivenza"
               ]
             },
             "Risorse Infinite": {
               "nome": "Risorse Infinite",
-              "quantita": 2,
+              "quantita": 6,
               "tipo": "Missione",
               "rarity": "Common",
               "set_espansione": "Base",
@@ -1593,6 +1772,20 @@
                 "Missione",
                 "Giocatore",
                 "Risorse"
+              ]
+            },
+            "Onore Imperiale": {
+              "nome": "Onore Imperiale",
+              "quantita": 4,
+              "tipo": "Missione",
+              "rarity": "Uncommon",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "Solo guerrieri Imperiale. Vinci 3 combattimenti corpo a corpo. Ricompensa: 3 Punti Promozione, 1 Punto Destino e +2 Combattimento per 2 turni.",
+              "keywords": [
+                "Missione",
+                "Imperiale",
+                "Corpo a Corpo"
               ]
             },
             "Assalto Capitol": {
@@ -1615,6 +1808,16 @@
           "totale_carte": 8,
           "carte_uniche": 8,
           "dettaglio_carte": {
+            "Divinazione Maggiore": {
+              "nome": "Divinazione Maggiore",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DELLA PREMONIZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 6D, puoi guardare il mazzo di carte da Pescare di un altro giocatore. Per ogni 6D addizionali, puoi rimuovere dal gioco una carta. Dopo aver cercato nel mazzo, rendilo al suo possessore, che deve mescolarlo.",
+              "keywords": []
+            },
             "Messaggio Telepatico": {
               "nome": "Messaggio Telepatico",
               "quantita": 1,
@@ -1625,136 +1828,267 @@
               "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Potrai imporre al Tuo avversario di attaccare uno specifico guerriero nel Suo prossimo Turno. Il Tuo avversario è libero di decidere l'attaccante. Se l'attacco designato, nel Turno dell'avversario, diventa proibito il Tuo avversario potrà fare quello che vuole.",
               "keywords": []
             },
-            "Tempesta Del Caos": {
-              "nome": "Tempesta Del Caos",
+            "Premonizione": {
+              "nome": "Premonizione",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare il difensore di un combattimento, scegliendo tra i tuoi guerrieri in gioco.",
+              "keywords": []
+            },
+            "Momenti Di Incertezza": {
+              "nome": "Momenti Di Incertezza",
               "quantita": 1,
               "tipo": "Arte",
               "rarity": "Common",
               "set_espansione": "Inquisition",
               "valore_dp": 0,
-              "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE AL COSTO DI UN'AZIONE. Spendendo 4D, puoi far scartare tutte le carte in mano a un giocatore.",
+              "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Per ogni 1D speso, puoi scegliere a caso una carta in mano a un qualsiasi giocatore e fargliela scartare. Questo incantesimo non ha alcun effetto su carte appena giocate.",
               "keywords": []
             },
-            "Fulmine Elementare": {
-              "nome": "Fulmine Elementare",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in S.",
-              "keywords": []
-            },
-            "Crescita": {
-              "nome": "Crescita",
+            "Equilibrio": {
+              "nome": "Equilibrio",
               "quantita": 1,
               "tipo": "Arte",
               "rarity": "Common",
               "set_espansione": "Inquisition",
               "valore_dp": 0,
-              "testo_carta": "ARTE DEL CAMBIAMENTO. INCANTESIMO DI COMBATTIMENTO. Ogni 6D spesi, il guerriero guadagna un +2 in C, S, A e V.",
+              "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Puoi immediatamente scartare una carta Speciale in gioco. Ogni 3D addizionali, puoi scartare un'altra carta Speciale in gioco.",
               "keywords": []
             },
-            "Esorcizzare Ferite": {
-              "nome": "Esorcizzare Ferite",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH.",
-              "keywords": []
-            },
-            "Esorcizzare Danno": {
-              "nome": "Esorcizzare Danno",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH.",
-              "keywords": []
-            },
-            "Telepatia Minore": {
-              "nome": "Telepatia Minore",
-              "quantita": 1,
-              "tipo": "Arte",
-              "rarity": "Common",
-              "set_espansione": "Base",
-              "valore_dp": 0,
-              "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare la Tattica di Combattimento scelta per questo combattimento.",
-              "keywords": []
-            },
-            "Premonizione Di Attacco": {
-              "nome": "Premonizione Di Attacco",
+            "Evocare Difesa": {
+              "nome": "Evocare Difesa",
               "quantita": 1,
               "tipo": "Arte",
               "rarity": "Common",
               "set_espansione": "Inquisition",
               "valore_dp": 0,
-              "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in A.",
+              "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Per 3D, puoi prendere dal Tuo mazzo di carte da Pescare una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione.",
+              "keywords": []
+            },
+            "Alterazione Elementare": {
+              "nome": "Alterazione Elementare",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DEGLI ELEMENTI. GIOCABILE IN OGNI MOMENTO. Il Maestro crea una pioggia torrenziale, che impedisce la visibilità. Tutti i guerrieri in gioco hanno un +1 in A e un -1 in C e S fino all'inizio del Tuo prossimo Turno.",
+              "keywords": []
+            },
+            "Ipnosi Minore": {
+              "nome": "Ipnosi Minore",
+              "quantita": 1,
+              "tipo": "Arte",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": 0,
+              "testo_carta": "ARTE DELLA MANIPOLAZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare il difensore del combattimento con qualsiasi altro guerriero in gioco. L'attaccante deve però, comunque, poter attaccare il nuovo difensore.",
+              "keywords": []
+            }
+          }
+        },
+        "oscura_simmetria": {
+          "totale_carte": 5,
+          "carte_uniche": 5,
+          "dettaglio_carte": {
+            "Confondere": {
+              "nome": "Confondere",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": "",
+              "testo_carta": "DONO DI MUAWIJHE. Questo guerriero può cambiare la Tattica di Combattimento scelta per quel combattimento.",
+              "keywords": [
+                "Seguace di Muawijhe"
+              ]
+            },
+            "Distorsione": {
+              "nome": "Distorsione",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": "10 Punti Destino",
+              "testo_carta": "DONO DI ALGEROTH. Spendendo in qualsiasi momento 10D, questo guerriero potrà scegliere un'Arma o una carta di Equipaggiamento in gioco e scartarla.",
+              "keywords": [
+                "Seguace di Algeroth"
+              ]
+            },
+            "Indigestione": {
+              "nome": "Indigestione",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": "",
+              "testo_carta": "DONO DI ALGEROTH. Tutti gli avversari di questo guerriero subiscono una penalità un -2 in A.",
+              "keywords": [
+                "Seguace di Algeroth"
+              ]
+            },
+            "Illusione": {
+              "nome": "Illusione",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Base",
+              "valore_dp": "3 Punti Destino",
+              "testo_carta": "DONO DI SEMAI. Il guerriero può, in ogni momento, cancellare un combattimento nel quale è coinvolto. Tutte le carte giocate dai giocatori durante il combattimento sono scartate. La fase di combattimento è finita, e il guerriero deve immediatamente andare in copertura. Questo gli costerà 3D, ma non richiederà la spesa di alcuna Azione.",
+              "keywords": [
+                "Seguace di Semai"
+              ]
+            },
+            "Untore": {
+              "nome": "Untore",
+              "quantita": 1,
+              "tipo": "Oscura_simmetria",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": "",
+              "testo_carta": "DONO DI DEMNOGONIS. Ogni Doomtrooper che combatte questo guerriero è infetto. Metti un Segnalino sul guerriero. I Segnalini danno un -2 in A A partire da questo momento, il giocatore deve mettere un Segnalino su un Doomtrooper non infetto durante ognuna delle sue Fasi Pescare. I Segnalini possono essere rimossi in ogni momento, spendendo 4D per ognuno.",
+              "keywords": [
+                "Seguace di Demnogonis"
+              ]
+            }
+          }
+        },
+        "reliquia": {
+          "totale_carte": 6,
+          "carte_uniche": 6,
+          "dettaglio_carte": {
+            "Dai-Sho Degli Antichi Imperatori": {
+              "nome": "Dai-Sho Degli Antichi Imperatori",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO MISHIMA, SE SEI UN FAMOSO COLLEZIONISTA. ARMA DA CORPO A CORPO. Il guerriero guadagna un +6 in C. Mentre questa carta è in gioco, tutti i Tuoi guerrieri Mishima possono uscire dalla Copertura e Attaccare in un'Azione sola.",
+              "keywords": []
+            },
+            "Frammento Del Vero Chip": {
+              "nome": "Frammento Del Vero Chip",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "PUOI ASSEGNARLO A QUALSIASI GUERRIERO CYBERTRONIC, SE SEI UN FAMOSO COLLEZIONISTA. Le caratteristiche C, S, A e V del guerriero diventano uguali alla più elevata caratteristica delle quattro.",
+              "keywords": []
+            },
+            "Portatore Di Luce": {
+              "nome": "Portatore Di Luce",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A UN GUERRIERO DELLA FRATELLANZA, SE SEI UN FAMOSO COLLEZIONISTA. ARMA DA CORPO A CORPO. Il guerriero guadagna un +7 in C e un +3 in A. I guerrieri dell'Oscura Legione feriti dal Portatore di Luce sono automaticamente uccisi. Se assegnata a un CARDINALE, i Tuoi guerrieri della Fratellanza considerano tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO.",
+              "keywords": []
+            },
+            "Armatura Del Vero Assassino": {
+              "nome": "Armatura Del Vero Assassino",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A OGNI DOOMTROOPER, SE SEI UN FAMOSO COLLEZIONISTA. ARMATURA. +4 in A. D'ora in poi il guerriero è considerato un MORTIFICATOR. Può Attaccare qualsiasi guerriero in gioco e uccide automaticamente i guerrieri che ferisce. Il guerriero mantiene l'ICONA DI LEGAMO, e quando viene Attaccato si applicano le normali restrizioni. Il guerriero Attacca per primo. Se l'avversario sopravvive, può rispondere all'Attacco. Un guerriero può avere una sola ARMATURA.",
+              "keywords": []
+            },
+            "Armatura Di Empietà": {
+              "nome": "Armatura Di Empietà",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. ARMATURA. +4 in A. Chi la utilizza è immune a tutti gli effetti dell'Arte e può ricevere tutti i Doni degli Apostoli. Un guerriero può essere equipaggiato con una sola ARMATURA.",
+              "keywords": []
+            },
+            "Shillelagh": {
+              "nome": "Shillelagh",
+              "quantita": 1,
+              "tipo": "Reliquia",
+              "rarity": "Common",
+              "set_espansione": "Inquisition",
+              "valore_dp": 0,
+              "testo_carta": "ASSEGNABILE A UN QUALSIASI GUERRIERO, SE SEI UN FAMOSO COLLEZIONISTA. ARMA DA CORPO A CORPO. Il guerriero guadagna un +4 in C e può far scartare un qualsiasi guerriero non Imperiale non Personalità al costo di tre Azioni e 5D. Non guadagni Punti e questo non viene considerato un Attacco.",
               "keywords": []
             }
           }
         }
       },
       "statistiche_fazioni": {
-        "Mishima": {
-          "totale_carte": 2,
-          "guerrieri": 2,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Tatsu": 1,
-            "Mentore": 1
-          },
-          "tipi_carte": {
-            "guerriero": 2
-          }
-        },
-        "Cybertronic": {
+        "Fratellanza": {
           "totale_carte": 4,
           "guerrieri": 4,
           "altre_carte": 0,
           "valore_dp": 0,
           "dettaglio_carte": {
-            "Gestore Occulto": 1,
-            "Sicurezza Cybertronic": 1,
-            "Tecnico Vac": 1,
-            "Chemiman": 1
+            "Guerrieri sacri": 1,
+            "Antiquario": 1,
+            "Mortificator": 1,
+            "Custode dell'arte": 1
           },
           "tipi_carte": {
             "guerriero": 4
           }
         },
-        "Oscura Legione": {
-          "totale_carte": 20,
-          "guerrieri": 20,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Apostata": 2,
-            "Cultista di demnogonis": 2,
-            "Legionario Urlante": 2,
-            "Cacciatore oscuro": 3,
-            "Legionario di Semai": 6,
-            "Eretico": 5
-          },
-          "tipi_carte": {
-            "guerriero": 20
-          }
-        },
-        "Fratellanza": {
+        "Imperiale": {
           "totale_carte": 2,
           "guerrieri": 2,
           "altre_carte": 0,
           "valore_dp": 0,
           "dettaglio_carte": {
-            "Inquisitore": 1,
-            "Custode dell'arte": 1
+            "Blood Beret": 1,
+            "Mercenario Ex-Imperiale": 1
           },
           "tipi_carte": {
             "guerriero": 2
+          }
+        },
+        "Oscura Legione": {
+          "totale_carte": 4,
+          "guerrieri": 4,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Legionario Non Morto": 3,
+            "Nepharita di Semai": 1
+          },
+          "tipi_carte": {
+            "guerriero": 4
+          }
+        },
+        "Freelancer": {
+          "totale_carte": 3,
+          "guerrieri": 3,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Guardia del corpo": 1,
+            "Medico da campo": 1,
+            "Apostata rinnegato": 1
+          },
+          "tipi_carte": {
+            "guerriero": 3
+          }
+        },
+        "Bauhaus": {
+          "totale_carte": 1,
+          "guerrieri": 1,
+          "altre_carte": 0,
+          "valore_dp": 0,
+          "dettaglio_carte": {
+            "Ranger Venusiano": 1
+          },
+          "tipi_carte": {
+            "guerriero": 1
           }
         },
         "Capitol": {
@@ -1763,19 +2097,7 @@
           "altre_carte": 0,
           "valore_dp": 0,
           "dettaglio_carte": {
-            "Mercenario Ex-Capitol": 1
-          },
-          "tipi_carte": {
-            "guerriero": 1
-          }
-        },
-        "Imperiale": {
-          "totale_carte": 1,
-          "guerrieri": 1,
-          "altre_carte": 0,
-          "valore_dp": 0,
-          "dettaglio_carte": {
-            "Membro del Clan": 1
+            "Mitch Hunter": 1
           },
           "tipi_carte": {
             "guerriero": 1
@@ -1783,9 +2105,9 @@
         }
       },
       "totali": {
-        "carte_totali": 85,
-        "valore_totale_dp": 7,
-        "carte_uniche": 53
+        "carte_totali": 83,
+        "valore_totale_dp": 3,
+        "carte_uniche": 66
       }
     }
   ]

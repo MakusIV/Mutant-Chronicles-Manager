@@ -1150,7 +1150,7 @@ def crea_fortificazione_da_database(nome_fortificazione: str):
     fortificazione.beneficiario = BeneficiarioFortificazione(data["beneficiario"])
     
     if data["corporazione_specifica"]:
-        fortificazione.corporazione_specifica = Fazione(data["corporazione_specifica"])
+        fortificazione.corporazione_specifica = (data["corporazione_specifica"])
     if data["apostolo_specifico"]:
         fortificazione.apostolo_specifico = ApostoloPadre(data["apostolo_specifico"])
     

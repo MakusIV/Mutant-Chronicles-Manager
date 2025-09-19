@@ -2431,7 +2431,7 @@ CARTE_ARTE_DATABASE = {
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
         "bersaglio": "Tutti i Guerrieri",
-        "durata": "Fino all'inizio del prossimo turno",
+        "durata": "Fino Prossimo Turno",
         "timing": "In Ogni Momento",
         "set_espansione": "Inquisition",
         "numero_carta": "",

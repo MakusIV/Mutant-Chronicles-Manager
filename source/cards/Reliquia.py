@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Any, Union
 from enum import Enum
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, CorporazioneSpecifica, DOOMTROOPER  # Import dalle classi esistenti
 
 
 class TipoReliquia(Enum):
@@ -38,8 +38,12 @@ class PoterereReliquia(Enum):
     ABILITA_SPECIALE = "Abilità Speciale"
     PROTEZIONE = "Protezione"
     POTENZIAMENTO_COMBATTIMENTO = "Potenziamento Combattimento"
+    ANNULLA_EFFETTI = "Annulla Effetto"
     MANIPOLAZIONE_DESTINO = "Manipolazione Destino"
+    MANIPOLAZIONE_CARTE = "Manipolazione Carte"
+    MANIPOLAZIONE_AZIONI = "Manipolazione Azioni"
     COMANDO = "Comando"
+    IMMUNITA = "Immunita"
 
 
 @dataclass

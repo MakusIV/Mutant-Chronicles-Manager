@@ -13,9 +13,8 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, CorporazioneSpecifica  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, CorporazioneSpecifica, DOOMTROOPER  # Import dalle classi esistenti
 
-DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol", "Freelancer", "Fratellanza"]
 
 class TipoFortificazione(Enum):
     """Tipi di carte Fortificazione secondo il regolamento"""

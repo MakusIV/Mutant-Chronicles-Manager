@@ -70,7 +70,7 @@ class ApostoloOscuraSimmetria(Enum):
     MUAWIJHE = "Muawijhe"      # Apostolo delle Mutazioni
     ILIAN = "Ilian"            # Apostolo del Vuoto
     DEMNOGONIS = "Demnogonis"  # Apostolo della Follia
-    NESSUNO = "Nessuno"        # Per carte generiche
+    NESSUNO = None        # Per carte generiche
 
 
 class CorporazioneSpecifica(Enum):
@@ -83,7 +83,7 @@ class CorporazioneSpecifica(Enum):
     SEGUACI_DI_MUAWIJHE = "Seguaci di Muawijhe"
     SEGUACI_DI_ALGEROTH = "Seguaci di Algeroth"
     
-
+DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol", "Freelancer", "Fratellanza"]
 
 class Rarity(Enum):
     """Rarità delle carte"""

@@ -10,7 +10,7 @@ from source.cards.Reliquia import (
     Reliquia, TipoReliquia, StatoReliquia, PoterereReliquia,
     ModificatoreReliquia, PotereReliquia, RestrizioneReliquia
 )
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, CorporazioneSpecifica, DOOMTROOPER 
 
 
 # Database completo delle carte Reliquia
@@ -41,7 +41,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Uscire dalla Copertura e Attaccare",
                 "descrizione": "Mentre questa carta è in gioco, tutti i Tuoi guerrieri Mishima possono uscire dalla Copertura e Attaccare in un'Azione sola",
-                "tipo_potere": "Combattimento",
+                "tipo_potere": "Potenziamento Combattimento",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Automatico",
                 "limitazioni": ["Solo guerrieri Mishima"],
@@ -70,7 +70,7 @@ DATABASE_RELIQUIE = {
         "tipo": "",
         "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Legioni Oscure"],
+            "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
             "tipi_guerriero": ["Normale"],
             "keywords_richieste": [],
@@ -81,7 +81,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Annulla Incantesimo Arte",
                 "descrizione": "Mentre in gioco tu puoi annullare l'effetto di un incantesimo dell'Arte appena lanciato (o scartare un incantesimo dell'Arte in gioco) scartando un tuo guerriero della Fratellanza",
-                "tipo_potere": "Annullamento",
+                "tipo_potere": "Annulla Effetto",
                 "costo_attivazione": "Scarta un guerriero della Fratellanza",
                 "tipo_attivazione": "Quando viene lanciato un incantesimo dell'Arte",
                 "limitazioni": ["Richiede guerriero della Fratellanza da scartare"],
@@ -121,7 +121,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Lancia Arte",
                 "descrizione": "Mentre il Codice è in gioco, tutti i Tuoi guerrieri della Fratellanza possono lanciare tutti gli incantesimi dell'Arte e possono considerare tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO",
-                "tipo_potere": "Arte",
+                "tipo_potere": "Abilità Speciale",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Passivo",
                 "limitazioni": ["Solo guerrieri della Fratellanza"],
@@ -169,7 +169,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Uccide Automaticamente",
                 "descrizione": "D'ora in poi il guerriero è considerato un MORTIFICATORE. Può Attaccare qualsiasi guerriero in gioco e uccide automaticamente i guerrieri che ferisce. Il guerriero mantiene l'ICONA DI LEGAME, e quando viene Attaccato si applicano le normali restrizioni. Il guerriero Attacca per primo. Se l'avversario sopravvive, può rispondere all'Attacco",
-                "tipo_potere": "Combattimento",
+                "tipo_potere": "Potenziamento Combattimento",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Passivo",
                 "limitazioni": ["Può avere una sola ARMATURA"],
@@ -238,7 +238,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Lancia Arte dell'Esorcismo",
                 "descrizione": "Il guerriero può lanciare tutti gli incantesimi dell'Arte dell'Esorcismo. Ogni 1D speso per gli incantesimi di Esorcismo vale 2D",
-                "tipo_potere": "Arte",
+                "tipo_potere": "Abilità Speciale",
                 "costo_attivazione": "1D = 2D per Esorcismo",
                 "tipo_attivazione": "Quando lancia incantesimi di Esorcismo",
                 "limitazioni": [],
@@ -267,7 +267,7 @@ DATABASE_RELIQUIE = {
         "tipo": "",
         "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Legioni Oscure"],
+            "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
             "tipi_guerriero": ["Normale"],
             "keywords_richieste": [],
@@ -278,7 +278,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Portare rinforzi",
                 "descrizione": "Ogni 5D spesi, questo guerriero può portare in combattimento un altro dei Tuoi guerrieri dell'Oscura Legione come rinforzo. Il gruppo somma i valori C e S per il combattimento. L'avversario può scegliere quale guerriero combattere",
-                "tipo_potere": "Rinforzi",
+                "tipo_potere": "Potenziamento Combattimento",
                 "costo_attivazione": "5D",
                 "tipo_attivazione": "Durante il combattimento",
                 "limitazioni": ["Solo guerrieri dell'Oscura Legione"],
@@ -326,7 +326,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Scartare guerriero non Imperiale non Personalità",
                 "descrizione": "Può far scartare un qualsiasi guerriero non Imperiale non Personalità al costo di tre Azioni e 5D. Non guadagni Punti e questo non viene considerato un Attacco",
-                "tipo_potere": "Eliminazione",
+                "tipo_potere": "Manipolazione Carte",
                 "costo_attivazione": "3 Azioni e 5D",
                 "tipo_attivazione": "Azione",
                 "limitazioni": ["Solo guerrieri non Imperiali non Personalità"],
@@ -414,7 +414,7 @@ DATABASE_RELIQUIE = {
         "tipo": "",
         "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Legioni Oscure"],
+            "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
             "tipi_guerriero": ["Normale"],
             "keywords_richieste": ["Carte Equipaggiamento non Assegnabili"],
@@ -444,7 +444,7 @@ DATABASE_RELIQUIE = {
         "tipo": "",
         "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Legioni Oscure"],
+            "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
             "tipi_guerriero": ["Normale"],
             "keywords_richieste": [],
@@ -482,7 +482,7 @@ DATABASE_RELIQUIE = {
         "tipo": "",
         "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Legioni Oscure"],
+            "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
             "tipi_guerriero": ["Normale"],
             "keywords_richieste": [],
@@ -552,7 +552,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Assegna Carte",
                 "descrizione": "Ogni volta che il possessore di questo guerriero introduce in gioco una carta, può subito pescarne dal mazzo un'altra per rimpiazzarla. Le carte scartate non vengono rimpiazzate in questo modo",
-                "tipo_potere": "Carte",
+                "tipo_potere": "Manipolazione Carte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Quando introduce una carta in gioco",
                 "limitazioni": ["Le carte scartate non vengono rimpiazzate"],
@@ -607,7 +607,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Uccide Automaticamente",
                 "descrizione": "I guerrieri dell'Oscura Legione feriti dal Portatore di Luce sono automaticamente uccisi",
-                "tipo_potere": "Combattimento",
+                "tipo_potere": "Potenziamento Combattimento",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Automatico quando ferisce guerrieri dell'Oscura Legione",
                 "limitazioni": ["Solo contro guerrieri dell'Oscura Legione"],
@@ -616,7 +616,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Lancia Arte",
                 "descrizione": "Se assegnata a un CARDINALE, i Tuoi guerrieri della Fratellanza considerano tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO",
-                "tipo_potere": "Arte",
+                "tipo_potere": "Abilità Speciale",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Se assegnata a un Cardinale",
                 "limitazioni": ["Solo se assegnata a un Cardinale"],
@@ -656,7 +656,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Trasformare Azioni",
                 "descrizione": "Mentre questa carta è in gioco, durante il Tuo Turno puoi trasformare fino a tre Azioni in Azioni di Attacco. Solo i guerrieri Capitol possono compiere Azioni di Attacco extra. Tutte le Azioni trasformate si aggiungono alla Tua Azione di Attacco normale",
-                "tipo_potere": "Azioni",
+                "tipo_potere": "Manipolazione Azioni",
                 "costo_attivazione": "Fino a 3 Azioni",
                 "tipo_attivazione": "Durante il proprio turno",
                 "limitazioni": ["Solo guerrieri Capitol possono compiere Azioni di Attacco extra"],
@@ -685,7 +685,7 @@ DATABASE_RELIQUIE = {
         "tipo": "",
         "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Legioni Oscure"],
+            "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
             "tipi_guerriero": ["Normale"],
             "keywords_richieste": ["Carte delle Arti non Assegnabili", "Carte Doni degli Apostoli non Assegnabili"],
@@ -713,7 +713,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Assegna Carte",
                 "descrizione": "Può ricevere tutti i Doni degli Apostoli",
-                "tipo_potere": "Carte",
+                "tipo_potere": "Manipolazione Carte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Passivo",
                 "limitazioni": [],
@@ -753,7 +753,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Scarta tutti gli Eretici",
                 "descrizione": "Quando la carta è in gioco, tutti gli Eretici vengono scartati. Mentre è in gioco, non si possono introdurre Eretici, e i guerrieri convertiti Eretici, sono scartati senza guadagnare alcun punto",
-                "tipo_potere": "Eliminazione",
+                "tipo_potere": "Manipolazione Carte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Quando entra in gioco e passivo",
                 "limitazioni": ["Solo contro Eretici"],
@@ -793,7 +793,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Cercare guerriero dell'Oscura Legione non-Personalità",
                 "descrizione": "Puoi associarla a una cittadella nel tuo schieramento. Ogni volta che uccidi un Doomtrooper, PUOI cercare un guerriero dell'Oscura Legione non-Personalità nella Tua Collezione, il cui V non sia più alto di quello del guerriero ucciso, e metterlo nel Tuo Schieramento. Se fai questo, non guadagni punti per l'uccisione",
-                "tipo_potere": "Evocazione",
+                "tipo_potere": "Manipolazione Carte",
                 "costo_attivazione": "Non guadagnare punti per l'uccisione",
                 "tipo_attivazione": "Quando uccidi un Doomtrooper",
                 "limitazioni": ["V del guerriero evocato non superiore a quello ucciso"],
@@ -845,8 +845,17 @@ def crea_reliquia_da_database(nome_reliquia: str) -> Optional[Reliquia]:
     
     # Imposta restrizioni
     restr_data = dati["restrizioni"]
+
+    corporazioni = [t.value for t in CorporazioneSpecifica]
+    corporazioni.extend(t.value for t in Fazione)
+    
+    for f in restr_data["fazioni_permesse"]:
+        if f not in corporazioni:
+            print(f"errore nell'assegnazione della proprietà fazioni_permesse. La corporazione {f} non è presente nella lista delle coprorazioni ammissibili. {[c for c in corporazioni]}")
+    
+
     reliquia.restrizioni = RestrizioneReliquia(
-        fazioni_permesse=[Fazione(f) for f in restr_data["fazioni_permesse"]],
+        fazioni_permesse =[f for f in restr_data["fazioni_permesse"]],
         corporazioni_specifiche=restr_data["corporazioni_specifiche"],
         tipi_guerriero=restr_data["tipi_guerriero"],
         keywords_richieste=restr_data["keywords_richieste"],
@@ -1111,180 +1120,6 @@ def get_statistiche_database() -> Dict[str, Any]:
         "per_fazione": fazioni
     }
 
-
-# Esempi di utilizzo del database
-
-if __name__ == "__main__":
-    print("=== DATABASE RELIQUIE DOOMTROOPER ===\n")
-    
-    # Statistiche generali
-    stats = get_statistiche_database()
-    print(f"Totale reliquie nel database: {stats['totale_reliquie']}")
-    print(f"Tipi disponibili: {list(stats['per_tipo'].keys())}")
-    print(f"Rarità disponibili: {list(stats['per_rarita'].keys())}")
-    
-    # Esempio 1: Creare una reliquia dal database
-    print(f"\n=== ESEMPIO CREAZIONE RELIQUIA ===")
-    spada = crea_reliquia_da_database("Spada del Destino")
-    if spada:
-        print(f"✓ Creata: {spada}")
-        print(f"  Tipo: {spada.tipo.value}")
-        print(f"  Modificatori: {[f'{m.valore:+}{m.statistica}' for m in spada.modificatori]}")
-        print(f"  Fazioni permesse: {[f.value for f in spada.restrizioni.fazioni_permesse]}")
-    
-    # Esempio 2: Reliquie per fazione
-    print(f"\n=== RELIQUIE PER FAZIONE ===")
-    reliquie_bauhaus = get_reliquie_per_fazione("Bauhaus")
-    print(f"Reliquie Bauhaus: {len(reliquie_bauhaus)}")
-    for nome in reliquie_bauhaus.keys():
-        print(f"  - {nome}")
-    
-    reliquie_fratellanza = get_reliquie_per_fazione("Fratellanza")
-    print(f"\nReliquie Fratellanza: {len(reliquie_fratellanza)}")
-    for nome in reliquie_fratellanza.keys():
-        print(f"  - {nome}")
-    
-    # Esempio 3: Reliquie per tipo
-    print(f"\n=== RELIQUIE PER TIPO ===")
-    artefatti = get_reliquie_per_tipo("Artefatto Antico")
-    print(f"Artefatti Antichi: {len(artefatti)}")
-    for nome in artefatti.keys():
-        print(f"  - {nome}")
-    
-    # Esempio 4: Reliquie Ultra Rare
-    print(f"\n=== RELIQUIE ULTRA RARE ===")
-    ultra_rare = get_reliquie_per_rarita(Rarity.ULTRA_RARE)
-    print(f"Reliquie Ultra Rare: {len(ultra_rare)}")
-    for nome in ultra_rare.keys():
-        print(f"  - {nome}")
-    
-    # Esempio 5: Reliquie con modificatori specifici
-    print(f"\n=== RELIQUIE CON MODIFICATORI ===")
-    reliquie_combattimento = get_reliquie_con_modificatore("C")
-    print(f"Reliquie che modificano Corpo a corpo: {len(reliquie_combattimento)}")
-    for nome in reliquie_combattimento.keys():
-        print(f"  - {nome}")
-    
-    reliquie_valore = get_reliquie_con_modificatore("V")
-    print(f"\nReliquie che modificano Valore: {len(reliquie_valore)}")
-    for nome in reliquie_valore.keys():
-        print(f"  - {nome}")
-    
-    # Esempio 6: Reliquie con poteri
-    print(f"\n=== RELIQUIE CON POTERI SPECIFICI ===")
-    reliquie_protezione = get_reliquie_con_potere("Protezione")
-    print(f"Reliquie con poteri di Protezione: {len(reliquie_protezione)}")
-    for nome in reliquie_protezione.keys():
-        print(f"  - {nome}")
-    
-    reliquie_comando = get_reliquie_con_potere("Comando")
-    print(f"\nReliquie con poteri di Comando: {len(reliquie_comando)}")
-    for nome in reliquie_comando.keys():
-        print(f"  - {nome}")
-    
-    # Esempio 7: Test compatibilità guerriero
-    print(f"\n=== TEST COMPATIBILITÀ GUERRIERO ===")
-    
-    # Simula un guerriero per test
-    class GuerrieroTest:
-        def __init__(self, nome, fazione, tipo="Doomtrooper"):
-            self.nome = nome
-            self.fazione = Fazione(fazione)
-            self.tipo = tipo
-            self.keywords = ["Doomtrooper"]
-            self.ferito = False
-            self.valore = 5
-            self.reliquie_assegnate = []
-    
-    # Test guerriero Bauhaus
-    guerriero_bauhaus = GuerrieroTest("Hans Mueller", "Bauhaus", "Doomtrooper")
-    guerriero_bauhaus.keywords = ["Doomtrooper", "Techno"]
-    
-    verifica_dispositivo = verifica_compatibilita_guerriero("Dispositivo Bauhaus", guerriero_bauhaus)
-    print(f"✓ Dispositivo Bauhaus compatibile con guerriero Bauhaus: {verifica_dispositivo['compatibile']}")
-    
-    # Test guerriero Oscura Legione
-    guerriero_oscuro = GuerrieroTest("Nepharite Warlord", "Oscura Legione", "Nepharite")
-    guerriero_oscuro.keywords = ["Nepharite", "Oscuro"]
-    
-    verifica_spada = verifica_compatibilita_guerriero("Spada del Destino", guerriero_oscuro)
-    print(f"✗ Spada del Destino compatibile con Oscura Legione: {verifica_spada['compatibile']}")
-    if not verifica_spada['compatibile']:
-        print(f"  Motivo: {verifica_spada['motivo'] if 'motivo' in verifica_spada else 'Restrizioni non soddisfatte'}")
-    
-    # Test guerriero Fratellanza
-    guerriero_fratellanza = GuerrieroTest("Brother Marcus", "Fratellanza", "Doomtrooper")
-    guerriero_fratellanza.keywords = ["Doomtrooper", "Mystic"]
-    
-    verifica_sigillo = verifica_compatibilita_guerriero("Sigillo di Cardinal", guerriero_fratellanza)
-    print(f"✓ Sigillo di Cardinal compatibile con Fratellanza: {verifica_sigillo['compatibile']}")
-    
-    # Esempio 8: Reliquie per tipo di guerriero
-    print(f"\n=== RELIQUIE PER TIPO GUERRIERO ===")
-    
-    reliquie_personalita = get_reliquie_per_tipo_guerriero("Personalita")
-    print(f"Reliquie per Personalita: {len(reliquie_personalita)}")
-    for nome in list(reliquie_personalita.keys())[:3]:  # Solo primi 3
-        print(f"  - {nome}")
-    
-    reliquie_doomtrooper = get_reliquie_per_tipo_guerriero("Doomtrooper")
-    print(f"\nReliquie per Doomtrooper: {len(reliquie_doomtrooper)}")
-    for nome in list(reliquie_doomtrooper.keys())[:3]:  # Solo primi 3
-        print(f"  - {nome}")
-    
-    # Esempio 9: Ricerca per keyword
-    print(f"\n=== RICERCA PER KEYWORD ===")
-    
-    reliquie_antiche = get_reliquie_per_keyword("Antica")
-    print(f"Reliquie 'Antiche': {len(reliquie_antiche)}")
-    for nome in reliquie_antiche.keys():
-        print(f"  - {nome}")
-    
-    reliquie_comando_kw = get_reliquie_per_keyword("Comando")
-    print(f"\nReliquie con keyword 'Comando': {len(reliquie_comando_kw)}")
-    for nome in reliquie_comando_kw.keys():
-        print(f"  - {nome}")
-    
-    # Esempio 10: Analisi dettagliata di una reliquia
-    print(f"\n=== ANALISI DETTAGLIATA: FRAMMENTO DEL VUOTO ===")
-    
-    frammento = crea_reliquia_da_database("Frammento del Vuoto")
-    if frammento:
-        print(f"Nome: {frammento.nome}")
-        print(f"Tipo: {frammento.tipo.value}")
-        print(f"Rarità: {frammento.rarity.value}")
-        print(f"Fazioni permesse: {[f.value for f in frammento.restrizioni.fazioni_permesse]}")
-        print(f"Tipi guerriero: {frammento.restrizioni.tipi_guerriero}")
-        print(f"Keywords richieste: {frammento.restrizioni.keywords_richieste}")
-        
-        print(f"\nModificatori:")
-        for mod in frammento.modificatori:
-            print(f"  - {mod.descrizione} ({mod.valore:+}{mod.statistica})")
-        
-        print(f"\nPoteri:")
-        for potere in frammento.poteri:
-            print(f"  - {potere.nome}: {potere.descrizione}")
-            print(f"    Tipo: {potere.tipo_potere.value}, Attivazione: {potere.tipo_attivazione}")
-        
-        print(f"\nImmunità: {frammento.immunita}")
-        print(f"Vulnerabilità: {frammento.vulnerabilita}")
-    
-    print(f"\n=== REGOLE RELIQUIE IMPLEMENTATE NEL DATABASE ===")
-    print("✓ Tutte le reliquie hanno costo_assegnazione = 1 Azione")
-    print("✓ Regola unicità implementata (unica = True)")
-    print("✓ Non considerate Equipaggiamento (e_equipaggiamento = False)")
-    print("✓ Restrizioni dettagliate per fazione/corporazione/tipo guerriero")
-    print("✓ Sistema completo di modificatori alle statistiche C-S-A-V")
-    print("✓ Poteri categorizzati per tipo e modalità di attivazione")
-    print("✓ Gestione immunità, vulnerabilità e incompatibilità")
-    print("✓ Metadati completi per espansioni e bilanciamento")
-    print("✓ Funzioni di ricerca e filtraggio avanzate")
-    print("✓ Compatibilità verificata con sistema fazioni/keywords")
-    print("✓ Database bilanciato con reliquie per tutte le fazioni")
-    print("✓ Reliquie speciali per Oscura Legione e Fratellanza")
-    print("✓ Reliquie universali per Personalita ed Eroi")
-
-
 # Funzioni avanzate per il bilanciamento e la gestione del gioco
 
 def get_reliquie_bilanciate_per_partita(numero_giocatori: int = 2) -> Dict[str, List[str]]:
@@ -1448,12 +1283,166 @@ def cerca_reliquie_avanzata(filtri: Dict[str, Any]) -> Dict[str, Dict[str, Any]]
     return risultati
 
 
-# Test aggiuntivo per verificare completezza
+
+# Esempi di utilizzo del database
+
 if __name__ == "__main__":
-    print("\n=== TEST FUNZIONI AVANZATE ===")
+    print("=== DATABASE RELIQUIE DOOMTROOPER ===\n")
     
-   
-    # Test ricerca avanzata
+    # Statistiche generali
+    stats = get_statistiche_database()
+    print(f"Totale reliquie nel database: {stats['totale_reliquie']}")
+    print(f"Tipi disponibili: {list(stats['per_tipo'].keys())}")
+    print(f"Rarità disponibili: {list(stats['per_rarita'].keys())}")
+    
+    # Esempio 1: Creare una reliquia dal database
+    print(f"\n=== ESEMPIO CREAZIONE RELIQUIA ===")
+    spada = crea_reliquia_da_database("Spada del Destino")
+    if spada:
+        print(f"✓ Creata: {spada}")
+        print(f"  Tipo: {spada.tipo.value}")
+        print(f"  Modificatori: {[f'{m.valore:+}{m.statistica}' for m in spada.modificatori]}")
+        print(f"  Fazioni permesse: {[f.value for f in spada.restrizioni.fazioni_permesse]}")
+    
+    # Esempio 2: Reliquie per fazione
+    print(f"\n=== RELIQUIE PER FAZIONE ===")
+    reliquie_bauhaus = get_reliquie_per_fazione("Bauhaus")
+    print(f"Reliquie Bauhaus: {len(reliquie_bauhaus)}")
+    for nome in reliquie_bauhaus.keys():
+        print(f"  - {nome}")
+    
+    reliquie_fratellanza = get_reliquie_per_fazione("Fratellanza")
+    print(f"\nReliquie Fratellanza: {len(reliquie_fratellanza)}")
+    for nome in reliquie_fratellanza.keys():
+        print(f"  - {nome}")
+    
+    # Esempio 3: Reliquie per tipo
+    print(f"\n=== RELIQUIE PER TIPO ===")
+    artefatti = get_reliquie_per_tipo("Artefatto Antico")
+    print(f"Artefatti Antichi: {len(artefatti)}")
+    for nome in artefatti.keys():
+        print(f"  - {nome}")
+    
+    # Esempio 4: Reliquie Ultra Rare
+    print(f"\n=== RELIQUIE ULTRA RARE ===")
+    ultra_rare = get_reliquie_per_rarita(Rarity.ULTRA_RARE)
+    print(f"Reliquie Ultra Rare: {len(ultra_rare)}")
+    for nome in ultra_rare.keys():
+        print(f"  - {nome}")
+    
+    # Esempio 5: Reliquie con modificatori specifici
+    print(f"\n=== RELIQUIE CON MODIFICATORI ===")
+    reliquie_combattimento = get_reliquie_con_modificatore("C")
+    print(f"Reliquie che modificano Corpo a corpo: {len(reliquie_combattimento)}")
+    for nome in reliquie_combattimento.keys():
+        print(f"  - {nome}")
+    
+    reliquie_valore = get_reliquie_con_modificatore("V")
+    print(f"\nReliquie che modificano Valore: {len(reliquie_valore)}")
+    for nome in reliquie_valore.keys():
+        print(f"  - {nome}")
+    
+    # Esempio 6: Reliquie con poteri
+    print(f"\n=== RELIQUIE CON POTERI SPECIFICI ===")
+    reliquie_protezione = get_reliquie_con_potere("Protezione")
+    print(f"Reliquie con poteri di Protezione: {len(reliquie_protezione)}")
+    for nome in reliquie_protezione.keys():
+        print(f"  - {nome}")
+    
+    reliquie_comando = get_reliquie_con_potere("Comando")
+    print(f"\nReliquie con poteri di Comando: {len(reliquie_comando)}")
+    for nome in reliquie_comando.keys():
+        print(f"  - {nome}")
+    
+    # Esempio 7: Test compatibilità guerriero
+    print(f"\n=== TEST COMPATIBILITÀ GUERRIERO ===")
+    
+    # Simula un guerriero per test
+    class GuerrieroTest:
+        def __init__(self, nome, fazione, tipo="Doomtrooper"):
+            self.nome = nome
+            self.fazione = Fazione(fazione)
+            self.tipo = tipo
+            self.keywords = ["Doomtrooper"]
+            self.ferito = False
+            self.valore = 5
+            self.reliquie_assegnate = []
+    
+    # Test guerriero Bauhaus
+    guerriero_bauhaus = GuerrieroTest("Hans Mueller", "Bauhaus", "Doomtrooper")
+    guerriero_bauhaus.keywords = ["Doomtrooper", "Techno"]
+    
+    verifica_dispositivo = verifica_compatibilita_guerriero("Dispositivo Bauhaus", guerriero_bauhaus)
+    print(f"✓ Dispositivo Bauhaus compatibile con guerriero Bauhaus: {verifica_dispositivo['compatibile']}")
+    
+    # Test guerriero Oscura Legione
+    guerriero_oscuro = GuerrieroTest("Nepharite Warlord", "Oscura Legione", "Nepharite")
+    guerriero_oscuro.keywords = ["Nepharite", "Oscuro"]
+    
+    verifica_spada = verifica_compatibilita_guerriero("Spada del Destino", guerriero_oscuro)
+    print(f"✗ Spada del Destino compatibile con Oscura Legione: {verifica_spada['compatibile']}")
+    if not verifica_spada['compatibile']:
+        print(f"  Motivo: {verifica_spada['motivo'] if 'motivo' in verifica_spada else 'Restrizioni non soddisfatte'}")
+    
+    # Test guerriero Fratellanza
+    guerriero_fratellanza = GuerrieroTest("Brother Marcus", "Fratellanza", "Doomtrooper")
+    guerriero_fratellanza.keywords = ["Doomtrooper", "Mystic"]
+    
+    verifica_sigillo = verifica_compatibilita_guerriero("Sigillo di Cardinal", guerriero_fratellanza)
+    print(f"✓ Sigillo di Cardinal compatibile con Fratellanza: {verifica_sigillo['compatibile']}")
+    
+    # Esempio 8: Reliquie per tipo di guerriero
+    print(f"\n=== RELIQUIE PER TIPO GUERRIERO ===")
+    
+    reliquie_personalita = get_reliquie_per_tipo_guerriero("Personalita")
+    print(f"Reliquie per Personalita: {len(reliquie_personalita)}")
+    for nome in list(reliquie_personalita.keys())[:3]:  # Solo primi 3
+        print(f"  - {nome}")
+    
+    reliquie_doomtrooper = get_reliquie_per_tipo_guerriero("Doomtrooper")
+    print(f"\nReliquie per Doomtrooper: {len(reliquie_doomtrooper)}")
+    for nome in list(reliquie_doomtrooper.keys())[:3]:  # Solo primi 3
+        print(f"  - {nome}")
+    
+    # Esempio 9: Ricerca per keyword
+    print(f"\n=== RICERCA PER KEYWORD ===")
+    
+    reliquie_antiche = get_reliquie_per_keyword("Antica")
+    print(f"Reliquie 'Antiche': {len(reliquie_antiche)}")
+    for nome in reliquie_antiche.keys():
+        print(f"  - {nome}")
+    
+    reliquie_comando_kw = get_reliquie_per_keyword("Comando")
+    print(f"\nReliquie con keyword 'Comando': {len(reliquie_comando_kw)}")
+    for nome in reliquie_comando_kw.keys():
+        print(f"  - {nome}")
+    
+    # Esempio 10: Analisi dettagliata di una reliquia
+    print(f"\n=== ANALISI DETTAGLIATA: FRAMMENTO DEL VUOTO ===")
+    
+    frammento = crea_reliquia_da_database("Frammento del Vuoto")
+    if frammento:
+        print(f"Nome: {frammento.nome}")
+        print(f"Tipo: {frammento.tipo.value}")
+        print(f"Rarità: {frammento.rarity.value}")
+        print(f"Fazioni permesse: {[f.value for f in frammento.restrizioni.fazioni_permesse]}")
+        print(f"Tipi guerriero: {frammento.restrizioni.tipi_guerriero}")
+        print(f"Keywords richieste: {frammento.restrizioni.keywords_richieste}")
+        
+        print(f"\nModificatori:")
+        for mod in frammento.modificatori:
+            print(f"  - {mod.descrizione} ({mod.valore:+}{mod.statistica})")
+        
+        print(f"\nPoteri:")
+        for potere in frammento.poteri:
+            print(f"  - {potere.nome}: {potere.descrizione}")
+            print(f"    Tipo: {potere.tipo_potere.value}, Attivazione: {potere.tipo_attivazione}")
+        
+        print(f"\nImmunità: {frammento.immunita}")
+        print(f"Vulnerabilità: {frammento.vulnerabilita}")
+    
+
+     # Test ricerca avanzata
     filtri_test = {
         "fazione": "Bauhaus",
         "rarita": Rarity.RARE
@@ -1468,3 +1457,4 @@ if __name__ == "__main__":
     print("\n✅ Database_Reliquia.py COMPLETATO CON SUCCESSO!")
     print("✅ Tutte le funzioni implementate e testate")
     print("✅ Sistema completo pronto per l'uso nel gioco")
+  

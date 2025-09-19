@@ -64,7 +64,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Cecità",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Legione",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Avversario",
@@ -108,7 +108,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Terrore",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Avversario",
@@ -196,7 +196,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Fuoco Oscuro",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Proprio",
@@ -372,7 +372,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Resistere Al Dolore",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Proprio",
@@ -1078,7 +1078,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Potere Mostruoso",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Proprio",
@@ -1122,7 +1122,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Forza Primordiale",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Proprio",
@@ -1254,7 +1254,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Forza Empia",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Proprio",
@@ -1298,7 +1298,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Occhio Sacrilego",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Avversario",
@@ -1342,7 +1342,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Forza Malvagia",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Proprio",
@@ -1386,7 +1386,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "nome": "Occhio Malvagio",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Simmetria",
-        "apostolo_padre": "",
+        "apostolo_padre": None,
         "rarity": "Common",     
         "fazioni_permesse": ["Oscura Legione"],
        "bersaglio": "Guerriero Avversario",
@@ -1614,7 +1614,7 @@ def crea_carta_da_database(nome_carta: str):
         nome=data["nome"],
         costo_destino=data["costo_destino"],
         tipo=TipoOscuraSimmetria(data["tipo"]) if data["tipo"] != "Generica" else TipoOscuraSimmetria.GENERICA,
-        apostolo_padre=ApostoloOscuraSimmetria(data["apostolo_padre"]) if data["apostolo_padre"] != ApostoloOscuraSimmetria.NESSUNO else ApostoloOscuraSimmetria.NESSUNO,
+        apostolo_padre=ApostoloOscuraSimmetria(data["apostolo_padre"]) if data["apostolo_padre"] and data["apostolo_padre"] != ApostoloOscuraSimmetria.NESSUNO else ApostoloOscuraSimmetria.NESSUNO,
         rarity=Rarity(data["rarity"]),
         set_espansione=data["set_espansione"]
     )
@@ -1710,7 +1710,7 @@ def verifica_integrita_database() -> dict:
         
         # Verifica coerenza apostoli e doni
         if carta["tipo"] == "Dono dell'Apostolo":
-            if carta["apostolo_padre"] == "Nessuno":
+            if not carta["apostolo_padre"]:
                 errori["apostoli_inconsistenti"].append(f"{nome}: Dono senza apostolo")
             if not any("Solo Seguaci di" in r for r in carta["restrizioni"]):
                 errori["doni_senza_restrizioni"].append(f"{nome}: Manca restrizione Seguaci")
