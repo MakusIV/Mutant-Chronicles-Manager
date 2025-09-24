@@ -352,7 +352,7 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Aumenta effetto",
                 "tipo_effetto": "Modificatore",
-                "valore": "+2",
+                "valore": 2,
                 "statistica_target": "sparare",
                 "descrizione_effetto": "Il guerriero guadagna un +2 sulla caratteristica S per questo combattimento",
                 "condizioni": ["Giocabile su un guerriero durante il combattimento"],
@@ -422,7 +422,7 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Aumenta effetto",
                 "tipo_effetto": "Modificatore",
-                "valore": "+1",
+                "valore": 1,
                 "statistica_target": "combattimento",
                 "descrizione_effetto": "Il guerriero guadagna un +1 in C per ogni 2D spesi durante il combattimento. Questa carta rimane con il guerriero",
                 "condizioni": ["Al costo di tre azioni"],
@@ -3724,8 +3724,17 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Bonus Combattimento per Uscita Coperto",
                 "tipo_effetto": "Modificatore",
-                "valore": "+2 in C e S",
+                "valore": 2,
                 "statistica_target": "combattimento",
+                "descrizione_effetto": "Il guerriero può immediatamente uscire allo scoperto e Attaccare con un +2 in C e S. Questa è considerata un'Azione di Attacco. Dopo il combattimento, il guerriero NON È PIÙ AL COPERTO",
+                "condizioni": ["Guerriero al coperto", "Costo tre azioni"],
+                "limitazioni": ["Dopo il combattimento non è più al coperto"]
+            },
+            {
+                "nome_effetto": "Bonus Combattimento per Uscita Coperto",
+                "tipo_effetto": "Modificatore",
+                "valore": 2,
+                "statistica_target": "sparare",
                 "descrizione_effetto": "Il guerriero può immediatamente uscire allo scoperto e Attaccare con un +2 in C e S. Questa è considerata un'Azione di Attacco. Dopo il combattimento, il guerriero NON È PIÙ AL COPERTO",
                 "condizioni": ["Guerriero al coperto", "Costo tre azioni"],
                 "limitazioni": ["Dopo il combattimento non è più al coperto"]
@@ -4319,7 +4328,7 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Bonus Sparare",
                 "tipo_effetto": "Modificatore",
-                "valore": "+3 in S",
+                "valore": 3,
                 "statistica_target": "sparare",
                 "descrizione_effetto": "Il guerriero guadagna un +3 in S per questo combattimento",
                 "condizioni": ["In Combattimento"],
@@ -4389,7 +4398,7 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Modifica Stato",
                 "tipo_effetto": "Modificatore",
-                "valore": "+1 in C per tutti",
+                "valore": 1,
                 "statistica_target": "combattimento",
                 "descrizione_effetto": "Questa carta rimane in gioco. Tutti i guerrieri guadagnano un +1 in C per il resto della partita",
                 "condizioni": [],
@@ -4531,7 +4540,7 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Bonus Combattimento",
                 "tipo_effetto": "Modificatore",
-                "valore": "+5 in S durante questo combattimento",
+                "valore": 5,
                 "statistica_target": "sparare",
                 "descrizione_effetto": "Il guerriero guadagna un +5 in S durante questo combattimento. Questa carta non ha effetto se il guerriero avversario utilizza un VEICOLO o è considerato AERONAVI, CARRO ARMATO o VEICOLO",
                 "condizioni": ["In Combattimento"],
@@ -5371,7 +5380,7 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Bonus Combattimento",
                 "tipo_effetto": "Modificatore",
-                "valore": "+5 in C",
+                "valore": 5,
                 "statistica_target": "combattimento",
                 "descrizione_effetto": "Il guerriero guadagna un +5 in C durante questo combattimento. Questa carta non ha effetto se il guerriero avversario utilizza un VEICOLO o è considerato AERONAVE, CARRO ARMATO o VEICOLO",
                 "condizioni": ["In Combattimento"],
@@ -5441,7 +5450,7 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Triplica Combattimento",
                 "tipo_effetto": "Modificatore",
-                "valore": "Triplica C naturale",
+                "valore": 6,# non è errore ma è congruente per il calcolo della potenza della carta
                 "statistica_target": "combattimento",
                 "descrizione_effetto": "Il guerriero triplica la sua caratteristica naturale (quella segnata sulla carta) C fino alla fine del combattimento. Dopo il combattimento il guerriero muore facendo guadagnare all'avversario i suoi punti. Non si può salvare il guerriero dalla morte in alcun modo",
                 "condizioni": ["Guerriero Cybertronic", "In Combattimento"],
@@ -5511,8 +5520,17 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Diventa Bauhaus",
                 "tipo_effetto": "Modificatore",
-                "valore": "+2 in C e S",
+                "valore": 2,
                 "statistica_target": "combattimento",
+                "descrizione_effetto": "Il guerriero diventa un membro della Bauhaus in aggiunta al precedente legame. Il guerriero guadagna un +2 in C e S ma non potrà mai attaccare un guerriero con una V inferiore alla sua",
+                "condizioni": ["Doomtrooper"],
+                "limitazioni": ["Non può attaccare guerrieri con V inferiore"]
+            },
+            {
+                "nome_effetto": "Diventa Bauhaus",
+                "tipo_effetto": "Modificatore",
+                "valore": 2,
+                "statistica_target": "sparare",
                 "descrizione_effetto": "Il guerriero diventa un membro della Bauhaus in aggiunta al precedente legame. Il guerriero guadagna un +2 in C e S ma non potrà mai attaccare un guerriero con una V inferiore alla sua",
                 "condizioni": ["Doomtrooper"],
                 "limitazioni": ["Non può attaccare guerrieri con V inferiore"]
@@ -5968,7 +5986,7 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Bonus Combattimento per Spesa",
                 "tipo_effetto": "Modificatore",
-                "valore": "+1 per ogni 2D spesi",
+                "valore": 1,
                 "statistica_target": "combattimento",
                 "descrizione_effetto": "Questa carta rimane in gioco. Il guerriero guadagna un +1 in C per ogni 2D spesi durante il combattimento",
                 "condizioni": ["Doomtrooper non-Personalità", "Costo un'azione"],

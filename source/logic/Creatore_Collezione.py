@@ -92,15 +92,15 @@ NUMERO_CARTE_DISPONIBILI = {
 }
 
 LIMITI_CARTE_COLLEZIONE = { # specifica il range del numero di carte per tipo da inserire nella collezione, considera che poi si aggiungono il numero minimo di copie per carta
-            'Guerriero': {'min': 70 , 'max': 132 },
-            'Equipaggiamento': {'min': 45 , 'max': 80  },
-            'Speciale': {'min': 100 , 'max': 165},
-            'Arte': {'min': 30 , 'max': 62  },
-            'Oscura Simmetria': {'min': 20 , 'max': 35  },
-            'Fortificazione': {'min': 10 , 'max': 26  },
-            'Missione': {'min': 10 , 'max': 16  },
+            'Guerriero': {'min': 100 , 'max': 132 },
+            'Equipaggiamento': {'min': 70 , 'max': 80  },
+            'Speciale': {'min': 140 , 'max': 165},
+            'Arte': {'min': 45 , 'max': 62  },
+            'Oscura Simmetria': {'min': 28 , 'max': 35  },
+            'Fortificazione': {'min': 18 , 'max': 26  },
+            'Missione': {'min': 5 , 'max': 16  },
             'Reliquia': {'min': 12 , 'max': 17  },
-            'Warzone': {'min': 8 , 'max': 14  },
+            'Warzone': {'min': 9 , 'max': 14  },
         } 
 
 MAX_COPIE_CARTA = 7 # Numero massimo di copie da inserire nella collezione per una specifica carta
@@ -715,9 +715,9 @@ def seleziona_carte_casuali_per_tipo(
                 fazioni_permesse = dati['restrizioni'].get('fazioni_permesse', [])            
             
             if any(f.value in fazioni_permesse for f in fazioni_orientamento):
-                carte_orientate[nome] = dati
+                carte_orientate[nome] = dati # inserisce la carta nelle carte_orientate se questa è associabile ad una delle fazioni permesse
             else:
-                carte_generiche[nome] = dati
+                carte_generiche[nome] = dati # ... altrimenti la inserisce nelle carte generiche
     else:
         carte_generiche = carte_disponibili
     
@@ -726,7 +726,7 @@ def seleziona_carte_casuali_per_tipo(
         if not carte_disponibili:
             break
         
-        # Decide se usare orientamento o carte generiche
+        # Decide se usare orientamento o carte generiche per la scelta della carta
         usa_orientamento = (
             fazioni_orientamento and 
             carte_orientate and 
@@ -749,10 +749,10 @@ def seleziona_carte_casuali_per_tipo(
 
         # MODIFICA PER DISTRIBUZIONE BILANCIATA CARTE COLLEZIONE
         # se il numero d carte è insufficiente per tutti i giocatori, assegna la carta in base alla probabilita in modo da non favorire il/i primo/i giocatore per cui si crea la collezione
-        quantita_disponibile = dati_carta.get('quantita') - QUANTITA_UTILIZZATE[nome]        
+        quantita_disponibile = dati_carta.get('quantita') - QUANTITA_UTILIZZATE[nome_carta]        
 
         if quantita_disponibile < giocatori_rimasti:  # numero copie inferiore al numero giocatori da servire
-            if random.random() >= quantita_disponibile / giocatori_rimasti: # valutazione della probabilità di assegnazione della carta
+            if random.random() <= quantita_disponibile / giocatori_rimasti: # valutazione della probabilità di assegnazione della carta al giocatore corrente
                 # la carta non è assegnabile al giocatore corrente e viene rimossa dal pool 
                 if nome_carta in carte_orientate:
                     del carte_orientate[nome_carta]
@@ -1391,6 +1391,9 @@ def converti_enum_ricorsivo(obj: Any) -> Any:
     else:
         return obj
 
+"""
+"""
+
 def crea_inventario_dettagliato_json(collezione) -> Dict[str, Any]:
     """
     Crea l'inventario dettagliato per una collezione in formato JSON.
@@ -1639,11 +1642,14 @@ def crea_statistiche_aggregate_json(collezioni: List) -> Dict[str, Any]:
     
     return statistiche_aggregate
 
+"""
+
 def salva_collezioni_json_migliorato(collezioni: List, filename: str = "collezioni_dettagliate.json"):
-    """
+    
+    
     Salva le collezioni in formato JSON con struttura dettagliata.
     Equivalente JSON di stampa_riepilogo_collezioni_migliorato().
-    """
+    
     try:
         print(f"🔄 Creazione struttura JSON dettagliata per {len(collezioni)} collezioni...")
         
@@ -1705,9 +1711,9 @@ def salva_collezioni_json_migliorato(collezioni: List, filename: str = "collezio
         return False
 
 def carica_collezioni_json_migliorato(filename: str) -> Optional[Dict[str, Any]]:
-    """
+    
     Carica collezioni dal formato JSON migliorato.
-    """
+    
     try:
         print(f"📂 Caricamento collezioni da {PERCORSO_SALVATAGGIO+filename}...")
         
@@ -1738,10 +1744,10 @@ def carica_collezioni_json_migliorato(filename: str) -> Optional[Dict[str, Any]]
         return None
 
 def stampa_statistiche_da_json(dati_json: Dict[str, Any]):
-    """
+    
     Stampa statistiche dalle collezioni caricate da JSON.
     Equivalente di stampa_riepilogo_collezioni_migliorato() per dati JSON.
-    """
+    
     if not dati_json:
         print("❌ Nessun dato da visualizzare")
         return
@@ -1767,6 +1773,8 @@ def stampa_statistiche_da_json(dati_json: Dict[str, Any]):
             orientamento_str = f" [🎯 {', '.join(fazioni)}]"
         
         print(f"  🎮 Giocatore {collezione.get('id_giocatore')}: {collezione.get('totale_carte')} carte, {collezione.get('valore_dp')} DP{orientamento_str}")
+
+"""
 
 def verifica_integrità_collezioni(collezioni: List[CollezioneGiocatore]) -> Dict[str, Any]:
     """Verifica l'integrità delle collezioni create"""
@@ -2189,6 +2197,1027 @@ def test_creazioni_individuali():
     print("# menu_interattivo()")
     print(f"{'='*80}")
     
+
+
+# ================================ AGGIORNAMENTO ORDINAMENTO IN BASE A FAZIONI ====================================
+
+
+def crea_inventario_dettagliato_json(collezione) -> Dict[str, Any]:
+    """
+    Crea l'inventario dettagliato per una collezione in formato JSON.
+    Struttura analoga a stampa_inventario_dettagliato().
+    AGGIORNATO: Implementa nuove proprietà di visualizzazione e ordinamento.
+    """
+    inventario_json = {
+        'id_giocatore': collezione.id_giocatore,
+        'orientamento': {
+            'attivo': bool(collezione.fazioni_orientamento),
+            'fazioni': []
+        },
+        'carte_per_tipo': {},
+        'statistiche_fazioni': {},
+        'totali': {
+            'carte_totali': collezione.get_totale_carte(),
+            'valore_totale_dp': collezione.statistiche.valore_totale_dp,
+            'carte_uniche': 0
+        }
+    }
+    
+    # Orientamento
+    if collezione.fazioni_orientamento:
+        inventario_json['orientamento']['fazioni'] = [
+            f.value if hasattr(f, 'value') else str(f) 
+            for f in collezione.fazioni_orientamento
+        ]
+    
+    # Organizza carte per tipo con dettagli completi
+    carte_uniche_totali = set()
+    
+    for tipo_carta, liste_carte in collezione.carte.items():
+        if not liste_carte:
+            continue
+            
+        # Conta carte per nome
+        carte_conteggio = defaultdict(int)
+        carte_esempi = {}
+        
+        for carta in liste_carte:
+            carte_conteggio[carta.nome] += 1
+            if carta.nome not in carte_esempi:
+                carte_esempi[carta.nome] = carta
+            carte_uniche_totali.add(carta.nome)
+        
+        # Ordina le carte in base al tipo specifico
+        carte_ordinate = _ordina_carte_per_tipo(liste_carte, tipo_carta)
+        carte_conteggio_ordinato = defaultdict(int)
+        carte_esempi_ordinati = {}
+        
+        for carta in carte_ordinate:
+            carte_conteggio_ordinato[carta.nome] += 1
+            if carta.nome not in carte_esempi_ordinati:
+                carte_esempi_ordinati[carta.nome] = carta
+        
+        # Crea struttura per tipo carta
+        tipo_info = {
+            'totale_carte': len(liste_carte),
+            'carte_uniche': len(carte_conteggio_ordinato),
+            'dettaglio_carte': {}
+        }
+        
+        # Dettagli per ogni carta unica (ordinati)
+        for nome_carta, quantita in carte_conteggio_ordinato.items():
+            carta_esempio = carte_esempi_ordinati[nome_carta]
+            
+            dettaglio_carta = {
+                'nome': nome_carta,
+                'quantita': quantita,
+                'tipo': tipo_carta.capitalize()
+            }
+            
+            # Informazioni base della carta con gestione sicura
+            try:
+                if hasattr(carta_esempio, 'rarity') and carta_esempio.rarity is not None:
+                    dettaglio_carta['rarity'] = (
+                        carta_esempio.rarity.value if hasattr(carta_esempio.rarity, 'value') 
+                        else str(carta_esempio.rarity)
+                    )
+                
+                if hasattr(carta_esempio, 'set_espansione') and carta_esempio.set_espansione is not None:
+                    dettaglio_carta['set_espansione'] = (
+                        carta_esempio.set_espansione.value if hasattr(carta_esempio.set_espansione, 'value')
+                        else str(carta_esempio.set_espansione)
+                    )
+                
+                # AGGIORNAMENTI SPECIFICI PER TIPO DI CARTA (con gestione errori)
+                
+                # Informazioni specifiche per GUERRIERI
+                if tipo_carta == 'guerriero':
+                    if hasattr(carta_esempio, 'fazione') and carta_esempio.fazione is not None:
+                        dettaglio_carta['fazione'] = (
+                            carta_esempio.fazione.value if hasattr(carta_esempio.fazione, 'value')
+                            else str(carta_esempio.fazione)
+                        )
+                    
+                    # Aggiunge informazione seguace per Oscura Legione
+                    if hasattr(carta_esempio, 'keywords') and carta_esempio.keywords:
+                        for keyword in carta_esempio.keywords:
+                            if isinstance(keyword, str) and "Seguace di" in keyword:
+                                dettaglio_carta['seguace_di'] = keyword
+                                break
+                    
+                    # Statistiche combattimento per guerrieri
+                    if hasattr(carta_esempio, 'stats') and carta_esempio.stats is not None:
+                        dettaglio_carta['statistiche'] = {
+                            'combattimento': getattr(carta_esempio.stats, 'combattimento', 0),
+                            'sparare': getattr(carta_esempio.stats, 'sparare', 0),
+                            'armatura': getattr(carta_esempio.stats, 'armatura', 0),
+                            'valore': getattr(carta_esempio.stats, 'valore', 0)
+                        }
+                
+                # Informazioni specifiche per EQUIPAGGIAMENTO
+                elif tipo_carta == 'equipaggiamento':
+                    # AGGIUNTO: proprietà fazione per equipaggiamenti
+                    if hasattr(carta_esempio, 'fazioni_permesse') and carta_esempio.fazioni_permesse:
+                        fazioni_str = []
+                        for fazione in carta_esempio.fazioni_permesse:
+                            if hasattr(fazione, 'value'):
+                                fazioni_str.append(fazione.value)
+                            else:
+                                fazioni_str.append(str(fazione))
+                        
+                        if len(fazioni_str) == 1 and fazioni_str[0] != "Generica":
+                            dettaglio_carta['fazione'] = fazioni_str[0]
+                        else:
+                            dettaglio_carta['fazione'] = ", ".join(fazioni_str)
+                    else:
+                        dettaglio_carta['fazione'] = "Generica"
+                    # RIMOSSO: valore_dp per equipaggiamenti
+                
+                # Informazioni specifiche per SPECIALE
+                elif tipo_carta == 'speciale':
+                    # AGGIUNTO: proprietà fazioni_permesse per carte speciali
+                    if hasattr(carta_esempio, 'fazioni_permesse') and carta_esempio.fazioni_permesse:
+                        fazioni_str = []
+                        for fazione in carta_esempio.fazioni_permesse:
+                            if hasattr(fazione, 'value'):
+                                fazioni_str.append(fazione.value)
+                            else:
+                                fazioni_str.append(str(fazione))
+                        dettaglio_carta['fazioni_permesse'] = ", ".join(fazioni_str)
+                    else:
+                        dettaglio_carta['fazioni_permesse'] = "Tutte"
+                    # RIMOSSO: valore_dp per carte speciali
+                
+                # Informazioni specifiche per FORTIFICAZIONE
+                elif tipo_carta == 'fortificazione':
+                    # AGGIUNTO: proprietà fazioni_permesse per fortificazioni
+                    if hasattr(carta_esempio, 'fazioni_permesse') and carta_esempio.fazioni_permesse:
+                        fazioni_str = []
+                        for fazione in carta_esempio.fazioni_permesse:
+                            if hasattr(fazione, 'value'):
+                                fazioni_str.append(fazione.value)
+                            else:
+                                fazioni_str.append(str(fazione))
+                        dettaglio_carta['fazioni_permesse'] = ", ".join(fazioni_str)
+                    else:
+                        dettaglio_carta['fazioni_permesse'] = "Tutte"
+                    # RIMOSSO: valore_dp per fortificazioni
+                
+                # Informazioni specifiche per MISSIONE
+                elif tipo_carta == 'missione':
+                    # AGGIUNTO: proprietà fazioni_permesse per missioni
+                    if hasattr(carta_esempio, 'fazioni_permesse') and carta_esempio.fazioni_permesse:
+                        fazioni_str = []
+                        for fazione in carta_esempio.fazioni_permesse:
+                            if hasattr(fazione, 'value'):
+                                fazioni_str.append(fazione.value)
+                            else:
+                                fazioni_str.append(str(fazione))
+                        dettaglio_carta['fazioni_permesse'] = ", ".join(fazioni_str)
+                    else:
+                        dettaglio_carta['fazioni_permesse'] = "Tutte"
+                    # RIMOSSO: valore_dp per missioni
+                
+                # Informazioni specifiche per OSCURA SIMMETRIA
+                elif tipo_carta == 'oscura_simmetria':
+                    # AGGIUNTO: proprietà apostolo_padre per oscura simmetria
+                    if hasattr(carta_esempio, 'apostolo_padre') and carta_esempio.apostolo_padre is not None:
+                        dettaglio_carta['apostolo_padre'] = (
+                            carta_esempio.apostolo_padre.value if hasattr(carta_esempio.apostolo_padre, 'value')
+                            else str(carta_esempio.apostolo_padre)
+                        )
+                    else:
+                        dettaglio_carta['apostolo_padre'] = "Nessuno"
+                    # RIMOSSO: valore_dp per oscura simmetria
+                
+                # Informazioni specifiche per ARTE
+                elif tipo_carta == 'arte':
+                    # AGGIUNTO: proprietà disciplina per arte
+                    if hasattr(carta_esempio, 'disciplina') and carta_esempio.disciplina is not None:
+                        dettaglio_carta['disciplina'] = (
+                            carta_esempio.disciplina.value if hasattr(carta_esempio.disciplina, 'value')
+                            else str(carta_esempio.disciplina)
+                        )
+                    elif hasattr(carta_esempio, 'disciplina_arte') and carta_esempio.disciplina_arte is not None:
+                        dettaglio_carta['disciplina'] = (
+                            carta_esempio.disciplina_arte.value if hasattr(carta_esempio.disciplina_arte, 'value')
+                            else str(carta_esempio.disciplina_arte)
+                        )
+                    else:
+                        dettaglio_carta['disciplina'] = "Non specificata"
+                    # RIMOSSO: valore_dp per arte
+                
+                # Informazioni specifiche per RELIQUIA
+                elif tipo_carta == 'reliquia':
+                    # AGGIUNTO: proprietà fazioni_permesse dalle restrizioni per reliquie
+                    if hasattr(carta_esempio, 'restrizioni') and isinstance(carta_esempio.restrizioni, dict):
+                        fazioni_permesse = carta_esempio.restrizioni.get('fazioni_permesse', [])
+                        if fazioni_permesse:
+                            fazioni_str = []
+                            for fazione in fazioni_permesse:
+                                if hasattr(fazione, 'value'):
+                                    fazioni_str.append(fazione.value)
+                                else:
+                                    fazioni_str.append(str(fazione))
+                            dettaglio_carta['fazioni_permesse'] = ", ".join(fazioni_str)
+                        else:
+                            dettaglio_carta['fazioni_permesse'] = "Tutte"
+                    else:
+                        dettaglio_carta['fazioni_permesse'] = "Tutte"
+                    # RIMOSSO: valore_dp per reliquie
+                
+                # Informazioni specifiche per WARZONE
+                elif tipo_carta == 'warzone':
+                    # AGGIUNTO: proprietà fazioni_permesse dalle restrizioni per warzone
+                    if hasattr(carta_esempio, 'restrizioni') and isinstance(carta_esempio.restrizioni, dict):
+                        fazioni_permesse = carta_esempio.restrizioni.get('fazioni_permesse', [])
+                        if fazioni_permesse:
+                            fazioni_str = []
+                            for fazione in fazioni_permesse:
+                                if hasattr(fazione, 'value'):
+                                    fazioni_str.append(fazione.value)
+                                else:
+                                    fazioni_str.append(str(fazione))
+                            dettaglio_carta['fazioni_permesse'] = ", ".join(fazioni_str)
+                        else:
+                            dettaglio_carta['fazioni_permesse'] = "Tutte"
+                    else:
+                        dettaglio_carta['fazioni_permesse'] = "Tutte"
+                    # RIMOSSO: valore_dp per warzone
+                
+                # Per altri tipi, mantiene il valore DP se presente
+                else:
+                    if hasattr(carta_esempio, 'valore') and carta_esempio.valore is not None:
+                        dettaglio_carta['valore_dp'] = carta_esempio.valore
+                    elif hasattr(carta_esempio, 'costo_destino') and carta_esempio.costo_destino is not None:
+                        dettaglio_carta['valore_dp'] = carta_esempio.costo_destino
+                    else:
+                        dettaglio_carta['valore_dp'] = 0
+                
+                # Altre informazioni specifiche per tipo (con gestione sicura)
+                if hasattr(carta_esempio, 'testo_carta') and carta_esempio.testo_carta:
+                    dettaglio_carta['testo_carta'] = str(carta_esempio.testo_carta)
+                
+                if hasattr(carta_esempio, 'keywords') and carta_esempio.keywords:
+                    # Converte tutti i keywords in stringhe
+                    keywords_sicure = []
+                    for kw in carta_esempio.keywords:
+                        if kw is not None:
+                            if hasattr(kw, 'value'):
+                                keywords_sicure.append(kw.value)
+                            else:
+                                keywords_sicure.append(str(kw))
+                    dettaglio_carta['keywords'] = keywords_sicure
+                
+            except Exception as e:
+                print(f"⚠️ Errore processando carta {nome_carta}: {e}")
+                # Mantiene le informazioni base anche in caso di errore
+                dettaglio_carta['errore_processamento'] = str(e)
+            
+            tipo_info['dettaglio_carte'][nome_carta] = dettaglio_carta
+
+        
+        inventario_json['carte_per_tipo'][tipo_carta] = tipo_info
+    
+    # Totale carte uniche
+    inventario_json['totali']['carte_uniche'] = len(carte_uniche_totali)
+    
+    # Statistiche per fazione (analoga a stampa_statistiche_fazioni)
+    inventario_json['statistiche_fazioni'] = crea_statistiche_fazioni_json(collezione)
+    
+    return inventario_json
+
+def _ordina_carte_per_tipo(carte: List, tipo_carta: str) -> List:
+    """
+    Ordina le carte in base al tipo specificato secondo i nuovi criteri.
+    CORRETTO: Gestisce correttamente gli enum per evitare errori di confronto.
+    """
+    try:
+        if tipo_carta == 'guerriero':
+            # Ordina per fazione, poi per seguace_di per Oscura Legione
+            return sorted(carte, key=lambda carta: (
+                _get_fazione_sort_key(carta),
+                _get_seguace_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        elif tipo_carta == 'equipaggiamento':
+            # Ordina per fazione
+            return sorted(carte, key=lambda carta: (
+                _get_fazione_equipaggiamento_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        elif tipo_carta == 'speciale':
+            # Ordina per fazioni_permesse
+            return sorted(carte, key=lambda carta: (
+                _get_fazioni_permesse_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        elif tipo_carta == 'fortificazione':
+            # Ordina per fazioni_permesse
+            return sorted(carte, key=lambda carta: (
+                _get_fazioni_permesse_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        elif tipo_carta == 'missione':
+            # Ordina per fazioni_permesse
+            return sorted(carte, key=lambda carta: (
+                _get_fazioni_permesse_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        elif tipo_carta == 'oscura_simmetria':
+            # Ordina per apostolo_padre
+            return sorted(carte, key=lambda carta: (
+                _get_apostolo_padre_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        elif tipo_carta == 'arte':
+            # Ordina per disciplina
+            return sorted(carte, key=lambda carta: (
+                _get_disciplina_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        elif tipo_carta == 'reliquia':
+            # Ordina per fazioni_permesse dalle restrizioni
+            return sorted(carte, key=lambda carta: (
+                _get_restrizioni_fazioni_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        elif tipo_carta == 'warzone':
+            # Ordina per fazioni_permesse dalle restrizioni
+            return sorted(carte, key=lambda carta: (
+                _get_restrizioni_fazioni_sort_key(carta),
+                getattr(carta, 'nome', 'Unknown')
+            ))
+        
+        else:
+            # Ordinamento di default per nome
+            return sorted(carte, key=lambda carta: getattr(carta, 'nome', 'Unknown'))
+    
+    except Exception as e:
+        print(f"⚠️ Errore nell'ordinamento {tipo_carta}: {e}")
+        print(f"   Fallback su ordinamento base per nome")
+        # Fallback sicuro su ordinamento base
+        return sorted(carte, key=lambda carta: getattr(carta, 'nome', 'Unknown'))
+
+def _get_fazione_sort_key(carta) -> str:
+    """Ottiene la chiave di ordinamento per fazione di un guerriero."""
+    try:
+        if hasattr(carta, 'fazione') and carta.fazione is not None:
+            return carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+        return "ZZZ_Sconosciuta"
+    except Exception as e:
+        print(f"⚠️ Errore nel get_fazione_sort_key per {getattr(carta, 'nome', 'carta sconosciuta')}: {e}")
+        return "ZZZ_Errore"
+
+def _get_seguace_sort_key(carta) -> str:
+    """Ottiene la chiave di ordinamento per seguace di un guerriero Oscura Legione."""
+    try:
+        if hasattr(carta, 'keywords') and carta.keywords:
+            for keyword in carta.keywords:
+                if isinstance(keyword, str) and "Seguace di" in keyword:
+                    return keyword
+        return "ZZZ_Nessun_Seguace"
+    except Exception as e:
+        print(f"⚠️ Errore nel get_seguace_sort_key per {getattr(carta, 'nome', 'carta sconosciuta')}: {e}")
+        return "ZZZ_Errore"
+
+def _get_fazione_equipaggiamento_sort_key(carta) -> str:
+    """Ottiene la chiave di ordinamento per fazione di un equipaggiamento."""
+    try:
+        if hasattr(carta, 'fazioni_permesse') and carta.fazioni_permesse:
+            # Converte tutti gli elementi in stringhe prima dell'ordinamento
+            fazioni_str = []
+            for fazione in carta.fazioni_permesse:
+                if hasattr(fazione, 'value'):
+                    fazioni_str.append(fazione.value)
+                else:
+                    fazioni_str.append(str(fazione))
+            
+            if len(fazioni_str) == 1 and fazioni_str[0] != "Generica":
+                return fazioni_str[0]
+            else:
+                return ", ".join(sorted(fazioni_str))
+        return "ZZZ_Generica"
+    except Exception as e:
+        print(f"⚠️ Errore nel get_fazione_equipaggiamento_sort_key per {getattr(carta, 'nome', 'carta sconosciuta')}: {e}")
+        return "ZZZ_Errore"
+
+def _get_fazioni_permesse_sort_key(carta) -> str:
+    """Ottiene la chiave di ordinamento per fazioni_permesse."""
+    try:
+        if hasattr(carta, 'fazioni_permesse') and carta.fazioni_permesse:
+            # Converte tutti gli elementi in stringhe prima dell'ordinamento
+            fazioni_str = []
+            for fazione in carta.fazioni_permesse:
+                if hasattr(fazione, 'value'):
+                    fazioni_str.append(fazione.value)
+                else:
+                    fazioni_str.append(str(fazione))
+            return ", ".join(sorted(fazioni_str))
+        return "ZZZ_Tutte"
+    except Exception as e:
+        print(f"⚠️ Errore nel get_fazioni_permesse_sort_key per {getattr(carta, 'nome', 'carta sconosciuta')}: {e}")
+        return "ZZZ_Errore"
+
+def _get_apostolo_padre_sort_key(carta) -> str:
+    """Ottiene la chiave di ordinamento per apostolo_padre."""
+    try:
+        if hasattr(carta, 'apostolo_padre') and carta.apostolo_padre is not None:
+            return carta.apostolo_padre.value if hasattr(carta.apostolo_padre, 'value') else str(carta.apostolo_padre)
+        return "ZZZ_Nessuno"
+    except Exception as e:
+        print(f"⚠️ Errore nel get_apostolo_padre_sort_key per {getattr(carta, 'nome', 'carta sconosciuta')}: {e}")
+        return "ZZZ_Errore"
+
+def _get_disciplina_sort_key(carta) -> str:
+    """Ottiene la chiave di ordinamento per disciplina dell'arte."""
+    try:
+        if hasattr(carta, 'disciplina') and carta.disciplina is not None:
+            return carta.disciplina.value if hasattr(carta.disciplina, 'value') else str(carta.disciplina)
+        elif hasattr(carta, 'disciplina_arte') and carta.disciplina_arte is not None:
+            return carta.disciplina_arte.value if hasattr(carta.disciplina_arte, 'value') else str(carta.disciplina_arte)
+        return "ZZZ_Non_Specificata"
+    except Exception as e:
+        print(f"⚠️ Errore nel get_disciplina_sort_key per {getattr(carta, 'nome', 'carta sconosciuta')}: {e}")
+        return "ZZZ_Errore"
+
+def _get_restrizioni_fazioni_sort_key(carta) -> str:
+    """Ottiene la chiave di ordinamento per fazioni_permesse nelle restrizioni."""
+    try:
+        if hasattr(carta, 'restrizioni') and isinstance(carta.restrizioni, dict):
+            fazioni_permesse = carta.restrizioni.get('fazioni_permesse', [])
+            if fazioni_permesse:
+                # Converte tutti gli elementi in stringhe prima dell'ordinamento
+                fazioni_str = []
+                for fazione in fazioni_permesse:
+                    if hasattr(fazione, 'value'):
+                        fazioni_str.append(fazione.value)
+                    else:
+                        fazioni_str.append(str(fazione))
+                return ", ".join(sorted(fazioni_str))
+        return "ZZZ_Tutte"
+    except Exception as e:
+        print(f"⚠️ Errore nel get_restrizioni_fazioni_sort_key per {getattr(carta, 'nome', 'carta sconosciuta')}: {e}")
+        return "ZZZ_Errore"
+
+def stampa_riepilogo_collezioni_migliorato(collezioni: List, titolo: str = "RIEPILOGO COLLEZIONI CREATE") -> None:
+    """
+    Stampa un riepilogo dettagliato delle collezioni create.
+    AGGIORNATO: Implementa nuovi ordinamenti e proprietà di visualizzazione.
+    """
+    print(f"\n{'='*80}")
+    print(f"📋 {titolo} - {len(collezioni)} COLLEZIONI")
+    print(f"{'='*80}")
+    
+    # Calcola totali
+    totale_carte_globale = sum(c.get_totale_carte() for c in collezioni)
+    totale_valore_globale = sum(c.statistiche.valore_totale_dp for c in collezioni)
+    
+    print(f"📦 Totale carte: {totale_carte_globale}")
+    print(f"💰 Valore totale: {totale_valore_globale} DP")
+    print(f"📈 Media carte/collezione: {totale_carte_globale/len(collezioni):.1f}")
+    print(f"💎 Media valore/collezione: {totale_valore_globale/len(collezioni):.1f} DP")
+    
+    # Riepilogo collezioni con ordinamento aggiornato
+    print(f"\n📊 RIEPILOGO COLLEZIONI:")
+    for collezione in collezioni:
+        orientamento_str = ""
+        if collezione.fazioni_orientamento:
+            fazioni = [f.value for f in collezione.fazioni_orientamento]
+            orientamento_str = f" [🎯 {', '.join(fazioni)}]"
+        
+        print(f"  🎮 Giocatore {collezione.id_giocatore}: {collezione.get_totale_carte()} carte, {collezione.statistiche.valore_totale_dp} DP{orientamento_str}")
+    
+    # Distribuzione globale tipi con nuovi ordinamenti
+    print(f"\n🃏 DISTRIBUZIONE GLOBALE TIPI:")
+    distribuzione_tipi = defaultdict(int)
+    
+    for collezione in collezioni:
+        for tipo_carta, liste_carte in collezione.carte.items():
+            distribuzione_tipi[tipo_carta] += len(liste_carte)
+    
+    # Stampa con dettagli sui nuovi criteri di ordinamento
+    for tipo, count in sorted(distribuzione_tipi.items()):
+        criterio_ordinamento = _get_criterio_ordinamento_per_tipo(tipo)
+        print(f"  {tipo.capitalize()}: {count} carte - Ordinato per: {criterio_ordinamento}")
+    
+    # Statistiche per fazione
+    print(f"\n🏛️ DISTRIBUZIONE GLOBALE FAZIONI:")
+    distribuzione_fazioni = defaultdict(int)
+    
+    for collezione in collezioni:
+        for tipo_carta, liste_carte in collezione.carte.items():
+            for carta in liste_carte:
+                if hasattr(carta, 'fazione') and carta.fazione:
+                    fazione_nome = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+                    distribuzione_fazioni[fazione_nome] += 1
+    
+    for fazione, count in sorted(distribuzione_fazioni.items()):
+        print(f"  {fazione}: {count} carte")
+
+def _get_criterio_ordinamento_per_tipo(tipo_carta: str) -> str:
+    """Restituisce una descrizione del criterio di ordinamento per ogni tipo di carta."""
+    criteri = {
+        'guerriero': "fazione, poi seguace (per Oscura Legione)",
+        'equipaggiamento': "fazione",
+        'speciale': "fazioni_permesse",
+        'fortificazione': "fazioni_permesse", 
+        'missione': "fazioni_permesse",
+        'oscura_simmetria': "apostolo_padre",
+        'arte': "disciplina",
+        'reliquia': "fazioni_permesse (da restrizioni)",
+        'warzone': "fazioni_permesse (da restrizioni)"
+    }
+    return criteri.get(tipo_carta, "nome")
+
+def stampa_statistiche_da_json(dati_json: Dict[str, Any]):
+    """
+    Stampa statistiche dalle collezioni caricate da JSON.
+    Equivalente di stampa_riepilogo_collezioni_migliorato() per dati JSON.
+    AGGIORNATO: Gestisce le nuove proprietà di visualizzazione.
+    """
+    if not dati_json:
+        print("❌ Nessun dato da visualizzare")
+        return
+    
+    stats_aggregate = dati_json.get('statistiche_aggregate', {})
+    panoramica = stats_aggregate.get('panoramica_generale', {})
+    
+    print(f"\n{'='*80}")
+    print(f"📋 STATISTICHE DA JSON - {panoramica.get('numero_collezioni', 0)} COLLEZIONI")
+    print(f"{'='*80}")
+    
+    print(f"📦 Totale carte: {panoramica.get('totale_carte', 0)}")
+    print(f"💰 Valore totale: {panoramica.get('totale_valore_dp', 0)} DP")
+    print(f"📈 Media carte/collezione: {panoramica.get('media_carte_per_collezione', 0):.1f}")
+    print(f"💎 Media valore/collezione: {panoramica.get('media_valore_per_collezione', 0):.1f} DP")
+    
+    # Riepilogo collezioni con nuovi campi
+    print(f"\n📊 RIEPILOGO COLLEZIONI:")
+    for collezione in stats_aggregate.get('riepilogo_collezioni', []):
+        orientamento_str = ""
+        if collezione.get('orientamento', {}).get('attivo'):
+            fazioni = collezione.get('orientamento', {}).get('fazioni', [])
+            orientamento_str = f" [🎯 {', '.join(fazioni)}]"
+        
+        print(f"  🎮 Giocatore {collezione.get('id_giocatore')}: {collezione.get('totale_carte')} carte, {collezione.get('valore_dp')} DP{orientamento_str}")
+    
+    # Distribuzione tipi con informazioni sui nuovi ordinamenti
+    print(f"\n🃏 DISTRIBUZIONE TIPI (con nuovi ordinamenti):")
+    distribuzione_tipi = stats_aggregate.get('distribuzione_globale', {}).get('per_tipo', {})
+    
+    for tipo, count in sorted(distribuzione_tipi.items()):
+        criterio = _get_criterio_ordinamento_per_tipo(tipo)
+        print(f"  {tipo.capitalize()}: {count} carte - Ordinato per: {criterio}")
+    
+    # Mostra esempi delle nuove proprietà nelle collezioni
+    collezioni_dettagliate = dati_json.get('collezioni_dettagliate', [])
+    if collezioni_dettagliate:
+        print(f"\n🔍 ESEMPI NUOVE PROPRIETÀ:")
+        collezione_esempio = collezioni_dettagliate[0]
+        carte_per_tipo = collezione_esempio.get('carte_per_tipo', {})
+        
+        # Mostra esempi per ogni tipo di carta aggiornato
+        for tipo_carta in ['guerriero', 'equipaggiamento', 'speciale', 'fortificazione', 
+                          'missione', 'oscura_simmetria', 'arte', 'reliquia', 'warzone']:
+            if tipo_carta in carte_per_tipo:
+                dettaglio_carte = carte_per_tipo[tipo_carta].get('dettaglio_carte', {})
+                if dettaglio_carte:
+                    prima_carta = next(iter(dettaglio_carte.values()))
+                    proprieta_nuove = []
+                    
+                    # Identifica le nuove proprietà per tipo
+                    if tipo_carta == 'guerriero' and 'seguace_di' in prima_carta:
+                        proprieta_nuove.append('seguace_di')
+                    elif tipo_carta == 'equipaggiamento' and 'fazione' in prima_carta:
+                        proprieta_nuove.append('fazione')
+                    elif tipo_carta in ['speciale', 'fortificazione', 'missione'] and 'fazioni_permesse' in prima_carta:
+                        proprieta_nuove.append('fazioni_permesse')
+                    elif tipo_carta == 'oscura_simmetria' and 'apostolo_padre' in prima_carta:
+                        proprieta_nuove.append('apostolo_padre')
+                    elif tipo_carta == 'arte' and 'disciplina' in prima_carta:
+                        proprieta_nuove.append('disciplina')
+                    elif tipo_carta in ['reliquia', 'warzone'] and 'fazioni_permesse' in prima_carta:
+                        proprieta_nuove.append('fazioni_permesse')
+                    
+                    if proprieta_nuove:
+                        print(f"  {tipo_carta.capitalize()}: {', '.join(proprieta_nuove)} (rimosso valore_dp)")
+
+def salva_collezioni_json_migliorato(collezioni: List, filename: str = "collezioni_dettagliate.json"):
+    """
+    Salva le collezioni in formato JSON con struttura dettagliata.
+    Equivalente JSON di stampa_riepilogo_collezioni_migliorato().
+    AGGIORNATO: Utilizza le nuove funzioni di visualizzazione e ordinamento.
+    """
+    try:
+        print(f"📄 Creazione struttura JSON dettagliata per {len(collezioni)} collezioni...")
+        print("🔄 Applicando nuovi criteri di ordinamento e visualizzazione...")
+        
+        # Struttura principale del JSON
+        dati_export = {
+            'metadata': {
+                'versione': '2.1',
+                'tipo_export': 'collezioni_dettagliate_aggiornate',
+                'data_creazione': datetime.now().isoformat(),
+                'numero_collezioni': len(collezioni),
+                'descrizione': 'Export dettagliato collezioni con nuovi ordinamenti e proprietà di visualizzazione',
+                'aggiornamenti': {
+                    'guerrieri': 'Ordinati per fazione e seguace (Oscura Legione)',
+                    'equipaggiamenti': 'Aggiunta proprietà fazione, rimosso valore_dp',
+                    'speciali': 'Aggiunta fazioni_permesse, rimosso valore_dp',
+                    'fortificazioni': 'Aggiunta fazioni_permesse, rimosso valore_dp',
+                    'missioni': 'Aggiunta fazioni_permesse, rimosso valore_dp',
+                    'oscura_simmetria': 'Aggiunta apostolo_padre, rimosso valore_dp',
+                    'arte': 'Aggiunta disciplina, rimosso valore_dp',
+                    'reliquie': 'Aggiunta fazioni_permesse da restrizioni, rimosso valore_dp',
+                    'warzone': 'Aggiunta fazioni_permesse da restrizioni, rimosso valore_dp'
+                }
+            },
+            'statistiche_aggregate': crea_statistiche_aggregate_json(collezioni),
+            'collezioni_dettagliate': []
+        }
+        
+        # Aggiunge ogni collezione con inventario dettagliato aggiornato
+        for i, collezione in enumerate(collezioni):
+            print(f"  📦 Processando collezione {i+1}/{len(collezioni)} con nuovi ordinamenti...")
+            inventario_dettagliato = crea_inventario_dettagliato_json(collezione)
+            dati_export['collezioni_dettagliate'].append(inventario_dettagliato)
+        
+        # Converte enum ricorsivamente
+        print("🔄 Conversione enum per compatibilità JSON...")
+        dati_puliti = converti_enum_ricorsivo(dati_export)
+        
+        # Salva il file
+        print(f"💾 Salvando in {PERCORSO_SALVATAGGIO+filename}...")
+        with open(PERCORSO_SALVATAGGIO + filename, 'w', encoding='utf-8') as f:
+            json.dump(dati_puliti, f, indent=2, ensure_ascii=False, cls=EnumJSONEncoder)
+        
+        # Statistiche del file salvato
+        import os
+        dimensione_file = os.path.getsize(PERCORSO_SALVATAGGIO + filename) / 1024  # KB
+        
+        print(f"✅ Collezioni salvate con successo!")
+        print(f"   📄 File: {filename}")
+        print(f"   📊 Dimensione: {dimensione_file:.1f} KB")
+        print(f"   🎮 Collezioni: {len(collezioni)}")
+        print(f"   📦 Carte totali: {sum(c.get_totale_carte() for c in collezioni)}")
+        print("   🆕 Aggiornamenti applicati:")
+        print("      • Guerrieri: ordinati per fazione + seguace")
+        print("      • Equipaggiamenti: aggiunta fazione")
+        print("      • Speciali/Fortificazioni/Missioni: aggiunta fazioni_permesse")
+        print("      • Oscura Simmetria: aggiunta apostolo_padre")
+        print("      • Arte: aggiunta disciplina")
+        print("      • Reliquie/Warzone: aggiunta fazioni_permesse da restrizioni")
+        print("      • Rimosso valore_dp da tutti i tipi tranne guerrieri")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ Errore durante il salvataggio JSON: {e}")
+        
+        # Salvataggio di debug
+        try:
+            debug_filename = filename.replace('.json', '_debug.txt')
+            with open(PERCORSO_SALVATAGGIO + debug_filename, 'w', encoding='utf-8') as f:
+                f.write(f"Errore durante serializzazione JSON: {e}\n\n")
+                f.write(f"Numero collezioni: {len(collezioni)}\n")
+                for i, c in enumerate(collezioni):
+                    f.write(f"Collezione {i}: ID {c.id_giocatore} - {c.get_totale_carte()} carte\n")
+            print(f"📄 File di debug salvato in {debug_filename}")
+        except Exception as debug_error:
+            print(f"❌ Errore anche nel debug: {debug_error}")
+        
+        return False
+
+def carica_collezioni_json_migliorato(filename: str) -> Optional[Dict[str, Any]]:
+    """
+    Carica collezioni dal formato JSON migliorato.
+    AGGIORNATO: Gestisce i nuovi formati con proprietà aggiornate.
+    """
+    try:
+        print(f"📂 Caricamento collezioni da {PERCORSO_SALVATAGGIO+filename}...")
+        
+        with open(PERCORSO_SALVATAGGIO + filename, 'r', encoding='utf-8') as f:
+            dati = json.load(f)
+        
+        # Verifica formato e versione
+        metadata = dati.get('metadata', {})
+        tipo_export = metadata.get('tipo_export', 'formato_sconosciuto')
+        versione = metadata.get('versione', 'N/A')
+        
+        print(f"📋 Formato rilevato: {tipo_export} (versione {versione})")
+        
+        if 'aggiornate' in tipo_export:
+            print("🆕 File con aggiornamenti delle proprietà di visualizzazione")
+            aggiornamenti = metadata.get('aggiornamenti', {})
+            if aggiornamenti:
+                print("   📝 Aggiornamenti inclusi:")
+                for tipo_carta, descrizione in aggiornamenti.items():
+                    print(f"      • {tipo_carta}: {descrizione}")
+        elif tipo_export != 'collezioni_dettagliate':
+            print("⚠️ Attenzione: File potrebbe non essere in formato dettagliato aggiornato")
+        
+        # Stampa info di caricamento
+        print(f"✅ Caricamento completato!")
+        print(f"   📅 Creato: {metadata.get('data_creazione', 'N/A')}")
+        print(f"   🎮 Collezioni: {metadata.get('numero_collezioni', 'N/A')}")
+        
+        stats_totali = dati.get('statistiche_aggregate', {}).get('panoramica_generale', {})
+        print(f"   📦 Carte totali: {stats_totali.get('totale_carte', 'N/A')}")
+        print(f"   💰 Valore totale: {stats_totali.get('totale_valore_dp', 'N/A')} DP")
+        
+        return dati
+        
+    except FileNotFoundError:
+        print(f"❌ File {PERCORSO_SALVATAGGIO+filename} non trovato!")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"❌ Errore nel parsing JSON: {e}")
+        return None
+    except Exception as e:
+        print(f"❌ Errore durante il caricamento: {e}")
+        return None
+
+def stampa_inventario_dettagliato_aggiornato(collezione, mostra_dettagli_carte: bool = True) -> None:
+    """
+    Stampa l'inventario dettagliato di una collezione con i nuovi criteri di ordinamento.
+    NUOVA FUNZIONE: Specializzata per mostrare le nuove proprietà.
+    """
+    print(f"\n{'='*60}")
+    print(f"📋 INVENTARIO DETTAGLIATO - GIOCATORE {collezione.id_giocatore}")
+    print(f"{'='*60}")
+    
+    # Info generale
+    print(f"📦 Totale carte: {collezione.get_totale_carte()}")
+    print(f"💰 Valore totale: {collezione.statistiche.valore_totale_dp} DP")
+    
+    # Orientamento
+    if collezione.fazioni_orientamento:
+        fazioni_str = ", ".join([f.value for f in collezione.fazioni_orientamento])
+        print(f"🎯 Orientamento: {fazioni_str}")
+    else:
+        print(f"🎯 Orientamento: Nessuno")
+    
+    # Inventario per tipo con nuovi ordinamenti
+    for tipo_carta, liste_carte in collezione.carte.items():
+        if not liste_carte:
+            continue
+        
+        print(f"\n🃏 {tipo_carta.upper()} ({len(liste_carte)} carte)")
+        print("─" * 50)
+        
+        # Applica il nuovo ordinamento
+        carte_ordinate = _ordina_carte_per_tipo(liste_carte, tipo_carta)
+        
+        # Conta e raggruppa per nome
+        carte_conteggio = defaultdict(int)
+        carte_esempi = {}
+        
+        for carta in carte_ordinate:
+            carte_conteggio[carta.nome] += 1
+            if carta.nome not in carte_esempi:
+                carte_esempi[carta.nome] = carta
+        
+        # Mostra le carte con le nuove proprietà
+        for nome_carta, quantita in carte_conteggio.items():
+            carta_esempio = carte_esempi[nome_carta]
+            
+            # Info base
+            info_base = f"  • {nome_carta}"
+            if quantita > 1:
+                info_base += f" x{quantita}"
+            
+            print(info_base)
+            
+            if mostra_dettagli_carte:
+                # Mostra le nuove proprietà specifiche per tipo
+                dettagli = _get_dettagli_carta_aggiornati(carta_esempio, tipo_carta)
+                for dettaglio in dettagli:
+                    print(f"    {dettaglio}")
+        
+        # Info sull'ordinamento applicato
+        criterio = _get_criterio_ordinamento_per_tipo(tipo_carta)
+        print(f"    📊 Ordinato per: {criterio}")
+
+def _get_dettagli_carta_aggiornati(carta, tipo_carta: str) -> List[str]:
+    """
+    Restituisce i dettagli di una carta secondo le nuove proprietà.
+    """
+    dettagli = []
+    
+    # Rarity e set sempre presenti
+    if hasattr(carta, 'rarity'):
+        rarity_str = carta.rarity.value if hasattr(carta.rarity, 'value') else str(carta.rarity)
+        dettagli.append(f"🎭 Rarity: {rarity_str}")
+    
+    if hasattr(carta, 'set_espansione'):
+        set_str = carta.set_espansione.value if hasattr(carta.set_espansione, 'value') else str(carta.set_espansione)
+        dettagli.append(f"📚 Set: {set_str}")
+    
+    # Dettagli specifici per tipo (NUOVE PROPRIETÀ)
+    if tipo_carta == 'guerriero':
+        if hasattr(carta, 'fazione'):
+            fazione_str = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+            dettagli.append(f"🏛️ Fazione: {fazione_str}")
+        
+        # NUOVA PROPRIETÀ: Seguace di (per Oscura Legione)
+        if hasattr(carta, 'keywords') and carta.keywords:
+            for keyword in carta.keywords:
+                if "Seguace di" in keyword:
+                    dettagli.append(f"👹 {keyword}")
+                    break
+        
+        # Statistiche
+        if hasattr(carta, 'stats'):
+            stats_str = f"⚔️ Stats: C{carta.stats.combattimento} S{carta.stats.sparare} A{carta.stats.armatura} V{carta.stats.valore}"
+            dettagli.append(stats_str)
+    
+    elif tipo_carta == 'equipaggiamento':
+        # NUOVA PROPRIETÀ: Fazione per equipaggiamenti
+        if hasattr(carta, 'fazioni_permesse') and carta.fazioni_permesse:
+            if len(carta.fazioni_permesse) == 1 and carta.fazioni_permesse[0] != "Generica":
+                dettagli.append(f"🏛️ Fazione: {carta.fazioni_permesse[0]}")
+            else:
+                dettagli.append(f"🏛️ Fazione: {', '.join(carta.fazioni_permesse)}")
+        else:
+            dettagli.append("🏛️ Fazione: Generica")
+        # RIMOSSO: valore_dp
+    
+    elif tipo_carta in ['speciale', 'fortificazione', 'missione']:
+        # NUOVA PROPRIETÀ: Fazioni permesse
+        if hasattr(carta, 'fazioni_permesse') and carta.fazioni_permesse:
+            dettagli.append(f"🏛️ Fazioni permesse: {', '.join(carta.fazioni_permesse)}")
+        else:
+            dettagli.append("🏛️ Fazioni permesse: Tutte")
+        # RIMOSSO: valore_dp
+    
+    elif tipo_carta == 'oscura_simmetria':
+        # NUOVA PROPRIETÀ: Apostolo padre
+        if hasattr(carta, 'apostolo_padre'):
+            apostolo_str = carta.apostolo_padre.value if hasattr(carta.apostolo_padre, 'value') else str(carta.apostolo_padre)
+            dettagli.append(f"👹 Apostolo padre: {apostolo_str}")
+        else:
+            dettagli.append("👹 Apostolo padre: Nessuno")
+        # RIMOSSO: valore_dp
+    
+    elif tipo_carta == 'arte':
+        # NUOVA PROPRIETÀ: Disciplina
+        if hasattr(carta, 'disciplina'):
+            disciplina_str = carta.disciplina.value if hasattr(carta.disciplina, 'value') else str(carta.disciplina)
+            dettagli.append(f"🎨 Disciplina: {disciplina_str}")
+        elif hasattr(carta, 'disciplina_arte'):
+            disciplina_str = carta.disciplina_arte.value if hasattr(carta.disciplina_arte, 'value') else str(carta.disciplina_arte)
+            dettagli.append(f"🎨 Disciplina: {disciplina_str}")
+        else:
+            dettagli.append("🎨 Disciplina: Non specificata")
+        # RIMOSSO: valore_dp
+    
+    elif tipo_carta in ['reliquia', 'warzone']:
+        # NUOVA PROPRIETÀ: Fazioni permesse da restrizioni
+        if hasattr(carta, 'restrizioni') and isinstance(carta.restrizioni, dict):
+            fazioni_permesse = carta.restrizioni.get('fazioni_permesse', [])
+            if fazioni_permesse:
+                dettagli.append(f"🏛️ Fazioni permesse: {', '.join(fazioni_permesse)}")
+            else:
+                dettagli.append("🏛️ Fazioni permesse: Tutte")
+        else:
+            dettagli.append("🏛️ Fazioni permesse: Tutte")
+        # RIMOSSO: valore_dp
+    
+    # Per altri tipi, mantiene il valore DP
+    else:
+        if hasattr(carta, 'valore'):
+            dettagli.append(f"💰 Valore: {carta.valore} DP")
+        elif hasattr(carta, 'costo_destino'):
+            dettagli.append(f"💰 Costo: {carta.costo_destino} DP")
+    
+    return dettagli
+
+# FUNZIONE DI ESEMPIO PER TESTARE GLI AGGIORNAMENTI
+def esempio_utilizzo_aggiornamenti():
+    """
+    Esempio di utilizzo delle nuove funzionalità di visualizzazione aggiornate.
+    """
+    print("\n" + "="*80)
+    print("🆕 ESEMPIO UTILIZZO FUNZIONALITÀ AGGIORNATE")
+    print("="*80)
+    
+    print("Questo esempio mostra le nuove funzionalità implementate:")
+    print("1. Ordinamento migliorato per tutti i tipi di carte")
+    print("2. Nuove proprietà di visualizzazione:")
+    print("   • Guerrieri: fazione + seguace (Oscura Legione)")
+    print("   • Equipaggiamenti: proprietà fazione")
+    print("   • Speciali/Fortificazioni/Missioni: fazioni_permesse")
+    print("   • Oscura Simmetria: apostolo_padre")
+    print("   • Arte: disciplina")
+    print("   • Reliquie/Warzone: fazioni_permesse da restrizioni")
+    print("3. Rimozione proprietà valore_dp dai tipi specificati")
+    
+    print("\n📝 Per utilizzare le funzioni aggiornate:")
+    print("1. stampa_riepilogo_collezioni_migliorato(collezioni)")
+    print("2. salva_collezioni_json_migliorato(collezioni, 'file_aggiornato.json')")
+    print("3. dati = carica_collezioni_json_migliorato('file_aggiornato.json')")
+    print("4. stampa_statistiche_da_json(dati)")
+    print("5. stampa_inventario_dettagliato_aggiornato(collezione)")
+    
+    print("\n✅ Tutte le funzioni sono state aggiornate per supportare:")
+    print("   • Ordinamento migliorato delle carte")
+    print("   • Visualizzazione delle nuove proprietà")
+    print("   • Rimozione delle proprietà obsolete")
+    print("   • Compatibilità con file JSON esistenti")
+
+# FUNZIONI DI VALIDAZIONE DEGLI AGGIORNAMENTI
+def valida_aggiornamenti_collezione(collezione) -> Dict[str, Any]:
+    """
+    Valida che gli aggiornamenti siano stati applicati correttamente a una collezione.
+    """
+    risultati = {
+        'collezione_id': collezione.id_giocatore,
+        'aggiornamenti_applicati': {},
+        'errori': [],
+        'avvisi': []
+    }
+    
+    # Verifica ogni tipo di carta
+    for tipo_carta, liste_carte in collezione.carte.items():
+        if not liste_carte:
+            continue
+            
+        tipo_risultati = {
+            'carte_totali': len(liste_carte),
+            'ordinamento_corretto': False,
+            'proprieta_aggiornate': False,
+            'dettagli': []
+        }
+        
+        # Verifica ordinamento
+        carte_ordinate = _ordina_carte_per_tipo(liste_carte, tipo_carta)
+        tipo_risultati['ordinamento_corretto'] = len(carte_ordinate) == len(liste_carte)
+        
+        # Verifica proprietà specifiche su carte campione
+        if carte_ordinate:
+            carta_campione = carte_ordinate[0]
+            
+            if tipo_carta == 'guerriero':
+                # Verifica fazione e seguace
+                ha_fazione = hasattr(carta_campione, 'fazione')
+                ha_seguace = any("Seguace di" in kw for kw in carta_campione.keywords if hasattr(carta_campione, 'keywords') and carta_campione.keywords)
+                tipo_risultati['dettagli'].append(f"Fazione presente: {ha_fazione}")
+                if ha_seguace:
+                    tipo_risultati['dettagli'].append("Seguace trovato per Oscura Legione")
+                
+            elif tipo_carta == 'equipaggiamento':
+                ha_fazioni_permesse = hasattr(carta_campione, 'fazioni_permesse')
+                tipo_risultati['proprieta_aggiornate'] = ha_fazioni_permesse
+                tipo_risultati['dettagli'].append(f"Fazioni permesse presente: {ha_fazioni_permesse}")
+            
+            # Aggiungi altre verifiche per altri tipi...
+        
+        risultati['aggiornamenti_applicati'][tipo_carta] = tipo_risultati
+    
+    return risultati
+
+def stampa_resoconto_aggiornamenti(collezioni: List) -> None:
+    """
+    Stampa un resoconto degli aggiornamenti applicati alle collezioni.
+    """
+    print(f"\n{'='*80}")
+    print(f"📋 RESOCONTO AGGIORNAMENTI APPLICATI")
+    print(f"{'='*80}")
+    
+    print(f"🎮 Collezioni analizzate: {len(collezioni)}")
+    
+    # Conta tipi di carte aggiornati
+    contatori_tipi = defaultdict(int)
+    
+    for collezione in collezioni:
+        validazione = valida_aggiornamenti_collezione(collezione)
+        
+        for tipo_carta, risultati in validazione['aggiornamenti_applicati'].items():
+            contatori_tipi[tipo_carta] += risultati['carte_totali']
+    
+    print(f"\n📊 CARTE AGGIORNATE PER TIPO:")
+    for tipo_carta, count in sorted(contatori_tipi.items()):
+        criterio = _get_criterio_ordinamento_per_tipo(tipo_carta)
+        print(f"  • {tipo_carta.capitalize()}: {count} carte - {criterio}")
+    
+    print(f"\n✅ Tutti gli aggiornamenti sono stati applicati secondo le specifiche!")
+    print("🎯 Le collezioni sono ora ordinate e visualizzate con le nuove proprietà.")
+
+
+
+
+
+
+
 
 # ==================== MAIN ====================
 

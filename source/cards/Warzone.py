@@ -228,7 +228,7 @@ class Warzone:
         if AreaCompatibileWarzone.QUALSIASI_AREA.value not in aree_permesse:
             if AreaCompatibileWarzone.SQUADRA in aree_permesse and fazione not in FAZIONI_SQUADRA:
                 if AreaCompatibileWarzone.SCHIERAMENTO in aree_permesse and fazione not in FAZIONI_SCHIERAMENTO:
-                    risultato["può_assegnare"] = False
+                    risultato["puo_essere_associata"] = False
                     risultato["errori"].append(f"Non può essere assegnata alla fazione: {fazione} in nessuna area permessa")
  
         # questa verifica comporta che se sono specificate fazioni_permesse, la warzone è utilizzabile solo dale fazioni presenti in fazioni_permesse anche se sono coerenti con l'assegnazione nella squadra o nello schieramento
@@ -238,7 +238,7 @@ class Warzone:
         
         return risultato
 
-    def puo_essere_asssociata_a_guerriero(self, guerriero: object) -> Dict[str, Any]:
+    def puo_essere_associata_a_guerriero(self, guerriero: object) -> Dict[str, Any]:
         """
         Verifica se la Warzone può essere associata a un guerriero
         

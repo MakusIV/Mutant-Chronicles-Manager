@@ -178,14 +178,19 @@ class Reliquia:
         Returns:
             Dict con risultato della verifica
         """
-        errori = []
+        
+        risultato = {
+            "puo_assegnare": True,
+            "errori": []
+        }
 
         # Verifica fazioni permesse
-        if self.restrizioni.fazioni_permesse:
+        if self.restrizioni.fazioni_permesse != None:
             if hasattr(guerriero, 'fazione'):
                 if guerriero.fazione not in self.restrizioni.fazioni_permesse:
-                    fazioni_str = [f.value for f in self.restrizioni.fazioni_permesse]
-                    errori.append(f"Fazione non permessa. Richieste: {fazioni_str}")
+                    fazioni_str = [f for f in self.restrizioni.fazioni_permesse]
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Fazione non permessa. Richieste: {fazioni_str}")
         
         if "Solo Doomtrooper" in self.restrizioni.corporazioni_specifiche: 
                 if guerriero.fazione == Fazione.OSCURA_LEGIONE:
@@ -212,19 +217,19 @@ class Reliquia:
         #if self.restrizioni.corporazioni_specifiche:
         #    if hasattr(guerriero, 'corporazione'):
         #        if guerriero.corporazione not in self.restrizioni.corporazioni_specifiche:
-        #            errori.append(f"Corporazione non valida. Richieste: {self.restrizioni.corporazioni_specifiche}")
+        #            risultato["errori"].append(f"Corporazione non valida. Richieste: {self.restrizioni.corporazioni_specifiche}")
         
         # Verifica tipi di guerriero
         if self.restrizioni.tipi_guerriero:
             if hasattr(guerriero, 'tipo'):
                 if guerriero.tipo not in self.restrizioni.tipi_guerriero:
-                    errori.append(f"Tipo guerriero non valido. Richiesti: {self.restrizioni.tipi_guerriero}")
+                    risultato["errori"].append(f"Tipo guerriero non valido. Richiesti: {self.restrizioni.tipi_guerriero}")
             
             # Controllo keywords per tipi specifici
             if hasattr(guerriero, 'keywords'):
                 tipi_trovati = any(tipo in guerriero.keywords for tipo in self.restrizioni.tipi_guerriero)
                 if not tipi_trovati and guerriero.tipo not in self.restrizioni.tipi_guerriero:
-                    errori.append(f"Guerriero deve essere uno di: {self.restrizioni.tipi_guerriero}")
+                    risultato["errori"].append(f"Guerriero deve essere uno di: {self.restrizioni.tipi_guerriero}")
         
         # Verifica keywords richieste
         if self.restrizioni.keywords_richieste:
@@ -232,24 +237,21 @@ class Reliquia:
                 keywords_mancanti = [kw for kw in self.restrizioni.keywords_richieste 
                                    if kw not in guerriero.keywords]
                 if keywords_mancanti:
-                    errori.append(f"Keywords mancanti: {keywords_mancanti}")
+                    risultato["errori"].append(f"Keywords mancanti: {keywords_mancanti}")
 
         # Verifica livello minimo (per Personalità/Eroi)
         if self.restrizioni.livello_minimo > 0:
             if hasattr(guerriero, 'livello'):
                 if guerriero.livello < self.restrizioni.livello_minimo:
-                    errori.append(f"Livello insufficiente. Richiesto: {self.restrizioni.livello_minimo}")
+                    risultato["errori"].append(f"Livello insufficiente. Richiesto: {self.restrizioni.livello_minimo}")
         
         # Verifica requisiti speciali
         for requisito in self.requisiti_speciali:
             if not self._verifica_requisito_speciale(guerriero, requisito):
-                errori.append(f"Requisito speciale non soddisfatto: {requisito}")
+                risultato["errori"].append(f"Requisito speciale non soddisfatto: {requisito}")
         
-        return {
-            "puo_assegnare": len(errori) == 0,
-            "errori": errori,
-            "avvertenze": self._genera_avvertenze(guerriero)
-        }
+        risultato["avvertenze"] = self._genera_avvertenze(guerriero)
+        return risultato
 
     def puo_essere_assegnata_a(self, guerriero: object) -> Dict[str, Any]:
         """
@@ -265,18 +267,18 @@ class Reliquia:
         
         # Verifica se è già in gioco (regola unicità)
         if self.in_gioco_globalmente:
-            errori.append("Reliquia già presente in gioco (regola unicità)")
+            risultato["errori"].append("Reliquia già presente in gioco (regola unicità)")
         
         # Verifica se guerriero ha già questa reliquia
         if hasattr(guerriero, 'reliquie_assegnate'):
             if self.nome in guerriero.reliquie_assegnate:
-                errori.append("Guerriero ha già questa reliquia")
+                risultato["errori"].append("Guerriero ha già questa reliquia")
                 
         # Verifica incompatibilità
         if hasattr(guerriero, 'equipaggiamento_assegnato'):
             for item in guerriero.equipaggiamento_assegnato:
                 if item in self.incompatibile_con:
-                    errori.append(f"Incompatibile con equipaggiamento: {item}")
+                    risultato["errori"].append(f"Incompatibile con equipaggiamento: {item}")
         
         return {
             "puo_assegnare": len(errori) == 0,

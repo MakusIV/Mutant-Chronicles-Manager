@@ -2,7 +2,7 @@
   "metadata": {
     "tipo_export": "mazzi_dettagliati_organizzati",
     "versione": "2.1",
-    "data_creazione": "2025-09-24T16:38:25.133276",
+    "data_creazione": "2025-09-24T16:32:38.751461",
     "numero_mazzi": 2,
     "formato": "inventario_raggruppato_con_conteggio_e_organizzazione",
     "descrizione": "Mazzi con inventari organizzati per fazioni (guerrieri) e classi (supporto)"
@@ -11,17 +11,17 @@
     {
       "inventario_guerrieri": {
         "squadra": {
-          "Mishima": {
-            "Mercenario Ex-Mishima": {
+          "Bauhaus": {
+            "Mercenario Ex-Bauhaus": {
               "copie": 3,
-              "fazione": "Mishima",
+              "fazione": "Bauhaus",
               "set_espansione": "Base",
               "rarity": "Common",
               "tipo": "Normale",
               "stats": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
+                "combattimento": 2,
+                "sparare": 2,
+                "armatura": 4,
                 "valore": 1
               },
               "numero_carta": "",
@@ -45,35 +45,40 @@
               "numero_carta": "",
               "keywords": [],
               "abilita": []
-            },
-            "Mercenario Ex-Capitol": {
-              "copie": 1,
-              "fazione": "Capitol",
+            }
+          },
+          "Fratellanza": {
+            "Custode dell'arte": {
+              "copie": 3,
+              "fazione": "Fratellanza",
               "set_espansione": "Base",
               "rarity": "Common",
               "tipo": "Normale",
               "stats": {
-                "combattimento": 2,
-                "sparare": 4,
-                "armatura": 2,
-                "valore": 1
+                "combattimento": 3,
+                "sparare": 3,
+                "armatura": 5,
+                "valore": 4
               },
               "numero_carta": "",
               "keywords": [],
-              "abilita": []
+              "abilita": [
+                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione='Lancia tutte le carte ARTE', tipo='Arte', costo_destino=0, target='Arte', timing='Turno')",
+                "Abilita(nome='Aumenta effetto', descrizione=\"Aumenta l'effetto dell'Incantesimo, vale 2D per quell'effetto\", tipo='Modificatore', costo_destino=0, target='Incantesimi Personali di combattimento', timing='Combattimento')"
+              ]
             }
           },
-          "Bauhaus": {
-            "Mercenario Ex-Bauhaus": {
-              "copie": 3,
-              "fazione": "Bauhaus",
+          "Mishima": {
+            "Mercenario Ex-Mishima": {
+              "copie": 2,
+              "fazione": "Mishima",
               "set_espansione": "Base",
               "rarity": "Common",
               "tipo": "Normale",
               "stats": {
-                "combattimento": 2,
-                "sparare": 2,
-                "armatura": 4,
+                "combattimento": 3,
+                "sparare": 3,
+                "armatura": 3,
                 "valore": 1
               },
               "numero_carta": "",
@@ -85,28 +90,43 @@
         "schieramento": {}
       },
       "inventario_supporto": {
-        "Equipaggiamento": {},
-        "Speciale": {
-          "Empatia Mentale": {
-            "copie": 2,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [],
-            "valore": null
-          },
-          "Empatia Della Manipolazione": {
+        "Equipaggiamento": {
+          "Fuoristrada GT B52": {
             "copie": 4,
-            "classe": "Speciale",
-            "set_espansione": "Base",
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [
+              "Doomtrooper"
+            ],
+            "valore": 0
+          },
+          "Incrociatore Leggero Lancelot": {
+            "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "numero_carta": "",
             "keywords": [],
-            "valore": null
+            "valore": 0
           },
+          "Furga 750": {
+            "copie": 2,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [
+              "Eretico"
+            ],
+            "valore": 0
+          }
+        },
+        "Speciale": {
           "Nato Fortunato": {
             "copie": 4,
             "classe": "Speciale",
@@ -117,8 +137,28 @@
             "keywords": [],
             "valore": null
           },
+          "Empatia Di Cambiamento": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": null
+          },
+          "Empatia Della Manipolazione": {
+            "copie": 3,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": null
+          },
           "Insubordinazione": {
-            "copie": 4,
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -129,8 +169,8 @@
             ],
             "valore": null
           },
-          "Empatia Di Cambiamento": {
-            "copie": 3,
+          "Essenza Di Chiarezza": {
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -139,22 +179,42 @@
             "keywords": [],
             "valore": null
           },
-          "Giurare Vendetta": {
-            "copie": 4,
+          "Essenza Di Moralita": {
+            "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "numero_carta": "",
             "keywords": [],
-            "valore": null
+            "valore": 0
+          },
+          "Maledizione Eterna": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": 0
+          },
+          "Mortificazione": {
+            "copie": 3,
+            "classe": "Speciale",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": 0
           }
         },
         "Arte": {},
         "Oscura Simmetria": {},
         "Fortificazioni": {
           "Barriera Rinforzata": {
-            "copie": 3,
+            "copie": 2,
             "classe": "Fortificazioni",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -167,16 +227,18 @@
               "Fortificazione"
             ]
           },
-          "Luna": {
+          "La Cattedrale Di San Dorado": {
             "copie": 1,
             "classe": "Fortificazioni",
-            "set_espansione": "Base",
+            "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
             "numero_carta": "",
             "keywords": [
-              "Luna",
-              "Mercenari",
+              "Cattedrale",
+              "San Dorado",
+              "Arte",
+              "Manipolazione",
               "Fortificazione"
             ]
           }
@@ -187,27 +249,30 @@
       },
       "metadati_mazzo": {
         "indice": 1,
-        "data_creazione": "2025-09-24T16:38:25.133739",
-        "totale_carte": 35,
+        "data_creazione": "2025-09-24T16:32:38.751939",
+        "totale_carte": 38,
         "statistiche_base": {
-          "guerrieri_squadra": 10,
+          "guerrieri_squadra": 11,
           "guerrieri_schieramento": 0,
-          "carte_supporto": 25
+          "carte_supporto": 27
         },
         "statistiche_originali": {
-          "numero_totale_carte": 35,
+          "numero_totale_carte": 38,
           "fazioni_presenti": [
-            "Capitol",
+            "Mishima",
             "Bauhaus",
-            "Mishima"
+            "Fratellanza",
+            "Capitol"
           ],
           "espansioni_utilizzate": [
             "Base",
-            "Inquisition"
+            "Inquisition",
+            "Warzone"
           ],
           "distribuzione_per_tipo": {
-            "fortificazione": 4,
-            "speciale": 21
+            "equipaggiamento": 7,
+            "fortificazione": 3,
+            "speciale": 17
           }
         }
       }
@@ -238,76 +303,76 @@
                 "Abilita(nome='I guerrieri alleati uccidono automaticamente', descrizione='Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
               ]
             },
-            "Nepharita di Semai": {
-              "copie": 1,
+            "Maculator di mercurio": {
+              "copie": 2,
               "fazione": "Oscura Legione",
-              "set_espansione": "Base",
-              "rarity": "Rare",
-              "tipo": "Seguace",
-              "stats": {
-                "combattimento": 5,
-                "sparare": 4,
-                "armatura": 5,
-                "valore": 6
-              },
-              "numero_carta": "",
-              "keywords": [
-                "Seguace di Semai"
-              ],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Arte\", descrizione=\"Immune agli effetti dell'Arte\", tipo='Immunita', costo_destino=0, target='Arte', timing='Sempre')",
-                "Abilita(nome='Trasforma guerrieri uccisi in alleati', descrizione='I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto', tipo='Modificatore', costo_destino=1, target='Doomtrooper', timing='Fase Combattimento')",
-                "Abilita(nome='Guarisce se stesso', descrizione='Se Ferito, il Nefarita  può guarire se stesso spendendo 7D', tipo='Guarigione', costo_destino=7, target='', timing='Sempre')"
-              ]
-            },
-            "Golem dell'oscurità": {
-              "copie": 1,
-              "fazione": "Oscura Legione",
-              "set_espansione": "Inquisition",
+              "set_espansione": "Warzone",
               "rarity": "Common",
               "tipo": "Seguace",
               "stats": {
-                "combattimento": 6,
-                "sparare": 5,
-                "armatura": 7,
-                "valore": 7
-              },
-              "numero_carta": "",
-              "keywords": [
-                "Seguace di Algeroth"
-              ],
-              "abilita": [
-                "Abilita(nome='Guarisce se stesso', descrizione='Se ferito, può guarire se stesso. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.', tipo='Guarigione', costo_destino=0, target='Guerriero', timing='Sempre')"
-              ]
-            },
-            "Intruso Callistoniano": {
-              "copie": 3,
-              "fazione": "Oscura Legione",
-              "set_espansione": "Base",
-              "rarity": "Uncommon",
-              "tipo": "Seguace",
-              "stats": {
-                "combattimento": 4,
-                "sparare": 4,
+                "combattimento": 8,
+                "sparare": 14,
                 "armatura": 6,
                 "valore": 6
               },
               "numero_carta": "",
               "keywords": [
-                "Seguace di Semai"
+                "Seguace di Algeroth"
+              ],
+              "abilita": []
+            },
+            "Destroyer": {
+              "copie": 2,
+              "fazione": "Oscura Legione",
+              "set_espansione": "Warzone",
+              "rarity": "Common",
+              "tipo": "Seguace",
+              "stats": {
+                "combattimento": 7,
+                "sparare": 7,
+                "armatura": 7,
+                "valore": 7
+              },
+              "numero_carta": "",
+              "keywords": [
+                "Seguace di Algeroth",
+                "Eretico"
               ],
               "abilita": [
-                "Abilita(nome='Guarisce se stesso', descrizione=\"Se Ferito, l'Intruso Callistoniano può guarire se stesso spendendo, in ogni momento, 6D\", tipo='Guarigione', costo_destino=7, target='', timing='Sempre')"
+                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
               ]
             }
           }
         }
       },
       "inventario_supporto": {
-        "Equipaggiamento": {},
-        "Speciale": {
-          "Frenesia Dei Necromutanti": {
+        "Equipaggiamento": {
+          "Incrociatore Leggero Lancelot": {
+            "copie": 3,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": 0
+          },
+          "Jet Pack": {
             "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [
+              "Doomtrooper"
+            ],
+            "valore": 0
+          }
+        },
+        "Speciale": {
+          "Caduto In Disgrazia": {
+            "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -316,18 +381,8 @@
             "keywords": [],
             "valore": null
           },
-          "L'Eletto": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [],
-            "valore": 0
-          },
           "Ammaliatrice": {
-            "copie": 3,
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -337,64 +392,46 @@
               "Personalita"
             ],
             "valore": null
+          },
+          "Frenesia Dei Necromutanti": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": null
           }
         },
         "Arte": {},
         "Oscura Simmetria": {},
         "Fortificazioni": {
-          "La Cattedrale Di Fukido": {
+          "Barriera Rinforzata": {
             "copie": 1,
             "classe": "Fortificazioni",
-            "set_espansione": "Inquisition",
+            "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "numero_carta": "",
             "keywords": [
-              "Cattedrale",
-              "Fukido",
-              "Arte",
-              "Mentale",
+              "Barriera",
+              "Rinforzata",
+              "Protezione",
               "Fortificazione"
             ]
           },
-          "Nascondiglio": {
+          "Campo Di Prigionia": {
             "copie": 1,
             "classe": "Fortificazioni",
-            "set_espansione": "Inquisition",
+            "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "numero_carta": "",
             "keywords": [
-              "Nascondiglio",
-              "Eretici",
-              "Fortificazione"
-            ]
-          },
-          "Complesso Industriale": {
-            "copie": 1,
-            "classe": "Fortificazioni",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [
-              "Industriale",
-              "Complesso",
-              "Fortificazione"
-            ]
-          },
-          "Gli Archivi Di Pietra": {
-            "copie": 1,
-            "classe": "Fortificazioni",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [
-              "Archivi",
-              "Pietra",
-              "Arte",
-              "Evocazione",
+              "Prigionia",
+              "Campo",
+              "Prigionieri",
               "Fortificazione"
             ]
           },
@@ -418,24 +455,26 @@
       },
       "metadati_mazzo": {
         "indice": 2,
-        "data_creazione": "2025-09-24T16:38:25.134576",
-        "totale_carte": 16,
+        "data_creazione": "2025-09-24T16:32:38.752911",
+        "totale_carte": 17,
         "statistiche_base": {
           "guerrieri_squadra": 0,
-          "guerrieri_schieramento": 6,
-          "carte_supporto": 10
+          "guerrieri_schieramento": 5,
+          "carte_supporto": 12
         },
         "statistiche_originali": {
-          "numero_totale_carte": 16,
+          "numero_totale_carte": 17,
           "fazioni_presenti": [
             "Oscura Legione"
           ],
           "espansioni_utilizzate": [
             "Base",
-            "Inquisition"
+            "Inquisition",
+            "Warzone"
           ],
           "distribuzione_per_tipo": {
-            "fortificazione": 5,
+            "equipaggiamento": 4,
+            "fortificazione": 3,
             "speciale": 5
           }
         }
@@ -445,66 +484,74 @@
   "statistiche_aggregate": {
     "panoramica_generale": {
       "numero_mazzi": 2,
-      "totale_carte": 51,
-      "totale_guerrieri_squadra": 10,
-      "totale_guerrieri_schieramento": 6,
-      "totale_carte_supporto": 35,
-      "media_carte_per_mazzo": 25.5,
-      "media_guerrieri_squadra": 5.0,
-      "media_guerrieri_schieramento": 3.0,
-      "media_supporto": 17.5
+      "totale_carte": 55,
+      "totale_guerrieri_squadra": 11,
+      "totale_guerrieri_schieramento": 5,
+      "totale_carte_supporto": 39,
+      "media_carte_per_mazzo": 27.5,
+      "media_guerrieri_squadra": 5.5,
+      "media_guerrieri_schieramento": 2.5,
+      "media_supporto": 19.5
     },
     "distribuzione_fazioni": {
       "squadra": {
-        "Mishima": 3,
-        "Capitol": 4,
-        "Bauhaus": 3
+        "Bauhaus": 3,
+        "Capitol": 3,
+        "Fratellanza": 3,
+        "Mishima": 2
       },
       "schieramento": {
-        "Oscura Legione": 6
+        "Oscura Legione": 5
       }
     },
     "distribuzione_classi_supporto": {
-      "Fortificazioni": 9,
-      "Speciale": 26
+      "Equipaggiamento": 11,
+      "Fortificazioni": 6,
+      "Speciale": 22
     },
     "riepilogo_mazzi": [
       {
         "indice_mazzo": 1,
-        "totale_carte": 35,
-        "guerrieri_squadra": 10,
+        "totale_carte": 38,
+        "guerrieri_squadra": 11,
         "guerrieri_schieramento": 0,
-        "carte_supporto": 25,
+        "carte_supporto": 27,
         "fazioni_squadra": [
-          "Mishima",
+          "Bauhaus",
           "Capitol",
-          "Bauhaus"
+          "Fratellanza",
+          "Mishima"
         ],
         "fazioni_schieramento": [],
         "classi_supporto": [
-          "Fortificazioni",
-          "Speciale"
-        ],
-        "espansioni_utilizzate": [
-          "Base"
-        ]
-      },
-      {
-        "indice_mazzo": 2,
-        "totale_carte": 16,
-        "guerrieri_squadra": 0,
-        "guerrieri_schieramento": 6,
-        "carte_supporto": 10,
-        "fazioni_squadra": [],
-        "fazioni_schieramento": [
-          "Oscura Legione"
-        ],
-        "classi_supporto": [
+          "Equipaggiamento",
           "Fortificazioni",
           "Speciale"
         ],
         "espansioni_utilizzate": [
           "Inquisition",
+          "Warzone",
+          "Base"
+        ]
+      },
+      {
+        "indice_mazzo": 2,
+        "totale_carte": 17,
+        "guerrieri_squadra": 0,
+        "guerrieri_schieramento": 5,
+        "carte_supporto": 12,
+        "fazioni_squadra": [],
+        "fazioni_schieramento": [
+          "Oscura Legione"
+        ],
+        "classi_supporto": [
+          "Equipaggiamento",
+          "Fortificazioni",
+          "Speciale"
+        ],
+        "espansioni_utilizzate": [
+          "Inquisition",
+          "Warzone",
           "Base"
         ]
       }

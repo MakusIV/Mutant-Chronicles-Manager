@@ -182,8 +182,8 @@ class Speciale:
             valore = effetto.valore # valore numerico dell'effetto (se applicabile)
             statistica_target = effetto.statistica_target # quale statistica viene modificata (C, S, A, V)
 
-            if tipo_effetto == "Modificatore" and statistica_target in ["combattimento", "sparare", "armatura"]:
-                                
+            if tipo_effetto == "Modificatore" and statistica_target in ["combattimento", "sparare", "armatura"] and isinstance(valore, int) == True:
+                            
                 if statistica_target == 'combattimento':
                     combattimento = valore if valore > combattimento else combattimento
                 elif statistica_target == 'sparare':
