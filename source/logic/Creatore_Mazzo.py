@@ -1733,212 +1733,6 @@ def stampa_riepilogo_mazzi_migliorato(mazzi: List[Dict[str, Any]]) -> None:
             print(f"   • {classe}: {count} carte")
 
 
-def crea_inventario_dettagliato_mazzo_json_con_conteggio(mazzo: Dict[str, Any], indice: int) -> Dict[str, Any]:
-    """
-    Crea un inventario dettagliato di un singolo mazzo in formato JSON con suddivisioni.
-    VERSIONE COMPLETA: Organizza guerrieri per fazioni e supporto per classi.
-    
-    Args:
-        mazzo: Dizionario mazzo (output di crea_mazzo_da_gioco)
-        indice: Indice del mazzo
-        
-    Returns:
-        Dizionario con inventario dettagliato e raggruppato
-    """
-    # Struttura base dell'inventario
-    inventario = {
-        'inventario_guerrieri': {
-            'squadra': {},
-            'schieramento': {}
-        },
-        'inventario_supporto': {
-            'Equipaggiamento': {},
-            'Speciale': {},
-            'Arte': {},
-            'Oscura Simmetria': {},
-            'Fortificazioni': {},
-            'Reliquie': {},
-            'Warzone': {},
-            'Missioni': {}
-        },
-        'metadati_mazzo': {
-            'indice': indice,
-            'data_creazione': datetime.now().isoformat(),
-            'totale_carte': 0,
-            'statistiche_base': {}
-        }
-    }
-    
-    # Processa guerrieri squadra con organizzazione per fazioni
-    try:
-        guerrieri_squadra = mazzo.get('squadra', [])
-        inventario['inventario_guerrieri']['squadra'] = processa_guerrieri_per_fazioni(guerrieri_squadra)
-        print(f"   ⚔️ Processati {len(guerrieri_squadra)} guerrieri squadra")
-    except Exception as e:
-        print(f"   ⚠️ Errore processando squadra: {e}")
-        inventario['inventario_guerrieri']['squadra'] = {}
-    
-    # Processa guerrieri schieramento con organizzazione per fazioni  
-    try:
-        guerrieri_schieramento = mazzo.get('schieramento', [])
-        inventario['inventario_guerrieri']['schieramento'] = processa_guerrieri_per_fazioni(guerrieri_schieramento)
-        print(f"   🌙 Processati {len(guerrieri_schieramento)} guerrieri schieramento")
-    except Exception as e:
-        print(f"   ⚠️ Errore processando schieramento: {e}")
-        inventario['inventario_guerrieri']['schieramento'] = {}
-    
-    # Processa carte supporto con organizzazione per classi
-    try:
-        carte_supporto = mazzo.get('carte_supporto', [])
-        inventario['inventario_supporto'] = processa_supporto_per_classi(carte_supporto)
-        print(f"   🎴 Processate {len(carte_supporto)} carte supporto")
-    except Exception as e:
-        print(f"   ⚠️ Errore processando supporto: {e}")
-        pass
-    
-    # Calcola statistiche totali
-    try:
-        guerrieri_squadra = mazzo.get('squadra', [])
-        guerrieri_schieramento = mazzo.get('schieramento', [])
-        carte_supporto = mazzo.get('carte_supporto', [])
-        
-        totale_carte = len(guerrieri_squadra) + len(guerrieri_schieramento) + len(carte_supporto)
-        
-        inventario['metadati_mazzo']['totale_carte'] = totale_carte
-        inventario['metadati_mazzo']['statistiche_base'] = {
-            'guerrieri_squadra': len(guerrieri_squadra),
-            'guerrieri_schieramento': len(guerrieri_schieramento),
-            'carte_supporto': len(carte_supporto)
-        }
-        
-        # Statistiche originali se disponibili
-        if 'statistiche' in mazzo:
-            statistiche_originali = mazzo['statistiche']
-            inventario['metadati_mazzo']['statistiche_originali'] = {
-                'numero_totale_carte': statistiche_originali.get('numero_totale_carte', totale_carte),
-                'fazioni_presenti': statistiche_originali.get('fazioni_presenti', []),
-                'espansioni_utilizzate': statistiche_originali.get('espansioni_utilizzate', []),
-                'distribuzione_per_tipo': statistiche_originali.get('distribuzione_per_tipo', {})
-            }
-        
-    except Exception as e:
-        print(f"   ⚠️ Errore calcolando statistiche: {e}")
-        inventario['metadati_mazzo']['totale_carte'] = 0
-        inventario['metadati_mazzo']['statistiche_base'] = {
-            'guerrieri_squadra': 0,
-            'guerrieri_schieramento': 0,
-            'carte_supporto': 0
-        }
-    
-    return inventario
-def processa_guerrieri_per_fazioni(guerrieri: List[Any]) -> Dict[str, Dict[str, Any]]:
-    """
-    Organizza i guerrieri per fazioni con conteggio copie.
-    VERSIONE COMPLETA con gestione errori robusta.
-    """
-    fazioni_guerrieri = {}
-    conteggio_guerrieri = defaultdict(int)
-    dettagli_guerrieri = {}
-    
-    if not guerrieri:
-        return fazioni_guerrieri
-    
-    # Prima passata: conta le copie e raccoglie dettagli
-    for i, guerriero in enumerate(guerrieri):
-        try:
-            nome = getattr(guerriero, 'nome', f'Guerriero_Sconosciuto_{i+1}')
-            
-            # Determina fazione in modo sicuro
-            fazione = 'Generica'
-            try:
-                fazione_obj = getattr(guerriero, 'fazione', None)
-                if fazione_obj:
-                    if hasattr(fazione_obj, 'value'):
-                        fazione = fazione_obj.value
-                    else:
-                        fazione = str(fazione_obj)
-            except:
-                fazione = 'Generica'
-            
-            conteggio_guerrieri[nome] += 1
-            
-            if nome not in dettagli_guerrieri:
-                dettagli_guerrieri[nome] = {
-                    'copie': 0,
-                    'fazione': fazione,
-                    'set_espansione': ottieni_attributo_sicuro(guerriero, 'set_espansione', 'Base'),
-                    'rarity': ottieni_attributo_sicuro(guerriero, 'rarity', 'Common'),
-                    'tipo': ottieni_attributo_sicuro(guerriero, 'tipo', 'Normale'),
-                    'stats': {},
-                    'numero_carta': ottieni_attributo_sicuro(guerriero, 'numero_carta', ''),
-                    'keywords': ottieni_attributo_sicuro(guerriero, 'keywords', []),
-                    'abilita': ottieni_attributo_sicuro(guerriero, 'abilita', [])
-                }
-                
-                # Gestione statistiche in modo sicuro
-                try:
-                    if hasattr(guerriero, 'stats') and guerriero.stats:
-                        stats = guerriero.stats
-                        dettagli_guerrieri[nome]['stats'] = {
-                            'combattimento': ottieni_attributo_sicuro(stats, 'combattimento', 0),
-                            'sparare': ottieni_attributo_sicuro(stats, 'sparare', 0),
-                            'armatura': ottieni_attributo_sicuro(stats, 'armatura', 0),
-                            'valore': ottieni_attributo_sicuro(stats, 'valore', 0)
-                        }
-                    else:
-                        # Statistiche dirette sul guerriero
-                        dettagli_guerrieri[nome]['stats'] = {
-                            'combattimento': ottieni_attributo_sicuro(guerriero, 'combattimento', 0),
-                            'sparare': ottieni_attributo_sicuro(guerriero, 'sparare', 0),
-                            'armatura': ottieni_attributo_sicuro(guerriero, 'armatura', 0),
-                            'valore': ottieni_attributo_sicuro(guerriero, 'valore', 0)
-                        }
-                except Exception as stats_error:
-                    print(f"   ⚠️ Errore statistiche per {nome}: {stats_error}")
-                    dettagli_guerrieri[nome]['stats'] = {
-                        'combattimento': 0, 'sparare': 0, 'armatura': 0, 'valore': 0
-                    }
-                
-        except Exception as e:
-            print(f"   ⚠️ Errore processando guerriero {i+1}: {e}")
-            nome_errore = f'Guerriero_Errore_{i+1}'
-            conteggio_guerrieri[nome_errore] += 1
-            dettagli_guerrieri[nome_errore] = {
-                'copie': 0,
-                'fazione': 'Errore',
-                'set_espansione': 'Unknown',
-                'rarity': 'Common',
-                'tipo': 'Errore',
-                'stats': {'combattimento': 0, 'sparare': 0, 'armatura': 0, 'valore': 0},
-                'numero_carta': '',
-                'keywords': [],
-                'abilita': [],
-                'errore_processamento': str(e)
-            }
-    
-    # Seconda passata: organizza per fazioni
-    for nome, count in conteggio_guerrieri.items():
-        try:
-            dettagli = dettagli_guerrieri[nome]
-            dettagli['copie'] = count
-            fazione = dettagli['fazione']
-            
-            if fazione not in fazioni_guerrieri:
-                fazioni_guerrieri[fazione] = {}
-                
-            fazioni_guerrieri[fazione][nome] = dettagli
-            
-        except Exception as e:
-            print(f"   ⚠️ Errore organizzando {nome}: {e}")
-            # Metti nell'area errore
-            if 'Errore' not in fazioni_guerrieri:
-                fazioni_guerrieri['Errore'] = {}
-            fazioni_guerrieri['Errore'][nome] = {
-                'copie': count,
-                'errore_organizzazione': str(e)
-            }
-    
-    return fazioni_guerrieri
 def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[str, Any]]:
     """
     Organizza le carte supporto per classi con conteggio copie.
@@ -2066,93 +1860,6 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
     
     # Mantieni struttura base anche se vuota
     return classi_supporto
-def salva_mazzi_json_migliorato_con_conteggio(mazzi: List[Dict[str, Any]], filename: str = "mazzi_dettagliati_conteggio.json") -> bool:
-    """
-    Salva i mazzi in formato JSON con struttura dettagliata, conteggio copie e organizzazione per fazioni/classi.
-    VERSIONE AGGIORNATA: Include suddivisione per fazioni (guerrieri) e classi (supporto).
-    """
-    try:
-        print(f"📄 Creazione struttura JSON con organizzazione per fazioni e classi per {len(mazzi)} mazzi...")
-        
-        # Test di compatibilità preventivo
-        print("🔍 Test compatibilità mazzi...")
-        test_risultati = testa_compatibilita_mazzi(mazzi)
-        
-        if not test_risultati['compatibile']:
-            print("❌ Test compatibilità fallito:")
-            for errore in test_risultati['errori']:
-                print(f"  • {errore}")
-            return False
-        
-        if test_risultati['avvisi']:
-            print("⚠️ Avvisi compatibilità:")
-            for avviso in test_risultati['avvisi']:
-                print(f"  • {avviso}")
-        
-        print("✅ Test compatibilità superato!")
-        
-        # Crea struttura principale
-        data_export = {
-            'metadata': {
-                'tipo_export': 'mazzi_dettagliati_organizzati',
-                'versione': '2.1',
-                'data_creazione': datetime.now().isoformat(),
-                'numero_mazzi': len(mazzi),
-                'formato': 'inventario_raggruppato_con_conteggio_e_organizzazione',
-                'descrizione': 'Mazzi con inventari organizzati per fazioni (guerrieri) e classi (supporto)'
-            },
-            'mazzi_dettagliati': [],
-            'statistiche_aggregate': calcola_statistiche_aggregate_organizzate(mazzi)
-        }
-        
-        # Processa ogni mazzo
-        for i, mazzo in enumerate(mazzi):
-            print(f"   🎮 Processando mazzo {i+1}/{len(mazzi)}...")
-            
-            inventario_dettagliato = crea_inventario_dettagliato_mazzo_json_con_conteggio(mazzo, i+1)
-            data_export['mazzi_dettagliati'].append(inventario_dettagliato)
-        
-        # Salvataggio con gestione errori migliorata
-        os.makedirs(PERCORSO_SALVATAGGIO, exist_ok=True)
-        filepath = PERCORSO_SALVATAGGIO + filename
-        
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(data_export, f, indent=2, ensure_ascii=False, default=str)
-        
-        # Informazioni file salvato
-        dimensione_file = os.path.getsize(filepath) / 1024  # KB
-        print(f"\n✅ Salvataggio completato con successo!")
-        print(f"   📄 File: {filename}")
-        print(f"   📊 Dimensione: {dimensione_file:.1f} KB")
-        print(f"   🎮 Mazzi: {len(mazzi)}")
-        print(f"   📦 Carte totali: {sum(len(m.get('squadra', [])) + len(m.get('schieramento', [])) + len(m.get('carte_supporto', [])) for m in mazzi)}")
-        print(f"   🔢 Formato: Inventario organizzato per fazioni e classi con conteggio copie")
-        
-        return True
-        
-    except Exception as e:
-        print(f"❌ Errore durante il salvataggio JSON: {e}")
-        
-        # Salvataggio di debug migliorato
-        try:
-            debug_filename = filename.replace('.json', '_debug.txt')
-            debug_filepath = PERCORSO_SALVATAGGIO + debug_filename
-            
-            with open(debug_filepath, 'w', encoding='utf-8') as f:
-                f.write(f"Errore durante serializzazione JSON: {e}\n\n")
-                f.write(f"Numero mazzi: {len(mazzi)}\n\n")
-                
-                for i, m in enumerate(mazzi):
-                    f.write(f"=== MAZZO {i+1} ===\n")
-                    f.write(f"Squadra: {len(m.get('squadra', []))}\n")
-                    f.write(f"Schieramento: {len(m.get('schieramento', []))}\n")
-                    f.write(f"Carte supporto: {len(m.get('carte_supporto', []))}\n\n")
-                
-            print(f"📄 File di debug salvato in {debug_filename}")
-        except Exception as debug_error:
-            print(f"❌ Errore anche nel debug: {debug_error}")
-        
-        return False
 def calcola_statistiche_aggregate_organizzate(mazzi: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Calcola statistiche aggregate per i mazzi con organizzazione per fazioni e classi.
@@ -2374,7 +2081,7 @@ def salva_mazzi_json_sicuro(mazzi: List[Dict[str, Any]], filename: str = "mazzi_
     print(f"🛡️ Salvataggio sicuro con organizzazione per fazioni e classi: {filename}")
     
     # Prova prima il salvataggio completo organizzato
-    if salva_mazzi_json_migliorato_con_conteggio(mazzi, filename):
+    if salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi, filename):
         print("✅ Salvataggio completo organizzato riuscito!")
         return True
     
@@ -3088,111 +2795,6 @@ def pulisci_mazzi_per_salvataggio(mazzi: List[Dict[str, Any]]) -> List[Dict[str,
             mazzi_puliti.append(mazzo_placeholder)
     
     return mazzi_puliti
-"""
-def stampa_statistiche_da_json_mazzi_con_conteggio(dati_json: Dict[str, Any]) -> None:
-   
-    Stampa statistiche dai mazzi caricati da JSON con formato conteggio copie.
-    VERSIONE AGGIORNATA: Gestisce inventari raggruppati per nome carta.
-    
-    Args:
-        dati_json: Dati JSON caricati
-   
-    if not dati_json:
-        print("❌ Nessun dato da visualizzare")
-        return
-    
-    stats_aggregate = dati_json.get('statistiche_aggregate', {})
-    panoramica = stats_aggregate.get('panoramica_generale', {})
-    
-    print(f"\n{'='*80}")
-    print(f"📋 STATISTICHE DA JSON CON CONTEGGIO - {panoramica.get('numero_mazzi', 0)} MAZZI")
-    print(f"{'='*80}")
-    
-    # Informazioni formato
-    metadata = dati_json.get('metadata', {})
-    formato_inventario = metadata.get('formato_inventario', 'standard')
-    print(f"📋 Formato inventario: {formato_inventario}")
-    print(f"📅 Data creazione: {metadata.get('data_creazione', 'N/A')}")
-    
-    print(f"\n📦 Totale carte: {panoramica.get('totale_carte', 0)}")
-    print(f"⚔️ Totale guerrieri squadra: {panoramica.get('totale_guerrieri_squadra', 0)}")
-    print(f"🌑 Totale guerrieri schieramento: {panoramica.get('totale_guerrieri_schieramento', 0)}")
-    print(f"📈 Media carte/mazzo: {panoramica.get('media_carte_per_mazzo', 0):.1f}")
-    print(f"📈 Media guerrieri squadra: {panoramica.get('media_guerrieri_squadra', 0):.1f}")
-    print(f"📈 Media guerrieri schieramento: {panoramica.get('media_guerrieri_schieramento', 0):.1f}")
-    
-    # Riepilogo mazzi con dettagli inventario raggruppato
-    print(f"\n📊 RIEPILOGO MAZZI CON INVENTARI RAGGRUPPATI:")
-    
-    mazzi_dettagliati = dati_json.get('mazzi_dettagliati', [])
-    for mazzo_data in mazzi_dettagliati:
-        indice_mazzo = mazzo_data.get('indice_mazzo', 'N/A')
-        stats_mazzo = mazzo_data.get('statistiche_mazzo', {})
-        
-        print(f"\n  🎮 MAZZO {indice_mazzo}:")
-        print(f"    📦 Carte totali: {stats_mazzo.get('numero_totale_carte', 'N/A')}")
-        print(f"    ⚔️ Guerrieri squadra: {stats_mazzo.get('guerrieri_squadra', 'N/A')}")
-        print(f"    🌑 Guerrieri schieramento: {stats_mazzo.get('guerrieri_schieramento', 'N/A')}")
-        
-        # Mostra fazioni e espansioni
-        fazioni = stats_mazzo.get('fazioni_presenti', [])
-        if fazioni:
-            print(f"    🏛️ Fazioni: {', '.join(fazioni)}")
-        
-        espansioni = stats_mazzo.get('espansioni_utilizzate', [])
-        if espansioni:
-            print(f"    📚 Espansioni: {', '.join(espansioni)}")
-        
-        # Inventario raggruppato guerrieri squadra
-        inventario_guerrieri = mazzo_data.get('inventario_guerrieri', {})
-        squadra = inventario_guerrieri.get('squadra', {})
-        if squadra:
-            print(f"    ⚔️ GUERRIERI SQUADRA RAGGRUPPATI:")
-            for nome_carta, info_carta in squadra.items():
-                copie = info_carta.get('copie', 1)
-                fazione = info_carta.get('fazione', 'N/A')
-                copie_str = f"x{copie}" if copie > 1 else ""
-                print(f"      • {nome_carta} {copie_str} ({fazione})")
-        
-        # Inventario raggruppato guerrieri schieramento
-        schieramento = inventario_guerrieri.get('schieramento', {})
-        if schieramento:
-            print(f"    🌑 GUERRIERI SCHIERAMENTO RAGGRUPPATI:")
-            for nome_carta, info_carta in schieramento.items():
-                copie = info_carta.get('copie', 1)
-                fazione = info_carta.get('fazione', 'N/A')
-                copie_str = f"x{copie}" if copie > 1 else ""
-                print(f"      • {nome_carta} {copie_str} ({fazione})")
-        
-        # Inventario raggruppato carte supporto
-        supporto = mazzo_data.get('inventario_supporto', {})
-        if supporto:
-            print(f"    🎴 CARTE SUPPORTO RAGGRUPPATE:")
-            for nome_carta, info_carta in supporto.items():
-                copie = info_carta.get('copie', 1)
-                tipo = info_carta.get('tipo', 'N/A')
-                copie_str = f"x{copie}" if copie > 1 else ""
-                print(f"      • {nome_carta} {copie_str} ({tipo})")
-        
-        # Errori se presenti
-        errori = mazzo_data.get('errori', [])
-        if errori:
-            print(f"    ⚠️ Avvisi: {'; '.join(errori)}")
-    
-    # Distribuzione globale fazioni
-    distribuzione_fazioni = stats_aggregate.get('distribuzione_globale', {}).get('per_fazione', {})
-    if distribuzione_fazioni:
-        print(f"\n🏛️ DISTRIBUZIONE GLOBALE FAZIONI:")
-        for fazione, count in sorted(distribuzione_fazioni.items()):
-            print(f"  {fazione}: presente in {count} mazzi")
-    
-    # Distribuzione globale espansioni
-    distribuzione_espansioni = stats_aggregate.get('distribuzione_globale', {}).get('per_espansione', {})
-    if distribuzione_espansioni:
-        print(f"\n📚 DISTRIBUZIONE GLOBALE ESPANSIONI:")
-        for espansione, count in sorted(distribuzione_espansioni.items()):
-            print(f"  {espansione}: presente in {count} mazzi")
-"""
 def esempio_salvataggio_mazzi_con_conteggio(mazzi: List[Dict[str, Any]]) -> None:
     """
     Esempio di utilizzo delle funzioni di salvataggio con conteggio copie.
@@ -3210,8 +2812,8 @@ def esempio_salvataggio_mazzi_con_conteggio(mazzi: List[Dict[str, Any]]) -> None
     print("1. Stampa riepilogo standard: stampa_riepilogo_mazzi_migliorato(mazzi)")
     stampa_riepilogo_mazzi_migliorato(mazzi)
     
-    print("2. Salva: salva_mazzi_json_migliorato_con_conteggio(mazzi)")
-    salva_mazzi_json_migliorato_con_conteggio(mazzi, "mazzi.json")
+    print("2. Salva: salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi)")
+    salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi, "mazzi.json")
     
     print("3. Carica: dati = carica_mazzi_json_migliorato('mazzi.json')")
     dati_json = carica_mazzi_json_migliorato("mazzi.json")
@@ -3221,33 +2823,580 @@ def esempio_salvataggio_mazzi_con_conteggio(mazzi: List[Dict[str, Any]]) -> None
         stampa_statistiche_da_json_mazzi(dati_json)
 
 
+
+#############################################  aggiornamento con classificazione per apostoli ################################################################
+
+
+
+
+
 # ================================================================================
-# ISTRUZIONI PER L'USO
+# FUNZIONI AGGIORNATE - Gestione Sottocartelle Apostoli Oscura Legione
+# ================================================================================
+
+def estrai_apostolo_da_keywords(keywords: List[str]) -> str:
+    """
+    Estrae il nome dell'apostolo dalle keywords di un guerriero Oscura Legione.
+    
+    Args:
+        keywords: Lista di keywords del guerriero
+        
+    Returns:
+        Nome dell'apostolo o "Oscura Legione" se non è un seguace
+    """
+    if not keywords:
+        return "Oscura Legione"
+    
+    # Mappatura delle keywords agli apostoli
+    mapping_apostoli = {
+        "Seguace di Algeroth": "Algeroth",
+        "Seguace di Semai": "Semai", 
+        "Seguace di Muawijhe": "Muawijhe",
+        "Seguace di Ilian": "Ilian",
+        "Seguace di Demnogonis": "Demnogonis",
+        # Varianti alternative
+        "Cultista di Muawijhe": "Muawijhe",
+        "Cultista di Demnogonis": "Demnogonis",
+        "Cultista di Semai": "Semai",
+        "Cultista di Ilian": "Ilian",
+        "Cultista di Algeroth": "Algeroth"
+    }
+    
+    # Cerca nelle keywords del guerriero
+    for keyword in keywords:
+        if keyword in mapping_apostoli:
+            return mapping_apostoli[keyword]
+    
+    # Se non trova nessun seguace, ritorna la categoria generale
+    return "Oscura Legione"
+
+
+def processa_guerrieri_per_fazioni_con_apostoli(guerrieri: List[Any]) -> Dict[str, Dict[str, Any]]:
+    """
+    Organizza i guerrieri per fazioni con conteggio copie.
+    VERSIONE AGGIORNATA: Include sottocategorizzazione per apostoli nell'Oscura Legione.
+    
+    Args:
+        guerrieri: Lista di guerrieri
+        
+    Returns:
+        Dizionario organizzato per fazioni (con apostoli per Oscura Legione)
+    """
+    fazioni_guerrieri = {}
+    conteggio_guerrieri = defaultdict(int)
+    dettagli_guerrieri = {}
+    
+    if not guerrieri:
+        return fazioni_guerrieri
+    
+    # Prima passata: conta le copie e raccoglie dettagli
+    for i, guerriero in enumerate(guerrieri):
+        try:
+            nome = getattr(guerriero, 'nome', f'Guerriero_Sconosciuto_{i+1}')
+            
+            # Determina fazione in modo sicuro
+            fazione = 'Generica'
+            try:
+                fazione_obj = getattr(guerriero, 'fazione', None)
+                if fazione_obj:
+                    if hasattr(fazione_obj, 'value'):
+                        fazione = fazione_obj.value
+                    else:
+                        fazione = str(fazione_obj)
+            except:
+                fazione = 'Generica'
+            
+            conteggio_guerrieri[nome] += 1
+            
+            if nome not in dettagli_guerrieri:
+                dettagli_guerrieri[nome] = {
+                    'copie': 0,
+                    'fazione': fazione,
+                    'set_espansione': ottieni_attributo_sicuro(guerriero, 'set_espansione', 'Base'),
+                    'rarity': ottieni_attributo_sicuro(guerriero, 'rarity', 'Common'),
+                    'tipo': ottieni_attributo_sicuro(guerriero, 'tipo', 'Normale'),
+                    'stats': {},
+                    'numero_carta': ottieni_attributo_sicuro(guerriero, 'numero_carta', ''),
+                    'keywords': ottieni_attributo_sicuro(guerriero, 'keywords', []),
+                    'abilita': ottieni_attributo_sicuro(guerriero, 'abilita', [])
+                }
+                
+                # Per l'Oscura Legione, determina l'apostolo
+                if fazione == 'Oscura Legione':
+                    keywords = ottieni_attributo_sicuro(guerriero, 'keywords', [])
+                    apostolo = estrai_apostolo_da_keywords(keywords)
+                    dettagli_guerrieri[nome]['apostolo_seguace'] = apostolo
+                
+                # Gestione statistiche in modo sicuro
+                try:
+                    if hasattr(guerriero, 'stats') and guerriero.stats:
+                        stats = guerriero.stats
+                        dettagli_guerrieri[nome]['stats'] = {
+                            'combattimento': ottieni_attributo_sicuro(stats, 'combattimento', 0),
+                            'sparare': ottieni_attributo_sicuro(stats, 'sparare', 0),
+                            'armatura': ottieni_attributo_sicuro(stats, 'armatura', 0),
+                            'valore': ottieni_attributo_sicuro(stats, 'valore', 0)
+                        }
+                    else:
+                        # Statistiche dirette sul guerriero
+                        dettagli_guerrieri[nome]['stats'] = {
+                            'combattimento': ottieni_attributo_sicuro(guerriero, 'combattimento', 0),
+                            'sparare': ottieni_attributo_sicuro(guerriero, 'sparare', 0),
+                            'armatura': ottieni_attributo_sicuro(guerriero, 'armatura', 0),
+                            'valore': ottieni_attributo_sicuro(guerriero, 'valore', 0)
+                        }
+                except Exception as stats_error:
+                    print(f"   ⚠️ Errore statistiche per {nome}: {stats_error}")
+                    dettagli_guerrieri[nome]['stats'] = {
+                        'combattimento': 0, 'sparare': 0, 'armatura': 0, 'valore': 0
+                    }
+                
+        except Exception as e:
+            print(f"   ⚠️ Errore processando guerriero {i+1}: {e}")
+            nome_errore = f'Guerriero_Errore_{i+1}'
+            conteggio_guerrieri[nome_errore] += 1
+            dettagli_guerrieri[nome_errore] = {
+                'copie': 0,
+                'fazione': 'Errore',
+                'apostolo_seguace': 'Errore',
+                'set_espansione': 'Unknown',
+                'rarity': 'Common',
+                'tipo': 'Errore',
+                'stats': {'combattimento': 0, 'sparare': 0, 'armatura': 0, 'valore': 0},
+                'numero_carta': '',
+                'keywords': [],
+                'abilita': [],
+                'errore_processamento': str(e)
+            }
+    
+    # Seconda passata: organizza per fazioni e apostoli
+    for nome, count in conteggio_guerrieri.items():
+        try:
+            dettagli = dettagli_guerrieri[nome]
+            dettagli['copie'] = count
+            fazione = dettagli['fazione']
+            
+            if fazione not in fazioni_guerrieri:
+                fazioni_guerrieri[fazione] = {}
+            
+            # Gestione speciale per Oscura Legione con apostoli
+            if fazione == 'Oscura Legione' and 'apostolo_seguace' in dettagli:
+                apostolo = dettagli['apostolo_seguace']
+                
+                # Crea la struttura gerarchica: Fazione -> Apostolo -> Guerriero
+                if apostolo not in fazioni_guerrieri[fazione]:
+                    fazioni_guerrieri[fazione][apostolo] = {}
+                
+                fazioni_guerrieri[fazione][apostolo][nome] = dettagli
+            else:
+                # Per le altre fazioni, struttura normale: Fazione -> Guerriero
+                fazioni_guerrieri[fazione][nome] = dettagli
+                
+        except Exception as e:
+            print(f"   ⚠️ Errore organizzando {nome}: {e}")
+            # Metti nell'area errore
+            if 'Errore' not in fazioni_guerrieri:
+                fazioni_guerrieri['Errore'] = {}
+            fazioni_guerrieri['Errore'][nome] = {
+                'copie': count,
+                'errore_organizzazione': str(e)
+            }
+    
+    return fazioni_guerrieri
+
+
+def crea_inventario_dettagliato_mazzo_json_con_conteggio_e_apostoli(mazzo: Dict[str, Any], indice: int) -> Dict[str, Any]:
+    """
+    Crea un inventario dettagliato di un singolo mazzo in formato JSON con suddivisioni per apostoli.
+    VERSIONE AGGIORNATA: Include sottocategorizzazione per apostoli nell'Oscura Legione.
+    
+    Args:
+        mazzo: Dizionario mazzo (output di crea_mazzo_da_gioco)
+        indice: Indice del mazzo
+        
+    Returns:
+        Dizionario con inventario dettagliato e organizzato per apostoli
+    """
+    # Struttura base dell'inventario
+    inventario = {
+        'inventario_guerrieri': {
+            'squadra': {},
+            'schieramento': {}
+        },
+        'inventario_supporto': {
+            'Equipaggiamento': {},
+            'Speciale': {},
+            'Arte': {},
+            'Oscura Simmetria': {},
+            'Fortificazioni': {},
+            'Reliquie': {},
+            'Warzone': {},
+            'Missioni': {}
+        },
+        'metadati_mazzo': {
+            'indice': indice,
+            'data_creazione': datetime.now().isoformat(),
+            'totale_carte': 0,
+            'statistiche_base': {},
+            'apostoli_presenti': []  # Nuova informazione
+        }
+    }
+    
+    # Processa guerrieri squadra con organizzazione per fazioni
+    try:
+        guerrieri_squadra = mazzo.get('squadra', [])
+        inventario['inventario_guerrieri']['squadra'] = processa_guerrieri_per_fazioni_con_apostoli(guerrieri_squadra)
+        print(f"   ⚔️ Processati {len(guerrieri_squadra)} guerrieri squadra")
+    except Exception as e:
+        print(f"   ⚠️ Errore processando squadra: {e}")
+        inventario['inventario_guerrieri']['squadra'] = {}
+    
+    # Processa guerrieri schieramento con organizzazione per fazioni e apostoli  
+    try:
+        guerrieri_schieramento = mazzo.get('schieramento', [])
+        inventario['inventario_guerrieri']['schieramento'] = processa_guerrieri_per_fazioni_con_apostoli(guerrieri_schieramento)
+        print(f"   🌙 Processati {len(guerrieri_schieramento)} guerrieri schieramento")
+        
+        # Estrai apostoli presenti nello schieramento
+        apostoli_presenti = set()
+        schieramento_data = inventario['inventario_guerrieri']['schieramento']
+        if 'Oscura Legione' in schieramento_data:
+            oscura_legione_data = schieramento_data['Oscura Legione']
+            for apostolo_nome in oscura_legione_data.keys():
+                if apostolo_nome != 'Oscura Legione':  # Escludi la categoria generale
+                    apostoli_presenti.add(apostolo_nome)
+        
+        inventario['metadati_mazzo']['apostoli_presenti'] = list(apostoli_presenti)
+        print(f"   👑 Apostoli identificati: {', '.join(apostoli_presenti) if apostoli_presenti else 'Nessuno'}")
+        
+    except Exception as e:
+        print(f"   ⚠️ Errore processando schieramento: {e}")
+        inventario['inventario_guerrieri']['schieramento'] = {}
+        inventario['metadati_mazzo']['apostoli_presenti'] = []
+    
+    # Processa carte supporto con organizzazione per classi (invariato)
+    try:
+        carte_supporto = mazzo.get('carte_supporto', [])
+        inventario['inventario_supporto'] = processa_supporto_per_classi(carte_supporto)
+        print(f"   🎴 Processate {len(carte_supporto)} carte supporto")
+    except Exception as e:
+        print(f"   ⚠️ Errore processando supporto: {e}")
+        pass
+    
+    # Calcola statistiche totali (con informazioni apostoli)
+    try:
+        guerrieri_squadra = mazzo.get('squadra', [])
+        guerrieri_schieramento = mazzo.get('schieramento', [])
+        carte_supporto = mazzo.get('carte_supporto', [])
+        
+        totale_carte = len(guerrieri_squadra) + len(guerrieri_schieramento) + len(carte_supporto)
+        
+        inventario['metadati_mazzo']['totale_carte'] = totale_carte
+        inventario['metadati_mazzo']['statistiche_base'] = {
+            'guerrieri_squadra': len(guerrieri_squadra),
+            'guerrieri_schieramento': len(guerrieri_schieramento),
+            'carte_supporto': len(carte_supporto)
+        }
+        
+        # Statistiche per apostoli se presenti
+        if inventario['metadati_mazzo']['apostoli_presenti']:
+            inventario['metadati_mazzo']['statistiche_apostoli'] = {}
+            for apostolo in inventario['metadati_mazzo']['apostoli_presenti']:
+                count_guerrieri = 0
+                schieramento_data = inventario['inventario_guerrieri']['schieramento']
+                if 'Oscura Legione' in schieramento_data and apostolo in schieramento_data['Oscura Legione']:
+                    count_guerrieri = len(schieramento_data['Oscura Legione'][apostolo])
+                inventario['metadati_mazzo']['statistiche_apostoli'][apostolo] = count_guerrieri
+        
+        # Statistiche originali se disponibili
+        if 'statistiche' in mazzo:
+            statistiche_originali = mazzo['statistiche']
+            inventario['metadati_mazzo']['statistiche_originali'] = {
+                'numero_totale_carte': statistiche_originali.get('numero_totale_carte', totale_carte),
+                'fazioni_presenti': statistiche_originali.get('fazioni_presenti', []),
+                'espansioni_utilizzate': statistiche_originali.get('espansioni_utilizzate', []),
+                'distribuzione_per_tipo': statistiche_originali.get('distribuzione_per_tipo', {})
+            }
+        
+    except Exception as e:
+        print(f"   ⚠️ Errore calcolando statistiche: {e}")
+        inventario['metadati_mazzo']['totale_carte'] = 0
+        inventario['metadati_mazzo']['statistiche_base'] = {
+            'guerrieri_squadra': 0,
+            'guerrieri_schieramento': 0,
+            'carte_supporto': 0
+        }
+        inventario['metadati_mazzo']['apostoli_presenti'] = []
+    
+    return inventario
+
+
+def salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi: List[Dict[str, Any]], filename: str = "mazzi_dettagliati_apostoli.json") -> bool:
+    """
+    Salva i mazzi in formato JSON con struttura dettagliata e sottocategorizzazione per apostoli.
+    VERSIONE AGGIORNATA: Include organizzazione per apostoli nell'Oscura Legione.
+    
+    Args:
+        mazzi: Lista di dizionari mazzo
+        filename: Nome del file di salvataggio
+        
+    Returns:
+        True se il salvataggio è riuscito, False altrimenti
+    """
+    try:
+        print(f"📄 Creazione struttura JSON con organizzazione per fazioni, classi e apostoli per {len(mazzi)} mazzi...")
+        
+        # Test di compatibilità preventivo
+        print("🔍 Test compatibilità mazzi...")
+        test_risultati = testa_compatibilita_mazzi(mazzi)
+        
+        if not test_risultati['compatibile']:
+            print("❌ Test compatibilità fallito:")
+            for errore in test_risultati['errori']:
+                print(f"  • {errore}")
+            return False
+        
+        if test_risultati['avvisi']:
+            print("⚠️ Avvisi compatibilità:")
+            for avviso in test_risultati['avvisi']:
+                print(f"  • {avviso}")
+        
+        print("✅ Test compatibilità superato!")
+        
+        # Crea struttura principale
+        data_export = {
+            'metadata': {
+                'tipo_export': 'mazzi_dettagliati_con_apostoli',
+                'versione': '2.2',
+                'data_creazione': datetime.now().isoformat(),
+                'numero_mazzi': len(mazzi),
+                'formato': 'inventario_con_fazioni_classi_e_apostoli',
+                'descrizione': 'Mazzi con inventari organizzati per fazioni, classi supporto e apostoli Oscura Legione'
+            },
+            'mazzi_dettagliati': [],
+            'statistiche_aggregate': calcola_statistiche_aggregate_con_apostoli(mazzi)
+        }
+        
+        # Processa ogni mazzo
+        for i, mazzo in enumerate(mazzi):
+            print(f"   🎮 Processando mazzo {i+1}/{len(mazzi)}...")
+            
+            inventario_dettagliato = crea_inventario_dettagliato_mazzo_json_con_conteggio_e_apostoli(mazzo, i+1)
+            data_export['mazzi_dettagliati'].append(inventario_dettagliato)
+        
+        # Salvataggio con gestione errori migliorata
+        os.makedirs(PERCORSO_SALVATAGGIO, exist_ok=True)
+        filepath = PERCORSO_SALVATAGGIO + filename
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(data_export, f, indent=2, ensure_ascii=False, default=str)
+        
+        # Informazioni file salvato
+        dimensione_file = os.path.getsize(filepath) / 1024  # KB
+        print(f"\n✅ Salvataggio completato con successo!")
+        print(f"   📄 File: {filename}")
+        print(f"   📊 Dimensione: {dimensione_file:.1f} KB")
+        print(f"   🎮 Mazzi: {len(mazzi)}")
+        print(f"   📦 Carte totali: {sum(len(m.get('squadra', [])) + len(m.get('schieramento', [])) + len(m.get('carte_supporto', [])) for m in mazzi)}")
+        print(f"   👑 Formato: Con organizzazione per apostoli Oscura Legione")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ Errore durante il salvataggio JSON: {e}")
+        return False
+
+
+def calcola_statistiche_aggregate_con_apostoli(mazzi: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Calcola statistiche aggregate per i mazzi includendo informazioni sugli apostoli.
+    
+    Args:
+        mazzi: Lista di mazzi
+        
+    Returns:
+        Dizionario con statistiche aggregate inclusi apostoli
+    """
+    stats = {
+        'panoramica_generale': {
+            'numero_mazzi': len(mazzi),
+            'totale_carte': 0,
+            'totale_guerrieri_squadra': 0,
+            'totale_guerrieri_schieramento': 0,
+            'totale_carte_supporto': 0,
+            'media_carte_per_mazzo': 0,
+            'media_guerrieri_squadra': 0,
+            'media_guerrieri_schieramento': 0,
+            'media_supporto': 0
+        },
+        'distribuzione_fazioni': {
+            'squadra': defaultdict(int),
+            'schieramento': defaultdict(int)
+        },
+        'distribuzione_classi_supporto': defaultdict(int),
+        'distribuzione_apostoli': defaultdict(int),  # Nuova sezione
+        'riepilogo_mazzi': []
+    }
+    
+    totale_carte = 0
+    totale_squadra = 0
+    totale_schieramento = 0
+    totale_supporto = 0
+    
+    for i, mazzo in enumerate(mazzi):
+        squadra = mazzo.get('squadra', [])
+        schieramento = mazzo.get('schieramento', [])
+        supporto = mazzo.get('carte_supporto', [])
+        
+        carte_mazzo = len(squadra) + len(schieramento) + len(supporto)
+        totale_carte += carte_mazzo
+        totale_squadra += len(squadra)
+        totale_schieramento += len(schieramento)
+        totale_supporto += len(supporto)
+        
+        # Conta fazioni squadra (invariato)
+        fazioni_squadra = []
+        for guerriero in squadra:
+            fazione = getattr(guerriero, 'fazione', 'Sconosciuta')
+            if hasattr(fazione, 'value'):
+                fazione = fazione.value
+            stats['distribuzione_fazioni']['squadra'][fazione] += 1
+            if fazione not in fazioni_squadra:
+                fazioni_squadra.append(fazione)
+        
+        # Conta fazioni schieramento con apostoli
+        fazioni_schieramento = []
+        apostoli_mazzo = []
+        for guerriero in schieramento:
+            fazione = getattr(guerriero, 'fazione', 'Sconosciuta')
+            if hasattr(fazione, 'value'):
+                fazione = fazione.value
+            stats['distribuzione_fazioni']['schieramento'][fazione] += 1
+            if fazione not in fazioni_schieramento:
+                fazioni_schieramento.append(fazione)
+            
+            # Se è Oscura Legione, controlla l'apostolo
+            if fazione == 'Oscura Legione':
+                keywords = getattr(guerriero, 'keywords', [])
+                apostolo = estrai_apostolo_da_keywords(keywords)
+                if apostolo != 'Oscura Legione':  # È un seguace specifico
+                    stats['distribuzione_apostoli'][apostolo] += 1
+                    if apostolo not in apostoli_mazzo:
+                        apostoli_mazzo.append(apostolo)
+        
+        # Conta classi supporto (invariato)
+        classi_presenti = []
+        for carta in supporto:
+            classe = determina_classe_supporto(carta)
+            stats['distribuzione_classi_supporto'][classe] += 1
+            if classe not in classi_presenti:
+                classi_presenti.append(classe)
+        
+        # Riepilogo singolo mazzo con apostoli
+        espansioni = set()
+        for carta_lista in [squadra, schieramento, supporto]:
+            for carta in carta_lista:
+                esp = getattr(carta, 'set_espansione', 'Base')
+                if hasattr(esp, 'value'):
+                    esp = esp.value
+                espansioni.add(esp)
+        
+        stats['riepilogo_mazzi'].append({
+            'indice_mazzo': i + 1,
+            'totale_carte': carte_mazzo,
+            'guerrieri_squadra': len(squadra),
+            'guerrieri_schieramento': len(schieramento),
+            'carte_supporto': len(supporto),
+            'fazioni_squadra': fazioni_squadra,
+            'fazioni_schieramento': fazioni_schieramento,
+            'apostoli_presenti': apostoli_mazzo,  # Nuova informazione
+            'classi_supporto': classi_presenti,
+            'espansioni_utilizzate': list(espansioni)
+        })
+    
+    # Completa panoramica generale (invariato)
+    stats['panoramica_generale']['totale_carte'] = totale_carte
+    stats['panoramica_generale']['totale_guerrieri_squadra'] = totale_squadra
+    stats['panoramica_generale']['totale_guerrieri_schieramento'] = totale_schieramento
+    stats['panoramica_generale']['totale_carte_supporto'] = totale_supporto
+    
+    if len(mazzi) > 0:
+        stats['panoramica_generale']['media_carte_per_mazzo'] = totale_carte / len(mazzi)
+        stats['panoramica_generale']['media_guerrieri_squadra'] = totale_squadra / len(mazzi)
+        stats['panoramica_generale']['media_guerrieri_schieramento'] = totale_schieramento / len(mazzi)
+        stats['panoramica_generale']['media_supporto'] = totale_supporto / len(mazzi)
+    
+    # Converti defaultdict in dict normale
+    stats['distribuzione_fazioni']['squadra'] = dict(stats['distribuzione_fazioni']['squadra'])
+    stats['distribuzione_fazioni']['schieramento'] = dict(stats['distribuzione_fazioni']['schieramento'])
+    stats['distribuzione_classi_supporto'] = dict(stats['distribuzione_classi_supporto'])
+    stats['distribuzione_apostoli'] = dict(stats['distribuzione_apostoli'])
+    
+    return stats
+
+
+# ================================================================================
+# ISTRUZIONI PER L'USO DELLE FUNZIONI AGGIORNATE
 # ================================================================================
 """
-🎯 COME USARE LE FUNZIONI AGGIORNATE:
+🎯 COME USARE LE FUNZIONI AGGIORNATE CON APOSTOLI:
 
-1. Copia entrambe le parti nel tuo Creatore_Mazzi.py
-2. Assicurati di avere: PERCORSO_SALVATAGGIO = "out/"
-3. Usa le funzioni:
-   
-   # Salvataggio con organizzazione
-   salva_mazzi_json_migliorato_con_conteggio(mazzi, "mazzi_organizzati.json")
-   
-   # Riepilogo con suddivisioni
-   stampa_riepilogo_mazzi_migliorato(mazzi)
-   
-   # Le altre funzioni (caricamento, statistiche, etc.) sono nella versione precedente
-   # e rimangono compatibili con il nuovo formato organizzato.
+1. SOSTITUISCI le funzioni precedenti con queste versioni:
+   - processa_guerrieri_per_fazioni() → processa_guerrieri_per_fazioni_con_apostoli()
+   - crea_inventario_dettagliato_mazzo_json_con_conteggio() → crea_inventario_dettagliato_mazzo_json_con_conteggio_e_apostoli()
+   - salva_mazzi_json_migliorato_con_conteggio() → salva_mazzi_json_migliorato_con_conteggio_e_apostoli()
 
-📁 STRUTTURA RISULTANTE:
-- Guerrieri organizzati per fazioni (Bauhaus, Capitol, etc.)
-- Supporto organizzato per classi (Equipaggiamento, Arte, etc.)
-- Conteggio automatico delle copie
-- Gestione errori robusta
-- Compatibilità con versioni precedenti
+2. USA la nuova funzione di salvataggio:
+   salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi, "mazzi_con_apostoli.json")
+
+📁 STRUTTURA JSON RISULTANTE CON APOSTOLI:
+{
+  "inventario_guerrieri": {
+    "schieramento": {
+      "Oscura Legione": {
+        "Algeroth": {
+          "Necromutante": {"copie": 2, "fazione": "Oscura Legione", "apostolo_seguace": "Algeroth", ...},
+          "Cacciatore Oscuro": {"copie": 1, "fazione": "Oscura Legione", "apostolo_seguace": "Algeroth", ...}
+        },
+        "Semai": {
+          "Legionario di Semai": {"copie": 3, "fazione": "Oscura Legione", "apostolo_seguace": "Semai", ...}
+        },
+        "Muawijhe": {
+          "Cultista di Muawijhe": {"copie": 1, "fazione": "Oscura Legione", "apostolo_seguace": "Muawijhe", ...}
+        },
+        "Oscura Legione": {
+          "Eretico": {"copie": 2, "fazione": "Oscura Legione", "apostolo_seguace": "Oscura Legione", ...}
+        }
+      }
+    }
+  },
+  "metadati_mazzo": {
+    "apostoli_presenti": ["Algeroth", "Semai", "Muawijhe"],
+    "statistiche_apostoli": {
+      "Algeroth": 3,
+      "Semai": 3, 
+      "Muawijhe": 1
+    }
+  }
+}
+
+🆕 NUOVE CARATTERISTICHE:
+✅ Sottocategorizzazione per apostoli nell'Oscura Legione
+✅ Identificazione automatica seguaci dai keywords
+✅ Statistiche per apostolo
+✅ Compatibilità con struttura precedente
+✅ Gestione guerrieri non seguaci (categoria generale)
 """
-#########################################################################
+
+
+
+###############################################################################################################################
+
+
+
+
+
+
 
 
 
@@ -3570,7 +3719,7 @@ def menu_interattivo_mazzi():
                 filename = input("Nome file (default: mazzi_dettagliati.json): ").strip()
                 if not filename:
                     filename = "mazzi_dettagliati.json"
-                successo = salva_mazzi_json_migliorato_con_conteggio(mazzi_correnti, filename)
+                successo = salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi_correnti, filename)
                 if successo:
                     print("✅ Salvataggio completato!")
                 else:

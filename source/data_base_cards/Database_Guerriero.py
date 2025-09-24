@@ -4089,7 +4089,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             }],
         "testo_carta": "Immune agli effetti dell'Arte. Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.Se Ferito, il Nefarita  può guarire se stesso spendendo 7D",
         "flavour_text": "",
-        "keywords": ["Seguace di Muawijhe"],
+        "keywords": ["Seguace di Demnogonis"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {

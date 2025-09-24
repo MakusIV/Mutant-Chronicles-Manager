@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "tipo_export": "mazzi_dettagliati_organizzati",
-    "versione": "2.1",
-    "data_creazione": "2025-09-24T16:38:25.133276",
+    "tipo_export": "mazzi_dettagliati_con_apostoli",
+    "versione": "2.2",
+    "data_creazione": "2025-09-24T19:04:08.147682",
     "numero_mazzi": 2,
-    "formato": "inventario_raggruppato_con_conteggio_e_organizzazione",
-    "descrizione": "Mazzi con inventari organizzati per fazioni (guerrieri) e classi (supporto)"
+    "formato": "inventario_con_fazioni_classi_e_apostoli",
+    "descrizione": "Mazzi con inventari organizzati per fazioni, classi supporto e apostoli Oscura Legione"
   },
   "mazzi_dettagliati": [
     {
@@ -27,10 +27,28 @@
               "numero_carta": "",
               "keywords": [],
               "abilita": []
+            },
+            "Artefatto Suicida": {
+              "copie": 2,
+              "fazione": "Mishima",
+              "set_espansione": "Base",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 10,
+                "sparare": 0,
+                "armatura": 0,
+                "valore": 3
+              },
+              "numero_carta": "",
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
+              ]
             }
           },
           "Capitol": {
-            "Free Marine": {
+            "Mercenario Ex-Capitol": {
               "copie": 3,
               "fazione": "Capitol",
               "set_espansione": "Base",
@@ -46,8 +64,8 @@
               "keywords": [],
               "abilita": []
             },
-            "Mercenario Ex-Capitol": {
-              "copie": 1,
+            "Free Marine": {
+              "copie": 3,
               "fazione": "Capitol",
               "set_espansione": "Base",
               "rarity": "Common",
@@ -87,26 +105,6 @@
       "inventario_supporto": {
         "Equipaggiamento": {},
         "Speciale": {
-          "Empatia Mentale": {
-            "copie": 2,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [],
-            "valore": null
-          },
-          "Empatia Della Manipolazione": {
-            "copie": 4,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [],
-            "valore": null
-          },
           "Nato Fortunato": {
             "copie": 4,
             "classe": "Speciale",
@@ -118,7 +116,7 @@
             "valore": null
           },
           "Insubordinazione": {
-            "copie": 4,
+            "copie": 3,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -129,8 +127,28 @@
             ],
             "valore": null
           },
-          "Empatia Di Cambiamento": {
+          "Empatia Della Manipolazione": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": null
+          },
+          "Empatia Mentale": {
             "copie": 3,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": null
+          },
+          "Empatia Di Cambiamento": {
+            "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -140,7 +158,7 @@
             "valore": null
           },
           "Giurare Vendetta": {
-            "copie": 4,
+            "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -148,13 +166,23 @@
             "numero_carta": "",
             "keywords": [],
             "valore": null
+          },
+          "Servizio Deferente": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": 0
           }
         },
         "Arte": {},
         "Oscura Simmetria": {},
         "Fortificazioni": {
           "Barriera Rinforzata": {
-            "copie": 3,
+            "copie": 2,
             "classe": "Fortificazioni",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -164,222 +192,6 @@
               "Barriera",
               "Rinforzata",
               "Protezione",
-              "Fortificazione"
-            ]
-          },
-          "Luna": {
-            "copie": 1,
-            "classe": "Fortificazioni",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [
-              "Luna",
-              "Mercenari",
-              "Fortificazione"
-            ]
-          }
-        },
-        "Reliquie": {},
-        "Warzone": {},
-        "Missioni": {}
-      },
-      "metadati_mazzo": {
-        "indice": 1,
-        "data_creazione": "2025-09-24T16:38:25.133739",
-        "totale_carte": 35,
-        "statistiche_base": {
-          "guerrieri_squadra": 10,
-          "guerrieri_schieramento": 0,
-          "carte_supporto": 25
-        },
-        "statistiche_originali": {
-          "numero_totale_carte": 35,
-          "fazioni_presenti": [
-            "Capitol",
-            "Bauhaus",
-            "Mishima"
-          ],
-          "espansioni_utilizzate": [
-            "Base",
-            "Inquisition"
-          ],
-          "distribuzione_per_tipo": {
-            "fortificazione": 4,
-            "speciale": 21
-          }
-        }
-      }
-    },
-    {
-      "inventario_guerrieri": {
-        "squadra": {},
-        "schieramento": {
-          "Oscura Legione": {
-            "Conquistatore callistoniano": {
-              "copie": 1,
-              "fazione": "Oscura Legione",
-              "set_espansione": "Inquisition",
-              "rarity": "Common",
-              "tipo": "Seguace",
-              "stats": {
-                "combattimento": 6,
-                "sparare": 6,
-                "armatura": 6,
-                "valore": 7
-              },
-              "numero_carta": "",
-              "keywords": [
-                "Seguace di Semai"
-              ],
-              "abilita": [
-                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')",
-                "Abilita(nome='I guerrieri alleati uccidono automaticamente', descrizione='Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
-              ]
-            },
-            "Nepharita di Semai": {
-              "copie": 1,
-              "fazione": "Oscura Legione",
-              "set_espansione": "Base",
-              "rarity": "Rare",
-              "tipo": "Seguace",
-              "stats": {
-                "combattimento": 5,
-                "sparare": 4,
-                "armatura": 5,
-                "valore": 6
-              },
-              "numero_carta": "",
-              "keywords": [
-                "Seguace di Semai"
-              ],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Arte\", descrizione=\"Immune agli effetti dell'Arte\", tipo='Immunita', costo_destino=0, target='Arte', timing='Sempre')",
-                "Abilita(nome='Trasforma guerrieri uccisi in alleati', descrizione='I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto', tipo='Modificatore', costo_destino=1, target='Doomtrooper', timing='Fase Combattimento')",
-                "Abilita(nome='Guarisce se stesso', descrizione='Se Ferito, il Nefarita  può guarire se stesso spendendo 7D', tipo='Guarigione', costo_destino=7, target='', timing='Sempre')"
-              ]
-            },
-            "Golem dell'oscurità": {
-              "copie": 1,
-              "fazione": "Oscura Legione",
-              "set_espansione": "Inquisition",
-              "rarity": "Common",
-              "tipo": "Seguace",
-              "stats": {
-                "combattimento": 6,
-                "sparare": 5,
-                "armatura": 7,
-                "valore": 7
-              },
-              "numero_carta": "",
-              "keywords": [
-                "Seguace di Algeroth"
-              ],
-              "abilita": [
-                "Abilita(nome='Guarisce se stesso', descrizione='Se ferito, può guarire se stesso. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.', tipo='Guarigione', costo_destino=0, target='Guerriero', timing='Sempre')"
-              ]
-            },
-            "Intruso Callistoniano": {
-              "copie": 3,
-              "fazione": "Oscura Legione",
-              "set_espansione": "Base",
-              "rarity": "Uncommon",
-              "tipo": "Seguace",
-              "stats": {
-                "combattimento": 4,
-                "sparare": 4,
-                "armatura": 6,
-                "valore": 6
-              },
-              "numero_carta": "",
-              "keywords": [
-                "Seguace di Semai"
-              ],
-              "abilita": [
-                "Abilita(nome='Guarisce se stesso', descrizione=\"Se Ferito, l'Intruso Callistoniano può guarire se stesso spendendo, in ogni momento, 6D\", tipo='Guarigione', costo_destino=7, target='', timing='Sempre')"
-              ]
-            }
-          }
-        }
-      },
-      "inventario_supporto": {
-        "Equipaggiamento": {},
-        "Speciale": {
-          "Frenesia Dei Necromutanti": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [],
-            "valore": null
-          },
-          "L'Eletto": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [],
-            "valore": 0
-          },
-          "Ammaliatrice": {
-            "copie": 3,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [
-              "Personalita"
-            ],
-            "valore": null
-          }
-        },
-        "Arte": {},
-        "Oscura Simmetria": {},
-        "Fortificazioni": {
-          "La Cattedrale Di Fukido": {
-            "copie": 1,
-            "classe": "Fortificazioni",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [
-              "Cattedrale",
-              "Fukido",
-              "Arte",
-              "Mentale",
-              "Fortificazione"
-            ]
-          },
-          "Nascondiglio": {
-            "copie": 1,
-            "classe": "Fortificazioni",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [
-              "Nascondiglio",
-              "Eretici",
-              "Fortificazione"
-            ]
-          },
-          "Complesso Industriale": {
-            "copie": 1,
-            "classe": "Fortificazioni",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "numero_carta": "",
-            "keywords": [
-              "Industriale",
-              "Complesso",
               "Fortificazione"
             ]
           },
@@ -417,16 +229,232 @@
         "Missioni": {}
       },
       "metadati_mazzo": {
+        "indice": 1,
+        "data_creazione": "2025-09-24T19:04:08.148171",
+        "totale_carte": 35,
+        "statistiche_base": {
+          "guerrieri_squadra": 14,
+          "guerrieri_schieramento": 0,
+          "carte_supporto": 21
+        },
+        "apostoli_presenti": [],
+        "statistiche_originali": {
+          "numero_totale_carte": 35,
+          "fazioni_presenti": [
+            "Capitol",
+            "Bauhaus",
+            "Mishima"
+          ],
+          "espansioni_utilizzate": [
+            "Base",
+            "Inquisition"
+          ],
+          "distribuzione_per_tipo": {
+            "fortificazione": 4,
+            "speciale": 17
+          }
+        }
+      }
+    },
+    {
+      "inventario_guerrieri": {
+        "squadra": {},
+        "schieramento": {
+          "Oscura Legione": {
+            "Muawijhe": {
+              "Nepharita di Demnogonis": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Base",
+                "rarity": "Rare",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 4,
+                  "sparare": 5,
+                  "armatura": 2,
+                  "valore": 5
+                },
+                "numero_carta": "",
+                "keywords": [
+                  "Seguace di Muawijhe"
+                ],
+                "abilita": [
+                  "Abilita(nome=\"Immune agli effetti dell'Arte\", descrizione=\"Immune agli effetti dell'Arte\", tipo='Immunita', costo_destino=0, target='Arte', timing='Sempre')",
+                  "Abilita(nome='Aumenta effetto', descrizione=\"Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.\", tipo='Modificatore', costo_destino=1, target='', timing='Sempre')",
+                  "Abilita(nome='Guarisce se stesso', descrizione='Se Ferito, il Nefarita può guarire se stesso spendendo 7D', tipo='Guarigione', costo_destino=7, target='', timing='Sempre')"
+                ],
+                "apostolo_seguace": "Muawijhe"
+              },
+              "Cultista di muawijhe": {
+                "copie": 2,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Inquisition",
+                "rarity": "Common",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 3,
+                  "sparare": 2,
+                  "armatura": 4,
+                  "valore": 3
+                },
+                "numero_carta": "",
+                "keywords": [
+                  "Seguace di Muawijhe",
+                  "Eretico",
+                  "Cultista di Muawijhe"
+                ],
+                "abilita": [],
+                "apostolo_seguace": "Muawijhe"
+              }
+            },
+            "Algeroth": {
+              "Pretorian Stalker": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Base",
+                "rarity": "Rare",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 12,
+                  "sparare": 3,
+                  "armatura": 8,
+                  "valore": 7
+                },
+                "numero_carta": "",
+                "keywords": [
+                  "Seguace di Algeroth"
+                ],
+                "abilita": [
+                  "Abilita(nome='Aumenta caratteristica', descrizione='Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2', tipo='Modificatore', costo_destino=0, target='Tutto', timing='')"
+                ],
+                "apostolo_seguace": "Algeroth"
+              },
+              "Golem dell'oscurità": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Inquisition",
+                "rarity": "Common",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 6,
+                  "sparare": 5,
+                  "armatura": 7,
+                  "valore": 7
+                },
+                "numero_carta": "",
+                "keywords": [
+                  "Seguace di Algeroth"
+                ],
+                "abilita": [
+                  "Abilita(nome='Guarisce se stesso', descrizione='Se ferito, può guarire se stesso. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.', tipo='Guarigione', costo_destino=0, target='Guerriero', timing='Sempre')"
+                ],
+                "apostolo_seguace": "Algeroth"
+              }
+            }
+          }
+        }
+      },
+      "inventario_supporto": {
+        "Equipaggiamento": {},
+        "Speciale": {
+          "Frenesia Dei Necromutanti": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": null
+          },
+          "Caduto In Disgrazia": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": null
+          },
+          "Ammaliatrice": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [
+              "Personalita"
+            ],
+            "valore": null
+          },
+          "L'Eletto": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [],
+            "valore": 0
+          }
+        },
+        "Arte": {},
+        "Oscura Simmetria": {},
+        "Fortificazioni": {
+          "Barriera Rinforzata": {
+            "copie": 1,
+            "classe": "Fortificazioni",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [
+              "Barriera",
+              "Rinforzata",
+              "Protezione",
+              "Fortificazione"
+            ]
+          },
+          "Cittadella Di Muawijhe": {
+            "copie": 3,
+            "classe": "Fortificazioni",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "numero_carta": "",
+            "keywords": [
+              "Muawijhe",
+              "Seguace di Muawijhe",
+              "Cittadella",
+              "Fortificazione"
+            ]
+          }
+        },
+        "Reliquie": {},
+        "Warzone": {},
+        "Missioni": {}
+      },
+      "metadati_mazzo": {
         "indice": 2,
-        "data_creazione": "2025-09-24T16:38:25.134576",
-        "totale_carte": 16,
+        "data_creazione": "2025-09-24T19:04:08.149026",
+        "totale_carte": 14,
         "statistiche_base": {
           "guerrieri_squadra": 0,
-          "guerrieri_schieramento": 6,
-          "carte_supporto": 10
+          "guerrieri_schieramento": 5,
+          "carte_supporto": 9
+        },
+        "apostoli_presenti": [
+          "Muawijhe",
+          "Algeroth"
+        ],
+        "statistiche_apostoli": {
+          "Muawijhe": 2,
+          "Algeroth": 2
         },
         "statistiche_originali": {
-          "numero_totale_carte": 16,
+          "numero_totale_carte": 14,
           "fazioni_presenti": [
             "Oscura Legione"
           ],
@@ -435,7 +463,7 @@
             "Inquisition"
           ],
           "distribuzione_per_tipo": {
-            "fortificazione": 5,
+            "fortificazione": 4,
             "speciale": 5
           }
         }
@@ -445,67 +473,77 @@
   "statistiche_aggregate": {
     "panoramica_generale": {
       "numero_mazzi": 2,
-      "totale_carte": 51,
-      "totale_guerrieri_squadra": 10,
-      "totale_guerrieri_schieramento": 6,
-      "totale_carte_supporto": 35,
-      "media_carte_per_mazzo": 25.5,
-      "media_guerrieri_squadra": 5.0,
-      "media_guerrieri_schieramento": 3.0,
-      "media_supporto": 17.5
+      "totale_carte": 49,
+      "totale_guerrieri_squadra": 14,
+      "totale_guerrieri_schieramento": 5,
+      "totale_carte_supporto": 30,
+      "media_carte_per_mazzo": 24.5,
+      "media_guerrieri_squadra": 7.0,
+      "media_guerrieri_schieramento": 2.5,
+      "media_supporto": 15.0
     },
     "distribuzione_fazioni": {
       "squadra": {
-        "Mishima": 3,
-        "Capitol": 4,
+        "Mishima": 5,
+        "Capitol": 6,
         "Bauhaus": 3
       },
       "schieramento": {
-        "Oscura Legione": 6
+        "Oscura Legione": 5
       }
     },
     "distribuzione_classi_supporto": {
-      "Fortificazioni": 9,
-      "Speciale": 26
+      "Fortificazioni": 8,
+      "Speciale": 22
+    },
+    "distribuzione_apostoli": {
+      "Muawijhe": 3,
+      "Algeroth": 2
     },
     "riepilogo_mazzi": [
       {
         "indice_mazzo": 1,
         "totale_carte": 35,
-        "guerrieri_squadra": 10,
+        "guerrieri_squadra": 14,
         "guerrieri_schieramento": 0,
-        "carte_supporto": 25,
+        "carte_supporto": 21,
         "fazioni_squadra": [
           "Mishima",
           "Capitol",
           "Bauhaus"
         ],
         "fazioni_schieramento": [],
+        "apostoli_presenti": [],
         "classi_supporto": [
           "Fortificazioni",
           "Speciale"
         ],
         "espansioni_utilizzate": [
-          "Base"
+          "Base",
+          "Inquisition"
         ]
       },
       {
         "indice_mazzo": 2,
-        "totale_carte": 16,
+        "totale_carte": 14,
         "guerrieri_squadra": 0,
-        "guerrieri_schieramento": 6,
-        "carte_supporto": 10,
+        "guerrieri_schieramento": 5,
+        "carte_supporto": 9,
         "fazioni_squadra": [],
         "fazioni_schieramento": [
           "Oscura Legione"
+        ],
+        "apostoli_presenti": [
+          "Muawijhe",
+          "Algeroth"
         ],
         "classi_supporto": [
           "Fortificazioni",
           "Speciale"
         ],
         "espansioni_utilizzate": [
-          "Inquisition",
-          "Base"
+          "Base",
+          "Inquisition"
         ]
       }
     ]
