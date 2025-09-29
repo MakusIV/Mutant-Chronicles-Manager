@@ -5,6 +5,7 @@ classi, usecase e utilità per la creazione dei mazzi da gioco
 """
 
 import random
+import math
 from datetime import datetime
 from typing import List, Dict, Tuple, Optional, Any, Union
 from enum import Enum
@@ -426,7 +427,7 @@ class CreatoreMazzo:
         Returns:
             float: Potenza relativa (0-1)
         """
-        potenza = self._calcola_potenza_carte(oscura)
+        potenza = self._calcola_potenza_carta(oscura)
         return potenza
         
         # Analizza effetti
@@ -529,7 +530,7 @@ class CreatoreMazzo:
         # Statistiche base della warzone
         
 
-        potenza = warzone.stats.combattimento + warzone.stats.sparare + warzone.stats.armatura
+        potenza = warzone.stats['combattimento'] + warzone.stats['sparare'] + warzone.stats['armatura']
         
         # Bonus per fazioni/tipi specifici
         if hasattr(warzone, 'modificatore_difensore'):
@@ -564,9 +565,9 @@ class CreatoreMazzo:
         max_potenza = 0
         
         for warzone in self.collezione.get_carte_per_tipo('warzone'):
-            potenza = (warzone.stats_difensori.get('combattimento', 0) + 
-                      warzone.stats_difensori.get('sparare', 0) + 
-                      warzone.stats_difensori.get('armatura', 0))
+            potenza = (warzone.stats.get('combattimento', 0) + 
+                      warzone.stats.get('sparare', 0) + 
+                      warzone.stats.get('armatura', 0))
             max_potenza = max(max_potenza, potenza)
             
         return max_potenza if max_potenza > 0 else 1.0
@@ -778,9 +779,10 @@ class CreatoreMazzo:
             Tupla (squadra, schieramento)
         """
         # Ottieni tutti i guerrieri disponibili e filtrali per espansione
-        tutti_guerrieri = self.collezione.get_carte_per_tipo('guerriero')
+        tutti_guerrieri = self.collezione.get_carte_per_tipo_mazzo('guerriero')
         guerrieri_disponibili = self.filtra_carte_per_espansioni(tutti_guerrieri, espansioni_richieste)
-    
+
+        
         if not guerrieri_disponibili:
             return [], []
         
@@ -808,7 +810,8 @@ class CreatoreMazzo:
         guerrieri_disponibili_ammessi.extend(guerrieri_doomtrooper) 
         guerrieri_disponibili_ammessi.extend(guerrieri_fratellanza) 
         guerrieri_disponibili_ammessi.extend(guerrieri_oscura_legione) 
-        
+
+
         for guerriero in guerrieri_disponibili_ammessi:
             
             if guerriero.nome in punteggi:
@@ -818,50 +821,58 @@ class CreatoreMazzo:
             
             # Bonus per orientamenti
             bonus_moltiplicatore = 1.0
-            BONUS_SPECIALIZZAZIONE = 2.0 # RADDOPPIA RISPETTO IL BONUS BASE
-            BONUS_ORIENTAMENTO = 2.0 # RADDOPPIA RISPETTO LA SPECIALIZZAZIONE
-            
+            BONUS_SPECIALIZZAZIONE = 2.0 # RADDOPPIA RISPETTO IL BONUS BASE            
+            bonus_factor_guerriero_fondamentale = 1
+
+            if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
+                bonus_factor_guerriero_fondamentale = 3 # triplica il punteggio se è una carta fondamentale
             
             # Orientamento Doomtrooper
-            if doomtrooper: # and guerriero.fazione in FAZIONI_DOOMTROOPER:
-                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se la fazione è nei doomtroopers
-                
-                if guerriero.fazione.value in orientamento_doomtrooper:
-                    bonus_moltiplicatore *= 2 # raddoppia il punteggio se la fazione è nei doomtroopers
             
-            # Orientamento Arte (per guerrieri Fratellanza)
-            if fratellanza: # and guerriero.fazione in FAZIONI_FRATELLANZA:
-                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE
+            if doomtrooper:
+                if guerriero.fazione in FAZIONI_DOOMTROOPER and (not orientamento_doomtrooper or orientamento_doomtrooper == [] ):
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
 
-                for abilita in guerriero.abilita:
-                    if abilita.tipo == 'Arte':
-                        disciplina = abilita.nome
-                        if disciplina in orientamento_arte:
-                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO # duplica se il fratello lancia la specifica arte
-                        elif disciplina == DisciplinaArte.TUTTE.value:
-                            bonus_moltiplicatore *= (BONUS_ORIENTAMENTO + 1)  # triplica se il fratello lancia la specifica arte
-                            
+                elif guerriero.fazione.value in orientamento_doomtrooper:
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale# raddoppia il punteggio se la fazione è anche nell'orientamento doomtroopers
+                
+    
+            # Orientamento Arte (per guerrieri Fratellanza)
+            if fratellanza: # 
+                
+                if guerriero.fazione in FAZIONI_FRATELLANZA and (not orientamento_arte or orientamento_arte == [] ):
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale
+
+                elif len(orientamento_arte) > 0: # anche guerrieri non della fratellanza possono lanciare l'arte                    
+                    for abilita in guerriero.abilita:
+                        if abilita.tipo == 'Arte':
+                            disciplina = abilita.nome
+                            if disciplina in orientamento_arte:
+                                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale # duplica se il fratello lancia la specifica arte
+                            elif disciplina == DisciplinaArte.TUTTE.value:
+                                bonus_moltiplicatore *= (BONUS_SPECIALIZZAZIONE + 1)  * bonus_factor_guerriero_fondamentale   # triplica se il fratello lancia la specifica arte
+                                
             
             # Orientamento Apostolo (per guerrieri Oscura Legione)
             if oscura_legione: # and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
-                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE
-                if orientamento_apostolo :
+
+                if guerriero.fazione in FAZIONI_OSCURA_LEGIONE and (not orientamento_apostolo or orientamento_apostolo == [] ):
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale
+                    
+
+                elif len(orientamento_apostolo) > 0 :
                     for apostolo in orientamento_apostolo:
                         if f"Seguace di {apostolo}" in guerriero.keywords:
-                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO
-                
-            if orientamento_cultista and 'Cultista' in guerriero.keywords:
-                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE +  1 # triplica il bonus per cultisti
-            
-            
+                            bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale
+
+                if orientamento_cultista and 'Cultista' in guerriero.keywords:
+                    bonus_moltiplicatore *= 1.5 # triplica il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
+                            
             # Orientamento Eretico
+
             if orientamento_eretico and 'Eretico' in guerriero.keywords:
-                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE +  1 # triplica il bonus per eretici
-            
-            # Bonus per carte fondamentali
-            if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
-                bonus_moltiplicatore *= 10  # Priorità massima
-            
+                    bonus_moltiplicatore *= 1.5 # triplica il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
+        
             
             punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore
         
@@ -873,14 +884,15 @@ class CreatoreMazzo:
         # Seleziona guerrieri garantendo distribuzione equa
         squadra = []
         schieramento = []
-        
+
+                
         # Prima seleziona le carte fondamentali
         for guerriero in guerrieri_ordinati:
             if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
 
                 quantita_richiesta = min(
                     getattr(guerriero, 'quantita_minima_consigliata', 1),
-                    getattr(guerriero, 'quantita', 1)
+                    getattr(guerriero, 'quantita', 1) #self.collezione.get_copie_disponibili(tipo_carta = 'guerriero', carta = guerriero)#
                 )
                 
                 for _ in range(quantita_richiesta):
@@ -891,8 +903,7 @@ class CreatoreMazzo:
         
         # Poi seleziona gli altri guerrieri
         for guerriero in guerrieri_ordinati:
-            if len(squadra) + len(schieramento) >= numero_guerrieri_target:
-                break
+            
             if guerriero.nome in [g.nome for g in squadra] or guerriero.nome in [g.nome for g in schieramento]:
                 continue
                 
@@ -902,9 +913,10 @@ class CreatoreMazzo:
             
             # Calcola quantità da aggiungere
             potenza = self.calcola_potenza_guerriero(guerriero)
-            quantita_disponibile = getattr(guerriero, 'quantita', 1)
+            quantita_disponibile = getattr(guerriero, 'quantita', 1) #quantita_disponibile = self.collezione.get_copie_disponibili(tipo_carta = 'guerriero', carta = guerriero)
             quantita_consigliata = getattr(guerriero, 'quantita_minima_consigliata', 1)            
             
+            # valuta la quantità minima in base al valore del guerriero (maggiore costo)
             incr_qc = 0
             if guerriero.stats.valore > 6:
                 min_val = random.randint(1, 3)
@@ -931,8 +943,8 @@ class CreatoreMazzo:
             # num_copie = random.randint(1, num_copie)
 
             if oscura_legione and (doomtrooper or fratellanza): 
-                q = round( RAPPORTO_SQUADRA_SCHIERAMENTO + 1 )
-                m = RAPPORTO_SQUADRA_SCHIERAMENTO // q
+                q = RAPPORTO_SQUADRA_SCHIERAMENTO + 1
+                m = RAPPORTO_SQUADRA_SCHIERAMENTO / q
             else:
                 q = 1
                 m = 1
@@ -945,14 +957,20 @@ class CreatoreMazzo:
             for _ in range(num_copie_da_inserire):
                 
                 if inserisci_in_schieramento:
-                    if len(schieramento) < numero_guerrieri_target // q: 
+                    if len(schieramento) <= math.floor( 0.49 + numero_guerrieri_target / q): 
                         schieramento.append(guerriero)
+                    else:
+                        break
                 elif inserisci_in_squadra:
-                    if len(squadra) < numero_guerrieri_target * m:  
+                    if len(squadra) <= math.floor( 0.49 + numero_guerrieri_target * m ):  
                         squadra.append(guerriero)
-                else:
-                    break
-        
+                    else:
+                        break
+            
+
+            if  ( len(squadra) + len(schieramento)) >= numero_guerrieri_target:
+                return squadra, schieramento
+
         return squadra, schieramento
     
     def seleziona_carte_supporto(self, 
@@ -989,7 +1007,8 @@ class CreatoreMazzo:
         }
 
         # Ottieni tutte le carte del tipo richiesto
-        tutte_carte = self.collezione.get_carte_per_tipo(tipo_carta)
+        tutte_carte = self.collezione.get_carte_per_tipo_mazzo(tipo_carta)
+        # Filtra per espansioni
         carte_disponibili = self.filtra_carte_per_espansioni(tutte_carte, espansioni_richieste)
         
         if not carte_disponibili:
@@ -1007,10 +1026,11 @@ class CreatoreMazzo:
                 carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
             
                 if carta_compatibile:
-                    quantita_richiesta = max(
-                                                5, 
-                                                min( getattr(carta, 'quantita_minima_consigliata', 1), getattr(carta, 'quantita', 1))
-                    )                    
+                    quantita_richiesta = min( 
+                        getattr(carta, 'quantita_minima_consigliata', 1), 
+                        getattr(carta, 'quantita', 1)
+                    )
+                                    
                     for _ in range(quantita_richiesta):
                         carte_selezionate.append(carta)
         
@@ -1078,24 +1098,28 @@ class CreatoreMazzo:
             quantita_disponibile = getattr(carta, 'quantita', 1)
             quantita_consigliata = getattr(carta, 'quantita_minima_consigliata', 1)
             
+            # Calcola numero di copie basato sulla potenza
             if potenza > 0.7:
-                num_copie = min(5, quantita_disponibile, quantita_consigliata + 1)
+                num_copie = min(random.randint(3,5), quantita_disponibile, quantita_consigliata + 1)
             elif potenza > 0.4:
-                num_copie = min(3, quantita_disponibile, quantita_consigliata)
+                num_copie = min(random.randint(2,4), quantita_disponibile, quantita_consigliata)
             else:
-                num_copie = min(1, quantita_disponibile)
+                num_copie = min(random.randint(1,2), quantita_disponibile)
             
             if num_copie < 1:
                 num_copie = 1
 
             # Aggiungi casualità
-            num_copie = min(5, random.randint(1, num_copie)) #random.randint(1, min(num_copie, numero_carte - len(carte_selezionate)))
-            
-            for _ in range(num_copie):
-                if len(carte_selezionate) < numero_carte:
-                    carte_selezionate.append(carta)
-        
+            #num_copie = min(5, random.randint(1, num_copie)) #random.randint(1, min(num_copie, numero_carte - len(carte_selezionate)))
+            num_copie_da_inserire = min(5, num_copie)
 
+            for _ in range(num_copie_da_inserire):
+
+                if len(carte_selezionate) <= numero_carte:
+                    carte_selezionate.append(carta)
+                else:
+                    return carte_selezionate
+        
         return carte_selezionate
     
 
@@ -1123,7 +1147,7 @@ class CreatoreMazzo:
         tipo_carta = type(carta).__name__.lower()
         
         # Verifica compatibilità per tipo
-        if tipo_carta in ['arte', 'reliquia', 'oscura_simmetria', 'fortificazione', 'warzone', 'speciale', 'equipaggiamento']:
+        if tipo_carta in ['arte', 'reliquia', 'oscura_simmetria', 'fortificazione', 'warzone', 'speciale', 'equipaggiamento', 'missione']:
             # Verifica se c'è almeno un guerriero che può usare la carta
             for guerriero in guerrieri:                
                 
@@ -1134,10 +1158,10 @@ class CreatoreMazzo:
                         result = True
                         numero_guerrieri_compatibili += 1
                 
-                elif tipo_carta in ['arte', 'oscura simmetria', 'reliquia', 'warzone']:
+                elif tipo_carta in ['arte', 'oscura_simmetria', 'reliquia', 'warzone']:
                     risultato = carta.puo_essere_associata_a_guerriero(guerriero)
                     
-                    if ( tipo_carta in ['arte', 'oscura simmetria'] and risultato.get('puo_lanciare') ) or  ( tipo_carta == 'warzone' and risultato.get('puo_essere associata') ) or (tipo_carta == 'reliquia' and risultato.get('puo_assegnare')):
+                    if ( tipo_carta in ['arte', 'oscura_simmetria'] and risultato.get('puo_lanciare') ) or  ( tipo_carta == 'warzone' and risultato.get('puo_essere_associata') ) or (tipo_carta == 'reliquia' and risultato.get('puo_assegnare')):
                         result = True
                         numero_guerrieri_compatibili += 1
                 
@@ -1170,15 +1194,15 @@ class CreatoreMazzo:
         # Calcola percentuali base
         for tipo, percentuale in DISTRIBUZIONE_BASE.items():
             if tipo == 'missione':
-                distribuzione[tipo] = min(2, numero_totale // 30)  # Max 2 missioni
+                distribuzione[tipo] = random.randint(2,5)  # Max 5 missioni
             else:
                 min_perc, max_perc = percentuale
-                perc_media = (min_perc + max_perc) / 2
+                #perc_media = (min_perc + max_perc) / 2
                 
                 # Aggiungi casualità
-                perc_finale = perc_media + random.uniform(-0.02, 0.02)
-                perc_finale = max(min_perc, min(max_perc, perc_finale))
-                
+                perc_finale = min_perc + random.random()*(max_perc - min_perc)
+                #perc_finale = perc_media + random.uniform(-0.02, 0.02)
+                #perc_finale = max(min_perc, min(max_perc, perc_finale))                
                 distribuzione[tipo] = int(numero_totale * perc_finale)
         
         # Ridistribuisci se Arte o Oscura Simmetria non sono usate
@@ -1198,14 +1222,14 @@ class CreatoreMazzo:
             
         if not Set_Espansione.INQUISITION.value in espansioni_richieste:
             ridistribuzione_totale += distribuzione['inquisition']
-            distribuzione['warzone'] = 0
+            distribuzione['reliquia'] = 0
         
         if ridistribuzione_totale > 0:
             # Ridistribuisci alle altre carte
             if Set_Espansione.INQUISITION.value in espansioni_richieste:
                distribuzione['reliquia'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['reliquia'])
             
-            if Set_Espansione.WARZONE in espansioni_richieste:
+            if Set_Espansione.WARZONE.value in espansioni_richieste:
                distribuzione['warzone'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['warzone'])
             
             distribuzione['equipaggiamento'] += int(ridistribuzione_totale * RIDISTRIBUZIONE_PERCENTUALE['equipaggiamento'])
@@ -1215,14 +1239,28 @@ class CreatoreMazzo:
         # Assicura che il totale sia corretto
         totale_attuale = sum(distribuzione.values())
         differenza = numero_totale - totale_attuale
-        
-        if differenza > 0:
-            distribuzione['speciale'] += differenza
-        elif differenza < 0:
 
-            # Riduci carte speciali se necessario
-            distribuzione['speciale'] = max(0, distribuzione['speciale'] + differenza)
-        
+        if differenza > 0:
+            sign = 1
+        else:
+            sign = -1
+
+
+        if abs(differenza) > 0:
+            
+            q_spec = abs(math.floor(0.49 + 0.6 * differenza))          
+            distribuzione['speciale'] = distribuzione['speciale'] + sign * q_spec
+            residuo = differenza - sign * q_spec
+            q_guer = abs(math.floor(0.49 + 0.4 * residuo))
+            
+            if q_guer > 0:
+                distribuzione['guerriero'] = distribuzione['guerriero'] + sign * q_guer
+
+            residuo = residuo - sign * q_guer
+            
+            if abs(residuo) > 0:
+                distribuzione['equipaggiamento'] = distribuzione['equipaggiamento'] + residuo            
+
         return distribuzione
     
 
@@ -1513,10 +1551,10 @@ def determina_classe_supporto(carta) -> str:
         'Arte': 'Arte',
         'Oscura_Simmetria': 'Oscura Simmetria',
         'OscuraSimmetria': 'Oscura Simmetria',
-        'Fortificazione': 'Fortificazioni',
-        'Reliquia': 'Reliquie',
+        'Fortificazione': 'Fortificazione',
+        'Reliquia': 'Reliquia',
         'Warzone': 'Warzone',
-        'Missione': 'Missioni'
+        'Missione': 'Missione'
     }
     
     return mappatura_classi.get(nome_classe, nome_classe)
@@ -1537,6 +1575,7 @@ def crea_info_guerriero_sicura(guerriero):
             'set_espansione': ottieni_attributo_sicuro(guerriero, 'set_espansione', 'Set sconosciuto'),
             'rarity': ottieni_attributo_sicuro(guerriero, 'rarity', 'Rarity sconosciuta'),
             'tipo': ottieni_attributo_sicuro(guerriero, 'tipo', 'Normale'),
+            'quantita': ottieni_attributo_sicuro(guerriero, 'quantita', 0)
         }
         
         # Statistiche (possono essere in formato diverso)
@@ -1557,7 +1596,7 @@ def crea_info_guerriero_sicura(guerriero):
         guerriero_info['valor_promozione'] = ottieni_attributo_sicuro(guerriero, 'valor_promozione', 0)
         guerriero_info['e_personalita'] = ottieni_attributo_sicuro(guerriero, 'e_personalita', False)
         guerriero_info['keywords'] = ottieni_attributo_sicuro(guerriero, 'keywords', [])
-        guerriero_info['numero_carta'] = ottieni_attributo_sicuro(guerriero, 'numero_carta', '')
+        guerriero_info['quantita'] = ottieni_attributo_sicuro(guerriero, 'quantita', 0)
         
         return guerriero_info
         
@@ -1609,7 +1648,7 @@ def crea_info_carta_supporto_sicura(carta):
         if apostolo_padre:
             carta_info['apostolo_padre'] = apostolo_padre
         
-        carta_info['numero_carta'] = ottieni_attributo_sicuro(carta, 'numero_carta', '')
+        carta_info['quantita'] = ottieni_attributo_sicuro(carta, 'quantita', '')
         carta_info['keywords'] = ottieni_attributo_sicuro(carta, 'keywords', [])
         carta_info['costo_destino'] = ottieni_attributo_sicuro(carta, 'costo_destino', 0)
         
@@ -1744,10 +1783,10 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
         'Speciale': {},
         'Arte': {},
         'Oscura Simmetria': {},
-        'Fortificazioni': {},
-        'Reliquie': {},
+        'Fortificazione': {},
+        'Reliquia': {},
         'Warzone': {},
-        'Missioni': {}
+        'Missione': {}
     }
     
     if not carte_supporto:
@@ -1777,7 +1816,7 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
                     'set_espansione': ottieni_attributo_sicuro(carta, 'set_espansione', 'Base'),
                     'rarity': ottieni_attributo_sicuro(carta, 'rarity', 'Common'),
                     'costo_destino': ottieni_attributo_sicuro(carta, 'costo_destino', 0),
-                    'numero_carta': ottieni_attributo_sicuro(carta, 'numero_carta', ''),
+                    'quantita': ottieni_attributo_sicuro(carta, 'quantita', 0),
                     'keywords': ottieni_attributo_sicuro(carta, 'keywords', [])
                 }
                 
@@ -1830,7 +1869,7 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
                 'set_espansione': 'Unknown',
                 'rarity': 'Common',
                 'costo_destino': 0,
-                'numero_carta': '',
+                'quantita': 0,
                 'keywords': [],
                 'errore_processamento': str(e)
             }
@@ -2916,9 +2955,9 @@ def processa_guerrieri_per_fazioni_con_apostoli(guerrieri: List[Any]) -> Dict[st
                     'rarity': ottieni_attributo_sicuro(guerriero, 'rarity', 'Common'),
                     'tipo': ottieni_attributo_sicuro(guerriero, 'tipo', 'Normale'),
                     'stats': {},
-                    'numero_carta': ottieni_attributo_sicuro(guerriero, 'numero_carta', ''),
+                    'quantita': ottieni_attributo_sicuro(guerriero, 'quantita', 0),
                     'keywords': ottieni_attributo_sicuro(guerriero, 'keywords', []),
-                    'abilita': ottieni_attributo_sicuro(guerriero, 'abilita', [])
+                    'abilita': ottieni_attributo_sicuro(guerriero, 'abilita', [])                    
                 }
                 
                 # Per l'Oscura Legione, determina l'apostolo
@@ -2963,7 +3002,7 @@ def processa_guerrieri_per_fazioni_con_apostoli(guerrieri: List[Any]) -> Dict[st
                 'rarity': 'Common',
                 'tipo': 'Errore',
                 'stats': {'combattimento': 0, 'sparare': 0, 'armatura': 0, 'valore': 0},
-                'numero_carta': '',
+                'quantita': 0,
                 'keywords': [],
                 'abilita': [],
                 'errore_processamento': str(e)
@@ -3028,10 +3067,10 @@ def crea_inventario_dettagliato_mazzo_json_con_conteggio_e_apostoli(mazzo: Dict[
             'Speciale': {},
             'Arte': {},
             'Oscura Simmetria': {},
-            'Fortificazioni': {},
-            'Reliquie': {},
+            'Fortificazione': {},
+            'Reliquia': {},
             'Warzone': {},
-            'Missioni': {}
+            'Missione': {}
         },
         'metadati_mazzo': {
             'indice': indice,
@@ -3718,7 +3757,7 @@ def menu_interattivo_mazzi():
             if mazzi_correnti:
                 filename = input("Nome file (default: mazzi_dettagliati.json): ").strip()
                 if not filename:
-                    filename = "mazzi_dettagliati.json"
+                    filename = "mazzi.json"
                 successo = salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi_correnti, filename)
                 if successo:
                     print("✅ Salvataggio completato!")
@@ -3727,7 +3766,7 @@ def menu_interattivo_mazzi():
             else:
                 print("❌ Nessun mazzo da salvare. Usa prima l'opzione 1.")
         elif scelta == "4":
-            if mazzi_correnti:
+            if mazzi_correnti and False:
                 filename = input("Nome file (default: mazzi_sicuri.json): ").strip()
                 if not filename:
                     filename = "mazzi_sicuri.json"
@@ -3811,7 +3850,7 @@ def menu_interattivo_mazzi():
             else:
                 print("❌ Nessun mazzo in cui cercare. Usa prima l'opzione 1.")
         elif scelta == "11":
-            if mazzi_correnti:
+            if mazzi_correnti and False:
                 esempio_salvataggio_mazzi_migliorato(mazzi_correnti)
             else:
                 print("❌ Nessun mazzo per l'esempio. Usa prima l'opzione 1.")
@@ -3911,8 +3950,8 @@ if __name__ == "__main__":
     collezioni = creazione_Collezione_Giocatore(2, [Set_Espansione.BASE, Set_Espansione.INQUISITION, Set_Espansione.WARZONE], orientamento = False)
 
     mazzo_1 = crea_mazzo_da_gioco(collezioni[0],
-                    numero_carte_max = 60,
-                    numero_carte_min = 50,
+                    numero_carte_max = 100,
+                    numero_carte_min = 80,
                     espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                     doomtrooper = True,
                     orientamento_doomtrooper = ["Bauhaus", "Capitol", "Fratellanza"],
@@ -3924,8 +3963,8 @@ if __name__ == "__main__":
                     orientamento_cultista = False)
     
     mazzo_2 = crea_mazzo_da_gioco(collezioni[1],
-                    numero_carte_max = 60,
-                    numero_carte_min = 50,
+                    numero_carte_max = 100,
+                    numero_carte_min = 80,
                     espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                     doomtrooper = True,
                     orientamento_doomtrooper = ["Imperiale", "Cybertronic", "Freelancer"],

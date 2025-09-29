@@ -1,5 +1,0 @@
-Errore durante serializzazione JSON: 'Guerriero' object has no attribute 'tipo_guerriero'
-
-Numero mazzi: 2
-Mazzo 0: 57 carte
-Mazzo 1: 38 carte

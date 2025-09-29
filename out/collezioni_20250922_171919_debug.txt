@@ -1,6 +1,0 @@
-Errore durante serializzazione JSON: '<' not supported between instances of 'Fazione' and 'Fazione'
-
-Numero collezioni: 3
-Collezione 0: ID 1 - 1119 carte
-Collezione 1: ID 2 - 539 carte
-Collezione 2: ID 3 - 303 carte

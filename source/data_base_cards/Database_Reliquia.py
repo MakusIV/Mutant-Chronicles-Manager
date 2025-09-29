@@ -24,7 +24,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Mishima"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -72,7 +72,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -112,7 +112,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -152,7 +152,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Doomtrooper"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -200,7 +200,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": [],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -269,7 +269,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -309,7 +309,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": [],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -357,7 +357,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Cybertronic"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -416,7 +416,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": ["Carte Equipaggiamento non Assegnabili"],
             "livello_minimo": 0
         },
@@ -446,7 +446,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -484,7 +484,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -543,7 +543,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -583,7 +583,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -647,7 +647,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Capitol"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -687,7 +687,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": ["Carte delle Arti non Assegnabili", "Carte Doni degli Apostoli non Assegnabili"],
             "livello_minimo": 0
         },
@@ -744,7 +744,7 @@ DATABASE_RELIQUIE = {
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": ["Eretici scartati", "Eretici non introducibili"],
             "livello_minimo": 6
         },
@@ -782,9 +782,9 @@ DATABASE_RELIQUIE = {
         "tipo": "",
         "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": [],
+            "fazioni_permesse": ["Oscura Legione"],
             "corporazioni_specifiche": [],
-            "tipi_guerriero": ["Normale"],
+            "tipi_guerriero": [],
             "keywords_richieste": [],
             "livello_minimo": 0
         },
@@ -847,15 +847,18 @@ def crea_reliquia_da_database(nome_reliquia: str) -> Optional[Reliquia]:
     restr_data = dati["restrizioni"]
 
     corporazioni = [t.value for t in CorporazioneSpecifica]
-    corporazioni.extend(t.value for t in Fazione)
+    #corporazioni.extend(t.value for t in Fazione)
     
-    for f in restr_data["fazioni_permesse"]:
+    for f in restr_data["corporazioni_specifiche"]:
         if f not in corporazioni:
-            print(f"errore nell'assegnazione della proprietà fazioni_permesse. La corporazione {f} non è presente nella lista delle coprorazioni ammissibili. {[c for c in corporazioni]}")
+            print(f"errore nell'assegnazione della proprietà corporazioni_specifiche. La corporazione {f} non è presente nella lista delle coprorazioni ammissibili. {[c for c in corporazioni]}")
     
+    if "Doomtrooper" in restr_data["fazioni_permesse"]:
+            restr_data["fazioni_permesse"].remove("Doomtrooper")
+            restr_data["fazioni_permesse"].extend(DOOMTROOPER)
 
     reliquia.restrizioni = RestrizioneReliquia(
-        fazioni_permesse =[f for f in restr_data["fazioni_permesse"]],
+        fazioni_permesse =[Fazione(f) for f in restr_data["fazioni_permesse"]],
         corporazioni_specifiche=restr_data["corporazioni_specifiche"],
         tipi_guerriero=restr_data["tipi_guerriero"],
         keywords_richieste=restr_data["keywords_richieste"],

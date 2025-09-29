@@ -2083,7 +2083,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -2159,7 +2159,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -2536,7 +2536,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia tutte le ARTI",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Turno"
             }
         ],
@@ -2612,7 +2612,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia tutte le carte ARTE",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Turno"
             }
         ],
@@ -2802,7 +2802,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia tutte le carte ARTE",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Turno"
             },
             {
@@ -2848,7 +2848,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia tutte le ARTI ed è immune agli effetti delle carte dell'Oscura Simmetria",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Turno"
             },
             {
@@ -2971,7 +2971,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia tutti gli aspetti dell'Arte",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Turno"
             },
             {
@@ -3624,7 +3624,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Turno"
             },],
         "testo_carta": "PERSONALITA. SEGUACE E NEFARIA DI ALGEROTH. Valpurgius è l'Arcimago di Alakhai, può equipaggiare qualsiasi SEGUACE DI ALGEROTH con qualsiasi carta dell'Oscura Simmetria in ogni momento, senza spendere Azioni. Può manipolare l'Arte e lanciare qualsiasi incantesimo dell'Arte.",
@@ -4068,7 +4068,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Immune agli effetti dell'Arte",
                 "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Sempre"
             },
             {
@@ -4351,7 +4351,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Immune agli effetti dell'Arte",
                 "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Sempre"
             }
         ],
@@ -4570,7 +4570,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Immune agli effetti dell'Arte",
                 "tipo": "Immunita",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Sempre"
             },
             {
@@ -4654,7 +4654,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Turno"
             },
         ],
@@ -4824,7 +4824,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia qualsiasi Arte o Incantesimo dell'Arte",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte",
+                "target": "Tutte le Discipline",
                 "timing": "Turno"
             }
         ],

@@ -225,11 +225,12 @@ class Warzone:
         # Verifica compatibilità area
         aree_permesse = [a.value for a in self.restrizioni.aree_utilizzabili]
 
-        if AreaCompatibileWarzone.QUALSIASI_AREA.value not in aree_permesse:
-            if AreaCompatibileWarzone.SQUADRA in aree_permesse and fazione not in FAZIONI_SQUADRA:
-                if AreaCompatibileWarzone.SCHIERAMENTO in aree_permesse and fazione not in FAZIONI_SCHIERAMENTO:
-                    risultato["puo_essere_associata"] = False
-                    risultato["errori"].append(f"Non può essere assegnata alla fazione: {fazione} in nessuna area permessa")
+        # esclusiva per gioco digitale
+        # if AreaCompatibileWarzone.QUALSIASI_AREA.value not in aree_permesse:
+        #     if AreaCompatibileWarzone.SQUADRA in aree_permesse and fazione not in FAZIONI_SQUADRA:
+        #         if AreaCompatibileWarzone.SCHIERAMENTO in aree_permesse and fazione not in FAZIONI_SCHIERAMENTO:
+        #             risultato["puo_essere_associata"] = False
+        #             risultato["errori"].append(f"Non può essere assegnata alla fazione: {fazione} in nessuna area permessa")
  
         # questa verifica comporta che se sono specificate fazioni_permesse, la warzone è utilizzabile solo dale fazioni presenti in fazioni_permesse anche se sono coerenti con l'assegnazione nella squadra o nello schieramento
         if self.restrizioni.fazioni_permesse and len(self.restrizioni.fazioni_permesse) > 0 and fazione not in self.restrizioni.fazioni_permesse:
@@ -257,23 +258,23 @@ class Warzone:
         
         if "Solo Doomtrooper" in self.restrizioni.limiti_utilizzo: 
                 if guerriero.fazione == Fazione.OSCURA_LEGIONE:
-                    risultato["puo_assegnare"] = False
+                    risultato["puo_essere_associata"] = False
                     risultato["errori"].append("Solo per Doomtrooper")
 
         elif "Solo Oscura Legione" in self.restrizioni.limiti_utilizzo:
             if guerriero.fazione != Fazione.OSCURA_LEGIONE:
-                risultato["puo_assegnare"] = False
+                risultato["puo_essere_associata"] = False
                 risultato["errori"].append("Solo per Oscura Legione")                            
 
         elif "Solo Seguaci di" in self.restrizioni.limiti_utilizzo:
                 apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
                 if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
-                    risultato["puo_assegnare"] = False
+                    risultato["puo_essere_associata"] = False
                     risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
           
         elif "Solo Eretici" in self.restrizioni.limiti_utilizzo:
                 if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
-                    risultato["puo_assegnare"] = False
+                    risultato["puo_essere_associata"] = False
                     risultato["errori"].append(f"Solo Eretici")
      
         

@@ -316,6 +316,34 @@ class CollezioneGiocatore:
         """Restituisce le carte di un tipo specifico"""
         return self.carte.get(tipo_carta, [])
     
+    def get_carte_per_tipo_mazzo(self, tipo_carta: str) -> List[Any]:
+        """Restituisce le carte di un tipo specifico con quantità per mazzo: a differenza di get_carte_tipo, ogni carta è unica"""
+        collezione = self.carte.get(tipo_carta, [])
+        
+        #resetta quantità
+
+        for v in collezione:
+            v.quantita = 0
+
+        elenco = {}
+        for v in collezione:
+            if v.nome in elenco.keys():
+                elenco[v.nome].quantita += 1
+            else:
+                v.quantita = 1                
+                elenco[v.nome] = v
+                
+        return list(elenco.values())
+
+    def get_copie_disponibili(self, tipo_carta: str, carta: Any) -> int:
+        collezione = self.carte.get(tipo_carta, [])        
+        copie = 0
+        
+        if carta in collezione:
+            copie += 1
+        
+        return copie
+
     def get_totale_carte(self) -> int:
         """Restituisce il numero totale di carte nella collezione"""
         return sum(len(carte) for carte in self.carte.values())

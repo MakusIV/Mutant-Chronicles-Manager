@@ -166,8 +166,9 @@ class Arte:
         
         # Verifica gestione della disciplina (se specificata)
         if len(guerriero.abilita) > 0:
-            discipline_arte_guerriero = [abilita.nome for abilita in guerriero.abilita if abilita.tipo == "Arte"]   
-            if [DisciplinaArte.TUTTE.value, self.disciplina.value] not in discipline_arte_guerriero:
+            discipline_arte_guerriero = [abilita.target.lower() for abilita in guerriero.abilita if abilita.tipo == "Arte"]   
+           
+            if not any( discipline.lower() not in discipline_arte_guerriero for discipline in [DisciplinaArte.TUTTE.value, self.disciplina.value]):
                 risultato["puo_lanciare"] = False
                 risultato["errori"].append(f"Richiede disciplina in {self.disciplina.value}")      
         

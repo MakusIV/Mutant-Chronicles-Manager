@@ -185,12 +185,12 @@ class Reliquia:
         }
 
         # Verifica fazioni permesse
-        if self.restrizioni.fazioni_permesse != None:
+        if self.restrizioni.fazioni_permesse != None or self.restrizioni.fazioni_permesse != []:
             if hasattr(guerriero, 'fazione'):
-                if guerriero.fazione not in self.restrizioni.fazioni_permesse:
+                if guerriero.fazione.value != "Doomtrooper" and guerriero.fazione not in self.restrizioni.fazioni_permesse:
                     fazioni_str = [f for f in self.restrizioni.fazioni_permesse]
                     risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Fazione non permessa. Richieste: {fazioni_str}")
+                    risultato["errori"].append(f"Fazione non permessa. Richieste: {fazioni_str}")                
         
         if "Solo Doomtrooper" in self.restrizioni.corporazioni_specifiche: 
                 if guerriero.fazione == Fazione.OSCURA_LEGIONE:
@@ -204,12 +204,12 @@ class Reliquia:
 
         elif "Solo Seguaci di" in self.restrizioni.corporazioni_specifiche:
                 apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
-                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
           
         elif "Solo Eretici" in self.restrizioni.corporazioni_specifiche:
-                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Eretici")
             
@@ -263,6 +263,12 @@ class Reliquia:
         Returns:
             Dict con risultato della verifica
         """
+        risultato = {
+            "puo_assegnare": True,
+            "errori": [],
+            "avvertenze": []
+        }
+
         errori = self.puo_essere_associata_a_guerriero(guerriero)["errori"]
         
         # Verifica se è già in gioco (regola unicità)
@@ -280,12 +286,14 @@ class Reliquia:
                 if item in self.incompatibile_con:
                     risultato["errori"].append(f"Incompatibile con equipaggiamento: {item}")
         
-        return {
+        risultato = {
             "puo_assegnare": len(errori) == 0,
             "errori": errori,
             "avvertenze": self._genera_avvertenze(guerriero)
         }
+        return risultato
     
+    # esclusiva per gioco digitale
     def _verifica_requisito_speciale(self, guerriero: object, requisito: str) -> bool:
         """Verifica un requisito speciale specifico"""
         # Implementazione base - da estendere per requisiti specifici
@@ -297,7 +305,7 @@ class Reliquia:
         elif "In combattimento" in requisito:
             return getattr(guerriero, 'in_combattimento', False)
         return True
-    
+    # esclusiva per gioco digitale
     def _genera_avvertenze(self, guerriero: object) -> List[str]:
         """Genera avvertenze per l'assegnazione"""
         avvertenze = []
@@ -336,7 +344,7 @@ class Reliquia:
         self._attiva_effetti()
         
         return True
-    
+    # esclusiva per gioco digitale
     def _attiva_effetti(self):
         """Attiva gli effetti della reliquia"""
         self.stato = StatoReliquia.ATTIVA
@@ -351,7 +359,7 @@ class Reliquia:
         for potere in self.poteri:
             if potere.tipo_attivazione == "Passivo":
                 self.effetti_attivi.append(f"Potere attivo: {potere.nome}")
-    
+    # esclusiva per gioco digitale
     def rimuovi_da_guerriero(self, motivo: str = "Scartata") -> bool:
         """
         Rimuove la reliquia dal guerriero (quando guerriero muore o carta scartata)
@@ -375,13 +383,13 @@ class Reliquia:
         self.in_gioco_globalmente = False  # Ora può essere rigiocata
         
         return True
-    
+    # esclusiva per gioco digitale
     def _disattiva_effetti(self):
         """Disattiva tutti gli effetti della reliquia"""
         self.stato = StatoReliquia.INATTIVA
         self.modificatori_applicati.clear()
         self.effetti_attivi.clear()
-    
+    # esclusiva per gioco digitale
     def applica_modificatori(self, guerriero: object) -> Dict[str, int]:
         """
         Applica i modificatori della reliquia al guerriero
@@ -408,7 +416,7 @@ class Reliquia:
                 modificatori_applicati[stat] = valore
                 
         return modificatori_applicati
-    
+    # esclusiva per gioco digitale
     def _verifica_condizione_modificatore(self, guerriero: object, modificatore: ModificatoreReliquia) -> bool:
         """Verifica se la condizione per il modificatore è soddisfatta"""
         if not modificatore.condizione:
@@ -424,7 +432,7 @@ class Reliquia:
             return True
         
         return True
-    
+    # esclusiva per gioco digitale
     def attiva_potere(self, nome_potere: str, target: object = None, costo_extra: int = 0) -> Dict[str, Any]:
         """
         Attiva un potere specifico della reliquia
@@ -460,7 +468,7 @@ class Reliquia:
                 self.effetti_attivi.append(f"Usato_{nome_potere}")
         
         return risultato
-    
+    # esclusiva per gioco digitale
     def _esegui_potere(self, potere: PotereReliquia, target: object = None) -> Dict[str, Any]:
         """Esegue un potere specifico - da implementare per poteri specifici"""
         # Implementazione base
@@ -469,12 +477,12 @@ class Reliquia:
             "descrizione": f"Potere {potere.nome} attivato",
             "effetti": [potere.descrizione]
         }
-    
+    # esclusiva per gioco digitale
     def reset_limitazioni_turno(self):
         """Reset delle limitazioni per turno (chiamato all'inizio del turno)"""
         # Rimuove i marker "Usato_" per poteri una volta per turno
         self.effetti_attivi = [e for e in self.effetti_attivi if not e.startswith("Usato_")]
-    
+    # esclusiva per gioco digitale
     def get_stato_completo(self) -> Dict[str, Any]:
         """Restituisce lo stato completo della reliquia"""
         return {
@@ -500,7 +508,7 @@ class Reliquia:
             "tipo": self.tipo.value,
             "rarity": self.rarity.value,
             "restrizioni": {
-                "fazioni_permesse": [f.value for f in self.restrizioni.fazioni_permesse],
+                "fazioni_permesse": [f for f in self.restrizioni.fazioni_permesse],
                 "corporazioni_specifiche": self.restrizioni.corporazioni_specifiche,
                 "tipi_guerriero": self.restrizioni.tipi_guerriero,
                 "keywords_richieste": self.restrizioni.keywords_richieste,
@@ -554,6 +562,17 @@ class Reliquia:
         
         # Ricostruisce restrizioni
         restr_data = data["restrizioni"]
+        corporazioni = [t.value for t in CorporazioneSpecifica]
+        #corporazioni.extend(t.value for t in Fazione)
+        
+        for f in restr_data["corporazioni_specifiche"]:
+            if f not in corporazioni:
+                print(f"errore nell'assegnazione della proprietà corporazioni_specifiche. La corporazione {f} non è presente nella lista delle coprorazioni ammissibili. {[c for c in corporazioni]}")
+        
+        if "Doomtrooper" in restr_data["fazioni_permesse"]:
+            restr_data["fazioni_permesse"].remove("Doomtrooper")
+            restr_data["fazioni_permesse"].append(DOOMTROOPER)
+
         reliquia.restrizioni = RestrizioneReliquia(
             fazioni_permesse=[Fazione(f) for f in restr_data["fazioni_permesse"]],
             corporazioni_specifiche=restr_data["corporazioni_specifiche"],
