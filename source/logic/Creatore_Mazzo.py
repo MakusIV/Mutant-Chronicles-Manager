@@ -845,12 +845,16 @@ class CreatoreMazzo:
 
                 elif len(orientamento_arte) > 0: # anche guerrieri non della fratellanza possono lanciare l'arte                    
                     for abilita in guerriero.abilita:
-                        if abilita.tipo == 'Arte':
-                            disciplina = abilita.nome
-                            if disciplina in orientamento_arte:
+                        escludi_oscura_legione = guerriero.fazione in FAZIONI_OSCURA_LEGIONE and not oscura_legione
+                        escludi_doomtrooper = guerriero.fazione in FAZIONI_DOOMTROOPER and not doomtrooper
+                        if abilita.tipo == 'Arte' and not (escludi_oscura_legione or escludi_doomtrooper) : # esclude se il guerriero è OL e non è previsto nel mazzo l'oscura legione
+                            disciplina = abilita.target
+                            if any( arte_ in disciplina for arte_ in orientamento_arte ):
                                 bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale # duplica se il fratello lancia la specifica arte
                             elif disciplina == DisciplinaArte.TUTTE.value:
                                 bonus_moltiplicatore *= (BONUS_SPECIALIZZAZIONE + 1)  * bonus_factor_guerriero_fondamentale   # triplica se il fratello lancia la specifica arte
+                            elif guerriero.fazione in FAZIONI_FRATELLANZA: # il guerriero è della fratellanza ma non ha competenza nlle arti richieste (depotenzia)
+                                bonus_moltiplicatore *= 0.8  * bonus_factor_guerriero_fondamentale # decrementa del 20% se il fratello non è competente nelle arti scelte (per favorire la scelta di quelli competenti)
                                 
             
             # Orientamento Apostolo (per guerrieri Oscura Legione)
@@ -859,19 +863,18 @@ class CreatoreMazzo:
                 if guerriero.fazione in FAZIONI_OSCURA_LEGIONE and (not orientamento_apostolo or orientamento_apostolo == [] ):
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale
                     
-
                 elif len(orientamento_apostolo) > 0 :
                     for apostolo in orientamento_apostolo:
                         if f"Seguace di {apostolo}" in guerriero.keywords:
-                            bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale
+                            bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale                            
 
                 if orientamento_cultista and 'Cultista' in guerriero.keywords:
-                    bonus_moltiplicatore *= 1.5 # triplica il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
+                    bonus_moltiplicatore *= 1.5 # aumenta di un ulteriore 50% (triplica) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
                             
             # Orientamento Eretico
 
             if orientamento_eretico and 'Eretico' in guerriero.keywords:
-                    bonus_moltiplicatore *= 1.5 # triplica il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
+                    bonus_moltiplicatore *= 1.5 # aumenta di un ulteriore 50% (triplica) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
         
             
             punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore
@@ -886,20 +889,20 @@ class CreatoreMazzo:
         schieramento = []
 
                 
-        # Prima seleziona le carte fondamentali
-        for guerriero in guerrieri_ordinati:
-            if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
+        # Prima seleziona le carte fondamentali (non serve in quanto viene già aumentato il punteggio se la carta è fondamentale)
+        #for guerriero in guerrieri_ordinati:
+        #    if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
 
-                quantita_richiesta = min(
-                    getattr(guerriero, 'quantita_minima_consigliata', 1),
-                    getattr(guerriero, 'quantita', 1) #self.collezione.get_copie_disponibili(tipo_carta = 'guerriero', carta = guerriero)#
-                )
+        #        quantita_richiesta = min(
+        #            getattr(guerriero, 'quantita_minima_consigliata', 1),
+        #            getattr(guerriero, 'quantita', 1) #self.collezione.get_copie_disponibili(tipo_carta = 'guerriero', carta = guerriero)#
+        #        )
                 
-                for _ in range(quantita_richiesta):
-                    if guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
-                        schieramento.append(guerriero)
-                    else:
-                        squadra.append(guerriero)
+        #        for _ in range(quantita_richiesta):
+        #            if guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+        #                schieramento.append(guerriero)
+        #            else:
+        #                squadra.append(guerriero)
         
         # Poi seleziona gli altri guerrieri
         for guerriero in guerrieri_ordinati:
@@ -908,8 +911,8 @@ class CreatoreMazzo:
                 continue
                 
             # Skip se già aggiunto come fondamentale
-            if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
-                continue
+            #if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
+            #    continue
             
             # Calcola quantità da aggiungere
             potenza = self.calcola_potenza_guerriero(guerriero)
@@ -3716,12 +3719,12 @@ def menu_interattivo_mazzi():
             # Crea mazzi di esempio (qui serve la funzione crea_mazzo_da_gioco)
             # print("⚠️ Funzione non implementata - richiede collezioni di esempio")
             # print("   Per utilizzare questa opzione, integra con il modulo Creatore_Collezione")
-            collezioni = creazione_Collezione_Giocatore(2, [Set_Espansione.BASE, Set_Espansione.INQUISITION], orientamento = False)
+            collezioni = creazione_Collezione_Giocatore(2, [Set_Espansione.BASE, Set_Espansione.INQUISITION, Set_Espansione.WARZONE], orientamento = False)
 
             mazzo_1 = crea_mazzo_da_gioco(collezioni[0],
-                            numero_carte_max = 60,
-                            numero_carte_min = 50,
-                            espansioni_richieste = ["Base", "Inquisition"],
+                            numero_carte_max = 120,
+                            numero_carte_min = 100,
+                            espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                             doomtrooper = True,
                             orientamento_doomtrooper = ["Bauhaus", "Capitol", "Mishima"],
                             fratellanza = True,
@@ -3732,9 +3735,9 @@ def menu_interattivo_mazzi():
                             orientamento_cultista = False)
             
             mazzo_2 = crea_mazzo_da_gioco(collezioni[1],
-                            numero_carte_max = 60,
-                            numero_carte_min = 50,
-                            espansioni_richieste = ["Base", "Inquisition"],
+                            numero_carte_max = 120,
+                            numero_carte_min = 100,
+                            espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                             doomtrooper = True,
                             orientamento_doomtrooper = ["Imperiale", "Cybertronic", "Freelancer"],
                             fratellanza = False,
@@ -3954,7 +3957,7 @@ if __name__ == "__main__":
                     numero_carte_min = 80,
                     espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                     doomtrooper = True,
-                    orientamento_doomtrooper = ["Bauhaus", "Capitol", "Fratellanza"],
+                    orientamento_doomtrooper = ["Bauhaus", "Capitol"],
                     fratellanza = True,
                     orientamento_arte = ['Cambiamento', 'Premonizione', 'Esorcismo'],
                     oscura_legione = False,

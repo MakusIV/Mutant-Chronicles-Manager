@@ -2448,13 +2448,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Sempre"
             },
             {
-                "nome": "Immunita",
-                "descrizione": "Immune agli effetti dell'Oscura Simmetria",
-                "tipo": "Immunita",
+                "nome": "Lancia Arte e/o Incantesimo dell'Arte",
+                "descrizione": "Lancia tutte le ARTI",
+                "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Valchirie",
-                "timing": "Sempre"
+                "target": "Tutte le Discipline",
+                "timing": "Turno"
             }
+
         ],
         "testo_carta": "PERSONALITÀ. CONSIDERATA UNA VALKIRIA. Quando Laura è in gioco, tutte le Tue Valkirje possono usare TUTTE le carte ARTE, e sono immuni alle carte dell'Oscura Simmetria.",
         "flavour_text": "",
@@ -2490,9 +2491,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Lancia incantesimi Arte della Manipolazione e dell'Esorcismo, più tutti gli incantesimi di Combattimento Personale",
                 "tipo": "Arte",
                 "costo_destino": 0,
-                "target": "Arte della Manipolazione e Esorcismo",
+                "target": "Arte della Manipolazione ed Esorcismo",
                 "timing": "Turno"
-            },
+            },          
             {
                 "nome": "Uccide Automaticamente",
                 "descrizione": "Se ferisce, uccide automaticamente",

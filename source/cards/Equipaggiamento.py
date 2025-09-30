@@ -208,7 +208,7 @@ class Equipaggiamento:
         # Controllo fazioni_permesse
         if self.fazioni_permesse is not None and self.fazioni_permesse != []:
             # Se l'equipaggiamento ha fazioni_permesse specifiche
-            if all( a not in [f.value for f in Fazione] for a in self.fazioni_permesse):
+            if guerriero.fazione not in [a for a in self.fazioni_permesse]:
                 # Verifica se è equipaggiamento generico utilizzabile da tutti
                 if self.fazioni_permesse != ["Generica"]:
                     risultato["puo_assegnare"] = False
