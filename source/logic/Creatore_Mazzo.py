@@ -16,9 +16,9 @@ from dataclasses import dataclass
 
 
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
-from source.logic.Creatore_Collezione import creazione_Collezione_Giocatore
+from source.logic.Creatore_Collezione import creazione_Collezione_Giocatore, carica_collezioni_json_migliorato
 from source.cards.Guerriero import (
-    Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero
+    Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte
 )
 from source.cards.Equipaggiamento import Equipaggiamento
 from source.cards.Speciale import Speciale
@@ -888,62 +888,46 @@ class CreatoreMazzo:
         squadra = []
         schieramento = []
 
-                
-        # Prima seleziona le carte fondamentali (non serve in quanto viene già aumentato il punteggio se la carta è fondamentale)
-        #for guerriero in guerrieri_ordinati:
-        #    if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
-
-        #        quantita_richiesta = min(
-        #            getattr(guerriero, 'quantita_minima_consigliata', 1),
-        #            getattr(guerriero, 'quantita', 1) #self.collezione.get_copie_disponibili(tipo_carta = 'guerriero', carta = guerriero)#
-        #        )
-                
-        #        for _ in range(quantita_richiesta):
-        #            if guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
-        #                schieramento.append(guerriero)
-        #            else:
-        #                squadra.append(guerriero)
-        
-        # Poi seleziona gli altri guerrieri
+        # Seleziona gli altri guerrieri
         for guerriero in guerrieri_ordinati:
             
             if guerriero.nome in [g.nome for g in squadra] or guerriero.nome in [g.nome for g in schieramento]:
                 continue
                 
-            # Skip se già aggiunto come fondamentale
-            #if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
-            #    continue
-            
+    
             # Calcola quantità da aggiungere
             potenza = self.calcola_potenza_guerriero(guerriero)
             quantita_disponibile = getattr(guerriero, 'quantita', 1) #quantita_disponibile = self.collezione.get_copie_disponibili(tipo_carta = 'guerriero', carta = guerriero)
             quantita_consigliata = getattr(guerriero, 'quantita_minima_consigliata', 1)            
             
-            # valuta la quantità minima in base al valore del guerriero (maggiore costo)
-            incr_qc = 0
-            if guerriero.stats.valore > 6:
-                min_val = random.randint(1, 3)
+            # valuta la quantità minima in base al valore del guerriero (maggiore costo)            
+            if guerriero.stats.valore > 8:#da 9 in poi
+                min_val = 1
+            elif 6 < guerriero.stats.valore <= 8: # 7 e 8
 
-
-            elif 4 < guerriero.stats.valore <= 6:
-                min_val = random.randint(2, 4)
-                if quantita_consigliata < 3:
-                    incr_qc = 1
-            else:
-                min_val = random.randint(3, 5)
-                if quantita_consigliata < 3:
-                    incr_qc = 2
+                min_val = random.randint(1, 2)
+            elif 4 < guerriero.stats.valore <= 6: # 5 e 6
+                min_val = random.randint(2, 3)                
+            else: # uguale o inferiore a 4
+                min_val = random.randint(3, 4)                
 
             # Calcola numero di copie basato sulla potenza
-            if potenza > 0.8: 
-                num_copie = min(min_val, quantita_disponibile, quantita_consigliata + incr_qc)
-            elif potenza > 0.5:
-                num_copie = min(min_val, quantita_disponibile, quantita_consigliata + incr_qc)
-            else:
-                num_copie = min(min_val, quantita_disponibile, quantita_consigliata + incr_qc)
+            if quantita_consigliata <=1:
+                if potenza > 0.8:                
+                        quantita_consigliata = 4
+                elif potenza > 0.5:
+                        quantita_consigliata = 3
+                elif quantita_consigliata < 1:
+                        quantita_consigliata = 1
             
-            # Aggiungi con un po' di casualità
-            # num_copie = random.randint(1, num_copie)
+            max_val = min(quantita_disponibile, quantita_consigliata)    
+            
+            if max_val == min_val:
+                num_copie = max_val
+            elif max_val < min_val:
+                num_copie = random.randint(max_val, min_val)
+            else:
+                num_copie = random.randint(min_val, max_val)
 
             if oscura_legione and (doomtrooper or fratellanza): 
                 q = RAPPORTO_SQUADRA_SCHIERAMENTO + 1
@@ -955,9 +939,9 @@ class CreatoreMazzo:
             inserisci_in_schieramento = oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE
             inserisci_in_squadra = ( doomtrooper or fratellanza) and ( guerriero.fazione in FAZIONI_DOOMTROOPER or guerriero.fazione in FAZIONI_FRATELLANZA)
 
-            num_copie_da_inserire = min(5, num_copie)
+            num_copie_da_inserire = min(5, num_copie) # limita numero copie a 5
 
-            for _ in range(num_copie_da_inserire):
+            for _ in range(num_copie_da_inserire): # NOTA: inserisce la stessa istanza per più volte nella lista
                 
                 if inserisci_in_schieramento:
                     if len(schieramento) <= math.floor( 0.49 + numero_guerrieri_target / q): 
@@ -1020,37 +1004,22 @@ class CreatoreMazzo:
         carte_selezionate = []
         tutti_guerrieri = squadra + schieramento
         numero_guerrieri = len(tutti_guerrieri)
+        fattore_carte_fondamentale = 1 # fattore di incremento del rating assegnato alla carta se questa è fondamentale
 
-
-        # Prima seleziona carte fondamentali
-        for carta in carte_disponibili:
-            if hasattr(carta, 'fondamentale') and carta.fondamentale:
-                # Verifica compatibilità con i guerrieri
-                carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
-            
-                if carta_compatibile:
-                    quantita_richiesta = min( 
-                        getattr(carta, 'quantita_minima_consigliata', 1), 
-                        getattr(carta, 'quantita', 1)
-                    )
-                                    
-                    for _ in range(quantita_richiesta):
-                        carte_selezionate.append(carta)
-        
         # Calcola potenza per ogni carta
         carte_con_punteggio = []
         
         for carta in carte_disponibili:
-            # Skip carte fondamentali già aggiunte
-            if hasattr(carta, 'fondamentale') and carta.fondamentale:
-                continue
-            
+                    
             carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
             
             # Verifica compatibilità
             if not carta_compatibile:
                 continue
             
+            if hasattr(carta, 'fondamentale') and carta.fondamentale:
+                fattore_carte_fondamentale = 10 # decuplica il rating assegnato alla carta se fondamentale
+
             # Calcola potenza basata sul tipo
             if tipo_carta == 'equipaggiamento':
                 potenza = self.calcola_potenza_equipaggiamento(carta)
@@ -1080,13 +1049,11 @@ class CreatoreMazzo:
                 
             elif tipo_carta == 'missione':
                 potenza = 0.5  # Default per missioni
-            else:
-                potenza = 0.5
             
             #if carta.nome in [c[0].nome for c in carte_con_punteggio]:
             #    continue
-            fattore_compatibilita = 1 + numero_guerrieri_compatibili / numero_guerrieri
-            carte_con_punteggio.append((carta, potenza * fattore_compatibilita))
+            fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti
+            carte_con_punteggio.append((carta, potenza * fattore_compatibilita * fattore_carte_fondamentale))
         
         # Ordina per potenza
         carte_con_punteggio.sort(key=lambda x: x[1], reverse=True)
@@ -1102,24 +1069,47 @@ class CreatoreMazzo:
             quantita_consigliata = getattr(carta, 'quantita_minima_consigliata', 1)
             
             # Calcola numero di copie basato sulla potenza
-            if potenza > 0.7:
-                num_copie = min(random.randint(3,5), quantita_disponibile, quantita_consigliata + 1)
+            if potenza > 0.8:                
+                    min_value = 3
+                    if quantita_consigliata < 4:                                 
+                        max_value = 5             
+                    else:
+                        max_value = quantita_consigliata
+
+            elif potenza > 0.6:                
+                    min_value = 2
+                    if quantita_consigliata < 3:                                 
+                        max_value = 3             
+                    else:
+                        max_value = quantita_consigliata
+                        
             elif potenza > 0.4:
-                num_copie = min(random.randint(2,4), quantita_disponibile, quantita_consigliata)
+                min_value = 1                
+                if quantita_consigliata < 2:                                 
+                        max_value = 2             
+                else:
+                    max_value = quantita_consigliata
+
             else:
-                num_copie = min(random.randint(1,2), quantita_disponibile)
+                min_value = 1
+                if quantita_consigliata < 1:                                 
+                        max_value = 1             
+                else:
+                    max_value = quantita_consigliata
+
             
-            if num_copie < 1:
-                num_copie = 1
+            if min_value > max_value:
+                random_value = random.randint(max_value, min_value)
+            else:
+                random_value = random.randint(min_value, max_value)
 
-            # Aggiungi casualità
-            #num_copie = min(5, random.randint(1, num_copie)) #random.randint(1, min(num_copie, numero_carte - len(carte_selezionate)))
-            num_copie_da_inserire = min(5, num_copie)
+            num_copie = min(5, random_value, quantita_disponibile)
+            
 
-            for _ in range(num_copie_da_inserire):
+            for _ in range(num_copie):
 
                 if len(carte_selezionate) <= numero_carte:
-                    carte_selezionate.append(carta)
+                    carte_selezionate.append(carta)# NOTA: inserisce nella lista copie di una stessa istanza
                 else:
                     return carte_selezionate
         
@@ -1324,18 +1314,6 @@ def crea_mazzo_da_gioco(collezione: Any,
     # Determina se usare Fratellanza e Oscura Legione
     usa_fratellanza = fratellanza #orientamento_arte is not None and len(orientamento_arte) > 0
     usa_oscura_legione = oscura_legione #orientamento_apostolo is not None and len(orientamento_apostolo) > 0
-    
-    # Se non specificato, controlla nella collezione
-    # No se orientamento_arte e/o orientament_aposolo non sono specificati i relativi guerrieri non devon essereinseriti nel mazzo
-    #if not usa_fratellanza:
-    #    guerrieri_fratellanza = [g for g in collezione.get_carte_per_tipo('guerriero') 
-    #                             if g.fazione in FAZIONI_FRATELLANZA]
-    #    usa_fratellanza = len(guerrieri_fratellanza) > 0
-    
-    #if not usa_oscura_legione:
-    #    guerrieri_oscura = [g for g in collezione.get_carte_per_tipo('guerriero') 
-    #                       if g.fazione in FAZIONI_OSCURA_LEGIONE]
-    #    usa_oscura_legione = len(guerrieri_oscura) > 0
     
     # Calcola distribuzione carte
     distribuzione = creatore.calcola_distribuzione_carte(
@@ -3697,9 +3675,7 @@ def menu_interattivo_mazzi():
        
         print("3. Salva mazzi in JSON con conteggio (standard)")
         print("4. Salva mazzi in JSON con conteggio(sicuro)")
-        print("5. Carica e visualizza mazzi da JSON con conteggio")
-        
-
+        print("5. Carica e visualizza mazzi da JSON con conteggio")        
         print("6. Verifica integrità mazzi")
         print("7. Analizza bilanciamento")
         print("8. Diagnostica completa mazzi")
@@ -3707,6 +3683,7 @@ def menu_interattivo_mazzi():
         print("10. Cerca carta nei mazzi")
         print("11. Esempio completo salvataggio")
         print("12. Pulisci mazzi correnti")
+        print("13. Crea mazzo da file collezione")
         print("0. Esci")
         
         
@@ -3860,6 +3837,87 @@ def menu_interattivo_mazzi():
         elif scelta == "12":
             mazzi_correnti.clear()
             print("✅ Mazzi correnti puliti")
+        
+        
+        elif scelta == "13":
+            # Creazione personalizzata
+            mazzi_correnti.clear()
+            try:
+                name = str(input("nome file collezion1: "))
+                collezioni = carica_collezioni_json_migliorato(name)
+                print(f"numero collezioni disponibili nel file: {len(collezioni['collezioni_dettagliate'])}")
+                num = int(input("numero collezione (0, 1, ...): "))
+                collezione = collezioni['collezioni_dettagliate'][num]
+
+                carte_min = int(input("numero minimo di carte del mazzo: "))
+                carte_max = int(input("numero massimo di carte del mazzo: "))
+                
+                doomtrooper = input("utilizzo doomtrooper (s/n) (nota: la collezione deve contenere doomtrooper): ").lower().startswith('s')
+                if doomtrooper:
+                    scelta_fazioni = input("vuoi specificare quali fazioni doomtrooper utilizzare (s/n): ").lower().startswith('s')
+                    if scelta_fazioni:
+                        print("Fazioni:")
+                        
+                        for i, esp in enumerate(FAZIONI_DOOMTROOPER):
+                            print(f"  {i+1}. {esp.value}")        
+                        faz_input = input("Scegli fazioni (numeri separati da virgola): ")
+                        faz_indices = [int(x.strip())-1 for x in faz_input.split(",")]
+                        fazioni_doomtrooper = [list(FAZIONI_DOOMTROOPER)[i].value for i in faz_indices if 0 <= i < len(FAZIONI_DOOMTROOPER)]
+                
+                
+                fratellanza = input("utilizzo fratellanza (s/n) (nota: la collezione deve contenere fratellanza): ").lower().startswith('s')
+                if fratellanza:
+                    scelta_arte = input("vuoi specificare quali tipologie di Arte vuoi utilizzare (s/n): ").lower().startswith('s')
+                    if scelta_arte:
+                        print("Tipologie Arte:")
+                        
+                        for i, esp in enumerate(DisciplinaArte):
+                            print(f"  {i+1}. {esp.value}")        
+                        art_input = input("Scegli le tipologie di Arte (numeri separati da virgola): ")
+                        art_indices = [int(x.strip())-1 for x in art_input.split(",")]
+                        arti_scelte = [list(DisciplinaArte)[i].value for i in art_indices if 0 <= i < len(DisciplinaArte)]
+
+                oscura_legione = input("utilizzo oscura legione (s/n) (nota: la collezione deve contenere oscura legione): ").lower().startswith('s')
+                if oscura_legione:
+                    scelta_apostoli = input("vuoi specificare quali Apostoli vuoi utilizzare (s/n): ").lower().startswith('s')
+                    if scelta_apostoli:
+                        print("Apostoli:")
+                        
+                        for i, esp in enumerate(ApostoloOscuraSimmetria):
+                            print(f"  {i+1}. {esp.value}")        
+                        apo_input = input("Scegli le tipologie di Arte (numeri separati da virgola): ")
+                        apo_indices = [int(x.strip())-1 for x in apo_input.split(",")]
+                        apostoli_scelti = [list(ApostoloOscuraSimmetria)[i].value for i in art_indices if 0 <= i < len(ApostoloOscuraSimmetria)]
+
+
+                eretici = input("utilizzo eretici (s/n): ").lower().startswith('s')
+                cultisti = input("utilizzo cultisti (s/n): ").lower().startswith('s')
+
+                print("Espansioni disponibili:")
+                for i, esp in enumerate(Set_Espansione):
+                    print(f"  {i+1}. {esp.value}")
+                
+                esp_input = input("Scegli espansioni (numeri separati da virgola): ")
+                esp_indices = [int(x.strip())-1 for x in esp_input.split(",")]
+                espansioni = [list(Set_Espansione)[i].value for i in esp_indices if 0 <= i < len(Set_Espansione)]
+                            
+                mazzo_1 = crea_mazzo_da_gioco(collezione,
+                            numero_carte_max = carte_max,
+                            numero_carte_min = carte_min,
+                            espansioni_richieste = espansioni,
+                            doomtrooper = doomtrooper,
+                            orientamento_doomtrooper = fazioni_doomtrooper,
+                            fratellanza = fratellanza,
+                            orientamento_arte = arti_scelte,
+                            oscura_legione = oscura_legione,
+                            orientamento_apostolo = apostoli_scelti,
+                            orientamento_eretico = eretici,
+                            orientamento_cultista = cultisti)
+                
+                mazzi_correnti.append(mazzo_1)
+            except Exception as e:
+                print(f"Errore: {e}")
+        
         else:
             print("❌ Opzione non valida")
 

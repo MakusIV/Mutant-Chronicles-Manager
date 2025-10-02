@@ -1095,6 +1095,128 @@ def creazione_Collezione_Giocatore(
     
     return collezioni
 
+def converti_json_a_collezioni(dati_json: Dict[str, Any]) -> List[CollezioneGiocatore]:
+    """
+    Converte il dizionario restituito da carica_collezioni_json_migliorato
+    in una lista di istanze CollezioneGiocatore.
+    
+    Args:
+        dati_json: Dizionario restituito da carica_collezioni_json_migliorato
+        
+    Returns:
+        Lista di istanze CollezioneGiocatore
+        
+    Raises:
+        ValueError: Se il formato del JSON non è valido
+        KeyError: Se mancano chiavi obbligatorie nel JSON
+    """
+    
+    # Validazione input
+    if not dati_json:
+        raise ValueError("Il dizionario JSON è vuoto o None")
+    
+    if 'collezioni_dettagliate' not in dati_json:
+        raise ValueError("Il dizionario JSON non contiene la chiave 'collezioni'")
+    
+    # Estrai le collezioni dal JSON
+    collezioni_json = dati_json['collezioni_dettagliate']
+    
+    if not isinstance(collezioni_json, list):
+        raise ValueError("'collezioni' deve essere una lista")
+    
+    # Lista per le istanze da restituire
+    istanze_collezioni: List[CollezioneGiocatore] = []
+    
+    # Mapping funzioni di creazione carte
+    funzioni_creazione = {
+        'guerriero': crea_guerriero_da_database,
+        'equipaggiamento': crea_equipaggiamento_da_database,
+        'speciale': crea_speciale_da_database,
+        'fortificazione': crea_fortificazione_da_database,
+        'missione': crea_missione_da_database,
+        'arte': crea_arte_da_database,
+        'oscura_simmetria': crea_oscura_simmetria_da_database,
+        'reliquia': crea_reliquia_da_database,
+        'warzone': crea_warzone_da_database
+    }
+    
+    # Processa ogni collezione
+    for idx, collezione_data in enumerate(collezioni_json, 1):
+        try:
+            # Crea nuova istanza CollezioneGiocatore
+            collezione = CollezioneGiocatore(
+                id_giocatore=collezione_data.get('id_giocatore', idx),                
+                
+            )
+            
+            # Ricrea le carte dalla sezione inventario
+            inventario = collezione_data.get('carte_per_tipo', {})
+            
+            for tipo_carte, lista_carte in inventario.items():
+                if tipo_carte not in funzioni_creazione:
+                    print(f"Avviso: tipo carte '{tipo_carte}' non riconosciuto, skip...")
+                    continue
+                
+                funzione_creazione = funzioni_creazione[tipo_carte]
+                
+                # Per ogni carta nel JSON
+                for carta, carta_data in lista_carte.get('dettaglio_carte').items():
+                    nome_carta = carta_data['nome']
+                    quantita = carta_data['quantita']
+
+                    if not nome_carta:
+                        print(f"Avviso: carta senza nome in {tipo_carte}, skip...")
+                        continue
+                    
+                    # Ricrea la carta dal database usando il nome
+                    try:
+                        carta = funzione_creazione(nome_carta)
+                        
+                        if carta:
+                            # Aggiungi la carta alla collezione nel tipo appropriato
+                            for _ in range(0, quantita): # NOTA:copia nella lista la stessa istanza della carta (quindi attenzione se servono diverse istanze (gioco digitale))
+                                if tipo_carte == 'guerriero':                                 
+                                    # PER DIVERSE ISTANZE inserisci qui (e ripeti sotto) carta = funzione_creazione(nome_carta) eliminando quela della riga 1172
+                                    collezione.carte['guerriero'].append(carta)
+                                elif tipo_carte == 'equipaggiamento':
+                                    collezione.carte['equipaggiamento'].append(carta)
+                                elif tipo_carte == 'speciale':
+                                    collezione.carte['speciale'].append(carta)
+                                elif tipo_carte == 'fortificazione':
+                                    collezione.carte['fortificazione'].append(carta)
+                                elif tipo_carte == 'missione':
+                                    collezione.carte['missione'].append(carta)
+                                elif tipo_carte == 'arte':
+                                    collezione.carte['arte'].append(carta)
+                                elif tipo_carte == 'oscura_simmetria':
+                                    collezione.carte['oscura_simmetria'].append(carta)
+                                elif tipo_carte == 'reliquia':
+                                    collezione.carte['reliquia'].append(carta)
+                                elif tipo_carte == 'warzone':
+                                    collezione.carte['warzone'].append(carta)
+                        else:
+                            print(f"Avviso: carta '{nome_carta}' non trovata nel database")
+                    
+                    except Exception as e:
+                        print(f"Errore creazione carta '{nome_carta}': {e}")
+                        continue
+            
+            # Aggiungi la collezione ricreata alla lista
+            istanze_collezioni.append(collezione)
+            
+            print(f"✅ Collezione {collezione.id_giocatore} ricreata con {collezione.get_totale_carte()} carte")
+        
+        except Exception as e:
+            print(f"❌ Errore nel processare collezione {idx}: {e}")
+            continue
+    
+    # Verifica che almeno una collezione sia stata creata
+    if not istanze_collezioni:
+        raise ValueError("Nessuna collezione è stata creata con successo")
+    
+    print(f"\n🎉 Totale: {len(istanze_collezioni)} collezioni ricreate")
+    
+    return istanze_collezioni
 
 # ==================== FUNZIONI DI UTILITÀ ====================
 
@@ -2055,8 +2177,8 @@ def esempio_salvataggio_migliorato():
     # Crea collezioni
     collezioni = creazione_Collezione_Giocatore(
             numero_giocatori=2,
-            espansioni=[Set_Espansione.BASE, Set_Espansione.INQUISITION],
-            orientamento=True
+            espansioni=[Set_Espansione.BASE, Set_Espansione.INQUISITION, Set_Espansione.WARZONE],
+            orientamento=False
         )
     # Stampa con visualizzazione migliorata
     stampa_riepilogo_collezioni_migliorato(collezioni)
@@ -2064,7 +2186,7 @@ def esempio_salvataggio_migliorato():
     # Salva con la STESSA struttura in JSON
     salva_collezioni_json_migliorato(collezioni, "collezioni_dettagliate.json")
     print("3. Carica: dati = carica_collezioni_json_migliorato('collezioni_dettagliate.json')")
-    dati_json = carica_collezioni_json_migliorato("collezioni_dettagliate.json")
+    dati_json, _ = carica_collezioni_json_migliorato("collezioni_dettagliate.json")
     print("4. Visualizza: stampa_statistiche_da_json(dati)")
     stampa_statistiche_da_json(dati_json)
 
@@ -2659,7 +2781,7 @@ def _get_apostolo_padre_sort_key(carta) -> str:
     """Ottiene la chiave di ordinamento per apostolo_padre."""
     try:
         if hasattr(carta, 'apostolo_padre') and carta.apostolo_padre is not None:
-            return carta.apostolo_padre.value if hasattr(carta.apostolo_padre, 'value') else str(carta.apostolo_padre)
+            return str(carta.apostolo_padre) if carta.apostolo_padre != None else str("Nessuno")
         return "ZZZ_Nessuno"
     except Exception as e:
         print(f"⚠️ Errore nel get_apostolo_padre_sort_key per {getattr(carta, 'nome', 'carta sconosciuta')}: {e}")
@@ -2788,15 +2910,6 @@ def stampa_statistiche_da_json(dati_json: Dict[str, Any]):
     print(f"📈 Media carte/collezione: {panoramica.get('media_carte_per_collezione', 0):.1f}")
     print(f"💎 Media valore/collezione: {panoramica.get('media_valore_per_collezione', 0):.1f} DP")
     
-    # Riepilogo collezioni con nuovi campi
-    print(f"\n📊 RIEPILOGO COLLEZIONI:")
-    for collezione in stats_aggregate.get('riepilogo_collezioni', []):
-        orientamento_str = ""
-        if collezione.get('orientamento', {}).get('attivo'):
-            fazioni = collezione.get('orientamento', {}).get('fazioni', [])
-            orientamento_str = f" [🎯 {', '.join(fazioni)}]"
-        
-        print(f"  🎮 Giocatore {collezione.get('id_giocatore')}: {collezione.get('totale_carte')} carte, {collezione.get('valore_dp')} DP{orientamento_str}")
     
     # Distribuzione tipi con informazioni sui nuovi ordinamenti
     print(f"\n🃏 DISTRIBUZIONE TIPI (con nuovi ordinamenti):")
@@ -2806,39 +2919,7 @@ def stampa_statistiche_da_json(dati_json: Dict[str, Any]):
         criterio = _get_criterio_ordinamento_per_tipo(tipo)
         print(f"  {tipo.capitalize()}: {count} carte - Ordinato per: {criterio}")
     
-    # Mostra esempi delle nuove proprietà nelle collezioni
-    collezioni_dettagliate = dati_json.get('collezioni_dettagliate', [])
-    if collezioni_dettagliate:
-        print(f"\n🔍 ESEMPI NUOVE PROPRIETÀ:")
-        collezione_esempio = collezioni_dettagliate[0]
-        carte_per_tipo = collezione_esempio.get('carte_per_tipo', {})
-        
-        # Mostra esempi per ogni tipo di carta aggiornato
-        for tipo_carta in ['guerriero', 'equipaggiamento', 'speciale', 'fortificazione', 
-                          'missione', 'oscura_simmetria', 'arte', 'reliquia', 'warzone']:
-            if tipo_carta in carte_per_tipo:
-                dettaglio_carte = carte_per_tipo[tipo_carta].get('dettaglio_carte', {})
-                if dettaglio_carte:
-                    prima_carta = next(iter(dettaglio_carte.values()))
-                    proprieta_nuove = []
-                    
-                    # Identifica le nuove proprietà per tipo
-                    if tipo_carta == 'guerriero' and 'seguace_di' in prima_carta:
-                        proprieta_nuove.append('seguace_di')
-                    elif tipo_carta == 'equipaggiamento' and 'fazione' in prima_carta:
-                        proprieta_nuove.append('fazione')
-                    elif tipo_carta in ['speciale', 'fortificazione', 'missione'] and 'fazioni_permesse' in prima_carta:
-                        proprieta_nuove.append('fazioni_permesse')
-                    elif tipo_carta == 'oscura_simmetria' and 'apostolo_padre' in prima_carta:
-                        proprieta_nuove.append('apostolo_padre')
-                    elif tipo_carta == 'arte' and 'disciplina' in prima_carta:
-                        proprieta_nuove.append('disciplina')
-                    elif tipo_carta in ['reliquia', 'warzone'] and 'fazioni_permesse' in prima_carta:
-                        proprieta_nuove.append('fazioni_permesse')
-                    
-                    if proprieta_nuove:
-                        print(f"  {tipo_carta.capitalize()}: {', '.join(proprieta_nuove)} (rimosso valore_dp)")
-
+   
 def salva_collezioni_json_migliorato(collezioni: List, filename: str = "collezioni_dettagliate.json"):
     """
     Salva le collezioni in formato JSON con struttura dettagliata.
@@ -2897,15 +2978,7 @@ def salva_collezioni_json_migliorato(collezioni: List, filename: str = "collezio
         print(f"   📊 Dimensione: {dimensione_file:.1f} KB")
         print(f"   🎮 Collezioni: {len(collezioni)}")
         print(f"   📦 Carte totali: {sum(c.get_totale_carte() for c in collezioni)}")
-        print("   🆕 Aggiornamenti applicati:")
-        print("      • Guerrieri: ordinati per fazione + seguace")
-        print("      • Equipaggiamenti: aggiunta fazione")
-        print("      • Speciali/Fortificazioni/Missioni: aggiunta fazioni_permesse")
-        print("      • Oscura Simmetria: aggiunta apostolo_padre")
-        print("      • Arte: aggiunta disciplina")
-        print("      • Reliquie/Warzone: aggiunta fazioni_permesse da restrizioni")
-        print("      • Rimosso valore_dp da tutti i tipi tranne guerrieri")
-        
+       
         return True
         
     except Exception as e:
@@ -2931,7 +3004,7 @@ def carica_collezioni_json_migliorato(filename: str) -> Optional[Dict[str, Any]]
     AGGIORNATO: Gestisce i nuovi formati con proprietà aggiornate.
     """
     try:
-        print(f"📂 Caricamento collezioni da {PERCORSO_SALVATAGGIO+filename}...")
+        print(f"📂 1. Caricamento collezioni da {PERCORSO_SALVATAGGIO+filename}...")
         
         with open(PERCORSO_SALVATAGGIO + filename, 'r', encoding='utf-8') as f:
             dati = json.load(f)
@@ -2942,15 +3015,8 @@ def carica_collezioni_json_migliorato(filename: str) -> Optional[Dict[str, Any]]
         versione = metadata.get('versione', 'N/A')
         
         print(f"📋 Formato rilevato: {tipo_export} (versione {versione})")
-        
-        if 'aggiornate' in tipo_export:
-            print("🆕 File con aggiornamenti delle proprietà di visualizzazione")
-            aggiornamenti = metadata.get('aggiornamenti', {})
-            if aggiornamenti:
-                print("   📝 Aggiornamenti inclusi:")
-                for tipo_carta, descrizione in aggiornamenti.items():
-                    print(f"      • {tipo_carta}: {descrizione}")
-        elif tipo_export != 'collezioni_dettagliate':
+                
+        if tipo_export != 'collezioni_dettagliate':
             print("⚠️ Attenzione: File potrebbe non essere in formato dettagliato aggiornato")
         
         # Stampa info di caricamento
@@ -2962,7 +3028,33 @@ def carica_collezioni_json_migliorato(filename: str) -> Optional[Dict[str, Any]]
         print(f"   📦 Carte totali: {stats_totali.get('totale_carte', 'N/A')}")
         print(f"   💰 Valore totale: {stats_totali.get('totale_valore_dp', 'N/A')} DP")
         
-        return dati
+        print("\n2. Conversione in istanze CollezioneGiocatore...")
+        try:
+            collezioni = converti_json_a_collezioni(dati)
+            
+            # 3. Verifica risultato
+            print("\n3. Verifica collezioni ricreate:")
+            print(f"   Numero collezioni: {len(collezioni)}")
+            
+            for coll in collezioni:
+                print(f"\n   📦 Collezione Giocatore {coll.id_giocatore}:")
+                print(f"      - Guerrieri: {len(coll.carte['guerriero'])}")
+                print(f"      - Equipaggiamenti: {len(coll.carte['equipaggiamento'])}")
+                print(f"      - Speciali: {len(coll.carte['speciale'])}")
+                print(f"      - Fortificazioni: {len(coll.carte['fortificazione'])}")
+                print(f"      - Missioni: {len(coll.carte['missione'])}")
+                print(f"      - Arti: {len(coll.carte['arte'])}")
+                print(f"      - Oscura Simmetria: {len(coll.carte['oscura_simmetria'])}")
+                print(f"      - Reliquie: {len(coll.carte['reliquia'])}")
+                print(f"      - Warzone: {len(coll.carte['warzone'])}")
+                print(f"      - TOTALE CARTE: {coll.get_totale_carte()}")
+            
+            print("\n✅ Conversione completata con successo!")
+            
+        except Exception as e:
+            print(f"\n❌ Errore durante la conversione: {e}")
+
+        return dati, collezioni
         
     except FileNotFoundError:
         print(f"❌ File {PERCORSO_SALVATAGGIO+filename} non trovato!")

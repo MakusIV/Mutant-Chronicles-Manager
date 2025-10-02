@@ -1272,7 +1272,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Tecnico vac": {
+    "Tecnico Vac": {
         "nome": "Tecnico Vac",
         "fazione": "Cybertronic", 
         "tipo": "Normale",
@@ -1408,7 +1408,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     # Base
 
     "Maresciallo di Campo Johnstone": {
-        "nome": "Maresciallo di campo johnstone",
+        "nome": "Maresciallo di Campo Johnstone",
         "fazione": "Imperiale", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -2425,8 +2425,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     # === FRATELLANZA ===
     # Fatto
     # Base
-    "Laura vestale benedetta": {
-        "nome": "Laura vestale benedetta",
+    "Laura Vestale Benedetta": {
+        "nome": "Laura Vestale Benedetta",
         "fazione": "Fratellanza", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -2518,8 +2518,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "L'inquisitore massimo": {
-        "nome": "L'inquisitore massimo",
+    "L'Inquisitore Massimo": {
+        "nome": "L'Inquisitore Massimo",
         "fazione": "Fratellanza", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -2784,8 +2784,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Custode dell'arte": {
-        "nome": "Custode dell'arte",
+    "Custode dell'Arte": {
+        "nome": "Custode dell'Arte",
         "fazione": "Fratellanza", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -2830,8 +2830,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "L'arcinquisitore nikodemus": {
-        "nome": "L'arcinquisitore nikodemus",
+    "L'Arcinquisitore Nikodemus": {
+        "nome": "L'Arcinquisitore Nikodemus",
         "fazione": "Fratellanza", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -2876,8 +2876,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Guerrieri sacri": {
-        "nome": "Guerrieri sacri",
+    "Guerrieri Sacri": {
+        "nome": "Guerrieri Sacri",
         "fazione": "Fratellanza", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -2953,8 +2953,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Cardinale durand": {
-        "nome": "Cardinale durand",
+    "Cardinale Durand": {
+        "nome": "Cardinale Durand",
         "fazione": "Fratellanza", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -2999,8 +2999,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Famoso evocatore": {
-        "nome": "Famoso evocatore",
+    "Famoso Evocatore": {
+        "nome": "Famoso Evocatore",
         "fazione": "Fratellanza", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -3269,8 +3269,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Mietitori di anime": {
-        "nome": "Mietitori di anime",
+    "Mietitori di Anime": {
+        "nome": "Mietitori di Anime",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3345,8 +3345,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
  
-    "Brass apocalypt": {
-        "nome": "Brass apocalypt",
+    "Brass Apocalypt": {
+        "nome": "Brass Apocalypt",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3403,8 +3403,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
  
-    "Eaonian justifier": {
-        "nome": "Eaonian justifier",
+    "Eaonian Justifier": {
+        "nome": "Eaonian Justifier",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3432,8 +3432,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Maculator di mercurio": {
-        "nome": "Maculator di mercurio",
+    "Maculator di Mercurio": {
+        "nome": "Maculator di Mercurio",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3461,8 +3461,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Progenie immacolata": {
-        "nome": "Progenie immacolata",
+    "Progenie Immacolata": {
+        "nome": "Progenie Immacolata",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3497,8 +3497,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Bio gigante": {
-        "nome": "Bio gigante",
+    "Bio Gigante": {
+        "nome": "Bio Gigante",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3526,8 +3526,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Algeroth-apostolo della guerra": {
-        "nome": "Algeroth-apostolo della guerra",
+    "Algeroth-Apostolo della Guerra": {
+        "nome": "Algeroth-Apostolo della Guerra",
         "fazione": "Oscura Legione", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -3571,7 +3571,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
 
     "Cultista di Algeroth": {
-        "nome": "Cultista di algeroth",
+        "nome": "Cultista di Algeroth",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3679,8 +3679,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Cacciatore oscuro": {
-        "nome": "Cacciatore oscuro",
+    "Cacciatore Oscuro": {
+        "nome": "Cacciatore Oscuro",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3717,8 +3717,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Golem dell'oscurità": {
-        "nome": "Golem dell'oscurità",
+    "Golem dell'Oscurità": {
+        "nome": "Golem dell'Oscurità",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3757,8 +3757,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
 
     # Seguaci di Muawijhe
-    "Muawijhe-signore dei sogni": {
-        "nome": "Muawijhe-signore dei sogni",
+    "Muawijhe-Signore dei Sogni": {
+        "nome": "Muawijhe-Signore dei Sogni",
         "fazione": "Oscura Legione", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -3795,8 +3795,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Comandante zenithiano": {
-        "nome": "Comandante zenithiano",
+    "Comandante Zenithiano": {
+        "nome": "Comandante Zenithiano",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3906,8 +3906,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
         
-    "Cultista di muawijhe": {
-        "nome": "Cultista di muawijhe",
+    "Cultista di Muawijhe": {
+        "nome": "Cultista di Muawijhe",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3937,8 +3937,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
 
     # Seguaci di Demnogonis    
-    "Demnogonis il corruttore": {
-        "nome": "Demnogonis il corruttore",
+    "Demnogonis il Corruttore": {
+        "nome": "Demnogonis il Corruttore",
         "fazione": "Oscura Legione", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -3975,8 +3975,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Cultista di demnogonis": {
-        "nome": "Cultista di demnogonis",
+    "Cultista di Demnogonis": {
+        "nome": "Cultista di Demnogonis",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -4004,8 +4004,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Conquistatore callistoniano": {
-        "nome": "Conquistatore callistoniano",
+    "Conquistatore Callistoniano": {
+        "nome": "Conquistatore Callistoniano",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -4171,8 +4171,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
 
     # Seguaci di Ilian
-    "Cultista di ilian": {
-        "nome": "Cultista di ilian",
+    "Cultista di Ilian": {
+        "nome": "Cultista di Ilian",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -4200,8 +4200,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Rampollo di ilian": {
-        "nome": "Rampollo di ilian",
+    "Rampollo di Ilian": {
+        "nome": "Rampollo di Ilian",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -4304,8 +4304,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
-    "Pipistrello da ricognizione": {
-        "nome": "Pipistrello da ricognizione",
+    "Pipistrello da Ricognizione": {
+        "nome": "Pipistrello da Ricognizione",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -4333,8 +4333,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Sentinella del tempio": {
-        "nome": "Sentinella del tempio",
+    "Sentinella del Tempio": {
+        "nome": "Sentinella del Tempio",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -4371,8 +4371,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Pipistrello velenoso": {
-        "nome": "Pipistrello velenoso",
+    "Pipistrello Velenoso": {
+        "nome": "Pipistrello Velenoso",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -4400,8 +4400,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Ilian-signora del vuoto": {
-        "nome": "Ilian-signora del vuoto",
+    "Ilian-Signora del Vuoto": {
+        "nome": "Ilian-Signora del Vuoto",
         "fazione": "Oscura Legione", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -4448,8 +4448,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
 
     # Seguaci di Semai
-    "Semai-signore dell'odio": {
-        "nome": "Semai-signore dell'odio",
+    "Semai-Signore dell'Odio": {
+        "nome": "Semai-Signore dell'Odio",
         "fazione": "Oscura Legione", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -4552,8 +4552,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
-    "Nepharita di Semai": {
-        "nome": "Nepharita di Semai",
+    "Nefarita di Semai": {
+        "nome": "Nefarita di Semai",
         "fazione": "Oscura Legione",
         "tipo": "Seguace",
         "rarity": "Rare",
@@ -4605,8 +4605,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
    
-    "Cultista di semai": {
-        "nome": "Cultista di semai",
+    "Cultista di Semai": {
+        "nome": "Cultista di Semai",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",

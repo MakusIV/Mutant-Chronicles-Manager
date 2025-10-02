@@ -45,6 +45,18 @@ class TipoGuerriero(Enum):
 
 class DisciplinaArte(Enum):
     """Discipline dell'Arte secondo il regolamento"""
+    CAMBIAMENTO = "Cambiamento"
+    ELEMENTI = "Elementi"
+    ESORCISMO = "Esorcismo"
+    CINETICA = "Cinetica"
+    MANIPOLAZIONE = "Manipolazione"
+    MENTALE = "Mentale"
+    PREMONIZIONE = "Premonizione"
+    EVOCAZIONE = "Evocazione"
+    TUTTE = "Tutte le Discipline"
+
+class DisciplinaArte_old(Enum):
+    """Discipline dell'Arte secondo il regolamento"""
     CAMBIAMENTO = "Arte del Cambiamento"
     ELEMENTI = "Arte degli Elementi"
     ESORCISMO = "Arte dell'Esorcismo"
