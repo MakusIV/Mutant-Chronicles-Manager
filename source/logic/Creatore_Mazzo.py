@@ -843,7 +843,7 @@ class CreatoreMazzo:
                 if guerriero.fazione in FAZIONI_FRATELLANZA and (not orientamento_arte or orientamento_arte == [] ):
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale
 
-                elif len(orientamento_arte) > 0: # anche guerrieri non della fratellanza possono lanciare l'arte                    
+                elif orientamento_arte and len(orientamento_arte) > 0: # anche guerrieri non della fratellanza possono lanciare l'arte                    
                     for abilita in guerriero.abilita:
                         escludi_oscura_legione = guerriero.fazione in FAZIONI_OSCURA_LEGIONE and not oscura_legione
                         escludi_doomtrooper = guerriero.fazione in FAZIONI_DOOMTROOPER and not doomtrooper
@@ -863,7 +863,7 @@ class CreatoreMazzo:
                 if guerriero.fazione in FAZIONI_OSCURA_LEGIONE and (not orientamento_apostolo or orientamento_apostolo == [] ):
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale
                     
-                elif len(orientamento_apostolo) > 0 :
+                elif orientamento_apostolo and len(orientamento_apostolo) > 0 :
                     for apostolo in orientamento_apostolo:
                         if f"Seguace di {apostolo}" in guerriero.keywords:
                             bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale                            
@@ -3683,7 +3683,7 @@ def menu_interattivo_mazzi():
         print("10. Cerca carta nei mazzi")
         print("11. Esempio completo salvataggio")
         print("12. Pulisci mazzi correnti")
-        print("13. Crea mazzo da file collezione")
+        print("13. Crea e salva mazzo da file collezione")
         print("0. Esci")
         
         
@@ -3735,7 +3735,7 @@ def menu_interattivo_mazzi():
                 print("❌ Nessun mazzo caricato. Usa prima l'opzione 1 o 5.")
         elif scelta == "3":
             if mazzi_correnti:
-                filename = input("Nome file (default: mazzi_dettagliati.json): ").strip()
+                filename = input("Nome file (default: mazzi.json): ").strip()
                 if not filename:
                     filename = "mazzi.json"
                 successo = salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi_correnti, filename)
@@ -3843,15 +3843,23 @@ def menu_interattivo_mazzi():
             # Creazione personalizzata
             mazzi_correnti.clear()
             try:
-                name = str(input("nome file collezion1: "))
-                collezioni = carica_collezioni_json_migliorato(name)
-                print(f"numero collezioni disponibili nel file: {len(collezioni['collezioni_dettagliate'])}")
+                name = str(input("nome file collezioni da caricare: "))
+                _, collezioni = carica_collezioni_json_migliorato(name)
+                print(f"numero collezioni disponibili nel file: {len(collezioni)}")
                 num = int(input("numero collezione (0, 1, ...): "))
-                collezione = collezioni['collezioni_dettagliate'][num]
-
+                collezione = collezioni[num]
+                
+                filename = input("nome file di output (default: mazzo_di_sconosciuto.json): ").strip()
+                if not filename:
+                    filename = "mazzo_di_sconosciuto.json"
+                
                 carte_min = int(input("numero minimo di carte del mazzo: "))
                 carte_max = int(input("numero massimo di carte del mazzo: "))
-                
+                fazioni_doomtrooper = []
+                arti_scelte = []
+                apostoli_scelti = []
+                espansioni = []
+
                 doomtrooper = input("utilizzo doomtrooper (s/n) (nota: la collezione deve contenere doomtrooper): ").lower().startswith('s')
                 if doomtrooper:
                     scelta_fazioni = input("vuoi specificare quali fazioni doomtrooper utilizzare (s/n): ").lower().startswith('s')
@@ -3915,6 +3923,11 @@ def menu_interattivo_mazzi():
                             orientamento_cultista = cultisti)
                 
                 mazzi_correnti.append(mazzo_1)
+                successo = salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi_correnti, filename)
+                if successo:
+                    print("✅ Salvataggio completato!")
+                else:
+                    print("❌ Salvataggio fallito")
             except Exception as e:
                 print(f"Errore: {e}")
         

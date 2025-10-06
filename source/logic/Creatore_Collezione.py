@@ -95,7 +95,7 @@ LIMITI_CARTE_COLLEZIONE = { # specifica il range % del numero di carte per tipo 
 
 
 
-MAX_COPIE_CARTA = 7 # Numero massimo di copie da inserire nella collezione per una specifica carta
+MAX_COPIE_CARTA = 6 # Numero massimo di copie da inserire nella collezione per una specifica carta
 
 
 # Serializzatore personalizzato per gestire enum e altri oggetti non serializzabili
@@ -682,8 +682,8 @@ def seleziona_carte_casuali_per_tipo(
     funzione_creazione: callable,
     set_espansioni: List[Set_Espansione],
     fazioni_orientamento: List[Fazione] = None,
-    min_carte: int = 5,
-    max_carte: int = 15,
+    min_carte: int = 5, # minimo numero di carte per tipologia (Guerriero, Equipaggiamento, ....) da inserire nella collezione
+    max_carte: int = 10, # massimo numero di carte per tipologia (Guerriero, Equipaggiamento, ....) da inserire nella collezione
     numero_giocatori = None,
     numero_mazzo = None,
     probabilita_orientamento: float = 0.7
@@ -706,7 +706,7 @@ def seleziona_carte_casuali_per_tipo(
     if not carte_disponibili:
         return carte_selezionate
     
-    # Determina numero di carte da selezionare per una stessa carta
+    # Determina numero di carte da selezionare per una tipologia (Guerriero, Equipaggiamento, ...)
     num_carte = random.randint(min_carte, max_carte)
     
     # Separa carte per orientamento se specificato
@@ -731,6 +731,9 @@ def seleziona_carte_casuali_per_tipo(
         carte_generiche = carte_disponibili
     
     # Seleziona carte privilegiando l'orientamento
+    numero_totale_carte_inserite_per_tipologia = 0
+
+
     for _ in range(num_carte):
         if not carte_disponibili:
             break
@@ -761,7 +764,7 @@ def seleziona_carte_casuali_per_tipo(
         quantita_disponibile = dati_carta.get('quantita') - QUANTITA_UTILIZZATE[nome_carta]        
 
         if quantita_disponibile < giocatori_rimasti:  # numero copie inferiore al numero giocatori da servire
-            if random.random() <= quantita_disponibile / giocatori_rimasti: # valutazione della probabilità di assegnazione della carta al giocatore corrente
+            if random.random() >= quantita_disponibile / giocatori_rimasti: # valutazione della probabilità di NON assegnazione della carta al giocatore corrente
                 # la carta non è assegnabile al giocatore corrente e viene rimossa dal pool 
                 if nome_carta in carte_orientate:
                     del carte_orientate[nome_carta]
@@ -770,23 +773,18 @@ def seleziona_carte_casuali_per_tipo(
                 continue #prosegue con il prossimo item del ciclo for
 
 
+        #La carta è assegnabile al giocatore corrente
 
-        # Determina quantità da aggiungere (1-3 copie)
+        # Determina quantità per singola copia da aggiungere (1-3 copie)
         max_quantita_disponibile = min(
-            MAX_COPIE_CARTA,  # Massimo 7 copie per carta per collezione (considera mazzo max 5 carte e collezione di gioco: totale 25 carte). La quantità minima consigliata viene utilizzata per la creazione del mazzo
+            MAX_COPIE_CARTA,  # Massimo 6 copie per carta per collezione (considera mazzo max 5 carte e collezione di gioco: totale 25 carte). La quantità minima consigliata viene utilizzata per la creazione del mazzo
             dati_carta.get('quantita', 0) - QUANTITA_UTILIZZATE[nome_carta]
         )
-
-        # rimuovi la carta dalle liste di selezione
-        if nome_carta in carte_orientate:
-            del carte_orientate[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
-        if nome_carta in carte_generiche:
-            del carte_generiche[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
-        
+            
         # calcola la quantita di copie da inserire nella collezione per una specifica carta        
         quantita = random.randint(1, max_quantita_disponibile)
         
-        # Crea e aggiungi carte
+        # Crea e aggiungi il quantitativo di copie richiesto per la carta specifica con diverse istanze della stessa
         for _ in range(quantita):
             try:
                 carta = funzione_creazione(nome_carta)
@@ -799,12 +797,18 @@ def seleziona_carte_casuali_per_tipo(
         # Registra utilizzo
         utilizza_carta(nome_carta, quantita)
         
-        # Rimuovi se quantità esaurita
-        if not verifica_quantita_disponibile(nome_carta, database):
-            if nome_carta in carte_orientate:
-                del carte_orientate[nome_carta]
-            if nome_carta in carte_generiche:
-                del carte_generiche[nome_carta]
+        # rimuovi la carta dalle liste di selezione in modo da non poter essere più selezionata
+        if nome_carta in carte_orientate:
+            del carte_orientate[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
+        if nome_carta in carte_generiche:
+            del carte_generiche[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
+
+        # Aggiorna contatore totale carte inserite per tipologia
+        numero_totale_carte_inserite_per_tipologia += quantita
+
+        # Interrompe il ciclo se è stato raggiunto il numero massimo di carte per tipologia
+        if numero_totale_carte_inserite_per_tipologia >= num_carte:
+            return carte_selezionate
     
     return carte_selezionate
 
@@ -903,7 +907,7 @@ def creazione_Collezione_Giocatore(
     """
     
     if numero_giocatori <= 0:
-        raise ValueError("Il numero di giocatori deve essere positivo")
+        raise ValueError("Il numero di giocatori deve essere maggiore di zero")
     
 
     if not espansioni:
@@ -964,13 +968,7 @@ def creazione_Collezione_Giocatore(
                 tentativi += 1
             
             if fazioni_orientamento:
-                """
-                # calcolo quantità guerrieri per nome                
-                for fazione in fazioni_orientamento:                    
-                    guerrieri_fazione = get_numero_guerrieri_per_fazione(fazione = fazione)
-                    for nome, data in guerrieri_fazione:
-                        numero_guerrieri[nome]=data['quantita']
-                """
+                
                 collezione.fazioni_orientamento = list(fazioni_orientamento)    
                 print(f"Orientamento: {[f.value for f in fazioni_orientamento]}")
             else:               
@@ -1997,46 +1995,6 @@ def verifica_integrità_collezioni(collezioni: List[CollezioneGiocatore]) -> Dic
 
 # ==================== ESEMPI E TEST PER COLLEZIONE GIOCATORE ====================
 
-def test_creazione_collezioni_base():
-    """Test base per la creazione di collezioni"""
-    print("\n" + "="*60)
-    print("TEST: Creazione collezioni BASE (senza orientamento)")
-    print("="*60)
-    
-    collezioni = creazione_Collezione_Giocatore(
-        numero_giocatori=2,
-        espansioni=[Set_Espansione.BASE],
-        orientamento=False
-    )
-    
-    stampa_riepilogo_collezioni_migliorato(collezioni)
-    
-    integrità = verifica_integrità_collezioni(collezioni)
-    print(f"\nRisultati verifica integrità: {integrità}")
-    
-    return collezioni
-
-
-def test_creazione_collezioni_orientate():
-    """Test per la creazione di collezioni con orientamento"""
-    print("\n" + "="*60)
-    print("TEST: Creazione collezioni ORIENTATE")
-    print("="*60)
-    
-    collezioni = creazione_Collezione_Giocatore(
-        numero_giocatori=3,
-        espansioni=[Set_Espansione.BASE, Set_Espansione.INQUISITION],
-        orientamento=True
-    )
-    
-    stampa_riepilogo_collezioni_migliorato(collezioni)
-    
-    integrità = verifica_integrità_collezioni(collezioni)
-    print(f"\nRisultati verifica integrità: {integrità}")
-    
-    return collezioni
-
-
 def test_creazione_collezioni_multiple_espansioni():
     """Test per la creazione di collezioni con multiple espansioni"""
     print("\n" + "="*60)
@@ -2279,8 +2237,8 @@ def menu_interattivo():
         print("\n" + "="*60)
         print("MANAGER_GIOCO - MENU INTERATTIVO")
         print("="*60)
-        print("1. Test creazione collezioni base")
-        print("2. Test creazione collezioni orientate")
+        print("1. vuoto")
+        print("2. vuoto")
         print("3. Test multiple espansioni")
         print("4. Stress test")
         print("5. Test validazione parametri")
@@ -2296,9 +2254,9 @@ def menu_interattivo():
             print("Arrivederci!")
             break
         elif scelta == "1":
-            test_creazione_collezioni_base()
+            pass
         elif scelta == "2":
-            test_creazione_collezioni_orientate()
+            pass
         elif scelta == "3":
             test_creazione_collezioni_multiple_espansioni()
         elif scelta == "4":
