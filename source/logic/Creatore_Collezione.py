@@ -79,44 +79,23 @@ PERCORSO_SALVATAGGIO = "out/"
 # 1/2: 66% SCHIERAMENTO, 33% SQUADRA, 2/3: 60% SCHIERAMENTO, 40% SQUADRA, 1/3: 75% SCHIERAMENTO, 25% SQUADRA
 RAPPORTO_SQUADRA_SCHIERAMENTO = 1 
 
-NUMERO_CARTE_DISPONIBILI = {
-    'Guerriero': 31,
-    'Equipaggiamento': 11,
-    'Speciale': 22,
-    'Arte': 15,
-    'Oscura Simmetria': 10,
-    'Fortificazione': 20,
-    'Missione': 17,
-    'Reliquia': 12,
-    'Warzone': 11,
-}
 
-LIMITI_CARTE_COLLEZIONE = { # specifica il range del numero di carte per tipo da inserire nella collezione, considera che poi si aggiungono il numero minimo di copie per carta
-            'Guerriero': {'min': 100 , 'max': 132 },
-            'Equipaggiamento': {'min': 70 , 'max': 80  },
-            'Speciale': {'min': 140 , 'max': 165},
-            'Arte': {'min': 45 , 'max': 62  },
-            'Oscura Simmetria': {'min': 28 , 'max': 35  },
-            'Fortificazione': {'min': 18 , 'max': 26  },
-            'Missione': {'min': 5 , 'max': 16  },
-            'Reliquia': {'min': 12 , 'max': 17  },
-            'Warzone': {'min': 9 , 'max': 14  },
+
+LIMITI_CARTE_COLLEZIONE = { # specifica il range % del numero di carte per tipo da inserire nella collezione
+            'Guerriero': {'min': 0.9 , 'max': 1 },
+            'Equipaggiamento': {'min': 0.9 , 'max': 1  },
+            'Speciale': {'min': 0.85 , 'max': 1},
+            'Arte': {'min': 0.9 , 'max': 1  },
+            'Oscura Simmetria': {'min': 0.9 , 'max': 1  },
+            'Fortificazione': {'min': 0.9 , 'max': 1  },
+            'Missione': {'min': 0.8 , 'max': 1  },
+            'Reliquia': {'min': 0.9 , 'max': 1  },
+            'Warzone': {'min': 0.8 , 'max': 1  },
         } 
 
-MAX_COPIE_CARTA = 7 # Numero massimo di copie da inserire nella collezione per una specifica carta
 
-# percentuale distribuzione carte per collezione/mazzo gioco
-LIMITI_CARTE_MAZZO = {
-    'Guerriero': {'min': int(0.19 * NUMERO_CARTE_DISPONIBILI['Guerriero']) , 'max': int(0.22 * NUMERO_CARTE_DISPONIBILI['Guerriero']) },
-    'Equipaggiamento': {'min': int(0.10 * NUMERO_CARTE_DISPONIBILI['Equipaggiamento']) , 'max': int(0.13 * NUMERO_CARTE_DISPONIBILI['Equipaggiamento']) },
-    'Speciale': {'min': int(0.40 * NUMERO_CARTE_DISPONIBILI['Speciale']) , 'max': int(0.45 * NUMERO_CARTE_DISPONIBILI['Speciale']) },
-    'Arte': {'min': int(0.05 * NUMERO_CARTE_DISPONIBILI['Arte']) , 'max': int(0.07 * NUMERO_CARTE_DISPONIBILI['Arte']) },
-    'Oscura Simmetria': {'min': int(0.05 * NUMERO_CARTE_DISPONIBILI['Oscura Simmetria']) , 'max': int(0.07 * NUMERO_CARTE_DISPONIBILI['Oscura Simmetria']) },
-    'Fortificazione': {'min': int(0.07 * NUMERO_CARTE_DISPONIBILI['Fortificazione']) , 'max': int(0.10 * NUMERO_CARTE_DISPONIBILI['Fortificazione']) },
-    'Missione': {'min': int(0.05 * NUMERO_CARTE_DISPONIBILI['Missione']) , 'max': int(0.07 * NUMERO_CARTE_DISPONIBILI['Missione']) },
-    'Reliquia': {'min': int(0.05 * NUMERO_CARTE_DISPONIBILI['Reliquia']) , 'max': int(0.07 * NUMERO_CARTE_DISPONIBILI['Reliquia']) },
-    'Warzone': {'min': int(0.05 * NUMERO_CARTE_DISPONIBILI['Warzone']) , 'max': int(0.07 * NUMERO_CARTE_DISPONIBILI['Warzone']) },
-}
+
+MAX_COPIE_CARTA = 7 # Numero massimo di copie da inserire nella collezione per una specifica carta
 
 
 # Serializzatore personalizzato per gestire enum e altri oggetti non serializzabili
@@ -159,6 +138,8 @@ class StatisticheCollezione:
         self.per_fazione = defaultdict(int)
         self.per_set = defaultdict(int)
         self.per_rarity = defaultdict(int)
+
+
     
    
         
@@ -851,6 +832,53 @@ def genera_fazioni_orientamento_casuali() -> Tuple[Fazione, ...]:
     
     return tuple(fazioni)
 
+def calcola_numero_carte_assegnabili(espansioni_valide: List, numero_giocatori: int) -> Dict:
+    """Calcola e stampa il numero totale di carte assegnabili per tipo in base alle espansioni selezionate"""
+    totale_carte_per_tipo = defaultdict(int)
+    limiti_carte = {tipo: {'min': 0, 'max': 0} for tipo in ['Guerriero', 'Equipaggiamento', 'Speciale', 'Fortificazione', 'Missione', 'Arte', 'Oscura Simmetria', 'Reliquia', 'Warzone']}
+    valori_espansioni = [espansione.value for espansione in espansioni_valide]
+    # Conta carte per tipo
+    for nome, dati in GUERRIERI_DATABASE.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Guerriero'] += dati.get('quantita', 0)
+    
+    for nome, dati in DATABASE_EQUIPAGGIAMENTO.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Equipaggiamento'] += dati.get('quantita', 0)
+    
+    for nome, dati in DATABASE_SPECIALI.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Speciale'] += dati.get('quantita', 0)
+    
+    for nome, dati in DATABASE_FORTIFICAZIONI.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Fortificazione'] += dati.get('quantita', 0)
+    
+    for nome, dati in DATABASE_MISSIONI.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Missione'] += dati.get('quantita', 0)
+    
+    for nome, dati in CARTE_ARTE_DATABASE.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Arte'] += dati.get('quantita', 0)
+    
+    for nome, dati in DATABASE_OSCURA_SIMMETRIA.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Oscura Simmetria'] += dati.get('quantita', 0)
+    
+    for nome, dati in DATABASE_RELIQUIE.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Reliquia'] += dati.get('quantita', 0)
+    
+    for nome, dati in DATABASE_WARZONE.items():
+        if dati.get('set_espansione') in valori_espansioni:
+            totale_carte_per_tipo['Warzone'] += dati.get('quantita', 0)
+
+    for tipo in ['Guerriero', 'Equipaggiamento', 'Speciale', 'Fortificazione', 'Missione', 'Arte', 'Oscura Simmetria', 'Reliquia', 'Warzone']:
+        limiti_carte[tipo]['max'] = int (totale_carte_per_tipo[tipo] * LIMITI_CARTE_COLLEZIONE[tipo]['max'] / numero_giocatori)
+        limiti_carte[tipo]['min'] = int (totale_carte_per_tipo[tipo] * LIMITI_CARTE_COLLEZIONE[tipo]['min'] / numero_giocatori)
+        
+    return limiti_carte
 
 def creazione_Collezione_Giocatore(
     numero_giocatori: int,
@@ -886,6 +914,7 @@ def creazione_Collezione_Giocatore(
     for esp in espansioni:
         if isinstance(esp, Set_Espansione):
             espansioni_valide.append(esp)
+
         elif isinstance(esp, str):
             try:
                 espansioni_valide.append(Set_Espansione(esp))
@@ -897,6 +926,8 @@ def creazione_Collezione_Giocatore(
     if not espansioni_valide:
         raise ValueError("Nessuna espansione valida specificata")
     
+    limiti_carte = calcola_numero_carte_assegnabili(espansioni_valide, numero_giocatori)
+
     # Resetta tracciamento quantità
     resetta_tracciamento_quantita()
     
@@ -956,8 +987,8 @@ def creazione_Collezione_Giocatore(
             crea_guerriero_da_database, # funzione da utilizzare
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Guerriero']['min'],
-            max_carte=LIMITI_CARTE_COLLEZIONE['Guerriero']['max'],
+            min_carte=limiti_carte['Guerriero']['min'],
+            max_carte=limiti_carte['Guerriero']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )
@@ -973,8 +1004,8 @@ def creazione_Collezione_Giocatore(
             crea_equipaggiamento_da_database,
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Equipaggiamento']['min'],
-            max_carte=LIMITI_CARTE_COLLEZIONE['Equipaggiamento']['max'],
+            min_carte=limiti_carte['Equipaggiamento']['min'],
+            max_carte=limiti_carte['Equipaggiamento']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )
@@ -988,8 +1019,8 @@ def creazione_Collezione_Giocatore(
             crea_speciale_da_database,
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Speciale']['min'],
-            max_carte=LIMITI_CARTE_COLLEZIONE['Speciale']['max'],
+            min_carte=limiti_carte['Speciale']['min'],
+            max_carte=limiti_carte['Speciale']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )
@@ -1003,8 +1034,8 @@ def creazione_Collezione_Giocatore(
             crea_fortificazione_da_database,
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Fortificazione']['min'],
-            max_carte=LIMITI_CARTE_COLLEZIONE['Fortificazione']['max'],
+            min_carte=limiti_carte['Fortificazione']['min'],
+            max_carte=limiti_carte['Fortificazione']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )
@@ -1018,8 +1049,8 @@ def creazione_Collezione_Giocatore(
             crea_missione_da_database,
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Missione']['min'],
-            max_carte=LIMITI_CARTE_COLLEZIONE['Missione']['max'],
+            min_carte=limiti_carte['Missione']['min'],
+            max_carte=limiti_carte['Missione']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )
@@ -1033,8 +1064,8 @@ def creazione_Collezione_Giocatore(
             crea_arte_da_database,
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Arte']['min'],            
-            max_carte=LIMITI_CARTE_COLLEZIONE['Arte']['max'],
+            min_carte=limiti_carte['Arte']['min'],            
+            max_carte=limiti_carte['Arte']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )
@@ -1048,8 +1079,8 @@ def creazione_Collezione_Giocatore(
             crea_oscura_simmetria_da_database,
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Oscura Simmetria']['min'],
-            max_carte=LIMITI_CARTE_COLLEZIONE['Oscura Simmetria']['max'],
+            min_carte=limiti_carte['Oscura Simmetria']['min'],
+            max_carte=limiti_carte['Oscura Simmetria']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )
@@ -1063,8 +1094,8 @@ def creazione_Collezione_Giocatore(
             crea_reliquia_da_database,
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Reliquia']['min'],
-            max_carte=LIMITI_CARTE_COLLEZIONE['Reliquia']['max'],
+            min_carte=limiti_carte['Reliquia']['min'],
+            max_carte=limiti_carte['Reliquia']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )
@@ -1078,8 +1109,8 @@ def creazione_Collezione_Giocatore(
             crea_warzone_da_database,
             espansioni_valide,
             collezione.fazioni_orientamento,
-            min_carte=LIMITI_CARTE_COLLEZIONE['Warzone']['min'],
-            max_carte=LIMITI_CARTE_COLLEZIONE['Warzone']['max'],
+            min_carte=limiti_carte['Warzone']['min'],
+            max_carte=limiti_carte['Warzone']['max'],
             numero_giocatori = numero_giocatori,
             numero_mazzo = i
         )

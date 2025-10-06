@@ -4907,6 +4907,13 @@ def get_numero_guerrieri_per_set(espansione: str) -> Dict[str, int]:
     return [{'nome': nome, 'quantita': data['quantita']} for nome, data in GUERRIERI_DATABASE.items() 
             if data["set_espansione"] == espansione]
 
+def get_numero_guerrieri() -> int:
+    """Restituisce il numero totale di guerrieri nel database"""
+    num=0  
+    for espansione in Set_Espansione.values():
+        num+=get_numero_guerrieri_per_set(espansione)["quantita"]
+
+    return num
 
 def get_guerrieri_per_set(espansione: str) -> List[str]:    
     """
