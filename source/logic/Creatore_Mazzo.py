@@ -909,25 +909,41 @@ class CreatoreMazzo:
             quantita_consigliata = getattr(guerriero, 'quantita_minima_consigliata', 1)            
             
             # valuta la quantità minima in base al valore del guerriero (maggiore costo)            
-            if guerriero.stats.valore > 8:#da 9 in poi
-                min_val = 1
+            if guerriero.stats.valore > 8:#da 9 in poi                
+                if potenza < 0.9:
+                    min_val = random.randint(1, 2)
+                else:
+                    min_val = 1
+                
             elif 6 < guerriero.stats.valore <= 8: # 7 e 8
+                if potenza < 0.85:
+                    min_val = 1
+                else:
+                    min_val = random.randint(1, 2)
 
-                min_val = random.randint(1, 2)
             elif 4 < guerriero.stats.valore <= 6: # 5 e 6
-                min_val = random.randint(2, 3)                
+                if potenza < 0.8:
+                    min_val = 1
+                else:
+                    min_val = random.randint(1, 3)                
+            
             else: # uguale o inferiore a 4
-                min_val = random.randint(3, 4)                
+                if potenza < 0.8:
+                    min_val = 1
+                else:
+                    min_val = random.randint(1, 4)                
 
             # Calcola numero di copie basato sulla potenza
-            if quantita_consigliata <=1:
-                if potenza > 0.8:                
-                        quantita_consigliata = 4
-                elif potenza > 0.5:
-                        quantita_consigliata = 3
-                elif quantita_consigliata < 1:
+            if quantita_consigliata <1:
+                if potenza > 0.9:                
+                        quantita_consigliata = random.randint(2, 3)
+                elif 0.75 < potenza <= 0.9:
+                        quantita_consigliata = random.randint(1, 3)
+                elif 0.65 < potenza <= 0.75:
+                        quantita_consigliata = random.randint(1, 2)
+                else:
                         quantita_consigliata = 1
-            
+                
             max_val = min(quantita_disponibile, quantita_consigliata)    
             
             if max_val == min_val:
@@ -975,7 +991,8 @@ class CreatoreMazzo:
                                 tipo_carta: str,
                                 doomtrooper: bool = None,
                                 orientamento_doomtrooper: List[str] = None,                           
-                                fratellanza: bool = None,                                
+                                fratellanza: bool = None,      
+                                orientamento_arte: List[str] = None,                           
                                 oscura_legione: bool = None,
                                 orientamento_apostolo: List[str] = None,
                                 orientamento_eretico: bool = False,
@@ -1062,9 +1079,21 @@ class CreatoreMazzo:
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_carte_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
                 
             
-            if fratellanza and fratellanza_dedicata: # la carta è dedicata alla fratellanza
-                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se richiesto doomtrooper e la fazione è nei doomtroopers
-            
+            if fratellanza and fratellanza_dedicata: # la carta è dedicata alla fratellanza                
+
+                if tipo_carta == 'arte':                    
+                    # Le arti possono essere utilizzate anche da guerrieri non appartenenti alla Fratellanza
+                    if orientamento_arte and len(orientamento_arte) > 0: # Sono definite le arti preferite
+                        
+                        disciplina = carta.disciplina
+                        if disciplina in orientamento_arte:
+                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO  * fattore_carte_fondamentale # triplica se il fratello lancia la specifica arte
+                        elif disciplina == DisciplinaArte.TUTTE.value:
+                            bonus_moltiplicatore *= (BONUS_ORIENTAMENTO + 1)  * fattore_carte_fondamentale   # triplica se il fratello lancia la specifica arte                    
+                    else: # non sono definite arti preferite
+                        bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_carte_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
+                else:
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_carte_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
             
              # Orientamento Apostolo (per guerrieri Oscura Legione)
             if oscura_legione and oscura_legione_dedicata: # la carta è dedicata alla oscura legione 
@@ -1081,7 +1110,7 @@ class CreatoreMazzo:
                  
 
             if orientamento_eretico and 'Eretico' in carta.keywords:
-                bonus_moltiplicatore *= BONUS_ORIENTAMENTO # triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
+                bonus_moltiplicatore *= BONUS_ERETICO # triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
 
             carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
             
@@ -1418,7 +1447,8 @@ def crea_mazzo_da_gioco(collezione: Any,
             'equipaggiamento', 
             doomtrooper,
             orientamento_doomtrooper,
-            fratellanza,            
+            fratellanza,   
+            orientamento_arte,         
             oscura_legione,
             orientamento_apostolo,
             orientamento_eretico,
@@ -1436,7 +1466,8 @@ def crea_mazzo_da_gioco(collezione: Any,
             'fortificazione', 
             doomtrooper,
             orientamento_doomtrooper,
-            fratellanza,            
+            fratellanza,       
+            orientamento_arte,       
             oscura_legione,
             orientamento_apostolo,
             orientamento_eretico,
@@ -1454,7 +1485,8 @@ def crea_mazzo_da_gioco(collezione: Any,
             'speciale', 
             doomtrooper,
             orientamento_doomtrooper,
-            fratellanza,            
+            fratellanza,         
+            orientamento_arte,     
             oscura_legione,
             orientamento_apostolo,
             orientamento_eretico,
@@ -1472,7 +1504,8 @@ def crea_mazzo_da_gioco(collezione: Any,
             'missione', 
             doomtrooper,
             orientamento_doomtrooper,
-            fratellanza,            
+            fratellanza,    
+            orientamento_arte,          
             oscura_legione,
             orientamento_apostolo,
             orientamento_eretico,
@@ -1490,7 +1523,8 @@ def crea_mazzo_da_gioco(collezione: Any,
             'arte', 
             doomtrooper,
             orientamento_doomtrooper,
-            fratellanza,            
+            fratellanza,   
+            orientamento_arte,           
             oscura_legione,
             orientamento_apostolo,
             orientamento_eretico,
@@ -1508,7 +1542,8 @@ def crea_mazzo_da_gioco(collezione: Any,
             'oscura_simmetria', 
             doomtrooper,
             orientamento_doomtrooper,
-            fratellanza,            
+            fratellanza,      
+            orientamento_arte,        
             oscura_legione,
             orientamento_apostolo,
             orientamento_eretico,
@@ -1527,6 +1562,7 @@ def crea_mazzo_da_gioco(collezione: Any,
             doomtrooper,
             orientamento_doomtrooper,
             fratellanza,            
+            orientamento_arte,  
             oscura_legione,
             orientamento_apostolo,
             orientamento_eretico,
@@ -1544,7 +1580,8 @@ def crea_mazzo_da_gioco(collezione: Any,
             'warzone', 
             doomtrooper,
             orientamento_doomtrooper,
-            fratellanza,            
+            fratellanza,        
+            orientamento_arte,      
             oscura_legione,
             orientamento_apostolo,
             orientamento_eretico,
@@ -4033,7 +4070,8 @@ def menu_interattivo_mazzi():
                         art_input = input("Scegli le tipologie di Arte (numeri separati da virgola): ")
                         art_indices = [int(x.strip())-1 for x in art_input.split(",")]
                         arti_scelte = [list(DisciplinaArte)[i].value for i in art_indices if 0 <= i < len(DisciplinaArte)]
-
+                
+                cultisti = False
                 oscura_legione = input("utilizzo oscura legione (s/n) (nota: la collezione deve contenere oscura legione): ").lower().startswith('s')
                 if oscura_legione:
                     scelta_apostoli = input("vuoi specificare quali Apostoli vuoi utilizzare (s/n): ").lower().startswith('s')
@@ -4045,10 +4083,10 @@ def menu_interattivo_mazzi():
                         apo_input = input("Scegli gli Apostoli (numeri separati da virgola): ")
                         apo_indices = [int(x.strip())-1 for x in apo_input.split(",")]
                         apostoli_scelti = [list(ApostoloOscuraSimmetria)[i].value for i in art_indices if 0 <= i < len(ApostoloOscuraSimmetria)]
-
+                    cultisti = input("utilizzo cultisti (s/n): ").lower().startswith('s')
 
                 eretici = input("utilizzo eretici (s/n): ").lower().startswith('s')
-                cultisti = input("utilizzo cultisti (s/n): ").lower().startswith('s')
+                
 
                 print("Espansioni disponibili:")
                 for i, esp in enumerate(Set_Espansione):
