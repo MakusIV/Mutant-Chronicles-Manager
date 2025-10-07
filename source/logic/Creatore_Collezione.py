@@ -115,10 +115,10 @@ class EnumJSONEncoder(json.JSONEncoder):
 
 class TipoCombinazioneFazione(Enum):
     """Combinazioni di fazioni per collezioni orientate"""
-    FRATELLANZA_DOOMTROOPER_FREELANCER = ("Fratellanza", "Doomtrooper", "Freelancer")
-    # FRATELLANZA_OSCURA_LEGIONE_FREELANCER = ("Fratellanza", "Oscura Legione", "Freelancer") 
-    DOOMTROOPER_OSCURA_LEGIONE_FREELANCER = ("Doomtrooper", "Oscura Legione", "Freelancer")
-    DOOMTROOPER_FREELANCER = ("Doomtrooper", "Freelancer")
+    FRATELLANZA_DOOMTROOPER_FREELANCER = ("Fratellanza", "Doomtrooper", "Mercenario")
+    # FRATELLANZA_OSCURA_LEGIONE_FREELANCER = ("Fratellanza", "Oscura Legione", "Mercenario") 
+    DOOMTROOPER_OSCURA_LEGIONE_FREELANCER = ("Doomtrooper", "Oscura Legione", "Mercenario")
+    DOOMTROOPER_FREELANCER = ("Doomtrooper", "Mercenario")
 
 class StatisticheCollezione:
     """Classe per tracciare le statistiche di una collezione"""
@@ -3341,7 +3341,7 @@ if __name__ == "__main__":
 ║                                                                              ║
 ║  Funzionalità implementate:                                                  ║
 ║  • Creazione collezioni giocatore (non mazzi da gioco)                      ║
-║  • Orientamento fazioni casuali (Fratellanza-Doomtrooper-Freelancer, etc.)  ║
+║  • Orientamento fazioni casuali (Fratellanza-Doomtrooper-Mercenario, etc.)  ║
 ║  • Selezione casuale carte da tutte le espansioni specificate               ║
 ║  • Verifica integrità e bilanciamento collezioni                            ║
 ║  • Export/Import JSON                                                        ║

@@ -109,7 +109,7 @@ FAZIONI_DOOMTROOPER = [
     Fazione.MISHIMA,
     Fazione.BAUHAUS, 
     Fazione.CYBERTRONIC, 
-    Fazione.FREELANCER
+    Fazione.MERCENARIO
 ]
 
 FAZIONI_FRATELLANZA = [Fazione.FRATELLANZA]
@@ -812,6 +812,11 @@ class CreatoreMazzo:
         guerrieri_disponibili_ammessi.extend(guerrieri_oscura_legione) 
 
 
+        BONUS_SPECIALIZZAZIONE = 2.0 # RADDOPPIA RISPETTO IL BONUS BASE 
+        BONUS_ORIENTAMENTO = 3.0 # TRIPLICA RISPETTO IL BONUS BASE      
+        BONUS_ERETICO = 2 # AUMENTA DEL 100% IL BONUS BASE PER ERETICI
+        BONUS_CULTISTA = 2 # AUMENTA DEL 100% IL BONUS BASE PER CULTISTI   
+
         for guerriero in guerrieri_disponibili_ammessi:
             
             if guerriero.nome in punteggi:
@@ -820,8 +825,7 @@ class CreatoreMazzo:
             punteggio = self.calcola_potenza_guerriero(guerriero)
             
             # Bonus per orientamenti
-            bonus_moltiplicatore = 1.0
-            BONUS_SPECIALIZZAZIONE = 2.0 # RADDOPPIA RISPETTO IL BONUS BASE            
+            bonus_moltiplicatore = 1.0              
             bonus_factor_guerriero_fondamentale = 1
 
             if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
@@ -829,52 +833,56 @@ class CreatoreMazzo:
             
             # Orientamento Doomtrooper
             
-            if doomtrooper:
-                if guerriero.fazione in FAZIONI_DOOMTROOPER and (not orientamento_doomtrooper or orientamento_doomtrooper == [] ):
+            if doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
+                if not orientamento_doomtrooper or orientamento_doomtrooper == []: # il guerriero è un doomtrooper e non è definito l'orientamento
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
 
-                elif guerriero.fazione.value in orientamento_doomtrooper:
-                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale# raddoppia il punteggio se la fazione è anche nell'orientamento doomtroopers
-                
+                elif guerriero.fazione.value in orientamento_doomtrooper: #il guerriero è un doomtrooper con fazione inclusa nell'orientamento: 
+                    bonus_moltiplicatore *= BONUS_ORIENTAMENTO  * bonus_factor_guerriero_fondamentale# triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
+
+                else: # il guerriero è un doomtrooper ma non è nell'orientamento
+                    bonus_moltiplicatore *= 0.8  * bonus_factor_guerriero_fondamentale # decrementa del 20% se il doomtrooper non è della fazione richiesta (per favorire la scelta di quelli della fazione richiesta)
     
             # Orientamento Arte (per guerrieri Fratellanza)
             if fratellanza: # 
                 
-                if guerriero.fazione in FAZIONI_FRATELLANZA and (not orientamento_arte or orientamento_arte == [] ):
+                if guerriero.fazione in FAZIONI_FRATELLANZA and (not orientamento_arte or orientamento_arte == []): # il guerriero è della fratellanza e non è definito l'orientamento
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale
-
-                elif orientamento_arte and len(orientamento_arte) > 0: # anche guerrieri non della fratellanza possono lanciare l'arte                    
+                
+                # Le arti possono essere utilizzaqte anche da guerrieri non appartenenti alla Fratellanza
+                if orientamento_arte and len(orientamento_arte) > 0: # Sono definite le arti preferite
                     for abilita in guerriero.abilita:
-                        escludi_oscura_legione = guerriero.fazione in FAZIONI_OSCURA_LEGIONE and not oscura_legione
-                        escludi_doomtrooper = guerriero.fazione in FAZIONI_DOOMTROOPER and not doomtrooper
+                        escludi_oscura_legione = guerriero.fazione in FAZIONI_OSCURA_LEGIONE and not oscura_legione # True se il guerriero è OL e non è previsto nel mazzo l'oscura legione
+                        escludi_doomtrooper = guerriero.fazione in FAZIONI_DOOMTROOPER and not doomtrooper # True se il guerriero è DOOMTROOPER e non è previsto nel mazzo i doomtrooper
                         if abilita.tipo == 'Arte' and not (escludi_oscura_legione or escludi_doomtrooper) : # esclude se il guerriero è OL e non è previsto nel mazzo l'oscura legione
                             disciplina = abilita.target
                             if any( arte_ in disciplina for arte_ in orientamento_arte ):
-                                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale # duplica se il fratello lancia la specifica arte
+                                bonus_moltiplicatore *= BONUS_ORIENTAMENTO  * bonus_factor_guerriero_fondamentale # triplica se il fratello lancia la specifica arte
                             elif disciplina == DisciplinaArte.TUTTE.value:
-                                bonus_moltiplicatore *= (BONUS_SPECIALIZZAZIONE + 1)  * bonus_factor_guerriero_fondamentale   # triplica se il fratello lancia la specifica arte
+                                bonus_moltiplicatore *= (BONUS_ORIENTAMENTO + 1)  * bonus_factor_guerriero_fondamentale   # triplica se il fratello lancia la specifica arte
                             elif guerriero.fazione in FAZIONI_FRATELLANZA: # il guerriero è della fratellanza ma non ha competenza nlle arti richieste (depotenzia)
                                 bonus_moltiplicatore *= 0.8  * bonus_factor_guerriero_fondamentale # decrementa del 20% se il fratello non è competente nelle arti scelte (per favorire la scelta di quelli competenti)
                                 
             
             # Orientamento Apostolo (per guerrieri Oscura Legione)
-            if oscura_legione: # and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+            if oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE: # and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
 
-                if guerriero.fazione in FAZIONI_OSCURA_LEGIONE and (not orientamento_apostolo or orientamento_apostolo == [] ):
+                if not orientamento_apostolo or orientamento_apostolo == []:
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale
                     
                 elif orientamento_apostolo and len(orientamento_apostolo) > 0 :
                     for apostolo in orientamento_apostolo:
                         if f"Seguace di {apostolo}" in guerriero.keywords:
-                            bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale                            
+                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO * bonus_factor_guerriero_fondamentale                            
+                else:
+                    bonus_moltiplicatore *= 0.8  * bonus_factor_guerriero_fondamentale # decrementa del 20% se il guerriero non può fruire dei doni dell'apostolo incluso nell'orientamento (per favorire la scelta di quelli che possono usufruirne)
 
                 if orientamento_cultista and 'Cultista' in guerriero.keywords:
-                    bonus_moltiplicatore *= 1.5 # aumenta di un ulteriore 50% (triplica) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
+                    bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
                             
-            # Orientamento Eretico
-
+            # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in guerriero.keywords:
-                    bonus_moltiplicatore *= 1.5 # aumenta di un ulteriore 50% (triplica) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
+                    bonus_moltiplicatore *= BONUS_ERETICO # aumenta di un ulteriore fattore (BONUS_ERETICI) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
         
             
             punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore
@@ -965,7 +973,14 @@ class CreatoreMazzo:
                                 schieramento: List[Guerriero],
                                 espansioni_richieste: List[str],
                                 tipo_carta: str,
-                                numero_carte: int) -> List[Any]:
+                                doomtrooper: bool = None,
+                                orientamento_doomtrooper: List[str] = None,                           
+                                fratellanza: bool = None,                                
+                                oscura_legione: bool = None,
+                                orientamento_apostolo: List[str] = None,
+                                orientamento_eretico: bool = False,
+                                orientamento_cultista: bool = False,
+                                numero_carte: int = 50) -> List[Any]:
         """
         Seleziona carte di supporto (Equipaggiamento, Speciale, etc.)
         
@@ -1004,22 +1019,76 @@ class CreatoreMazzo:
         carte_selezionate = []
         tutti_guerrieri = squadra + schieramento
         numero_guerrieri = len(tutti_guerrieri)
-        fattore_carte_fondamentale = 1 # fattore di incremento del rating assegnato alla carta se questa è fondamentale
+
+         # Bonus per orientamenti
+       
+        BONUS_SPECIALIZZAZIONE = 2.0 # RADDOPPIA RISPETTO IL BONUS BASE 
+        BONUS_ORIENTAMENTO = 3.0 # TRIPLICA RISPETTO IL BONUS BASE      
+        BONUS_ERETICO = 2 # AUMENTA DEL 100% IL BONUS BASE PER ERETICI
+        BONUS_CULTISTA = 2 # AUMENTA DEL 100% IL BONUS BASE PER CULTISTI     
+        
+                
 
         # Calcola potenza per ogni carta
         carte_con_punteggio = []
         
         for carta in carte_disponibili:
-                    
+
+            bonus_moltiplicatore = 1.0
+            fattore_carte_fondamentale = 1 # fattore di incremento del rating assegnato alla carta se questa è fondamentale
+
+            if hasattr(carta, 'fondamentale') and carta.fondamentale:
+                fattore_carte_fondamentale = 3 # triplica il punteggio se è una carta fondamentale
+
+            fazioni = []
+            if hasattr(carta, 'fazione'):
+                fazioni = [carta.fazione]
+            elif hasattr(carta, 'fazioni_permesse'):
+                fazioni = carta.fazioni_permesse
+            elif hasattr(carta, 'restrizioni') and hasattr(carta.restrizioni, 'fazioni_permesse'):
+                fazioni = carta.restrizioni.fazioni_permesse
+            
+            doomtrooper_dedicata = any(f in fazioni for f in FAZIONI_DOOMTROOPER) or 'Doomtrooper' in fazioni
+            orientamento_doomtrooper_dedicata = any(f in orientamento_doomtrooper for f in fazioni) if (orientamento_doomtrooper and len(orientamento_doomtrooper) > 0) else False
+            fratellanza_dedicata = any(f in fazioni for f in FAZIONI_FRATELLANZA) 
+            oscura_legione_dedicata = any(f in fazioni for f in FAZIONI_OSCURA_LEGIONE)
+
+            if doomtrooper and doomtrooper_dedicata: # la carta è dedicata ai doomtrooper o è generica (fazione None)        
+            
+                if orientamento_doomtrooper_dedicata: #la carta è dedicata ai doomtrooper con fazione inclusa nell'orientamento: 
+                    bonus_moltiplicatore *= BONUS_ORIENTAMENTO  * fattore_carte_fondamentale# triplica il punteggio se la fazione è anche nell'orientamento doomtrooper
+            
+                else: # la carta è dedicata a tutti i doomtrooper
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_carte_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
+                
+            
+            if fratellanza and fratellanza_dedicata: # la carta è dedicata alla fratellanza
+                bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se richiesto doomtrooper e la fazione è nei doomtroopers
+            
+            
+             # Orientamento Apostolo (per guerrieri Oscura Legione)
+            if oscura_legione and oscura_legione_dedicata: # la carta è dedicata alla oscura legione 
+                                
+                if orientamento_apostolo and len(orientamento_apostolo) > 0 : # la carta è dedicata alla oscura legione e sono definiti gli apostoli preferiti
+                    for apostolo in orientamento_apostolo:
+                        if f"Seguace di {apostolo}" in carta.keywords:
+                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO * fattore_carte_fondamentale
+                else:
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * fattore_carte_fondamentale
+
+                if orientamento_cultista and 'Cultista' in carta.keywords:
+                    bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
+                 
+
+            if orientamento_eretico and 'Eretico' in carta.keywords:
+                bonus_moltiplicatore *= BONUS_ORIENTAMENTO # triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
+
             carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
             
             # Verifica compatibilità
             if not carta_compatibile:
                 continue
             
-            if hasattr(carta, 'fondamentale') and carta.fondamentale:
-                fattore_carte_fondamentale = 10 # decuplica il rating assegnato alla carta se fondamentale
-
             # Calcola potenza basata sul tipo
             if tipo_carta == 'equipaggiamento':
                 potenza = self.calcola_potenza_equipaggiamento(carta)
@@ -1053,7 +1122,7 @@ class CreatoreMazzo:
             #if carta.nome in [c[0].nome for c in carte_con_punteggio]:
             #    continue
             fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti
-            carte_con_punteggio.append((carta, potenza * fattore_compatibilita * fattore_carte_fondamentale))
+            carte_con_punteggio.append((carta, potenza * fattore_compatibilita * bonus_moltiplicatore))
         
         # Ordina per potenza
         carte_con_punteggio.sort(key=lambda x: x[1], reverse=True)
@@ -1343,64 +1412,144 @@ def crea_mazzo_da_gioco(collezione: Any,
     # 1. Equipaggiamenti
     if distribuzione['equipaggiamento'] > 0:
         equipaggiamenti = creatore.seleziona_carte_supporto(
-            squadra, schieramento, espansioni_richieste,
-            'equipaggiamento', distribuzione['equipaggiamento']
+            squadra, 
+            schieramento, 
+            espansioni_richieste,
+            'equipaggiamento', 
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,            
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            distribuzione['equipaggiamento']
         )
         carte_supporto.extend(equipaggiamenti)
     
     # 2. Fortificazioni
     if distribuzione['fortificazione'] > 0:
         fortificazioni = creatore.seleziona_carte_supporto(
-            squadra, schieramento, espansioni_richieste,
-            'fortificazione', distribuzione['fortificazione']
+            squadra, 
+            schieramento, 
+            espansioni_richieste,
+            'fortificazione', 
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,            
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            distribuzione['fortificazione']
         )
         carte_supporto.extend(fortificazioni)
     
     # 3. Speciali    
     if distribuzione['speciale'] > 0:
         speciali = creatore.seleziona_carte_supporto(
-            squadra, schieramento, espansioni_richieste,
-            'speciale', distribuzione['speciale']
+            squadra, 
+            schieramento, 
+            espansioni_richieste,
+            'speciale', 
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,            
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            distribuzione['speciale']
         )
         carte_supporto.extend(speciali)        
     
     # 4. Missioni
     if distribuzione['missione'] > 0:
         missioni = creatore.seleziona_carte_supporto(
-            squadra, schieramento, espansioni_richieste,
-            'missione', distribuzione['missione']
+            squadra, 
+            schieramento, 
+            espansioni_richieste,
+            'missione', 
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,            
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            distribuzione['missione']
         )
         carte_supporto.extend(missioni)        
     
     # 5. Arte (se guerrieri Fratellanza presenti)
     if usa_fratellanza and distribuzione['arte'] > 0:
         arte = creatore.seleziona_carte_supporto(
-            squadra, schieramento, espansioni_richieste,
-            'arte', distribuzione['arte']
+            squadra, 
+            schieramento, 
+            espansioni_richieste,
+            'arte', 
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,            
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            distribuzione['arte']
         )
         carte_supporto.extend(arte)
     
     # 6. Oscura Simmetria (se guerrieri Oscura Legione presenti)
     if usa_oscura_legione and distribuzione['oscura_simmetria'] > 0:
         oscura = creatore.seleziona_carte_supporto(
-            squadra, schieramento, espansioni_richieste,
-            'oscura_simmetria', distribuzione['oscura_simmetria']
+            squadra, 
+            schieramento, 
+            espansioni_richieste,
+            'oscura_simmetria', 
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,            
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            distribuzione['oscura_simmetria']
         )
         carte_supporto.extend(oscura)
     
     # 7. Reliquie (se espansione Inquisition richiesta)
     if 'Inquisition' in espansioni_richieste and distribuzione['reliquia'] > 0:
         reliquie = creatore.seleziona_carte_supporto(
-            squadra, schieramento, espansioni_richieste,
-            'reliquia', distribuzione['reliquia']
+            squadra, 
+            schieramento, 
+            espansioni_richieste,
+            'reliquia', 
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,            
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            distribuzione['reliquia']
         )
         carte_supporto.extend(reliquie)
     
     # 8. Warzone (se espansione Warzone richiesta)
     if 'Warzone' in espansioni_richieste and distribuzione['warzone'] > 0:
         warzone = creatore.seleziona_carte_supporto(
-            squadra, schieramento, espansioni_richieste,
-            'warzone', distribuzione['warzone']
+            squadra, 
+            schieramento, 
+            espansioni_richieste,
+            'warzone', 
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,            
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            distribuzione['warzone']
         )
         carte_supporto.extend(warzone)
 
@@ -3716,7 +3865,7 @@ def menu_interattivo_mazzi():
                             numero_carte_min = 100,
                             espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                             doomtrooper = True,
-                            orientamento_doomtrooper = ["Imperiale", "Cybertronic", "Freelancer"],
+                            orientamento_doomtrooper = ["Imperiale", "Cybertronic", "Mercenario"],
                             fratellanza = False,
                             orientamento_arte = None,
                             oscura_legione = True,
@@ -3893,7 +4042,7 @@ def menu_interattivo_mazzi():
                         
                         for i, esp in enumerate(ApostoloOscuraSimmetria):
                             print(f"  {i+1}. {esp.value}")        
-                        apo_input = input("Scegli le tipologie di Arte (numeri separati da virgola): ")
+                        apo_input = input("Scegli gli Apostoli (numeri separati da virgola): ")
                         apo_indices = [int(x.strip())-1 for x in apo_input.split(",")]
                         apostoli_scelti = [list(ApostoloOscuraSimmetria)[i].value for i in art_indices if 0 <= i < len(ApostoloOscuraSimmetria)]
 
@@ -4041,7 +4190,7 @@ if __name__ == "__main__":
                     numero_carte_min = 80,
                     espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                     doomtrooper = True,
-                    orientamento_doomtrooper = ["Imperiale", "Cybertronic", "Freelancer"],
+                    orientamento_doomtrooper = ["Imperiale", "Cybertronic", "Mercenario"],
                     fratellanza = False,
                     orientamento_arte = None,
                     oscura_legione = True,

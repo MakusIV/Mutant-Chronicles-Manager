@@ -95,7 +95,7 @@
         "Bauhaus": 33,
         "Capitol": 36,
         "Fratellanza": 42,
-        "Freelancer": 14
+        "Mercenario": 14
       },
       "per_rarity": {
         "Common": 1760,
@@ -2402,7 +2402,7 @@
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
-              "fazione": "Freelancer",
+              "fazione": "Mercenario",
               "statistiche": {
                 "combattimento": 2,
                 "sparare": 2,
@@ -4284,7 +4284,7 @@
             "guerriero": 5
           }
         },
-        "Freelancer": {
+        "Mercenario": {
           "totale_carte": 2,
           "guerrieri": 2,
           "altre_carte": 0,
@@ -4560,7 +4560,7 @@
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
-              "fazione": "Freelancer",
+              "fazione": "Mercenario",
               "statistiche": {
                 "combattimento": 4,
                 "sparare": 4,
@@ -4575,7 +4575,7 @@
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
-              "fazione": "Freelancer",
+              "fazione": "Mercenario",
               "statistiche": {
                 "combattimento": 2,
                 "sparare": 2,
@@ -4590,7 +4590,7 @@
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
-              "fazione": "Freelancer",
+              "fazione": "Mercenario",
               "statistiche": {
                 "combattimento": 0,
                 "sparare": 0,
@@ -4605,7 +4605,7 @@
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
-              "fazione": "Freelancer",
+              "fazione": "Mercenario",
               "statistiche": {
                 "combattimento": 2,
                 "sparare": 2,
@@ -6431,7 +6431,7 @@
             "guerriero": 20
           }
         },
-        "Freelancer": {
+        "Mercenario": {
           "totale_carte": 7,
           "guerrieri": 7,
           "altre_carte": 0,
@@ -6820,7 +6820,7 @@
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
-              "fazione": "Freelancer",
+              "fazione": "Mercenario",
               "statistiche": {
                 "combattimento": 4,
                 "sparare": 4,
@@ -6835,7 +6835,7 @@
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
-              "fazione": "Freelancer",
+              "fazione": "Mercenario",
               "statistiche": {
                 "combattimento": 0,
                 "sparare": 0,
@@ -9281,7 +9281,7 @@
             "guerriero": 5
           }
         },
-        "Freelancer": {
+        "Mercenario": {
           "totale_carte": 3,
           "guerrieri": 3,
           "altre_carte": 0,
@@ -9648,7 +9648,7 @@
               "tipo": "Guerriero",
               "rarity": "Common",
               "set_espansione": "Base",
-              "fazione": "Freelancer",
+              "fazione": "Mercenario",
               "statistiche": {
                 "combattimento": 4,
                 "sparare": 4,
@@ -12357,7 +12357,7 @@
             "guerriero": 8
           }
         },
-        "Freelancer": {
+        "Mercenario": {
           "totale_carte": 2,
           "guerrieri": 2,
           "altre_carte": 0,

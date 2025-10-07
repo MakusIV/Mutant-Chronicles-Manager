@@ -507,7 +507,7 @@ if __name__ == "__main__":
 ║                                                                              ║
 ║  Funzionalità implementate:                                                  ║
 ║  • Creazione collezioni giocatore (non mazzi da gioco)                      ║
-║  • Orientamento fazioni casuali (Fratellanza-Doomtrooper-Freelancer, etc.)  ║
+║  • Orientamento fazioni casuali (Fratellanza-Doomtrooper-Mercenario, etc.)  ║
 ║  • Selezione casuale carte da tutte le espansioni specificate               ║
 ║  • Verifica integrità e bilanciamento collezioni                            ║
 ║  • Export/Import JSON                                                        ║
@@ -566,7 +566,7 @@ if __name__ == "__main__":
             numero_carte_min=60,
             espansioni_richieste=['Base', 'Inquisition'],
             doomtrooper=True,
-            orientamento_doomtrooper=['Mishima', 'Bauhaus', 'Freelancer', 'Fratellanza'],
+            orientamento_doomtrooper=['Mishima', 'Bauhaus', 'Mercenario', 'Fratellanza'],
             fratellanza=True,
             orientamento_arte=['Cambiamento', 'Combattimento', 'Premonizione'],
             oscura_legione=False,

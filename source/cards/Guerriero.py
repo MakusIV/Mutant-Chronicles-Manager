@@ -27,7 +27,7 @@ class Fazione(Enum):
     CYBERTRONIC = "Cybertronic"
     FRATELLANZA = "Fratellanza"
     OSCURA_LEGIONE = "Oscura Legione"  # Corretto da "OSCURA_LEGIONE"
-    FREELANCER = "Freelancer"
+    MERCENARIO = "Mercenario"
     GENERICA = "Generica"
 
 class TipoGuerriero(Enum):
@@ -95,7 +95,7 @@ class CorporazioneSpecifica(Enum):
     SEGUACI_DI_MUAWIJHE = "Seguaci di Muawijhe"
     SEGUACI_DI_ALGEROTH = "Seguaci di Algeroth"
     
-DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol", "Freelancer", "Fratellanza"]
+DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol", "Mercenario", "Fratellanza"]
 
 class Rarity(Enum):
     """Rarità delle carte"""

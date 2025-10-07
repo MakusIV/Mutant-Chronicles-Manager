@@ -46,7 +46,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -248,7 +248,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": ["VEICOLI non utilizzabili"]
         },
@@ -300,7 +300,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -340,7 +340,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -419,7 +419,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": ["Armi da FUOCO non utilizzabili", "Armi da FUOCO/CORPO A CORPO non utilizzabili"]
         },
@@ -459,7 +459,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -518,7 +518,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -558,7 +558,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
-            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Oscura Legione", "Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
@@ -669,7 +669,7 @@ DATABASE_WARZONE = {
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
-            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Freelancer"],
+            "fazioni_permesse": ["Fratellanza", "Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Mercenario"],
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },

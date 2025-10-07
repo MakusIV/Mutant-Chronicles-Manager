@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 import json
 from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, AreaGioco, Statistiche  # Import dalle classi esistenti
 
-FAZIONI_SQUADRA = [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.CYBERTRONIC, Fazione.FRATELLANZA, Fazione.IMPERIALE, Fazione.MISHIMA, Fazione.FREELANCER]
+FAZIONI_SQUADRA = [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.CYBERTRONIC, Fazione.FRATELLANZA, Fazione.IMPERIALE, Fazione.MISHIMA, Fazione.MERCENARIO]
 FAZIONI_SCHIERAMENTO = [Fazione.OSCURA_LEGIONE]
 
 class TipoWarzone(Enum):

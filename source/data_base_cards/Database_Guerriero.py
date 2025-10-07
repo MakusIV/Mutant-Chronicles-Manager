@@ -4675,11 +4675,11 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
     
 
-    # === FREELANCER ===
+    # === MERCENARIO ===
     # Fatto
     "Agente nick michaels": {
         "nome": "Agente nick michaels",
-        "fazione": "Freelancer", 
+        "fazione": "Mercenario", 
         "tipo": "Personalita",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -4707,7 +4707,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
     "Guardia del corpo": {
         "nome": "Guardia del corpo",
-        "fazione": "Freelancer", 
+        "fazione": "Mercenario", 
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -4735,7 +4735,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
     "Paparazzo": {
         "nome": "Paparazzo",
-        "fazione": "Freelancer", 
+        "fazione": "Mercenario", 
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -4763,7 +4763,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
     "Medico da campo": {
         "nome": "Medico da campo",
-        "fazione": "Freelancer", 
+        "fazione": "Mercenario", 
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
@@ -4808,7 +4808,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     },
     "Apostata rinnegato": {
         "nome": "Apostata rinnegato",
-        "fazione": "Freelancer", 
+        "fazione": "Mercenario", 
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",

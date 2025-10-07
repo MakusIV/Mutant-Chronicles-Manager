@@ -3752,7 +3752,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Non può utilizzare altre carte Equipaggiamento mentre utilizza il Furga"],
-        "fazioni_permesse": ["Mercenari", "Eretici"],
+        "fazioni_permesse": ["Mercenario", "Eretici"],
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,

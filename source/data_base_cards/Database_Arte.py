@@ -957,49 +957,6 @@ CARTE_ARTE_DATABASE = {
         "fondamentale": False
     },
 
-    "Colpire": {
-        "nome": "Colpire",
-        "valore": 0,
-        "tipo": "Incantesimo di Combattimento",
-        "disciplina": "Cinetica",
-        "rarity": "Common",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Fine Combattimento",
-        "timing": "In Combattimento",
-        "set_espansione": "Base",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Bonus Sparare",
-                "tipo_effetto": "Modificatore",
-                "valore": "+1 in S per ogni D speso",
-                "statistica_target": "sparare",
-                "descrizione_effetto": "Per ogni D speso, il guerriero guadagna un +1 in S",
-                "condizioni": ["Incantesimo di combattimento"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in S.",
-        "flavour_text": "",
-        "keywords": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "restrizioni": [],
-        "contatori_speciali": {},
-        "valore_strategico": 1,
-        "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
     "Levitazione": {
         "nome": "Levitazione",
         "valore": 0,
