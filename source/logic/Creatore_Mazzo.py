@@ -601,13 +601,13 @@ class CreatoreMazzo:
         # Analizza effetti statistiche
         for effetto in carta.effetti:
 
-            tipo_effetto = effetto.tipo_effetto # es. "Modificatore", "Controllo", "Danno", etc.
+            tipo_effetto = effetto.tipo_effetto.lower() # es. "Modificatore", "Controllo", "Danno", etc.
             valore = effetto.valore # valore numerico dell'effetto (se applicabile)
-            statistica_target = effetto.statistica_target # quale statistica viene modificata (C, S, A, V)
+            statistica_target = effetto.statistica_target.lower() # quale statistica viene modificata (C, S, A, V)
             descrizione_effetto = effetto.descrizione_effetto #descrizione effetto: 'uccide', ferisce automaticamente', 'scarta guerriero' 'scarta carta'
             desc = descrizione_effetto.lower()
 
-            if tipo_effetto == "Modificatore" and statistica_target in ["combattimento", "sparare", "armatura"] and isinstance(valore, int) and valore > 0:
+            if tipo_effetto == "modificatore" and statistica_target in ["combattimento", "sparare", "armatura"] and isinstance(valore, int) and valore > 0:
                 potenza += valore                     
         
         
@@ -652,13 +652,13 @@ class CreatoreMazzo:
         # Analizza effetti
         for effetto in carta.effetti:
 
-            tipo_effetto = effetto.tipo_effetto # es. "Modificatore", "Controllo", "Danno", etc.
+            tipo_effetto = effetto.tipo_effetto.lower() # es. "Modificatore", "Controllo", "Danno", etc.
             valore = effetto.valore # valore numerico dell'effetto (se applicabile)
             statistica_target = effetto.statistica_target # quale statistica viene modificata (C, S, A, V)
             descrizione_effetto = effetto.descrizione_effetto #descrizione effetto: 'uccide', ferisce automaticamente', 'scarta guerriero' 'scarta carta'
             desc = descrizione_effetto.lower()
                 
-            if tipo_effetto == "Danno":
+            if tipo_effetto == "danno":
                                 
                 # Effetti speciali
                 if 'ferisce' in desc and 'automaticamente' in desc:
@@ -670,10 +670,10 @@ class CreatoreMazzo:
                 elif 'scarta' in desc and any(x in desc for x in ['equipaggiamento', 'fortificazione', 'reliquia', 'warzone']):
                     potenza = 1.0
 
-            elif tipo_effetto in ['Azione Combattimento', 'Azione Fase']: # Azione Fase, Azione Ogni Momento
+            elif tipo_effetto in ['azione combattimento', 'azione fase']: # Azione Fase, Azione Ogni Momento
                 potenza *= valore
 
-            elif tipo_effetto == 'Azione Ogni Momento':
+            elif tipo_effetto == 'azione ogni momento':
                 potenza *= 2 * valore
             
         
@@ -681,7 +681,7 @@ class CreatoreMazzo:
         classe_carta = type(carta).__name__.lower()
         max_potenza = self._calcola_max_potenza_carta_azioni(classe_carta)
 
-        if max_potenza > 0:
+        if max_potenza > 0 and potenza > 1.0:
             return min(potenza / max_potenza, 1.0)
         return 0.5
     
@@ -812,10 +812,10 @@ class CreatoreMazzo:
         guerrieri_disponibili_ammessi.extend(guerrieri_oscura_legione) 
 
 
-        BONUS_SPECIALIZZAZIONE = 2.0 # RADDOPPIA RISPETTO IL BONUS BASE 
-        BONUS_ORIENTAMENTO = 3.0 # TRIPLICA RISPETTO IL BONUS BASE      
-        BONUS_ERETICO = 2 # AUMENTA DEL 100% IL BONUS BASE PER ERETICI
-        BONUS_CULTISTA = 2 # AUMENTA DEL 100% IL BONUS BASE PER CULTISTI   
+        BONUS_SPECIALIZZAZIONE = 4.0 # Fattore punteggio applicato se il guerriero è della fazione specializzata
+        BONUS_ORIENTAMENTO = 6.0 # Fattore punteggio applicato alle preferenze specifiche di orientamento
+        BONUS_ERETICO = 2 # Fattore applicato se selezionati ERETICI
+        BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI   
 
         for guerriero in guerrieri_disponibili_ammessi:
             
@@ -835,19 +835,19 @@ class CreatoreMazzo:
             
             if doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
                 if not orientamento_doomtrooper or orientamento_doomtrooper == []: # il guerriero è un doomtrooper e non è definito l'orientamento
-                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se la fazione è nei doomtroopers
 
                 elif guerriero.fazione.value in orientamento_doomtrooper: #il guerriero è un doomtrooper con fazione inclusa nell'orientamento: 
-                    bonus_moltiplicatore *= BONUS_ORIENTAMENTO  * bonus_factor_guerriero_fondamentale# triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
+                    bonus_moltiplicatore *= BONUS_ORIENTAMENTO# triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
 
                 else: # il guerriero è un doomtrooper ma non è nell'orientamento
-                    bonus_moltiplicatore *= 0.8  * bonus_factor_guerriero_fondamentale # decrementa del 20% se il doomtrooper non è della fazione richiesta (per favorire la scelta di quelli della fazione richiesta)
+                    bonus_moltiplicatore *= 0.8 # decrementa del 20% se il doomtrooper non è della fazione richiesta (per favorire la scelta di quelli della fazione richiesta)
     
             # Orientamento Arte (per guerrieri Fratellanza)
             if fratellanza: # 
                 
                 if guerriero.fazione in FAZIONI_FRATELLANZA and (not orientamento_arte or orientamento_arte == []): # il guerriero è della fratellanza e non è definito l'orientamento
-                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * bonus_factor_guerriero_fondamentale
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE
                 
                 # Le arti possono essere utilizzaqte anche da guerrieri non appartenenti alla Fratellanza
                 if orientamento_arte and len(orientamento_arte) > 0: # Sono definite le arti preferite
@@ -857,25 +857,25 @@ class CreatoreMazzo:
                         if abilita.tipo == 'Arte' and not (escludi_oscura_legione or escludi_doomtrooper) : # esclude se il guerriero è OL e non è previsto nel mazzo l'oscura legione
                             disciplina = abilita.target
                             if any( arte_ in disciplina for arte_ in orientamento_arte ):
-                                bonus_moltiplicatore *= BONUS_ORIENTAMENTO  * bonus_factor_guerriero_fondamentale # triplica se il fratello lancia la specifica arte
+                                bonus_moltiplicatore *= BONUS_ORIENTAMENTO # triplica se il fratello lancia la specifica arte
                             elif disciplina == DisciplinaArte.TUTTE.value:
-                                bonus_moltiplicatore *= (BONUS_ORIENTAMENTO + 1)  * bonus_factor_guerriero_fondamentale   # triplica se il fratello lancia la specifica arte
+                                bonus_moltiplicatore *= (BONUS_ORIENTAMENTO * 2)   # raddoppia se il fratello lancia la specifica arte
                             elif guerriero.fazione in FAZIONI_FRATELLANZA: # il guerriero è della fratellanza ma non ha competenza nlle arti richieste (depotenzia)
-                                bonus_moltiplicatore *= 0.8  * bonus_factor_guerriero_fondamentale # decrementa del 20% se il fratello non è competente nelle arti scelte (per favorire la scelta di quelli competenti)
+                                bonus_moltiplicatore *= 0.8 # decrementa del 20% se il fratello non è competente nelle arti scelte (per favorire la scelta di quelli competenti)
                                 
             
             # Orientamento Apostolo (per guerrieri Oscura Legione)
             if oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE: # and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
 
                 if not orientamento_apostolo or orientamento_apostolo == []:
-                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * bonus_factor_guerriero_fondamentale
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE
                     
                 elif orientamento_apostolo and len(orientamento_apostolo) > 0 :
                     for apostolo in orientamento_apostolo:
                         if f"Seguace di {apostolo}" in guerriero.keywords:
-                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO * bonus_factor_guerriero_fondamentale                            
+                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO
                 else:
-                    bonus_moltiplicatore *= 0.8  * bonus_factor_guerriero_fondamentale # decrementa del 20% se il guerriero non può fruire dei doni dell'apostolo incluso nell'orientamento (per favorire la scelta di quelli che possono usufruirne)
+                    bonus_moltiplicatore *= 0.8 # decrementa del 20% se il guerriero non può fruire dei doni dell'apostolo incluso nell'orientamento (per favorire la scelta di quelli che possono usufruirne)
 
                 if orientamento_cultista and 'Cultista' in guerriero.keywords:
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
@@ -885,7 +885,7 @@ class CreatoreMazzo:
                     bonus_moltiplicatore *= BONUS_ERETICO # aumenta di un ulteriore fattore (BONUS_ERETICI) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
         
             
-            punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore
+            punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore * bonus_factor_guerriero_fondamentale
         
         # Ordina guerrieri per punteggio
         guerrieri_ordinati = sorted(guerrieri_disponibili_ammessi, 
@@ -899,59 +899,38 @@ class CreatoreMazzo:
         # Seleziona gli altri guerrieri
         for guerriero in guerrieri_ordinati:
             
-            if guerriero.nome in [g.nome for g in squadra] or guerriero.nome in [g.nome for g in schieramento]:
-                continue
+            #if guerriero.nome in [g.nome for g in squadra] or guerriero.nome in [g.nome for g in schieramento]:
+            #    continue
                 
-    
-            # Calcola quantità da aggiungere
-            potenza = self.calcola_potenza_guerriero(guerriero)
             quantita_disponibile = getattr(guerriero, 'quantita', 1) #quantita_disponibile = self.collezione.get_copie_disponibili(tipo_carta = 'guerriero', carta = guerriero)
             quantita_consigliata = getattr(guerriero, 'quantita_minima_consigliata', 1)            
             
-            # valuta la quantità minima in base al valore del guerriero (maggiore costo)            
-            if guerriero.stats.valore > 8:#da 9 in poi                
-                if potenza < 0.9:
-                    min_val = random.randint(1, 2)
-                else:
-                    min_val = 1
+            # valuta la quantità minima in base al valore del guerriero (maggiore costo)                                    
+            if guerriero.stats.valore >= 10 or guerriero.tipo == 'Personalita':
+                min_val = 1
+                if quantita_consigliata <1:
+                    quantita_consigliata = 1             
                 
-            elif 6 < guerriero.stats.valore <= 8: # 7 e 8
-                if potenza < 0.85:
-                    min_val = 1
-                else:
-                    min_val = random.randint(1, 2)
+            elif 7 <= guerriero.stats.valore < 10: # 7 e 8                        
+                min_val = random.randint(1, 2)
+                if quantita_consigliata <1:
+                    quantita_consigliata = random.randint(min_val, min_val + 2)                
 
-            elif 4 < guerriero.stats.valore <= 6: # 5 e 6
-                if potenza < 0.8:
-                    min_val = 1
-                else:
-                    min_val = random.randint(1, 3)                
-            
-            else: # uguale o inferiore a 4
-                if potenza < 0.8:
-                    min_val = 1
-                else:
-                    min_val = random.randint(1, 4)                
+            elif 4 <= guerriero.stats.valore < 7: # 7 e 8                                
+                min_val = random.randint(1, 3)
+                if quantita_consigliata <1:
+                    quantita_consigliata = random.randint(min_val, min_val + 2)                                
 
-            # Calcola numero di copie basato sulla potenza
-            if quantita_consigliata <1:
-                if potenza > 0.9:                
-                        quantita_consigliata = random.randint(2, 3)
-                elif 0.75 < potenza <= 0.9:
-                        quantita_consigliata = random.randint(1, 3)
-                elif 0.65 < potenza <= 0.75:
-                        quantita_consigliata = random.randint(1, 2)
-                else:
-                        quantita_consigliata = 1
+            else: 
+                min_val = random.randint(1, 2)                
+                if quantita_consigliata <1:
+                    quantita_consigliata = random.randint(min_val, min_val + 1)                
+        
                 
-            max_val = min(quantita_disponibile, quantita_consigliata)    
+            num_copie_da_inserire = min(5, quantita_disponibile, quantita_consigliata)    
             
-            if max_val == min_val:
-                num_copie = max_val
-            elif max_val < min_val:
-                num_copie = random.randint(max_val, min_val)
-            else:
-                num_copie = random.randint(min_val, max_val)
+           
+            
 
             if oscura_legione and (doomtrooper or fratellanza): 
                 q = RAPPORTO_SQUADRA_SCHIERAMENTO + 1
@@ -960,20 +939,20 @@ class CreatoreMazzo:
                 q = 1
                 m = 1
             
+            numero_guerrieri_per_schieramento = math.floor( 0.49 + numero_guerrieri_target / q)
+            numero_guerrieri_per_squadra = math.floor( 0.49 + numero_guerrieri_target * m )
             inserisci_in_schieramento = oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE
-            inserisci_in_squadra = ( doomtrooper or fratellanza) and ( guerriero.fazione in FAZIONI_DOOMTROOPER or guerriero.fazione in FAZIONI_FRATELLANZA)
-
-            num_copie_da_inserire = min(5, num_copie) # limita numero copie a 5
+            inserisci_in_squadra = ( doomtrooper or fratellanza) and ( guerriero.fazione in FAZIONI_DOOMTROOPER or guerriero.fazione in FAZIONI_FRATELLANZA)            
 
             for _ in range(num_copie_da_inserire): # NOTA: inserisce la stessa istanza per più volte nella lista
                 
                 if inserisci_in_schieramento:
-                    if len(schieramento) <= math.floor( 0.49 + numero_guerrieri_target / q): 
+                    if len(schieramento) <= numero_guerrieri_per_schieramento: 
                         schieramento.append(guerriero)
                     else:
                         break
                 elif inserisci_in_squadra:
-                    if len(squadra) <= math.floor( 0.49 + numero_guerrieri_target * m ):  
+                    if len(squadra) <= numero_guerrieri_per_squadra:  
                         squadra.append(guerriero)
                     else:
                         break
@@ -1039,10 +1018,10 @@ class CreatoreMazzo:
 
          # Bonus per orientamenti
        
-        BONUS_SPECIALIZZAZIONE = 2.0 # RADDOPPIA RISPETTO IL BONUS BASE 
-        BONUS_ORIENTAMENTO = 3.0 # TRIPLICA RISPETTO IL BONUS BASE      
-        BONUS_ERETICO = 2 # AUMENTA DEL 100% IL BONUS BASE PER ERETICI
-        BONUS_CULTISTA = 2 # AUMENTA DEL 100% IL BONUS BASE PER CULTISTI     
+        BONUS_SPECIALIZZAZIONE = 4.0 # Fattore punteggio applicato se il guerriero è della fazione specializzata
+        BONUS_ORIENTAMENTO = 6.0 # Fattore punteggio applicato alle preferenze specifiche di orientamento
+        BONUS_ERETICO = 2 # Fattore applicato se selezionati ERETICI
+        BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI     
         
                 
 
@@ -1073,10 +1052,10 @@ class CreatoreMazzo:
             if doomtrooper and doomtrooper_dedicata: # la carta è dedicata ai doomtrooper o è generica (fazione None)        
             
                 if orientamento_doomtrooper_dedicata: #la carta è dedicata ai doomtrooper con fazione inclusa nell'orientamento: 
-                    bonus_moltiplicatore *= BONUS_ORIENTAMENTO  * fattore_carte_fondamentale# triplica il punteggio se la fazione è anche nell'orientamento doomtrooper
+                    bonus_moltiplicatore *= BONUS_ORIENTAMENTO # triplica il punteggio se la fazione è anche nell'orientamento doomtrooper
             
                 else: # la carta è dedicata a tutti i doomtrooper
-                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_carte_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se la fazione è nei doomtroopers
                 
             
             if fratellanza and fratellanza_dedicata: # la carta è dedicata alla fratellanza                
@@ -1085,15 +1064,15 @@ class CreatoreMazzo:
                     # Le arti possono essere utilizzate anche da guerrieri non appartenenti alla Fratellanza
                     if orientamento_arte and len(orientamento_arte) > 0: # Sono definite le arti preferite
                         
-                        disciplina = carta.disciplina
+                        disciplina = carta.disciplina.value
                         if disciplina in orientamento_arte:
-                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO  * fattore_carte_fondamentale # triplica se il fratello lancia la specifica arte
+                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO # triplica se il fratello lancia la specifica arte
                         elif disciplina == DisciplinaArte.TUTTE.value:
-                            bonus_moltiplicatore *= (BONUS_ORIENTAMENTO + 1)  * fattore_carte_fondamentale   # triplica se il fratello lancia la specifica arte                    
+                            bonus_moltiplicatore *= (BONUS_ORIENTAMENTO + 1)   # triplica se il fratello lancia la specifica arte                    
                     else: # non sono definite arti preferite
-                        bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_carte_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
+                        bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se la fazione è nei doomtroopers
                 else:
-                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_carte_fondamentale # aumenta il punteggio se la fazione è nei doomtroopers
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se la fazione è nei doomtroopers
             
              # Orientamento Apostolo (per guerrieri Oscura Legione)
             if oscura_legione and oscura_legione_dedicata: # la carta è dedicata alla oscura legione 
@@ -1101,9 +1080,9 @@ class CreatoreMazzo:
                 if orientamento_apostolo and len(orientamento_apostolo) > 0 : # la carta è dedicata alla oscura legione e sono definiti gli apostoli preferiti
                     for apostolo in orientamento_apostolo:
                         if f"Seguace di {apostolo}" in carta.keywords:
-                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO * fattore_carte_fondamentale
+                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO
                 else:
-                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * fattore_carte_fondamentale
+                    bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE
 
                 if orientamento_cultista and 'Cultista' in carta.keywords:
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
@@ -1151,60 +1130,26 @@ class CreatoreMazzo:
             #if carta.nome in [c[0].nome for c in carte_con_punteggio]:
             #    continue
             fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti
-            carte_con_punteggio.append((carta, potenza * fattore_compatibilita * bonus_moltiplicatore))
+            carte_con_punteggio.append((carta, potenza * fattore_compatibilita * bonus_moltiplicatore * fattore_carte_fondamentale))
         
         # Ordina per potenza
         carte_con_punteggio.sort(key=lambda x: x[1], reverse=True)
         
         # Seleziona carte
-        for carta, potenza in carte_con_punteggio:
+        for carta, _ in carte_con_punteggio:
             
             if len(carte_selezionate) >= numero_carte:
-                break
+                return carte_selezionate
             
             # Calcola numero di copie
             quantita_disponibile = getattr(carta, 'quantita', 1)
-            quantita_consigliata = getattr(carta, 'quantita_minima_consigliata', 1)
+            quantita_minima_consigliata = getattr(carta, 'quantita_minima_consigliata', 1)
+            if quantita_minima_consigliata < 1:
+                quantita_minima_consigliata = random.randint(1,3)
             
-            # Calcola numero di copie basato sulla potenza
-            if potenza > 0.8:                
-                    min_value = 3
-                    if quantita_consigliata < 4:                                 
-                        max_value = 5             
-                    else:
-                        max_value = quantita_consigliata
+            num_copie_da_inserire = min(5, quantita_disponibile, quantita_minima_consigliata)   
 
-            elif potenza > 0.6:                
-                    min_value = 2
-                    if quantita_consigliata < 3:                                 
-                        max_value = 3             
-                    else:
-                        max_value = quantita_consigliata
-                        
-            elif potenza > 0.4:
-                min_value = 1                
-                if quantita_consigliata < 2:                                 
-                        max_value = 2             
-                else:
-                    max_value = quantita_consigliata
-
-            else:
-                min_value = 1
-                if quantita_consigliata < 1:                                 
-                        max_value = 1             
-                else:
-                    max_value = quantita_consigliata
-
-            
-            if min_value > max_value:
-                random_value = random.randint(max_value, min_value)
-            else:
-                random_value = random.randint(min_value, max_value)
-
-            num_copie = min(5, random_value, quantita_disponibile)
-            
-
-            for _ in range(num_copie):
+            for _ in range(num_copie_da_inserire):
 
                 if len(carte_selezionate) <= numero_carte:
                     carte_selezionate.append(carta)# NOTA: inserisce nella lista copie di una stessa istanza
