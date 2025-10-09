@@ -2,7 +2,7 @@
   "metadata": {
     "tipo_export": "mazzi_dettagliati_con_apostoli",
     "versione": "2.2",
-    "data_creazione": "2025-10-08T18:43:42.147067",
+    "data_creazione": "2025-10-09T10:38:29.301519",
     "numero_mazzi": 1,
     "formato": "inventario_con_fazioni_classi_e_apostoli",
     "descrizione": "Mazzi con inventari organizzati per fazioni, classi supporto e apostoli Oscura Legione"
@@ -66,42 +66,6 @@
               "abilita": [
                 "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione=\"Lancia tutti gli aspetti dell'Arte\", tipo='Arte', costo_destino=0, target='Tutte le Discipline', timing='Turno')",
                 "Abilita(nome='Immunita', descrizione=\"Immune all'Arte per il tempo che vuole\", tipo='Immunita', costo_destino=0, target='Guerrieri della Fratellanza', timing='Sempre')"
-              ]
-            },
-            "Antiquario": {
-              "copie": 1,
-              "fazione": "Fratellanza",
-              "set_espansione": "Inquisition",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 3
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte specifica\", descrizione=\"Lancia Arte Cinetica ed d'Evocazione\", tipo='Arte', costo_destino=0, target=\"Arte Cinetica e Arte d'Evocazione\", timing='Turno')"
-              ]
-            },
-            "Revisore": {
-              "copie": 1,
-              "fazione": "Fratellanza",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 3
-              },
-              "quantita": 1,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte specifica\", descrizione=\"Lancia Arte della Manipolazione e l'Arte Mentale\", tipo='Arte', costo_destino=0, target='Arte della Manipolazione e Arte Mentale', timing='Turno')"
               ]
             }
           },
@@ -282,98 +246,6 @@
                 "Abilita(nome='Aumenta caratteristiche', descrizione='Quando è in gioco, tutta la Cavalleria Aerea guadagna un +1 in S e A', tipo='Modificatore', costo_destino=0, target='Cavalleria Aerea', timing='Sempre')"
               ]
             }
-          },
-          "Mishima": {
-            "Artefatto Suicida": {
-              "copie": 2,
-              "fazione": "Mishima",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 10,
-                "sparare": 0,
-                "armatura": 0,
-                "valore": 3
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
-              ]
-            }
-          },
-          "Bauhaus": {
-            "Ussaro": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 2,
-                "sparare": 2,
-                "armatura": 3,
-                "valore": 2
-              },
-              "quantita": 3,
-              "keywords": [],
-              "abilita": []
-            },
-            "Capitano Bauhaus": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 5,
-                "sparare": 6,
-                "armatura": 9,
-                "valore": 10
-              },
-              "quantita": 3,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerrieri feriti dai guerrieri Bauhaus nella Tua Squadra con V uguale a 9 o meno', timing='Fase Combattimento')"
-              ]
-            },
-            "Maresciallo Venusiano": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Inquisition",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 8,
-                "sparare": 7,
-                "armatura": 8,
-                "valore": 8
-              },
-              "quantita": 3,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome='Aumenta caratteristiche', descrizione='Aumenta le caratteristiche di Combattimento, Sparare e Armatura di +2', tipo='Modificatore', costo_destino=0, target='Tutti i Tuoi Doomtrooper Bauhaus non-Personalità', timing='Sempre')"
-              ]
-            }
-          },
-          "Mercenario": {
-            "Agente nick michaels": {
-              "copie": 1,
-              "fazione": "Mercenario",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Personalita",
-              "stats": {
-                "combattimento": 4,
-                "sparare": 4,
-                "armatura": 4,
-                "valore": 4
-              },
-              "quantita": 1,
-              "keywords": [],
-              "abilita": []
-            }
           }
         },
         "schieramento": {}
@@ -390,36 +262,6 @@
             "keywords": [],
             "valore": 0
           },
-          "AG-17 Panzerknacker": {
-            "copie": 2,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [],
-            "valore": 0
-          },
-          "Fukimura No.12 Kamikaze": {
-            "copie": 2,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 4,
-            "keywords": [],
-            "valore": 0
-          },
-          "Lama Mortis": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [],
-            "valore": 1
-          },
           "Mezzo D'Esplorazione Pegasus": {
             "copie": 2,
             "classe": "Equipaggiamento",
@@ -429,6 +271,16 @@
             "quantita": 2,
             "keywords": [],
             "valore": 0
+          },
+          "Lama Mortis": {
+            "copie": 2,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 1
           },
           "Paramenti Sacri": {
             "copie": 2,
@@ -440,28 +292,8 @@
             "keywords": [],
             "valore": 1
           },
-          "Fucile di Precisione Archer": {
-            "copie": 3,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 4,
-            "keywords": [],
-            "valore": 0
-          },
-          "Scalper": {
-            "copie": 2,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [],
-            "valore": 1
-          },
           "Fuoristrada GT B52": {
-            "copie": 2,
+            "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
             "rarity": "Common",
@@ -470,6 +302,16 @@
             "keywords": [
               "Doomtrooper"
             ],
+            "valore": 0
+          },
+          "TA 6500 Cybermech": {
+            "copie": 3,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 4,
+            "keywords": [],
             "valore": 0
           }
         },
@@ -495,7 +337,7 @@
             "valore": 0
           },
           "Empatia Di Premonizione": {
-            "copie": 2,
+            "copie": 3,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
@@ -525,7 +367,7 @@
             "valore": 0
           },
           "Il Secondo Direttorato": {
-            "copie": 1,
+            "copie": 3,
             "classe": "Speciale",
             "set_espansione": "Inquisition",
             "rarity": "Common",
@@ -535,7 +377,7 @@
             "valore": 0
           },
           "Incantesimo Preferito": {
-            "copie": 2,
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Inquisition",
             "rarity": "Common",
@@ -545,7 +387,7 @@
             "valore": 0
           },
           "Interferenza": {
-            "copie": 1,
+            "copie": 3,
             "classe": "Speciale",
             "set_espansione": "Warzone",
             "rarity": "Common",
@@ -565,7 +407,7 @@
             "valore": 0
           },
           "Stanchezza Mentale": {
-            "copie": 2,
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Warzone",
             "rarity": "Common",
@@ -575,7 +417,7 @@
             "valore": 0
           },
           "Programmato": {
-            "copie": 3,
+            "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Warzone",
             "rarity": "Common",
@@ -715,46 +557,6 @@
             "quantita": 2,
             "keywords": [],
             "valore": 0
-          },
-          "Opportunità Di Nathaniel": {
-            "copie": 1,
-            "classe": "Arte",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 3,
-            "keywords": [],
-            "valore": 0
-          },
-          "Tempesta Del Caos": {
-            "copie": 1,
-            "classe": "Arte",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [],
-            "valore": 0
-          },
-          "Invulnerabile": {
-            "copie": 1,
-            "classe": "Arte",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 3,
-            "keywords": [],
-            "valore": 0
-          },
-          "Trasmutazione": {
-            "copie": 1,
-            "classe": "Arte",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [],
-            "valore": 0
           }
         },
         "Oscura Simmetria": {},
@@ -770,20 +572,6 @@
               "Fratellanza",
               "Cattedrale",
               "Città",
-              "Fortificazione"
-            ]
-          },
-          "Heimburg": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Bauhaus",
-              "Città",
-              "Heimburg",
               "Fortificazione"
             ]
           },
@@ -815,7 +603,7 @@
             ]
           },
           "La Cattedrale Di Fukido": {
-            "copie": 3,
+            "copie": 1,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
             "rarity": "Common",
@@ -830,7 +618,7 @@
             ]
           },
           "La Cattedrale Di San Dorado": {
-            "copie": 1,
+            "copie": 2,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
             "rarity": "Common",
@@ -841,6 +629,32 @@
               "San Dorado",
               "Arte",
               "Manipolazione",
+              "Fortificazione"
+            ]
+          },
+          "Luna": {
+            "copie": 1,
+            "classe": "Fortificazione",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Luna",
+              "Mercenari",
+              "Fortificazione"
+            ]
+          },
+          "Trincea": {
+            "copie": 1,
+            "classe": "Fortificazione",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Trincea",
+              "Protezione",
               "Fortificazione"
             ]
           }
@@ -857,16 +671,6 @@
             "valore": 0
           },
           "Missione Modificata": {
-            "copie": 1,
-            "classe": "Reliquia",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [],
-            "valore": 0
-          },
-          "Dai-Sho Degli Antichi Imperatori": {
             "copie": 2,
             "classe": "Reliquia",
             "set_espansione": "Inquisition",
@@ -910,29 +714,38 @@
               "Uccisione",
               "Difficile"
             ]
+          },
+          "Resistenza Eroica": {
+            "copie": 2,
+            "classe": "Missione",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Missione",
+              "Sopravvivenza"
+            ]
           }
         }
       },
       "metadati_mazzo": {
         "indice": 1,
-        "data_creazione": "2025-10-08T18:43:42.147602",
-        "totale_carte": 92,
+        "data_creazione": "2025-10-09T10:38:29.302142",
+        "totale_carte": 77,
         "statistiche_base": {
-          "guerrieri_squadra": 21,
+          "guerrieri_squadra": 13,
           "guerrieri_schieramento": 0,
-          "carte_supporto": 71
+          "carte_supporto": 64
         },
         "apostoli_presenti": [],
         "statistiche_originali": {
-          "numero_totale_carte": 92,
+          "numero_totale_carte": 77,
           "fazioni_presenti": [
-            "Mercenario",
             "Fratellanza",
-            "Imperiale",
             "Cybertronic",
             "Capitol",
-            "Bauhaus",
-            "Mishima"
+            "Imperiale"
           ],
           "espansioni_utilizzate": [
             "Base",
@@ -940,12 +753,12 @@
             "Warzone"
           ],
           "distribuzione_per_tipo": {
-            "equipaggiamento": 17,
+            "equipaggiamento": 11,
             "fortificazione": 9,
-            "speciale": 17,
-            "missione": 2,
-            "arte": 17,
-            "reliquia": 5,
+            "speciale": 19,
+            "missione": 4,
+            "arte": 13,
+            "reliquia": 4,
             "warzone": 4
           }
         }
@@ -955,52 +768,46 @@
   "statistiche_aggregate": {
     "panoramica_generale": {
       "numero_mazzi": 1,
-      "totale_carte": 92,
-      "totale_guerrieri_squadra": 21,
+      "totale_carte": 77,
+      "totale_guerrieri_squadra": 13,
       "totale_guerrieri_schieramento": 0,
-      "totale_carte_supporto": 71,
-      "media_carte_per_mazzo": 92.0,
-      "media_guerrieri_squadra": 21.0,
+      "totale_carte_supporto": 64,
+      "media_carte_per_mazzo": 77.0,
+      "media_guerrieri_squadra": 13.0,
       "media_guerrieri_schieramento": 0.0,
-      "media_supporto": 71.0
+      "media_supporto": 64.0
     },
     "distribuzione_fazioni": {
       "squadra": {
-        "Fratellanza": 5,
+        "Fratellanza": 3,
         "Capitol": 4,
         "Cybertronic": 2,
-        "Imperiale": 4,
-        "Mishima": 2,
-        "Bauhaus": 3,
-        "Mercenario": 1
+        "Imperiale": 4
       },
       "schieramento": {}
     },
     "distribuzione_classi_supporto": {
-      "Equipaggiamento": 17,
+      "Equipaggiamento": 11,
       "Fortificazione": 9,
-      "Speciale": 17,
-      "Missione": 2,
-      "Arte": 17,
-      "Reliquia": 5,
+      "Speciale": 19,
+      "Missione": 4,
+      "Arte": 13,
+      "Reliquia": 4,
       "Warzone": 4
     },
     "distribuzione_apostoli": {},
     "riepilogo_mazzi": [
       {
         "indice_mazzo": 1,
-        "totale_carte": 92,
-        "guerrieri_squadra": 21,
+        "totale_carte": 77,
+        "guerrieri_squadra": 13,
         "guerrieri_schieramento": 0,
-        "carte_supporto": 71,
+        "carte_supporto": 64,
         "fazioni_squadra": [
           "Fratellanza",
           "Capitol",
           "Cybertronic",
-          "Imperiale",
-          "Mishima",
-          "Bauhaus",
-          "Mercenario"
+          "Imperiale"
         ],
         "fazioni_schieramento": [],
         "apostoli_presenti": [],
@@ -1014,8 +821,8 @@
           "Warzone"
         ],
         "espansioni_utilizzate": [
-          "Warzone",
           "Base",
+          "Warzone",
           "Inquisition"
         ]
       }

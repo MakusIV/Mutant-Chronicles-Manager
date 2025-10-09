@@ -790,26 +790,26 @@ class CreatoreMazzo:
         guerrieri_doomtrooper = []
         guerrieri_fratellanza = []
         guerrieri_oscura_legione = []        
-        guerrieri_disponibili_ammessi = []
+        guerrieri_ammessi = []
 
-        for guerriero in guerrieri_disponibili:
+        #for guerriero in guerrieri_disponibili:
                     
             # Categorizza per fazione. 
             # Nota: l'Eretico viene inserito anche nei doomtrooper o oscura legione, mentre i cultisti no
             # Nota: i guerrieri sono categorizzati ma queste categoriee non vengono poi usate nella funzione
-            if doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
-                guerrieri_doomtrooper.append(guerriero)
-            elif fratellanza and guerriero.fazione in FAZIONI_FRATELLANZA:
-                guerrieri_fratellanza.append(guerriero)
-            elif oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
-                guerrieri_oscura_legione.append(guerriero)
+        #    if doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
+        #        guerrieri_doomtrooper.append(guerriero)
+        #    elif fratellanza and guerriero.fazione in FAZIONI_FRATELLANZA:
+        #        guerrieri_fratellanza.append(guerriero)
+        #    elif oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+        #        guerrieri_oscura_legione.append(guerriero)
         
         # Calcola punteggi per ogni guerriero basati sugli orientamenti
         punteggi = {}
         
-        guerrieri_disponibili_ammessi.extend(guerrieri_doomtrooper) 
-        guerrieri_disponibili_ammessi.extend(guerrieri_fratellanza) 
-        guerrieri_disponibili_ammessi.extend(guerrieri_oscura_legione) 
+        #guerrieri_disponibili_ammessi.extend(guerrieri_doomtrooper) 
+        #guerrieri_disponibili_ammessi.extend(guerrieri_fratellanza) 
+        #guerrieri_disponibili_ammessi.extend(guerrieri_oscura_legione) 
 
 
         BONUS_SPECIALIZZAZIONE = 4.0 # Fattore punteggio applicato se il guerriero è della fazione specializzata
@@ -817,12 +817,12 @@ class CreatoreMazzo:
         BONUS_ERETICO = 2 # Fattore applicato se selezionati ERETICI
         BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI   
 
-        for guerriero in guerrieri_disponibili_ammessi:
+        for guerriero in guerrieri_disponibili:
             
             if guerriero.nome in punteggi:
                 continue
 
-            punteggio = self.calcola_potenza_guerriero(guerriero)
+            punteggio = 0 # punteggio base
             
             # Bonus per orientamenti
             bonus_moltiplicatore = 1.0              
@@ -831,9 +831,13 @@ class CreatoreMazzo:
             if hasattr(guerriero, 'fondamentale') and guerriero.fondamentale:
                 bonus_factor_guerriero_fondamentale = 3 # triplica il punteggio se è una carta fondamentale
             
-            # Orientamento Doomtrooper
-            
+            # inserimento in lista dei guerrieri ammessi
+            ammesso = False
+
+            # Orientamento Doomtrooper            
             if doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
+                ammesso = True                
+
                 if not orientamento_doomtrooper or orientamento_doomtrooper == []: # il guerriero è un doomtrooper e non è definito l'orientamento
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se la fazione è nei doomtroopers
 
@@ -841,31 +845,46 @@ class CreatoreMazzo:
                     bonus_moltiplicatore *= BONUS_ORIENTAMENTO# triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
 
                 else: # il guerriero è un doomtrooper ma non è nell'orientamento
-                    bonus_moltiplicatore *= 0.8 # decrementa del 20% se il doomtrooper non è della fazione richiesta (per favorire la scelta di quelli della fazione richiesta)
-    
-            # Orientamento Arte (per guerrieri Fratellanza)
-            if fratellanza: # 
+                    # bonus_moltiplicatore *= 0.8 # decrementa del 20% se il doomtrooper non è della fazione richiesta (per favorire la scelta di quelli della fazione richiesta)
+                    ammesso = False # esclude il guerriero se non è della fazione richiesta (per favorire la scelta di quelli della fazione richiesta)
                 
-                if guerriero.fazione in FAZIONI_FRATELLANZA and (not orientamento_arte or orientamento_arte == []): # il guerriero è della fratellanza e non è definito l'orientamento
+                if ammesso:
+                    guerrieri_ammessi.append(guerriero) 
+                    punteggio = self.calcola_potenza_guerriero(guerriero)
+                    punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore * bonus_factor_guerriero_fondamentale                    
+            
+
+            # Orientamento Arte (per guerrieri Fratellanza)
+            elif fratellanza and guerriero.fazione in FAZIONI_FRATELLANZA: # 
+                ammesso = True
+
+                if not orientamento_arte or orientamento_arte == []: # il guerriero è della fratellanza e non è definito l'orientamento
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE
                 
-                # Le arti possono essere utilizzaqte anche da guerrieri non appartenenti alla Fratellanza
-                if orientamento_arte and len(orientamento_arte) > 0: # Sono definite le arti preferite
+                # Le arti possono essere utilizzate anche da guerrieri non appartenenti alla Fratellanza
+                elif orientamento_arte and len(orientamento_arte) > 0: # Sono definite le arti preferite
                     for abilita in guerriero.abilita:
-                        escludi_oscura_legione = guerriero.fazione in FAZIONI_OSCURA_LEGIONE and not oscura_legione # True se il guerriero è OL e non è previsto nel mazzo l'oscura legione
-                        escludi_doomtrooper = guerriero.fazione in FAZIONI_DOOMTROOPER and not doomtrooper # True se il guerriero è DOOMTROOPER e non è previsto nel mazzo i doomtrooper
-                        if abilita.tipo == 'Arte' and not (escludi_oscura_legione or escludi_doomtrooper) : # esclude se il guerriero è OL e non è previsto nel mazzo l'oscura legione
+                        #escludi_oscura_legione = guerriero.fazione in FAZIONI_OSCURA_LEGIONE and not oscura_legione # True se il guerriero è OL e non è previsto nel mazzo l'oscura legione
+                        #escludi_doomtrooper = guerriero.fazione in FAZIONI_DOOMTROOPER and not doomtrooper # True se il guerriero è DOOMTROOPER e non è previsto nel mazzo i doomtrooper
+                        if abilita.tipo == 'Arte': # and not (escludi_oscura_legione or escludi_doomtrooper) : # esclude se il guerriero è OL e non è previsto nel mazzo l'oscura legione
                             disciplina = abilita.target
                             if any( arte_ in disciplina for arte_ in orientamento_arte ):
                                 bonus_moltiplicatore *= BONUS_ORIENTAMENTO # triplica se il fratello lancia la specifica arte
                             elif disciplina == DisciplinaArte.TUTTE.value:
                                 bonus_moltiplicatore *= (BONUS_ORIENTAMENTO * 2)   # raddoppia se il fratello lancia la specifica arte
-                            elif guerriero.fazione in FAZIONI_FRATELLANZA: # il guerriero è della fratellanza ma non ha competenza nlle arti richieste (depotenzia)
-                                bonus_moltiplicatore *= 0.8 # decrementa del 20% se il fratello non è competente nelle arti scelte (per favorire la scelta di quelli competenti)
-                                
+                            elif guerriero.fazione in FAZIONI_FRATELLANZA: # il guerriero è della fratellanza ma non ha competenza nelle arti richieste (depotenzia)
+                                ammesso = False # esclude il guerriero se non è della fazione richiesta (per favorire la scelta di quelli della fazione richiesta)
+                                # bonus_moltiplicatore *= 0.8 # decrementa del 20% se il fratello non è competente nelle arti scelte (per favorire la scelta di quelli competenti)
+
+                if ammesso:
+                    guerrieri_ammessi.append(guerriero) 
+                    punteggio = self.calcola_potenza_guerriero(guerriero)
+                    punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore * bonus_factor_guerriero_fondamentale
+                                    
             
             # Orientamento Apostolo (per guerrieri Oscura Legione)
-            if oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE: # and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+            elif oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE: # and guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+                ammesso = True
 
                 if not orientamento_apostolo or orientamento_apostolo == []:
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE
@@ -875,20 +894,35 @@ class CreatoreMazzo:
                         if f"Seguace di {apostolo}" in guerriero.keywords:
                             bonus_moltiplicatore *= BONUS_ORIENTAMENTO
                 else:
-                    bonus_moltiplicatore *= 0.8 # decrementa del 20% se il guerriero non può fruire dei doni dell'apostolo incluso nell'orientamento (per favorire la scelta di quelli che possono usufruirne)
+                    ammesso = False # esclude il guerriero se non è della fazione richiesta (per favorire la scelta di quelli della fazione richiesta)
+                    #bonus_moltiplicatore *= 0.8 # decrementa del 20% se il guerriero non può fruire dei doni dell'apostolo incluso nell'orientamento (per favorire la scelta di quelli che possono usufruirne)                    
+                    
 
                 if orientamento_cultista and 'Cultista' in guerriero.keywords:
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
-                            
+
+                if ammesso:
+                    guerrieri_ammessi.append(guerriero) 
+                    punteggio = self.calcola_potenza_guerriero(guerriero)
+                    punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore * bonus_factor_guerriero_fondamentale
+                    
+            
             # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in guerriero.keywords:
-                    bonus_moltiplicatore *= BONUS_ERETICO # aumenta di un ulteriore fattore (BONUS_ERETICI) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
-        
+                    # bonus_moltiplicatore *= BONUS_ERETICO # aumenta di un ulteriore fattore (BONUS_ERETICI) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
+                    if guerriero not in guerrieri_ammessi:
+                        guerrieri_ammessi.append(guerriero) 
+                        punteggio = self.calcola_potenza_guerriero(guerriero)
+                        punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore * bonus_factor_guerriero_fondamentale * BONUS_ERETICO
+                    elif guerriero.nome in punteggi:
+                        punteggi[guerriero.nome] *= BONUS_ERETICO # aumenta di un ulteriore fattore (BONUS_ERETICI) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
+                    else:
+                        print(f"MA CHI CAZZ'E'??: Escluso eretico guerriero {guerriero.nome} della fazione {guerriero.fazione} non compatibile con le fazioni selezionate per il mazzo")
             
-            punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore * bonus_factor_guerriero_fondamentale
+            #punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore * bonus_factor_guerriero_fondamentale
         
         # Ordina guerrieri per punteggio
-        guerrieri_ordinati = sorted(guerrieri_disponibili_ammessi, 
+        guerrieri_ordinati = sorted(guerrieri_ammessi, 
                                    key=lambda g: punteggi.get(g.nome, 0), 
                                    reverse=True)
         
@@ -4151,29 +4185,29 @@ if __name__ == "__main__":
     print("🎯 MODULO GESTIONE MAZZI - TEST STANDALONE")
     
     # Esegui test base
-    test_funzioni_mazzi()
+    # test_funzioni_mazzi()
 
     collezioni = creazione_Collezione_Giocatore(2, [Set_Espansione.BASE, Set_Espansione.INQUISITION, Set_Espansione.WARZONE], orientamento = False)
 
     mazzo_1 = crea_mazzo_da_gioco(collezioni[0],
-                    numero_carte_max = 100,
-                    numero_carte_min = 80,
+                    numero_carte_max = 130,
+                    numero_carte_min = 120,
                     espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                     doomtrooper = True,
-                    orientamento_doomtrooper = ["Bauhaus", "Capitol"],
+                    orientamento_doomtrooper = ["Imperiale", "Capitol", "Cybertronic"],
                     fratellanza = True,
-                    orientamento_arte = ['Cambiamento', 'Premonizione', 'Esorcismo'],
+                    orientamento_arte = ['Cambiamento', 'Elementi', 'Esorcismo'],
                     oscura_legione = False,
                     orientamento_apostolo = None,
-                    orientamento_eretico = False,
+                    orientamento_eretico = True,
                     orientamento_cultista = False)
     
     mazzo_2 = crea_mazzo_da_gioco(collezioni[1],
-                    numero_carte_max = 100,
-                    numero_carte_min = 80,
+                    numero_carte_max = 130,
+                    numero_carte_min = 120,
                     espansioni_richieste = ["Base", "Inquisition", "Warzone"],
                     doomtrooper = True,
-                    orientamento_doomtrooper = ["Imperiale", "Cybertronic", "Mercenario"],
+                    orientamento_doomtrooper = ["Bauhaus", "Mishima", "Mercenario"],
                     fratellanza = False,
                     orientamento_arte = None,
                     oscura_legione = True,
