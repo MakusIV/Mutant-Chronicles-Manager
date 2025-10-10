@@ -43,7 +43,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -72,7 +72,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -101,7 +101,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -139,7 +139,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 12,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -168,7 +168,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -197,7 +197,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 16,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -236,7 +236,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -321,7 +321,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 15,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -359,7 +359,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -388,7 +388,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -459,7 +459,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -488,7 +488,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -526,7 +526,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -572,7 +572,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -601,7 +601,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -630,7 +630,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 12,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -668,7 +668,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -702,6 +702,35 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
+    "Sunset Striker": {
+        "nome": "Sunset Striker",
+        "fazione": "Capitol", 
+        "tipo": "Normale",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 3
+        },
+        "abilita": [],
+        "testo_carta": "Di stanza su Mercurio, questi guerrieri sono addestrati a combattere le truppe della Mishima sul loro pianeta d'origine.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 16,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
     # Warzone
       
     "Capitano Capitol": {
@@ -737,7 +766,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -775,7 +804,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -813,7 +842,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -855,7 +884,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -901,7 +930,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 17,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -939,7 +968,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -977,7 +1006,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1015,7 +1044,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 10,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1069,7 +1098,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1115,7 +1144,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1153,7 +1182,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1191,7 +1220,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 21,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1229,7 +1258,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 23,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1267,7 +1296,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1313,11 +1342,57 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 17,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
     
+    "Osservatore Tattico": {
+        "nome": "Osservatore Tattico",
+        "fazione": "Cybertronic", 
+        "tipo": "Normale",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 3,
+            "sparare": 3, 
+            "armatura": 3,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            },
+            {
+                "nome": "Assegna Carta",
+                "descrizione": "Assegna un guerriero Cybertronic non personalita all'Osservatore Tattico. Questo guerriero ed eventuali altre copie di questo presenti nella tua squadra  guadagnano un +4 in C, S, A e V mentre l'Osservatore è vivo e nella squadra",
+                "tipo": "Carte",
+                "costo_destino": 10,
+                "target": "Equipaggiamento Cybertronic",
+                "timing": "Ogni Momento"
+            }
+        ],
+        "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI. In ogni momento, può equipaggiare qualsiasi Doomtrooper con carte Equipaggiamento Cybertronic senza spendere Azioni. Può anche affiliare qualsiasi Doomtrooper non-Personalità alla Cybertronic. Questo causa una ferita al Tecnico, ma se muore così non si guadagnano Punti. Non può usare l'Arte.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Carte delle Arti non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 11,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
     "Cacciatore": {
         "nome": "Cacciatore",
         "fazione": "Cybertronic", 
@@ -1351,6 +1426,44 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "quantita": 14,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Corazziere": {
+        "nome": "Corazziere",
+        "fazione": "Cybertronic", 
+        "tipo": "Normale",
+        "rarity": "Common",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 4,
+            "sparare": 3, 
+            "armatura": 4,
+            "valore": 4
+        },
+        "abilita": [
+            {
+                "nome": "Immune agli effetti dell'Oscura Simmetria",
+                "descrizione": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA",
+                "tipo": "Immunita",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }
+        ],
+        "testo_carta": "Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1361,7 +1474,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fazione": "Cybertronic", 
         "tipo": "Personalita",
         "rarity": "Common",
-        "set_espansione": "Base",
+        "set_espansione": "Warzone",
         "numero_carta": "",
         "stats": {
             "combattimento": 8,
@@ -1397,10 +1510,49 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+
+    "Il Diciannovesimo Executive": {
+        "nome": "Il Diciannovesimo Executive",
+        "fazione": "Cybertronic", 
+        "tipo": "Personalita",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 0,
+            "sparare": o, 
+            "armatura": 0,
+            "valore": 20
+        },
+        "abilita": [
+            {
+                "nome": "Converte azioni in azioni di attacco",
+                "descrizione": "Mentre l'Executive è in gioco tu puoi convdrtire ogni numero di azioni non di attacco in azioni di attacco ma queste devono essere compiute da guerrieri Cybertronic",
+                "tipo": "Modificatore",
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Sempre"
+            }        ],
+        "testo_carta": "PERSONALITÀ. IMMUNE AI DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Tutti i tuoi guerrieri Cybertronic guadagnano un + 4 in C, S, A e V finché Charles stesso finché lui è presente nella squadra.",
+        "flavour_text": "",
+        "keywords": ["Leader Corporativo", "Personalita"],
+        "restrizioni": ["Carte delle Arti non Assegnabili"],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+        
 
 
     # === IMPERIALE ===
@@ -1438,7 +1590,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1476,7 +1628,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 27,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1512,7 +1664,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 23,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1541,7 +1693,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 20,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1577,7 +1729,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 22,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1613,7 +1765,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 18,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1651,7 +1803,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1680,7 +1832,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 21,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1709,7 +1861,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1745,7 +1897,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1810,36 +1962,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Sunset Striker": {
-        "nome": "Sunset Striker",
-        "fazione": "Imperiale", 
-        "tipo": "Normale",
-        "rarity": "Common",
-        "set_espansione": "Base",
-        "numero_carta": "",
-        "stats": {
-            "combattimento": 0,
-            "sparare": 3, 
-            "armatura": 3,
-            "valore": 3
-        },
-        "abilita": [],
-        "testo_carta": "Di stanza su Mercurio, questi guerrieri sono addestrati a combattere le truppe della Mishima sul loro pianeta d'origine.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False, 
-            "pronto": True
-        },
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1875,7 +1998,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1904,7 +2027,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1943,7 +2066,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 16,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },    
@@ -1981,7 +2104,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2015,7 +2138,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 23,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2044,7 +2167,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 10,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2082,7 +2205,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
@@ -2120,7 +2243,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2159,7 +2282,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita": 3,
-        "quantita_minima_consigliata": 3,
+        "quantita_minima_consigliata": 5,
         "fondamentale": False
     },
 
@@ -2187,7 +2310,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 22,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2217,7 +2340,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 18,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2255,7 +2378,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2302,7 +2425,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 22,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2340,7 +2463,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 27,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2386,7 +2509,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2415,7 +2538,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2467,7 +2590,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2513,7 +2636,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2551,7 +2674,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2589,7 +2712,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2627,7 +2750,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2665,7 +2788,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2741,7 +2864,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2779,7 +2902,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 14,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2825,7 +2948,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2871,7 +2994,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2909,7 +3032,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2948,7 +3071,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 27,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2994,7 +3117,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3032,7 +3155,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3041,7 +3164,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     # === LEGIONE OSCURA ===
     # Fatto
     # Seguaci di Algeroth
-     "Necromutante": {
+
+
+     
+    "Necromutante": {
         "nome": "Necromutante",
         "fazione": "Oscura Legione",
         "tipo": "Seguace",
@@ -3161,7 +3287,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":2,
+        "quantita":3,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
@@ -3340,7 +3466,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
@@ -3427,7 +3553,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3521,7 +3647,36 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Necromagus Supremo": {
+        "nome": "Necromagus Supremo",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 22,
+            "sparare": 14, 
+            "armatura": 26,
+            "valore": 20
+        },
+        "abilita": [],
+        "testo_carta": "SEGUACE DI ALGEROTH CONSIDERATO UN ERETICO. Mentre è in gioco, tutti i tuoi Eretici guadagnano un +3 in C, S e A (non il Necromagus)",
+        "flavour_text": "",
+        "keywords": ["Seguace di Algeroth", "Eretico"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3790,7 +3945,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3872,7 +4027,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
-        "quantita":5,
+        "quantita":6,
         "quantita_minima_consigliata":4, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
@@ -4004,52 +4159,6 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Conquistatore Callistoniano": {
-        "nome": "Conquistatore Callistoniano",
-        "fazione": "Oscura Legione", 
-        "tipo": "Seguace",
-        "rarity": "Common",
-        "set_espansione": "Inquisition",
-        "numero_carta": "",
-        "stats": {
-            "combattimento": 6,
-            "sparare": 6, 
-            "armatura": 6,
-            "valore": 7
-        },
-        "abilita": [
-            {
-                "nome": "Uccide Automaticamente",
-                "descrizione": "Se ferisce, uccide automaticamente",
-                "tipo": "Combattimento", 
-                "costo_destino": 0,
-                "target": "Guerriero",
-                "timing": "Fase Combattimento"
-            },
-            {
-                "nome": "I guerrieri alleati uccidono automaticamente",
-                "descrizione": "Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi",
-                "tipo": "Combattimento", 
-                "costo_destino": 0,
-                "target": "Guerriero",
-                "timing": "Fase Combattimento"
-            }
-        ],
-        "testo_carta": "SEGUACE DI SEMAI. Considerato un INTRUSO CALLISTONIANO. Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi.",
-        "flavour_text": "",
-        "keywords": ["Seguace di Semai"],
-        "restrizioni": [],
-        "equipaggiamento": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "ferito": False, 
-            "pronto": True
-        },
-        "quantita": 6,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
     "Nepharita di Demnogonis": {
         "nome": "Nepharita di Demnogonis",
         "fazione": "Oscura Legione",
@@ -4328,7 +4437,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4395,7 +4504,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4521,6 +4630,52 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita":4,
         "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+    },
+
+    "Conquistatore Callistoniano": {
+        "nome": "Conquistatore Callistoniano",
+        "fazione": "Oscura Legione", 
+        "tipo": "Seguace",
+        "rarity": "Common",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "stats": {
+            "combattimento": 6,
+            "sparare": 6, 
+            "armatura": 6,
+            "valore": 7
+        },
+        "abilita": [
+            {
+                "nome": "Uccide Automaticamente",
+                "descrizione": "Se ferisce, uccide automaticamente",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            },
+            {
+                "nome": "I guerrieri alleati uccidono automaticamente",
+                "descrizione": "Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi",
+                "tipo": "Combattimento", 
+                "costo_destino": 0,
+                "target": "Guerriero",
+                "timing": "Fase Combattimento"
+            }
+        ],
+        "testo_carta": "SEGUACE DI SEMAI. Considerato un INTRUSO CALLISTONIANO. Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi.",
+        "flavour_text": "",
+        "keywords": ["Seguace di Semai"],
+        "restrizioni": [],
+        "equipaggiamento": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "ferito": False, 
+            "pronto": True
+        },
+        "quantita": 6,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
     "Legionario di Semai": {
@@ -4701,7 +4856,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4710,7 +4865,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fazione": "Mercenario", 
         "tipo": "Normale",
         "rarity": "Common",
-        "set_espansione": "Base",
+        "set_espansione": "Inquisition",
         "numero_carta": "",
         "stats": {
             "combattimento": 2,
@@ -4729,7 +4884,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4757,7 +4912,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4802,7 +4957,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4811,7 +4966,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fazione": "Mercenario", 
         "tipo": "Normale",
         "rarity": "Common",
-        "set_espansione": "Base",
+        "set_espansione": "Inquisition",
         "numero_carta": "",
         "stats": {
             "combattimento": 4,
