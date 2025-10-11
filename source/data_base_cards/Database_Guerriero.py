@@ -1524,7 +1524,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "numero_carta": "",
         "stats": {
             "combattimento": 0,
-            "sparare": o, 
+            "sparare": 0, 
             "armatura": 0,
             "valore": 20
         },

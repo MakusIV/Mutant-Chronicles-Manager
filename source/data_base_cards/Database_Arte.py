@@ -49,7 +49,50 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 9,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Barriera Elementare": {
+        "nome": "Barriera Elementare",
+        "valore": 0,
+        "tipo": "Incantesimo Personale di Combattimento",
+        "disciplina": "Elementi",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro",
+        "durata": "Fine Combattimento",
+        "timing": "In Combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Bonus Armatura",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2 in A per ogni 2D spesi",
+                "statistica_target": "sparare",
+                "descrizione_effetto": "Per ogni 2D il Maestro guadagna un +2 in A",
+                "condizioni": ["Incantesimo personale di combattimento", "Solo il Maestro"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in S.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -92,7 +135,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -135,7 +178,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -178,7 +221,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -221,7 +264,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -264,7 +307,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -307,7 +350,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -350,7 +393,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -393,7 +436,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -436,7 +479,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -479,7 +522,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -522,7 +565,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -565,7 +608,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -608,7 +651,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -651,7 +694,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -694,7 +737,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -737,7 +780,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -780,7 +823,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -823,7 +866,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -909,7 +952,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -932,16 +975,16 @@ CARTE_ARTE_DATABASE = {
         "richiede_azione": False,
         "effetti": [
             {
-                "nome_effetto": "Bonus Sparare",
+                "nome_effetto": "Bonus Combattimento",
                 "tipo_effetto": "Modificatore",
-                "valore": "+2 in S per ogni 2D spesi",
+                "valore": "+2 in C per ogni 2D spesi",
                 "statistica_target": "sparare",
-                "descrizione_effetto": "Per ogni 2D il Maestro guadagna un +2 in S",
+                "descrizione_effetto": "Per ogni 2D il Maestro guadagna un +2 in C",
                 "condizioni": ["Incantesimo personale di combattimento", "Solo il Maestro"],
                 "limitazioni": []
             }
         ],
-        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in S.",
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in C.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -952,7 +995,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -995,7 +1038,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1038,7 +1081,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1081,7 +1124,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1124,7 +1167,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1167,7 +1210,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1210,7 +1253,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },   
@@ -1243,6 +1286,49 @@ CARTE_ARTE_DATABASE = {
             }
         ],
         "testo_carta": "ARTE MENTALE. GIOCABILE IN OGNI MOMENTO. Il Maestro non può essere attaccato fino all'inizio del Tuo prossimo Turno.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Migliorare Se Stesso": {
+        "nome": "Migliorare Se Stesso",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Mentale",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Maestro",
+        "durata": "Fino Prossimo Turno",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "C, S, A, V",
+                "descrizione_effetto": "Le caratteristiche del Maestro sono raddoppiate fino all'inizio del Tuo prossimo Turno",
+                "condizioni": ["Solo il Maestro"],
+                "limitazioni": ["Durata limitata al prossimo turno"]
+            }
+        ],
+        "testo_carta": "ARTE MENTALE. GIOCABILE IN OGNI MOMENTO. Fino all'inizio del tuo prossimo turno, le caratteristiche C, S, A e V del Maestro sono raddoppiate",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1296,7 +1382,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1348,12 +1434,12 @@ CARTE_ARTE_DATABASE = {
         "nome": "Risparmio",
         "valore": 0,
         "tipo": "Normale",
-        "disciplina": "Premonizione",
+        "disciplina": "Mentale",
         "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
         "bersaglio": "Giocatore",
-        "durata": "Partita",
+        "durata": "Turno",
         "timing": "Turno Proprio",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -1362,16 +1448,16 @@ CARTE_ARTE_DATABASE = {
         "richiede_azione": False,
         "effetti": [
             {
-                "nome_effetto": "Modifica Azione",
+                "nome_effetto": "Modifica Costo Incantesimi",
                 "tipo_effetto": "Modificatore",
                 "valore": "1D per turno",
                 "statistica_target": "nessuna",
-                "descrizione_effetto": "Per il resto della partita, guadagni 1D ogni fase Pescare",
-                "condizioni": ["Durante la fase Pescare"],
+                "descrizione_effetto": "Per il resto del turno, spendi 1D di meno nel lancio degli incantesimi",
+                "condizioni": ["Durante il tuo turno"],
                 "limitazioni": []
             }
         ],
-        "testo_carta": "ARTE DELLA PREMONIZIONE. GIOCABILE DURANTE LA FASE \"PESCARE\". Per il resto della partita, guadagni 1D ogni fase \"Pescare\".",
+        "testo_carta": "ARTE MENTALE. GIOCABILE ALL'INIZIO DEL TUO TURNO. Per il resto del turno, tutti gli incantesimi lanciati da questo Maestro costeranno 1D meno di quello previsto, tenendo conto che comunque deve essere sempre speso almento un punto D",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1382,7 +1468,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1468,7 +1554,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     }, 
@@ -1554,7 +1640,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1597,7 +1683,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1642,7 +1728,50 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 11,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Evocare Eroe": {
+        "nome": "Evocare Eroe",
+        "valore": 0,
+        "tipo": "Normale",
+        "disciplina": "Evocazione",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Giocatore",
+        "durata": "Istantanea",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Cerca Carta nel Mazzo",
+                "tipo_effetto": "Carte",
+                "valore": "2D per Doomtrooper Personalita",
+                "statistica_target": "",
+                "descrizione_effetto": "Spendendo 2D, puoi introdurre nella Tua Squadra un Doomtrooper Personalitàa prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie",
+                "condizioni": ["Costo 2D"],
+                "limitazioni": ["Solo Doomtrooper Personalita", "Deve pagare V in D (o doppio dal mazzo da pescare)"]
+            }
+        ],
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 5D, puoi introdurre nella Tua Squadra un Doomtrooper non-Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie.",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1685,7 +1814,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1728,7 +1857,50 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Scacciato": {
+        "nome": "Scacciato",
+        "valore": 0,
+        "tipo": "Incantesimo di Combattimento",
+        "disciplina": "Cambiamento",
+        "rarity": "Common",
+        "fazione_richiesta": "Fratellanza",
+        "fazioni_permesse": ["Fratellanza"],
+        "bersaglio": "Guerriero Proprio",
+        "durata": "Turno Proprio",
+        "timing": "Turno Proprio",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Scarta Guerriero",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Utilizzando tre azioni puoi scartare ogni guerriero spendendo 15D",
+                "condizioni": [],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE AL COSTO DI 3 AZIONI. Utilizzando tre azioni puoi scartare ogni guerriero spendendo 15D",
+        "flavour_text": "",
+        "keywords": [],
+        "stato_gioco": {
+            "in_gioco": False,
+            "utilizzata": False,
+            "bersagli_attuali": []
+        },
+        "restrizioni": [],
+        "contatori_speciali": {},
+        "valore_strategico": 1,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1771,7 +1943,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 15,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1814,7 +1986,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1857,7 +2029,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2030,7 +2202,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2073,7 +2245,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2116,7 +2288,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2159,7 +2331,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2202,7 +2374,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2245,7 +2417,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 14,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2288,7 +2460,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2331,7 +2503,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2459,7 +2631,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2502,7 +2674,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2545,7 +2717,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2588,7 +2760,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2674,7 +2846,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2717,7 +2889,7 @@ CARTE_ARTE_DATABASE = {
         "restrizioni": [],
         "contatori_speciali": {},
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
