@@ -16,220 +16,219 @@ from source.cards.Guerriero import Fazione, Rarity
 # Database completo delle carte Missione
 DATABASE_MISSIONI = {
     # MISSIONI GENERICHE - UCCISIONE
-    "Caccia al Nemico": {
-        "nome": "Caccia al Nemico",
+    "Quindici Minuti Di Fama": {
+        "nome": "Quindici Minuti Di Fama",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Normale",
         "rarity": "Common",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic"],
+        "fazioni_permesse": ["Tutte"],
         "corporazioni_specifiche": [],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Non Personalita"],
         "obiettivo": {
-            "descrizione": "Uccidi 1 guerriero nemico",
+            "descrizione": "Uccidi un guerriero personalita nemico",
             "tipo_obiettivo": "Uccidere",
             "valore_richiesto": 1,
-            "condizioni_speciali": ["Guerriero nemico"]
+            "condizioni_speciali": ["Guerriero personalita nemico"]
         },
         "ricompensa": {
-            "punti_promozione": 1,
-            "punti_destino": 1,
+            "punti_promozione": 4,
+            "punti_destino": 4,
             "carte_extra": 0,
             "effetti_speciali": [],
-            "descrizione": "1 Punto Promozione e 1 Punto Destino"
+            "descrizione": "4 punti in più rispetto al normale V"
         },
         "set_espansione": "Base",
         "numero_carta": "M002",
-        "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero uccide 1 guerriero nemico, guadagni 1 Punto Promozione e 1 Punto Destino.",
+        "testo_carta": "Assegna questa missione a un tuo guerriero non personalita. Il guerriero deve uccidere un guerriero personalita nemico. Se ci riesce, guadagni 4 Punti in più rispetto al normale V",
         "flavour_text": "La vendetta è un piatto che va servito freddo... e letale.",
         "keywords": ["Missione", "Uccisione"],
         "restrizioni": ["Solo Doomtrooper"],
         "condizioni_speciali": [],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita":1,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    "Eliminazione": {
-        "nome": "Eliminazione",
+    "Lotta Fraticida": {
+        "nome": "Lotta Fraticida",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Difficile",
         "rarity": "Uncommon",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic"],
+        "fazioni_permesse": ["Imperiale"],
         "corporazioni_specifiche": [],
         "restrizioni_guerriero": [],
         "obiettivo": {
-            "descrizione": "Uccidi 3 guerrieri nemici",
+            "descrizione": "Il guerriero deve uccidere un guerriero imperiale per completare la missione",
             "tipo_obiettivo": "Uccidere",
-            "valore_richiesto": 3,
-            "condizioni_speciali": ["Guerrieri nemici", "Stesso turno"]
+            "valore_richiesto": 0,
+            "condizioni_speciali": ["guerriero imperiale", "Stesso turno"]
         },
         "ricompensa": {
-            "punti_promozione": 5,
+            "punti_promozione": 2,
             "punti_destino": 2,
-            "carte_extra": 1,
+            "carte_extra": 0,
             "effetti_speciali": [],
-            "descrizione": "5 Punti Promozione, 2 Punti Destino e pesca 1 carta"
+            "descrizione": "il doppio del valore V del guerriero ucciso"
         },
         "set_espansione": "Base",
         "numero_carta": "M003",
-        "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero uccide 3 guerrieri nemici nello stesso turno, guadagni 5 Punti Promozione, 2 Punti Destino e peschi 1 carta.",
+        "testo_carta": "Assegnabile ad un qualsiasi guerriero imperiale. Il guerriero deve uccidere un guerriero imperiale per completare la missione e per guadagniare due volte il valore V del guerriero ucciso. Il guerriero attaccante non può essere identico al guerriero difensore",
         "flavour_text": "Un massacro metodico che lascia il campo di battaglia cosparso di cadaveri.",
         "keywords": ["Missione", "Uccisione", "Difficile"],
-        "restrizioni": ["Solo Doomtrooper"],
-        "condizioni_speciali": ["Tutte le uccisioni nello stesso turno"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "restrizioni": ["Solo Imperiale"],
+        "condizioni_speciali": [],
+        "quantita":3,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    # MISSIONI DI SOPRAVVIVENZA
-    "Resistenza Eroica": {
-        "nome": "Resistenza Eroica",
+   
+    "Cospirazione Eretica": {
+        "nome": "Cospirazione Eretica",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Normale",
         "rarity": "Common",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic"],
-        "corporazioni_specifiche": [],
+        "fazioni_permesse": ["Doomtrooper"],
+        "corporazioni_specifiche": ["Eretico"],
         "restrizioni_guerriero": [],
         "obiettivo": {
-            "descrizione": "Sopravvivi per 3 turni consecutivi",
-            "tipo_obiettivo": "Sopravvivere",
-            "valore_richiesto": 3,
-            "condizioni_speciali": ["Turni consecutivi", "Sotto attacco"]
+            "descrizione": "Uccideri una personalita della fratellanza. Una volta completata la missione, tutti i tuoi guerrieri nella squadra (se la missione era assegnata ad un Doomtrooper) oppure del tuo schieramento (se era assegnata ad un Eretico) saranno immuni a tutti gli effetti delle arti",
+            "tipo_obiettivo": "Uccisione",
+            "valore_richiesto": 0,
+            "condizioni_speciali": []
         },
         "ricompensa": {
-            "punti_promozione": 2,
-            "punti_destino": 1,
+            "punti_promozione": 0,
+            "punti_destino": 0,
             "carte_extra": 0,
             "effetti_speciali": [],
-            "descrizione": "2 Punti Promozione e 1 Punto Destino"
+            "descrizione": "Una volta completata la missione, tutti i tuoi guerrieri nella squadra (se la missione era assegnata ad un Doomtrooper) oppure del tuo schieramento (se era assegnata ad un Eretico) saranno immuni a tutti gli effetti delle arti"
         },
-        "set_espansione": "Base",
+        "set_espansione": "Warzone",
         "numero_carta": "M004",
-        "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero sopravvive per 3 turni consecutivi mentre è sotto attacco, guadagni 2 Punti Promozione e 1 Punto Destino.",
+        "testo_carta": "ASSEGNABILE AD UN DOOMTROOPER O AD UN ERETICO. Per completare questa missione devi uccidere una personalita della fratellanza. Una volta completata la missione, tutti i tuoi guerrieri nella squadra (se la missione era assegnata ad un Doomtrooper) oppure del tuo schieramento (se era assegnata ad un Eretico) saranno immuni a tutti gli effetti delle arti.",
         "flavour_text": "La vera forza si manifesta quando tutto sembra perduto.",
-        "keywords": ["Missione", "Sopravvivenza"],
-        "restrizioni": ["Solo Doomtrooper"],
-        "condizioni_speciali": ["Deve essere attaccato almeno una volta per turno"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "keywords": ["Eretico"],
+        "restrizioni": ["Solo Doomtrooper", "Solo Eretico"],
+        "condizioni_speciali": [],
+        "quantita":2,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    "Ultimo Baluardo": {
-        "nome": "Ultimo Baluardo",
+    "Dimostra Il Tuo Valore": {
+        "nome": "Dimostra Il Tuo Valore",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Difficile",
         "rarity": "Rare",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic"],
+        "fazioni_permesse": ["Tutte"],
         "corporazioni_specifiche": [],
         "restrizioni_guerriero": [],
         "obiettivo": {
-            "descrizione": "Sopravvivi come unico guerriero in gioco per 2 turni",
-            "tipo_obiettivo": "Sopravvivere",
-            "valore_richiesto": 2,
-            "condizioni_speciali": ["Unico guerriero", "Turni consecutivi"]
+            "descrizione": "Scegli un guerriero avversario con una V almeno due volte più grande di questo guerriero. Il tuo guerriero deve uccidere il suo avversario e sopravvivere al combattimento per completare la missione. Se riesce guadagna tre volte la V del guerriero ucciso",
+            "tipo_obiettivo": "Uccisione",
+            "valore_richiesto": 0,
+            "condizioni_speciali": []
         },
         "ricompensa": {
-            "punti_promozione": 4,
-            "punti_destino": 3,
-            "carte_extra": 2,
-            "effetti_speciali": ["Immune alle Arti per 1 turno"],
-            "descrizione": "4 Punti Promozione, 3 Punti Destino, pesca 2 carte e immunità alle Arti"
+            "punti_promozione": 0,
+            "punti_destino": 0,
+            "carte_extra": 0,
+            "effetti_speciali": [],
+            "descrizione": "Il tuo guerriero deve uccidere il suo avversario e sopravvivere al combattimento per completare la missione. Se riesce guadagna tre volte la V del guerriero ucciso"
         },
         "set_espansione": "Base",
         "numero_carta": "M005",
-        "testo_carta": "Assegna questa missione a un tuo guerriero. Se quel guerriero rimane come unico guerriero in gioco per 2 turni consecutivi, guadagni la ricompensa e diventa immune alle Arti per 1 turno.",
-        "flavour_text": "Quando tutti cadono, uno solo rimane a difendere ciò che è giusto.",
-        "keywords": ["Missione", "Sopravvivenza", "Eroica"],
-        "restrizioni": ["Solo Doomtrooper"],
+        "testo_carta": "Assegna questa missione a un tuo guerriero. Scegli un guerriero avversario con una V almeno due volte più grande di questo guerriero. Il tuo guerriero deve uccidere il suo avversario e sopravvivere al combattimento per completare la missione. Se riesce guadagna tre volte la V del guerriero ucciso",
+        "flavour_text": "",
+        "keywords": ["Missione", "Sopravvivenza"],
+        "restrizioni": [],
         "condizioni_speciali": ["Tutti gli altri guerrieri devono essere fuori gioco"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "quantita":1,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    # MISSIONI SPECIFICHE DELLE CORPORAZIONI
-    "Operazione Heimburg": {
-        "nome": "Operazione Heimburg",
+    "Offesa Al Cardinale": {
+        "nome": "Offesa Al Cardinale",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Normale",
         "rarity": "Uncommon",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Bauhaus"],
-        "corporazioni_specifiche": ["Bauhaus"],
+        "fazioni_permesse": ["Fratellanza"],
+        "corporazioni_specifiche": [],
         "restrizioni_guerriero": [],
         "obiettivo": {
-            "descrizione": "Controlla una Fortificazione nemica per 1 turno",
-            "tipo_obiettivo": "Controllare",
+            "descrizione": "Dovrai convertire un membro della fratellanza in un Eretico per completare la missione e guadagnare 5 punti promozione",
+            "tipo_obiettivo": "Conversione",
             "valore_richiesto": 1,
-            "condizioni_speciali": ["Fortificazione nemica", "Controllo completo"]
+            "condizioni_speciali": []
         },
         "ricompensa": {
-            "punti_promozione": 3,
-            "punti_destino": 2,
+            "punti_promozione": 5,
+            "punti_destino": 0,
             "carte_extra": 0,
-            "effetti_speciali": ["Bonus Armatura +2 per 2 turni"],
-            "descrizione": "3 Punti Promozione, 2 Punti Destino e +2 Armatura"
+            "effetti_speciali": [],
+            "descrizione": "5 punti promozione"
         },
         "set_espansione": "Base",
         "numero_carta": "M006",
-        "testo_carta": "Solo guerrieri Bauhaus. Controlla una Fortificazione nemica per 1 turno completo. Ricompensa: 3 Punti Promozione, 2 Punti Destino e +2 Armatura per 2 turni.",
+        "testo_carta": "Assegnabile ad ogni giocatore. Dovrai convertire un membro della fratellanza in un Eretico per completare la missione e guadagnare 5 punti promozione",
         "flavour_text": "L'ingegneria Bauhaus conquista anche le fortezze più imprendibili.",
-        "keywords": ["Missione", "Bauhaus", "Controllo"],
-        "restrizioni": ["Solo guerrieri Bauhaus"],
-        "condizioni_speciali": ["Fortificazione deve essere controllata dall'avversario"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "keywords": ["Missione", "Eretico"],
+        "restrizioni": ["Solo Fratellanza"],
+        "condizioni_speciali": [],
+        "quantita":2,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    "Assalto Capitol": {
-        "nome": "Assalto Capitol",
+    "Portale Del Grande Inquisitore": {
+        "nome": "Portale Del Grande Inquisitore",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Normale",
         "rarity": "Uncommon",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Capitol"],
-        "corporazioni_specifiche": ["Capitol"],
-        "restrizioni_guerriero": [],
+        "fazioni_permesse": ["Oscura Legione"],
+        "corporazioni_specifiche": ["Seguace di Algeroth"],
+        "restrizioni_guerriero": ["Solo Nefarita"],
         "obiettivo": {
-            "descrizione": "Uccidi 2 guerrieri usando armi da fuoco",
+            "descrizione": "Questo Nefarita deve uccidere un guerriero della Fratellanza con V tre volte più grande cme sacrificio. Non guadagni punti deel guerriero ucciso ma tutti i guerrieri in gioco della frtellanza perdono la capacità di usare le arti per tutta la partita",
             "tipo_obiettivo": "Uccidere",
             "valore_richiesto": 2,
-            "condizioni_speciali": ["Solo con armi da fuoco", "Statistica Sparare"]
+            "condizioni_speciali": []
         },
         "ricompensa": {
-            "punti_promozione": 3,
-            "punti_destino": 1,
+            "punti_promozione": 0,
+            "punti_destino": 0,
             "carte_extra": 0,
-            "effetti_speciali": ["Bonus Sparare +2 per 2 turni"],
-            "descrizione": "3 Punti Promozione, 1 Punto Destino e +2 Sparare"
+            "effetti_speciali": [],
+            "descrizione": "Tutti i guerrieri in gioco della frtellanza perdono la capacità di usare le arti per tutta la partita"
         },
         "set_espansione": "Base",
         "numero_carta": "M007",
-        "testo_carta": "Solo guerrieri Capitol. Uccidi 2 guerrieri usando la statistica Sparare. Ricompensa: 3 Punti Promozione, 1 Punto Destino e +2 Sparare per 2 turni.",
+        "testo_carta": "ASSEGNABILE AD UN NEFARITA DI ALGEROTH SOLO SE UNA CITTADELLA DI ALGEROTH E' NEL TUO SCHIERAMENTO. Questo Nefarita deve uccidere un guerriero della Fratellanza con V tre volte più grande cme sacrificio. Non guadagni punti deel guerriero ucciso ma tutti i guerrieri in gioco della frtellanza perdono la capacità di usare le arti per tutta la partita",
         "flavour_text": "La superiorità tecnologica Capitol si manifesta in ogni colpo sparato.",
         "keywords": ["Missione", "Capitol", "Armi da Fuoco"],
-        "restrizioni": ["Solo guerrieri Capitol"],
-        "condizioni_speciali": ["Uccisioni devono usare statistica Sparare"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "restrizioni": ["Solo Nefarita", "Solo Seguaci di Algeroth"],
+        "condizioni_speciali": [],
+        "quantita":1,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    "Onore Imperiale": {
-        "nome": "Onore Imperiale",
+    "Assedio Alla Citadella": {
+        "nome": "Assedio Alla Citadella",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Normale",
@@ -239,348 +238,30 @@ DATABASE_MISSIONI = {
         "corporazioni_specifiche": ["Imperiale"],
         "restrizioni_guerriero": [],
         "obiettivo": {
-            "descrizione": "Vinci 3 combattimenti corpo a corpo",
-            "tipo_obiettivo": "Vincere",
-            "valore_richiesto": 3,
-            "condizioni_speciali": ["Solo corpo a corpo", "Statistica Combattimento"]
+            "descrizione": "Devi distruggere una Citadella degli Apostoli Oscuri in gioco per completare la missione e ricevere 3 ounti promozione",
+            "tipo_obiettivo": "Distruggere",
+            "valore_richiesto": 0,
+            "condizioni_speciali": []
         },
         "ricompensa": {
             "punti_promozione": 3,
-            "punti_destino": 1,
+            "punti_destino": 0,
             "carte_extra": 0,
-            "effetti_speciali": ["Bonus Combattimento +2 per 2 turni"],
-            "descrizione": "3 Punti Promozione, 1 Punto Destino e +2 Combattimento"
+            "effetti_speciali": [],
+            "descrizione": "3 Punti Promozione"
         },
         "set_espansione": "Base",
         "numero_carta": "M008",
-        "testo_carta": "Solo guerrieri Imperiale. Vinci 3 combattimenti corpo a corpo. Ricompensa: 3 Punti Promozione, 1 Punto Destino e +2 Combattimento per 2 turni.",
-        "flavour_text": "L'onore Imperiale si guadagna con il sangue e l'acciaio.",
-        "keywords": ["Missione", "Imperiale", "Corpo a Corpo"],
-        "restrizioni": ["Solo guerrieri Imperiale"],
-        "condizioni_speciali": ["Combattimenti devono usare statistica Combattimento"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
+        "testo_carta": "ASSEGNABILE AD OGNI GIOCATORE. Devi distruggere una Citadella degli Apostoli Oscuri in gioco per completare la missione e ricevere 3 ounti promozione",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "condizioni_speciali": [],
+        "quantita":1,
+        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    "Via del Bushido": {
-        "nome": "Via del Bushido",
-        "costo_azione": 1,
-        "tipo": "Guerriero",
-        "difficolta": "Difficile",
-        "rarity": "Rare",
-        "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Mishima"],
-        "corporazioni_specifiche": ["Mishima"],
-        "restrizioni_guerriero": ["Samurai", "Ninja"],
-        "obiettivo": {
-            "descrizione": "Uccidi un guerriero con valore superiore in singolo combattimento",
-            "tipo_obiettivo": "Uccidere",
-            "valore_richiesto": 1,
-            "condizioni_speciali": ["Valore superiore", "Singolo combattimento", "Senza supporto"]
-        },
-        "ricompensa": {
-            "punti_promozione": 4,
-            "punti_destino": 2,
-            "carte_extra": 1,
-            "effetti_speciali": ["Onore Mishima: +1 a tutte le statistiche per 3 turni"],
-            "descrizione": "4 Punti Promozione, 2 Punti Destino, 1 carta e Onore Mishima"
-        },
-        "set_espansione": "Base",
-        "numero_carta": "M009",
-        "testo_carta": "Solo Samurai o Ninja Mishima. Uccidi in singolo combattimento un guerriero con valore superiore al tuo. Ricompensa include Onore Mishima: +1 a tutte le statistiche per 3 turni.",
-        "flavour_text": "La via del guerriero non conosce compromessi né paura.",
-        "keywords": ["Missione", "Mishima", "Onore", "Bushido"],
-        "restrizioni": ["Solo Samurai o Ninja Mishima"],
-        "condizioni_speciali": ["Nessun supporto esterno", "Combattimento 1 vs 1"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
-    },
-
-    "Supremazia Cybertronic": {
-        "nome": "Supremazia Cybertronic",
-        "costo_azione": 1,
-        "tipo": "Guerriero",
-        "difficolta": "Normale",
-        "rarity": "Uncommon",
-        "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Cybertronic"],
-        "corporazioni_specifiche": ["Cybertronic"],
-        "restrizioni_guerriero": [],
-        "obiettivo": {
-            "descrizione": "Controlla 2 Equipaggiamenti tecnologici simultaneamente",
-            "tipo_obiettivo": "Controllare",
-            "valore_richiesto": 2,
-            "condizioni_speciali": ["Equipaggiamenti tecnologici", "Simultaneamente"]
-        },
-        "ricompensa": {
-            "punti_promozione": 2,
-            "punti_destino": 3,
-            "carte_extra": 0,
-            "effetti_speciali": ["Efficienza Tecnologica: -1 costo Equipaggiamenti per 3 turni"],
-            "descrizione": "2 Punti Promozione, 3 Punti Destino e Efficienza Tecnologica"
-        },
-        "set_espansione": "Base",
-        "numero_carta": "M010",
-        "testo_carta": "Solo guerrieri Cybertronic. Controlla simultaneamente 2 Equipaggiamenti tecnologici. Ricompensa include Efficienza Tecnologica: -1 costo per equipaggiare per 3 turni.",
-        "flavour_text": "La tecnologia Cybertronic trasforma ogni guerriero in una macchina perfetta.",
-        "keywords": ["Missione", "Cybertronic", "Tecnologia"],
-        "restrizioni": ["Solo guerrieri Cybertronic"],
-        "condizioni_speciali": ["Equipaggiamenti devono essere attivi simultaneamente"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # MISSIONI DELLA FRATELLANZA
-    "Purificazione": {
-        "nome": "Purificazione",
-        "costo_azione": 1,
-        "tipo": "Guerriero",
-        "difficolta": "Normale",
-        "rarity": "Common",
-        "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Fratellanza"],
-        "corporazioni_specifiche": [],
-        "restrizioni_guerriero": [],
-        "obiettivo": {
-            "descrizione": "Uccidi 2 guerrieri dell'Oscura Legione",
-            "tipo_obiettivo": "Uccidere",
-            "valore_richiesto": 2,
-            "condizioni_speciali": ["Solo Oscura Legione"]
-        },
-        "ricompensa": {
-            "punti_promozione": 3,
-            "punti_destino": 1,
-            "carte_extra": 0,
-            "effetti_speciali": ["Benedizione: Immune a 1 carta Oscura Simmetria"],
-            "descrizione": "3 Punti Promozione, 1 Punto Destino e Benedizione"
-        },
-        "set_espansione": "Base",
-        "numero_carta": "M011",
-        "testo_carta": "Solo guerrieri della Fratellanza. Uccidi 2 guerrieri dell'Oscura Legione. Ricompensa include Benedizione: immune alla prossima carta Oscura Simmetria.",
-        "flavour_text": "La Luce purifica tutto ciò che tocca, dissolvendo le ombre dell'oscurità.",
-        "keywords": ["Missione", "Fratellanza", "Purificazione"],
-        "restrizioni": ["Solo guerrieri della Fratellanza"],
-        "condizioni_speciali": ["Solo guerrieri dell'Oscura Legione"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Esorcismo": {
-        "nome": "Esorcismo",
-        "costo_azione": 1,
-        "tipo": "Guerriero",
-        "difficolta": "Difficile",
-        "rarity": "Rare",
-        "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Fratellanza"],
-        "corporazioni_specifiche": [],
-        "restrizioni_guerriero": ["Inquisitore", "Mistico"],
-        "obiettivo": {
-            "descrizione": "Elimina 1 carta Oscura Simmetria in gioco",
-            "tipo_obiettivo": "Eliminare",
-            "valore_richiesto": 1,
-            "condizioni_speciali": ["Carta Oscura Simmetria", "In gioco"]
-        },
-        "ricompensa": {
-            "punti_promozione": 4,
-            "punti_destino": 2,
-            "carte_extra": 1,
-            "effetti_speciali": ["Santificazione: +2 Armatura contro Oscura Legione per 3 turni"],
-            "descrizione": "4 Punti Promozione, 2 Punti Destino, 1 carta e Santificazione"
-        },
-        "set_espansione": "Inquisition",
-        "numero_carta": "M012",
-        "testo_carta": "Solo Inquisitori o Mistici. Elimina 1 carta Oscura Simmetria in gioco. Ricompensa include Santificazione: +2 Armatura contro l'Oscura Legione per 3 turni.",
-        "flavour_text": "L'oscurità non può resistere alla luce della vera fede.",
-        "keywords": ["Missione", "Fratellanza", "Esorcismo"],
-        "restrizioni": ["Solo Inquisitori o Mistici della Fratellanza"],
-        "condizioni_speciali": ["Carta deve essere attualmente in gioco"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # MISSIONI DELL'OSCURA LEGIONE
-    "Corruzione": {
-        "nome": "Corruzione",
-        "costo_azione": 1,
-        "tipo": "Guerriero",
-        "difficolta": "Normale",
-        "rarity": "Common",
-        "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Oscura Legione"],
-        "corporazioni_specifiche": [],
-        "restrizioni_guerriero": [],
-        "obiettivo": {
-            "descrizione": "Assegna 2 Doni Oscuri a guerrieri nemici",
-            "tipo_obiettivo": "Corrompere",
-            "valore_richiesto": 2,
-            "condizioni_speciali": ["Doni Oscuri", "Guerrieri nemici"]
-        },
-        "ricompensa": {
-            "punti_promozione": 3,
-            "punti_destino": 2,
-            "carte_extra": 0,
-            "effetti_speciali": ["Favore Oscuro: -1 costo Doni Oscuri per 2 turni"],
-            "descrizione": "3 Punti Promozione, 2 Punti Destino e Favore Oscuro"
-        },
-        "set_espansione": "Base",
-        "numero_carta": "M013",
-        "testo_carta": "Solo guerrieri dell'Oscura Legione. Assegna 2 Doni Oscuri a guerrieri nemici. Ricompensa include Favore Oscuro: -1 costo per assegnare Doni per 2 turni.",
-        "flavour_text": "L'oscurità si diffonde come una malattia, corrompendo tutto ciò che tocca.",
-        "keywords": ["Missione", "Oscura Legione", "Corruzione"],
-        "restrizioni": ["Solo guerrieri dell'Oscura Legione"],
-        "condizioni_speciali": ["Doni devono essere accettati dai bersagli"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Dominazione": {
-        "nome": "Dominazione",
-        "costo_azione": 1,
-        "tipo": "Guerriero",
-        "difficolta": "Difficile",
-        "rarity": "Rare",
-        "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Oscura Legione"],
-        "corporazioni_specifiche": [],
-        "restrizioni_guerriero": ["Apostolo", "Nepharite"],
-        "obiettivo": {
-            "descrizione": "Controlla 3 aree del campo di battaglia",
-            "tipo_obiettivo": "Controllare",
-            "valore_richiesto": 3,
-            "condizioni_speciali": ["Aree diverse", "Simultaneamente"]
-        },
-        "ricompensa": {
-            "punti_promozione": 5,
-            "punti_destino": 3,
-            "carte_extra": 2,
-            "effetti_speciali": ["Supremazia Oscura: +1 a tutte le statistiche per 3 turni"],
-            "descrizione": "5 Punti Promozione, 3 Punti Destino, 2 carte e Supremazia Oscura"
-        },
-        "set_espansione": "Base",
-        "numero_carta": "M014",
-        "testo_carta": "Solo Apostoli o Nepharite. Controlla simultaneamente 3 aree diverse del campo di battaglia. Ricompensa include Supremazia Oscura: +1 a tutte le statistiche per 3 turni.",
-        "flavour_text": "Quando l'oscurità regna suprema, ogni resistenza diventa futile.",
-        "keywords": ["Missione", "Oscura Legione", "Dominazione"],
-        "restrizioni": ["Solo Apostoli o Nepharite"],
-        "condizioni_speciali": ["Controllo deve essere mantenuto per 1 turno completo"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # MISSIONI PER IL GIOCATORE
-    "Strategia Superiore": {
-        "nome": "Strategia Superiore",
-        "costo_azione": 1,
-        "tipo": "Giocatore",
-        "difficolta": "Normale",
-        "rarity": "Uncommon",
-        "bersaglio": "Giocatore Stesso",
-        "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic"],
-        "corporazioni_specifiche": [],
-        "restrizioni_guerriero": [],
-        "obiettivo": {
-            "descrizione": "Vinci 3 combattimenti nello stesso turno",
-            "tipo_obiettivo": "Vincere",
-            "valore_richiesto": 3,
-            "condizioni_speciali": ["Stesso turno", "Guerrieri diversi"]
-        },
-        "ricompensa": {
-            "punti_promozione": 4,
-            "punti_destino": 2,
-            "carte_extra": 1,
-            "effetti_speciali": ["Comando Tattico: +1 Azione extra per 2 turni"],
-            "descrizione": "4 Punti Promozione, 2 Punti Destino, 1 carta e Comando Tattico"
-        },
-        "set_espansione": "Base",
-        "numero_carta": "M015",
-        "testo_carta": "Assegna questa missione a te stesso. Se vinci 3 combattimenti con guerrieri diversi nello stesso turno, ottieni la ricompensa e Comando Tattico: +1 Azione per 2 turni.",
-        "flavour_text": "Un vero stratega coordina ogni mossa per la vittoria totale.",
-        "keywords": ["Missione", "Giocatore", "Strategia"],
-        "restrizioni": ["Solo giocatori Doomtrooper"],
-        "condizioni_speciali": ["Combattimenti con guerrieri diversi"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    "Risorse Infinite": {
-        "nome": "Risorse Infinite",
-        "costo_azione": 1,
-        "tipo": "Giocatore",
-        "difficolta": "Facile",
-        "rarity": "Common",
-        "bersaglio": "Giocatore Stesso",
-        "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic"],
-        "corporazioni_specifiche": [],
-        "restrizioni_guerriero": [],
-        "obiettivo": {
-            "descrizione": "Accumula 10 Punti Destino",
-            "tipo_obiettivo": "Accumulare",
-            "valore_richiesto": 10,
-            "condizioni_speciali": ["Simultaneamente"]
-        },
-        "ricompensa": {
-            "punti_promozione": 2,
-            "punti_destino": 5,
-            "carte_extra": 2,
-            "effetti_speciali": [],
-            "descrizione": "2 Punti Promozione, 5 Punti Destino e 2 carte"
-        },
-        "set_espansione": "Base",
-        "numero_carta": "M016",
-        "testo_carta": "Assegna questa missione a te stesso. Se accumuli 10 Punti Destino simultaneamente, guadagni 2 Punti Promozione, 5 Punti Destino aggiuntivi e peschi 2 carte.",
-        "flavour_text": "Chi controlla le risorse, controlla il destino della battaglia.",
-        "keywords": ["Missione", "Giocatore", "Risorse"],
-        "restrizioni": ["Solo giocatori Doomtrooper"],
-        "condizioni_speciali": ["Punti Destino devono essere presenti simultaneamente"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    },
-
-    # MISSIONI EPICHE E RARE
-    "Leggenda Vivente": {
-        "nome": "Leggenda Vivente",
-        "costo_azione": 2,
-        "tipo": "Guerriero",
-        "difficolta": "Epica",
-        "rarity": "Ultra Rare",
-        "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Bauhaus", "Capitol", "Imperiale", "Mishima", "Cybertronic", "Fratellanza"],
-        "corporazioni_specifiche": [],
-        "restrizioni_guerriero": ["Personalita", "Eroe"],
-        "obiettivo": {
-            "descrizione": "Uccidi 5 guerrieri senza morire",
-            "tipo_obiettivo": "Uccidere",
-            "valore_richiesto": 5,
-            "condizioni_speciali": ["Senza morire", "In una singola partita"]
-        },
-        "ricompensa": {
-            "punti_promozione": 8,
-            "punti_destino": 5,
-            "carte_extra": 3,
-            "effetti_speciali": ["Status Leggendario: +2 a tutte le statistiche permanente"],
-            "descrizione": "8 Punti Promozione, 5 Punti Destino, 3 carte e Status Leggendario"
-        },
-        "set_espansione": "Base",
-        "numero_carta": "M018",
-        "testo_carta": "Solo Personalita o Eroi. Uccidi 5 guerrieri senza morire in una singola partita. Ricompensa include Status Leggendario: +2 permanente a tutte le statistiche.",
-        "flavour_text": "Quando la morte stessa si inchina al tuo cospetto, sei diventato una leggenda.",
-        "keywords": ["Missione", "Epica", "Leggenda"],
-        "restrizioni": ["Solo Personalita o Eroi"],
-        "condizioni_speciali": ["Il guerriero non deve mai morire durante la missione"],
-        "quantita":9,
-        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-    }
 }
 
 

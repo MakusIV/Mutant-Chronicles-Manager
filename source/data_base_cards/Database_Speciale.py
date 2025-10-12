@@ -4552,7 +4552,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4587,7 +4587,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4657,7 +4657,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4692,7 +4692,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4727,7 +4727,32 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "False_Credenze": {
+        "nome": "False_Credenze",
+        "valore": 0,
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Giocatore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [],
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO. Mentre è in gioco, i membri della Fratellanza e della Cybertronic possono attaccarsi liberamente",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 1,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4762,7 +4787,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers non Personalità"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4797,7 +4822,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4832,7 +4857,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4867,7 +4892,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4902,7 +4927,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Cybertronic"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4937,7 +4962,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4972,7 +4997,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5007,7 +5032,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5042,7 +5067,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Oscura Legione"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5077,7 +5102,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5112,7 +5137,42 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 5,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Retroguardia": {
+        "nome": "Retroguardia",
+        "valore": 0,
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Guerriero Proprio",
+        "durata": "Permanente",
+        "timing": "Turno Proprio",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Questa carta rimane in gioco. Muovi il guerriero dietro alla tua Squadra/Schieramento. Ogni volta che un avversario decide di attaccare i guerrieri sul fronte di Sparando, egli può intervenire prendendo il posto del difensore designato. Se interviene, al termine del combattimento, sarà automaticamente ferito. Se muore a causa di questa ferita l'avversario guadagna normalmente i punti",
+                "condizioni": ["Costo un'azione"],
+                "limitazioni": ["Ferita automatica se interviene", "Solo in combattimento Corpo a Corpo"]
+            }
+        ],
+        "testo_carta": "GIOCABILE SU UN TUO GUERRIERO AL COSTO DI UN'AZIONE. QUESTA CARTA RIMANE IN GIOCO. Muovi il guerriero dietro alla tua Squadra/Schieramento. Ogni volta che un avversario decide di attaccare i guerrieri sul fronte di Sparando, egli può intervenire prendendo il posto del difensore designato. Se interviene, al termine del combattimento, sarà automaticamente ferito. Se muore a causa di questa ferita l'avversario guadagna normalmente i punti.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 1,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5147,10 +5207,47 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+
+    "Evaso": {
+        "nome": "Evaso",
+        "valore": 0,
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Giocatore",
+        "durata": "Permanente",
+        "timing": "Turno Proprio",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": 0,
+                "statistica_target": "",
+                "descrizione_effetto": "Il guerriero riesce a fuggire. Riprendi il tuo guerriero in mano.",
+                "condizioni": ["Costo 2 azione"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE SU UN GUERRIERO IMPRIGIONATO AL COSTO DI DUE AZIONi. Il guerriero riesce a fuggire. Riprendi il tuo guerriero in mano.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 1,
+        "quantita": 9,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+
 
     "Interferenza": {
         "nome": "Interferenza",
@@ -5182,7 +5279,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5217,7 +5314,42 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Bersaglio Errato": {
+        "nome": "Bersaglio Errato",
+        "valore": 0,
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Tutti i Guerrieri",
+        "durata": "Fino Fine Combattimento",
+        "timing": "In Risposta",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Bersaglio",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Il guerriero manca il bersaglio designato e colpisce un guerriero alleato nella squadra o nello schieramento del giocatore che utilizzava l'arma. Il giocatore che gioca questa carta sceglie il bersaglio. La vittima non risponde al fuoco e non ottieni guadagni punto non si possono giocare altre carte durante il combattimento.",
+                "condizioni": ["Guerriero con arma da corpo a corpo"],
+                "limitazioni": ["Bersaglio alleato", "Non si possono giocare altre carte"]
+            }
+        ],
+        "testo_carta": "GIOCABILE DURANTE UN COMBATTIMENTO SU UN GUERRIERO CHE UTILIZZA UN'ARMA DA FUOCO O CORPO A CORPO. Il guerriero manca il bersaglio designato e colpisce un guerriero alleato nella squadra o nello schieramento del giocatore che utilizzava l'arma. Il giocatore che gioca questa carta sceglie il bersaglio. La vittima non risponde al fuoco e non ottieni guadagni punto non si possono giocare altre carte durante il combattimento.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 1,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5252,7 +5384,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5287,7 +5419,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5322,7 +5454,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5357,7 +5489,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5392,7 +5524,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5427,7 +5559,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5462,7 +5594,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Cybertronic"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5497,7 +5629,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5541,7 +5673,51 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },    
+
+    "Tessera Del Clan": {
+        "nome": "Tessera Del Clan",
+        "valore": 0,
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Bauhaus", "Mishima", "Capitol", "Imperiale", "Mercenario"],
+        "bersaglio": "Tutti i Guerrieri",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Diventa Membro del Clan",
+                "tipo_effetto": "Modificatore",
+                "valore": 2,
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Il guerriero diventa un membro del Clan Imperiale in aggiunta al precedente legame. Il guerriero guadagna un +2 in C e S. Il guerriero non è comunque legato (affiliato) alla Corporazione Imperiale",
+                "condizioni": ["Doomtrooper"],
+                "limitazioni": ["Non può attaccare guerrieri con V inferiore"]
+            },
+            {
+                "nome_effetto": "Diventa Bauhaus",
+                "tipo_effetto": "Modificatore",
+                "valore": 2,
+                "statistica_target": "sparare",
+                "descrizione_effetto": "Il guerriero diventa un membro del Clan Imperiale in aggiunta al precedente legame. Il guerriero guadagna un +2 in C e S. Il guerriero non è comunque legato (affiliato) alla Corporazione Imperiale",
+                "condizioni": ["Doomtrooper"],
+                "limitazioni": ["Non può attaccare guerrieri con V inferiore"]
+            }
+        ],
+        "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. QUESTA CARTA RIMANE IN GIOCO. Il guerriero diventa un membro del Clan Imperiale in aggiunta al precedente legame. Il guerriero guadagna un +2 in C e S. Il guerriero non è comunque legato (affiliato) alla Corporazione Imperiale",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Solo Doomtroopers", "No Cybertronic"],
+        "valore_strategico": 1,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },    
@@ -5576,7 +5752,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5611,7 +5787,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5646,7 +5822,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Mishima"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5681,7 +5857,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5716,7 +5892,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5751,7 +5927,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5786,7 +5962,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5821,7 +5997,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5856,10 +6032,46 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+
+    "Truppe Speciali": {
+        "nome": "Truppe Speciali",
+        "valore": 0,
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Doomtrooper"],
+        "bersaglio": "Guerriero Proprio",
+        "durata": "Permanente",
+        "timing": "Turno Proprio",
+        "set_espansione": "Warzone",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica C, S, A e V",
+                "tipo_effetto": "Modificatore",
+                "valore": 0,
+                "statistica_target": "Tutte",
+                "descrizione_effetto": "Questa carta rimane in gioco. Il guerriero specializzato raddoppia i suoi valori di C, S, A e V. Eventuali bonus o modifiche non vengono raddoppiati",
+                "condizioni": ["Doomtrooper", "Costo 2 azionI"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE SU UN DOOMTROOPER CON VALORE PARI A 4 O MENO AL COSTO DI 2 AZIONI. QUESTA CARTA RIMANE IN GIOCO. Il guerriero specializzato raddoppia i suoi valori di C, S, A e V. Eventuali bonus o modifiche non vengono raddoppiati",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Solo Doomtroopers"],
+        "valore_strategico": 1,
+        "quantita": 1,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
 
     # verificare queste sotto
     
@@ -5889,41 +6101,6 @@ DATABASE_SPECIALI = {
             }
         ],
         "testo_carta": "GIOCABILE SU UN DOOMTROOPER AL COSTO DI DUE AZIONI. QUESTA CARTA RIMANE IN GIOCO. Il guerriero guadagna un +1 in C, S, A e V.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Pattuglia": {
-        "nome": "Pattuglia",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": True,
-        "effetti": [
-            {
-                "nome_effetto": "Modifica Azione",
-                "tipo_effetto": "Modificatore",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Questa carta rimane in gioco. Il guerriero può attaccare guerrieri che stanno Al Coperto. Il giocatore che controlla il guerriero Al Coperto può scegliere se girare la carta a faccia in su e affrontare l'attacco oppure se il guerriero Al Coperto viene automaticamente ucciso",
-                "condizioni": ["Doomtrooper", "Costo un'azione"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN DOOMTROOPER AL COSTO DI UN'AZIONE. QUESTA CARTA RIMANE IN GIOCO. Il guerriero può attaccare guerrieri che stanno Al Coperto. Il giocatore che controlla il guerriero Al Coperto può scegliere se girare la carta a faccia in su e affrontare l'attacco oppure se il guerriero Al Coperto viene automaticamente ucciso.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],

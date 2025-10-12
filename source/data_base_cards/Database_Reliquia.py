@@ -59,7 +59,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -99,7 +99,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -256,7 +256,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -296,7 +296,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -403,7 +403,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -433,7 +433,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -471,7 +471,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -530,7 +530,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -570,7 +570,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -634,7 +634,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -674,7 +674,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -731,10 +731,52 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "quantita": 4,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Pergamena D'Evocazione Sacrilega": {
+        "nome": "Pergamena D'Evocazione Sacrilega",
+        "valore": 0,
+        "tipo": "",
+        "rarity": "Common",
+        "restrizioni": {
+            "fazioni_permesse": ["Oscura Legione"],
+            "corporazioni_specifiche": [],
+            "tipi_guerriero": [],
+            "keywords_richieste": ["Carte delle Arti non Assegnabili", "Carte Doni degli Apostoli non Assegnabili"],
+            "livello_minimo": 0
+        },
+        "modificatori": [],
+        "poteri": [
+            
+            {
+                "nome": "Assegna Carte",
+                "descrizione": "Eliminando questa carta puoi evocare un Apostolo dalla tua Collezione.L'Apostolo è subito inserito gratis nel tuo scheramento",
+                "tipo_potere": "Manipolazione Carte",
+                "costo_attivazione": 0,
+                "tipo_attivazione": "Passivo",
+                "limitazioni": [],
+                "una_volta_per_turno": False
+            }
+        ],
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. ARMATURA. +4 in A. Chi la utilizza è immune a tutti gli effetti dell'Arte e può ricevere tutti i Doni degli Apostoli. Un guerriero può essere equipaggiato con una sola ARMATURA.",
+        "flavour_text": "",
+        "keywords": [],
+        "origine_storica": "",
+        "requisiti_speciali": [],
+        "immunita": [],
+        "vulnerabilita": [],
+        "incompatibile_con": [],
+        "potenzia": [],
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
+
 
     "Liber Ereticus": {
         "nome": "Liber Ereticus",
@@ -811,7 +853,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
-        "quantita": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     }
