@@ -1531,13 +1531,13 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [
             {
                 "nome": "Converte azioni in azioni di attacco",
-                "descrizione": "Mentre l'Executive è in gioco tu puoi convdrtire ogni numero di azioni non di attacco in azioni di attacco ma queste devono essere compiute da guerrieri Cybertronic",
+                "descrizione": "Mentre l'Executive è in gioco tu puoi convertire ogni numero di azioni non di attacco in azioni di attacco ma queste devono essere compiute da guerrieri Cybertronic",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
                 "target": "Guerriero",
                 "timing": "Sempre"
             }        ],
-        "testo_carta": "PERSONALITÀ. IMMUNE AI DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Tutti i tuoi guerrieri Cybertronic guadagnano un + 4 in C, S, A e V finché Charles stesso finché lui è presente nella squadra.",
+        "testo_carta": "PERSONALITÀ. IMMUNE AI DONI DELL'OSCURA SIMMETRIA. Mentre l'Executive è in gioco tu puoi convertire ogni numero di azioni non di attacco in azioni di attacco ma queste devono essere compiute da guerrieri Cybertronic.",
         "flavour_text": "",
         "keywords": ["Leader Corporativo", "Personalita"],
         "restrizioni": ["Carte delle Arti non Assegnabili"],
@@ -1549,7 +1549,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
         
@@ -1592,7 +1592,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Porta Stendardo": {
@@ -2540,7 +2540,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
 
@@ -2637,8 +2637,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita": 8,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
     
     "L'Inquisitore Massimo": {
@@ -3119,7 +3119,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 6,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Famoso Evocatore": {
@@ -3722,7 +3722,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Cultista di Algeroth": {
@@ -3795,7 +3795,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Tekron": {
@@ -3947,7 +3947,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Comandante Zenithiano": {
@@ -4127,7 +4127,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Cultista di Demnogonis": {
@@ -4212,7 +4212,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
    
-   "Tutore": {
+    "Tutore": {
         "nome": "Tutore",
         "fazione": "Oscura Legione",
         "tipo": "Seguace",
@@ -4552,7 +4552,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
 
@@ -4592,7 +4592,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Intruso Callistoniano": {

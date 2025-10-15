@@ -74,7 +74,6 @@ class TipoOscuraSimmetria(Enum):
     DONO_OSCURA_SIMMETRIA = "Dono dell'Oscura Simmetria"
     DONO_OSCURA_LEGIONE = "Dono dell'Oscura Legione"
    
-
 class ApostoloOscuraSimmetria(Enum):
     """Apostoli Padri dell'Oscura Simmetria"""
     ALGEROTH = "Algeroth"      # Apostolo della Guerra
@@ -83,7 +82,6 @@ class ApostoloOscuraSimmetria(Enum):
     ILIAN = "Ilian"            # Apostolo del Vuoto
     DEMNOGONIS = "Demnogonis"  # Apostolo della Follia
     NESSUNO = None        # Per carte generiche
-
 
 class CorporazioneSpecifica(Enum):
     DOOMTROOPER = "Doomtrooper"
@@ -96,6 +94,8 @@ class CorporazioneSpecifica(Enum):
     SEGUACI_DI_ALGEROTH = "Seguaci di Algeroth"
     
 DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol", "Mercenario", "Fratellanza"]
+
+
 
 class Rarity(Enum):
     """Rarità delle carte"""
@@ -130,6 +130,9 @@ class ApostoloPadre(Enum):
     ILIAN = "Ilian"            # Apostolo del Vuoto
     DEMNOGONIS = "Demnogonis"  # Apostolo della Follia
     NESSUNO = "Nessuno"        # Per carte generiche
+
+
+
 
 @dataclass
 class Statistiche:

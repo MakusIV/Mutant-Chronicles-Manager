@@ -16,7 +16,7 @@ from dataclasses import dataclass
 
 
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
-from source.logic.Creatore_Collezione import creazione_Collezione_Giocatore, carica_collezioni_json_migliorato
+from source.logic.Creatore_Collezione import creazione_Collezione_Giocatore, carica_collezioni_json_migliorato, salva_collezioni_json_migliorato, determina_orientamento_collezione
 from source.cards.Guerriero import (
     Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte
 )
@@ -4173,7 +4173,6 @@ def test_funzioni_mazzi():
     
     print("\n✅ Test completato!")
 
-
 # ================================================================================
 # MAIN DI TEST (se eseguito come modulo standalone)
 # ================================================================================
@@ -4187,35 +4186,34 @@ if __name__ == "__main__":
     # Esegui test base
     # test_funzioni_mazzi()
 
-    collezioni = creazione_Collezione_Giocatore(2, [Set_Espansione.BASE, Set_Espansione.INQUISITION, Set_Espansione.WARZONE], orientamento = False)
+    espansioni_richieste = [Set_Espansione.BASE, Set_Espansione.INQUISITION, Set_Espansione.WARZONE]
 
-    mazzo_1 = crea_mazzo_da_gioco(collezioni[0],
-                    numero_carte_max = 130,
-                    numero_carte_min = 120,
-                    espansioni_richieste = ["Base", "Inquisition", "Warzone"],
-                    doomtrooper = True,
-                    orientamento_doomtrooper = ["Imperiale", "Capitol", "Cybertronic"],
-                    fratellanza = True,
-                    orientamento_arte = ['Cambiamento', 'Elementi', 'Esorcismo'],
-                    oscura_legione = False,
-                    orientamento_apostolo = None,
-                    orientamento_eretico = True,
-                    orientamento_cultista = False)
+    collezioni = creazione_Collezione_Giocatore(3, espansioni_richieste, orientamento = True)
+    salva_collezioni_json_migliorato(collezioni = collezioni, filename = "collezioni_3_player_no_orientamento.json")
+    dati_json, collezioni = carica_collezioni_json_migliorato(filename = "collezioni_3_player_no_orientamento.json")
+
+    orientamento_collezioni = []
+    # conta Guerrieri
+    mazzo = []
+    for collezione in collezioni:
+        
+        orientamento = determina_orientamento_collezione(collezione = collezione, espansioni_richieste = espansioni_richieste)
+        mazzo.append( 
+            crea_mazzo_da_gioco(collezioni[0],
+                        numero_carte_max = 130,
+                        numero_carte_min = 120,
+                        espansioni_richieste = ["Base", "Inquisition", "Warzone"],
+                        orientamento = orientamento['doomtrooper'],
+                        orientamento_doomtrooper = orientamento['orientamento_doomtrooper'],
+                        fratellanza = orientamento['fratellanza'],
+                        orientamento_arte = orientamento['orientamento_arte'],
+                        oscura_legione = orientamento['oscura_legione'],
+                        orientamento_apostolo = orientamento['orientamento_apostolo'],
+                        orientamento_eretico = orientamento['orientamento_eretico'],
+                        orientamento_cultista = orientamento['orientamento_cultista'])
+            )
     
-    mazzo_2 = crea_mazzo_da_gioco(collezioni[1],
-                    numero_carte_max = 130,
-                    numero_carte_min = 120,
-                    espansioni_richieste = ["Base", "Inquisition", "Warzone"],
-                    doomtrooper = True,
-                    orientamento_doomtrooper = ["Bauhaus", "Mishima", "Mercenario"],
-                    fratellanza = False,
-                    orientamento_arte = None,
-                    oscura_legione = True,
-                    orientamento_apostolo = ['Algeroth', 'Muawijhe', 'Semai'],
-                    orientamento_eretico = False,
-                    orientamento_cultista = False)
-    
-    esempio_salvataggio_mazzi_con_conteggio([mazzo_1, mazzo_2])
+    esempio_salvataggio_mazzi_con_conteggio(mazzo)
     
     # Menu interattivo
     risposta = input("\nVuoi aprire il menu interattivo? (s/n): ")

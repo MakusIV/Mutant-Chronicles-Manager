@@ -88,7 +88,7 @@ LIMITI_CARTE_COLLEZIONE = { # specifica il range % del numero di carte per tipo 
             'Arte': {'min': 0.9 , 'max': 1  },
             'Oscura Simmetria': {'min': 0.9 , 'max': 1  },
             'Fortificazione': {'min': 0.9 , 'max': 1  },
-            'Missione': {'min': 0.8 , 'max': 1  },
+            'Missione': {'min': 1 , 'max': 1  },
             'Reliquia': {'min': 0.9 , 'max': 1  },
             'Warzone': {'min': 0.8 , 'max': 1  },
         } 
@@ -96,6 +96,19 @@ LIMITI_CARTE_COLLEZIONE = { # specifica il range % del numero di carte per tipo 
 
 
 MAX_COPIE_CARTA = 6 # Numero massimo di copie da inserire nella collezione per una specifica carta
+
+# Fazioni Doomtrooper e Oscura Legione
+FAZIONI_DOOMTROOPER = [
+    Fazione.IMPERIALE, 
+    Fazione.CAPITOL, 
+    Fazione.MISHIMA,
+    Fazione.BAUHAUS, 
+    Fazione.CYBERTRONIC, 
+    Fazione.MERCENARIO
+]
+
+FAZIONI_FRATELLANZA = [Fazione.FRATELLANZA]
+FAZIONI_OSCURA_LEGIONE = [Fazione.OSCURA_LEGIONE]
 
 
 # Serializzatore personalizzato per gestire enum e altri oggetti non serializzabili
@@ -116,6 +129,8 @@ class EnumJSONEncoder(json.JSONEncoder):
 class TipoCombinazioneFazione(Enum):
     """Combinazioni di fazioni per collezioni orientate"""
     FRATELLANZA_DOOMTROOPER_FREELANCER = ("Fratellanza", "Doomtrooper", "Mercenario")
+    # FRATELLANZA_FAZIONI_AFFINI = ("Fratellanza", "Imperiali", "Capitol")
+    # OSCURA_LEGIONE_FAZIONI_AFFINI = ("Oscura Legione", "Cybertronic", "Mishima", "Mercenario")
     # FRATELLANZA_OSCURA_LEGIONE_FREELANCER = ("Fratellanza", "Oscura Legione", "Mercenario") 
     DOOMTROOPER_OSCURA_LEGIONE_FREELANCER = ("Doomtrooper", "Oscura Legione", "Mercenario")
     DOOMTROOPER_FREELANCER = ("Doomtrooper", "Mercenario")
@@ -718,12 +733,13 @@ def seleziona_carte_casuali_per_tipo(
             # Verifica se la carta supporta le fazioni di orientamento   
             if 'fazione' in dati:     # Guerriero     
                 fazioni_permesse = dati.get('fazioni_permesse', [])            
-            elif 'fazioni_permesse' in dati:  # Speciale, Equipaggiamento, Foritficazione, Missione, Oscura_Simmetria       
+            elif 'fazioni_permesse' in dati:  # Speciale, Equipaggiamento, Fortificazione, Missione, Oscura_Simmetria       
                 fazioni_permesse = dati.get('fazioni_permesse', [])            
             elif 'restrizioni' in dati: # Reliquia, Warzone     
                 fazioni_permesse = dati['restrizioni'].get('fazioni_permesse', [])            
             
             if any(f.value in fazioni_permesse for f in fazioni_orientamento):
+                # QUI PUOI INSERIRE PER GUERRIERO, ARTE E OSCURA SIMMETRIA LA SELEZIONE DELLE SPECIALIZZAZIONI (APOSTOLI, TIPO ARTE)
                 carte_orientate[nome] = dati # inserisce la carta nelle carte_orientate se questa è associabile ad una delle fazioni permesse
             else:
                 carte_generiche[nome] = dati # ... altrimenti la inserisce nelle carte generiche
@@ -778,7 +794,7 @@ def seleziona_carte_casuali_per_tipo(
         # Determina quantità per singola copia da aggiungere (1-3 copie)
         max_quantita_disponibile = min(
             MAX_COPIE_CARTA,  # Massimo 6 copie per carta per collezione (considera mazzo max 5 carte e collezione di gioco: totale 25 carte). La quantità minima consigliata viene utilizzata per la creazione del mazzo
-            dati_carta.get('quantita', 0) - QUANTITA_UTILIZZATE[nome_carta]
+            dati_carta.get('quantita') - QUANTITA_UTILIZZATE[nome_carta]
         )
             
         # calcola la quantita di copie da inserire nella collezione per una specifica carta        
@@ -884,10 +900,14 @@ def calcola_numero_carte_assegnabili(espansioni_valide: List, numero_giocatori: 
         
     return limiti_carte
 
+
+
+
+
 def creazione_Collezione_Giocatore(
     numero_giocatori: int,
     espansioni: List[Set_Espansione],
-    orientamento: bool = False
+    orientamento: bool = False    
     ) -> List[CollezioneGiocatore]:
     """
     Crea un numero di collezioni uguale al parametro specificato.
@@ -954,6 +974,8 @@ def creazione_Collezione_Giocatore(
             tentativi = 0
             max_tentativi = 10
             
+            
+            # genera fazioni orientamento casuali                
             while tentativi < max_tentativi:                
                 fazioni_candidate = genera_fazioni_orientamento_casuali()                   
                 
@@ -967,14 +989,16 @@ def creazione_Collezione_Giocatore(
                 
                 tentativi += 1
             
-            if fazioni_orientamento:
-                
-                collezione.fazioni_orientamento = list(fazioni_orientamento)    
+            if fazioni_orientamento:            
+                collezione.fazioni_orientamento = list(fazioni_orientamento)
                 print(f"Orientamento: {[f.value for f in fazioni_orientamento]}")
-            else:               
-                
+
+            else:                                   
                 print("Impossibile assegnare orientamento unico, procedendo senza orientamento")
 
+            
+
+            
 
         # Seleziona carte per ogni tipo
         
@@ -1123,6 +1147,158 @@ def creazione_Collezione_Giocatore(
     print(f"Quantità totali utilizzate: {dict(QUANTITA_UTILIZZATE)}")
     
     return collezioni
+
+def determina_orientamento_collezione(collezione: CollezioneGiocatore, espansioni_richieste: List[Set_Espansione]) -> Dict:    
+    # conta Guerrieri
+        
+    tutti_guerrieri = collezione.get_carte_per_tipo_mazzo('guerriero')    
+    guerrieri_disponibili = []
+    
+    for carta in tutti_guerrieri:
+            if hasattr(carta, 'set_espansione'):
+                set_carta = carta.set_espansione
+                    
+                if set_carta in espansioni_richieste.value if hasattr(espansioni_richieste, 'value') else espansioni_richieste:
+                    guerrieri_disponibili.append(carta)
+         
+
+
+    # Separa guerrieri per categoria
+    guerrieri_doomtrooper = {"Bauhaus": 0, "Capitol": 0, "Imperiale": 0, "Mishima": 0, "Cybertronic": 0, "Mercenario": 0}
+    guerrieri_fratellanza = {"Cambiamento": 0, "Elementi": 0, "Esorcismo": 0, "Cinetica": 0, "Manipolazione": 0, "Mentale": 0,  "Premonizione": 0, "Evocazione": 0, "Tutte le Discipline": 0}
+    guerrieri_oscura_legione = {"Algeroth": 0, "Muawijhe": 0, "Demnogonis": 0, "Semai": 0, "Ilian": 0}                
+    guerrieri_cultisti = 0
+    guerrieri_eretici = 0
+    
+    for guerriero in guerrieri_disponibili:
+
+        if 'Eretico' in guerriero.keywords:
+            guerrieri_eretici += guerriero.quantita
+                
+        if guerriero.fazione in FAZIONI_DOOMTROOPER:                
+
+            for fazione in [f for f in Fazione]:
+            
+                if guerriero.fazione == fazione:
+                    guerrieri_doomtrooper[fazione] += guerriero.quantita
+                
+
+        elif guerriero.fazione in FAZIONI_FRATELLANZA: # 
+            for arte in [a.value for a in DisciplinaArte]:
+                for abilita in guerriero.abilita:                        
+                    if abilita.tipo == 'Arte': # and not (escludi_oscura_legione or escludi_doomtrooper) : # esclude se il guerriero è OL e non è previsto nel mazzo l'oscura legione
+                        if arte == abilita.target:
+                            guerrieri_fratellanza[arte] += guerriero.quantita
+        
+        # Orientamento Apostolo (per guerrieri Oscura Legione)
+        elif guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+
+            if 'Cultista' in guerriero.keywords:
+                guerrieri_cultisti += guerriero.quantita
+            
+            for apostolo in [a.value for a in ApostoloOscuraSimmetria]:
+                if apostolo != None and f"Seguace di {apostolo}" in carta.keywords:
+                    guerrieri_oscura_legione[apostolo]+=guerriero.quantita
+                
+    guerrieri_doomtrooper_totale = sum(q for q in guerrieri_doomtrooper.values)
+    guerrieri_oscura_legione_totale = sum(q for q in guerrieri_oscura_legione.values)
+    guerrieri_fratellanza_totale  = sum(q for q in guerrieri_fratellanza.values)
+
+    prime_tre_fazioni_doomtrooper = [k for k, v in sorted(guerrieri_doomtrooper.items(), key=lambda item: item[1], reverse=True)][:3]
+    primi_tre_apostoli = [k for k, v in sorted(guerrieri_oscura_legione.items(), key=lambda item: item[1], reverse=True)][:3]
+    prime_sei_arti = [k for k, v in sorted(guerrieri_fratellanza.items(), key=lambda item: item[1], reverse=True)][:6]
+
+    if guerrieri_oscura_legione_totale > guerrieri_fratellanza_totale < guerrieri_doomtrooper_totale:
+                    
+        if guerrieri_oscura_legione_totale > guerrieri_doomtrooper_totale:
+            lista_apostoli = primi_tre_apostoli
+            lista_fazioni = prime_tre_fazioni_doomtrooper[:2]
+        else:
+            lista_apostoli = primi_tre_apostoli[:2]
+            lista_fazioni = prime_tre_fazioni_doomtrooper
+
+        orientamento = 'doomtrooper-oscura legione'                                
+        
+
+    elif guerrieri_doomtrooper_totale > guerrieri_oscura_legione_totale < guerrieri_fratellanza_totale:
+        
+        if guerrieri_doomtrooper_totale > guerrieri_fratellanza_totale:
+            lista_fazioni = prime_tre_fazioni_doomtrooper
+            lista_arte = prime_sei_arti # menoguerrieri più ozione arte per compensare ed avere un numero sufficientedi guerrieri
+        else:
+            lista_fazioni = prime_tre_fazioni_doomtrooper
+            lista_arte = prime_sei_arti[0:4] # tanti guerrieri è possibile focalizzare le carte arte riducendo il numero di arti possibili
+        
+        orientamento = 'doomtrooper-fratellanza'                                
+
+    elif guerrieri_fratellanza_totale > guerrieri_oscura_legione_totale and guerrieri_doomtrooper_totale > 0.66 * guerrieri_fratellanza_totale:
+        lista_fazioni = prime_tre_fazioni_doomtrooper
+        lista_arte = prime_sei_arti # meno guerrieri più ozione arte per compensare ed avere un numero sufficientedi guerrieri
+        orientamento = 'doomtrooper-oscura legione'                                
+
+    elif guerrieri_oscura_legione_totale > guerrieri_fratellanza_totale and guerrieri_doomtrooper_totale > 0.66 * guerrieri_oscura_legione_totale:
+        lista_fazioni = prime_tre_fazioni_doomtrooper
+        lista_arte = prime_sei_arti # meno guerrieri più ozione arte per compensare ed avere un numero sufficientedi guerrieri
+        orientamento = 'doomtrooper-fratellanza'                                
+
+    else: # fratellanza e oscura legione superiore significativamente ai doomtrooper
+        lista_fazioni = prime_tre_fazioni_doomtrooper
+        lista_arte = prime_sei_arti[0:3] # quattro arti per limitare numero carte arte per contenere numero carte arte utilizzabili da più fratelli
+        lista_apostoli = primi_tre_apostoli[0:2] # due apostoli per limitare numero carte oscura simmetria per contenere numero carte arte utilizzabili da più seguaci
+        orientamento = 'doomtrooper-fratellanza-oscura legione'                                
+
+    if guerrieri_eretici > 10:
+            orientamento += '-eretici'
+
+    if guerrieri_cultisti > 10:
+            orientamento += '-cultisti'
+
+    orientamento_collezione = {'orientamento': orientamento,
+                            'lista_fazioni': lista_fazioni,
+                            'lista_apostoli': lista_apostoli,
+                            'lista_arte': lista_arte}
+
+    
+        
+    doomtrooper = False,
+    orientamento_doomtrooper = None,
+    fratellanza = False,
+    orientamento_arte = None,
+    oscura_legione = False,
+    orientamento_apostolo = None,
+    orientamento_eretico = False,
+    orientamento_cultista = False
+
+
+    if 'doomtrooper' in orientamento_collezione['orientamento']:
+        doomtrooper = True        
+        orientamento_doomtrooper = orientamento_collezione['lista_fazioni']
+
+    if 'fratellanza'in orientamento_collezione['orientamento']:
+        fratellanza = True        
+        orientamento_arte = orientamento_collezione['lista_arte']
+
+    if 'oscura legione'in orientamento_collezione['orientamento']:
+        oscura_legione = True        
+        orientamento_apostolo = orientamento_collezione['lista_apostoli']
+    
+    if 'eretici'in orientamento_collezione['orientamento']:
+        orientamento_eretico = True        
+
+    if 'cultisti'in orientamento_collezione['orientamento']:
+        orientamento_cultista = True        
+
+    return {
+        'doomtrooper': doomtrooper, 
+        'orientamento_doomtrooper': orientamento_doomtrooper, 
+        'fratellanza': fratellanza, 
+        'orientamento_arte': orientamento_arte,
+        'oscura_legione': oscura_legione,
+        'orientamento_apostolo': orientamento_apostolo,
+        'orientamento_eretico': orientamento_eretico,
+        'orientamento_cultista': orientamento_cultista
+    }
+
 
 def converti_json_a_collezioni(dati_json: Dict[str, Any]) -> List[CollezioneGiocatore]:
     """
@@ -2259,7 +2435,7 @@ def menu_interattivo():
             pass
         elif scelta == "3":
             test_creazione_collezioni_multiple_espansioni()
-        elif scelta == "4":
+        elif scelta == "4":            
             test_creazione_collezioni_stress()
         elif scelta == "5":
             test_validazione_parametri()
@@ -2293,7 +2469,7 @@ def menu_interattivo():
         elif scelta == "8":
             resetta_tracciamento_quantita()
             print("Tracciamento quantità resettato.")
-        elif scelta == "9":
+        elif scelta == "9":            
             try:
                 num = str(input("nome file collezione: "))
                 carica_collezioni_json_migliorato(num)
