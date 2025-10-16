@@ -1219,43 +1219,51 @@ def determina_orientamento_collezione(collezione: CollezioneGiocatore, espansion
 
     # oscura legione  e doomtrooper superiori a fratellanza
     if guerrieri_oscura_legione_totale > guerrieri_fratellanza_totale < guerrieri_doomtrooper_totale:
-                    
+
+        # l'oscura legione è preponderante rispetto i doomtrooper            
         if guerrieri_oscura_legione_totale > 0.66 * guerrieri_doomtrooper_totale:
             lista_apostoli = primi_tre_apostoli # 3 apostoli
             lista_fazioni = prime_tre_fazioni_doomtrooper[:2] # 2 fazioni
         
-        elif guerrieri_fratellanza_totale >  0.33 * guerrieri_doomtrooper_totale:  # fratellanza e oscura legione superiore significativamente ai doomtrooper
-            lista_fazioni = prime_tre_fazioni_doomtrooper
+        # l'oscura legione non è preponderante rispetto i doomtrooper e neanche i doomtrooper sono preponderanti rispetto la fratellanza
+        elif guerrieri_fratellanza_totale >  0.5 * guerrieri_doomtrooper_totale:  # fratellanza e oscura legione superiore significativamente ai doomtrooper
+            lista_fazioni = prime_tre_fazioni_doomtrooper[:2]
             lista_arte = prime_sei_arti[:3] # tre arti per limitare numero carte arte per contenere numero carte arte utilizzabili da più fratelli
             lista_apostoli = primi_tre_apostoli[:2] # due apostoli per limitare numero carte oscura simmetria per contenere numero carte arte utilizzabili da più seguaci
             orientamento = 'doomtrooper-fratellanza-oscura legione'                                
-
+        
+        # l'oscura legione non è preponderante rispetto i doomtrooper ma i doomtrooper sono preponderanti rispetto la fratellanza
         else:
             lista_apostoli = primi_tre_apostoli[:2] # 2 apostoli
             lista_fazioni = prime_tre_fazioni_doomtrooper[:2] # 2 fazioni
 
         orientamento = 'doomtrooper-oscura legione'                                
         
-    # doomtrooper e fratellanza superiori a oscura legione
+    # doomtrooper e fratellanza superiori alla oscura legione
     elif guerrieri_doomtrooper_totale > guerrieri_oscura_legione_totale < guerrieri_fratellanza_totale:
         
+        # i doomtrooper sono preponderanti rispetto la fratellanza
         if guerrieri_doomtrooper_totale > 0.66 * guerrieri_fratellanza_totale:
             lista_fazioni = prime_tre_fazioni_doomtrooper[:2] # 2 fazioni 
             lista_arte = prime_sei_arti # menoguerrieri più ozione arte per compensare ed avere un numero sufficientedi guerrieri
+        
+        # i doomtropper non sono preponderanti rispetto la fratellanza    
         else:
             lista_fazioni = prime_tre_fazioni_doomtrooper[:2]
             lista_arte = prime_sei_arti[:4] # tanti guerrieri è possibile focalizzare le carte arte riducendo il numero di arti possibili
         
         orientamento = 'doomtrooper-fratellanza'                                
 
-    # 
-    
+    # fratellanza e oscura legione sono superiori rispetto ai doomtrooper    
     elif guerrieri_fratellanza_totale > guerrieri_doomtrooper_totale < guerrieri_oscura_legione_totale:  # fratellanza e oscura legione superiore significativamente ai doomtrooper        
 
+        # fratellanza e oscura legione è preponderante rispetto i doomtrooper
         if guerrieri_fratellanza_totale > 0.5 * guerrieri_doomtrooper_totale and guerrieri_oscura_legione_totale > 0.5 * guerrieri_doomtrooper_totale:        
             lista_arte = prime_sei_arti[:3] # quattro arti per limitare numero carte arte per contenere numero carte arte utilizzabili da più fratelli
             lista_apostoli = primi_tre_apostoli[:2] # due apostoli per limitare numero carte oscura simmetria per contenere numero carte arte utilizzabili da più seguaci
-            orientamento = 'fratellanza-oscura legione'                                
+            orientamento = 'fratellanza-oscura legione'                      
+
+        # la fratellanza o l'oscura legione non è preponderante rispetto ai doomtrooper    
         else:
             lista_fazioni = prime_tre_fazioni_doomtrooper [:2]
             lista_arte = prime_sei_arti[:3] # tre arti per limitare numero carte arte per contenere numero carte arte utilizzabili da più fratelli
