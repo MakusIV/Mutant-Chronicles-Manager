@@ -1100,7 +1100,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 5,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
     
     "Chemiman": {
@@ -1146,7 +1147,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 6,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Droide Eradicator": {
@@ -1512,7 +1513,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
     "Il Diciannovesimo Executive": {
@@ -2106,7 +2108,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 8,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
 
@@ -2245,7 +2248,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
     "Artefatto Suicida": {
@@ -2427,7 +2431,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 22,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
     "Bushi": {
@@ -2511,7 +2516,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 8,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
     "Lord Nozaki": {
@@ -2676,7 +2682,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
     
     "Mortificator": {
@@ -2950,7 +2957,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
     
     "L'Arcinquisitore Nikodemus": {
@@ -2996,7 +3004,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
     
     "Guerrieri Sacri": {
@@ -3033,6 +3042,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "pronto": True
         },
         "quantita": 5,
+
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3392,7 +3402,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 3,
         "quantita_minima_consigliata": 3,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
     
     "Mietitori di Anime": {
@@ -3430,7 +3441,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
     
     "Destroyer": {
@@ -3468,7 +3480,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 1,
         "quantita_minima_consigliata": 3,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
  
     "Brass Apocalypt": {
@@ -3543,7 +3556,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 10
         },
         "abilita": [],
-        "testo_carta": "SEGUACE DI ALGEROTH. Non può mai partecipare a un combattimento, o andare in copertura. Se qualcuno dei tuoi seguaci di Algeroth viene ucciso da un Doomtrooper e sopravvive al combattimento non IMPRIGIONARLO, le carte associate al guerriero imprigionato sono scartate. I prigionieri non possono attaccare e non possono essere attaccati. Se il Justifier è scartato tutti i suoi prigionieri tornano alla loro Squadra.",
+        "testo_carta": "SEGUACE DI ALGEROTH. Non può mai partecipare a un combattimento, o andare in copertura. Se qualcuno dei tuoi seguaci di Algeroth viene ucciso da un Doomtrooper e sopravvive al combattimento puoi IMPRIGIONARLO, le carte associate al guerriero imprigionato sono scartate. I prigionieri non possono attaccare e non possono essere attaccati. Se il Justifier è scartato tutti i suoi prigionieri tornano alla loro Squadra.",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": [],
@@ -3869,7 +3882,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 4,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
     "Golem dell'Oscurità": {
@@ -3907,7 +3921,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
 
@@ -3993,7 +4008,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
     "Legionario Urlante": {
@@ -4352,7 +4368,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 6,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
     
     "Figlio di Ilian": {
@@ -4675,7 +4692,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 6,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
 
     "Legionario di Semai": {
@@ -4757,7 +4775,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita":1,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "fondamentale": False, # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "strategico": True
     },
    
     "Cultista di Semai": {
@@ -4858,7 +4877,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "quantita": 7,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": False,
+        "strategico": True
     },
     "Guardia del corpo": {
         "nome": "Guardia del corpo",
