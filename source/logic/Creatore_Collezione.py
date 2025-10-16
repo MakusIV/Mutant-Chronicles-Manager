@@ -1167,90 +1167,106 @@ def determina_orientamento_collezione(collezione: CollezioneGiocatore, espansion
     guerrieri_doomtrooper = {"Bauhaus": 0, "Capitol": 0, "Imperiale": 0, "Mishima": 0, "Cybertronic": 0, "Mercenario": 0}
     guerrieri_fratellanza = {"Cambiamento": 0, "Elementi": 0, "Esorcismo": 0, "Cinetica": 0, "Manipolazione": 0, "Mentale": 0,  "Premonizione": 0, "Evocazione": 0, "Tutte le Discipline": 0}
     guerrieri_oscura_legione = {"Algeroth": 0, "Muawijhe": 0, "Demnogonis": 0, "Semai": 0, "Ilian": 0}                
-    guerrieri_cultisti = 0
+    guerrieri_cultisti = {"Algeroth": 0, "Muawijhe": 0, "Demnogonis": 0, "Semai": 0, "Ilian": 0}
     guerrieri_eretici = 0
     
     for guerriero in guerrieri_disponibili:
 
         if 'Eretico' in guerriero.keywords:
-            guerrieri_eretici += guerriero.quantita
+            guerrieri_eretici += guerriero.quantita * guerriero.stats.valore
                 
         if guerriero.fazione in FAZIONI_DOOMTROOPER:                
 
             for fazione in [f for f in Fazione]:
             
                 if guerriero.fazione == fazione:
-                    guerrieri_doomtrooper[fazione] += guerriero.quantita
+                    guerrieri_doomtrooper[fazione.value] += guerriero.quantita * guerriero.stats.valore
+                    break
                 
 
         elif guerriero.fazione in FAZIONI_FRATELLANZA: # 
             for arte in [a.value for a in DisciplinaArte]:
                 for abilita in guerriero.abilita:                        
                     if abilita.tipo == 'Arte': # and not (escludi_oscura_legione or escludi_doomtrooper) : # esclude se il guerriero è OL e non è previsto nel mazzo l'oscura legione
-                        if arte == abilita.target:
-                            guerrieri_fratellanza[arte] += guerriero.quantita
+                        if arte in abilita.target:
+                            guerrieri_fratellanza[arte] += guerriero.quantita * guerriero.stats.valore
+                            break
         
         # Orientamento Apostolo (per guerrieri Oscura Legione)
         elif guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
-
-            if 'Cultista' in guerriero.keywords:
-                guerrieri_cultisti += guerriero.quantita
             
             for apostolo in [a.value for a in ApostoloOscuraSimmetria]:
-                if apostolo != None and f"Seguace di {apostolo}" in carta.keywords:
-                    guerrieri_oscura_legione[apostolo]+=guerriero.quantita
                 
-    guerrieri_doomtrooper_totale = sum(q for q in guerrieri_doomtrooper.values)
-    guerrieri_oscura_legione_totale = sum(q for q in guerrieri_oscura_legione.values)
-    guerrieri_fratellanza_totale  = sum(q for q in guerrieri_fratellanza.values)
+                if f'Cultista di {apostolo}' in guerriero.keywords:
+                    guerrieri_cultisti[apostolo] += guerriero.quantita * guerriero.stats.valore
+
+                if apostolo != None and f"Seguace di {apostolo}" in guerriero.keywords:
+                    guerrieri_oscura_legione[apostolo]+=guerriero.quantita * guerriero.stats.valore
+                    break
+                
+    guerrieri_doomtrooper_totale = sum(guerrieri_doomtrooper.values())
+    guerrieri_oscura_legione_totale = sum(guerrieri_oscura_legione.values())
+    guerrieri_fratellanza_totale  = sum(guerrieri_fratellanza.values())
+    guerrieri_cultisti_totale  = sum(guerrieri_cultisti.values())
 
     prime_tre_fazioni_doomtrooper = [k for k, v in sorted(guerrieri_doomtrooper.items(), key=lambda item: item[1], reverse=True)][:3]
     primi_tre_apostoli = [k for k, v in sorted(guerrieri_oscura_legione.items(), key=lambda item: item[1], reverse=True)][:3]
     prime_sei_arti = [k for k, v in sorted(guerrieri_fratellanza.items(), key=lambda item: item[1], reverse=True)][:6]
 
+    lista_apostoli = []
+    lista_fazioni = []
+    lista_arte = []
+
+    # oscura legione  e doomtrooper superiori a fratellanza
     if guerrieri_oscura_legione_totale > guerrieri_fratellanza_totale < guerrieri_doomtrooper_totale:
                     
-        if guerrieri_oscura_legione_totale > guerrieri_doomtrooper_totale:
-            lista_apostoli = primi_tre_apostoli
-            lista_fazioni = prime_tre_fazioni_doomtrooper[:2]
-        else:
-            lista_apostoli = primi_tre_apostoli[:2]
+        if guerrieri_oscura_legione_totale > 0.66 * guerrieri_doomtrooper_totale:
+            lista_apostoli = primi_tre_apostoli # 3 apostoli
+            lista_fazioni = prime_tre_fazioni_doomtrooper[:2] # 2 fazioni
+        
+        elif guerrieri_fratellanza_totale >  0.33 * guerrieri_doomtrooper_totale:  # fratellanza e oscura legione superiore significativamente ai doomtrooper
             lista_fazioni = prime_tre_fazioni_doomtrooper
+            lista_arte = prime_sei_arti[:3] # tre arti per limitare numero carte arte per contenere numero carte arte utilizzabili da più fratelli
+            lista_apostoli = primi_tre_apostoli[:2] # due apostoli per limitare numero carte oscura simmetria per contenere numero carte arte utilizzabili da più seguaci
+            orientamento = 'doomtrooper-fratellanza-oscura legione'                                
+
+        else:
+            lista_apostoli = primi_tre_apostoli[:2] # 2 apostoli
+            lista_fazioni = prime_tre_fazioni_doomtrooper[:2] # 2 fazioni
 
         orientamento = 'doomtrooper-oscura legione'                                
         
-
+    # doomtrooper e fratellanza superiori a oscura legione
     elif guerrieri_doomtrooper_totale > guerrieri_oscura_legione_totale < guerrieri_fratellanza_totale:
         
-        if guerrieri_doomtrooper_totale > guerrieri_fratellanza_totale:
-            lista_fazioni = prime_tre_fazioni_doomtrooper
+        if guerrieri_doomtrooper_totale > 0.66 * guerrieri_fratellanza_totale:
+            lista_fazioni = prime_tre_fazioni_doomtrooper[:2] # 2 fazioni 
             lista_arte = prime_sei_arti # menoguerrieri più ozione arte per compensare ed avere un numero sufficientedi guerrieri
         else:
-            lista_fazioni = prime_tre_fazioni_doomtrooper
-            lista_arte = prime_sei_arti[0:4] # tanti guerrieri è possibile focalizzare le carte arte riducendo il numero di arti possibili
+            lista_fazioni = prime_tre_fazioni_doomtrooper[:2]
+            lista_arte = prime_sei_arti[:4] # tanti guerrieri è possibile focalizzare le carte arte riducendo il numero di arti possibili
         
         orientamento = 'doomtrooper-fratellanza'                                
 
-    elif guerrieri_fratellanza_totale > guerrieri_oscura_legione_totale and guerrieri_doomtrooper_totale > 0.66 * guerrieri_fratellanza_totale:
-        lista_fazioni = prime_tre_fazioni_doomtrooper
-        lista_arte = prime_sei_arti # meno guerrieri più ozione arte per compensare ed avere un numero sufficientedi guerrieri
-        orientamento = 'doomtrooper-oscura legione'                                
+    # 
+    
+    elif guerrieri_fratellanza_totale > guerrieri_doomtrooper_totale < guerrieri_oscura_legione_totale:  # fratellanza e oscura legione superiore significativamente ai doomtrooper        
 
-    elif guerrieri_oscura_legione_totale > guerrieri_fratellanza_totale and guerrieri_doomtrooper_totale > 0.66 * guerrieri_oscura_legione_totale:
-        lista_fazioni = prime_tre_fazioni_doomtrooper
-        lista_arte = prime_sei_arti # meno guerrieri più ozione arte per compensare ed avere un numero sufficientedi guerrieri
-        orientamento = 'doomtrooper-fratellanza'                                
-
-    else: # fratellanza e oscura legione superiore significativamente ai doomtrooper
-        lista_fazioni = prime_tre_fazioni_doomtrooper
-        lista_arte = prime_sei_arti[0:3] # quattro arti per limitare numero carte arte per contenere numero carte arte utilizzabili da più fratelli
-        lista_apostoli = primi_tre_apostoli[0:2] # due apostoli per limitare numero carte oscura simmetria per contenere numero carte arte utilizzabili da più seguaci
-        orientamento = 'doomtrooper-fratellanza-oscura legione'                                
+        if guerrieri_fratellanza_totale > 0.5 * guerrieri_doomtrooper_totale and guerrieri_oscura_legione_totale > 0.5 * guerrieri_doomtrooper_totale:        
+            lista_arte = prime_sei_arti[:3] # quattro arti per limitare numero carte arte per contenere numero carte arte utilizzabili da più fratelli
+            lista_apostoli = primi_tre_apostoli[:2] # due apostoli per limitare numero carte oscura simmetria per contenere numero carte arte utilizzabili da più seguaci
+            orientamento = 'fratellanza-oscura legione'                                
+        else:
+            lista_fazioni = prime_tre_fazioni_doomtrooper [:2]
+            lista_arte = prime_sei_arti[:3] # tre arti per limitare numero carte arte per contenere numero carte arte utilizzabili da più fratelli
+            lista_apostoli = primi_tre_apostoli[:2] # due apostoli per limitare numero carte oscura simmetria per contenere numero carte arte utilizzabili da più seguaci
+            orientamento = 'doomtrooper-fratellanza-oscura legione'                                
+                                
 
     if guerrieri_eretici > 10:
             orientamento += '-eretici'
 
-    if guerrieri_cultisti > 10:
+    if guerrieri_cultisti_totale > 10:
             orientamento += '-cultisti'
 
     orientamento_collezione = {'orientamento': orientamento,
@@ -1260,13 +1276,13 @@ def determina_orientamento_collezione(collezione: CollezioneGiocatore, espansion
 
     
         
-    doomtrooper = False,
-    orientamento_doomtrooper = None,
-    fratellanza = False,
-    orientamento_arte = None,
-    oscura_legione = False,
-    orientamento_apostolo = None,
-    orientamento_eretico = False,
+    doomtrooper = False
+    orientamento_doomtrooper = None
+    fratellanza = False
+    orientamento_arte = None
+    oscura_legione = False
+    orientamento_apostolo = None
+    orientamento_eretico = False
     orientamento_cultista = False
 
 

@@ -3712,7 +3712,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 },],
         "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, tutti i Tuoi guerrieri dell'Oscura Legione possono essere equipaggiati in ogni momento e senza spendere Azioni, con qualsiasi carta Equipaggiamento, senza limiti di Legame. Algeroth può scartare una qualsiasi carta Equipaggiamento in gioco, al costo di tre Azioni.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Seguace di Algeroth"],
         "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -3937,7 +3937,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, tutti i guerrieri dell'Oscura Legione possono Attaccare per primi i loro avversari in combattimento. Se l'avversario sopravvive, può rispondere ai colpi.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Seguace di Muawijhe"],
         "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4117,7 +4117,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte al combattimento, né andare in Copertura. Mentre è in gioco, al costo di tre Azioni, può scartare un qualsiasi Doomtrooper in gioco, pagando il suo V in D. Non guadagni Punti eliminando i guerrieri in questo modo.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Seguace di Demnogonis"],
         "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4542,7 +4542,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, i Tuoi guerrieri dell'Oscura Legione possono ricevere in ogni momento qualsiasi Dono dell'Oscura Simmetria o degli Apostoli senza spendere Azioni. Ilian può annullare in ogni momento qualsiasi immunità all'Oscura Simmetria per tutto il tempo che desidera.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Seguace di Ilian"],
         "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4582,7 +4582,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "PERSONALITA. APOSTOLO. Non può mai prendere parte a un combattimento o andare in Copertura. Mentre è in gioco, i Doomtrooper possono attaccare qualsiasi altro Doomtrooper in gioco (non nella stessa Squadra), ma devono pagare 4D, per poter Attaccare guerrieri dell'Oscura Legione.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Seguace di Semai"],
         "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
         "equipaggiamento": [],
         "stato_gioco": {
