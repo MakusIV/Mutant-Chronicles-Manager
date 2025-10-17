@@ -48,9 +48,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 7,
+        "quantita": 5,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -83,8 +83,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -118,9 +118,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 7,
+        "quantita": 6,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -154,7 +154,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -189,7 +189,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -223,8 +223,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -258,8 +258,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 5,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -293,8 +293,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": ["Mercenario"],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 2,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -328,9 +328,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 7,
+        "quantita": 2,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -364,7 +364,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -399,7 +399,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Devi avere un guerriero della Fratellanza nella tua squadra"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -433,8 +433,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 8,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -469,9 +469,9 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Non utilizzabile su membri della Fratellanza"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Baratro": {
@@ -503,9 +503,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -539,7 +539,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -573,7 +573,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -644,7 +644,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -678,10 +678,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": ["Personalita"],
         "restrizioni": ["Non può entrare in combattimento", "Impedisce l'aggiunta di altri guerrieri"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Azione Evasiva": {
@@ -713,8 +713,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -748,9 +748,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 6,
+        "quantita": 6,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -783,7 +783,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Non utilizzabile su membri della Fratellanza", "Non utilizzabile su membri Cybertronic"],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -819,7 +819,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -853,9 +853,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 7,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -888,8 +888,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 7,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -958,8 +958,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -993,9 +993,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Non utilizzabile dall'Oscura Legione"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 9,
+        "quantita": 2,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -1028,8 +1028,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 2,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1064,7 +1064,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1098,10 +1098,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Missione Segreta": {
@@ -1134,7 +1134,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1169,7 +1169,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1203,7 +1203,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1238,9 +1238,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 6,
+        "quantita": 6,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -1273,9 +1273,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 4,
+        "quantita": 7,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -1308,7 +1308,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1343,8 +1343,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 6,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1378,8 +1378,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 7,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1413,9 +1413,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 7,
+        "quantita": 2,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -1448,10 +1448,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 3,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Vittoria": {
@@ -1492,9 +1492,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 8,
+        "quantita": 5,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -1527,10 +1527,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 2,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Andare Al Coperto": {
@@ -1562,9 +1562,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo difensore"],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -1597,14 +1597,14 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
 
-    "Vigliiaccheria": {
-        "nome": "Vigliiaccheria",
+    "Vigliaccheria": {
+        "nome": "Vigliaccheria",
         "valore": 0,
         "tipo": "Speciale",
         "rarity": "Common",
@@ -1632,10 +1632,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Attacco A Sorpresa": {
@@ -1667,8 +1667,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 6,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1702,10 +1702,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Scoperto": {
@@ -1737,8 +1737,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo su guerrieri in copertura"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 8,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1772,10 +1772,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Reintegrato": {
@@ -1808,7 +1808,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Mercenario"],
         "restrizioni": ["Solo su Mercenari"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1842,8 +1842,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 3,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1878,9 +1878,9 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Azione Evasiva": {
@@ -1912,7 +1912,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1947,10 +1947,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 1,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Tattica D'Evasione": {
@@ -1982,8 +1982,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 8,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2017,8 +2017,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 8,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2052,10 +2052,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Spia Nei Ranghi": {
@@ -2087,10 +2087,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Influenza": {
@@ -2122,8 +2122,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2157,8 +2157,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo con mitragliatrici"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 8,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2192,10 +2192,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Oscura Legione"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Ispirato": {
@@ -2227,10 +2227,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 7,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Servizio Deferente": {
@@ -2262,8 +2262,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers non Mishima"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 6,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2332,7 +2332,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2367,8 +2367,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": ["Eretico"],
         "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 7,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2402,8 +2402,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Richiede guerriero della Fratellanza", "Seguaci di Demnogonis"],
-        "valore_strategico": 5,
-        "quantita": 4,
+        "valore_strategico": 1,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2437,9 +2437,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": ["Eretico"],
         "restrizioni": ["Solo Eretici"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 5,
+        "quantita": 9,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -2472,9 +2472,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 6,
+        "quantita": 5,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -2507,9 +2507,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 8,
+        "quantita": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -2542,10 +2542,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 5,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Battesimo Dell'Onore": {
@@ -2578,7 +2578,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers non Fratellanza o Cybertronic"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2612,8 +2612,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 2,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2648,7 +2648,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2682,8 +2682,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": ["Eretico"],
         "restrizioni": ["Solo Eretici con Doni"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 6,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2718,9 +2718,9 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita": 2,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Quartier Generale Segreto": {
@@ -2753,7 +2753,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2787,10 +2787,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 3,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     # Inquisition
@@ -2964,8 +2964,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": ["Eretico"],
         "restrizioni": ["Richiede guerriero della Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3281,7 +3281,7 @@ DATABASE_SPECIALI = {
         "keywords": ["Seguace di Semai"],
         "restrizioni": ["Richiede guerriero della Fratellanza"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3456,7 +3456,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
