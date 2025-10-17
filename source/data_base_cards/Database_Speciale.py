@@ -154,7 +154,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -609,7 +609,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -924,7 +924,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Devi avere un guerriero della Fratellanza nella tua squadra"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2298,7 +2298,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Richiede guerriero della Fratellanza", "Seguaci di Semai"],
         "valore_strategico": 5,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2473,7 +2473,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
         "valore_strategico": 6,
-        "quantita": 5,
+        "quantita": 8,
         "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
@@ -2795,6 +2795,562 @@ DATABASE_SPECIALI = {
 
     # Inquisition
 
+    # Modulo 6: Carte Speciali Doomtrooper (32-39)
+
+# Modulo 7: Carte Speciali Doomtrooper (40-46)
+
+    "Falso": {
+        "nome": "Falso",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Qualsiasi Reliquia",
+        "durata": "Immediato",
+        "timing": "In ogni momento, anche se non sei un famoso collezionista",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "La Reliquia è un falso e deve essere scartata",
+                "condizioni": ["Giocabile su qualsiasi Reliquia, in ogni momento, anche se non sei un famoso collezionista"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE SU QUALSIASI RELIQUIA, IN OGNI MOMENTO, ANCHE SE NON SEI UN FAMOSO COLLEZIONISTA. La Reliquia è un falso e deve essere scartata.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 6,
+        "quantita": 4,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Dissensi Interni": {
+        "nome": "Dissensi Interni",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Megacorporazione (non la Fratellanza)",
+        "durata": "Permanente",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Scegli una Megacorporazione (non la Fratellanza). Quando questa carta è in gioco, i guerrieri di quella Corporazione possono attaccarsi tra loro",
+                "condizioni": ["Giocabile in ogni momento. Questa carta rimane in gioco"],
+                "limitazioni": ["Non applicabile alla Fratellanza"]
+            }
+        ],
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO. QUESTA CARTA RIMANE IN GIOCO. Scegli una Megacorporazione (non la Fratellanza). Quando questa carta è in gioco, i guerrieri di quella Corporazione possono attaccarsi tra loro.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non utilizzabile sulla Fratellanza"],
+        "valore_strategico": 1,
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Ferita Mortale": {
+        "nome": "Ferita Mortale",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Qualsiasi guerriero ferito",
+        "durata": "Immediato",
+        "timing": "In ogni momento tranne che in combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Uccide Automaticamente",
+                "tipo_effetto": "Combattimento",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Il guerriero ferito è ucciso. Guadagni i punti normalmente. Non puoi giocare questa carta su un Tuo guerriero. Se più di un giocatore usa questa carta sullo stesso guerriero contemporaneamente dividi i Punti equamente",
+                "condizioni": ["Giocabile su un qualsiasi guerriero ferito, in ogni momento tranne che in combattimento"],
+                "limitazioni": ["Non puoi giocarla su un tuo guerriero"]
+            }
+        ],
+        "testo_carta": "GIOCABILE SU UN QUALSIASI GUERRIERO FERITO, IN OGNI MOMENTO TRANNE CHE IN COMBATTIMENTO. Il guerriero ferito è ucciso. Guadagni i punti normalmente. Non puoi giocare questa carta su un Tuo guerriero. Se più di un giocatore usa questa carta sullo stesso guerriero contemporaneamente dividi i Punti equamente.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non utilizzabile sui propri guerrieri"],
+        "valore_strategico": 10,
+        "quantita": 2,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
+    },
+
+    "Distratto": {
+        "nome": "Distratto",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Guerriero che abbia un'abilità di immunità",
+        "durata": "Per questo combattimento",
+        "timing": "Durante il combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Il guerriero colpito non è immune all'Arte e/o alle carte dell'Oscura Simmetria per questo combattimento",
+                "condizioni": ["Giocabile durante il combattimento su un guerriero che abbia un'abilità di immunità"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE DURANTE IL COMBATTIMENTO SU UN GUERRIERO CHE ABBIA UN'ABILITÀ DI IMMUNITÀ. Il guerriero colpito non è immune all'Arte e/o alle carte dell'Oscura Simmetria per questo combattimento.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 7,
+        "quantita": 15,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Appropriazione": {
+        "nome": "Appropriazione",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Carta in gioco",
+        "durata": "Immediato",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Carte",
+                "tipo_effetto": "Carte",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Puoi impadronirti di una carta in gioco e usarla immediatamente per equipaggiare un Tuo guerriero. L'ICONA del destinatario deve essere rispettata. Rendi la carta al suo possessore alla fine della partita",
+                "condizioni": ["Giocabile in ogni momento"],
+                "limitazioni": ["L'ICONA del destinatario deve essere rispettata", "La carta va restituita a fine partita"]
+            }
+        ],
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO. Puoi impadronirti di una carta in gioco e usarla immediatamente per equipaggiare un Tuo guerriero. L'ICONA del destinatario deve essere rispettata. Rendi la carta al suo possessore alla fine della partita.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Deve rispettare l'ICONA del destinatario"],
+        "valore_strategico": 10,
+        "quantita": 3,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
+    },
+
+    "Attrazione": {
+        "nome": "Attrazione",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Due Doomtrooper in gioco",
+        "durata": "Permanente",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Scegli due Doomtrooper in gioco. Finché questa carta è in gioco, i due non si possono attaccare o danneggiare l'un l'altro. Se uno dei due guerrieri è scartato, questa carta è scartata con lui",
+                "condizioni": ["Giocabile in ogni momento. Questa carta rimane in gioco"],
+                "limitazioni": ["Se uno dei due guerrieri è scartato, la carta viene scartata"]
+            }
+        ],
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO. QUESTA CARTA RIMANE IN GIOCO. Scegli due Doomtrooper in gioco. Finché questa carta è in gioco, i due non si possono attaccare o danneggiare l'un l'altro. Se uno dei due guerrieri è scartato, questa carta è scartata con lui.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 3,
+        "quantita": 10,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Corve": {
+        "nome": "Corvè",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Guerriero con Valore 4 o meno",
+        "durata": "Permanente",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "1D per turno",
+                "statistica_target": "",
+                "descrizione_effetto": "Mentre la Corvè è in gioco, guadagni 1D durante la Tua Fase Pescare per ogni guerriero con Valore 4 o meno che hai in gioco. Puoi avere una sola Corvè alla volta in gioco",
+                "condizioni": ["Giocabile in ogni momento. Questa carta rimane in gioco"],
+                "limitazioni": ["Puoi avere una sola Corvè alla volta in gioco"]
+            }
+        ],
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO. QUESTA CARTA RIMANE IN GIOCO. Mentre la Corvè è in gioco, guadagni 1D durante la Tua Fase Pescare per ogni guerriero con Valore 4 o meno che hai in gioco. Puoi avere una sola Corvè alla volta in gioco.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Massimo una Corvè per volta in gioco"],
+        "valore_strategico": 1,
+        "quantita": 18,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": True
+    },
+
+    "Rifornimenti Interrotti": {
+        "nome": "Rifornimenti Interrotti",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Qualsiasi giocatore",
+        "durata": "Per questo turno",
+        "timing": "Durante la sua fase pescare, prima che peschi qualsiasi carta",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Il giocatore non può pescare carte in questo Turno",
+                "condizioni": ["Giocabile su qualsiasi giocatore durante la sua fase pescare, prima che peschi qualsiasi carta"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE SU QUALSIASI GIOCATORE DURANTE LA SUA FASE PESCARE, PRIMA CHE PESCHI QUALSIASI CARTA. Il giocatore non può pescare carte in questo Turno.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 2,
+        "quantita": 2,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Saccheggio E Devastazione": {
+        "nome": "Saccheggio E Devastazione",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediato",
+        "timing": "Al costo di tre azioni",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "20D o 3 Azioni",
+                "statistica_target": "",
+                "descrizione_effetto": "Puoi guadagnare 20D, oppure prendere un guerriero non-Personalità dalla Tua Collezione (aggiungilo alla Tua Squadra o Schieramento), oppure prendere una carta Equipaggiamento dal Tuo mazzo di carte da Pescare (per equipaggiare subito un guerriero che possa usarla)",
+                "condizioni": ["Giocabile al costo di tre azioni"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE AL COSTO DI TRE AZIONI. Puoi guadagnare 20D, oppure prendere un guerriero non-Personalità dalla Tua Collezione (aggiungilo alla Tua Squadra o Schieramento), oppure prendere una carta Equipaggiamento dal Tuo mazzo di carte da Pescare (per equipaggiare subito un guerriero che possa usarla).",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Non può prendere Personalità"],
+        "valore_strategico": 10,
+        "quantita": 2,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
+    },
+
+    "Riconoscimento": {
+        "nome": "Riconoscimento",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Doomtrooper"],
+        "bersaglio": "Qualsiasi Doomtrooper",
+        "durata": "Permanente",
+        "timing": "Subito dopo che ha ucciso un guerriero con un valore maggiore",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Aumenta effetto",
+                "tipo_effetto": "Modificatore",
+                "valore": "+3",
+                "statistica_target": "sparare",
+                "descrizione_effetto": "Il guerriero in questione guadagna un +3 in A e un +1 in V. Non c'è limite al numero di Riconoscimenti che un guerriero può ricevere",
+                "condizioni": ["Giocabile su qualsiasi Doomtrooper, subito dopo che ha ucciso un guerriero con un valore maggiore"],
+                "limitazioni": []
+            },
+            {
+                "nome_effetto": "Aumenta effetto",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1",
+                "statistica_target": "valore",
+                "descrizione_effetto": "Il guerriero guadagna +1 in V",
+                "condizioni": [],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE SU UN QUALSIASI DOOMTROOPER, SUBITO DOPO CHE HA UCCISO UN GUERRIERO CON UN VALORE MAGGIORE. QUESTA CARTA RESTA CON IL GUERRIERO. Il guerriero in questione guadagna un +3 in A e un +1 in V. Non c'è limite al numero di Riconoscimenti che un guerriero può ricevere.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 7,
+        "quantita": 3,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Onorificenza": {
+        "nome": "Onorificenza",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Doomtrooper"],
+        "bersaglio": "Qualsiasi Doomtrooper",
+        "durata": "Permanente",
+        "timing": "Immediatamente dopo che ha ucciso un guerriero di valore maggiore",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Aumenta effetto",
+                "tipo_effetto": "Modificatore",
+                "valore": "+3",
+                "statistica_target": "sparare",
+                "descrizione_effetto": "Il Doomtrooper guadagna un +3 in S e un +1 in V. Non c'è limite al numero di Onorificenze che un guerriero può ricevere",
+                "condizioni": ["Giocabile su qualsiasi Doomtrooper immediatamente dopo che ha ucciso un guerriero di valore maggiore"],
+                "limitazioni": []
+            },
+            {
+                "nome_effetto": "Aumenta effetto",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1",
+                "statistica_target": "valore",
+                "descrizione_effetto": "Il guerriero guadagna +1 in V",
+                "condizioni": [],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE SU QUALSIASI DOOMTROOPER IMMEDIATAMENTE DOPO CHE HA UCCISO UN GUERRIERO DI VALORE MAGGIORE. QUESTA CARTA RIMANE CON IL GUERRIERO. Il Doomtrooper guadagna un +3 in S e un +1 in V. Non c'è limite al numero di Onorificenze che un guerriero può ricevere.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 7,
+        "quantita": 7,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Ferocia": {
+        "nome": "Ferocia",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Qualsiasi guerriero durante il combattimento",
+        "durata": "Per questo combattimento",
+        "timing": "Durante il combattimento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Uccide Automaticamente",
+                "tipo_effetto": "Combattimento",
+                "valore": "",
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Se il valore di Attacco complessivo (C+S) di questo guerriero è più del doppio del valore A del suo avversario, allora viene direttamente ucciso, invece che ferito",
+                "condizioni": ["Giocabile su qualsiasi guerriero durante il combattimento"],
+                "limitazioni": ["Il valore di Attacco complessivo deve essere più del doppio del valore A dell'avversario"]
+            }
+        ],
+        "testo_carta": "GIOCABILE SU QUALSIASI GUERRIERO DURANTE IL COMBATTIMENTO. Se il valore di Attacco complessivo (C+S) di questo guerriero è più del doppio del valore A del suo avversario, allora viene direttamente ucciso, invece che ferito.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 1,
+        "quantita": 14,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
+    },
+
+    "Tasse": {
+        "nome": "Tasse",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Ogni giocatore",
+        "durata": "Immediato",
+        "timing": "Al costo di un'azione",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": True,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "3D per guerriero",
+                "statistica_target": "",
+                "descrizione_effetto": "Ogni giocatore deve pagarti 3D per ogni guerriero che ha nella sua Squadra e nel suo Schieramento. Se un giocatore non ha D a sufficienza, prendi gli altri D dalla pila comune",
+                "condizioni": ["Giocabile al costo di un'azione"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE AL COSTO DI UN'AZIONE. Ogni giocatore deve pagarti 3D per ogni guerriero che ha nella sua Squadra e nel suo Schieramento. Se un giocatore non ha D a sufficienza, prendi gli altri D dalla pila comune.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 10,
+        "quantita": 2,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
+    },
+
+    "Menzione D'Onore": {
+        "nome": "Menzione D'Onore",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Doomtrooper"],
+        "bersaglio": "Qualsiasi Doomtrooper",
+        "durata": "Permanente",
+        "timing": "Immediatamente dopo che ha ucciso un guerriero di valore maggiore",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Aumenta effetto",
+                "tipo_effetto": "Modificatore",
+                "valore": "+3",
+                "statistica_target": "combattimento",
+                "descrizione_effetto": "Il Doomtrooper in questione guadagna un +3 in C e un +1 in V. Non c'è limite al numero di Menzioni d'Onore che un guerriero può ricevere",
+                "condizioni": ["Giocabile su qualsiasi Doomtrooper immediatamente dopo che ha ucciso un guerriero di valore maggiore"],
+                "limitazioni": []
+            },
+            {
+                "nome_effetto": "Aumenta effetto",
+                "tipo_effetto": "Modificatore",
+                "valore": "+1",
+                "statistica_target": "valore",
+                "descrizione_effetto": "Il guerriero guadagna +1 in V",
+                "condizioni": [],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE SU QUALSIASI DOOMTROOPER IMMEDIATAMENTE DOPO CHE HA UCCISO UN GUERRIERO DI VALORE MAGGIORE. QUESTA CARTA RIMANE CON IL GUERRIERO. Il Doomtrooper in questione guadagna un +3 in C e un +1 in V. Non c'è limite al numero di Menzioni d'Onore che un guerriero può ricevere.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": ["Solo Doomtrooper"],
+        "valore_strategico": 7,
+        "quantita": 7,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
+    "Riserve Segrete": {
+        "nome": "Riserve Segrete",
+        "valore": "",
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Giocatore",
+        "durata": "Immediato",
+        "timing": "In ogni momento",
+        "set_espansione": "Base",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Modifica Stato",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "Puoi subito pescare tante carte quante Te ne servono per arrivare a 7",
+                "condizioni": ["Giocabile in ogni momento"],
+                "limitazioni": []
+            }
+        ],
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO. Puoi subito pescare tante carte quante Te ne servono per arrivare a 7.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 10,
+        "quantita": 9,
+        "quantita_minima_consigliata": 4,
+        "fondamentale": True
+    },
+
     "Formazione Serrata": {
         "nome": "Formazione Serrata",
         "valore": 0,
@@ -2824,10 +3380,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Non-Personalità"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 13,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Scetticismo": {
@@ -2859,8 +3415,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 7,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2894,10 +3450,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Trasfigurazione": {
@@ -2929,8 +3485,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": ["Eretico", "Seguace di Algeroth"],
         "restrizioni": ["Solo Eretici"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 3,
+        "quantita": 12,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2999,8 +3555,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 3,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3034,10 +3590,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 2,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "L'Anno Della Catastrofe": {
@@ -3069,10 +3625,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "L'Ira Di Algeroth": {
@@ -3105,9 +3661,9 @@ DATABASE_SPECIALI = {
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": [],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Maledizione Di Algeroth": {
@@ -3139,8 +3695,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": ["Richiede Seguace di Algeroth nello schieramento"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 7,
+        "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3175,10 +3731,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita": 2,
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Supporto Tattico": {
@@ -3210,9 +3766,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Non Oscura Legione"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 7,
+        "quantita": 11,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -3245,8 +3801,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 6,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3316,7 +3872,7 @@ DATABASE_SPECIALI = {
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 14,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3350,8 +3906,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 3,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3385,10 +3941,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 18,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Tangente": {
@@ -3420,10 +3976,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 4,
+        "fondamentale": True
     },
 
     "Empatia Cinetica": {
@@ -3525,10 +4081,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Lotta Senza Quartiere": {
@@ -3560,8 +4116,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 8,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3595,10 +4151,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Impeto Di Giustizia": {
@@ -3630,10 +4186,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Sdoppiamento": {
@@ -3665,10 +4221,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 10,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Il Secondo Direttorato": {
@@ -3700,8 +4256,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 6,
+        "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3744,9 +4300,9 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo guerrieri al coperto"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "valore_strategico": 8,
+        "quantita": 17,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -3779,8 +4335,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
-        "quantita": 4,
+        "valore_strategico": 2,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },    
@@ -4516,10 +5072,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Artiglieria Di Supporto": {
@@ -4551,10 +5107,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Sicario Assoldato": {
@@ -4586,7 +5142,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4621,7 +5177,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4691,7 +5247,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4726,14 +5282,14 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 1,
+        "valore_strategico": 10,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
-    "False_Credenze": {
-        "nome": "False_Credenze",
+    "False Credenze": {
+        "nome": "False Credenze",
         "valore": 0,
         "tipo": "Speciale",
         "rarity": "Common",
@@ -4751,7 +5307,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 5,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4786,7 +5342,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers non Personalità"],
-        "valore_strategico": 1,
+        "valore_strategico": 5,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4890,8 +5446,8 @@ DATABASE_SPECIALI = {
         "testo_carta": "GIOCABILE IN OGNI MOMENTO SU UN GUERRIERO CHE USA UNA CARTA DELL'OSCURA SIMMETRIA. L'effetto di quella carta è raddoppiato (se applicabile) fino all'inizio del tuo prossimo turno.",
         "flavour_text": "",
         "keywords": [],
-        "restrizioni": [],
-        "valore_strategico": 1,
+        "restrizioni": ["Solo Oscura Simmetria"],
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4961,10 +5517,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Campo Minato": {
@@ -4996,10 +5552,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Arma Difettosa": {
@@ -5031,7 +5587,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5066,10 +5622,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Oscura Legione"],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Fiamme Purificatrici": {
@@ -5101,7 +5657,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5136,7 +5692,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5171,7 +5727,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5247,8 +5803,6 @@ DATABASE_SPECIALI = {
         "fondamentale": False
     },
 
-
-
     "Interferenza": {
         "nome": "Interferenza",
         "valore": 0,
@@ -5276,9 +5830,9 @@ DATABASE_SPECIALI = {
         ],
         "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN INCANTESIMO DELL'ARTE È STATO LANCIATO. L'incantesimo non ha effetto e la relativa carta viene scartata. Ogni Azione o punto D speso per lanciare l'incantesimo è perso.",
         "flavour_text": "",
-        "keywords": [],
-        "restrizioni": ["Solo Fratellanza"],
-        "valore_strategico": 1,
+        "keywords": ["Arte"],
+        "restrizioni": [],
+        "valore_strategico": 3,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5313,7 +5867,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5348,10 +5902,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Attacco Suicida": {
@@ -5383,7 +5937,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5452,11 +6006,11 @@ DATABASE_SPECIALI = {
         "testo_carta": "GIOCABILE DURANTE UN COMBATTIMENTO CORPO A CORPO IN CUI UN TUO GUERRIERO DELL'OSCURA LEGIONE SI STA DIFENDENDO DALL'ATTACCO DI UN DOOMTROOPER. Il Doomtrooper è scartato immediatamente. Non si guadagnano punti.",
         "flavour_text": "",
         "keywords": [],
-        "restrizioni": [],
+        "restrizioni": ["Solo Oscura Legione"],
         "valore_strategico": 1,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Disastro Naturale": {
@@ -5488,7 +6042,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5523,7 +6077,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5558,7 +6112,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5593,8 +6147,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Cybertronic"],
-        "valore_strategico": 1,
-        "quantita": 1,
+        "valore_strategico": 8,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5628,10 +6182,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Codice D'Onore": {
@@ -5672,7 +6226,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5716,7 +6270,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers", "No Cybertronic"],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5751,10 +6305,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Rifugiato Tra La Folla": {
@@ -5786,10 +6340,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Avamposto Di Mercurio Turf": {
@@ -5821,7 +6375,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Mishima"],
-        "valore_strategico": 1,
+        "valore_strategico": 5,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5856,8 +6410,8 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 3,
+        "valore_strategico": 2,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -5891,10 +6445,10 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Stanchezza Mentale": {
@@ -5996,7 +6550,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -6031,7 +6585,7 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -6066,189 +6620,12 @@ DATABASE_SPECIALI = {
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
-
-
-    # verificare queste sotto
-    
-    "Addestramento Elite": {
-        "nome": "Addestramento Elite",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": True,
-        "effetti": [
-            {
-                "nome_effetto": "Bonus Statistiche",
-                "tipo_effetto": "Modificatore",
-                "valore": "+1 in tutte le caratteristiche",
-                "statistica_target": "tutte",
-                "descrizione_effetto": "Questa carta rimane in gioco. Il guerriero guadagna un +1 in C, S, A e V",
-                "condizioni": ["Doomtrooper", "Costo due azioni"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN DOOMTROOPER AL COSTO DI DUE AZIONI. QUESTA CARTA RIMANE IN GIOCO. Il guerriero guadagna un +1 in C, S, A e V.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Cecchino": {
-        "nome": "Cecchino",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": True,
-        "effetti": [
-            {
-                "nome_effetto": "Uccide Automaticamente",
-                "tipo_effetto": "Combattimento",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Questa carta rimane in gioco. Se il guerriero ferisce l'avversario durante un combattimento a distanza, l'avversario viene automaticamente ucciso",
-                "condizioni": ["Doomtrooper", "Costo un'azione", "Combattimento a distanza"],
-                "limitazioni": ["Solo combattimento a distanza"]
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN DOOMTROOPER AL COSTO DI UN'AZIONE. QUESTA CARTA RIMANE IN GIOCO. Se il guerriero ferisce l'avversario durante un combattimento a distanza, l'avversario viene automaticamente ucciso.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": ["Solo Doomtroopers"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Soldato Semplice": {
-        "nome": "Soldato Semplice",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": True,
-        "effetti": [
-            {
-                "nome_effetto": "Bonus Combattimento per Spesa",
-                "tipo_effetto": "Modificatore",
-                "valore": 1,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Questa carta rimane in gioco. Il guerriero guadagna un +1 in C per ogni 2D spesi durante il combattimento",
-                "condizioni": ["Doomtrooper non-Personalità", "Costo un'azione"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN DOOMTROOPER NON-PERSONALITÀ AL COSTO DI UN'AZIONE. QUESTA CARTA RIMANE IN GIOCO. Il guerriero guadagna un +1 in C per ogni 2D spesi durante il combattimento.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": ["Solo Doomtroopers non-Personalità"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Genio Militare": {
-        "nome": "Genio Militare",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": True,
-        "effetti": [
-            {
-                "nome_effetto": "Modifica Azione",
-                "tipo_effetto": "Modificatore",
-                "valore": "Tutte le carte Speciali della Squadra/Schieramento",
-                "statistica_target": "",
-                "descrizione_effetto": "Questa carta rimane in gioco. Il guerriero può attivare tutte le carte Speciali assegnate alla Squadra/Schieramento di appartenenza",
-                "condizioni": ["Doomtrooper Personalità", "Costo tre azioni"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN DOOMTROOPER PERSONALITÀ AL COSTO DI TRE AZIONI. QUESTA CARTA RIMANE IN GIOCO. Il guerriero può attivare tutte le carte Speciali assegnate alla Squadra/Schieramento di appartenenza.",
-        "flavour_text": "",
-        "keywords": ["Personalita"],
-        "restrizioni": ["Solo Doomtroopers Personalità"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Veterano": {
-        "nome": "Veterano",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Permanente",
-        "timing": "Turno Proprio",
-        "set_espansione": "Warzone",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": True,
-        "effetti": [
-            {
-                "nome_effetto": "Immune agli effetti delle carte Speciali",
-                "tipo_effetto": "Immunita",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Questa carta rimane in gioco. Il guerriero è immune agli effetti di tutte le carte Speciali avversarie. Non può essere influenzato da carte Speciali nemiche",
-                "condizioni": ["Doomtrooper non-Personalità", "Costo un'azione"],
-                "limitazioni": ["Solo contro carte Speciali avversarie"]
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN DOOMTROOPER NON-PERSONALITÀ AL COSTO DI UN'AZIONE. QUESTA CARTA RIMANE IN GIOCO. Il guerriero è immune agli effetti di tutte le carte Speciali avversarie. Non può essere influenzato da carte Speciali nemiche.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": ["Solo Doomtroopers non-Personalità"],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },   
+ 
 }
 
 
