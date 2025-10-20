@@ -928,72 +928,84 @@ class CreatoreMazzo:
         # Seleziona guerrieri garantendo distribuzione equa
         squadra = []
         schieramento = []
+        numero_guerrieri_richiesto_non_raggiunto = True
+        quantita_utilizzata = {}
 
-        # Seleziona gli altri guerrieri
         for guerriero in guerrieri_ordinati:
-            
-            #if guerriero.nome in [g.nome for g in squadra] or guerriero.nome in [g.nome for g in schieramento]:
-            #    continue
-                
-            quantita_disponibile = getattr(guerriero, 'quantita', 1) #quantita_disponibile = self.collezione.get_copie_disponibili(tipo_carta = 'guerriero', carta = guerriero)
-            quantita_consigliata = getattr(guerriero, 'quantita_minima_consigliata', 1)            
-            
-            # valuta la quantità minima in base al valore del guerriero (maggiore costo)                                    
-            if guerriero.stats.valore >= 10 or guerriero.tipo == 'Personalita':
-                min_val = 1
-                if quantita_consigliata <1:
-                    quantita_consigliata = 1             
-                
-            elif 7 <= guerriero.stats.valore < 10: # 7 e 8                        
-                min_val = random.randint(1, 2)
-                if quantita_consigliata <1:
-                    quantita_consigliata = random.randint(min_val, min_val + 2)                
-
-            elif 4 <= guerriero.stats.valore < 7: # 7 e 8                                
-                min_val = random.randint(1, 3)
-                if quantita_consigliata <1:
-                    quantita_consigliata = random.randint(min_val, min_val + 2)                                
-
-            else: 
-                min_val = random.randint(1, 2)                
-                if quantita_consigliata <1:
-                    quantita_consigliata = random.randint(min_val, min_val + 1)                
+            quantita_utilizzata[guerriero.nome] = 0
         
+
+        while numero_guerrieri_richiesto_non_raggiunto:
+
+            for guerriero in guerrieri_ordinati:
                 
-            num_copie_da_inserire = min(5, quantita_disponibile, quantita_consigliata)    
-            
-           
-            
+                #if guerriero.nome in [g.nome for g in squadra] or guerriero.nome in [g.nome for g in schieramento]:
+                #    continue
+                    
+                quantita_disponibile = getattr(guerriero, 'quantita') - quantita_utilizzata[guerriero.nome]
+                quantita_consigliata = getattr(guerriero, 'quantita_minima_consigliata')           
 
-            if oscura_legione and (doomtrooper or fratellanza): 
-                q = RAPPORTO_SQUADRA_SCHIERAMENTO + 1
-                m = RAPPORTO_SQUADRA_SCHIERAMENTO / q
-            else:
-                q = 1
-                m = 1
-            
-            numero_guerrieri_per_schieramento = math.floor( 0.49 + numero_guerrieri_target / q)
-            numero_guerrieri_per_squadra = math.floor( 0.49 + numero_guerrieri_target * m )
-            inserisci_in_schieramento = oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE
-            inserisci_in_squadra = ( doomtrooper or fratellanza) and ( guerriero.fazione in FAZIONI_DOOMTROOPER or guerriero.fazione in FAZIONI_FRATELLANZA)            
+                # se non è definita la quantità consigliata ( = 0 ) la calcola in base al valore del guerriero (maggiore costo)                                    
+                if quantita_consigliata and quantita_consigliata <1:                    
+                    
+                    if guerriero.stats.valore >= 10 or guerriero.tipo == 'Personalita':                                        
+                        quantita_consigliata = 1             
+                        
+                    elif 7 <= guerriero.stats.valore < 10: # 7 e 8                        
+                        min_val = random.randint(1, 2)                    
+                        quantita_consigliata = random.randint(min_val, min_val + 2)                
 
-            for _ in range(num_copie_da_inserire): # NOTA: inserisce la stessa istanza per più volte nella lista
+                    elif 4 <= guerriero.stats.valore < 7: # 7 e 8                                
+                        min_val = random.randint(1, 3)
+                        quantita_consigliata = random.randint(min_val, min_val + 2)                                
+
+                    else: 
+                        min_val = random.randint(1, 2)                                    
+                        quantita_consigliata = random.randint(min_val, min_val + 1)                
+                    
+                num_copie_da_inserire = min(5, quantita_disponibile, quantita_consigliata)    
+                quantita_utilizzata[guerriero.nome] += num_copie_da_inserire
+
+                if oscura_legione and (doomtrooper or fratellanza): 
+                    q = RAPPORTO_SQUADRA_SCHIERAMENTO + 1
+                    m = RAPPORTO_SQUADRA_SCHIERAMENTO / q
+                else:
+                    q = 1
+                    m = 1
                 
-                if inserisci_in_schieramento:
-                    if len(schieramento) <= numero_guerrieri_per_schieramento: 
-                        schieramento.append(guerriero)
-                    else:
-                        break
-                elif inserisci_in_squadra:
-                    if len(squadra) <= numero_guerrieri_per_squadra:  
-                        squadra.append(guerriero)
-                    else:
-                        break
+                numero_guerrieri_per_schieramento = math.floor( 0.49 + numero_guerrieri_target / q)
+                numero_guerrieri_per_squadra = math.floor( 0.49 + numero_guerrieri_target * m )
+                inserisci_in_schieramento = oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE
+                inserisci_in_squadra = ( doomtrooper or fratellanza) and ( guerriero.fazione in FAZIONI_DOOMTROOPER or guerriero.fazione in FAZIONI_FRATELLANZA)            
+
+                for _ in range(num_copie_da_inserire): # NOTA: inserisce la stessa istanza per più volte nella lista
+                    
+                    if inserisci_in_schieramento:
+                        if len(schieramento) <= numero_guerrieri_per_schieramento: 
+                            schieramento.append(guerriero)
+                        else:
+                            break
+                    elif inserisci_in_squadra:
+                        if len(squadra) <= numero_guerrieri_per_squadra:  
+                            squadra.append(guerriero)
+                        else:
+                            break
+                
+                if  ( len(squadra) + len(schieramento)) >= numero_guerrieri_target:                    
+                    return squadra, schieramento
+
             
+            if ( len(squadra) + len(schieramento)) >= numero_guerrieri_target: # se il limite è raggiunto esce altrimenti ripete il ciclo
+                carte_ancora_disponibili = False
 
-            if  ( len(squadra) + len(schieramento)) >= numero_guerrieri_target:
-                return squadra, schieramento
-
+                for guerriero in guerrieri_ordinati:
+                    if getattr(guerriero, 'quantita') - quantita_utilizzata[guerriero.nome] > 0:
+                        carte_ancora_disponibili = True
+                        break
+                
+                if not carte_ancora_disponibili:
+                    numero_guerrieri_richiesto_non_raggiunto = False
+    
         return squadra, schieramento
     
     def seleziona_carte_supporto(self, 
@@ -1176,26 +1188,50 @@ class CreatoreMazzo:
         carte_con_punteggio.sort(key=lambda x: x[1], reverse=True)
         
         # Seleziona carte
+        quantita_utilizzata = {}
+
         for carta, _ in carte_con_punteggio:
-            
-            if len(carte_selezionate) >= numero_carte:
-                return carte_selezionate
-            
-            # Calcola numero di copie
-            quantita_disponibile = getattr(carta, 'quantita', 1)
-            quantita_minima_consigliata = getattr(carta, 'quantita_minima_consigliata', 1)
-            if quantita_minima_consigliata < 1:
-                quantita_minima_consigliata = random.randint(1,3)
-            
-            num_copie_da_inserire = min(5, quantita_disponibile, quantita_minima_consigliata)   
+            quantita_utilizzata[carta.nome] = 0
 
-            for _ in range(num_copie_da_inserire):
+        numero_carte_richiesto_non_raggiunto = True
 
-                if len(carte_selezionate) <= numero_carte:
-                    carte_selezionate.append(carta)# NOTA: inserisce nella lista copie di una stessa istanza
-                else:
+        while numero_carte_richiesto_non_raggiunto:
+
+            for carta, _ in carte_con_punteggio:
+                
+                if len(carte_selezionate) >= numero_carte:
                     return carte_selezionate
-        
+                
+                # Calcola numero di copie
+                quantita_disponibile = getattr(carta, 'quantita') - quantita_utilizzata[carta.nome]
+                quantita_minima_consigliata = getattr(carta, 'quantita_minima_consigliata')
+
+                if quantita_minima_consigliata < 1:
+                    quantita_minima_consigliata = random.randint(1,3)
+                
+                num_copie_da_inserire = min(5, quantita_disponibile, quantita_minima_consigliata)   
+                quantita_utilizzata[carta.nome] += num_copie_da_inserire
+
+                for _ in range(num_copie_da_inserire):
+                    
+                    if len(carte_selezionate) <= numero_carte:
+                        carte_selezionate.append(carta)# NOTA: inserisce nella lista copie di una stessa istanza                        
+
+                    else:
+                        return carte_selezionate  # limite raggiunto
+
+
+            if len(carte_selezionate) < numero_carte: # se il limite è raggiunto esce altrimenti ripete il ciclo
+                carte_ancora_disponibili = False
+
+                for carta, _ in carte_con_punteggio:
+                    if getattr(carta, 'quantita') - quantita_utilizzata[carta.nome] > 0:
+                        carte_ancora_disponibili = True
+                        break
+                
+                if not carte_ancora_disponibili:
+                    numero_carte_richiesto_non_raggiunto = False
+                
         return carte_selezionate
     
 

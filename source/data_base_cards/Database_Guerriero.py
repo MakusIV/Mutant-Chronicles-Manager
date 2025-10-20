@@ -1356,10 +1356,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "set_espansione": "Warzone",
         "numero_carta": "",
         "stats": {
-            "combattimento": 3,
+            "combattimento": 4,
             "sparare": 3, 
-            "armatura": 3,
-            "valore": 4
+            "armatura": 7,
+            "valore": 7
         },
         "abilita": [
             {
@@ -1374,9 +1374,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "nome": "Assegna Carta",
                 "descrizione": "Assegna un guerriero Cybertronic non personalita all'Osservatore Tattico. Questo guerriero ed eventuali altre copie di questo presenti nella tua squadra  guadagnano un +4 in C, S, A e V mentre l'Osservatore è vivo e nella squadra",
                 "tipo": "Carte",
-                "costo_destino": 10,
-                "target": "Equipaggiamento Cybertronic",
-                "timing": "Ogni Momento"
+                "costo_destino": 0,
+                "target": "Guerrieri Cybertronic",
+                "timing": "Sempre"
             }
         ],
         "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI. In ogni momento, può equipaggiare qualsiasi Doomtrooper con carte Equipaggiamento Cybertronic senza spendere Azioni. Può anche affiliare qualsiasi Doomtrooper non-Personalità alla Cybertronic. Questo causa una ferita al Tecnico, ma se muore così non si guadagnano Punti. Non può usare l'Arte.",
@@ -2451,7 +2451,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [
             {
                 "nome": "Aumenta caratteristiche",
-                "descrizione": "Aumenta le caratteristiche di Attacco di +2",
+                "descrizione": "Aumenta le caratteristiche di Difesa di +2",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
                 "target": "Guerrieri Mishima nella squadra tranne il Porta Stendardo",
