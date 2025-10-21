@@ -117,7 +117,7 @@ DATABASE_SPECIALI = {
         "testo_carta": "GIOCABILE IN OGNI MOMENTO. Per il resto della partita, tutti i Necromutanti in gioco (anche introdotti successivamente) risolvono il loro combattimento per primi. Solo se l'avversario sopravvive potrà attaccare il Necromutante.",
         "flavour_text": "",
         "keywords": [],
-        "restrizioni": [],
+        "restrizioni": ["Solo Necromutanti"],
         "valore_strategico": 7,
         "quantita": 6,
         "quantita_minima_consigliata": 2,

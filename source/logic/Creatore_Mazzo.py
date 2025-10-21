@@ -1068,7 +1068,7 @@ class CreatoreMazzo:
         BONUS_ORIENTAMENTO = 6.0 # Fattore punteggio applicato alle preferenze specifiche di orientamento
         BONUS_ERETICO = 2 # Fattore applicato se selezionati ERETICI
         BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI     
-        BONUS_STRATEGICO = 5
+        BONUS_STRATEGICO = 3
                 
 
         # Calcola potenza per ogni carta
@@ -1079,8 +1079,8 @@ class CreatoreMazzo:
             bonus_moltiplicatore = 1.0
             fattore_carte_strategico = 1 # fattore di incremento del rating assegnato alla carta se questa è fondamentale
 
-            if hasattr(carta, 'strategico') and carta.strategico:
-                fattore_carte_strategico = BONUS_STRATEGICO # triplica il punteggio se è una carta fondamentale
+            if hasattr(carta, 'valore_strategico') and carta.valore_strategico != None and carta.valore_strategico > 0:
+                fattore_carte_strategico = ( 1 + carta.valore_strategico / 10 ) * BONUS_STRATEGICO # triplica il punteggio se è una carta fondamentale
 
             fazioni = []
             if hasattr(carta, 'fazione'):

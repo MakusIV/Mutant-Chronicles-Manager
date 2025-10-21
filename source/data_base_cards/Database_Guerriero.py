@@ -3193,7 +3193,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "I Necromutanti sono guerrieri trasformati dalla malvagia Necrotecnologia. Essi agiscono come ufficiali comandanti dei Legionari nn Morti di Algeroth",
         "flavour_text": "La morte è solo l'inizio del servizio alle Potenze Oscure.",
-        "keywords": ["Seguace di Algeroth"],
+        "keywords": ["Seguace di Algeroth", "Necromutante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {

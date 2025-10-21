@@ -265,17 +265,22 @@ class Speciale:
 
             elif "Solo Seguaci di" in restrizione:
                 apostolo_richiesto = restrizione.split("Solo Seguaci di ")[1].strip()
-                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
             
             elif "Solo Eretici" in restrizione:
-                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Eretici")
+            
+            elif "Solo Necromutanti" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Necromutante" not in guerriero.keywords  ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Necromutanti")
 
             elif "Solo Personalita" in restrizione:
-                if guerriero.tipo != "Personalita" or (guerriero.keywords and len(guerriero.keywords)>0 and "Personalita" not in guerriero.keywords ):                                       
+                if guerriero.tipo != "Personalita" or (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords ):                                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Personalita")
 
