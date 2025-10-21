@@ -11,7 +11,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, DOOMTROOPER  # Import dalle classi esistenti
 
 
 class TipoSpeciale(Enum):
@@ -256,7 +256,12 @@ class Speciale:
             elif "Solo Oscura Legione" in restrizione:
                 if guerriero.fazione != Fazione.OSCURA_LEGIONE:
                     risultato["puo_assegnare"] = False
-                    risultato["errori"].append("Solo per Oscura Legione")                            
+                    risultato["errori"].append("Solo per Oscura Legione") 
+
+            elif "Solo Fratellanza" in restrizione:
+                if guerriero.fazione != Fazione.FRATELLANZA:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Solo per Fratellanza")                             
 
             elif "Solo Seguaci di" in restrizione:
                 apostolo_richiesto = restrizione.split("Solo Seguaci di ")[1].strip()
@@ -268,6 +273,34 @@ class Speciale:
                 if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Eretici")
+
+            elif "Solo Personalita" in restrizione:
+                if guerriero.tipo != "Personalita" or (guerriero.keywords and len(guerriero.keywords)>0 and "Personalita" not in guerriero.keywords ):                                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Personalita")
+
+            elif "Non utilizzabile da Personalita" in restrizione:            
+                if guerriero.tipo == "Personalita" or (guerriero.keywords and len(guerriero.keywords)>0 and "Personalita" in guerriero.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Non utilizzabile da Personalita")
+
+            elif "Non utilizzabile dalla Fratellanza" in restrizione:
+                if guerriero.fazione == Fazione.FRATELLANZA:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Non utilizzabile dalla Fratellanza")
+
+            elif "Non utilizzabile dalla Oscura Legione" in restrizione:
+                if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Non utilizzabile dalla Fratellanza")
+
+            elif "Non utilizzabile dai Doomtroopers" in restrizione:
+                if guerriero.fazione in DOOMTROOPER:
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append("Non utilizzabile dalla Fratellanza")
+
+
+
             
             
 
