@@ -48,7 +48,7 @@ DATABASE_OSCURA_SIMMETRIA = {
             "utilizzata": False,
             "bersagli_attuali": []
         },
-        "restrizioni": ["Solo Seguaci di Muawijhe"],
+        "restrizioni": ["Seguace di Muawijhe"],
         "corruzione_applicata": {},
         "mutazioni_applicate": {},
         "penalita_giocatore": {},
@@ -98,9 +98,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 6,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False       
     },
     
@@ -142,7 +142,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -186,10 +186,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True       
     },
     
     "Fuoco Oscuro": {
@@ -230,7 +230,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -318,9 +318,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False       
     },
     
@@ -362,10 +362,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True       
     },
     
     "Resistere Al Dolore": {
@@ -406,7 +406,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -494,9 +494,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False       
     },
     
@@ -538,7 +538,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -582,7 +582,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -626,9 +626,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 6,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False       
     },
     
@@ -670,7 +670,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -802,10 +802,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True       
     },
     
     "Mano Della Morte": {
@@ -890,10 +890,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True       
     },
     
     "Legame Necrovisuale": {
@@ -934,7 +934,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -978,10 +978,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "fondamentale": True       
     },
     
     "Danza Folle": {
@@ -1022,9 +1022,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False       
     },
 
@@ -1070,8 +1070,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "livello_corruzione": 0,
         "valore_strategico": 1,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True       
     },
     
     "Potere Mostruoso": {
@@ -1112,9 +1112,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False       
     },
     
@@ -1156,9 +1156,9 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 16,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False       
     },
     
@@ -1194,16 +1194,16 @@ DATABASE_OSCURA_SIMMETRIA = {
             "utilizzata": False,
             "bersagli_attuali": []
         },
-        "restrizioni": ["Solo Seguaci di Ilian", "Non può essere usato su Personalità"],
+        "restrizioni": ["Solo Seguaci di Ilian", "Non può essere usato su Personalita"],
         "corruzione_applicata": {},
         "mutazioni_applicate": {},
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "fondamentale": True       
     },
     
     "Autorità": {
@@ -1244,8 +1244,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
-        "quantita": 8,
+        "valore_strategico": 8,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
     },
@@ -1288,10 +1288,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "fondamentale": True       
     },
     
     "Occhio Sacrilego": {
@@ -1332,7 +1332,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -1376,10 +1376,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True       
     },
     
     "Occhio Malvagio": {
@@ -1420,7 +1420,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -1464,7 +1464,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -1508,7 +1508,7 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False       
@@ -1554,10 +1554,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False       
+        "fondamentale": True       
     },
 
 }

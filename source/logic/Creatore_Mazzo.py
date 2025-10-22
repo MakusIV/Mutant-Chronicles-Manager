@@ -828,7 +828,7 @@ class CreatoreMazzo:
         BONUS_ORIENTAMENTO = 6.0 # Fattore punteggio applicato alle preferenze specifiche di orientamento
         BONUS_ERETICO = 2 # Fattore applicato se selezionati ERETICI
         BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI   
-        BONUS_STRATEGICO = 5 # Fattore applicato ad un guerriero classificato fondamentale
+        BONUS_STRATEGICO = 4 # # Fattore applicato in base all'assegnazione del valore "valore_strategico" da parte dell'utente
 
         for guerriero in guerrieri_disponibili:
             
@@ -841,8 +841,8 @@ class CreatoreMazzo:
             bonus_moltiplicatore = 1.0              
             bonus_factor_guerriero_strategico = 1
 
-            if hasattr(guerriero, 'strategico') and guerriero.strategico:
-                bonus_factor_guerriero_strategico = BONUS_STRATEGICO # decuplica il punteggio se è una carta fondamentale
+            if hasattr(guerriero, 'valore_strategico'):
+                bonus_factor_guerriero_strategico = 1 + guerriero.valore_strategico * BONUS_STRATEGICO / 10
 
             # Orientamento Doomtrooper            
             if doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
@@ -1068,7 +1068,7 @@ class CreatoreMazzo:
         BONUS_ORIENTAMENTO = 6.0 # Fattore punteggio applicato alle preferenze specifiche di orientamento
         BONUS_ERETICO = 2 # Fattore applicato se selezionati ERETICI
         BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI     
-        BONUS_STRATEGICO = 3
+        BONUS_STRATEGICO = 4 # Fattore applicato in base all'assegnazione del valore "valore_strategico" da parte dell'utente
                 
 
         # Calcola potenza per ogni carta
@@ -1077,10 +1077,10 @@ class CreatoreMazzo:
         for carta in carte_disponibili:
 
             bonus_moltiplicatore = 1.0
-            fattore_carte_strategico = 1 # fattore di incremento del rating assegnato alla carta se questa è fondamentale
+            fattore_carte_strategico = 1 # fattore di incremento del rating assegnato alla carta
 
             if hasattr(carta, 'valore_strategico') and carta.valore_strategico != None and carta.valore_strategico > 0:
-                fattore_carte_strategico = ( 1 + carta.valore_strategico / 10 ) * BONUS_STRATEGICO # triplica il punteggio se è una carta fondamentale
+                fattore_carte_strategico = 1 + carta.valore_strategico * BONUS_STRATEGICO / 10 
 
             fazioni = []
             if hasattr(carta, 'fazione'):
@@ -1173,8 +1173,7 @@ class CreatoreMazzo:
             elif tipo_carta == 'missione':
                 potenza = 0.5  # Default per missioni
             
-            #if carta.nome in [c[0].nome for c in carte_con_punteggio]:
-            #    continue
+
             fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti
 
             if carta.fondamentale:

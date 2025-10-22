@@ -134,6 +134,7 @@ class Missione:
         # Tracking effetti
         self.effetti_attivi: List[str] = []
         self.modificatori_applicati: Dict[str, int] = {}
+        self.valore_strategico = 0
         self.quantita = 0
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo    
@@ -407,7 +408,11 @@ class Missione:
                 "unica_per_bersaglio": self.unica_per_bersaglio
             },
             "effetti_attivi": self.effetti_attivi,
-            "modificatori_applicati": self.modificatori_applicati
+            "modificatori_applicati": self.modificatori_applicati,
+            "valore_strategico": self.valore_strategico,
+            "quantita": self.quantita,
+            "quantita_minima_consigliata": self.quantita_minima_consigliata,
+            "fondamentale": self.fondamentale
         }
     
     @classmethod
@@ -464,7 +469,7 @@ class Missione:
         
         missione.effetti_attivi = data["effetti_attivi"]
         missione.modificatori_applicati = data["modificatori_applicati"]
-
+        missione.valore_strategico = data["valore_strategico"]
         missione.quantita = data.get("quantita", 0)
         missione.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
         missione.fondamentale = data.get("fondamentale", False)

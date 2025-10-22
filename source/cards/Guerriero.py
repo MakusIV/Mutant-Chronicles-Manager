@@ -217,6 +217,7 @@ class Guerriero:
         
         # Gestione Personalità
         self.e_personalita = False
+        self.valore_strategico = 0
         self.quantita = 0
         self.quantita_minima_consigliata = 0  # utilizzata per la creazione del mazzo
         self.fondamentale = False  # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)
@@ -574,7 +575,11 @@ class Guerriero:
                 "in_copertura": self.in_copertura,
                 "dentro_veicolo": self.dentro_veicolo,
                 "veicolo_assegnato": self.veicolo_assegnato
-            }
+            },
+            "valore_strategico": self.valore_strategico,
+            "quantita": self.quantita,
+            "quantita_minima_consigliata": self.quantita_minima_consigliata,
+            "fondamentale": self.fondamentale
         }
     
     @classmethod
@@ -603,6 +608,7 @@ class Guerriero:
         guerriero.keywords = data["keywords"]
         guerriero.restrizioni = data["restrizioni"]
         guerriero.equipaggiamento = data["equipaggiamento"]
+        guerriero.valore_strategico = data["valore_strategico"]
         guerriero.quantita = data.get("quantita", 0)
         guerriero.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
         guerriero.fondamentale = data.get("fondamentale", False)

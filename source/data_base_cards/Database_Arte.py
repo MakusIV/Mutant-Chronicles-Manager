@@ -81,9 +81,9 @@ CARTE_ARTE_DATABASE = {
                 "limitazioni": []
             }
         ],
-        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in S.",
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni 2D il Maestro guadagna un +2 in A.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Incantesimo personale di combattimento"],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
@@ -91,7 +91,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -169,7 +169,7 @@ CARTE_ARTE_DATABASE = {
         ],
         "testo_carta": "ARTE DEL CAMBIAMENTO. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare il difensore del combattimento con qualsiasi altro guerriero in gioco, indifferentemente dal fatto di far parte di una Corporazione o dell'Oscura Legione.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Incantesimo di combattimento"],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
@@ -177,7 +177,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -306,7 +306,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -349,7 +349,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -392,7 +392,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -427,7 +427,7 @@ CARTE_ARTE_DATABASE = {
         ],
         "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. PUÒ ESSERE ASSEGNATA A UN GUERRIERO CHE STA COMBATTENDO L'OSCURA LEGIONE. Per ogni Punto D speso, il guerriero guadagna un +1 in A.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Incantesimo di combattimento"],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
@@ -435,7 +435,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -470,7 +470,7 @@ CARTE_ARTE_DATABASE = {
         ],
         "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI DEMNOGONIS.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Incantesimo di combattimento"],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
@@ -478,7 +478,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -513,7 +513,7 @@ CARTE_ARTE_DATABASE = {
         ],
         "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Puoi cambiare il difensore di un combattimento, scegliendo tra i tuoi guerrieri in gioco.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Incantesimo di combattimento"],
         "stato_gioco": {
             "in_gioco": False,
             "utilizzata": False,
@@ -521,7 +521,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -564,7 +564,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -607,10 +607,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Esorcizzare Influenze Oscure": {
@@ -650,7 +650,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -693,7 +693,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -736,7 +736,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -779,7 +779,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -822,7 +822,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -865,7 +865,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -908,10 +908,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Resistenza Elementare": {
@@ -934,14 +934,14 @@ CARTE_ARTE_DATABASE = {
             {
                 "nome_effetto": "Bonus Attacco",
                 "tipo_effetto": "Modificatore",
-                "valore": "+1 in A per ogni D speso",
+                "valore": "+1 in A per ogni 2D speso",
                 "statistica_target": "armatura",
-                "descrizione_effetto": "Per ogni D speso il Maestro guadagna un +1 in A. Per ogni 2D spesi guadagna automaticamente un +1 in A",
+                "descrizione_effetto": "Il Maestro guadagnaa automaticamente un +1 in A. Per ogni 2D spesi guadagna un +1 addizionale.",
                 "condizioni": ["Incantesimo personale di combattimento", "Solo il Maestro"],
                 "limitazioni": []
             }
         ],
-        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni D speso il Maestro guadagna un +1 in A. Per ogni 2D spesi guadagna automaticamente un +1 in A.",
+        "testo_carta": "ARTE DEGLI ELEMENTI. INCANTESIMO PERSONALE DI COMBATTIMENTO. Il Maestro guadagnaa automaticamente un +1 in A. Per ogni 2D spesi guadagna un +1 addizionale.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -951,10 +951,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 9,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Fulmine Elementare": {
@@ -994,10 +994,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 5,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Levitazione": {
@@ -1037,10 +1037,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Messaggio Telepatico": {
@@ -1080,7 +1080,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1166,10 +1166,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Teletrasporto": {
@@ -1209,7 +1209,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1252,9 +1252,9 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 7,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },   
 
@@ -1295,7 +1295,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1338,10 +1338,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Invulnerabile": {
@@ -1381,10 +1381,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 5,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Esorcizzare Danno": {
@@ -1424,7 +1424,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1467,7 +1467,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1510,7 +1510,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1553,7 +1553,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1596,10 +1596,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Esorcizzare Se Stessi": {
@@ -1639,10 +1639,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Scudo": {
@@ -1682,7 +1682,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1727,7 +1727,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1755,12 +1755,12 @@ CARTE_ARTE_DATABASE = {
                 "tipo_effetto": "Carte",
                 "valore": "2D per Doomtrooper Personalita",
                 "statistica_target": "",
-                "descrizione_effetto": "Spendendo 2D, puoi introdurre nella Tua Squadra un Doomtrooper Personalitàa prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie",
+                "descrizione_effetto": "Spendendo 2D, puoi introdurre nella Tua Squadra un Doomtrooper Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie",
                 "condizioni": ["Costo 2D"],
                 "limitazioni": ["Solo Doomtrooper Personalita", "Deve pagare V in D (o doppio dal mazzo da pescare)"]
             }
         ],
-        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 5D, puoi introdurre nella Tua Squadra un Doomtrooper non-Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie.",
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 5D, puoi introdurre nella Tua Squadra un Doomtrooper Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1770,7 +1770,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1813,7 +1813,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1856,7 +1856,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1927,12 +1927,12 @@ CARTE_ARTE_DATABASE = {
                 "tipo_effetto": "Carte",
                 "valore": "2D per carta Arte dalle scartate, 4D dal mazzo",
                 "statistica_target": "",
-                "descrizione_effetto": "Al costo di 2D, puoi riprendere una carta Arte dal Tuo mazzo di carte da Pescare, oppure al costo di 4D, prenderla dal Tuo mazzo di carte da Pescare. Devi subito pagando i Punti D o le Azioni necessarie",
+                "descrizione_effetto": "Al costo di 2D, puoi riprendere una carta Arte dal Tuo mazzo di carte scartate, oppure al costo di 4D, prenderla dal Tuo mazzo di carte da Pescare. Devi subito pagando i Punti D o le Azioni necessarie",
                 "condizioni": ["Costo 2D da scartate o 4D da mazzo"],
                 "limitazioni": ["Deve subito pagare i costi della carta Arte"]
             }
         ],
-        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Al costo di 2D, puoi riprendere una carta Arte dal Tuo mazzo di carte da Pescare, oppure al costo di 4D, prenderla dal Tuo mazzo di carte da Pescare. Devi subito pagando i Punti D o le Azioni necessarie.",
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Al costo di 2D, puoi riprendere una carta Arte dal Tuo mazzo di carte scartate, oppure al costo di 4D, prenderla dal Tuo mazzo di carte da Pescare. Devi subito pagando i Punti D o le Azioni necessarie.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1942,7 +1942,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 15,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1970,12 +1970,12 @@ CARTE_ARTE_DATABASE = {
                 "tipo_effetto": "Carte",
                 "valore": "3D per Fortificazione dalle scartate, 6D dal mazzo",
                 "statistica_target": "",
-                "descrizione_effetto": "Per 3D, puoi prendere dal Tuo mazzo di carte da Pescare una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione",
+                "descrizione_effetto": "Per 3D, puoi prendere dal Tuo mazzo di carte scartate una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione",
                 "condizioni": ["Costo 3D da scartate o 6D da mazzo"],
                 "limitazioni": ["Il guerriero deve poter usare la Fortificazione", "Deve pagare D o Azioni della carta"]
             }
         ],
-        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Per 3D, puoi prendere dal Tuo mazzo di carte da Pescare una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione.",
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Per 3D, puoi prendere dal Tuo mazzo di carte scartate una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1985,7 +1985,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2028,7 +2028,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2072,7 +2072,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 0,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2115,7 +2115,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 0,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2158,7 +2158,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 0,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2201,7 +2201,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2244,10 +2244,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 6,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Evocare Reliquia": {
@@ -2287,7 +2287,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2330,7 +2330,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2373,7 +2373,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2416,7 +2416,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 14,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2459,10 +2459,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 7,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Pacifismo": {
@@ -2502,10 +2502,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 8,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Annientamento": {
@@ -2545,53 +2545,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Glaciazione": {
-        "nome": "Glaciazione",
-        "valore": 0,
-        "tipo": "Normale",
-        "disciplina": "Elementi",
-        "rarity": "Common",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Tutti i Guerrieri",
-        "durata": "Fino Prossimo Turno",
-        "timing": "In Ogni Momento",
-        "set_espansione": "Inquisition",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Condizioni Meteorologiche",
-                "tipo_effetto": "Modificatore",
-                "valore": -2,
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Causa un -2 in C e S a tutti i guerrieri",
-                "condizioni": ["Attivo fino all'inizio del prossimo turno"],
-                "limitazioni": ["Può essere speso 4D per proseguire l'incantesimo o scartarlo"]
-            }
-                 ],        
-        "testo_carta": "ARTE DEGLI ELEMENTI. GIOCABILE IN OGNI MOMENTO. Il Maestro evoca condizioni meteorologiche invernali, causando un -2 in C e S a tutti i guerrieri in gioco, fino all'inizio del Tuo prossimo Turno. Allora potrai decidere se far proseguire l'incantesimo, spendendo 4D, oppure scartarlo. Puoi continuare a mantenere l'incantesimo quanti Turni vuoi.",
-        "flavour_text": "",
-        "keywords": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "restrizioni": [],
-        "contatori_speciali": {},
-        "valore_strategico": 1,
-        "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale":True
     },
 
     "Divinazione Maggiore": {
@@ -2630,7 +2587,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2673,7 +2630,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2716,7 +2673,7 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2759,10 +2716,10 @@ CARTE_ARTE_DATABASE = {
         },
         "restrizioni": [],
         "contatori_speciali": {},
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 7,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Manipolazione Maggiore": {

@@ -172,7 +172,7 @@ class Warzone:
         
         # Compatibilità espansioni
         self.compatibile_espansioni: List[str] = ["Base"]
-
+        self.valore_strategico = 0
         self.quantita = 0
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
@@ -499,10 +499,13 @@ class Warzone:
                 "area_assegnata": self.area_assegnata.value if self.area_assegnata else None,
                 "proprietario": self.proprietario,
                 "utilizzata_questo_turno": self.utilizzata_questo_turno
-            },
-            "valore_strategico": self.valore_strategico,
+            },            
             "frequenza_utilizzo": self.frequenza_utilizzo,
-            "compatibile_espansioni": self.compatibile_espansioni
+            "compatibile_espansioni": self.compatibile_espansioni,
+            "valore_strategico": self.valore_strategico,
+            "quantita": self.quantita,
+            "quantita_minima_consigliata": self.quantita_minima_consigliata,
+            "fondamentale": self.fondamentale
         }
     
     @classmethod
@@ -560,6 +563,9 @@ class Warzone:
             warzone.utilizzata_questo_turno = stato_data["utilizzata_questo_turno"]
             
         # Attributi aggiuntivi
+        warzone.quantita = data.get("quantita", 0)
+        warzone.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        warzone.fondamentale = data.get("fondamentale", False)
         warzone.valore_strategico = data.get("valore_strategico", 0)
         warzone.frequenza_utilizzo = data.get("frequenza_utilizzo", "Media")
         warzone.compatibile_espansioni = data.get("compatibile_espansioni", ["Base"])

@@ -43,6 +43,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -72,6 +73,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -101,6 +103,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -139,8 +142,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita": 12,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
     
@@ -168,6 +172,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -197,6 +202,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 16,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -218,7 +224,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare e Armatura di +2",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -236,6 +242,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 6,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -257,7 +264,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +5",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -275,6 +282,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -303,7 +311,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Ogni Momento"
             },
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -321,9 +329,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 15,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
     
     "Eva Valmonte": {
@@ -341,7 +350,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare e Armatura di +2",
                 "tipo": "Modificatore",
                 "costo_destino": 1,
@@ -359,6 +368,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 6,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -388,6 +398,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -426,9 +437,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     # === CAPITOL ===
@@ -459,6 +471,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -488,6 +501,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -508,7 +522,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +3",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -526,6 +540,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -554,7 +569,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Sempre"
             },
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento con valore base C raddoppiato (18)",
                 "tipo": "Modificatore",
                 "costo_destino": 2,
@@ -572,9 +587,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Free Marine": {
@@ -601,6 +617,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -630,6 +647,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 12,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -668,9 +686,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Martian Banshee": {
@@ -697,6 +716,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -726,6 +746,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 16,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -766,6 +787,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -786,7 +808,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -804,9 +826,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Capo Squadriglia": {
@@ -824,7 +847,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +3",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -842,6 +865,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 2,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -884,9 +908,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Dottoressa Diana": {
@@ -930,6 +955,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita": 17,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -968,6 +994,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 2,
         "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1006,9 +1033,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Contorsionista": {
@@ -1044,6 +1072,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 10,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1098,6 +1127,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False,
@@ -1145,8 +1175,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 6,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": True
     },
     
@@ -1183,6 +1214,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1221,6 +1253,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 21,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1259,6 +1292,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 23,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1297,6 +1331,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1343,9 +1378,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 17,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
     
     "Osservatore Tattico": {
@@ -1389,9 +1425,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 11,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Cacciatore": {
@@ -1427,6 +1464,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 2,
         "quantita": 14,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1465,6 +1503,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1493,7 +1532,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Sempre"
             },
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -1511,6 +1550,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False,
@@ -1549,6 +1589,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -1592,6 +1633,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -1612,8 +1654,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
-                "descrizione": "Aumenta le caratteristiche di Attacco di +2",
+                "nome": "Aumenta caratteristica",
+                "descrizione": "Aumenta Armatura di +2",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
                 "target": "Guerrieri Imperiali nella squadra tranne il Porta Stendardo",
@@ -1630,6 +1672,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 27,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1666,6 +1709,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 2,
         "quantita": 23,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1695,6 +1739,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 20,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1731,8 +1776,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 5,
         "quantita": 22,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 4,
         "fondamentale": False
     },
 
@@ -1767,8 +1813,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 18,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -1787,7 +1834,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Quando è in gioco tutti i Blood Beret (ma non lui stesso) guadagnano +1 in C e S",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -1805,6 +1852,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 5,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1834,6 +1882,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 21,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1863,6 +1912,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1899,6 +1949,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1928,6 +1979,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1947,7 +1999,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 7
         },
         "abilita": [{
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Quando è in gioco, tutta la Cavalleria Aerea guadagna un +1 in S e A",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -1964,6 +2016,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2000,8 +2053,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -2029,6 +2083,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 11,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2050,7 +2105,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta al guerriero assegnato ed alle sue copie, le caratteristiche di Combattimento, Sparare, Armatura e valore di +4",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -2068,9 +2123,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 16,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },    
 
     "Comandante in Capo": {
@@ -2106,6 +2162,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False,
@@ -2141,6 +2198,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 23,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2170,6 +2228,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 10,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2208,6 +2267,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 5,
         "quantita_minima_consigliata": 3,
         "fondamentale": False
@@ -2246,6 +2306,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False,
@@ -2285,8 +2346,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 5,
         "quantita": 3,
-        "quantita_minima_consigliata": 5,
+        "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
 
@@ -2314,6 +2376,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 22,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2344,6 +2407,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 18,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2364,7 +2428,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento e Sparare di +1",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -2382,8 +2446,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 13,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -2411,7 +2476,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Ogni Momento"
             },
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -2429,8 +2494,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 22,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False,
         "strategico": True
     },
@@ -2450,7 +2516,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [
             {
-                "nome": "Aumenta caratteristiche",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Aumenta le caratteristiche di Difesa di +2",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
@@ -2468,6 +2534,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 2,
         "quantita": 27,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2514,6 +2581,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False,
@@ -2544,6 +2612,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -2596,9 +2665,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
     
     "Nicholai": {
@@ -2622,7 +2692,15 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "costo_destino": 0,
                 "target": "Arte della Manipolazione ed Esorcismo",
                 "timing": "Turno"
-            },          
+            },         
+            {
+                "nome": "Lancia Incantesimi di Combattimento Personale",
+                "descrizione": "Lancia tutti gli incantesimi di Combattimento Personale",
+                "tipo": "Arte",
+                "costo_destino": 0,
+                "target": "Incantesimo di Combattimento Personale",
+                "timing": "Turno"
+            },   
             {
                 "nome": "Uccide Automaticamente",
                 "descrizione": "Se ferisce, uccide automaticamente",
@@ -2642,6 +2720,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 8,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
@@ -2680,6 +2759,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False,
@@ -2719,6 +2799,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 13,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2757,8 +2838,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 7,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
     
@@ -2795,6 +2877,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2833,6 +2916,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2871,8 +2955,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 6,
         "quantita": 5,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 4,
         "fondamentale": False
     },
         
@@ -2909,6 +2994,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 14,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2955,10 +3041,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False,
-        "strategico": True
+        "fondamentale": True
     },
     
     "L'Arcinquisitore Nikodemus": {
@@ -3002,10 +3088,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False,
-        "strategico": True
+        "fondamentale": False
     },
     
     "Guerrieri Sacri": {
@@ -3041,8 +3127,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 5,
-
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3081,6 +3167,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 27,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3127,6 +3214,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -3165,8 +3253,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 6,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
     
@@ -3201,6 +3290,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita":7,
         "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -3223,13 +3313,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "Puoi assegnare un DONO DELL'OSCURA SIMMETRIA agli Eretici man non un DONO DEGLI APOSTOLI",
         "flavour_text": "",
         "keywords": ["Eretico"],
-        "restrizioni": [],
+        "restrizioni": ["Solo doni dell'Oscura Simmetria"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita":7,
         "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -3268,6 +3359,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita":3,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -3297,6 +3389,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita":3,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -3326,13 +3419,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ad un Pretorian Stalker. Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
-        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "restrizioni": ["Solo doni degli Apostoli"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita":1,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -3355,13 +3449,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
-        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "restrizioni": ["Solo doni degli Apostoli"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita":6,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -3400,8 +3495,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 3,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False,
         "strategico": True
     },
@@ -3439,6 +3535,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False,
@@ -3478,6 +3575,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 3,
         "fondamentale": False,
@@ -3508,6 +3606,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 3,
         "quantita_minima_consigliata": 2,
         "fondamentale": False
@@ -3537,6 +3636,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3566,6 +3666,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3595,6 +3696,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3631,6 +3733,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3653,13 +3756,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "SEGUACE DI ALGEROTH. Non può attaccare più di una volta per turno. Questi guerrieri non possono ricevere carte dell'Oscura Simmetria o Equipaggiamenti, inoltre, non guadagnano i Bonus delle Fortificazioni. Solo l'avversario può giocare carte Speciali sul Bio Gigante.",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
-        "restrizioni": ["Carte Oscura Simmetria non Assegnabili", "Può attaccare solo una volta per turno", "Equipaggiamenti non assegnabili", "Non guadagnano bonus Fortificazione", "Carte Speciale non giocabili su di esso"],
+        "restrizioni": ["Solo doni degli Apostoli", "Può attaccare solo una volta per turno", "Equipaggiamenti non assegnabili", "Non guadagnano bonus Fortificazione", "Carte Speciale non giocabili su di esso"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3689,6 +3793,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 7,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3733,6 +3838,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -3762,6 +3868,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3806,6 +3913,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -3842,6 +3950,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3880,10 +3989,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False,
-        "strategico": True
+        "quantita_minima_consigliata": 3,
+        "fondamentale": False,        
     },
 
     "Golem dell'Oscurità": {
@@ -3912,17 +4021,17 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "SEGUACE DI ALGEROTH. Il Golem non può ricevere nessuna carta dell'Oscura Simmetria. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
-        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "restrizioni": ["Solo doni degli Apostoli"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False,
-        "strategico": True
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
 
@@ -3960,6 +4069,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -4006,10 +4116,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False,
-        "strategico": True
+        "fondamentale": True
     },
 
     "Legionario Urlante": {
@@ -4036,13 +4146,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "Una volta a partita, al costo di 5D, puoi invocare il Vento della Pazzia. Ogni Urlatore causa un Punto Danno, se sommandoli il totale è >= A, tutti i guerrieri in gioco sono Feriti. Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
         "flavour_text": "",
         "keywords": ["Seguace di Muawijhe"],
-        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "restrizioni": ["Solo doni degli Apostoli"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 2,
         "quantita":6,
         "quantita_minima_consigliata":4, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -4072,6 +4183,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita":2,
         "quantita_minima_consigliata":2, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -4101,6 +4213,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4141,6 +4254,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -4170,6 +4284,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4223,9 +4338,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita":1,
         "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "fondamentale": True # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
    
     "Tutore": {
@@ -4252,6 +4368,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita":3,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -4282,16 +4399,17 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Benedetti. I guerrieri feriti dai Legionari Benedetti sono automaticamente morti.",
         "flavour_text": "",
         "keywords": ["Seguace di Demnogonis", "Se ferisce, uccide automaticamente"],
-        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "restrizioni": ["Solo doni degli Apostoli"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita":7,
         "quantita_minima_consigliata":4, # utilizzata per la creazione del mazzo
-        "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
+        "fondamentale": True # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
 
 
@@ -4320,6 +4438,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4366,10 +4485,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False,
-        "strategico": True
+        "fondamentale": True
     },
     
     "Figlio di Ilian": {
@@ -4389,15 +4508,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Figli di Ilian",
         "flavour_text": "",
         "keywords": ["Seguace di Ilian"],
-        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "restrizioni": ["Solo doni degli Apostoli"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita":10,
-        "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
+        "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
     
@@ -4425,6 +4545,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita":5,
         "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -4454,6 +4575,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4492,6 +4614,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 3,
         "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4521,6 +4644,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4567,6 +4691,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -4607,6 +4732,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -4644,6 +4770,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 5,
         "quantita":4,
         "quantita_minima_consigliata":3, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -4690,10 +4817,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False,
-        "strategico": True
+        "fondamentale": True,
     },
 
     "Legionario di Semai": {
@@ -4713,13 +4840,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari di Semai",
         "flavour_text": "",
         "keywords": ["Seguace di Semai"],
-        "restrizioni": ["Carte Oscura Simmetria non Assegnabili"],
+        "restrizioni": ["Solo doni degli Apostoli"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita":11,
         "quantita_minima_consigliata":2, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
@@ -4773,10 +4901,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False,
             "pronto": True
         },
+        "valore_strategico": 10,
         "quantita":1,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
-        "fondamentale": False, # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
-        "strategico": True
+        "fondamentale": True, # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        
     },
    
     "Cultista di Semai": {
@@ -4803,6 +4931,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4843,6 +4972,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 6,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4875,10 +5005,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 6,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False,
-        "strategico": True
+        "fondamentale": False
     },
     "Guardia del corpo": {
         "nome": "Guardia del corpo",
@@ -4904,6 +5034,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4932,6 +5063,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 1,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4977,6 +5109,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 4,
         "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -5014,6 +5147,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "ferito": False, 
             "pronto": True
         },
+        "valore_strategico": 8,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False

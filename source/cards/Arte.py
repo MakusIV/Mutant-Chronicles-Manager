@@ -141,6 +141,7 @@ class Arte:
         
         # Contatori per effetti speciali
         self.contatori_speciali: Dict[str, int] = {}
+        self.valore_strategico = 0
         self.quantita = 0
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
@@ -168,7 +169,10 @@ class Arte:
         if len(guerriero.abilita) > 0:
             discipline_arte_guerriero = [abilita.target.lower() for abilita in guerriero.abilita if abilita.tipo == "Arte"]   
            
-            if not any( discipline.lower() not in discipline_arte_guerriero for discipline in [DisciplinaArte.TUTTE.value, self.disciplina.value]):
+            lancia_incantesimi_combattimento_personale = self.tipo == TipoArte.INCANTESIMO_PERSONALE and "incantesimo di combattimento personale" in self.disciplina.value
+            lancia_arte_specifica = any( discipline.lower() not in discipline_arte_guerriero for discipline in [DisciplinaArte.TUTTE.value, self.disciplina.value])
+            
+            if not ( lancia_incantesimi_combattimento_personale or lancia_arte_specifica ):
                 risultato["puo_lanciare"] = False
                 risultato["errori"].append(f"Richiede disciplina in {self.disciplina.value}")      
         
@@ -508,7 +512,11 @@ class Arte:
                 "bersagli_attuali": self.bersagli_attuali,
                 "punti_destino_spesi": self.punti_destino_spesi
             },
-            "contatori_speciali": self.contatori_speciali
+            "contatori_speciali": self.contatori_speciali,
+            "valore_strategico": self.valore_strategico,
+            "quantita": self.quantita,
+            "quantita_minima_consigliata": self.quantita_minima_consigliata,
+            "fondamentale": self.fondamentale
         }
     
     @classmethod
@@ -538,6 +546,7 @@ class Arte:
         arte.flavour_text = data["flavour_text"]
         arte.keywords = data["keywords"]
         arte.restrizioni = data["restrizioni"]
+        arte.valore_strategico = data["valore_strategico"]
         arte.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
         arte.fondamentale = data.get("fondamentale", False)
         
@@ -636,7 +645,7 @@ def crea_incantesimo_combattimento(nome: str, costo: int = 1,
     arte = crea_arte_fratellanza(nome, costo, disciplina)
     arte.tipo = TipoArte.INCANTESIMO_COMBATTIMENTO
     arte.timing = TimingArte.IN_COMBATTIMENTO
-    arte.durata = DurataArte.FINO_FINE_COMBATTIMENTO
+    arte.durata = DurataArte.FINE_COMBATTIMENTO
     arte.icona_gestione = TipoIcona.SCARTO
     arte.keywords.append("Incantesimo di Combattimento")
     return arte
@@ -647,7 +656,7 @@ def crea_incantesimo_personale(nome: str, costo: int = 1,
     arte = crea_arte_fratellanza(nome, costo, disciplina)
     arte.tipo = TipoArte.INCANTESIMO_PERSONALE
     arte.timing = TimingArte.IN_COMBATTIMENTO
-    arte.durata = DurataArte.FINO_FINE_COMBATTIMENTO
+    arte.durata = DurataArte.FINE_COMBATTIMENTO
     arte.icona_gestione = TipoIcona.SCARTO
     arte.bersaglio = BersaglioArte.SENZA_BERSAGLIO  # Solo su se stesso
     arte.keywords.append("Incantesimo Personale")

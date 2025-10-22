@@ -164,6 +164,7 @@ class Reliquia:
         # Compatibilità con altre carte
         self.incompatibile_con: List[str] = []  # Reliquie/equipaggiamenti incompatibili
         self.potenzia: List[str] = []  # Carte/abilità che potenzia
+        self.valore_strategico = 0
         self.quantita = 0
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
@@ -549,7 +550,11 @@ class Reliquia:
                 "assegnata_da": self.assegnata_da,
                 "turno_assegnazione": self.turno_assegnazione,
                 "in_gioco_globalmente": self.in_gioco_globalmente
-            }
+            },
+            "valore_strategico": self.valore_strategico,
+            "quantita": self.quantita,
+            "quantita_minima_consigliata": self.quantita_minima_consigliata,
+            "fondamentale": self.fondamentale
         }
     
     @classmethod
@@ -614,6 +619,7 @@ class Reliquia:
         reliquia.requisiti_speciali = data["requisiti_speciali"]
         reliquia.immunita = data["immunita"]
         reliquia.vulnerabilita = data["vulnerabilita"]
+        reliquia.valore_strategico = data["valore_strategico"]
         reliquia.quantita = data.get("quantita", 0)
         reliquia.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
         reliquia.fondamentale = data.get("fondamentale", False)

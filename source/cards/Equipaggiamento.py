@@ -131,6 +131,7 @@ class Equipaggiamento:
         # Compatibilità
         self.compatibile_con: List[str] = []
         self.equipaggiamenti_richiesti: List[str] = []
+        self.valore_strategico = 0
         self.quantita = 0
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
@@ -431,9 +432,10 @@ class Equipaggiamento:
                 "compatibile_con": self.compatibile_con,
                 "equipaggiamenti_richiesti": self.equipaggiamenti_richiesti
             },
+            "valore_strategico": self.valore_strategico,
+            "quantita": self.quantita,
             "quantita_minima_consigliata": self.quantita_minima_consigliata,
-            "fondamentale": self.fondamentale,
-            "quantita": self.quantita
+            "fondamentale": self.fondamentale            
         }
     
     @classmethod
@@ -485,6 +487,7 @@ class Equipaggiamento:
         equipaggiamento.keywords = data["keywords"]
         equipaggiamento.set_espansione = data["set_espansione"]
         equipaggiamento.numero_carta = data["numero_carta"]
+        equipaggiamento.valore_strategico = data["valore_strategico"]
         equipaggiamento.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
         equipaggiamento.fondamentale = data.get("fondamentale", False),
         equipaggiamento.quantita = data.get("quantita", 0)

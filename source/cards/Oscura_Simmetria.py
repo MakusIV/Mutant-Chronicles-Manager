@@ -8,7 +8,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloOscuraSimmetria, TipoOscuraSimmetria  # Corretto percorso import
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloOscuraSimmetria, TipoOscuraSimmetria , TipoGuerriero # Corretto percorso import
 
 
 
@@ -146,7 +146,7 @@ class Oscura_Simmetria:
         
         # Gestione immunità
         self.puo_essere_negata = True  # Alcune carte non possono essere negate
-
+        self.valore_strategico = 0
         self.quantita = 0
         self.quantita_minima_consigliata = 0  # per la creazione del mazzo
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
@@ -171,16 +171,24 @@ class Oscura_Simmetria:
             risultato["puo_lanciare"] = False
             risultato["errori"].append(f"Solo {[f.value for f in self.fazioni_permesse]} possono usare l'Oscura Simmetria")
     
-        if self.tipo == TipoOscuraSimmetria.GENERICA and "Carte Oscura Simmetria non Assegnabili" in guerriero.restrizioni:
+        if (self.tipo == TipoOscuraSimmetria.GENERICA or self.tipo == TipoOscuraSimmetria.DONO_OSCURA_SIMMETRIA or self.tipo == TipoOscuraSimmetria.DONO_OSCURA_LEGIONE ) and "Solo doni degli Apostoli" in guerriero.restrizioni:
             risultato["puo_lanciare"] = False
             risultato["errori"].append(f"Il guerriero {guerriero.nome} non può usare le carte generiche dell'Oscura Simmetria")
     
         # Verifica seguaci degli apostoli
-        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO:
+        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO and "Solo doni dell'Oscura Simmetria" not in guerriero.restrizioni:
             seguace_richiesto = f"Seguace di {self.apostolo_padre.value}"
             if seguace_richiesto not in guerriero.keywords:
                 risultato["puo_assegnare"] = False
                 risultato["errori"].append(f"Solo seguaci di {self.apostolo_padre.value} possono ricevere questo dono")
+
+        if "Solo Eretici" in self.restrizioni and "Eretico" not in guerriero.keywords:
+            risultato["puo_assegnare"] = False
+            risultato["errori"].append("Solo Eretici")
+
+        if "Non può essere usato su Personalita" in self.restrizioni and guerriero.tipo == TipoGuerriero.PERSONALITA:   
+            risultato["puo_assegnare"] = False
+            risultato["errori"].append("Solo Non Personalita")
         
         return risultato
     
@@ -189,25 +197,8 @@ class Oscura_Simmetria:
         """
         Verifica se il dono può essere assegnato al guerriero
         Secondo il regolamento: solo guerrieri Oscura Legione, con controlli per seguaci specifici
-        """
-        risultato = self.puo_essere_associata_a_guerriero(guerriero)        
-         
-        # Verifica immunità: ATT confonde guerriero con il target
-        if hasattr(guerriero, 'keywords'):
-            if "Immune all'Oscura Simmetria" in guerriero.keywords:
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append("Guerriero immune all'Oscura Simmetria")
-            elif "Immune ai Doni dell'Oscura Simmetria" in guerriero.keywords:
-                if self.tipo == TipoOscuraSimmetria.GENERICA:
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append("Guerriero immune ai Doni generici")
-          
-        # Verifica se ha già una copia dello stesso dono
-        if hasattr(guerriero, 'allegati') and self.nome in guerriero.allegati:
-            risultato["puo_assegnare"] = False
-            risultato["errori"].append(f"Guerriero ha già {self.nome}")
-        
-        return risultato
+        """        
+        return self.puo_essere_associata_a_guerriero(guerriero)     
     
     def aggiungi_fazione_permessa(self, fazione: Fazione) -> None:
         """
@@ -640,7 +631,11 @@ class Oscura_Simmetria:
             "penalita_giocatore": self.penalita_giocatore,
             "contatori_oscura": self.contatori_oscura,
             "livello_corruzione": self.livello_corruzione,
-            "puo_essere_negata": self.puo_essere_negata
+            "puo_essere_negata": self.puo_essere_negata,
+            "valore_strategico": self.valore_strategico,
+            "quantita": self.quantita,
+            "quantita_minima_consigliata": self.quantita_minima_consigliata,
+            "fondamentale": self.fondamentale
         }
     
     @classmethod
@@ -666,6 +661,7 @@ class Oscura_Simmetria:
         carta.penalita_giocatore = data["penalita_giocatore"]
         carta.contatori_oscura = data["contatori_oscura"]
         carta.livello_corruzione = data["livello_corruzione"]
+        carta.valore_strategico = data["valore_strategico"]
         carta.quantita = data.get("quantita", 0)
         carta.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
         carta.fondamentale = data.get("fondamentale", False)
@@ -735,40 +731,11 @@ def crea_dono_apostolo(nome: str, apostolo: ApostoloOscuraSimmetria, costo: int 
 def crea_corruzione(nome: str, livello: int = 1, costo: int = 0) -> Oscura_Simmetria:
     """Crea una carta di Corruzione"""
     carta = crea_oscura_generica(nome, costo)
-    carta.tipo = TipoOscuraSimmetria.CORRUZIONE
+    carta.tipo = TipoOscuraSimmetria.DONO_APOSTOLO
     carta.bersaglio = BersaglioOscura.GUERRIERO_AVVERSARIO
     carta.durata = DurataOscura.PERMANENTE
     carta.aggiungi_effetto("Corruzione", livello, "combattimento", 
                           f"Corruzione livello {livello}")
-    return carta
-
-def crea_mutazione(nome: str, descrizione_mutazione: str, costo: int = 1) -> Oscura_Simmetria:
-    """Crea una carta di Mutazione"""
-    carta = crea_oscura_generica(nome, costo)
-    carta.tipo = TipoOscuraSimmetria.MUTAZIONE
-    carta.bersaglio = BersaglioOscura.GUERRIERO_PROPRIO
-    carta.durata = DurataOscura.ASSEGNATA
-    carta.aggiungi_effetto("Mutazione", 0, "", descrizione_mutazione)
-    return carta
-
-def crea_tentazione(nome: str, costo: int = 1) -> Oscura_Simmetria:
-    """Crea una carta di Tentazione"""
-    carta = crea_oscura_generica(nome, costo)
-    carta.tipo = TipoOscuraSimmetria.TENTAZIONE
-    carta.bersaglio = BersaglioOscura.GUERRIERO_AVVERSARIO
-    carta.durata = DurataOscura.ISTANTANEA
-    carta.aggiungi_effetto("Controllo", 0, "", "tap")
-    return carta
-
-def crea_possessione(nome: str, valore_massimo: int = 3, costo: int = 3) -> Oscura_Simmetria:
-    """Crea una carta di Possessione"""
-    carta = crea_oscura_generica(nome, costo)
-    carta.tipo = TipoOscuraSimmetria.POSSESSIONE
-    carta.bersaglio = BersaglioOscura.GUERRIERO_AVVERSARIO
-    carta.durata = DurataOscura.FINO_ELIMINAZIONE
-    carta.aggiungi_effetto("Possessione", 0, "", "Controllo completo",
-                          [f"Solo guerrieri con Valore ≤ {valore_massimo}"],
-                          ["Scarta 2 carte"])
     return carta
 
 
@@ -789,22 +756,4 @@ if __name__ == "__main__":
                                    [], ["Il guerriero non può ritirarsi dal combattimento"])
     print(f"✓ {furia_algeroth}")
     
-    # Mutazione
-    artigli_mutanti = crea_mutazione("Artigli Mutanti", "Artigli", 2)
-    print(f"✓ {artigli_mutanti}")
-    
-    # Possessione
-    possessione_demoniaca = crea_possessione("Possessione Demoniaca", 3, 4)
-    print(f"✓ {possessione_demoniaca}")
-    
-    print(f"\n=== CORREZIONI APPLICATE ===")
-    print("✓ Restrizioni fazioni corrette: solo Oscura Legione")
-    print("✓ Denominazione corretta 'Oscura Legione' (non 'Legione Oscura')")
-    print("✓ Gestione immunità completa secondo regolamento")
-    print("✓ Doni specifici per Seguaci degli Apostoli")
-    print("✓ Effetti collaterali implementati")
-    print("✓ Sistema corruzione permanente")
-    print("✓ Mutazioni con effetti meccanici")
-    print("✓ Gestione assegnazione doni")
-    print("✓ Verifica Seguaci degli Apostoli")
-    print("✓ Percorsi import corretti con 'source.cards'")
+   
