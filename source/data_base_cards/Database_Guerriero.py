@@ -65,7 +65,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "Ogni punto guadagnato dal Mercenario deve essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Bauhaus\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Mercenario"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -274,7 +274,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Bauhaus nella tua squadra equipaggiati con CARRO ARMATO e tutti i guerrieri Bauhaus considerati CARRI ARMATI o VEICOLI, guadagnano un +5 in C, S, A e V. Il Comandante non incrementa i propri valori, ma ulteriori Comandanti introdotti in gioco possono farlo.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -429,7 +429,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Bauhaus nella Tua Squadra con V uguale a 9 o meno, uccidono automaticamente i guerrieri che feriscono.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -463,7 +463,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "Ogni punto guadagnato dal Mercenario deve essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Capitol\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Mercenario"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -779,7 +779,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Capitol nella tua Squadra con V uguale a 8 o meno, uccidono automaticamente i guerrieri che feriscono.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -818,7 +818,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (SERGENTE). Assegna un guerriero Capitol non personalità al Sergente. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre il Sergente è vivo e nella Squadra.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -857,7 +857,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Capitol nella tua squadra equipaggiati con AERONAVI e tutti i guerrieri Capitol considerati AERONAVI o VEICOLI, guadagnano un +3 in C, S, A e V mentre il Capo Squadriglia non incrementa i propri valori, ma ulteriori Capi Squadriglia introdotti in gioco possono farlo.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -986,7 +986,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA. Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Cybertronic\", ma dovrà pagare 1D per poter introdurre queste carte in gioco.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Mercenario"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -1119,7 +1119,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (CAPITANO). IMMUNE AI DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Mentre è in gioco, tutti i guerrieri Cybertronic nella tua Squadra con V uguale a 9 o meno, uccidono automaticamente i guerrieri che feriscono.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": ["Carte delle Arti non Assegnabili"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -2075,7 +2075,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Imperiali\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Mercenario"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -2115,7 +2115,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (SERGENTE). Assegna un guerriero Imperiale non personalità al Comandante.Questo guerriero e le sue eventuali copie incrementa le caratteristiche di Combattimento, Sparare, Armatura e valore di +4",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -2154,7 +2154,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (CAPITANO). Mentre questo guerriero è in gioco, tutti i guerrieri imperiali della tua squadra con V<=8 uccidono automaticamente i guerrieri che feriscono.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -2220,7 +2220,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare armi e Equipaggiamenti marcati \"Solo Mishima\", ma dovrà pagare 3D per poter introdurre in gioco queste carte.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Mercenario"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -2486,7 +2486,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (SERGENTE). Assegna un guerriero Mishima non personalità al Jito. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre il Jito è vivo e nella Squadra.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -2573,7 +2573,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "COMANDANTE (CAPITANO). Mentre è in gioco, tutti i guerrieri Mishima nella tua Squadra con V uguale a 8 o meno, uccidono automaticamente i guerrieri che feriscono.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4330,7 +4330,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             }],
         "testo_carta": "Immune agli effetti dell'Arte. Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.Se Ferito, il Nefarita  può guarire se stesso spendendo 7D",
         "flavour_text": "",
-        "keywords": ["Seguace di Demnogonis"],
+        "keywords": ["Seguace di Demnogonis", "Nefarita"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4893,7 +4893,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             }],
         "testo_carta": "Immune agli effetti dell'Arte. I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto, esamina la tua Collezione e introduci un Legionario di Semai nel tuo Schieramento. Se non hai una carta per rappresentarlo, perdi questa possibilità",
         "flavour_text": "",
-        "keywords": ["Seguace di Semai"],
+        "keywords": ["Seguace di Semai", "Nefarita"],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {

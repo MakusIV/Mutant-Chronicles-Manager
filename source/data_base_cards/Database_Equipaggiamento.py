@@ -8,7 +8,7 @@ from source.cards.Equipaggiamento import (
     Equipaggiamento, TipoEquipaggiamento, TipoArmatura, TipoVeicolo,
     ModificatoreEquipaggiamento, AbilitaSpeciale
 )
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione
+from source.cards.Guerriero import Fazione, Rarity, DOOMTROOPER, Set_Espansione
 
 
 DATABASE_EQUIPAGGIAMENTO = {
@@ -23,6 +23,12 @@ DATABASE_EQUIPAGGIAMENTO = {
     
     # ========== ARMI CORPO A CORPO - SET BASE ==========
     
+    # NOTA: nel database i valori specificati nei modificatori statistiche e quelli analoghi specificati nei modificatori_speciali 
+    # se rappresentano lo stesso potenziamento devono alternativi gli uni agli altri. Pertanto è necessario verificare che se sono specificati per uno, i valori dell'altro 
+    # gruppo devono essere posti a 0. Se, invece, i valori riportati nel gruppo statistiche sono di default e quelli specificati nel gruppo modificatori_speciali sono aggiuntivi
+    # e vengono aapplicati in base ad una determinata condizione allora devono essere specificati
+
+
     # Base
 
     "AH/UH-19 Mitraglia Guardiano": {
@@ -41,8 +47,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         },
         "modificatori_speciali": [
             {
-                "statistica": "sparare",
-                "valore": "+S, A e V raddoppiate",
+                "statistica": "multiple: S, A, V",
+                "valore": "raddoppiate",
                 "condizione": "Quando il guerriero pilota l'Aeronave",
                 "descrizione": "S, A e V sono raddoppiate quando usa il Guardiano"
             }
@@ -100,15 +106,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
+        "modificatori_speciali": [            
             {
-                "statistica": "combattimento",
-                "valore": "+1",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +1 in C, mentre il suo avversario deve penalizzare il proprio C di un -1, a causa degli effetti devastanti dell'Arma"
-            },
-            {
-                "statistica": "combattimento",
+                "statistica": "combattimento dell'avversario",
                 "valore": "-1",
                 "condizione": "Avversario del guerriero equipaggiato",
                 "descrizione": "L'avversario deve penalizzare il proprio C di un -1"
@@ -159,14 +159,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+3",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +3 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Assegna Carte",
@@ -216,25 +209,13 @@ DATABASE_EQUIPAGGIAMENTO = {
         "rarity": "Common",
         "statistiche": {
             "combattimento": 4,
-            "sparare": 0,
+            "sparare": 4,
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
+        "modificatori_speciali": [                   
             {
-                "statistica": "combattimento",
-                "valore": "+4",
-                "condizione": "Quando usata",
-                "descrizione": "Il guerriero guadagna un +4 in C e S"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+4",
-                "condizione": "Quando usata",
-                "descrizione": "Il guerriero guadagna un +4 in C e S"
-            },
-            {
-                "statistica": "valore",
+                "statistica": "valore dell'avversario",
                 "valore": "-1",
                 "condizione": "Se l'avversario non è stato ucciso",
                 "descrizione": "Subisce un -1 in V ogni Turno, a meno che il giocatore spenda 3D ogni Turno"
@@ -288,43 +269,30 @@ DATABASE_EQUIPAGGIAMENTO = {
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
-            "combattimento": 2,
-            "sparare": 2,
+            "combattimento": 0,
+            "sparare": 0,
             "armatura": 0,
             "valore": 0
         },
         "modificatori_speciali": [
             {
-                "statistica": "combattimento",
+                "statistica": "multiple: C, S, A",
                 "valore": "+2",
                 "condizione": "Quando ingerita",
                 "descrizione": "Questa droga incrementa un +2 in C, S e A"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+2",
-                "condizione": "Quando ingerita",
-                "descrizione": "Questa droga incrementa un +2 in C, S e A"
-            }
+            },            
         ],
         "abilita_speciali": [
             {
-                "nome": "Immune agli effetti dell'Arte",
+                "nome": "Immune alle ferite durante il combattimento",
                 "descrizione": "Durante il combattimento in cui viene ingerita, il guerriero è immune alle ferite, ma alla fine sarà ferito indipendentemente dall'esito",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Immunita",
                 "limitazioni": ["Ferito alla fine del combattimento indipendentemente dall'esito"]
             },
-            {
-                "nome": "Modifica Stato",
-                "descrizione": "Scarta il Ticker dopo l'uso",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Modificatore",
-                "limitazioni": ["Si scarta dopo l'uso"]
-            }
         ],
         "requisiti": [],
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": DOOMTROOPER,
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -347,9 +315,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 7,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -426,7 +394,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             {
                 "statistica": "combattimento",
                 "valore": "+4",
-                "condizione": "Contro un Tutore",
+                "condizione": "Uso ristretto: Utilizzata da un Tutore",
                 "descrizione": "Un Tutore con questa Spada ottiene invece un +4 in C"
             }
         ],
@@ -485,21 +453,13 @@ DATABASE_EQUIPAGGIAMENTO = {
         },
         "modificatori_speciali": [
             {
-                "statistica": "sparare",
-                "valore": "S, A e V raddoppiate",
+                "statistica": "multiple: S, A, V",
+                "valore": "raddoppiate",
                 "condizione": "Quando pilota questa Aeronave",
                 "descrizione": "S, A e V del guerriero sono raddoppiate"
             }
         ],
-        "abilita_speciali": [
-            {
-                "nome": "Assegna Carte",
-                "descrizione": "Può essere assegnata a ogni Mishima Doomtrooper",
-                "costo_attivazione": 0,
-                "tipo_attivazione": "Carte",
-                "limitazioni": ["Solo Mishima Doomtrooper"]
-            }
-        ],
+        "abilita_speciali": [],
         "requisiti": ["Un guerriero non può essere equipaggiato con più di un'Aeronave", "Quando usi il Kamikaze durante un combattimento, nessun altra Arma può essere utilizzata"],
         "fazioni_permesse": ["Mishima"],
         "restrizioni_guerriero": [],
@@ -544,14 +504,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+2",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +2 in C"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": ["Una volta assegnato, il Vassht non potrà essere mosso su un altro guerriero", "Il guerriero non potrà possedere altre Armi da Corpo a Corpo o Corpo a Corpo/Fuoco"],
         "fazioni_permesse": ["Oscura Legione"],
@@ -597,14 +550,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+1",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +1 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Modifica Stato",
@@ -638,7 +584,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -659,12 +605,6 @@ DATABASE_EQUIPAGGIAMENTO = {
             "valore": 0
         },
         "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+1",
-                "condizione": "Normalmente",
-                "descrizione": "Normalmente questa Lama incrementa C di un +1"
-            },
             {
                 "statistica": "combattimento",
                 "valore": "+1 ulteriore",
@@ -705,7 +645,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -725,14 +665,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+2",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +2 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -774,23 +707,17 @@ DATABASE_EQUIPAGGIAMENTO = {
         "rarity": "Common",
         "statistiche": {
             "combattimento": 0,
-            "sparare": 4,
+            "sparare": 0,
             "armatura": 0,
             "valore": 0
         },
         "modificatori_speciali": [
             {
-                "statistica": "sparare",
+                "statistica": "multiple: S, A",
                 "valore": "+4",
                 "condizione": "Quando pilota l'Aeronave",
                 "descrizione": "S e A del guerriero guadagnano un +4"
-            },
-            {
-                "statistica": "armatura",
-                "valore": "+4",
-                "condizione": "Quando pilota l'Aeronave",
-                "descrizione": "S e A del guerriero guadagnano un +4"
-            }
+            },            
         ],
         "abilita_speciali": [
             {
@@ -845,20 +772,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+3",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +3 in C e S"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+3",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +3 in C e S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -884,10 +798,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Sherman.74 Modello 13 Bolter": {
@@ -904,20 +818,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+2",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +2 in C e S"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+2",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +2 in C e S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Modifica Azione",
@@ -951,10 +852,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Braccio Cibernetico": {
@@ -971,14 +872,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+6",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +6 in C"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -1004,10 +898,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Affilata": {
@@ -1024,14 +918,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+1",
-                "condizione": "Quando associata a un'Arma da Corpo a Corpo ma non a quelle promiscue Corpo a Corpo/Fuoco",
-                "descrizione": "Il guerriero guadagna un +1 in C"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -1111,10 +998,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 5,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Mine Anti Uomo": {
@@ -1165,10 +1052,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Kit Pronto Soccorso": {
@@ -1219,9 +1106,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -1239,14 +1126,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+1",
-                "condizione": "Quando associabile a ogni arma da fuoco",
-                "descrizione": "Il guerriero guadagna un +1 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -1292,14 +1172,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+3",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +3 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -1345,14 +1218,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 1,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "armatura",
-                "valore": "+1",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "I guerrieri guadagnano un +1 in A"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -1398,14 +1264,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+2",
-                "condizione": "Quando associata a un'Arma da Fuoco che permette di utilizzare un'Arma da fuoco anche nei combattimenti Corpo a Corpo",
-                "descrizione": "Incrementa la Tua caratteristica C di +2"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Modifica Azione",
@@ -1492,10 +1351,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Spada Punisher": {
@@ -1512,14 +1371,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+1",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +1 in C"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -1565,14 +1417,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+3",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +3 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
@@ -1652,7 +1497,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1672,20 +1517,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+1",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +1 in C e un +1 in S"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+1",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +1 in C e un +1 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Modifica Azione",
@@ -1791,36 +1623,11 @@ DATABASE_EQUIPAGGIAMENTO = {
         "rarity": "Common",
         "statistiche": {
             "combattimento": 0,
-            "sparare": 5,
+            "sparare": 7,
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+5",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un +5 in C, S, A e V, ma non può usare altre CARTE Equipaggiamento"
-            },
-            {
-                "statistica": "combattimento",
-                "valore": "+5",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un +5 in C, S, A e V, ma non può usare altre CARTE Equipaggiamento"
-            },
-            {
-                "statistica": "armatura",
-                "valore": "+5",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un +5 in C, S, A e V, ma non può usare altre CARTE Equipaggiamento"
-            },
-            {
-                "statistica": "valore",
-                "valore": "+5",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un +5 in C, S, A e V, ma non può usare altre CARTE Equipaggiamento"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -1854,7 +1661,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -1874,14 +1681,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+5",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +5 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Oscura Legione"],
@@ -1927,14 +1727,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+8",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +8 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -1968,10 +1761,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Plague Gun": {
@@ -2000,7 +1793,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         ],
         "requisiti": [],
         "fazioni_permesse": ["Oscura Legione"],
-        "restrizioni_guerriero": ["Seguace di Demnogonis"],
+        "restrizioni_guerriero": ["Solo Seguaci di Demnogonis"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -2013,7 +1806,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         },
         "testo_carta": "ASSEGNABILE A QUALSIASI SEGUACE DI DEMNOGONIS. I Doomtrooper feriti dal Plague Gun, sono automaticamente uccisi e un Doomtrooper nella stessa Squadra, scelto dal giocatore del Doomtrooper, viene ferito. I guerrieri uccisi dalla piaga fanno guadagnare punti.",
         "flavour_text": "",
-        "keywords": ["Seguace di Demnogonis"],
+        "keywords": ["Solo Seguaci di Demnogonis"],
         "set_espansione": "Inquisition",
         "numero_carta": "",
         "costo_produzione": 0,
@@ -2022,10 +1815,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "AG-17 Panzerknacker": {
@@ -2042,18 +1835,11 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+4",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +4 in S e può Attaccare due avversari diversi nella stessa Azione"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Modifica Azione",
-                "descrizione": "Gli Attacchi sono condotti separatamente. Annuncia entrambi gli attacchi, prima di risolvere il primo. Qualsiasi modificatore giocato per il primo combattimento, vale anche per il secondo. Altri modificatori possono essere aggiunti nel secondo combattimento.",
+                "descrizione": "Può Attaccare due avversari diversi nella stessa Azione. Gli Attacchi sono condotti separatamente. Annuncia entrambi gli attacchi, prima di risolvere il primo. Qualsiasi modificatore giocato per il primo combattimento, vale anche per il secondo. Altri modificatori possono essere aggiunti nel secondo combattimento.",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Modificatore",
                 "limitazioni": []
@@ -2083,7 +1869,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2103,17 +1889,11 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+3",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +3 in C"
-            },
+        "modificatori_speciali": [            
             {
                 "statistica": "combattimento",
                 "valore": "+5",
-                "condizione": "Se assegnata a un NEFARITA DI ALGEROTH",
+                "condizione": "Uso ristretto: se assegnata a un NEFARITA DI ALGEROTH",
                 "descrizione": "allora l'Azogar conferisce un +5 in C"
             }
         ],
@@ -2162,14 +1942,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+7",
-                "condizione": "Quando associato a qualsiasi veicolo dell'Oscura Legione",
-                "descrizione": "Il guerriero guadagna un +7 in S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -2210,10 +1983,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Combat Coordinator": {
@@ -2230,32 +2003,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 8,
             "valore": 8
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+8",
-                "condizione": "Quando assegnabile a un Tutore",
-                "descrizione": "Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+8",
-                "condizione": "Quando assegnabile a un Tutore",
-                "descrizione": "Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita"
-            },
-            {
-                "statistica": "armatura",
-                "valore": "+8",
-                "condizione": "Quando assegnabile a un Tutore",
-                "descrizione": "Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita"
-            },
-            {
-                "statistica": "valore",
-                "valore": "+8",
-                "condizione": "Quando assegnabile a un Tutore",
-                "descrizione": "Il Tutore guadagna un +8 in C, S, A e V e può scartare il Coordinator per evitare una ferita"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -2289,10 +2037,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Baionetta a Catena": {
@@ -2309,14 +2057,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+6",
-                "condizione": "Quando associabile a qualsiasi arma da fuoco dell'Oscura Legione",
-                "descrizione": "L'arma è ora un'ARMA DA FUOCO E DA CORPO A CORPO e considera un +6 in C"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Oscura Legione"],
@@ -2342,7 +2083,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2362,14 +2103,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+5",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +5 in S e gli avversari feriti dal Purifier, sono automaticamente uccisi"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -2403,9 +2137,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 8,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -2423,17 +2157,11 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 1,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "armatura",
-                "valore": "+1",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +1 in A"
-            },
+        "modificatori_speciali": [           
             {
                 "statistica": "armatura",
                 "valore": "+3",
-                "condizione": "Se è un INQUISITORE o un INQUISITORE MASSIMO",
+                "condizione": "Uso ristretto: Se è un INQUISITORE o un INQUISITORE MASSIMO",
                 "descrizione": "allora guadagna un +3 in A"
             }
         ],
@@ -2485,7 +2213,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Guarisce Guerriero",
+                "nome": "Ripara equipaggiamento o fortificazione",
                 "descrizione": "Se la carta a cui il Kit è associato viene scartata, mettila nel mazzo di carte da Pescare e mescola. Scarta il Kit dopo averlo usato.",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Guarigione",
@@ -2525,7 +2253,7 @@ DATABASE_EQUIPAGGIAMENTO = {
     "Spada e Pistola Punisher": {
         "nome": "Spada e Pistola Punisher",
         "valore": 0,
-        "tipo": "Arma da Corpo a Corpo",
+        "tipo": "Arma da Fuoco e da Corpo a Corpo",
         "categoria_arma": "Corpo a Corpo",
         "tipo_armatura": None,
         "tipo_veicolo": None,
@@ -2536,23 +2264,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+2",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +2 in C e S"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+2",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +2 in C e S"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": DOOMTROOPER,
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -2575,7 +2290,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2598,16 +2313,10 @@ DATABASE_EQUIPAGGIAMENTO = {
         "modificatori_speciali": [
             {
                 "statistica": "sparare",
-                "valore": "+1",
-                "condizione": "Quando associato a qualsiasi arma da fuoco e da fuoco/corpo a corpo",
+                "valore": "+4",
+                "condizione": "incrementa con costo: Quando associato a qualsiasi arma da fuoco e da fuoco/corpo a corpo",
                 "descrizione": "Il guerriero guadagna un +1 in S, in alternativa può scegliere di spendere tutte tre le Azioni per compiere un Attacco con un +4 in S"
             },
-            {
-                "statistica": "sparare",
-                "valore": "+4",
-                "condizione": "Se spende tutte e tre le Azioni per compiere un Attacco",
-                "descrizione": "Può scegliere di spendere tutte tre le Azioni per compiere un Attacco con un +4 in S"
-            }
         ],
         "abilita_speciali": [],
         "requisiti": [],
@@ -2658,13 +2367,13 @@ DATABASE_EQUIPAGGIAMENTO = {
             {
                 "statistica": "sparare",
                 "valore": "+4",
-                "condizione": "Quando equipaggiato",
+                "condizione": "incrementa con costo: Per ogni ulteriore Azione dedicata a questo Attacco, il guerriero guadagna un ulteriore +4 in S (per esempio, puoi spendere tre Azioni e fare un Attacco con +12)",
                 "descrizione": "Il guerriero guadagna un +4 in S. Per ogni ulteriore Azione dedicata a questo Attacco, il guerriero guadagna un ulteriore +4 in S (per esempio, puoi spendere tre Azioni e fare un Attacco con +12)."
             }
         ],
         "abilita_speciali": [],
         "requisiti": [],
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": DOOMTROOPER,
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -2687,14 +2396,14 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
 
-    "Lancia Castigator (Doomtrooper)": {
-        "nome": "Lancia Castigator (Doomtrooper)",
+    "Lancia Castigator": {
+        "nome": "Lancia Castigator",
         "valore": 0,
         "tipo": "Arma da Corpo a Corpo",
         "categoria_arma": "Corpo a Corpo",
@@ -2703,27 +2412,21 @@ DATABASE_EQUIPAGGIAMENTO = {
         "rarity": "Common",
         "statistiche": {
             "combattimento": 2,
-            "sparare": 0,
+            "sparare": 4,
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+2",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +2 in C"
-            },
+        "modificatori_speciali": [                        
             {
                 "statistica": "combattimento",
                 "valore": "+4",
-                "condizione": "Se assegnata a una VALCHIRIA",
-                "descrizione": "guadagna un +4 in C"
+                "condizione": "Uso ristretto: Se assegnata a una VALCHIRIA, durante il combattimento",
+                "descrizione": "Se assegnata a una VALCHIRIA, durante il combattimento"
             },
             {
                 "statistica": "sparare",
                 "valore": "+4",
-                "condizione": "Se assegnata a una VALCHIRIA, durante il combattimento",
+                "condizione": "Incrementa con costo: Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S",
                 "descrizione": "Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S"
             }
         ],
@@ -2752,7 +2455,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2775,7 +2478,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Modifica Azione",
+                "nome": "Incrementa Azioni",
                 "descrizione": "Questo guerriero può compiere un'Azione extra (compreso l'Attacco), durante ogni Tuo turno.",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Modificatore",
@@ -2806,9 +2509,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 10,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -2826,14 +2529,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+4",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +4 in S. Se il totale S del guerriero che usa l'SSW4200, è più del doppio della A del suo avversario, l'avversario ferito, è automaticamente ucciso."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -2867,7 +2563,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -2921,10 +2617,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Necrobionica": {
@@ -2941,18 +2637,11 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+3",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +3 in C"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
-        "fazioni_permesse": ["Oscura Legione"],
-        "restrizioni_guerriero": ["Eretico"],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": ["Solo Eretici"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -3034,71 +2723,6 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": False
     },
 
-    "Lancia Castigator": {
-        "nome": "Lancia Castigator",
-        "valore": 0,
-        "tipo": "Arma da Corpo a Corpo",
-        "categoria_arma": "Corpo a Corpo",
-        "tipo_armatura": None,
-        "tipo_veicolo": None,
-        "rarity": "Common",
-        "statistiche": {
-            "combattimento": 2,
-            "sparare": 0,
-            "armatura": 0,
-            "valore": 0
-        },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+2",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +2 in C"
-            },
-            {
-                "statistica": "combattimento",
-                "valore": "+4",
-                "condizione": "Se assegnata a una VALCHIRIA",
-                "descrizione": "guadagna un +4 in C"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+4",
-                "condizione": "Se assegnata a una VALCHIRIA, durante il combattimento",
-                "descrizione": "Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S"
-            }
-        ],
-        "abilita_speciali": [],
-        "requisiti": [],
-        "fazioni_permesse": ["Fratellanza"],
-        "restrizioni_guerriero": [],
-        "valore_minimo_richiesto": 0,
-        "valore_minimo_richiesto_sparare": 0,
-        "meccaniche_armi": {},
-        "meccaniche_veicoli": {},
-        "stato": {
-            "stato_operativo": "Funzionante",
-            "assegnato_a": None,
-            "in_gioco": False,
-            "utilizzato_questo_turno": False
-        },
-        "testo_carta": "ASSEGNABILE AD OGNI DOOMTROOPER. ARMA DA CORPO A CORPO. Il guerriero guadagna un +2 in C. Se assegnata a una VALCHIRIA invece, guadagna un +4 in C. Puoi scartare la Castigator durante il combattimento, per guadagnare un +4 in S.",
-        "flavour_text": "",
-        "keywords": [],
-        "set_espansione": "Inquisition",
-        "numero_carta": "",
-        "costo_produzione": 0,
-        "compatibilita": {
-            "compatibile_con": [],
-            "upgrade_disponibili": [],
-            "equipaggiamenti_richiesti": []
-        },
-        "valore_strategico": 1,
-        "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
     "Icarus": {
         "nome": "Icarus",
         "valore": 0,
@@ -3110,7 +2734,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "statistiche": {
             "combattimento": 0,
             "sparare": 5,
-            "armatura": 0,
+            "armatura": 5,
             "valore": 0
         },
         "modificatori_speciali": [
@@ -3119,13 +2743,7 @@ DATABASE_EQUIPAGGIAMENTO = {
                 "valore": "+5",
                 "condizione": "Quando pilota l'Aeronave",
                 "descrizione": "Il guerriero guadagna un +5 in S e A e può scartare una qualsiasi Fortificazione o VEICOLO in gioco, al costo di tre Azioni"
-            },
-            {
-                "statistica": "armatura",
-                "valore": "+5",
-                "condizione": "Quando pilota l'Aeronave",
-                "descrizione": "Il guerriero guadagna un +5 in S e A e può scartare una qualsiasi Fortificazione o VEICOLO in gioco, al costo di tre Azioni"
-            }
+            },           
         ],
         "abilita_speciali": [
             {
@@ -3138,7 +2756,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         ],
         "requisiti": ["Un guerriero può avere un solo VEICOLO", "Quando utilizzi l'Icarus non si possono usare altre Armi"],
         "fazioni_permesse": ["Fratellanza"],
-        "restrizioni_guerriero": ["Arcangelo"],
+        "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -3180,17 +2798,11 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+2",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +2 in S. Se il guerriero spende anche un'Azione per prendere la mira, guadagna un ulteriore +3 in S per quel combattimento."
-            },
+        "modificatori_speciali": [            
             {
                 "statistica": "sparare",
                 "valore": "+3",
-                "condizione": "Se il guerriero spende anche un'Azione per prendere la mira",
+                "condizione": "Incrementa con costo: Se il guerriero spende anche un'Azione per prendere la mira",
                 "descrizione": "L'Azione 'prendere la mira' deve avvenire immediatamente prima dell'Azione di Attacco."
             }
         ],
@@ -3219,7 +2831,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3239,24 +2851,17 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+6",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +6 in S e può usare un'Azione di Attacco per scartare un VEICOLO o una Fortificazione in gioco"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Modifica Azione",
-                "descrizione": "Il guerriero non può farlo se viene Attaccato.",
+                "nome": "Scarta Carta",
+                "descrizione": "Il guerriero può usare un'Azione di Attacco per scartare un VEICOLO o una Fortificazione in gioco, non può farlo se viene Attaccato.",
                 "costo_attivazione": 1,
-                "tipo_attivazione": "Modificatore",
-                "limitazioni": ["Non può essere usato se viene attaccato"]
+                "tipo_attivazione": "Carte",
+                "limitazioni": ["Non può se viene attaccato"]
             }
         ],
-        "requisiti": ["Il guerriero non può farlo se viene Attaccato"],
+        "requisiti": [],
         "fazioni_permesse": ["Capitol"],
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
@@ -3280,7 +2885,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3300,23 +2905,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 3,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+5",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Un guerriero può avere un solo VEICOLO. Considera un +5 in C e un +3 in A"
-            },
-            {
-                "statistica": "armatura",
-                "valore": "+3",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Un guerriero può avere un solo VEICOLO. Considera un +5 in C e un +3 in A"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": ["Un guerriero può avere un solo VEICOLO"],
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": DOOMTROOPER,
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -3393,7 +2985,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 4,        
+        "quantita": 4,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
     },
 
     "Paramenti Sacri": {
@@ -3410,14 +3005,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 1,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "armatura",
-                "valore": "+1",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +1 in A. Se il guerriero è un MISTICO o un CUSTODE DELL'ARTE quando viene ferito può spendere 3D alla fine del combattimento per curarsi"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Guarisce se stesso",
@@ -3451,7 +3039,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 2,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3471,14 +3059,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+3",
-                "condizione": "Quando equipaggiata",
-                "descrizione": "Il guerriero guadagna un +3 in C"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Fratellanza"],
@@ -3538,7 +3119,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         ],
         "requisiti": ["Un guerriero può avere solo un Elmetto Comando"],
         "fazioni_permesse": ["Generica"],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Solo Comandanti"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -3560,10 +3141,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Computer Tattico": {
@@ -3592,7 +3173,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         ],
         "requisiti": ["Un guerriero può avere solo un Computer Tattico"],
         "fazioni_permesse": ["Generica"],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Solo Comandanti"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -3614,10 +3195,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Mezzo D'Esplorazione Pegasus": {
@@ -3634,18 +3215,11 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "armatura",
-                "valore": "+3",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Questo guerriero esegue un volo di ricognizione facendo guadagnare ai guerrieri della propria Squadra (compreso se stesso) un + 3 in A."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": ["Un guerriero può avere assegnato solo un veicolo"],
         "fazioni_permesse": ["Capitol"],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Assegnabile a guerrieri con V <= 4"],
         "valore_minimo_richiesto": 4,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -3698,7 +3272,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Può trasportare carte equipaggiamento dalla squadra"],
-        "fazioni_permesse": ["Imperiali"],
+        "fazioni_permesse": DOOMTROOPER,
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -3721,7 +3295,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -3752,7 +3326,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Non può utilizzare altre carte Equipaggiamento mentre utilizza il Furga"],
-        "fazioni_permesse": ["Mercenario", "Eretici"],
+        "fazioni_permesse": ["Solo Mercenari o Eretici"],
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -3795,26 +3369,13 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+2",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Guadagna un + 2 in C e un + 5 in S, inoltre attacca sempre per primo se sceglie di Sparare"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+5",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Guadagna un + 2 in C e un + 5 in S, inoltre attacca sempre per primo se sceglie di Sparare"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Modifica Azione",
+                "nome": "Attacca sempre per primo se sceglie di Sparare",
                 "descrizione": "Attacca sempre per primo se sceglie di Sparare. Se il guerriero avversario sopravvive, potrà rispondere al fuoco.",
                 "costo_attivazione": 0,
-                "tipo_attivazione": "Modificatore",
+                "tipo_attivazione": "Azioni",
                 "limitazioni": []
             }
         ],
@@ -3842,9 +3403,9 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 6,
         "quantita": 16,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -3862,14 +3423,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "armatura",
-                "valore": "+5",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Può trasportare fino a tre guerrieri Bauhaus (entrare ed uscire dal Dragonfly costa un'azione) che guadagnano un +5 in A"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Assegna Carte",
@@ -3880,7 +3434,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Un guerriero può avere assegnato solo un veicolo"],
-        "fazioni_permesse": ["Bauhaus"],
+        "fazioni_permesse": DOOMTROOPER,
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -3926,7 +3480,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Modifica Azione",
+                "nome": "Attacca sempre per primo",
                 "descrizione": "Il guerriero non può utilizzare carte Equipaggiamento quando utilizza il Dragonfish. Questo guerriero attacca sempre per primo, se l'avversario sopravvive può rispondere all'Attacco. Avversari feriti dal Dragonfish sono automaticamente uccisi.",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Modificatore",
@@ -3987,15 +3541,15 @@ DATABASE_EQUIPAGGIAMENTO = {
         "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Modifica Azione",
+                "nome": "Scarta carta",
                 "descrizione": "Spendendo tre azioni un punto Promozione, questo Carro può scartare una qualsiasi carta Equipaggiamento, Fortificazione o Warzone.",
                 "costo_attivazione": 3,
-                "tipo_attivazione": "Modificatore",
+                "tipo_attivazione": "Carte",
                 "limitazioni": ["Costo: 3 azioni + 1 punto Promozione"]
             }
         ],
         "requisiti": [],
-        "fazioni_permesse": ["Cybertronic"],
+        "fazioni_permesse": DOOMTROOPER,
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -4041,11 +3595,11 @@ DATABASE_EQUIPAGGIAMENTO = {
         "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Uccide Automaticamente",
+                "nome": "Scarta carta",
                 "descrizione": "Al costo di tre azioni questo guerriero può scartare una Fortificazione, una WARZONE e un Veicolo. Guerrieri trasportati da un Veicolo che viene scartato sono uccisi e i punti vengono guadagnati normalmente. Questa è considerata un'Azione d'Attacco. Rimuovere questa carta dal gioco dopo l'uso.",
                 "costo_attivazione": 3,
-                "tipo_attivazione": "Combattimento",
-                "limitazioni": ["Si rimuove dal gioco dopo l'uso"]
+                "tipo_attivazione": "Carte",
+                "limitazioni": []
             }
         ],
         "requisiti": [],
@@ -4092,26 +3646,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 4,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+4",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un + 4 in C, S e A"
-            },
-            {
-                "statistica": "sparare",
-                "valore": "+4",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un + 4 in C, S e A"
-            },
-            {
-                "statistica": "armatura",
-                "valore": "+4",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un + 4 in C, S e A"
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [],
         "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Il guerriero non può usare altre carte equipaggiamento mentre utilizza la Black Widow", "I guerrieri avversari non guadagnano i benefici delle Fortificazioni"],
         "fazioni_permesse": ["Oscura Legione"],
@@ -4137,10 +3672,10 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Lanciaflamme Tormentor": {
@@ -4157,14 +3692,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+6",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un + 6 in C. Se C è più del doppio della caratteristica A dell'avversario ogni ferita uccide automaticamente."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -4198,7 +3726,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4218,14 +3746,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+5",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un + 5 in C e, se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -4237,7 +3758,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         ],
         "requisiti": [],
         "fazioni_permesse": ["Imperiali", "Cybertronic"],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Solo Comandanti"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -4259,7 +3780,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 4,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4279,14 +3800,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+4",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un + 4 in S e ogni guerriero ferito da quest'arma è automaticamente ucciso. Se il guerriero che possiede quest'arma viene ucciso o scartato mescola il META CANNON nel tuo mazzo di carte da pescare."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -4305,7 +3819,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         ],
         "requisiti": [],
         "fazioni_permesse": ["Oscura Legione"],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Assegnabile a guerrieri con V <= 6"],
         "valore_minimo_richiesto": 6,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -4344,26 +3858,13 @@ DATABASE_EQUIPAGGIAMENTO = {
         "statistiche": {
             "combattimento": 0,
             "sparare": 2,
-            "armatura": 0,
+            "armatura": 2,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "sparare",
-                "valore": "+2",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un +2 in S e A. Questo guerriero attacca sempre per primo negli scontri a fuoco (S); se l'avversario sopravvive può rispondere al fuoco."
-            },
-            {
-                "statistica": "armatura",
-                "valore": "+2",
-                "condizione": "Quando pilota il veicolo",
-                "descrizione": "Il guerriero guadagna un +2 in S e A. Questo guerriero attacca sempre per primo negli scontri a fuoco (S); se l'avversario sopravvive può rispondere al fuoco."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Modifica Azione",
+                "nome": "Attacca sempre per primo",
                 "descrizione": "Il guerriero non può usare altre carte equipaggiamento mentre utilizza il B52 ma attacca sempre per primo negli scontri a fuoco (S).",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Modificatore",
@@ -4371,7 +3872,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Il guerriero non può usare altre carte equipaggiamento mentre utilizza il B52"],
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -4425,8 +3926,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Un guerriero può avere assegnato solo un Veicolo", "Guerrieri che utilizzano il Jet Pack non possono utilizzare altre carte equipaggiamento e non usufruscono dei bonus delle fortificazioni"],
-        "fazioni_permesse": ["Doomtrooper"],
-        "restrizioni_guerriero": [],
+        "fazioni_permesse": ["Generica"],
+        "restrizioni_guerriero": ["Assegnabile a guerrieri con V <= 5"],
         "valore_minimo_richiesto": 5,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -4439,7 +3940,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         },
         "testo_carta": "ASSEGNABILE AD OGNI GUERRIERO CON UN V PARI A 5 O MENO. AERONAVE e VEICOLO. Un guerriero può avere assegnato solo un Veicolo. Guerrieri che utilizzano il Jet Pack non possono utilizzare altre carte equipaggiamento e non usufruscono dei bonus delle fortificazioni. I guerrieri avversari non ricevono i bonus positivi dei WARZONE.",
         "flavour_text": "",
-        "keywords": ["Doomtrooper"],
+        "keywords": [],
         "set_espansione": "Warzone",
         "numero_carta": "",
         "costo_produzione": 0,
@@ -4479,7 +3980,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "abilita_speciali": [],
         "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Il guerriero non può usare altre carte equipaggiamento mentre utilizza il Death Angel"],
         "fazioni_permesse": ["Fratellanza"],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Assegnabile a guerrieri con V <= 3"],
         "valore_minimo_richiesto": 3,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -4501,7 +4002,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -4524,10 +4025,10 @@ DATABASE_EQUIPAGGIAMENTO = {
         "modificatori_speciali": [],
         "abilita_speciali": [
             {
-                "nome": "Modifica Azione",
+                "nome": "Scarta carta",
                 "descrizione": "Al costo di tre azioni il Carronade può scartare una WARZONE o una Fortificazione in gioco.",
                 "costo_attivazione": 3,
-                "tipo_attivazione": "Modificatore",
+                "tipo_attivazione": "Carte",
                 "limitazioni": []
             }
         ],
@@ -4575,14 +4076,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "armatura",
-                "valore": "+5",
-                "condizione": "Guerrieri trasportati",
-                "descrizione": "Può trasportare fino a tre guerrieri dell'Oscura Legione. Entrare ed uscire dal REAVER costa un'azione per guerriero. I guerrieri trasportati guadagnano un +5 in A ma non possono utilizzare altre carte equipaggiamento, inoltre possono solo venir feriti da armi da FUOCO e da VEICOLI. Se il Reaver viene scartato tutti i guerrieri trasportati sono uccisi e l'avversario guadagna normalmente i punti."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Assegna Carte",
@@ -4636,14 +4130,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+3",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +3 in C e, se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -4697,14 +4184,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "armatura": 0,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "combattimento",
-                "valore": "+4",
-                "condizione": "Quando equipaggiato",
-                "descrizione": "Il guerriero guadagna un +4 in C e se il totale è più del doppio della caratteristica A dell'avversario, ogni ferita uccide automaticamente."
-            }
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Uccide Automaticamente",
@@ -4716,7 +4196,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         ],
         "requisiti": [],
         "fazioni_permesse": ["Bauhaus", "Capitol"],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Solo Comandanti"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -4738,7 +4218,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "upgrade_disponibili": [],
             "equipaggiamenti_richiesti": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 3,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False

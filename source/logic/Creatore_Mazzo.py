@@ -249,20 +249,29 @@ class CreatoreMazzo:
         Returns:
             float: Potenza relativa (0-1)
         """
-        potenza_assoluta = 0
+        potenza_assoluta = 1.0
         
+        STATISTICHE_MODIFICATORI = [["sparare", "combattimento", "armatura", "S", "A", "C", "multiple:"]]
+
         # Somma modificatori statistiche
         statistiche = {
             'combattimento':    equipaggiamento.modificatori_combattimento,
             'sparare':          equipaggiamento.modificatori_sparare,
             'armatura':         equipaggiamento.modificatori_armatura,
-            'valore':           equipaggiamento.modificatori_valore
+            #'valore':           equipaggiamento.modificatori_valore
         }
-        for modifica in statistiche:
-            if modifica in ['combattimento', 'sparare', 'armatura']:
-                potenza_assoluta += abs(statistiche[modifica])
 
-        statistiche = True if potenza_assoluta > 1 else False    
+        for valore_modifica in statistiche.values():
+            if valore_modifica > 0:
+                potenza_assoluta += valore_modifica
+         
+
+        modifica_statistiche_applicata = True if potenza_assoluta > 1 else False   
+
+        # NOTA: nel database i valori specificati nei modificatori statistiche e quelli analoghi specificati nei modificatori_speciali 
+        # se rappresentano lo stesso potenziamento devono alternativi gli uni agli altri. Pertanto è necessario verificare che se sono specificati per uno, i valori dell'altro 
+        # gruppo devono essere posti a 0. Se, invece, i valori riportati nel gruppo statistiche sono di default e quelli specificati nel gruppo modificatori_speciali sono aggiuntivi
+        # e vengono aapplicati in base ad una determinata condizione allora devono essere specificati
 
         # Bonus per modificatori speciali
         for modificatore in equipaggiamento.modificatori_speciali:
@@ -271,26 +280,30 @@ class CreatoreMazzo:
             descrizione = modificatore.descrizione.lower()
             valore = modificatore.valore.lower()
             condizione = modificatore.condizione.lower()            
-
             
-            if any(val in descrizione for val in ["raddoppiate", "+5", "+6", "+7", "+8", "+9"]) and statistica in ["sparare", "combattimento", "armatura", "valore"]:
-                if statistiche:
-                    potenza_assoluta *= 1.3
-                else:    
-                    potenza_assoluta += 4
-            
-            if statistica in ["sparare", "combattimento", "armatura", "valore"]:                                   
-                if any(val in descrizione for val in ["+3", "+4"]):
-                    if statistiche:
-                        potenza_assoluta *= 1.2
+            if statistica in STATISTICHE_MODIFICATORI:
+                                                
+                if any(val in valore for val in ["raddoppiate", "+5", "+6", "+7", "+8", "+9"]):  
+                                                  
+                    if modifica_statistiche_applicata and ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                        potenza_assoluta *= 1.3
                     else:    
-                        potenza_assoluta += 2
-                elif any(val in descrizione for val in ["+1", "+2"]):
-                    if statistiche:
-                        potenza_assoluta *= 1.1
-                    else:    
-                        potenza_assoluta += 1
-                            
+                        potenza_assoluta += 4
+                
+                elif any(val in valore for val in ["+3", "+4"]):                
+                        if modifica_statistiche_applicata and ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                            potenza_assoluta *= 1.2
+                        else:    
+                            potenza_assoluta += 2
+                    
+                elif any(val in descrizione for val in ["+1", "+2"]):                        
+                        if modifica_statistiche_applicata and ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                            potenza_assoluta *= 1.1
+                        else:    
+                            potenza_assoluta += 1
+                                
+                if "multiple" in statistica:
+                    potenza_assoluta *= 1.5 # aumenta del 50% la potenza assoluta                
         
         # Bonus per abilita speciali
         for abilita in equipaggiamento.abilita_speciali:
@@ -308,7 +321,7 @@ class CreatoreMazzo:
             if tipo == "immunita":
                 if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
                     potenza_assoluta *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione"]):
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
                     potenza_assoluta *= 1.2
                                                                                     
             if tipo == "modificatore":        
@@ -320,9 +333,10 @@ class CreatoreMazzo:
                     potenza_assoluta *= 1.2
 
             if tipo == "guarigione" :
-                    if "guarisce se stesso" in nome:
-                        potenza_assoluta *= 1.3
-
+                if "guarisce se stesso" in nome or "guarisce guerriero" in nome:
+                    potenza_assoluta *= 1.3
+                if "ripara equipaggiamento o fortificazione" in nome:
+                    potenza_assoluta *= 1.1
 
             if tipo == "arte":                
                 if "lancia arte e/o incantesimo dell'arte" == nome:
@@ -338,7 +352,7 @@ class CreatoreMazzo:
                     potenza_assoluta *= 1.3    
 
             if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco"]:
+                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
                     potenza_assoluta *= 1.3    
                 elif nome in ["modifica azione", "modifica stato"]:
                     potenza_assoluta *= 1.1    
@@ -381,14 +395,102 @@ class CreatoreMazzo:
         """
         armatura = fortificazione.bonus_armatura
         
-        # Se ha valori differenziati, prendi il minore
-        if hasattr(fortificazione, 'bonus_differenziati'):
-            armatura = min(fortificazione.bonus_differenziati.values())
-        
         # Se non influenza l'armatura
         if armatura == 0:
             return 0.5
         
+
+
+        # Bonus per modificatori speciali
+        for modificatore in fortificazione.modificatori_speciali:
+            # Potenziamento altri guerrieri
+            statistica = modificatore.statistica.lower()
+            descrizione = modificatore.descrizione.lower()
+            valore = modificatore.valore.lower()
+            condizione = modificatore.condizione.lower()            
+            
+            if statistica in STATISTICHE_MODIFICATORI:
+                                                
+                if any(val in valore for val in ["raddoppiate", "+5", "+6", "+7", "+8", "+9"]):  
+                                                  
+                    if modifica_statistiche_applicata and ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                        potenza_assoluta *= 1.3
+                    else:    
+                        potenza_assoluta += 4
+                
+                elif any(val in valore for val in ["+3", "+4"]):                
+                        if modifica_statistiche_applicata and ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                            potenza_assoluta *= 1.2
+                        else:    
+                            potenza_assoluta += 2
+                    
+                elif any(val in descrizione for val in ["+1", "+2"]):                        
+                        if modifica_statistiche_applicata and ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                            potenza_assoluta *= 1.1
+                        else:    
+                            potenza_assoluta += 1
+                                
+                if "multiple" in statistica:
+                    potenza_assoluta *= 1.5 # aumenta del 50% la potenza assoluta                
+        
+        # Bonus per abilita speciali
+        for abilita in equipaggiamento.abilita_speciali:
+            # Potenziamento altri guerrieri
+            descrizione = abilita.descrizione.lower()
+            nome = abilita.nome.lower()
+            tipo = abilita.tipo_attivazione.lower()
+
+            if tipo == "combattimento":
+                    if nome == "uccide automaticamente":
+                        potenza_assoluta *= 1.5
+                    if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
+                        potenza_assoluta *= 1.3
+                    
+            if tipo == "immunita":
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                    potenza_assoluta *= 1.4
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                    potenza_assoluta *= 1.2
+                                                                                    
+            if tipo == "modificatore":        
+                if nome in ["aumenta effetto", "aumenta caratteristica"]:
+                    potenza_assoluta *= 1.3
+                elif nome == "trasforma guerrieri uccisi in alleati":
+                    potenza_assoluta *= 1.1
+                elif nome == "sostituisce guerrieri":
+                    potenza_assoluta *= 1.2
+
+            if tipo == "guarigione" :
+                if "guarisce se stesso" in nome or "guarisce guerriero" in nome:
+                    potenza_assoluta *= 1.3
+                if "ripara equipaggiamento o fortificazione" in nome:
+                    potenza_assoluta *= 1.1
+
+            if tipo == "arte":                
+                if "lancia arte e/o incantesimo dell'arte" == nome:
+                    potenza_assoluta *= 1.3                
+                elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
+                    potenza_assoluta *= 1.2
+
+            if tipo == "oscura simmetria" or tipo == "dono degli apostoli":                
+                    potenza_assoluta *= 1.3            
+            
+            if tipo == "carte":
+                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
+                    potenza_assoluta *= 1.3    
+
+            if tipo == "azioni":
+                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
+                    potenza_assoluta *= 1.3    
+                elif nome in ["modifica azione", "modifica stato"]:
+                    potenza_assoluta *= 1.1    
+
+        
+
+
+
+
+
         # Normalizza
         max_potenza = self._calcola_max_potenza_fortificazioni()
         if max_potenza > 0:
@@ -607,7 +709,7 @@ class CreatoreMazzo:
             descrizione_effetto = effetto.descrizione_effetto #descrizione effetto: 'uccide', ferisce automaticamente', 'scarta guerriero' 'scarta carta'
             desc = descrizione_effetto.lower()
 
-            if tipo_effetto == "modificatore" and statistica_target in ["combattimento", "sparare", "armatura"] and isinstance(valore, int) and valore > 0:
+            if tipo_effetto == "modificatore" and statistica_target in ["combattimento", "sparare", "armatura", "C", "S", "A"] and isinstance(valore, int) and valore > 0:
                 potenza += valore                     
         
         
@@ -668,7 +770,7 @@ class CreatoreMazzo:
                 elif 'scarta' in desc and 'guerriero' in desc:
                     potenza = 1.5
                 elif 'scarta' in desc and any(x in desc for x in ['equipaggiamento', 'fortificazione', 'reliquia', 'warzone']):
-                    potenza = 1.0
+                    potenza = 1.4
 
             elif tipo_effetto in ['azione combattimento', 'azione fase']: # Azione Fase, Azione Ogni Momento
                 potenza *= valore

@@ -30,18 +30,10 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": "Algeroth",
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Seguaci di Algeroth nel Tuo Schieramento guadagnano un +2 in A mentre la Cittadella di Algeroth è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": [],
@@ -51,7 +43,7 @@ DATABASE_FORTIFICAZIONI = {
         "keywords": ["Algeroth", "Seguace di Algeroth", "Cittadella", "Fortificazione"],
         "quantita": 2,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "La Cattedrale Di Longshore": {

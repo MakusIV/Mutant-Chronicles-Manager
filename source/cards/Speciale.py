@@ -305,10 +305,23 @@ class Speciale:
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append("Non utilizzabile dalla Fratellanza")
 
+            elif "Solo Comandanti" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Comandante" ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Comandanti")
 
+            elif "Solo Nefariti" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Nefarita" ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Nefarita")   
 
-            
-            
+            elif "Assegnabile a guerrieri con V <= " in restrizione:
+                valore_richiesto = int( restrizione.split("Assegnabile a guerrieri con V <= ")[1].strip() )
+                
+                if guerriero.stats.valore > valore_richiesto:                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
+         
 
         return risultato
      

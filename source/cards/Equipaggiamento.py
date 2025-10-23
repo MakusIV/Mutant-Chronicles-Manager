@@ -9,7 +9,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, TipoGuerriero  # Import dalle classi esistenti
 
 
 class TipoEquipaggiamento(Enum):
@@ -229,15 +229,48 @@ class Equipaggiamento:
             
             elif "Solo Seguaci di" in restrizione:
                 apostolo_richiesto = restrizione.split("Solo Seguaci di ")[1].strip()
-                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
 
             elif "Solo Eretici" in restrizione:
-                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Eretico" ):                       
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Eretici")
+
+            elif "Solo Mercenari" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Mercenari")
+
+            elif "Solo Mercenari o Eretici" in restrizione:
+                if guerriero.tipo != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords or "Eretico" not in guerriero.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Mercenari o Eretici")
+
+            elif "Solo Comandanti" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Comandanti")
+
+            elif "Solo Nefariti" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Nefarita" not in guerriero.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Nefarita")
+
+            elif "Solo Personalita" in restrizione:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Personalita")
             
+            elif "Assegnabile a guerrieri con V <= " in restrizione:
+                valore_richiesto = int( restrizione.split("Assegnabile a guerrieri con V <= ")[1].strip() )
+                
+                if guerriero.stats.valore > valore_richiesto:                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
+
+            # "Assegnabile a guerrieri con V <= 4"
             # Aggiungere altre restrizioni specifiche secondo necessità
 
         return risultato
