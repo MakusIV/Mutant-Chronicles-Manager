@@ -647,7 +647,7 @@ class CreatoreMazzo:
 
                 
                 if isinstance(valore, str) and "ristretto:" not in condizione:
-                    if valore in ["raddoppiate", "uguale alla più elevata"]:
+                    if valore in ["raddoppiate", "uguale alla più elevata", "x3"]:
                         valore = "10"  # Considera raddoppiate come +10 per il calcolo della potenza:
                     elif valore.startswith('+'):
                         valore = valore[1:]  # Rimuovi il segno '+' per la conversione a intero
