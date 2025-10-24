@@ -39,9 +39,9 @@ DATABASE_RELIQUIE = {
         ],
         "poteri": [
             {
-                "nome": "Uscire dalla Copertura e Attaccare",
+                "nome": "Attacco in uscita da Copertura",
                 "descrizione": "Mentre questa carta è in gioco, tutti i Tuoi guerrieri Mishima possono uscire dalla Copertura e Attaccare in un'Azione sola",
-                "tipo_potere": "Potenziamento Combattimento",
+                "tipo_potere": "Azioni",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Automatico",
                 "limitazioni": ["Solo guerrieri Mishima"],
@@ -59,9 +59,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 5,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Pugnale Sacrificale": {
@@ -79,9 +80,9 @@ DATABASE_RELIQUIE = {
         "modificatori": [],
         "poteri": [
             {
-                "nome": "Annulla Incantesimo Arte",
+                "nome": "Annulla effetto arte",
                 "descrizione": "Mentre in gioco tu puoi annullare l'effetto di un incantesimo dell'Arte appena lanciato (o scartare un incantesimo dell'Arte in gioco) scartando un tuo guerriero della Fratellanza",
-                "tipo_potere": "Annulla Effetto",
+                "tipo_potere": "Arte",
                 "costo_attivazione": "Scarta un guerriero della Fratellanza",
                 "tipo_attivazione": "Quando viene lanciato un incantesimo dell'Arte",
                 "limitazioni": ["Richiede guerriero della Fratellanza da scartare"],
@@ -99,6 +100,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 1,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -121,7 +123,7 @@ DATABASE_RELIQUIE = {
             {
                 "nome": "Lancia Arte",
                 "descrizione": "Mentre il Codice è in gioco, tutti i Tuoi guerrieri della Fratellanza possono lanciare tutti gli incantesimi dell'Arte e possono considerare tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO",
-                "tipo_potere": "Abilità Speciale",
+                "tipo_potere": "Arte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Passivo",
                 "limitazioni": ["Solo guerrieri della Fratellanza"],
@@ -141,7 +143,7 @@ DATABASE_RELIQUIE = {
         "potenzia": [],
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Armatura Del Vero Assassino": {
@@ -150,7 +152,7 @@ DATABASE_RELIQUIE = {
         "tipo": "",
         "rarity": "Common",
         "restrizioni": {
-            "fazioni_permesse": ["Doomtrooper"],
+            "fazioni_permesse": DOOMTROOPER,
             "corporazioni_specifiche": [],
             "tipi_guerriero": [],
             "keywords_richieste": [],
@@ -167,9 +169,9 @@ DATABASE_RELIQUIE = {
         ],
         "poteri": [
             {
-                "nome": "Uccide Automaticamente",
+                "nome": "Uccide automaticamente",
                 "descrizione": "D'ora in poi il guerriero è considerato un MORTIFICATORE. Può Attaccare qualsiasi guerriero in gioco e uccide automaticamente i guerrieri che ferisce. Il guerriero mantiene l'ICONA DI LEGAME, e quando viene Attaccato si applicano le normali restrizioni. Il guerriero Attacca per primo. Se l'avversario sopravvive, può rispondere all'Attacco",
-                "tipo_potere": "Potenziamento Combattimento",
+                "tipo_potere": "Combattimento",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Passivo",
                 "limitazioni": ["Può avere una sola ARMATURA"],
@@ -187,9 +189,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Guanto Dell'Esorcista": {
@@ -208,14 +211,14 @@ DATABASE_RELIQUIE = {
             {
                 "statistica": "C",
                 "valore": "+5",
-                "condizione": "Quando combatte Eretici",
+                "condizione": "ristretto: Quando combatte Eretici",
                 "descrizione": "Il guerriero guadagna un +5 in C e S, quando combatte gli Eretici",
                 "permanente": True
             },
             {
                 "statistica": "S",
                 "valore": "+5",
-                "condizione": "Quando combatte Eretici",
+                "condizione": "ristretto: Quando combatte Eretici",
                 "descrizione": "Il guerriero guadagna un +5 in C e S, quando combatte gli Eretici",
                 "permanente": True
             },
@@ -236,9 +239,9 @@ DATABASE_RELIQUIE = {
         ],
         "poteri": [
             {
-                "nome": "Lancia Arte dell'Esorcismo",
+                "nome": "Lancia arte",
                 "descrizione": "Il guerriero può lanciare tutti gli incantesimi dell'Arte dell'Esorcismo. Ogni 1D speso per gli incantesimi di Esorcismo vale 2D",
-                "tipo_potere": "Abilità Speciale",
+                "tipo_potere": "Arte",
                 "costo_attivazione": "1D = 2D per Esorcismo",
                 "tipo_attivazione": "Quando lancia incantesimi di Esorcismo",
                 "limitazioni": [],
@@ -256,9 +259,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        'valore_strategico': 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Il Portale Nero": {
@@ -276,9 +280,9 @@ DATABASE_RELIQUIE = {
         "modificatori": [],
         "poteri": [
             {
-                "nome": "Portare rinforzi",
+                "nome": "Porta rinforzi",
                 "descrizione": "Ogni 5D spesi, questo guerriero può portare in combattimento un altro dei Tuoi guerrieri dell'Oscura Legione come rinforzo. Il gruppo somma i valori C e S per il combattimento. L'avversario può scegliere quale guerriero combattere",
-                "tipo_potere": "Potenziamento Combattimento",
+                "tipo_potere": "Combattimento",
                 "costo_attivazione": "5D",
                 "tipo_attivazione": "Durante il combattimento",
                 "limitazioni": ["Solo guerrieri dell'Oscura Legione"],
@@ -296,6 +300,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 8,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -324,9 +329,9 @@ DATABASE_RELIQUIE = {
         ],
         "poteri": [
             {
-                "nome": "Scartare guerriero non Imperiale non Personalità",
+                "nome": "Scarta carta",
                 "descrizione": "Può far scartare un qualsiasi guerriero non Imperiale non Personalità al costo di tre Azioni e 5D. Non guadagni Punti e questo non viene considerato un Attacco",
-                "tipo_potere": "Manipolazione Carte",
+                "tipo_potere": "Carte",
                 "costo_attivazione": "3 Azioni e 5D",
                 "tipo_attivazione": "Azione",
                 "limitazioni": ["Solo guerrieri non Imperiali non Personalità"],
@@ -344,6 +349,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 4,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -403,9 +409,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Arsenale Infame": {
@@ -421,7 +428,17 @@ DATABASE_RELIQUIE = {
             "livello_minimo": 0
         },
         "modificatori": [],
-        "poteri": [],
+        "poteri": [
+            {
+                "nome": "Assegna carta",
+                "descrizione": "Mentre è in gioco, le carte Equipaggiamento giocate sui guerrieri dell'Oscura Legione che vengono uccisi, non sono scartate. Puoi invece mescolarle nel Tuo mazzo di carte da Pescare.",
+                "tipo_potere": "Carte",
+                "costo_attivazione": "3 Azioni e 5D",
+                "tipo_attivazione": "Azione",
+                "limitazioni": ["Solo guerrieri non Imperiali non Personalità"],
+                "una_volta_per_turno": False
+            }
+        ],
         "set_espansione": "Inquisition",
         "numero_carta": "",
         "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Mentre è in gioco, le carte Equipaggiamento giocate sui guerrieri dell'Oscura Legione che vengono uccisi, non sono scartate. Puoi invece mescolarle nel Tuo mazzo di carte da Pescare. Se questo guerriero viene ucciso, il suo equipaggiamento è scartato insieme a questa carta.",
@@ -433,9 +450,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Teschio Di Krynston": {
@@ -471,8 +489,9 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 8,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -530,6 +549,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 8,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -550,9 +570,9 @@ DATABASE_RELIQUIE = {
         "modificatori": [],
         "poteri": [
             {
-                "nome": "Assegna Carte",
+                "nome": "Assegna carte",
                 "descrizione": "Ogni volta che il possessore di questo guerriero introduce in gioco una carta, può subito pescarne dal mazzo un'altra per rimpiazzarla. Le carte scartate non vengono rimpiazzate in questo modo",
-                "tipo_potere": "Manipolazione Carte",
+                "tipo_potere": "Carte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Quando introduce una carta in gioco",
                 "limitazioni": ["Le carte scartate non vengono rimpiazzate"],
@@ -570,6 +590,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 2,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -605,18 +626,18 @@ DATABASE_RELIQUIE = {
         ],
         "poteri": [
             {
-                "nome": "Uccide Automaticamente",
+                "nome": "Uccide automaticamente",
                 "descrizione": "I guerrieri dell'Oscura Legione feriti dal Portatore di Luce sono automaticamente uccisi",
-                "tipo_potere": "Potenziamento Combattimento",
+                "tipo_potere": "Combattimento",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Automatico quando ferisce guerrieri dell'Oscura Legione",
                 "limitazioni": ["Solo contro guerrieri dell'Oscura Legione"],
                 "una_volta_per_turno": False
             },
             {
-                "nome": "Lancia Arte",
+                "nome": "Lancia arte",
                 "descrizione": "Se assegnata a un CARDINALE, i Tuoi guerrieri della Fratellanza considerano tutti gli INCANTESIMI PERSONALI DI COMBATTIMENTO come INCANTESIMI DI COMBATTIMENTO",
-                "tipo_potere": "Abilità Speciale",
+                "tipo_potere": "Arte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Se assegnata a un Cardinale",
                 "limitazioni": ["Solo se assegnata a un Cardinale"],
@@ -634,9 +655,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Missione Modificata": {
@@ -654,9 +676,9 @@ DATABASE_RELIQUIE = {
         "modificatori": [],
         "poteri": [
             {
-                "nome": "Trasformare Azioni",
+                "nome": "Converte azioni in azioni d'attacco",
                 "descrizione": "Mentre questa carta è in gioco, durante il Tuo Turno puoi trasformare fino a tre Azioni in Azioni di Attacco. Solo i guerrieri Capitol possono compiere Azioni di Attacco extra. Tutte le Azioni trasformate si aggiungono alla Tua Azione di Attacco normale",
-                "tipo_potere": "Manipolazione Azioni",
+                "tipo_potere": "Azioni",
                 "costo_attivazione": "Fino a 3 Azioni",
                 "tipo_attivazione": "Durante il proprio turno",
                 "limitazioni": ["Solo guerrieri Capitol possono compiere Azioni di Attacco extra"],
@@ -674,9 +696,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Armatura Di Empietà": {
@@ -711,9 +734,9 @@ DATABASE_RELIQUIE = {
                 "una_volta_per_turno": False
             },
             {
-                "nome": "Assegna Carte",
+                "nome": "Assegna carta",
                 "descrizione": "Può ricevere tutti i Doni degli Apostoli",
-                "tipo_potere": "Manipolazione Carte",
+                "tipo_potere": "Carte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Passivo",
                 "limitazioni": [],
@@ -731,9 +754,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Pergamena D'Evocazione Sacrilega": {
@@ -752,9 +776,9 @@ DATABASE_RELIQUIE = {
         "poteri": [
             
             {
-                "nome": "Assegna Carte",
+                "nome": "Assegna Carta",
                 "descrizione": "Eliminando questa carta puoi evocare un Apostolo dalla tua Collezione.L'Apostolo è subito inserito gratis nel tuo scheramento",
-                "tipo_potere": "Manipolazione Carte",
+                "tipo_potere": "Carte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Passivo",
                 "limitazioni": [],
@@ -763,7 +787,7 @@ DATABASE_RELIQUIE = {
         ],
         "set_espansione": "Inquisition",
         "numero_carta": "",
-        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. ARMATURA. +4 in A. Chi la utilizza è immune a tutti gli effetti dell'Arte e può ricevere tutti i Doni degli Apostoli. Un guerriero può essere equipaggiato con una sola ARMATURA.",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Eliminando questa carta puoi evocare un Apostolo dalla tua Collezione.L'Apostolo è subito inserito gratis nel tuo scheramento",
         "flavour_text": "",
         "keywords": [],
         "origine_storica": "",
@@ -772,9 +796,10 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
 
@@ -785,7 +810,7 @@ DATABASE_RELIQUIE = {
         "rarity": "Common",
         "restrizioni": {
             "fazioni_permesse": ["Fratellanza"],
-            "corporazioni_specifiche": [],
+            "corporazioni_specifiche": ["Assegnabile a guerrieri con V <= 6"],
             "tipi_guerriero": [],
             "keywords_richieste": ["Eretici scartati", "Eretici non introducibili"],
             "livello_minimo": 6
@@ -793,9 +818,9 @@ DATABASE_RELIQUIE = {
         "modificatori": [],
         "poteri": [
             {
-                "nome": "Scarta tutti gli Eretici",
+                "nome": "Scarta carta",
                 "descrizione": "Quando la carta è in gioco, tutti gli Eretici vengono scartati. Mentre è in gioco, non si possono introdurre Eretici, e i guerrieri convertiti Eretici, sono scartati senza guadagnare alcun punto",
-                "tipo_potere": "Manipolazione Carte",
+                "tipo_potere": "Carte",
                 "costo_attivazione": 0,
                 "tipo_attivazione": "Quando entra in gioco e passivo",
                 "limitazioni": ["Solo contro Eretici"],
@@ -813,6 +838,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -833,9 +859,9 @@ DATABASE_RELIQUIE = {
         "modificatori": [],
         "poteri": [
             {
-                "nome": "Cercare guerriero dell'Oscura Legione non-Personalità",
+                "nome": "Assegna carta",
                 "descrizione": "Puoi associarla a una cittadella nel tuo schieramento. Ogni volta che uccidi un Doomtrooper, PUOI cercare un guerriero dell'Oscura Legione non-Personalità nella Tua Collezione, il cui V non sia più alto di quello del guerriero ucciso, e metterlo nel Tuo Schieramento. Se fai questo, non guadagni punti per l'uccisione",
-                "tipo_potere": "Manipolazione Carte",
+                "tipo_potere": "Carte",
                 "costo_attivazione": "Non guadagnare punti per l'uccisione",
                 "tipo_attivazione": "Quando uccidi un Doomtrooper",
                 "limitazioni": ["V del guerriero evocato non superiore a quello ucciso"],
@@ -853,6 +879,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 1,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
         "fondamentale": False

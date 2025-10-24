@@ -11,7 +11,7 @@ from source.cards.Fortificazione import (
     BeneficiarioFortificazione, ModificatoreFortificazione, 
     AbilitaFortificazione
 )
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, CorporazioneSpecifica
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, CorporazioneSpecifica, DOOMTROOPER
 
 
 # Database completo delle carte Fortificazione
@@ -36,11 +36,12 @@ DATABASE_FORTIFICAZIONI = {
         "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
-        "restrizioni": [],
+        "restrizioni": ["Solo Seguaci di Algeroth"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Algeroth nel Tuo Schieramento guadagnano un +2 in A mentre la Cittadella di Algeroth è in gioco.",
         "flavour_text": "",
         "keywords": ["Algeroth", "Seguace di Algeroth", "Cittadella", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -75,10 +76,11 @@ DATABASE_FORTIFICAZIONI = {
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "testo_carta": "ASSEGNABILE ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte degli Elementi. Puoi avere solo una Cattedrale di Longshore in gioco.",
         "flavour_text": "",
         "keywords": ["Cattedrale", "Longshore", "Arte", "Elementi", "Fortificazione"],
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -113,10 +115,11 @@ DATABASE_FORTIFICAZIONI = {
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte dell'Esorcismo. Puoi solo avere una Cattedrale di Heimburg in gioco.",
         "flavour_text": "",
         "keywords": ["Cattedrale", "Heimburg", "Arte", "Esorcismo", "Fortificazione"],
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -135,18 +138,10 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Tuoi membri della Corporazione Capitol guadagnano un +2 in A mentre San Dorado è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": [],
@@ -154,9 +149,10 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ CAPITOL. Tutti i Tuoi membri della Corporazione Capitol guadagnano un +2 in A mentre San Dorado è in gioco.",
         "flavour_text": "",
         "keywords": ["Capitol", "Città", "San Dorado", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Complesso Industriale": {
@@ -176,16 +172,26 @@ DATABASE_FORTIFICAZIONI = {
         "punti_struttura": 0,
         "resistenza_attacchi": False,
         "modificatori": [],
-        "abilita_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Produce punti",
+                "descrizione": "Mentre il Complesso Industriale è in gioco, guadagni 3D ogni tua Fase Pescare",
+                "tipo_abilita": "Punti",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Produce 3D durante la Fase Pescare"]
+            }
+        ],
         "requisiti": [],
         "restrizioni": ["Non c'è limite al numero di complessi Industriali che puoi avere in gioco contemporaneamente"],
         "fazioni_permesse": ["Tutte"],
         "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA O AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre il Complesso Industriale è in gioco, guadagni 3D ogni tua Fase Pescare. Non c'è limite al numero di complessi Industriali che puoi avere in gioco contemporaneamente.",
         "flavour_text": "",
         "keywords": ["Industriale", "Complesso", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Longshore": {
@@ -201,18 +207,10 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Tuoi membri della Corporazione Mishima guadagnano un +2 in A mentre Longshore è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": [],
@@ -220,9 +218,10 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ MISHIMA. Tutti i Tuoi membri della Corporazione Mishima guadagnano un +2 in A mentre Longshore è in gioco.",
         "flavour_text": "",
         "keywords": ["Mishima", "Città", "Longshore", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Trincea": {
@@ -238,19 +237,12 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": False,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
+        "modificatori": [            
             {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Il guerriero guadagna un +2 in A, e un +2 in C",
-                "permanente": True
-            },
-            {
-                "statistica": "C",
+                "statistica": "multiple: A, C",
                 "valore": "+2",
                 "condizione": "sempre",
                 "descrizione": "Il guerriero guadagna un +2 in A, e un +2 in C",
@@ -264,8 +256,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "ASSEGNA QUESTA CARTA A UN GUERRIERO AL COSTO DI UN'AZIONE. Il guerriero trova protezione in una Trincea. Questo guerriero guadagna un +2 in A, e un +2 in C. Il guerriero non può cominciare un combattimento Corpo a Corpo, (ma può difendersi se è attaccato). Questa carta può essere mossa su un altro guerriero al costo di un'Azione.",
         "flavour_text": "",
         "keywords": ["Trincea", "Protezione", "Fortificazione"],
+        "valore_strategico": 6,
         "quantita": 5,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
 
@@ -286,13 +279,21 @@ DATABASE_FORTIFICAZIONI = {
         "punti_struttura": 0,
         "resistenza_attacchi": False,
         "modificatori": [],
-        "abilita_speciali": [],
+        "abilita_speciali": [{
+                "nome": "Imprigiona Guerrieri",
+                "descrizione": "Se uno dei tuoi Doomtrooper ferisce (non uccide) un guerriero Doomtrooper avversario e sopravvive allo scontro, può imprigionarlo. Quando lo imprigioni tutte le carte assegnate o associate al guerriero vengono scartate. I prigionieri non possono attaccare o essere attaccati. Se il Campo di Prigionia viene scartato tutti i suoi prigionieri tornano nella Squadra di appartenenza.",
+                "tipo_abilita": "Modificatore",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Imprigiona guerrieri"]
+            }],
         "requisiti": [],
         "restrizioni": ["I prigionieri non possono attaccare o essere attaccati", "Quando lo imprigioni tutte le carte assegnate o associate al guerriero vengono scartate"],
         "fazioni_permesse": ["Tutte"],
         "testo_carta": "AL COSTO DI UN'AZIONE PUÒ ESSERE ASSEGNATO ALLA TUA SQUADRA. Se uno dei tuoi Doomtrooper ferisce (non uccide) un guerriero Doomtrooper avversario e sopravvive allo scontro, può imprigionarlo. Quando lo imprigioni tutte le carte assegnate o associate al guerriero vengono scartate. I prigionieri non possono attaccare o essere attaccati. Se il Campo di Prigionia viene scartato tutti i suoi prigionieri tornano nella Squadra di appartenenza.",
         "flavour_text": "",
         "keywords": ["Prigionia", "Campo", "Prigionieri", "Fortificazione"],
+        "valore_strategico": 1,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -311,18 +312,10 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Tuoi membri della Fratellanza guadagnano un +2 in A mentre la CATTEDRALE è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": [],
@@ -330,9 +323,10 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ DELLA FRATELLANZA. Tutti i Tuoi membri della Fratellanza guadagnano un +2 in A mentre la CATTEDRALE è in gioco.",
         "flavour_text": "",
         "keywords": ["Fratellanza", "Cattedrale", "Città", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Industria Bellica": {
@@ -352,7 +346,16 @@ DATABASE_FORTIFICAZIONI = {
         "punti_struttura": 0,
         "resistenza_attacchi": False,
         "modificatori": [],
-        "abilita_speciali": [],
+        "abilita_speciali": [
+            {
+                "nome": "Produce punti",
+                "descrizione": "Mentre l'Industria Bellica è in gioco, guadagni 1D durante la Tua Fase Pescare. Non c'è limite al numero di Industrie Belliche che puoi avere in gioco contemporaneamente.",
+                "tipo_abilita": "Punti",
+                "costo_attivazione": None,
+                "condizioni_attivazione": [],
+                "effetti_speciali": ["Produce 1D durante la Fase Pescare"]
+            }
+        ],
         "requisiti": [],
         "restrizioni": ["Non c'è limite al numero di Industrie Belliche che puoi avere in gioco contemporaneamente"],
         "fazioni_permesse": ["Tutte"],
@@ -360,8 +363,9 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Industria", "Bellica", "Fortificazione"],
         "quantita": 11,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "valore_strategico": 10,
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Luna": {
@@ -377,21 +381,14 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 1,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+1",
-                "condizione": "sempre",
-                "descrizione": "Per il resto della partita, tutti i tuoi guerrieri guadagnano un +1 in A",
-                "permanente": True
-            },
+        "modificatori": [            
             {
                 "statistica": "A",
                 "valore": "+2",
-                "condizione": "Mercenari",
+                "condizione": "Uso ristretto: Mercenari",
                 "descrizione": "Tutti i tuoi Mercenari guadagnano +2 in A",
                 "permanente": True
             }
@@ -403,8 +400,9 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "GIOCABILE AL COSTO DI UN'AZIONE Per il resto della partita, tutti i tuoi guerrieri guadagnano un +1 in A; tutti i tuoi Mercenari guadagnano +2 in A.",
         "flavour_text": "",
         "keywords": ["Luna", "Mercenari", "Fortificazione"],
+        "valore_strategico": 5,
         "quantita": 6,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -437,10 +435,11 @@ DATABASE_FORTIFICAZIONI = {
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "testo_carta": "PUOI AGGIUNGERLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte della Premonizione. Puoi solo avere una Cattedrale Burroughs in gioco.",
         "flavour_text": "",
         "keywords": ["Cattedrale", "Burroughs", "Arte", "Premonizione", "Fortificazione"],
+        "valore_strategico": 2,
         "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -475,10 +474,11 @@ DATABASE_FORTIFICAZIONI = {
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Doommtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "testo_carta": "PUOI ASSEGNARE QUESTA CARTA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte Cinetica. Puoi solo avere una Cattedrale Volksburg in gioco.",
         "flavour_text": "",
         "keywords": ["Cattedrale", "Volksburg", "Arte", "Cinetica", "Fortificazione"],
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -503,9 +503,9 @@ DATABASE_FORTIFICAZIONI = {
         "modificatori": [],
         "abilita_speciali": [
             {
-                "nome": "Andare in Copertura",
+                "nome": "Attacco in uscita da Copertura",
                 "descrizione": "I tuoi Eretici possono uscire dalla Copertura e Attaccare nello stesso Turno",
-                "tipo_abilita": "Movimento",
+                "tipo_abilita": "Azioni",
                 "costo_attivazione": "1 Azione",
                 "condizioni_attivazione": [],
                 "effetti_speciali": ["Entrambe le operazioni costano un'Azione"]
@@ -517,9 +517,10 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre la carta è in gioco, i tuoi Eretici possono uscire dalla Copertura e Attaccare nello stesso Turno. Entrambe le operazioni costano un'Azione.",
         "flavour_text": "",
         "keywords": ["Fogne", "Eretici", "Copertura", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 6,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 4,
+        "fondamentale": True
     },
 
     "La Cattedrale Di Fukido": {
@@ -551,10 +552,11 @@ DATABASE_FORTIFICAZIONI = {
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte Mentale. Puoi solo avere una Cattedrale Fukido in gioco.",
         "flavour_text": "",
         "keywords": ["Cattedrale", "Fukido", "Arte", "Mentale", "Fortificazione"],
+        "valore_strategico": 2,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -573,18 +575,10 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Tuoi membri della Corporazione Bauhaus guadagnano un +2 in A mentre Heimburg è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": [],
@@ -592,9 +586,10 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ BAUHAUS. Tutti i Tuoi membri della Corporazione Bauhaus guadagnano un +2 in A mentre Heimburg è in gioco.",
         "flavour_text": "",
         "keywords": ["Bauhaus", "Città", "Heimburg", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Cittadella Di Muawijhe": {
@@ -610,28 +605,21 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": "Muawijhe",
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Seguaci di Muawijhe guadagnano un +2 in A mentre la CITTADELLA DI MUAWIJHE è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
-        "restrizioni": [],
+        "restrizioni": ["Solo Seguaci di Muawijhe"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Muawijhe guadagnano un +2 in A mentre la CITTADELLA DI MUAWIJHE è in gioco.",
         "flavour_text": "",
         "keywords": ["Muawijhe", "Seguace di Muawijhe", "Cittadella", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Barriera Rinforzata": {
@@ -650,15 +638,7 @@ DATABASE_FORTIFICAZIONI = {
         "bonus_armatura": 1,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+1",
-                "condizione": "sempre",
-                "descrizione": "Il guerriero è protetto dietro una barriera in cemento armato e filo spinato guadagnando un +1 in A",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": ["Non potrà attaccare i nemici in Corpo a Corpo", "Potrà difendersi", "Potrai spostare la barriera su un altro guerriero al costo di un'Azione"],
@@ -666,6 +646,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "ASSOCIARE QUESTA CARTA A UN GUERRIERO COSTA UN'AZIONE. Il guerriero è protetto dietro una barriera in cemento armato e filo spinato guadagnando un +1 in A. Il guerriero non potrà attaccare i nemici in Corpo a Corpo, ma potrà difendersi. Potrai spostare la barriera su un altro guerriero al costo di un'Azione.",
         "flavour_text": "",
         "keywords": ["Barriera", "Rinforzata", "Protezione", "Fortificazione"],
+        "valore_strategico": 1,
         "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -684,28 +665,21 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Tuoi Eretici guadagnano un +2 in A",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
-        "restrizioni": ["Puoi introdurre in gioco un solo Nascondiglio"],
+        "restrizioni": ["Puoi introdurre in gioco un solo Nascondiglio", "Solo Eretici"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA AL TUO SCHIERAMENTO AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Eretici guadagnano un +2 in A. Puoi introdurre in gioco un solo Nascondiglio.",
         "flavour_text": "",
         "keywords": ["Nascondiglio", "Eretici", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 9,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "La Cattedrale Di Gibson": {
@@ -737,10 +711,11 @@ DATABASE_FORTIFICAZIONI = {
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre è in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte del Cambiamento. Puoi solo avere una Cattedrale Gibson in gioco.",
         "flavour_text": "",
         "keywords": ["Cattedrale", "Gibson", "Arte", "Cambiamento", "Fortificazione"],
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -759,28 +734,21 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": "Semai",
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Seguaci di Semai nel Tuo Schieramento guadagnano un +2 in A mentre la CITTADELLA DI SEMAI è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
-        "restrizioni": [],
+        "restrizioni": ["Solo Seguaci di Semai"],
         "fazioni_permesse": ["Oscura Legione"],
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA A UNA TUA SQUADRA AL COSTO DI UN'AZIONE. Tutti i Seguaci di Semai nel Tuo Schieramento guadagnano un +2 in A mentre la CITTADELLA DI SEMAI è in gioco.",
         "flavour_text": "",
         "keywords": ["Semai", "Seguace di Semai", "Cittadella", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Gli Archivi Di Pietra": {
@@ -812,10 +780,11 @@ DATABASE_FORTIFICAZIONI = {
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte d'Evocazione. Puoi solo avere un Archivio di Pietra in gioco.",
         "flavour_text": "",
         "keywords": ["Archivi", "Pietra", "Arte", "Evocazione", "Fortificazione"],
+        "valore_strategico": 2,
         "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
@@ -842,7 +811,7 @@ DATABASE_FORTIFICAZIONI = {
             {
                 "nome": "Protezione Punti",
                 "descrizione": "I Punti Destino e i Punti Promozione guadagnati, non possono essere influenzati da carte degli altri giocatori",
-                "tipo_abilita": "Protezione",
+                "tipo_abilita": "Punti",
                 "costo_attivazione": None,
                 "condizioni_attivazione": [],
                 "effetti_speciali": ["Immunità da interferenze sui punti"]
@@ -854,9 +823,10 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "PUOI ASSEGNARLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, i Punti Destino e i Punti Promozione guadagnati, non possono essere influenzati da carte degli altri giocatori. Puoi solo avere una Riserva in gioco.",
         "flavour_text": "",
         "keywords": ["Riserva", "Cardinale", "Protezione", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Quartier Generale": {
@@ -872,18 +842,10 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Tuoi membri della Corporazione Cybertronic guadagnano un +2 in A mentre il Quartier Generale è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": [],
@@ -891,9 +853,10 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UN'AZIONE. CITTÀ CYBERTRONIC. Tutti i Tuoi membri della Corporazione Cybertronic guadagnano un +2 in A mentre il Quartier Generale è in gioco.",
         "flavour_text": "",
         "keywords": ["Cybertronic", "Quartier Generale", "Città", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Fukido": {
@@ -909,18 +872,10 @@ DATABASE_FORTIFICAZIONI = {
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
-        "bonus_armatura": 0,
+        "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [
-            {
-                "statistica": "A",
-                "valore": "+2",
-                "condizione": "sempre",
-                "descrizione": "Tutti i Tuoi membri della Corporazione Imperiale guadagnano un +2 in A mentre Fukido è in gioco",
-                "permanente": True
-            }
-        ],
+        "modificatori": [],
         "abilita_speciali": [],
         "requisiti": [],
         "restrizioni": [],
@@ -928,9 +883,10 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "QUESTA CARTA PUÒ ESSERE ASSEGNATA ALLA TUA SQUADRA AL COSTO DI UNA AZIONE. CITTÀ IMPERIALE. Tutti i Tuoi membri della Corporazione Imperiale guadagnano un +2 in A mentre Fukido è in gioco.",
         "flavour_text": "",
         "keywords": ["Imperiale", "Fukido", "Città", "Fortificazione"],
+        "valore_strategico": 10,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "La Cattedrale Di San Dorado": {
@@ -962,10 +918,11 @@ DATABASE_FORTIFICAZIONI = {
         ],
         "requisiti": [],
         "restrizioni": [],
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "testo_carta": "PUOI AGGIUNGERLA ALLA TUA SQUADRA, AL COSTO DI UN'AZIONE. Mentre in gioco, tutti i Tuoi Doomtrooper possono usare l'Arte della Manipolazione. Puoi solo avere una Cattedrale di San Dorado in gioco.",
         "flavour_text": "",
         "keywords": ["Cattedrale", "San Dorado", "Arte", "Manipolazione", "Fortificazione"],
+        "valore_strategico": 2,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False

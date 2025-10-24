@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Any, Union
 from enum import Enum
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, CorporazioneSpecifica, DOOMTROOPER  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, CorporazioneSpecifica, DOOMTROOPER, TipoGuerriero  # Import dalle classi esistenti
 
 
 class TipoReliquia(Enum):
@@ -213,6 +213,38 @@ class Reliquia:
                 if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Eretici")
+
+        elif "Solo Mercenari" in self.restrizioni.corporazioni_specifiche:
+            if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):                       
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append(f"Solo Mercenari")
+
+        elif "Solo Mercenari o Eretici" in self.restrizioni.corporazioni_specifiche:
+            if guerriero.tipo != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords or "Eretico" not in guerriero.keywords ):                       
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append(f"Solo Mercenari o Eretici")
+
+        elif "Solo Comandanti" in self.restrizioni.corporazioni_specifiche:
+            if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):                       
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append(f"Solo Comandanti")
+
+        elif "Solo Nefariti" in self.restrizioni.corporazioni_specifiche:
+            if (guerriero.keywords is None or guerriero.keywords == [] or "Nefarita" not in guerriero.keywords ):                       
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append(f"Solo Nefarita")
+
+        elif "Solo Personalita" in self.restrizioni.corporazioni_specifiche:
+            if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):                       
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append(f"Solo Personalita")
+        
+        elif "Assegnabile a guerrieri con V <= " in self.restrizioni.corporazioni_specifiche:
+            valore_richiesto = int( self.restrizioni.corporazioni_specifiche.split("Assegnabile a guerrieri con V <= ")[1].strip() )
+            
+            if guerriero.stats.valore > valore_richiesto:                       
+                risultato["puo_assegnare"] = False
+                risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
             
         # Verifica corporazioni specifiche
         #if self.restrizioni.corporazioni_specifiche:

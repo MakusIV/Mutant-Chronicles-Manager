@@ -269,19 +269,12 @@ DATABASE_EQUIPAGGIAMENTO = {
         "tipo_veicolo": None,
         "rarity": "Common",
         "statistiche": {
-            "combattimento": 0,
-            "sparare": 0,
-            "armatura": 0,
+            "combattimento": 2,
+            "sparare": 2,
+            "armatura": 2,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "multiple: C, S, A",
-                "valore": "+2",
-                "condizione": "Quando ingerita",
-                "descrizione": "Questa droga incrementa un +2 in C, S e A"
-            },            
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Immune alle ferite durante il combattimento",
@@ -707,18 +700,11 @@ DATABASE_EQUIPAGGIAMENTO = {
         "rarity": "Common",
         "statistiche": {
             "combattimento": 0,
-            "sparare": 0,
-            "armatura": 0,
+            "sparare": 4,
+            "armatura": 4,
             "valore": 0
         },
-        "modificatori_speciali": [
-            {
-                "statistica": "multiple: S, A",
-                "valore": "+4",
-                "condizione": "Quando pilota l'Aeronave",
-                "descrizione": "S e A del guerriero guadagnano un +4"
-            },            
-        ],
+        "modificatori_speciali": [],
         "abilita_speciali": [
             {
                 "nome": "Modifica Azione",
