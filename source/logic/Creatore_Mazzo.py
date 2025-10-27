@@ -757,39 +757,139 @@ class CreatoreMazzo:
         Returns:
             float: Potenza relativa (0-1)
         """
-        # Statistiche base della warzone
+        
+        
+        potenza_assoluta = 1.0                
+
+        # Somma modificatori statistiche
+        statistiche = {
+            'combattimento':    warzone.stats.combattimento,
+            'sparare':          warzone.stats.sparare,
+            'armatura':         warzone.stats.armatura,
+            'valore':           warzone.stats.valore
+        }
+
+        for valore_modifica in statistiche.values():
+            if valore_modifica > 0:
+                potenza_assoluta += valore_modifica
+         
+
+        modifica_statistiche_applicata = True if potenza_assoluta > 1 else False   
+
+        # NOTA: nel database i valori specificati nei modificatori statistiche e quelli analoghi specificati nei modificatori_speciali 
+        # se rappresentano lo stesso potenziamento devono alternativi gli uni agli altri. Pertanto è necessario verificare che se sono specificati per uno, i valori dell'altro 
+        # gruppo devono essere posti a 0. Se, invece, i valori riportati nel gruppo statistiche sono di default e quelli specificati nel gruppo modificatori_speciali sono aggiuntivi
+        # e vengono aapplicati in base ad una determinata condizione allora devono essere specificati
+
+        # Bonus per modificatori speciali
+        for modificatore in warzone.modificatori_difensore:
+            # Potenziamento altri guerrieri
+            statistica = modificatore.statistica.lower()
+            descrizione = modificatore.descrizione.lower()
+            valore = modificatore.valore.lower()
+            condizione = modificatore.condizione.lower()            
+            
+            # spostare quando considera carta guerriero da associare per valutazione sul gurriero specifico
+            if statistica in STATISTICHE_MODIFICATORI:
+                                                
+                if any(val in valore for val in ["raddoppiate", "+5", "+6", "+7", "+8", "+9"]):  
+                                                  
+                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                        
+                        if modifica_statistiche_applicata: 
+                            potenza_assoluta *= 1.3
+                        else:    
+                            potenza_assoluta += 4
+                
+                elif any(val in valore for val in ["+3", "+4"]):                
+                    
+                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                        
+                        if modifica_statistiche_applicata:
+                            potenza_assoluta *= 1.2
+                        else:    
+                            potenza_assoluta += 2
+                    
+                elif any(val in descrizione for val in ["+1", "+2"]):                        
+                        
+                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
+                            
+                            if modifica_statistiche_applicata:
+                                potenza_assoluta *= 1.1
+                            else:    
+                                potenza_assoluta += 1
+                
+                                
+                if "multiple" in statistica:
+                    potenza_assoluta *= 1.5 # aumenta del 50% la potenza assoluta                
+        
+        # Bonus per abilita speciali
+        for effetto in warzone.effetti_combattimento:
+            # Potenziamento altri guerrieri            
+            nome = effetto.nome.lower()
+            descrizione = effetto.descrizione.lower()
+            target = effetto.target.lower()
+            tipo = effetto.tipo_effetto.lower()
         
 
-        potenza = warzone.stats['combattimento'] + warzone.stats['sparare'] + warzone.stats['armatura']
-        
-        # Bonus per fazioni/tipi specifici
-        if hasattr(warzone, 'modificatore_difensore'):
-            for bonus in warzone.modificatori_difensore.values():
-                potenza += sum([bonus.get('valore', 0), 
-                               bonus.get('sparare', 0), 
-                               bonus.get('armatura', 0)])
-        
-        # Bonus per uccisione automatica
-        if hasattr(warzone, 'effetti_combattimento'):
-            for effetto in warzone.effetti_combattimento:
-                if 'uccide automaticamente' == effetto.nome.lower():
-                    potenza *= 1.5
-                elif effetto.nome.lower() in ['equipaggiamento gratuito', 'riceve carte oscura simmetria']:
-                    potenza *= 1.3
-                elif effetto.nome.lower() in ["Aumenta Punti Vittoria", "Guadagna Punti Promozione", "Guadagna Punti Aggiuntivi"]:
-                    potenza *= 1.2
-                
-        
-        # Default per warzone con effetti diversi
-        if potenza == 0:
-            potenza = 0.5
+            if tipo == "combattimento":
+                    if nome == "uccide automaticamente":
+                        potenza_assoluta *= 1.5
+                    if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
+                        potenza_assoluta *= 1.3
+                    
+            if tipo == "punti":
+                if nome in ["produce punti", "guadagna punti"]:
+                    potenza_assoluta *= 1.3 
+
+                if nome in ["protezione punti"]:
+                    potenza_assoluta *= 1.5
+
+            if tipo == "immunita":
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                    potenza_assoluta *= 1.4
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico warzone", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                    potenza_assoluta *= 1.2
+                                                                                    
+            if tipo == "modificatore":        
+                if nome in ["aumenta effetto", "aumenta caratteristica"]:
+                    potenza_assoluta *= 1.3
+                elif nome == "trasforma guerrieri uccisi in alleati":
+                    potenza_assoluta *= 1.1
+                elif nome == "sostituisce guerrieri":
+                    potenza_assoluta *= 1.2
+
+            if tipo == "guarigione" :
+                if nome in ["guarisce se stesso", "guarisce guerriero"]:
+                    potenza_assoluta *= 1.3
+                if nome == "ripara equipaggiamento o fortificazione":
+                    potenza_assoluta *= 1.1
+
+            if tipo == "arte":                
+                if "lancia arte e/o incantesimo dell'arte" == nome:
+                    potenza_assoluta *= 1.3                
+                elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
+                    potenza_assoluta *= 1.2
+
+            if tipo in ["oscura simmetria", "dono degli apostoli"]:                
+                    potenza_assoluta *= 1.3                        
+            
+            if tipo == "carte":
+                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
+                    potenza_assoluta *= 1.3    
+
+            if tipo == "azioni":
+                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
+                    potenza_assoluta *= 1.3    
+                elif nome in ["modifica azione", "modifica stato"]:
+                    potenza_assoluta *= 1.1                
         
         # Normalizza
-        max_potenza = self._calcola_max_potenza_warzone()
+        max_potenza = self._calcola_max_potenza_equipaggiamenti()
         if max_potenza > 0:
-            return min(potenza / max_potenza, 1.0)
+            return min(potenza_assoluta / max_potenza, 1.0)
         return 0.5
-    
+        
     def _calcola_max_potenza_warzone(self) -> float:
         """Calcola la potenza massima tra tutte le warzone"""
         max_potenza = 0
@@ -1373,6 +1473,69 @@ class CreatoreMazzo:
             if not carta_compatibile:
                 continue
             
+            
+            if hasattr(carta, "keywords") and "Ulteriore incremento per specifico guerriero, fazione o corporazione" in carta.keywords:
+
+                if tipo_carta == "warzone":
+                    guerrieri_dedicati = carta["modificatori_difensore"]["difensore"]
+
+                    for guerriero_dedicato in guerrieri_dedicati:
+
+                        if "Seguace di" in guerriero_dedicato:
+                            fazione_guerriero_dedicato = guerriero_dedicato.split("Seguace di ")[1]
+                            for guerriero in tutti_guerrieri:
+                                if fazione_guerriero_dedicato in guerriero.keywords:
+                                    bonus_moltiplicatore *= 2
+                                    break
+                        elif "Doomtrooper" in guerriero_dedicato:
+                            for guerriero in tutti_guerrieri:
+                                if guerriero.fazione in FAZIONI_DOOMTROOPER:
+                                    bonus_moltiplicatore *= 2
+                                    break
+                        elif "Fratellanza" in guerriero_dedicato:                     
+                            for guerriero in tutti_guerrieri:
+                                if guerriero.fazione in FAZIONI_FRATELLANZA:
+                                    bonus_moltiplicatore *= 2
+                                    break   
+                        elif "Oscura Legione" in guerriero_dedicato:                     
+                            for guerriero in tutti_guerrieri:
+                                if guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
+                                    bonus_moltiplicatore *= 2
+                                    break
+                        elif "Cultista" in guerriero_dedicato:                     
+                            for guerriero in tutti_guerrieri:
+                                if "Cultista" in guerriero.keywords:
+                                    bonus_moltiplicatore *= 2
+                                    break
+                        elif "Eretico" in guerriero_dedicato:                  
+                            for guerriero in tutti_guerrieri:
+                                if "Eretico" in guerriero.keywords:
+                                    bonus_moltiplicatore *= 2
+                                    break           
+                        else: # specifico guerriero
+                            for guerriero in tutti_guerrieri:
+                                if guerriero.nome == guerriero_dedicato:
+                                    bonus_moltiplicatore *= 2.0
+                                    break     
+                             
+
+                if tipo_carta == "equipaggiamento":
+                    pass
+
+                if tipo_carta == "speciale":
+                    pass
+
+                if tipo_carta == "arte":
+                    pass
+
+                if tipo_carta == "oscura simmetria":
+                    pass
+                
+                
+                    
+
+                    
+
             # Calcola potenza basata sul tipo
             if tipo_carta == 'equipaggiamento':
                 potenza = self.calcola_potenza_equipaggiamento(carta)

@@ -918,9 +918,9 @@ def crea_reliquia_da_database(nome_reliquia: str) -> Optional[Reliquia]:
     corporazioni = [t.value for t in CorporazioneSpecifica]
     #corporazioni.extend(t.value for t in Fazione)
     
-    for f in restr_data["corporazioni_specifiche"]:
-        if f not in corporazioni:
-            print(f"errore nell'assegnazione della proprietà corporazioni_specifiche. La corporazione {f} non è presente nella lista delle coprorazioni ammissibili. {[c for c in corporazioni]}")
+    for f in restr_data["corporazioni_specifiche"]:       
+        if f not in corporazioni and 'Assegnabile a guerrieri con V <=' != f[:len("Assegnabile a guerrieri con V <=")]:
+            print(f"errore nell'assegnazione della proprietà corporazioni_specifiche. La corporazione {f} non è presente nella lista delle corporazioni ammissibili. {[c for c in corporazioni]}")
     
     if "Doomtrooper" in restr_data["fazioni_permesse"]:
             restr_data["fazioni_permesse"].remove("Doomtrooper")

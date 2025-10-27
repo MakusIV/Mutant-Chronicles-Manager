@@ -34,7 +34,7 @@ DATABASE_WARZONE = {
         "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Equipaggiamento Gratuito",
+                "nome": "Assegna carta",
                 "descrizione": "Guerrieri che si difendono in questa WARZONE potranno essere equipaggiati gratuitamente durante la fase Modificare le caratteristiche del guerriero",
                 "target": "Guerrieri che si difendono",
                 "tipo_effetto": "Carte"
@@ -50,11 +50,11 @@ DATABASE_WARZONE = {
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "frequenza_utilizzo": "",
         "quantita": 1,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 2,
+        "fondamentale": True
     },
 
     "Cratere Di Anatholia": {
@@ -74,7 +74,7 @@ DATABASE_WARZONE = {
         "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Riceve Carte Oscura Simmetria",
+                "nome": "Assegna carta",
                 "descrizione": "Guerrieri che si difendono in questa WARZONE possono gratuitamente ricevere carte dell'Oscura Simmetria durante i combattimenti",
                 "target": "Guerrieri che si difendono",
                 "tipo_effetto": "Carte"
@@ -96,11 +96,11 @@ DATABASE_WARZONE = {
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "frequenza_utilizzo": "",
         "quantita": 10,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Phobos & Deimos": {
@@ -122,25 +122,25 @@ DATABASE_WARZONE = {
                 "statistica": "C",
                 "valore": 5,
                 "descrizione": "SEGUACI DI SEMAI e MUAWIJHE che si difendono in questa WARZONE dall'attacco di Doomtrooper, guadagnano un ulteriore + 5 in C, S e A",
-                "difensore": "SEGUACI DI SEMAI e MUAWIJHE"
+                "difensore": ["Seguaci di Semai", "Seguaci di Muawijhe"]
             },
             {
                 "statistica": "S",
                 "valore": 5,
                 "descrizione": "SEGUACI DI SEMAI e MUAWIJHE che si difendono in questa WARZONE dall'attacco di Doomtrooper, guadagnano un ulteriore + 5 in C, S e A",
-                "difensore": "SEGUACI DI SEMAI e MUAWIJHE"
+                "difensore": ["Seguaci di Semai", "Seguaci di Muawijhe"]
             },
             {
                 "statistica": "A",
                 "valore": 5,
                 "descrizione": "SEGUACI DI SEMAI e MUAWIJHE che si difendono in questa WARZONE dall'attacco di Doomtrooper, guadagnano un ulteriore + 5 in C, S e A",
-                "difensore": "SEGUACI DI SEMAI e MUAWIJHE"
+                "difensore": ["Seguaci di Semai", "Seguaci di Muawijhe"]
             }
         ],
         "effetti_combattimento": [],
         "testo_carta": "WARZONE: MARTE. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. SEGUACI DI SEMAI e MUAWIJHE che si difendono in questa WARZONE dall'attacco di Doomtrooper, guadagnano un ulteriore + 5 in C, S e A.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Seguaci di Semai", "Seguaci di Muawijhe", "Ulteriore incremento per specifico guerriero, fazione o corporazione"],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Schieramento"],
@@ -192,7 +192,7 @@ DATABASE_WARZONE = {
         "effetti_combattimento": [],
         "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Guerrieri che si difendono in questa WARZONE contro attaccanti Imperiale, guadagnano un ulteriore + 5 in C, S e A.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Ulteriore incremento", "Guerrieri contro attaccanti Imperiale"],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Schieramento"],
@@ -244,7 +244,7 @@ DATABASE_WARZONE = {
         "effetti_combattimento": [],
         "testo_carta": "WARZONE: VENERE. ASSEGNABILE ALLA TUA SQUADRA O AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. I guerrieri che combattono nelle Giungle di Venere non possono utilizzare i VEICOLI (sia l'attaccante che il difensore). I Ranger Venusiani che si difendono in questa WARZONE guadagnano un + 3 in C, S e A.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Ulteriore incremento", "Ranger Venusiani"],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
@@ -296,7 +296,7 @@ DATABASE_WARZONE = {
         "effetti_combattimento": [],
         "testo_carta": "WARZONE: FASCIA DI ASTEROIDI. ASSEGNABILE ALLA TUA SQUADRA SE SEI UN GRANDE STRATEGA. Guerrieri Imperiale che si difendono in questa WARZONE guadagnano un + 3 in C, S e A.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Ulteriore incremento", "Guerrieri Imperiale"],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
@@ -390,11 +390,11 @@ DATABASE_WARZONE = {
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "frequenza_utilizzo": "",
         "quantita": 1,
         "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "fondamentale": True
     },
 
     "Fascia Di Asteroidi": {
@@ -447,15 +447,15 @@ DATABASE_WARZONE = {
         "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Guadagna Punti Promozione",
+                "nome": "Guadagna Punti",
                 "descrizione": "Se un guerriero Mishima che si difende in questa WARZONE uccide un avversario, il guerriero guadagna 3 punti Promozione addizionali",
                 "target": "Guerrieri Mishima",
-                "tipo_effetto": "Modificatore"
+                "tipo_effetto": "Punti"
             }
         ],
         "testo_carta": "WARZONE: MERCURIO. ASSEGNABILE ALLA TUA SQUADRA SE SEI UN GRANDE STRATEGA. Se un guerriero Mishima che si difende in questa WARZONE uccide un avversario, il guerriero guadagna 3 punti Promozione addizionali.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Ulteriore incremento", "Guerrieri Mishima"],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
@@ -489,19 +489,19 @@ DATABASE_WARZONE = {
                 "statistica": "C",
                 "valore": -2,
                 "descrizione": "Doomtrooper che attaccano guerrieri della Fratellanza che si difendono in questa Warzone subiscono una modifica di - 2 in C, S e A",
-                "difensore": "Doomtrooper che attaccano Fratellanza"
+                "difensore": "Fratellanza"
             },
             {
                 "statistica": "S",
                 "valore": -2,
                 "descrizione": "Doomtrooper che attaccano guerrieri della Fratellanza che si difendono in questa Warzone subiscono una modifica di - 2 in C, S e A",
-                "difensore": "Doomtrooper che attaccano Fratellanza"
+                "difensore": "Fratellanza"
             },
             {
                 "statistica": "A",
                 "valore": -2,
                 "descrizione": "Doomtrooper che attaccano guerrieri della Fratellanza che si difendono in questa Warzone subiscono una modifica di - 2 in C, S e A",
-                "difensore": "Doomtrooper che attaccano Fratellanza"
+                "difensore": "Fratellanza"
             }
         ],
         "effetti_combattimento": [
@@ -514,7 +514,7 @@ DATABASE_WARZONE = {
         ],
         "testo_carta": "WARZONE: GENERICA. ASSEGNABILE AD UNA TUA SQUADRA SE SEI UN GRANDE STRATEGA. Ogni guerriero della Fratellanza che si difende in questa WARZONE uccide automaticamente ogni guerriero che ferisce. Doomtrooper che attaccano guerrieri della Fratellanza che si difendono in questa Warzone subiscono una modifica di - 2 in C, S e A.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Ulteriore incremento", "Fratellanza"],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
@@ -522,10 +522,10 @@ DATABASE_WARZONE = {
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 5,
         "frequenza_utilizzo": "",
         "quantita": 3,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
 
@@ -546,15 +546,15 @@ DATABASE_WARZONE = {
         "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Guadagna Punti Promozione",
+                "nome": "Guadagna Punti",
                 "descrizione": "Mercenari che uccidono i loro avversari mentre si difendono nella terra di Nessuno possono guadagnare punti Promozione",
                 "target": "Mercenari",
-                "tipo_effetto": "Modificatore"
+                "tipo_effetto": "Punti"
             }
         ],
         "testo_carta": "WARZONE: GENERICO. ASSEGNABILE ALLA TUA SQUADRA O AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Mercenari che uccidono i loro avversari mentre si difendono nella terra di Nessuno possono guadagnare punti Promozione.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Ulteriore incremento", "Mercenari"],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra", "Schieramento"],
@@ -586,10 +586,10 @@ DATABASE_WARZONE = {
         "modificatori_difensore": [],
         "effetti_combattimento": [
             {
-                "nome": "Guadagna Punti Aggiuntivi",
+                "nome": "Guadagna Punti",
                 "descrizione": "Se i tuoi guerrieri uccidono un Doomtrooper sparando (S) mentre si difendono in questa WARZONE, guadagni il doppio dei punti",
                 "target": "Guerrieri che si difendono",
-                "tipo_effetto": "Modificatore"
+                "tipo_effetto": "Punti"
             }
         ],
         "testo_carta": "WARZONE: VENERE. ASSEGNABILE AL TUO SCHIERAMENTO SE SEI UN GRANDE STRATEGA. Se i tuoi guerrieri uccidono un Doomtrooper sparando (S) mentre si difendono in questa WARZONE, guadagni il doppio dei punti.",
@@ -602,11 +602,11 @@ DATABASE_WARZONE = {
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 10,
         "frequenza_utilizzo": "",
         "quantita": 5,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
+        "quantita_minima_consigliata": 3,
+        "fondamentale": True
     },
 
     "Cyberopolis": {
@@ -628,44 +628,44 @@ DATABASE_WARZONE = {
                 "statistica": "C",
                 "valore": 3,
                 "descrizione": "I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V",
-                "difensore": "Guerrieri Cybertronic"
+                "difensore": "Cybertronic"
             },
             {
                 "statistica": "S",
                 "valore": 3,
                 "descrizione": "I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V",
-                "difensore": "Guerrieri Cybertronic"
+                "difensore": "Cybertronic"
             },
             {
                 "statistica": "A",
                 "valore": 3,
                 "descrizione": "I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V",
-                "difensore": "Guerrieri Cybertronic"
+                "difensore": "Cybertronic"
             },
             {
                 "statistica": "V",
                 "valore": 3,
                 "descrizione": "I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V",
-                "difensore": "Guerrieri Cybertronic"
+                "difensore": "Cybertronic"
             }
         ],
         "effetti_combattimento": [
             {
-                "nome": "Ignora Modificatori Negativi",
+                "nome": "Aumenta caratteristica",
                 "descrizione": "Se l'Avamposto Turf di Marte è giocato su questa WARZONE, solo i guerrieri Cybertronic (non quelli Capitol) potranno ignorare i modificatori negativi e uccidere automaticamente tutti i guerrieri avversari feriti in combattimento",
-                "target": "Guerrieri Cybertronic",
-                "tipo_effetto": "Condizione"
+                "target": "Cybertronic",
+                "tipo_effetto": "Modificatore"
             },
             {
                 "nome": "Uccide Automaticamente",
                 "descrizione": "Se l'Avamposto Turf di Marte è giocato su questa WARZONE, solo i guerrieri Cybertronic (non quelli Capitol) potranno ignorare i modificatori negativi e uccidere automaticamente tutti i guerrieri avversari feriti in combattimento",
-                "target": "Guerrieri Cybertronic",
-                "tipo_effetto": "Condizione"
+                "target": "Cybertronic",
+                "tipo_effetto": "Combattimento"
             }
         ],
         "testo_carta": "WARZONE: MARTE. ASSEGNABILE ALLA TUA SQUADRA SE SEI UN GRANDE STRATEGA. I guerrieri Cybertronic che si difendono in questa WARZONE guadagnano un + 3 in C, S, A e V. Se l'Avamposto Turf di Marte è giocato su questa WARZONE, solo i guerrieri Cybertronic (non quelli Capitol) potranno ignorare i modificatori negativi e uccidere automaticamente tutti i guerrieri avversari feriti in combattimento.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Ulteriore incremento", "Cybertronic"],
         "restrizioni": {
             "richiede_grande_stratega": True,
             "aree_utilizzabili": ["Squadra"],
@@ -673,10 +673,10 @@ DATABASE_WARZONE = {
             "solo_una_per_area": True,
             "limiti_utilizzo": []
         },
-        "valore_strategico": 1,
+        "valore_strategico": 5,
         "frequenza_utilizzo": "",
         "quantita": 4,
-        "quantita_minima_consigliata": 1,
+        "quantita_minima_consigliata": 2,
         "fondamentale": False
     }
 

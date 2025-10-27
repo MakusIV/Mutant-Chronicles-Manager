@@ -37,13 +37,14 @@ class PoterereReliquia(Enum):
     MODIFICATORE_STATISTICHE = "Modificatore Statistiche"
     ABILITA_SPECIALE = "Abilità Speciale"
     PROTEZIONE = "Protezione"
-    POTENZIAMENTO_COMBATTIMENTO = "Potenziamento Combattimento"
+    POTENZIAMENTO_COMBATTIMENTO = "Combattimento"
     ANNULLA_EFFETTI = "Annulla Effetto"
-    MANIPOLAZIONE_DESTINO = "Manipolazione Destino"
-    MANIPOLAZIONE_CARTE = "Manipolazione Carte"
-    MANIPOLAZIONE_AZIONI = "Manipolazione Azioni"
+    MANIPOLAZIONE_DESTINO = "Punti"
+    MANIPOLAZIONE_CARTE = "Carte"
+    MANIPOLAZIONE_AZIONI = "Azioni"
     COMANDO = "Comando"
     IMMUNITA = "Immunita"
+    ARTE = "Arte"
 
 
 @dataclass
@@ -239,7 +240,7 @@ class Reliquia:
                 risultato["puo_assegnare"] = False
                 risultato["errori"].append(f"Solo Personalita")
         
-        elif "Assegnabile a guerrieri con V <= " in self.restrizioni.corporazioni_specifiche:
+        elif "Assegnabile a guerrieri con V <= " in self.restrizioni.corporazioni_specifiche[:len("Assegnabile a guerrieri con V <= ")]:
             valore_richiesto = int( self.restrizioni.corporazioni_specifiche.split("Assegnabile a guerrieri con V <= ")[1].strip() )
             
             if guerriero.stats.valore > valore_richiesto:                       
@@ -603,8 +604,8 @@ class Reliquia:
         #corporazioni.extend(t.value for t in Fazione)
         
         for f in restr_data["corporazioni_specifiche"]:
-            if f not in corporazioni:
-                print(f"errore nell'assegnazione della proprietà corporazioni_specifiche. La corporazione {f} non è presente nella lista delle coprorazioni ammissibili. {[c for c in corporazioni]}")
+            if f not in corporazioni and 'Assegnabile a guerrieri con V <=' != f[:len("Assegnabile a guerrieri con V <=")]:
+                print(f"errore nell'assegnazione della proprietà corporazioni_specifiche. La corporazione {f} non è presente nella lista delle corporazioni ammissibili. {[c for c in corporazioni]}")
         
         if "Doomtrooper" in restr_data["fazioni_permesse"]:
             restr_data["fazioni_permesse"].remove("Doomtrooper")

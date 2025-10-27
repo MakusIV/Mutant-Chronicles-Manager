@@ -23,7 +23,7 @@ DATABASE_MISSIONI = {
         "difficolta": "Normale",
         "rarity": "Common",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Tutte"],
+        "fazioni_permesse": ["Generica"],
         "corporazioni_specifiche": [],
         "restrizioni_guerriero": ["Non Personalita"],
         "obiettivo": {
@@ -129,7 +129,7 @@ DATABASE_MISSIONI = {
         "difficolta": "Difficile",
         "rarity": "Rare",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Tutte"],
+        "fazioni_permesse": ["Generica"],
         "corporazioni_specifiche": [],
         "restrizioni_guerriero": [],
         "obiettivo": {
