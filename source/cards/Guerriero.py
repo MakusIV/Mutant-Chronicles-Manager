@@ -55,18 +55,6 @@ class DisciplinaArte(Enum):
     EVOCAZIONE = "Evocazione"
     TUTTE = "Tutte le Discipline"
 
-class DisciplinaArte_old(Enum):
-    """Discipline dell'Arte secondo il regolamento"""
-    CAMBIAMENTO = "Arte del Cambiamento"
-    ELEMENTI = "Arte degli Elementi"
-    ESORCISMO = "Arte dell'Esorcismo"
-    CINETICA = "Arte della Cinetica"
-    MANIPOLAZIONE = "Arte della Manipolazione"
-    MENTALE = "Arte Mentale"
-    PREMONIZIONE = "Arte della Premonizione"
-    EVOCAZIONE = "Arte d'Evocazione"
-    TUTTE = "Tutte le Discipline"
-
 class TipoOscuraSimmetria(Enum):
     """Tipi di carte Oscura Simmetria"""
     GENERICA = "Generica"

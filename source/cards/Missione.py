@@ -179,6 +179,39 @@ class Missione:
                     if (bersaglio.keywords is None or bersaglio.keywords == [] or bersaglio.keywords != "Eretico" ):                       
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Eretici")
+
+            elif "Solo Mercenari" in self.corporazioni_specifiche:            
+                if (bersaglio.keywords is None or bersaglio.keywords == [] or "Mercenario" not in bersaglio.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Mercenari")
+
+            elif "Solo Mercenari o Eretici" in self.corporazioni_specifiche:
+                if bersaglio.tipo != Fazione.MERCENARIO and (bersaglio.keywords is None or bersaglio.keywords == [] or "Mercenario" not in bersaglio.keywords or "Eretico" not in bersaglio.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Mercenari o Eretici")
+
+            elif "Solo Comandanti" in self.corporazioni_specifiche:
+                if (bersaglio.keywords is None or bersaglio.keywords == [] or "Comandante" not in bersaglio.keywords):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Comandanti")
+
+            elif "Solo Nefariti" in self.corporazioni_specifiche:
+                if (bersaglio.keywords is None or bersaglio.keywords == [] or "Nefarita" not in bersaglio.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Nefarita")
+
+            elif "Solo Personalita" in self.corporazioni_specifiche:
+                if (bersaglio.keywords is None or bersaglio.keywords == [] or "Personalita" not in bersaglio.keywords or bersaglio.tipo != Tipobersaglio.PERSONALITA):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Personalita")
+            
+            elif "Assegnabile a guerrieri con V <= " in self.corporazioni_specifiche:
+                valore_richiesto = int( self.corporazioni_specifiche.split("Assegnabile a guerrieri con V <= ")[1].strip() )
+                
+                if bersaglio.stats.valore > valore_richiesto:                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
+                
                 
             # Controlla restrizioni di tipo guerriero
             for restrizione in self.restrizioni_guerriero:

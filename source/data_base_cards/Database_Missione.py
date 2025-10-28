@@ -46,6 +46,7 @@ DATABASE_MISSIONI = {
         "keywords": ["Missione", "Uccisione"],
         "restrizioni": ["Solo Doomtrooper"],
         "condizioni_speciali": [],
+        "valore_strategico": 4,
         "quantita":1,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
@@ -81,6 +82,7 @@ DATABASE_MISSIONI = {
         "keywords": ["Missione", "Uccisione", "Difficile"],
         "restrizioni": ["Solo Imperiale"],
         "condizioni_speciali": [],
+        "valore_strategico": 1,
         "quantita":3,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
@@ -117,6 +119,7 @@ DATABASE_MISSIONI = {
         "keywords": ["Eretico"],
         "restrizioni": ["Solo Doomtrooper", "Solo Eretico"],
         "condizioni_speciali": [],
+        "valore_strategico": 1,
         "quantita":2,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
@@ -152,6 +155,7 @@ DATABASE_MISSIONI = {
         "keywords": ["Missione", "Sopravvivenza"],
         "restrizioni": [],
         "condizioni_speciali": ["Tutti gli altri guerrieri devono essere fuori gioco"],
+        "valore_strategico": 6,
         "quantita":1,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
@@ -187,6 +191,7 @@ DATABASE_MISSIONI = {
         "keywords": ["Missione", "Eretico"],
         "restrizioni": ["Solo Fratellanza"],
         "condizioni_speciali": [],
+        "valore_strategico": 1,
         "quantita":2,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
@@ -222,6 +227,7 @@ DATABASE_MISSIONI = {
         "keywords": ["Missione", "Capitol", "Armi da Fuoco"],
         "restrizioni": ["Solo Nefarita", "Solo Seguaci di Algeroth"],
         "condizioni_speciali": [],
+        "valore_strategico": 1,
         "quantita":1,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
@@ -257,6 +263,7 @@ DATABASE_MISSIONI = {
         "keywords": [],
         "restrizioni": [],
         "condizioni_speciali": [],
+        "valore_strategico": 1,
         "quantita":1,
         "quantita_minima_consigliata":1, # utilizzata per la creazione del mazzo
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
