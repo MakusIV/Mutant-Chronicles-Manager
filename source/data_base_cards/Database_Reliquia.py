@@ -7,7 +7,7 @@ VERSIONE CORRETTA - Allineata alle regole ufficiali del regolamento
 
 from typing import Dict, List, Optional, Any
 from source.cards.Reliquia import (
-    Reliquia, TipoReliquia, StatoReliquia, PoterereReliquia,
+    Reliquia, TipoReliquia, StatoReliquia, TipoPotereReliquia,
     ModificatoreReliquia, PotereReliquia, RestrizioneReliquia
 )
 from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, CorporazioneSpecifica, DOOMTROOPER 
@@ -950,7 +950,7 @@ def crea_reliquia_da_database(nome_reliquia: str) -> Optional[Reliquia]:
         potere = PotereReliquia(
             nome=pot_data["nome"],
             descrizione=pot_data["descrizione"],
-            tipo_potere=PoterereReliquia(pot_data["tipo_potere"]),
+            tipo_potere=TipoPotereReliquia(pot_data["tipo_potere"]),
             costo_attivazione=pot_data["costo_attivazione"],
             tipo_attivazione=pot_data["tipo_attivazione"],
             limitazioni=pot_data["limitazioni"],

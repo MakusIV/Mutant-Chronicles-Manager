@@ -32,9 +32,9 @@ class StatoReliquia(Enum):
     SCARTATA = "Scartata"
 
 
-class PoterereReliquia(Enum):
+class TipoPotereReliquia(Enum):
     """Tipologie di poteri delle reliquie"""
-    MODIFICATORE_STATISTICHE = "Modificatore Statistiche"
+    MODIFICATORE_STATISTICHE = "Modificatore"
     ABILITA_SPECIALE = "Abilità Speciale"
     PROTEZIONE = "Protezione"
     POTENZIAMENTO_COMBATTIMENTO = "Combattimento"
@@ -62,7 +62,7 @@ class PotereReliquia:
     """Rappresenta un potere speciale della reliquia"""
     nome: str
     descrizione: str
-    tipo_potere: PoterereReliquia
+    tipo_potere: TipoPotereReliquia
     costo_attivazione: int = 0  # costo in azioni/DP per attivare
     tipo_attivazione: str = "Passivo"  # "Passivo", "Attivo", "Reazione", "Combattimento"
     limitazioni: List[str] = None
@@ -635,7 +635,7 @@ class Reliquia:
             potere = PotereReliquia(
                 nome=pot_data["nome"],
                 descrizione=pot_data["descrizione"],
-                tipo_potere=PoterereReliquia(pot_data["tipo_potere"]),
+                tipo_potere=TipoPotereReliquia(pot_data["tipo_potere"]),
                 costo_attivazione=pot_data["costo_attivazione"],
                 tipo_attivazione=pot_data["tipo_attivazione"],
                 limitazioni=pot_data["limitazioni"],
@@ -713,7 +713,7 @@ def crea_reliquia_combattimento(nome: str, bonus_combattimento: int = 0, bonus_s
     return reliquia
 
 def crea_reliquia_potere_speciale(nome: str, nome_potere: str, descrizione_potere: str,
-                                tipo_potere: PoterereReliquia = PoterereReliquia.ABILITA_SPECIALE,
+                                tipo_potere: TipoPotereReliquia = TipoPotereReliquia.ABILITA_SPECIALE,
                                 tipo_attivazione: str = "Attivo") -> Reliquia:
     """Crea una reliquia con un potere speciale"""
     reliquia = Reliquia(nome)
@@ -759,7 +759,7 @@ if __name__ == "__main__":
         "Amuleto di Protezione",
         "Scudo Mistico",
         "Una volta per turno, annulla un attacco diretto al guerriero",
-        PoterereReliquia.PROTEZIONE,
+        TipoPotereReliquia.PROTEZIONE,
         "Reazione"
     )
     
@@ -767,7 +767,7 @@ if __name__ == "__main__":
     potere_passivo = PotereReliquia(
         "Immunità Paura",
         "Il guerriero è immune agli effetti di paura",
-        PoterereReliquia.PROTEZIONE,
+        TipoPotereReliquia.PROTEZIONE,
         tipo_attivazione="Passivo"
     )
     amuleto_protezione.poteri.append(potere_passivo)
@@ -879,7 +879,7 @@ if __name__ == "__main__":
     controllo_tech = PotereReliquia(
         "Controllo Tecnologico",
         "Prendi controllo di un equipaggiamento tecnologico nemico per 1 turno",
-        PoterereReliquia.COMANDO,
+        TipoPotereReliquia.COMANDO,
         costo_attivazione=2,
         tipo_attivazione="Attivo",
         una_volta_per_turno=True
