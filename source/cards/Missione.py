@@ -141,84 +141,65 @@ class Missione:
         
     def puo_essere_associata_a(self, bersaglio: any):
 
-        risultato = {"puo_assegnare": True, "motivo": ""}
+        risultato = {"puo_assegnare": True, "errori": []}
 
-        # Se bersaglio è stringa "giocatore"
-        if isinstance(bersaglio, str) and bersaglio.lower() == "giocatore":
-            if self.tipo == TipoMissione.GUERRIERO:
-                risultato["puo_assegnare"] = False
-                risultato["motivo"] = "Missione deve essere assegnata a un guerriero"
-                return risultato
-            
         # Se bersaglio è Guerriero: Controlla restrizioni di tipo guerriero
         if isinstance(bersaglio, Guerriero):
                                 
             # Controlla restrizioni di fazione
-            if self.fazioni_permesse and bersaglio.fazione not in self.fazioni_permesse:
+            if self.fazioni_permesse and Fazione("Generica") not in self.fazioni_permesse and bersaglio.fazione not in self.fazioni_permesse:
                 risultato["puo_assegnare"] = False
-                risultato["motivo"] = f"Fazione {bersaglio.fazione.value} non permessa"
+                risultato["errori"] = f"Fazione {bersaglio.fazione.value} non permessa"
             
-            # Controlla restrizioni di corporazione            
-            elif "Solo Doomtrooper" in self.corporazioni_specifiche: 
+            # Controlla associazione a corporazioni specifiche
+            elif "Doomtrooper" in self.corporazioni_specifiche:
                 if bersaglio.fazione == Fazione.OSCURA_LEGIONE:
                     risultato["puo_assegnare"] = False
-                    risultato["errori"].append("Solo per Doomtrooper")
+                    risultato["errori"].append("Solo per Doomtrooper")            
 
-            elif "Solo Oscura Legione" in self.corporazioni_specifiche:
-                if bersaglio.fazione != Fazione.OSCURA_LEGIONE:
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append("Solo per Oscura Legione")                            
-
-            elif "Solo Seguaci di" in self.corporazioni_specifiche:
-                    apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
+            elif "Seguace di" == [s[:len("Seguace di")] for s in self.corporazioni_specifiche]:
+                    apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Seguace di ")[1].strip()
                     if (bersaglio.keywords is None or bersaglio.keywords == [] or bersaglio.keywords != "Seguace di " + apostolo_richiesto):                       
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
             
-            elif "Solo Eretici" in self.corporazioni_specifiche:
+            elif "Eretico" in self.corporazioni_specifiche:
                     if (bersaglio.keywords is None or bersaglio.keywords == [] or bersaglio.keywords != "Eretico" ):                       
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Eretici")
 
-            elif "Solo Mercenari" in self.corporazioni_specifiche:            
+            # Controlla restrizioni specifiche
+            elif "Mercenario" in self.corporazioni_specifiche:            
                 if (bersaglio.keywords is None or bersaglio.keywords == [] or "Mercenario" not in bersaglio.keywords ):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Mercenari")
 
-            elif "Solo Mercenari o Eretici" in self.corporazioni_specifiche:
+            elif "Solo Mercenari o Eretici" in self.restrizioni:
                 if bersaglio.tipo != Fazione.MERCENARIO and (bersaglio.keywords is None or bersaglio.keywords == [] or "Mercenario" not in bersaglio.keywords or "Eretico" not in bersaglio.keywords ):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Mercenari o Eretici")
 
-            elif "Solo Comandanti" in self.corporazioni_specifiche:
+            elif "Solo Comandante" in self.restrizioni:
                 if (bersaglio.keywords is None or bersaglio.keywords == [] or "Comandante" not in bersaglio.keywords):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Comandanti")
 
-            elif "Solo Nefariti" in self.corporazioni_specifiche:
+            elif "Solo Nefarita" in self.restrizioni:
                 if (bersaglio.keywords is None or bersaglio.keywords == [] or "Nefarita" not in bersaglio.keywords ):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Nefarita")
 
-            elif "Solo Personalita" in self.corporazioni_specifiche:
+            elif "Solo Personalita" in self.restrizioni:
                 if (bersaglio.keywords is None or bersaglio.keywords == [] or "Personalita" not in bersaglio.keywords or bersaglio.tipo != Tipobersaglio.PERSONALITA):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Personalita")
             
-            elif "Assegnabile a guerrieri con V <= " in self.corporazioni_specifiche:
-                valore_richiesto = int( self.corporazioni_specifiche.split("Assegnabile a guerrieri con V <= ")[1].strip() )
+            elif "Assegnabile a guerrieri con V <= " in self.restrizioni:
+                valore_richiesto = int( self.restrizioni.split("Assegnabile a guerrieri con V <= ")[1].strip() )
                 
                 if bersaglio.stats.valore > valore_richiesto:                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
-                
-                
-            # Controlla restrizioni di tipo guerriero
-            for restrizione in self.restrizioni_guerriero:
-                if hasattr(bersaglio, 'keywords') and restrizione not in bersaglio.keywords:
-                    if hasattr(bersaglio, 'tipo') and restrizione not in str(bersaglio.tipo.value):
-                        risultato["puo_assegnare"] = False
-                        risultato["motivo"] = f"Guerriero deve essere {restrizione}"
                         
             return risultato
                 

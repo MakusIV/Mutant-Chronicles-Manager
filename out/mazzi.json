@@ -2,7 +2,7 @@
   "metadata": {
     "tipo_export": "mazzi_dettagliati_con_apostoli",
     "versione": "2.2",
-    "data_creazione": "2025-10-29T16:25:32.009049",
+    "data_creazione": "2025-10-30T17:25:29.741491",
     "numero_mazzi": 3,
     "formato": "inventario_con_fazioni_classi_e_apostoli",
     "descrizione": "Mazzi con inventari organizzati per fazioni, classi supporto e apostoli Oscura Legione"
@@ -12,25 +12,6 @@
       "inventario_guerrieri": {
         "squadra": {
           "Fratellanza": {
-            "Laura Vestale Benedetta": {
-              "copie": 1,
-              "fazione": "Fratellanza",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Personalita",
-              "stats": {
-                "combattimento": 4,
-                "sparare": 4,
-                "armatura": 4,
-                "valore": 5
-              },
-              "quantita": 1,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome='Immunita', descrizione=\"Immune agli effetti dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Valchirie', timing='Sempre')",
-                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione='Lancia tutte le ARTI', tipo='Arte', costo_destino=0, target='Tutte le Discipline', timing='Turno')"
-              ]
-            },
             "Cardinale Durand": {
               "copie": 1,
               "fazione": "Fratellanza",
@@ -43,11 +24,30 @@
                 "armatura": 11,
                 "valore": 14
               },
-              "quantita": 2,
+              "quantita": 3,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione=\"Lancia tutti gli aspetti dell'Arte\", tipo='Arte', costo_destino=0, target='Tutte le Discipline', timing='Turno')",
                 "Abilita(nome='Immunita', descrizione=\"Immune all'Arte per il tempo che vuole\", tipo='Immunita', costo_destino=0, target='Guerrieri della Fratellanza', timing='Sempre')"
+              ]
+            },
+            "Laura Vestale Benedetta": {
+              "copie": 2,
+              "fazione": "Fratellanza",
+              "set_espansione": "Base",
+              "rarity": "Common",
+              "tipo": "Personalita",
+              "stats": {
+                "combattimento": 4,
+                "sparare": 4,
+                "armatura": 4,
+                "valore": 5
+              },
+              "quantita": 2,
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome='Immunita', descrizione=\"Immune agli effetti dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Valchirie', timing='Sempre')",
+                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione='Lancia tutte le ARTI', tipo='Arte', costo_destino=0, target='Tutte le Discipline', timing='Turno')"
               ]
             },
             "Nicholai": {
@@ -62,7 +62,7 @@
                 "armatura": 6,
                 "valore": 8
               },
-              "quantita": 3,
+              "quantita": 5,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte specifica\", descrizione=\"Lancia incantesimi Arte della Manipolazione e dell'Esorcismo, più tutti gli incantesimi di Combattimento Personale\", tipo='Arte', costo_destino=0, target='Arte della Manipolazione ed Esorcismo', timing='Turno')",
@@ -70,26 +70,45 @@
                 "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
               ]
             },
-            "Mistico": {
+            "L'Inquisitore Massimo": {
               "copie": 1,
               "fazione": "Fratellanza",
               "set_espansione": "Base",
               "rarity": "Common",
-              "tipo": "Normale",
+              "tipo": "Personalita",
               "stats": {
-                "combattimento": 4,
-                "sparare": 4,
-                "armatura": 4,
-                "valore": 5
+                "combattimento": 7,
+                "sparare": 7,
+                "armatura": 7,
+                "valore": 8
               },
               "quantita": 1,
               "keywords": [],
               "abilita": [
-                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione='Lancia tutte le carte ARTE', tipo='Arte', costo_destino=0, target='Tutte le Discipline', timing='Turno')"
+                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione='Lancia tutte le ARTI', tipo='Arte', costo_destino=0, target='Tutte le Discipline', timing='Turno')"
+              ]
+            },
+            "L'Arcinquisitore Nikodemus": {
+              "copie": 1,
+              "fazione": "Fratellanza",
+              "set_espansione": "Base",
+              "rarity": "Common",
+              "tipo": "Personalita",
+              "stats": {
+                "combattimento": 8,
+                "sparare": 8,
+                "armatura": 8,
+                "valore": 9
+              },
+              "quantita": 1,
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione=\"Lancia tutte le ARTI ed è immune agli effetti delle carte dell'Oscura Simmetria\", tipo='Arte', costo_destino=0, target='Tutte le Discipline', timing='Turno')",
+                "Abilita(nome='Immunita', descrizione=\"Immune agli effetti dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
               ]
             },
             "Valkiria": {
-              "copie": 4,
+              "copie": 1,
               "fazione": "Fratellanza",
               "set_espansione": "Base",
               "rarity": "Common",
@@ -100,28 +119,10 @@
                 "armatura": 3,
                 "valore": 3
               },
-              "quantita": 5,
+              "quantita": 1,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte specifica\", descrizione=\"Lancia Arte del Cambiamento e l'Arte della Premonizione\", tipo='Arte', costo_destino=0, target='Arte del Cambiamento e Arte della Premonizione', timing='Turno')"
-              ]
-            },
-            "Antiquario": {
-              "copie": 1,
-              "fazione": "Fratellanza",
-              "set_espansione": "Inquisition",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 3
-              },
-              "quantita": 4,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte specifica\", descrizione=\"Lancia Arte Cinetica ed d'Evocazione\", tipo='Arte', costo_destino=0, target=\"Arte Cinetica e Arte d'Evocazione\", timing='Turno')"
               ]
             },
             "Arcangelo": {
@@ -136,7 +137,7 @@
                 "armatura": 3,
                 "valore": 3
               },
-              "quantita": 2,
+              "quantita": 5,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte specifica\", descrizione=\"Lancia Arte del Cambiamento e l'Arte degli Elementi\", tipo='Arte', costo_destino=0, target='Arte del Cambiamento e Arte degli Elementi', timing='Turno')"
@@ -172,29 +173,122 @@
                 "armatura": 3,
                 "valore": 3
               },
-              "quantita": 2,
+              "quantita": 4,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte specifica\", descrizione=\"Lancia Arte dell'Esorcismo e l'Arte Mentale\", tipo='Arte', costo_destino=0, target=\"Arte dell'Esorcismo e Arte Mentale\", timing='Turno')"
               ]
-            },
-            "Mortificator": {
+            }
+          },
+          "Bauhaus": {
+            "Aiuto Di Campo": {
               "copie": 1,
-              "fazione": "Fratellanza",
-              "set_espansione": "Base",
+              "fazione": "Bauhaus",
+              "set_espansione": "Warzone",
               "rarity": "Common",
               "tipo": "Normale",
               "stats": {
                 "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 3
+                "sparare": 4,
+                "armatura": 7,
+                "valore": 7
               },
-              "quantita": 6,
+              "quantita": 1,
               "keywords": [],
               "abilita": [
-                "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte  specifica\", descrizione=\"Lancia Arte della Cinetica e l'Arte della Manipolazione\", tipo='Arte', costo_destino=0, target='Arte della Cinetica e Arte della Manipolazione', timing='Turno')"
+                "Abilita(nome='Assegna Carte', descrizione=\"Assegna un guerriero Bauhaus non personalità all'Aiuto di Campo. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre l'Aiuto di Campo è vivo e nella Squadra.\", tipo='Carte', costo_destino=0, target='Guerriero Bauhaus non personalità', timing='Ogni Momento')",
+                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4', tipo='Modificatore', costo_destino=0, target='Guerriero Bauhaus assegnato ed eventuali copie nella squadra', timing=\"Mentre l'Aiuto di Campo è vivo e nella Squadra\")"
               ]
+            },
+            "Capitano Bauhaus": {
+              "copie": 1,
+              "fazione": "Bauhaus",
+              "set_espansione": "Warzone",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 5,
+                "sparare": 6,
+                "armatura": 9,
+                "valore": 10
+              },
+              "quantita": 2,
+              "keywords": [
+                "Comandante"
+              ],
+              "abilita": [
+                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerrieri feriti dai guerrieri Bauhaus nella Tua Squadra con V uguale a 9 o meno', timing='Fase Combattimento')"
+              ]
+            },
+            "Ranger Venusiano": {
+              "copie": 3,
+              "fazione": "Bauhaus",
+              "set_espansione": "Base",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 4,
+                "sparare": 3,
+                "armatura": 4,
+                "valore": 4
+              },
+              "quantita": 3,
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti di tutte le carte DONI DELL'OSCURA SIMMETRIA\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
+              ]
+            },
+            "Maresciallo Venusiano": {
+              "copie": 1,
+              "fazione": "Bauhaus",
+              "set_espansione": "Inquisition",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 8,
+                "sparare": 7,
+                "armatura": 8,
+                "valore": 8
+              },
+              "quantita": 2,
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare e Armatura di +2', tipo='Modificatore', costo_destino=0, target='Tutti i Tuoi Doomtrooper Bauhaus non-Personalità', timing='Sempre')"
+              ]
+            },
+            "Mercenario Ex-Bauhaus": {
+              "copie": 1,
+              "fazione": "Bauhaus",
+              "set_espansione": "Base",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 2,
+                "sparare": 2,
+                "armatura": 4,
+                "valore": 1
+              },
+              "quantita": 3,
+              "keywords": [
+                "Mercenario"
+              ],
+              "abilita": []
+            },
+            "Ussaro": {
+              "copie": 1,
+              "fazione": "Bauhaus",
+              "set_espansione": "Base",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 2,
+                "sparare": 2,
+                "armatura": 3,
+                "valore": 2
+              },
+              "quantita": 4,
+              "keywords": [],
+              "abilita": []
             }
           },
           "Capitol": {
@@ -210,7 +304,7 @@
                 "armatura": 5,
                 "valore": 6
               },
-              "quantita": 3,
+              "quantita": 6,
               "keywords": [
                 "Comandante"
               ],
@@ -268,7 +362,7 @@
                 "armatura": 2,
                 "valore": 1
               },
-              "quantita": 1,
+              "quantita": 2,
               "keywords": [],
               "abilita": []
             },
@@ -302,28 +396,10 @@
                 "armatura": 4,
                 "valore": 4
               },
-              "quantita": 4,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta Armatura di +2', tipo='Modificatore', costo_destino=0, target='Guerrieri Imperiali nella squadra tranne il Porta Stendardo', timing='Sempre')"
-              ]
-            },
-            "Generale Michael Kell": {
-              "copie": 1,
-              "fazione": "Capitol",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Personalita",
-              "stats": {
-                "combattimento": 7,
-                "sparare": 11,
-                "armatura": 9,
-                "valore": 12
-              },
               "quantita": 1,
               "keywords": [],
               "abilita": [
-                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +3', tipo='Modificatore', costo_destino=0, target='Guerrieri Capitol (ma non Kell) nella tua squadra', timing='Mentre è nella tua squadra')"
+                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta Armatura di +2', tipo='Modificatore', costo_destino=0, target='Guerrieri Imperiali nella squadra tranne il Porta Stendardo', timing='Sempre')"
               ]
             },
             "Capo Squadriglia": {
@@ -338,240 +414,13 @@
                 "armatura": 7,
                 "valore": 9
               },
-              "quantita": 2,
+              "quantita": 1,
               "keywords": [
                 "Comandante"
               ],
               "abilita": [
                 "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +3', tipo='Modificatore', costo_destino=0, target='Guerrieri Capitol con AERONAVI e tutti i guerrieri Capitol considerati AERONAVI o VEICOLI', timing='Mentre questo guerriero è presente')"
               ]
-            },
-            "Fanteria": {
-              "copie": 1,
-              "fazione": "Capitol",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 2,
-                "sparare": 3,
-                "armatura": 2,
-                "valore": 2
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": []
-            },
-            "Martian Banshee": {
-              "copie": 1,
-              "fazione": "Capitol",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 1,
-                "sparare": 5,
-                "armatura": 3,
-                "valore": 3
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": []
-            },
-            "Sea Lion": {
-              "copie": 1,
-              "fazione": "Capitol",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 3,
-                "sparare": 4,
-                "armatura": 4,
-                "valore": 4
-              },
-              "quantita": 5,
-              "keywords": [],
-              "abilita": []
-            }
-          },
-          "Bauhaus": {
-            "Aiuto Di Campo": {
-              "copie": 2,
-              "fazione": "Bauhaus",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 3,
-                "sparare": 4,
-                "armatura": 7,
-                "valore": 7
-              },
-              "quantita": 5,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome='Assegna Carte', descrizione=\"Assegna un guerriero Bauhaus non personalità all'Aiuto di Campo. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre l'Aiuto di Campo è vivo e nella Squadra.\", tipo='Carte', costo_destino=0, target='Guerriero Bauhaus non personalità', timing='Ogni Momento')",
-                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4', tipo='Modificatore', costo_destino=0, target='Guerriero Bauhaus assegnato ed eventuali copie nella squadra', timing=\"Mentre l'Aiuto di Campo è vivo e nella Squadra\")"
-              ]
-            },
-            "Capitano Bauhaus": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 5,
-                "sparare": 6,
-                "armatura": 9,
-                "valore": 10
-              },
-              "quantita": 3,
-              "keywords": [
-                "Comandante"
-              ],
-              "abilita": [
-                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerrieri feriti dai guerrieri Bauhaus nella Tua Squadra con V uguale a 9 o meno', timing='Fase Combattimento')"
-              ]
-            },
-            "Ranger Venusiano": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 4,
-                "sparare": 3,
-                "armatura": 4,
-                "valore": 4
-              },
-              "quantita": 1,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti di tutte le carte DONI DELL'OSCURA SIMMETRIA\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
-              ]
-            },
-            "Maresciallo Venusiano": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Inquisition",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 8,
-                "sparare": 7,
-                "armatura": 8,
-                "valore": 8
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare e Armatura di +2', tipo='Modificatore', costo_destino=0, target='Tutti i Tuoi Doomtrooper Bauhaus non-Personalità', timing='Sempre')"
-              ]
-            },
-            "Mercenario Ex-Bauhaus": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 2,
-                "sparare": 2,
-                "armatura": 4,
-                "valore": 1
-              },
-              "quantita": 1,
-              "keywords": [
-                "Mercenario"
-              ],
-              "abilita": []
-            },
-            "Ussaro": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 2,
-                "sparare": 2,
-                "armatura": 3,
-                "valore": 2
-              },
-              "quantita": 3,
-              "keywords": [],
-              "abilita": []
-            },
-            "Comandante": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 6,
-                "sparare": 5,
-                "armatura": 9,
-                "valore": 10
-              },
-              "quantita": 1,
-              "keywords": [
-                "Comandante"
-              ],
-              "abilita": [
-                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +5', tipo='Modificatore', costo_destino=0, target='Tutti i guerrieri Bauhaus nella tua squadra equipaggiati con CARRO ARMATO e tutti i guerrieri Bauhaus considerati CARRI ARMATI o VEICOLI', timing='Mentre è in gioco')"
-              ]
-            },
-            "Dragone": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 1,
-                "sparare": 3,
-                "armatura": 5,
-                "valore": 3
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": []
-            },
-            "Etoiles Mortant": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 4,
-                "sparare": 2,
-                "armatura": 6,
-                "valore": 4
-              },
-              "quantita": 4,
-              "keywords": [],
-              "abilita": []
-            },
-            "Incursore Bauhaus": {
-              "copie": 1,
-              "fazione": "Bauhaus",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 3
-              },
-              "quantita": 1,
-              "keywords": [],
-              "abilita": []
             }
           }
         },
@@ -585,39 +434,37 @@
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 4,
+            "quantita": 1,
             "keywords": [],
             "valore": 8
           },
           "Ticker": {
-            "copie": 2,
+            "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 2,
+            "quantita": 5,
             "keywords": [],
             "valore": 4
           },
-          "Fuoristrada GT B52": {
-            "copie": 2,
+          "Klein Helitek Dragonfly": {
+            "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [
-              "Doomtrooper"
-            ],
-            "valore": 2
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
           },
           "Nimrod MK I": {
-            "copie": 2,
+            "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 3,
+            "quantita": 4,
             "keywords": [],
             "valore": 0
           },
@@ -632,12 +479,22 @@
             "valore": 2
           },
           "Death Angel": {
-            "copie": 3,
+            "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 6,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "TA 6500 Cybermech": {
+            "copie": 2,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
             "keywords": [],
             "valore": 0
           },
@@ -647,53 +504,93 @@
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 2,
             "keywords": [],
             "valore": 0
           },
           "Incrociatore Leggero Lancelot": {
-            "copie": 1,
+            "copie": 2,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 2,
             "keywords": [],
             "valore": 0
           },
           "Hagelsturm/M516 D": {
-            "copie": 3,
+            "copie": 2,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 4,
+            "quantita": 2,
             "keywords": [],
             "valore": 4
           },
-          "Spada Avenger": {
-            "copie": 3,
+          "AG-17 Panzerknacker": {
+            "copie": 2,
             "classe": "Equipaggiamento",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 4,
+            "quantita": 2,
             "keywords": [],
-            "valore": 3
+            "valore": 0
+          },
+          "Tenuta da Battaglia": {
+            "copie": 2,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 1
+          },
+          "Catalizzatore di Energia": {
+            "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 0
           }
         },
         "Speciale": {
           "Codice D'Onore": {
-            "copie": 1,
+            "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 0
+          },
+          "Servizio Deferente": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
             "keywords": [],
             "valore": 0
           },
           "Attestato D'Onore": {
+            "copie": 3,
+            "classe": "Speciale",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 4,
+            "keywords": [],
+            "valore": 0
+          },
+          "Atto Eroico": {
             "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Warzone",
@@ -704,28 +601,28 @@
             "valore": 0
           },
           "Corrotto Dall'Oscurita": {
-            "copie": 2,
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 2,
+            "quantita": 1,
             "keywords": [
               "Eretico"
             ],
             "valore": 0
           },
           "Empatia Della Manipolazione": {
-            "copie": 1,
+            "copie": 3,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 3,
             "keywords": [],
             "valore": null
           },
-          "Empatia Di Cambiamento": {
+          "Empatia Di Premonizione": {
             "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
@@ -733,16 +630,28 @@
             "costo_destino": 0,
             "quantita": 1,
             "keywords": [],
-            "valore": null
+            "valore": 0
           },
-          "Empatia Mentale": {
+          "Guastatore": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "Insubordinazione": {
             "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
-            "keywords": [],
+            "keywords": [
+              "Mercenario"
+            ],
             "valore": null
           },
           "Menzione D'Onore": {
@@ -766,32 +675,52 @@
             "valore": null
           },
           "Onorificenza": {
-            "copie": 4,
+            "copie": 5,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 4,
+            "quantita": 5,
             "keywords": [],
             "valore": ""
           },
-          "Riconoscimento": {
+          "Programmato": {
             "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": ""
-          },
-          "Tessera Del Clan": {
-            "copie": 6,
             "classe": "Speciale",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 6,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "Riconoscimento": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": ""
+          },
+          "Truppe Speciali": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "Tessera Del Clan": {
+            "copie": 5,
+            "classe": "Speciale",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 5,
             "keywords": [],
             "valore": 0
           },
@@ -805,17 +734,91 @@
             "keywords": [],
             "valore": null
           },
-          "Arte Della Pace": {
-            "copie": 4,
+          "Addestramento Mistico": {
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 4,
+            "quantita": 1,
             "keywords": [],
             "valore": 0
           },
+          "Arte Della Pace": {
+            "copie": 5,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 5,
+            "keywords": [],
+            "valore": 0
+          },
+          "Empatia D'Evocazione": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "Essenza Di Integrita": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Seguace di Semai"
+            ],
+            "valore": 0
+          },
+          "Essenza Di Rettitudine": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Eretico"
+            ],
+            "valore": 0
+          },
           "Evocazione Essenziale": {
+            "copie": 3,
+            "classe": "Speciale",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 3,
+            "keywords": [],
+            "valore": 0
+          },
+          "Il Primo Direttorato": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 0
+          },
+          "Il Secondo Direttorato": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "Il Terzo Direttorato": {
             "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Inquisition",
@@ -826,24 +829,24 @@
             "valore": 0
           },
           "Interferenza": {
-            "copie": 5,
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 5,
+            "quantita": 1,
             "keywords": [
               "Arte"
             ],
             "valore": 0
           },
           "Mortificazione": {
-            "copie": 1,
+            "copie": 4,
             "classe": "Speciale",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 6,
             "keywords": [],
             "valore": 0
           }
@@ -855,27 +858,37 @@
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 3,
+            "quantita": 5,
+            "keywords": [],
+            "valore": 0
+          },
+          "Fantasma": {
+            "copie": 2,
+            "classe": "Arte",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
             "keywords": [],
             "valore": 0
           },
           "Fulmine Elementare": {
+            "copie": 2,
+            "classe": "Arte",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 5,
+            "keywords": [],
+            "valore": 0
+          },
+          "Resistenza Elementare": {
             "copie": 1,
             "classe": "Arte",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Resistenza Elementare": {
-            "copie": 2,
-            "classe": "Arte",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 4,
             "keywords": [],
             "valore": 0
           },
@@ -885,40 +898,28 @@
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 4,
+            "quantita": 5,
             "keywords": [],
             "valore": 0
           },
-          "Scudo": {
+          "Teletrasporto": {
             "copie": 1,
             "classe": "Arte",
             "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 4,
-            "keywords": [],
-            "valore": 0
-          },
-          "Crescita": {
-            "copie": 1,
-            "classe": "Arte",
-            "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 6,
             "keywords": [],
             "valore": 0
           },
-          "Ipnosi Maggiore": {
-            "copie": 1,
+          "Colpire": {
+            "copie": 2,
             "classe": "Arte",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Incantesimo di combattimento"
-            ],
+            "quantita": 4,
+            "keywords": [],
             "valore": 0
           },
           "Barriera Elementare": {
@@ -927,20 +928,10 @@
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 5,
+            "quantita": 2,
             "keywords": [
               "Incantesimo personale di combattimento"
             ],
-            "valore": 0
-          },
-          "Alterazione Elementare": {
-            "copie": 1,
-            "classe": "Arte",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
             "valore": 0
           },
           "Esorcizzare Danno": {
@@ -949,7 +940,17 @@
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 3,
+            "keywords": [],
+            "valore": 0
+          },
+          "Esorcizzare Ferite": {
+            "copie": 1,
+            "classe": "Arte",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 4,
             "keywords": [],
             "valore": 0
           },
@@ -969,35 +970,50 @@
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 6,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "Esorcizzare Veleno": {
+            "copie": 1,
+            "classe": "Arte",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 5,
+            "keywords": [],
+            "valore": 0
+          },
+          "Glaciazione": {
+            "copie": 1,
+            "classe": "Arte",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 4,
+            "keywords": [],
+            "valore": 0
+          },
+          "Esorcizzare Influenze Oscure": {
+            "copie": 1,
+            "classe": "Arte",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
             "keywords": [],
             "valore": 0
           }
         },
         "Oscura Simmetria": {},
         "Fortificazione": {
-          "Gli Archivi Di Pietra": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Archivi",
-              "Pietra",
-              "Arte",
-              "Evocazione",
-              "Fortificazione"
-            ]
-          },
           "La Cattedrale Di Burroughs": {
-            "copie": 4,
+            "copie": 2,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 4,
+            "quantita": 3,
             "keywords": [
               "Cattedrale",
               "Burroughs",
@@ -1006,98 +1022,63 @@
               "Fortificazione"
             ]
           },
-          "La Cattedrale Di Gibson": {
-            "copie": 3,
+          "Trincea": {
+            "copie": 2,
             "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
+            "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 3,
+            "quantita": 5,
             "keywords": [
-              "Cattedrale",
-              "Gibson",
-              "Arte",
-              "Cambiamento",
+              "Trincea",
+              "Protezione",
               "Fortificazione"
             ]
           },
-          "La Cattedrale Di Heimburg": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Cattedrale",
-              "Heimburg",
-              "Arte",
-              "Esorcismo",
-              "Fortificazione"
-            ]
-          },
-          "La Cattedrale Di Longshore": {
+          "Industria Bellica": {
             "copie": 2,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 2,
+            "quantita": 5,
             "keywords": [
-              "Cattedrale",
-              "Longshore",
-              "Arte",
-              "Elementi",
-              "Fortificazione"
-            ]
-          },
-          "La Cattedrale Di San Dorado": {
-            "copie": 2,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [
-              "Cattedrale",
-              "San Dorado",
-              "Arte",
-              "Manipolazione",
-              "Fortificazione"
-            ]
-          },
-          "La Cattedrale Di Volksburg": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Cattedrale",
-              "Volksburg",
-              "Arte",
-              "Cinetica",
+              "Industria",
+              "Bellica",
               "Fortificazione"
             ]
           },
           "Campo Di Prigionia": {
-            "copie": 3,
+            "copie": 4,
             "classe": "Fortificazione",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 3,
+            "quantita": 4,
             "keywords": [
               "Prigionia",
               "Campo",
               "Prigionieri",
               "Fortificazione"
             ]
+          },
+          "Barriera Rinforzata": {
+            "copie": 3,
+            "classe": "Fortificazione",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 5,
+            "keywords": [
+              "Barriera",
+              "Rinforzata",
+              "Protezione",
+              "Fortificazione"
+            ]
           }
         },
         "Reliquia": {
-          "Codice Di Percezione Occulta": {
+          "Armatura Del Vero Assassino": {
             "copie": 1,
             "classe": "Reliquia",
             "set_espansione": "Inquisition",
@@ -1107,48 +1088,140 @@
             "keywords": [],
             "valore": 0
           },
-          "Liber Ereticus": {
-            "copie": 3,
+          "Codice Di Percezione Occulta": {
+            "copie": 2,
             "classe": "Reliquia",
             "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 0
+          }
+        },
+        "Warzone": {
+          "Rifugio Sacro": {
+            "copie": 3,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 3,
             "keywords": [
-              "Eretico"
-            ],
-            "valore": 0
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Fratellanza"
+            ]
           },
-          "Missione Modificata": {
+          "Giungla Di Venere": {
             "copie": 1,
-            "classe": "Reliquia",
-            "set_espansione": "Inquisition",
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
-            "keywords": [],
-            "valore": 0
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Ranger Venusiano"
+            ]
+          },
+          "Cyberopolis": {
+            "copie": 4,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 4,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Cybertronic"
+            ]
+          },
+          "Terra Di Nessuno": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Mercenario"
+            ]
+          },
+          "Victoria": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Guerrieri Imperiale"
+            ]
+          },
+          "Il Grande Deserto": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": []
+          },
+          "Fascia Di Asteroidi": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 3,
+            "keywords": []
+          },
+          "Caverne Di Diamanti": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 5,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Mishima"
+            ]
           }
         },
-        "Warzone": {},
-        "Missione": {}
+        "Missione": {
+          "Dimostra Il Tuo Valore": {
+            "copie": 1,
+            "classe": "Missione",
+            "set_espansione": "Base",
+            "rarity": "Rare",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Missione",
+              "Sopravvivenza"
+            ]
+          }
+        }
       },
       "metadati_mazzo": {
         "indice": 1,
-        "data_creazione": "2025-10-29T16:25:32.012073",
-        "totale_carte": 128,
+        "data_creazione": "2025-10-30T17:25:29.742897",
+        "totale_carte": 151,
         "statistiche_base": {
-          "guerrieri_squadra": 36,
+          "guerrieri_squadra": 26,
           "guerrieri_schieramento": 0,
-          "carte_supporto": 92
+          "carte_supporto": 125
         },
         "apostoli_presenti": [],
         "statistiche_originali": {
-          "numero_totale_carte": 128,
+          "numero_totale_carte": 151,
           "fazioni_presenti": [
+            "Bauhaus",
             "Capitol",
-            "Fratellanza",
-            "Bauhaus"
+            "Fratellanza"
           ],
           "espansioni_utilizzate": [
             "Base",
@@ -1156,11 +1229,13 @@
             "Warzone"
           ],
           "distribuzione_per_tipo": {
-            "equipaggiamento": 19,
-            "fortificazione": 17,
-            "speciale": 34,
-            "arte": 17,
-            "reliquia": 5
+            "equipaggiamento": 18,
+            "fortificazione": 13,
+            "speciale": 55,
+            "missione": 1,
+            "arte": 22,
+            "reliquia": 3,
+            "warzone": 13
           }
         }
       }
@@ -1169,6 +1244,25 @@
       "inventario_guerrieri": {
         "squadra": {
           "Cybertronic": {
+            "Chemiman": {
+              "copie": 2,
+              "fazione": "Cybertronic",
+              "set_espansione": "Base",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 4,
+                "sparare": 4,
+                "armatura": 4,
+                "valore": 4
+              },
+              "quantita": 2,
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti delle carte dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
+                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Qualsiasi guerriero ferito', timing='Fase Combattimento')"
+              ]
+            },
             "Il Diciannovesimo Executive": {
               "copie": 1,
               "fazione": "Cybertronic",
@@ -1190,42 +1284,6 @@
                 "Abilita(nome='Converte azioni in azioni di attacco', descrizione=\"Mentre l'Executive è in gioco tu puoi convertire ogni numero di azioni non di attacco in azioni di attacco ma queste devono essere compiute da guerrieri Cybertronic\", tipo='Modificatore', costo_destino=0, target='Guerriero', timing='Sempre')"
               ]
             },
-            "Fay & Klaus": {
-              "copie": 1,
-              "fazione": "Cybertronic",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Personalita",
-              "stats": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 5
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
-              ]
-            },
-            "Cyril Dent": {
-              "copie": 1,
-              "fazione": "Cybertronic",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Personalita",
-              "stats": {
-                "combattimento": 11,
-                "sparare": 8,
-                "armatura": 11,
-                "valore": 9
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
-              ]
-            },
             "Tecnico Vac": {
               "copie": 1,
               "fazione": "Cybertronic",
@@ -1238,7 +1296,7 @@
                 "armatura": 3,
                 "valore": 4
               },
-              "quantita": 1,
+              "quantita": 6,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
@@ -1257,30 +1315,51 @@
                 "armatura": 7,
                 "valore": 7
               },
-              "quantita": 4,
+              "quantita": 2,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
                 "Abilita(nome='Assegna Carta', descrizione=\"Assegna un guerriero Cybertronic non personalita all'Osservatore Tattico. Questo guerriero ed eventuali altre copie di questo presenti nella tua squadra  guadagnano un +4 in C, S, A e V mentre l'Osservatore è vivo e nella squadra\", tipo='Carte', costo_destino=0, target='Guerrieri Cybertronic', timing='Sempre')"
               ]
             },
-            "Chemiman": {
-              "copie": 3,
+            "Cyril Dent": {
+              "copie": 1,
               "fazione": "Cybertronic",
-              "set_espansione": "Base",
+              "set_espansione": "Warzone",
+              "rarity": "Common",
+              "tipo": "Personalita",
+              "stats": {
+                "combattimento": 11,
+                "sparare": 8,
+                "armatura": 11,
+                "valore": 9
+              },
+              "quantita": 1,
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
+              ]
+            },
+            "Capitano Cybertronic": {
+              "copie": 1,
+              "fazione": "Cybertronic",
+              "set_espansione": "Warzone",
               "rarity": "Common",
               "tipo": "Normale",
               "stats": {
-                "combattimento": 4,
-                "sparare": 4,
-                "armatura": 4,
-                "valore": 4
+                "combattimento": 6,
+                "sparare": 5,
+                "armatura": 9,
+                "valore": 10
               },
-              "quantita": 3,
-              "keywords": [],
+              "quantita": 2,
+              "keywords": [
+                "Comandante"
+              ],
               "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti delle carte dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
-                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Qualsiasi guerriero ferito', timing='Fase Combattimento')"
+                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
+                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerrieri Cybertronic con V uguale a 9 o meno', timing='Fase Combattimento')",
+                "Abilita(nome='I guerrieri alleati uccidono automaticamente', descrizione='Mentre è in gioco, tutti i guerrieri Cybertronic nella tua Squadra con V uguale a 9 o meno, uccidono automaticamente i guerrieri che feriscono', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
               ]
             },
             "Mercenario Ex-Cybertronic": {
@@ -1295,7 +1374,7 @@
                 "armatura": 4,
                 "valore": 1
               },
-              "quantita": 4,
+              "quantita": 5,
               "keywords": [
                 "Mercenario"
               ],
@@ -1315,7 +1394,7 @@
                 "armatura": 6,
                 "valore": 5
               },
-              "quantita": 6,
+              "quantita": 2,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
@@ -1343,24 +1422,6 @@
             }
           },
           "Imperiale": {
-            "Maresciallo di Campo Johnstone": {
-              "copie": 1,
-              "fazione": "Imperiale",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Personalita",
-              "stats": {
-                "combattimento": 0,
-                "sparare": 0,
-                "armatura": 0,
-                "valore": 20
-              },
-              "quantita": 1,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Converte Azioni in Azioni d'Attacco\", descrizione=\"Mentre il Maresciallo è in gioco tu puoi convertire ogni numero di Azioni non di attacco in Azioni d'attacco\", tipo='Azioni', costo_destino=0, target='Guerrieri Imperiali', timing='Mentre questo guerriero è presente')"
-              ]
-            },
             "Comandante di Reparto": {
               "copie": 2,
               "fazione": "Imperiale",
@@ -1373,40 +1434,88 @@
                 "armatura": 7,
                 "valore": 7
               },
-              "quantita": 5,
+              "quantita": 3,
               "keywords": [
                 "Comandante"
               ],
               "abilita": [
                 "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta al guerriero assegnato ed alle sue copie, le caratteristiche di Combattimento, Sparare, Armatura e valore di +4', tipo='Modificatore', costo_destino=0, target='Guerrieri assegnati al Comandante', timing='Sempre')"
               ]
-            },
-            "Comandante in Capo": {
-              "copie": 1,
-              "fazione": "Imperiale",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 6,
-                "sparare": 7,
-                "armatura": 5,
-                "valore": 9
-              },
-              "quantita": 4,
-              "keywords": [
-                "Comandante"
-              ],
-              "abilita": [
-                "Abilita(nome='Uccide Automaticamente', descrizione='I guerrieri imperiali della squadra con V <= 8, uccidono automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
-              ]
             }
           }
         },
         "schieramento": {
           "Oscura Legione": {
-            "Ilian": {
-              "Ilian-Signora del Vuoto": {
+            "Semai": {
+              "Conquistatore Callistoniano": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Inquisition",
+                "rarity": "Common",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 6,
+                  "sparare": 6,
+                  "armatura": 6,
+                  "valore": 7
+                },
+                "quantita": 1,
+                "keywords": [
+                  "Seguace di Semai"
+                ],
+                "abilita": [
+                  "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')",
+                  "Abilita(nome='I guerrieri alleati uccidono automaticamente', descrizione='Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
+                ],
+                "apostolo_seguace": "Semai"
+              },
+              "Semai-Signore dell'Odio": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Inquisition",
+                "rarity": "Common",
+                "tipo": "Personalita",
+                "stats": {
+                  "combattimento": 0,
+                  "sparare": 0,
+                  "armatura": 0,
+                  "valore": 20
+                },
+                "quantita": 1,
+                "keywords": [
+                  "Seguace di Semai"
+                ],
+                "abilita": [
+                  "Abilita(nome='Combattimento tra Doomtrooper', descrizione=\"I Doomtrooper possono attaccare qualsiasi Doomtrooper non della tua squadra ma devono pagare 4D per attaccare Guerriri dell'Oscura Legione\", tipo='Combattimento', costo_destino=0, target='Guerrieri Doomtrooper', timing='Ogni Momento')"
+                ],
+                "apostolo_seguace": "Semai"
+              }
+            },
+            "Algeroth": {
+              "Valpurgius": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Inquisition",
+                "rarity": "Common",
+                "tipo": "Personalita",
+                "stats": {
+                  "combattimento": 4,
+                  "sparare": 4,
+                  "armatura": 7,
+                  "valore": 8
+                },
+                "quantita": 1,
+                "keywords": [
+                  "Seguace di Algeroth",
+                  "Nefarita"
+                ],
+                "abilita": [
+                  "Abilita(nome='Assegna Carte', descrizione='Equipaggia qualsiasi seguace di Algeroth con arte Oscura Simmetria e Doni degli Apostoli', tipo='Carte', costo_destino=0, target='Seguaci di ALgeroth', timing='Ogni Momento')",
+                  "Abilita(nome=\"Lancia Arte e/o Incantesimo dell'Arte\", descrizione=\"Lancia qualsiasi Arte o Incantesimo dell'Arte\", tipo='Arte', costo_destino=0, target='Tutte le Discipline', timing='Turno')"
+                ],
+                "apostolo_seguace": "Algeroth"
+              },
+              "Algeroth-Apostolo della Guerra": {
                 "copie": 1,
                 "fazione": "Oscura Legione",
                 "set_espansione": "Inquisition",
@@ -1420,117 +1529,33 @@
                 },
                 "quantita": 2,
                 "keywords": [
-                  "Seguace di Ilian"
+                  "Seguace di Algeroth"
                 ],
                 "abilita": [
-                  "Abilita(nome=\"Annulla Immunita dell'Oscura Simmetria\", descrizione=\"Può annullare qualsiasi immuntità dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Oscura Simmetria', timing='Ogni Momento')",
-                  "Abilita(nome='Assegna Carta', descrizione='Assegna carte Oscura Simmetria e Doni degli Apostoli. Equipaggia qualsiasi seguace di Ilian', tipo='Carte', costo_destino=0, target='Guerrieri Oscura Legione', timing='Ogni Momento')"
+                  "Abilita(nome='Assegna Carta', descrizione=\"Equipaggia qualsiasi guerriero dell'Oscura Legione\", tipo='Carte', costo_destino=0, target='Guerrieri Oscura Legione', timing='Ogni Momento')",
+                  "Abilita(nome='Scarta Carta', descrizione='Può scartare qualsiasi carta in gioco al costo di tre azioni', tipo='Carte', costo_destino=0, target='Tutti i Guerrieri', timing='Turno')"
                 ],
-                "apostolo_seguace": "Ilian"
+                "apostolo_seguace": "Algeroth"
               },
-              "Rampollo di Ilian": {
+              "Destroyer": {
                 "copie": 1,
                 "fazione": "Oscura Legione",
-                "set_espansione": "Inquisition",
+                "set_espansione": "Warzone",
                 "rarity": "Common",
                 "tipo": "Seguace",
                 "stats": {
-                  "combattimento": 4,
-                  "sparare": 5,
-                  "armatura": 4,
-                  "valore": 5
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Ilian"
-                ],
-                "abilita": [
-                  "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')",
-                  "Abilita(nome='I guerrieri alleati uccidono automaticamente', descrizione='I Figli di Ilian uccidono automaticamente i guerrieri feriti', tipo='Combattimento', costo_destino=0, target='Figlio di Ilian', timing='Fase Combattimento')"
-                ],
-                "apostolo_seguace": "Ilian"
-              },
-              "Figlio di Ilian": {
-                "copie": 3,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Base",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 1,
-                  "sparare": 3,
-                  "armatura": 2,
-                  "valore": 2
-                },
-                "quantita": 5,
-                "keywords": [
-                  "Seguace di Ilian"
-                ],
-                "abilita": [],
-                "apostolo_seguace": "Ilian"
-              },
-              "Cultista di Ilian": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Inquisition",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 2,
-                  "sparare": 4,
-                  "armatura": 3,
-                  "valore": 3
-                },
-                "quantita": 2,
-                "keywords": [
-                  "Seguace di Ilian",
-                  "Eretico",
-                  "Cultista di Ilian"
-                ],
-                "abilita": [],
-                "apostolo_seguace": "Ilian"
-              },
-              "Sentinella del Tempio": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Inquisition",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 3,
-                  "sparare": 3,
-                  "armatura": 4,
-                  "valore": 5
-                },
-                "quantita": 3,
-                "keywords": [
-                  "Seguace di Ilian"
-                ],
-                "abilita": [
-                  "Abilita(nome=\"Immune agli effetti dell'Arte\", descrizione=\"Immune agli effetti dell'Arte\", tipo='Immunita', costo_destino=0, target='Tutte le Discipline', timing='Sempre')"
-                ],
-                "apostolo_seguace": "Ilian"
-              }
-            },
-            "Algeroth": {
-              "Golem dell'Oscurità": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Inquisition",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 6,
-                  "sparare": 5,
+                  "combattimento": 7,
+                  "sparare": 7,
                   "armatura": 7,
                   "valore": 7
                 },
                 "quantita": 1,
                 "keywords": [
-                  "Seguace di Algeroth"
+                  "Seguace di Algeroth",
+                  "Eretico"
                 ],
                 "abilita": [
-                  "Abilita(nome='Guarisce se stesso', descrizione='Se ferito, può guarire se stesso. Se il Golem viene ferito, torna sano, a meno che la ferita non lo uccida sul colpo.', tipo='Guarigione', costo_destino=0, target='Guerriero', timing='Sempre')"
+                  "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
                 ],
                 "apostolo_seguace": "Algeroth"
               },
@@ -1576,6 +1601,48 @@
                 "abilita": [],
                 "apostolo_seguace": "Algeroth"
               },
+              "Pretorian Stalker": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Base",
+                "rarity": "Rare",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 12,
+                  "sparare": 3,
+                  "armatura": 8,
+                  "valore": 7
+                },
+                "quantita": 1,
+                "keywords": [
+                  "Seguace di Algeroth"
+                ],
+                "abilita": [
+                  "Abilita(nome='Aumenta caratteristica', descrizione='Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2', tipo='Modificatore', costo_destino=0, target='Tutto', timing='')"
+                ],
+                "apostolo_seguace": "Algeroth"
+              },
+              "Cacciatore Oscuro": {
+                "copie": 2,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Inquisition",
+                "rarity": "Common",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 5,
+                  "sparare": 5,
+                  "armatura": 5,
+                  "valore": 6
+                },
+                "quantita": 2,
+                "keywords": [
+                  "Seguace di Algeroth"
+                ],
+                "abilita": [
+                  "Abilita(nome='Ataccabile solo dalla Fratellanza', descrizione='Solo i membri della Fratellamza possono attaccarlo con penalità in A di -1', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
+                ],
+                "apostolo_seguace": "Algeroth"
+              },
               "Technomancer": {
                 "copie": 1,
                 "fazione": "Oscura Legione",
@@ -1588,88 +1655,10 @@
                   "armatura": 4,
                   "valore": 5
                 },
-                "quantita": 2,
+                "quantita": 1,
                 "keywords": [
                   "Seguace di Algeroth",
                   "Eretico"
-                ],
-                "abilita": [],
-                "apostolo_seguace": "Algeroth"
-              },
-              "Brass Apocalypt": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Warzone",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 6,
-                  "sparare": 13,
-                  "armatura": 10,
-                  "valore": 7
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Algeroth"
-                ],
-                "abilita": [],
-                "apostolo_seguace": "Algeroth"
-              },
-              "Progenie Immacolata": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Warzone",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 3,
-                  "sparare": 9,
-                  "armatura": 6,
-                  "valore": 6
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Algeroth"
-                ],
-                "abilita": [
-                  "Abilita(nome='Trasforma guerrieri uccisi in alleati', descrizione='Se la Progenie uccide un Doomtrooper, puoi immediatamente rimpiazzarla con una Furia Immacolata', tipo='Modificatore', costo_destino=0, target='Doomtrooper', timing='Turno')"
-                ],
-                "apostolo_seguace": "Algeroth"
-              },
-              "Maculator di Mercurio": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Warzone",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 8,
-                  "sparare": 14,
-                  "armatura": 6,
-                  "valore": 6
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Algeroth"
-                ],
-                "abilita": [],
-                "apostolo_seguace": "Algeroth"
-              },
-              "Legionario Non Morto": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Base",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 3,
-                  "sparare": 1,
-                  "armatura": 2,
-                  "valore": 2
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Algeroth"
                 ],
                 "abilita": [],
                 "apostolo_seguace": "Algeroth"
@@ -1680,77 +1669,49 @@
       },
       "inventario_supporto": {
         "Equipaggiamento": {
-          "Ticker": {
+          "Necromower": {
             "copie": 3,
             "classe": "Equipaggiamento",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 5,
-            "keywords": [],
-            "valore": 4
-          },
-          "SSW4200P": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
             "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Spada e Pistola Punisher": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 2
-          },
-          "Nazgaroth": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Hellblaster": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Granata Batteriologica": {
-            "copie": 3,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 3,
             "keywords": [],
+            "valore": 8
+          },
+          "Ticker": {
+            "copie": 2,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
             "valore": 4
           },
-          "TA 6500 Cybermech": {
+          "Fuoristrada GT B52": {
             "copie": 2,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 2,
-            "keywords": [],
-            "valore": 0
+            "keywords": [
+              "Doomtrooper"
+            ],
+            "valore": 2
           },
-          "Incrociatore Leggero Lancelot": {
+          "Spada e Pistola Punisher": {
+            "copie": 3,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 3,
+            "keywords": [],
+            "valore": 2
+          },
+          "Mandible/SA-SG 7200": {
             "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
@@ -1758,22 +1719,42 @@
             "costo_destino": 0,
             "quantita": 1,
             "keywords": [],
-            "valore": 0
+            "valore": 5
           },
-          "Azogar": {
-            "copie": 2,
+          "Reaver Trasporta Truppe": {
+            "copie": 3,
             "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
+            "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 3,
             "keywords": [],
-            "valore": 3
+            "valore": 0
           },
-          "Furga 750": {
+          "Azogar": {
             "copie": 1,
             "classe": "Equipaggiamento",
-            "set_espansione": "Warzone",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 3
+          },
+          "Kratac": {
+            "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "Proiettili di Tenebra": {
+            "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
@@ -1782,20 +1763,10 @@
             ],
             "valore": 0
           },
-          "Lanciamissili SP Crusader": {
-            "copie": 1,
+          "Unholy Carronade": {
+            "copie": 2,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Cura Oscura": {
-            "copie": 3,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 3,
@@ -1805,29 +1776,19 @@
         },
         "Speciale": {
           "Programma Di Auto-Distruzione": {
-            "copie": 3,
-            "classe": "Speciale",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 3,
-            "keywords": [],
-            "valore": 0
-          },
-          "Codice D'Onore": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Servizio Deferente": {
             "copie": 2,
             "classe": "Speciale",
-            "set_espansione": "Base",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 0
+          },
+          "Tessera Del Clan": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 2,
@@ -1835,12 +1796,12 @@
             "valore": 0
           },
           "Attestato D'Onore": {
-            "copie": 4,
+            "copie": 3,
             "classe": "Speciale",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 4,
+            "quantita": 3,
             "keywords": [],
             "valore": 0
           },
@@ -1854,7 +1815,7 @@
             "keywords": [],
             "valore": 0
           },
-          "Empatia Della Manipolazione": {
+          "Empatia Di Cambiamento": {
             "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
@@ -1864,47 +1825,7 @@
             "keywords": [],
             "valore": null
           },
-          "Guastatore": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
           "Menzione D'Onore": {
-            "copie": 5,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 5,
-            "keywords": [],
-            "valore": ""
-          },
-          "Onorificenza": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": ""
-          },
-          "Programmato": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Riconoscimento": {
             "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Base",
@@ -1914,7 +1835,17 @@
             "keywords": [],
             "valore": ""
           },
-          "Truppe Speciali": {
+          "Onorificenza": {
+            "copie": 2,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": ""
+          },
+          "Programmato": {
             "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Warzone",
@@ -1944,105 +1875,94 @@
             "keywords": [],
             "valore": null
           },
-          "Morte Istantanea": {
+          "Caduto In Disgrazia": {
             "copie": 1,
             "classe": "Speciale",
-            "set_espansione": "Warzone",
+            "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
             "keywords": [],
-            "valore": 0
+            "valore": null
           }
         },
         "Arte": {},
         "Oscura Simmetria": {
-          "Evocazione Oscura": {
-            "copie": 3,
+          "Distorsione": {
+            "copie": 1,
             "classe": "Oscura Simmetria",
-            "set_espansione": "Inquisition",
+            "set_espansione": "Base",
             "rarity": "Common",
-            "costo_destino": "3 Azioni",
-            "quantita": 3,
+            "costo_destino": "10 Punti Destino",
+            "quantita": 1,
             "keywords": [
               "Seguace di Algeroth"
             ],
             "apostolo_padre": "Algeroth"
           },
-          "Apertura Dimensionale": {
-            "copie": 2,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": "",
-            "quantita": 2,
-            "keywords": [
-              "Seguace di Ilian"
-            ],
-            "apostolo_padre": "Ilian"
-          },
-          "Disturbo": {
+          "Indigestione": {
             "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": "",
-            "quantita": 1,
+            "quantita": 4,
             "keywords": [
-              "Seguace di Ilian"
+              "Seguace di Algeroth"
             ],
-            "apostolo_padre": "Ilian"
+            "apostolo_padre": "Algeroth"
           },
-          "Il Potere Della Percezione": {
-            "copie": 2,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": "",
-            "quantita": 2,
-            "keywords": [
-              "Seguace di Ilian"
-            ],
-            "apostolo_padre": "Ilian"
-          },
-          "Mano Della Morte": {
+          "Portale Della Cura Oscura": {
             "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Base",
             "rarity": "Common",
-            "costo_destino": "",
+            "costo_destino": "3 Azioni",
             "quantita": 1,
             "keywords": [
-              "Seguace di Ilian"
+              "Nefarita",
+              "Seguace di Algeroth"
             ],
-            "apostolo_padre": "Ilian"
+            "apostolo_padre": "Algeroth"
           },
-          "Plagio": {
+          "Autorità": {
             "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Inquisition",
             "rarity": "Common",
-            "costo_destino": "",
-            "quantita": 3,
+            "costo_destino": "2 Azioni",
+            "quantita": 5,
             "keywords": [
-              "Seguace di Ilian"
+              "Seguace di Semai"
             ],
-            "apostolo_padre": "Ilian"
+            "apostolo_padre": "Semai"
+          },
+          "Illusione": {
+            "copie": 1,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": "3 Punti Destino",
+            "quantita": 1,
+            "keywords": [
+              "Seguace di Semai"
+            ],
+            "apostolo_padre": "Semai"
           },
           "Forza Malvagia": {
-            "copie": 1,
+            "copie": 2,
             "classe": "Oscura Simmetria",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": "",
-            "quantita": 1,
+            "quantita": 2,
             "keywords": [
               "Eretico"
             ],
             "apostolo_padre": null
           },
           "Forza Primordiale": {
-            "copie": 3,
+            "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Inquisition",
             "rarity": "Common",
@@ -2065,7 +1985,7 @@
             ],
             "apostolo_padre": null
           },
-          "Deformazione": {
+          "Infezione": {
             "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Base",
@@ -2076,9 +1996,83 @@
               "Seguace di Demnogonis"
             ],
             "apostolo_padre": "Demnogonis"
+          },
+          "Ruggine": {
+            "copie": 1,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": "10 Punti Destino",
+            "quantita": 1,
+            "keywords": [
+              "Seguace di Demnogonis"
+            ],
+            "apostolo_padre": "Demnogonis"
+          },
+          "Untore": {
+            "copie": 1,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": "",
+            "quantita": 1,
+            "keywords": [
+              "Seguace di Demnogonis"
+            ],
+            "apostolo_padre": "Demnogonis"
+          },
+          "Apertura Dimensionale": {
+            "copie": 2,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": "",
+            "quantita": 2,
+            "keywords": [
+              "Seguace di Ilian"
+            ],
+            "apostolo_padre": "Ilian"
+          },
+          "Disturbo": {
+            "copie": 2,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": "",
+            "quantita": 2,
+            "keywords": [
+              "Seguace di Ilian"
+            ],
+            "apostolo_padre": "Ilian"
+          },
+          "Il Potere Della Percezione": {
+            "copie": 1,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": "",
+            "quantita": 1,
+            "keywords": [
+              "Seguace di Ilian"
+            ],
+            "apostolo_padre": "Ilian"
           }
         },
         "Fortificazione": {
+          "Cittadella Di Algeroth": {
+            "copie": 2,
+            "classe": "Fortificazione",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Algeroth",
+              "Seguace di Algeroth",
+              "Cittadella",
+              "Fortificazione"
+            ]
+          },
           "Gli Archivi Di Pietra": {
             "copie": 1,
             "classe": "Fortificazione",
@@ -2094,7 +2088,7 @@
               "Fortificazione"
             ]
           },
-          "La Cattedrale Di Fukido": {
+          "La Cattedrale Di Gibson": {
             "copie": 2,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
@@ -2103,28 +2097,13 @@
             "quantita": 2,
             "keywords": [
               "Cattedrale",
-              "Fukido",
+              "Gibson",
               "Arte",
-              "Mentale",
+              "Cambiamento",
               "Fortificazione"
             ]
           },
           "La Cattedrale Di Heimburg": {
-            "copie": 2,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [
-              "Cattedrale",
-              "Heimburg",
-              "Arte",
-              "Esorcismo",
-              "Fortificazione"
-            ]
-          },
-          "La Cattedrale Di Longshore": {
             "copie": 1,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
@@ -2133,9 +2112,24 @@
             "quantita": 1,
             "keywords": [
               "Cattedrale",
-              "Longshore",
+              "Heimburg",
               "Arte",
-              "Elementi",
+              "Esorcismo",
+              "Fortificazione"
+            ]
+          },
+          "La Cattedrale Di San Dorado": {
+            "copie": 2,
+            "classe": "Fortificazione",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 3,
+            "keywords": [
+              "Cattedrale",
+              "San Dorado",
+              "Arte",
+              "Manipolazione",
               "Fortificazione"
             ]
           },
@@ -2154,101 +2148,22 @@
               "Fortificazione"
             ]
           },
-          "Cittadella Di Muawijhe": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Muawijhe",
-              "Seguace di Muawijhe",
-              "Cittadella",
-              "Fortificazione"
-            ]
-          },
           "Complesso Industriale": {
-            "copie": 2,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [
-              "Industriale",
-              "Complesso",
-              "Fortificazione"
-            ]
-          },
-          "Industria Bellica": {
             "copie": 3,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 6,
+            "quantita": 3,
             "keywords": [
-              "Industria",
-              "Bellica",
-              "Fortificazione"
-            ]
-          },
-          "Campo Di Prigionia": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Prigionia",
-              "Campo",
-              "Prigionieri",
-              "Fortificazione"
-            ]
-          },
-          "Barriera Rinforzata": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 6,
-            "keywords": [
-              "Barriera",
-              "Rinforzata",
-              "Protezione",
-              "Fortificazione"
-            ]
-          },
-          "Fogne": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Fogne",
-              "Eretici",
-              "Copertura",
+              "Industriale",
+              "Complesso",
               "Fortificazione"
             ]
           }
         },
         "Reliquia": {
           "Armatura Del Vero Assassino": {
-            "copie": 2,
-            "classe": "Reliquia",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [],
-            "valore": 0
-          },
-          "Frammento Del Vero Chip": {
             "copie": 1,
             "classe": "Reliquia",
             "set_espansione": "Inquisition",
@@ -2259,26 +2174,26 @@
             "valore": 0
           },
           "Armatura Di Empietà": {
-            "copie": 2,
+            "copie": 3,
             "classe": "Reliquia",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 2,
+            "quantita": 3,
+            "keywords": [],
+            "valore": 0
+          },
+          "Pergamena D'Evocazione Sacrilega": {
+            "copie": 1,
+            "classe": "Reliquia",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
             "keywords": [],
             "valore": 0
           },
           "Globo Dei Servi Minori": {
-            "copie": 2,
-            "classe": "Reliquia",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [],
-            "valore": 0
-          },
-          "Pugnale Sacrificale": {
             "copie": 1,
             "classe": "Reliquia",
             "set_espansione": "Inquisition",
@@ -2289,46 +2204,133 @@
             "valore": 0
           }
         },
-        "Warzone": {},
-        "Missione": {
-          "Lotta Fraticida": {
+        "Warzone": {
+          "Foresta Di Shinrikyo": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": []
+          },
+          "Terra Di Nessuno": {
             "copie": 2,
-            "classe": "Missione",
-            "set_espansione": "Base",
-            "rarity": "Uncommon",
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
             "costo_destino": 0,
             "quantita": 2,
             "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Mercenario"
+            ]
+          },
+          "Victoria": {
+            "copie": 2,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 5,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Guerrieri Imperiale"
+            ]
+          },
+          "Giungla Di Venere": {
+            "copie": 2,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Ranger Venusiano"
+            ]
+          },
+          "Caverne Di Diamanti": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Mishima"
+            ]
+          },
+          "Asteroide Infestato": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 3,
+            "keywords": [
+              "Ulteriore incremento",
+              "Guerrieri contro attaccanti Imperiale"
+            ]
+          },
+          "Montagne Di Helstrom": {
+            "copie": 2,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": []
+          },
+          "Cratere Di Anatholia": {
+            "copie": 2,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": []
+          }
+        },
+        "Missione": {
+          "Quindici Minuti Di Fama": {
+            "copie": 1,
+            "classe": "Missione",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
               "Missione",
-              "Uccisione",
-              "Difficile"
+              "Uccisione"
             ]
           }
         }
       },
       "metadati_mazzo": {
         "indice": 2,
-        "data_creazione": "2025-10-29T16:25:32.016396",
-        "totale_carte": 122,
+        "data_creazione": "2025-10-30T17:25:29.744527",
+        "totale_carte": 112,
         "statistiche_base": {
-          "guerrieri_squadra": 16,
-          "guerrieri_schieramento": 15,
-          "carte_supporto": 91
+          "guerrieri_squadra": 13,
+          "guerrieri_schieramento": 11,
+          "carte_supporto": 88
         },
         "apostoli_presenti": [
-          "Ilian",
+          "Semai",
           "Algeroth"
         ],
         "statistiche_apostoli": {
-          "Ilian": 5,
+          "Semai": 2,
           "Algeroth": 8
         },
         "statistiche_originali": {
-          "numero_totale_carte": 122,
+          "numero_totale_carte": 112,
           "fazioni_presenti": [
-            "Imperiale",
+            "Cybertronic",
             "Oscura Legione",
-            "Cybertronic"
+            "Imperiale"
           ],
           "espansioni_utilizzate": [
             "Base",
@@ -2336,12 +2338,13 @@
             "Warzone"
           ],
           "distribuzione_per_tipo": {
-            "equipaggiamento": 20,
-            "fortificazione": 16,
-            "speciale": 29,
-            "missione": 2,
-            "oscura_simmetria": 16,
-            "reliquia": 8
+            "equipaggiamento": 19,
+            "fortificazione": 12,
+            "speciale": 20,
+            "missione": 1,
+            "oscura_simmetria": 17,
+            "reliquia": 6,
+            "warzone": 13
           }
         }
       }
@@ -2350,23 +2353,23 @@
       "inventario_guerrieri": {
         "squadra": {
           "Cybertronic": {
-            "Tecnico Vac": {
+            "Osservatore Tattico": {
               "copie": 1,
               "fazione": "Cybertronic",
-              "set_espansione": "Inquisition",
+              "set_espansione": "Warzone",
               "rarity": "Common",
               "tipo": "Normale",
               "stats": {
-                "combattimento": 3,
+                "combattimento": 4,
                 "sparare": 3,
-                "armatura": 3,
-                "valore": 4
+                "armatura": 7,
+                "valore": 7
               },
               "quantita": 1,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
-                "Abilita(nome='Assegna Carta', descrizione=\"Equipaggia qualsiasi Doomtrooper con carte Equipaggiamento Cybertronic senza spendere Azioni. Può anche affiliare qualsiasi Doomtrooper non-Personalità alla Cybertronic. Questo causa una ferita al Tecnico, ma se muore così non si guadagnano Punti. Non può usare l'Arte.\", tipo='Carte', costo_destino=10, target='Equipaggiamento Cybertronic', timing='Ogni Momento')"
+                "Abilita(nome='Assegna Carta', descrizione=\"Assegna un guerriero Cybertronic non personalita all'Osservatore Tattico. Questo guerriero ed eventuali altre copie di questo presenti nella tua squadra  guadagnano un +4 in C, S, A e V mentre l'Osservatore è vivo e nella squadra\", tipo='Carte', costo_destino=0, target='Guerrieri Cybertronic', timing='Sempre')"
               ]
             },
             "Il Diciannovesimo Executive": {
@@ -2390,26 +2393,8 @@
                 "Abilita(nome='Converte azioni in azioni di attacco', descrizione=\"Mentre l'Executive è in gioco tu puoi convertire ogni numero di azioni non di attacco in azioni di attacco ma queste devono essere compiute da guerrieri Cybertronic\", tipo='Modificatore', costo_destino=0, target='Guerriero', timing='Sempre')"
               ]
             },
-            "Fay & Klaus": {
-              "copie": 1,
-              "fazione": "Cybertronic",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Personalita",
-              "stats": {
-                "combattimento": 3,
-                "sparare": 3,
-                "armatura": 3,
-                "valore": 5
-              },
-              "quantita": 1,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
-              ]
-            },
             "Chemiman": {
-              "copie": 1,
+              "copie": 3,
               "fazione": "Cybertronic",
               "set_espansione": "Base",
               "rarity": "Common",
@@ -2420,52 +2405,30 @@
                 "armatura": 4,
                 "valore": 4
               },
-              "quantita": 1,
+              "quantita": 3,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti delle carte dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
                 "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Qualsiasi guerriero ferito', timing='Fase Combattimento')"
               ]
             },
-            "Osservatore Tattico": {
-              "copie": 2,
+            "Tecnico Vac": {
+              "copie": 1,
               "fazione": "Cybertronic",
-              "set_espansione": "Warzone",
+              "set_espansione": "Inquisition",
               "rarity": "Common",
               "tipo": "Normale",
               "stats": {
-                "combattimento": 4,
+                "combattimento": 3,
                 "sparare": 3,
-                "armatura": 7,
-                "valore": 7
+                "armatura": 3,
+                "valore": 4
               },
-              "quantita": 4,
+              "quantita": 6,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
-                "Abilita(nome='Assegna Carta', descrizione=\"Assegna un guerriero Cybertronic non personalita all'Osservatore Tattico. Questo guerriero ed eventuali altre copie di questo presenti nella tua squadra  guadagnano un +4 in C, S, A e V mentre l'Osservatore è vivo e nella squadra\", tipo='Carte', costo_destino=0, target='Guerrieri Cybertronic', timing='Sempre')"
-              ]
-            },
-            "Capitano Cybertronic": {
-              "copie": 1,
-              "fazione": "Cybertronic",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 6,
-                "sparare": 5,
-                "armatura": 9,
-                "valore": 10
-              },
-              "quantita": 1,
-              "keywords": [
-                "Comandante"
-              ],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
-                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerrieri Cybertronic con V uguale a 9 o meno', timing='Fase Combattimento')",
-                "Abilita(nome='I guerrieri alleati uccidono automaticamente', descrizione='Mentre è in gioco, tutti i guerrieri Cybertronic nella tua Squadra con V uguale a 9 o meno, uccidono automaticamente i guerrieri che feriscono', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
+                "Abilita(nome='Assegna Carta', descrizione=\"Equipaggia qualsiasi Doomtrooper con carte Equipaggiamento Cybertronic senza spendere Azioni. Può anche affiliare qualsiasi Doomtrooper non-Personalità alla Cybertronic. Questo causa una ferita al Tecnico, ma se muore così non si guadagnano Punti. Non può usare l'Arte.\", tipo='Carte', costo_destino=10, target='Equipaggiamento Cybertronic', timing='Ogni Momento')"
               ]
             },
             "Mercenario Ex-Cybertronic": {
@@ -2500,133 +2463,134 @@
                 "armatura": 6,
                 "valore": 5
               },
-              "quantita": 4,
+              "quantita": 5,
               "keywords": [],
               "abilita": [
                 "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria ma non ai Doni degli Apostoli\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
                 "Abilita(nome='Guarisce se stesso', descrizione=\"Se ferito, può guarire se stesso. Se Diana non è al Coperto, può spendere un'azione per guarire un qualsiasi Doomtrooper ferito in gioco. Dopo deve andare al Coperto. Diana non può mai lanciare incantesimi dell'Arte.\", tipo='Guarigione', costo_destino=0, target='Doomtrooper ferito', timing='Turno')"
               ]
             },
-            "Sicurezza Cybertronic": {
+            "Charles Sykes": {
               "copie": 1,
               "fazione": "Cybertronic",
+              "set_espansione": "Warzone",
+              "rarity": "Common",
+              "tipo": "Personalita",
+              "stats": {
+                "combattimento": 8,
+                "sparare": 7,
+                "armatura": 11,
+                "valore": 13
+              },
+              "quantita": 1,
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune ai DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')",
+                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4', tipo='Modificatore', costo_destino=0, target='Tutti i guerrieri Cybertronic nella squadra', timing='Sempre')"
+              ]
+            }
+          },
+          "Mishima": {
+            "Lord Nozaki": {
+              "copie": 1,
+              "fazione": "Mishima",
+              "set_espansione": "Warzone",
+              "rarity": "Common",
+              "tipo": "Personalita",
+              "stats": {
+                "combattimento": 0,
+                "sparare": 0,
+                "armatura": 0,
+                "valore": 20
+              },
+              "quantita": 1,
+              "keywords": [],
+              "abilita": []
+            },
+            "Shugo": {
+              "copie": 1,
+              "fazione": "Mishima",
+              "set_espansione": "Warzone",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 7,
+                "sparare": 7,
+                "armatura": 7,
+                "valore": 9
+              },
+              "quantita": 2,
+              "keywords": [
+                "Comandante"
+              ],
+              "abilita": [
+                "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')",
+                "Abilita(nome='I guerrieri alleati uccidono automaticamente', descrizione='Mentre è in gioco, tutti i guerrieri Mishima nella tua Squadra con V uguale a 8 o meno, uccidono automaticamente i guerrieri che feriscono', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
+              ]
+            },
+            "Jito": {
+              "copie": 2,
+              "fazione": "Mishima",
+              "set_espansione": "Warzone",
+              "rarity": "Common",
+              "tipo": "Normale",
+              "stats": {
+                "combattimento": 5,
+                "sparare": 5,
+                "armatura": 5,
+                "valore": 6
+              },
+              "quantita": 4,
+              "keywords": [
+                "Comandante"
+              ],
+              "abilita": [
+                "Abilita(nome='Assegna Carta', descrizione='Assegna un guerriero Mishima non personalità al Jito. Questo guerriero ed eventuali copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre il Jito è vivo e nella Squadra.', tipo='Carte', costo_destino=0, target='Guerriero Mishima', timing='Ogni Momento')",
+                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4', tipo='Modificatore', costo_destino=0, target='Guerriero Mishima assegnato', timing='Sempre')"
+              ]
+            },
+            "Tatsu": {
+              "copie": 1,
+              "fazione": "Mishima",
               "set_espansione": "Base",
+              "rarity": "Common",
+              "tipo": "Personalita",
+              "stats": {
+                "combattimento": 6,
+                "sparare": 6,
+                "armatura": 7,
+                "valore": 7
+              },
+              "quantita": 1,
+              "keywords": [],
+              "abilita": [
+                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Samurai', timing='Sempre')"
+              ]
+            },
+            "Mentore": {
+              "copie": 3,
+              "fazione": "Mishima",
+              "set_espansione": "Inquisition",
               "rarity": "Common",
               "tipo": "Normale",
               "stats": {
                 "combattimento": 3,
                 "sparare": 3,
-                "armatura": 4,
-                "valore": 3
-              },
-              "quantita": 2,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"Immune agli effetti dei DONI DELL'OSCURA SIMMETRIA\", tipo='Immunita', costo_destino=0, target='Guerriero', timing='Sempre')"
-              ]
-            }
-          },
-          "Imperiale": {
-            "Comandante di Reparto": {
-              "copie": 2,
-              "fazione": "Imperiale",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 5,
-                "sparare": 3,
-                "armatura": 7,
-                "valore": 7
-              },
-              "quantita": 2,
-              "keywords": [
-                "Comandante"
-              ],
-              "abilita": [
-                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta al guerriero assegnato ed alle sue copie, le caratteristiche di Combattimento, Sparare, Armatura e valore di +4', tipo='Modificatore', costo_destino=0, target='Guerrieri assegnati al Comandante', timing='Sempre')"
-              ]
-            },
-            "Comandante in Capo": {
-              "copie": 1,
-              "fazione": "Imperiale",
-              "set_espansione": "Warzone",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 6,
-                "sparare": 7,
-                "armatura": 5,
-                "valore": 9
-              },
-              "quantita": 1,
-              "keywords": [
-                "Comandante"
-              ],
-              "abilita": [
-                "Abilita(nome='Uccide Automaticamente', descrizione='I guerrieri imperiali della squadra con V <= 8, uccidono automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
-              ]
-            },
-            "Sgt McBride": {
-              "copie": 1,
-              "fazione": "Imperiale",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Personalita",
-              "stats": {
-                "combattimento": 5,
-                "sparare": 5,
-                "armatura": 5,
-                "valore": 5
-              },
-              "quantita": 1,
-              "keywords": [],
-              "abilita": [
-                "Abilita(nome='Aumenta caratteristica', descrizione='Quando è in gioco tutti i Blood Beret (ma non lui stesso) guadagnano +1 in C e S', tipo='Modificatore', costo_destino=0, target='Cavalleria Aerea', timing='Sempre')"
-              ]
-            },
-            "Mercenario Ex-Imperiale": {
-              "copie": 1,
-              "fazione": "Imperiale",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 4,
-                "sparare": 2,
-                "armatura": 2,
-                "valore": 1
+                "armatura": 3,
+                "valore": 2
               },
               "quantita": 3,
-              "keywords": [
-                "Mercenario"
-              ],
-              "abilita": []
-            },
-            "Blood Beret": {
-              "copie": 2,
-              "fazione": "Imperiale",
-              "set_espansione": "Base",
-              "rarity": "Common",
-              "tipo": "Normale",
-              "stats": {
-                "combattimento": 4,
-                "sparare": 3,
-                "armatura": 4,
-                "valore": 4
-              },
-              "quantita": 2,
               "keywords": [],
               "abilita": [
-                "Abilita(nome=\"Immune agli effetti dell'Oscura Simmetria\", descrizione=\"immune agli effetti dell'oscura simmetria\", tipo='Immunita', costo_destino=0, target='Self', timing='Ogni Momento')"
+                "Abilita(nome='Aumenta caratteristica', descrizione='Aumenta le caratteristiche di Combattimento e Sparare di +1', tipo='Modificatore', costo_destino=0, target='Guerrieri Mishima', timing='Sempre')"
               ]
             }
           }
         },
         "schieramento": {
           "Oscura Legione": {
-            "Semai": {
-              "Semai-Signore dell'Odio": {
+            "Ilian": {
+              "Ilian-Signora del Vuoto": {
                 "copie": 1,
                 "fazione": "Oscura Legione",
                 "set_espansione": "Inquisition",
@@ -2640,98 +2604,91 @@
                 },
                 "quantita": 1,
                 "keywords": [
-                  "Seguace di Semai"
+                  "Seguace di Ilian"
                 ],
                 "abilita": [
-                  "Abilita(nome='Combattimento tra Doomtrooper', descrizione=\"I Doomtrooper possono attaccare qualsiasi Doomtrooper non della tua squadra ma devono pagare 4D per attaccare Guerriri dell'Oscura Legione\", tipo='Combattimento', costo_destino=0, target='Guerrieri Doomtrooper', timing='Ogni Momento')"
+                  "Abilita(nome=\"Annulla Immunita dell'Oscura Simmetria\", descrizione=\"Può annullare qualsiasi immuntità dell'Oscura Simmetria\", tipo='Immunita', costo_destino=0, target='Oscura Simmetria', timing='Ogni Momento')",
+                  "Abilita(nome='Assegna Carta', descrizione='Assegna carte Oscura Simmetria e Doni degli Apostoli. Equipaggia qualsiasi seguace di Ilian', tipo='Carte', costo_destino=0, target='Guerrieri Oscura Legione', timing='Ogni Momento')"
                 ],
-                "apostolo_seguace": "Semai"
+                "apostolo_seguace": "Ilian"
               },
-              "Nefarita di Semai": {
+              "Figlio di Ilian": {
                 "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Base",
-                "rarity": "Rare",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 5,
-                  "sparare": 4,
-                  "armatura": 5,
-                  "valore": 6
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Semai",
-                  "Nefarita"
-                ],
-                "abilita": [
-                  "Abilita(nome=\"Immune agli effetti dell'Arte\", descrizione=\"Immune agli effetti dell'Arte\", tipo='Immunita', costo_destino=0, target='Tutte le Discipline', timing='Sempre')",
-                  "Abilita(nome='Trasforma guerrieri uccisi in alleati', descrizione='I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto', tipo='Modificatore', costo_destino=1, target='Doomtrooper', timing='Fase Combattimento')",
-                  "Abilita(nome='Guarisce se stesso', descrizione='Se Ferito, il Nefarita  può guarire se stesso spendendo 7D', tipo='Guarigione', costo_destino=7, target='', timing='Sempre')"
-                ],
-                "apostolo_seguace": "Semai"
-              },
-              "Conquistatore Callistoniano": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Inquisition",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 6,
-                  "sparare": 6,
-                  "armatura": 6,
-                  "valore": 7
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Semai"
-                ],
-                "abilita": [
-                  "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')",
-                  "Abilita(nome='I guerrieri alleati uccidono automaticamente', descrizione='Mentre è in gioco, tutti i guerrieri feriti dagli INTRUSI CALLISTONIANI sono automaticamente uccisi', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
-                ],
-                "apostolo_seguace": "Semai"
-              },
-              "Cultista di Semai": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Inquisition",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 4,
-                  "sparare": 2,
-                  "armatura": 3,
-                  "valore": 3
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Semai",
-                  "Eretico",
-                  "Cultista di Semai"
-                ],
-                "abilita": [],
-                "apostolo_seguace": "Semai"
-              },
-              "Legionario di Semai": {
-                "copie": 2,
                 "fazione": "Oscura Legione",
                 "set_espansione": "Base",
                 "rarity": "Common",
                 "tipo": "Seguace",
                 "stats": {
                   "combattimento": 1,
-                  "sparare": 2,
-                  "armatura": 3,
+                  "sparare": 3,
+                  "armatura": 2,
                   "valore": 2
                 },
-                "quantita": 4,
+                "quantita": 1,
                 "keywords": [
-                  "Seguace di Semai"
+                  "Seguace di Ilian"
                 ],
                 "abilita": [],
-                "apostolo_seguace": "Semai"
+                "apostolo_seguace": "Ilian"
+              },
+              "Sentinella del Tempio": {
+                "copie": 3,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Inquisition",
+                "rarity": "Common",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 3,
+                  "sparare": 3,
+                  "armatura": 4,
+                  "valore": 5
+                },
+                "quantita": 3,
+                "keywords": [
+                  "Seguace di Ilian"
+                ],
+                "abilita": [
+                  "Abilita(nome=\"Immune agli effetti dell'Arte\", descrizione=\"Immune agli effetti dell'Arte\", tipo='Immunita', costo_destino=0, target='Tutte le Discipline', timing='Sempre')"
+                ],
+                "apostolo_seguace": "Ilian"
+              },
+              "Templare": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Base",
+                "rarity": "Uncommon",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 4,
+                  "sparare": 7,
+                  "armatura": 5,
+                  "valore": 6
+                },
+                "quantita": 1,
+                "keywords": [
+                  "Seguace di Ilian"
+                ],
+                "abilita": [],
+                "apostolo_seguace": "Ilian"
+              },
+              "Pipistrello Velenoso": {
+                "copie": 1,
+                "fazione": "Oscura Legione",
+                "set_espansione": "Warzone",
+                "rarity": "Common",
+                "tipo": "Seguace",
+                "stats": {
+                  "combattimento": 0,
+                  "sparare": 1,
+                  "armatura": 1,
+                  "valore": 1
+                },
+                "quantita": 1,
+                "keywords": [
+                  "Seguace di Ilian"
+                ],
+                "abilita": [],
+                "apostolo_seguace": "Ilian"
               }
             },
             "Algeroth": {
@@ -2756,45 +2713,25 @@
                 ],
                 "apostolo_seguace": "Algeroth"
               },
-              "Destroyer": {
+              "Cacciatore Oscuro": {
                 "copie": 1,
                 "fazione": "Oscura Legione",
-                "set_espansione": "Warzone",
+                "set_espansione": "Inquisition",
                 "rarity": "Common",
                 "tipo": "Seguace",
                 "stats": {
-                  "combattimento": 7,
-                  "sparare": 7,
-                  "armatura": 7,
-                  "valore": 7
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Algeroth",
-                  "Eretico"
-                ],
-                "abilita": [
-                  "Abilita(nome='Uccide Automaticamente', descrizione='Se ferisce, uccide automaticamente', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
-                ],
-                "apostolo_seguace": "Algeroth"
-              },
-              "Brass Apocalypt": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Warzone",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 6,
-                  "sparare": 13,
-                  "armatura": 10,
-                  "valore": 7
+                  "combattimento": 5,
+                  "sparare": 5,
+                  "armatura": 5,
+                  "valore": 6
                 },
                 "quantita": 1,
                 "keywords": [
                   "Seguace di Algeroth"
                 ],
-                "abilita": [],
+                "abilita": [
+                  "Abilita(nome='Ataccabile solo dalla Fratellanza', descrizione='Solo i membri della Fratellamza possono attaccarlo con penalità in A di -1', tipo='Combattimento', costo_destino=0, target='Guerriero', timing='Fase Combattimento')"
+                ],
                 "apostolo_seguace": "Algeroth"
               },
               "Bio Gigante": {
@@ -2837,25 +2774,6 @@
                 ],
                 "apostolo_seguace": "Algeroth"
               },
-              "Maculator di Mercurio": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Warzone",
-                "rarity": "Common",
-                "tipo": "Seguace",
-                "stats": {
-                  "combattimento": 8,
-                  "sparare": 14,
-                  "armatura": 6,
-                  "valore": 6
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Seguace di Algeroth"
-                ],
-                "abilita": [],
-                "apostolo_seguace": "Algeroth"
-              },
               "Legionario Non Morto": {
                 "copie": 1,
                 "fazione": "Oscura Legione",
@@ -2876,7 +2794,7 @@
                 "apostolo_seguace": "Algeroth"
               },
               "Necromutante": {
-                "copie": 1,
+                "copie": 3,
                 "fazione": "Oscura Legione",
                 "set_espansione": "Base",
                 "rarity": "Common",
@@ -2887,7 +2805,7 @@
                   "armatura": 3,
                   "valore": 4
                 },
-                "quantita": 1,
+                "quantita": 3,
                 "keywords": [
                   "Seguace di Algeroth",
                   "Necromutante"
@@ -2895,75 +2813,41 @@
                 "abilita": [],
                 "apostolo_seguace": "Algeroth"
               }
-            },
-            "Oscura Legione": {
-              "Billy": {
-                "copie": 1,
-                "fazione": "Oscura Legione",
-                "set_espansione": "Base",
-                "rarity": "Rare",
-                "tipo": "Personalita",
-                "stats": {
-                  "combattimento": 4,
-                  "sparare": 4,
-                  "armatura": 4,
-                  "valore": 5
-                },
-                "quantita": 1,
-                "keywords": [
-                  "Eretico",
-                  "Personalita"
-                ],
-                "abilita": [
-                  "Abilita(nome='Riceve Doni Apostoli', descrizione='Spendendo 5D può ricevere un DONO DEGLI APOSTOLI', tipo='Dono degli Apostoli', costo_destino=5, target='Tutto', timing='Turno')"
-                ],
-                "apostolo_seguace": "Oscura Legione"
-              }
             }
           }
         }
       },
       "inventario_supporto": {
         "Equipaggiamento": {
-          "Combat Coordinator": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 16
-          },
-          "Klein Helitek Dragonfly": {
-            "copie": 1,
+          "Dragonbike Mishima": {
+            "copie": 3,
             "classe": "Equipaggiamento",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Nimrod MK I": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Spada e Pistola Punisher": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 3,
             "keywords": [],
             "valore": 2
+          },
+          "SSW4200P": {
+            "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
+          "Nazgaroth": {
+            "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
           },
           "Black Widow": {
             "copie": 1,
@@ -2995,15 +2879,35 @@
             "keywords": [],
             "valore": 0
           },
-          "Baionetta a Catena": {
+          "Lanciaflamme Tormentor": {
             "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 6
+          },
+          "Fucile di Precisione Archer": {
+            "copie": 2,
             "classe": "Equipaggiamento",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 3,
             "keywords": [],
-            "valore": 6
+            "valore": 0
+          },
+          "Granata Batteriologica": {
+            "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [],
+            "valore": 4
           },
           "Meta Cannon": {
             "copie": 1,
@@ -3016,12 +2920,12 @@
             "valore": 0
           },
           "Kratach Migliorato": {
-            "copie": 2,
+            "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 3,
+            "quantita": 4,
             "keywords": [],
             "valore": 0
           },
@@ -3045,10 +2949,20 @@
             "keywords": [],
             "valore": 3
           },
-          "Kratac": {
+          "Vassht": {
             "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 2
+          },
+          "Lanciamissili SP Crusader": {
+            "copie": 1,
+            "classe": "Equipaggiamento",
+            "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
@@ -3067,20 +2981,10 @@
             ],
             "valore": 0
           },
-          "Vassht": {
+          "Furga 750": {
             "copie": 1,
             "classe": "Equipaggiamento",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 2
-          },
-          "Proiettili di Tenebra": {
-            "copie": 1,
-            "classe": "Equipaggiamento",
-            "set_espansione": "Inquisition",
+            "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
@@ -3090,81 +2994,43 @@
             "valore": 0
           },
           "Cura Oscura": {
-            "copie": 3,
+            "copie": 1,
             "classe": "Equipaggiamento",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 3,
+            "quantita": 4,
             "keywords": [],
             "valore": 0
           }
         },
         "Speciale": {
           "Programma Di Auto-Distruzione": {
-            "copie": 1,
+            "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Warzone",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 2,
             "keywords": [],
             "valore": 0
           },
-          "Tessera Del Clan": {
+          "Corrotto Dall'Oscurita": {
             "copie": 1,
             "classe": "Speciale",
-            "set_espansione": "Warzone",
+            "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Attestato D'Onore": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Atto Eroico": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
+            "keywords": [
+              "Eretico"
+            ],
             "valore": 0
           },
           "Empatia Cinetica": {
             "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Empatia Della Manipolazione": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": null
-          },
-          "Empatia Di Premonizione": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
@@ -3181,29 +3047,37 @@
             "keywords": [],
             "valore": 0
           },
-          "Insubordinazione": {
+          "Empatia Mentale": {
             "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
-            "keywords": [
-              "Mercenario"
-            ],
+            "keywords": [],
             "valore": null
           },
-          "Onorificenza": {
-            "copie": 2,
+          "Menzione D'Onore": {
+            "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 2,
+            "quantita": 1,
             "keywords": [],
             "valore": ""
           },
-          "Programmato": {
+          "Riconoscimento": {
+            "copie": 1,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": ""
+          },
+          "Avamposto Di Mercurio Turf": {
             "copie": 1,
             "classe": "Speciale",
             "set_espansione": "Warzone",
@@ -3213,52 +3087,102 @@
             "keywords": [],
             "valore": 0
           },
-          "Feroce Assassino": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Flusso Di Potere Oscuro": {
-            "copie": 1,
-            "classe": "Speciale",
-            "set_espansione": "Warzone",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Frenesia Dei Necromutanti": {
+          "Giurare Vendetta": {
             "copie": 2,
             "classe": "Speciale",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 2,
+            "keywords": [],
+            "valore": null
+          },
+          "Frenesia Dei Necromutanti": {
+            "copie": 3,
+            "classe": "Speciale",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 3,
             "keywords": [],
             "valore": null
           }
         },
         "Arte": {},
         "Oscura Simmetria": {
-          "Distorsione": {
+          "Evocazione Oscura": {
+            "copie": 1,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": "3 Azioni",
+            "quantita": 2,
+            "keywords": [
+              "Seguace di Algeroth"
+            ],
+            "apostolo_padre": "Algeroth"
+          },
+          "Indigestione": {
             "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Base",
             "rarity": "Common",
-            "costo_destino": "10 Punti Destino",
+            "costo_destino": "",
             "quantita": 1,
             "keywords": [
               "Seguace di Algeroth"
             ],
             "apostolo_padre": "Algeroth"
           },
-          "Legame Necrovisuale": {
+          "Mano Della Morte": {
+            "copie": 1,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": "",
+            "quantita": 1,
+            "keywords": [
+              "Seguace di Ilian"
+            ],
+            "apostolo_padre": "Ilian"
+          },
+          "Deformazione": {
+            "copie": 1,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": "",
+            "quantita": 1,
+            "keywords": [
+              "Seguace di Demnogonis"
+            ],
+            "apostolo_padre": "Demnogonis"
+          },
+          "Infezione": {
+            "copie": 1,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": "",
+            "quantita": 1,
+            "keywords": [
+              "Seguace di Demnogonis"
+            ],
+            "apostolo_padre": "Demnogonis"
+          },
+          "Untore": {
+            "copie": 2,
+            "classe": "Oscura Simmetria",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": "",
+            "quantita": 2,
+            "keywords": [
+              "Seguace di Demnogonis"
+            ],
+            "apostolo_padre": "Demnogonis"
+          },
+          "Dormire": {
             "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Base",
@@ -3266,31 +3190,29 @@
             "costo_destino": "1 Azione",
             "quantita": 1,
             "keywords": [
-              "Nefarita",
-              "Seguace di Algeroth"
+              "Seguace di Muawijhe"
             ],
-            "apostolo_padre": "Algeroth"
+            "apostolo_padre": "Muawijhe"
           },
-          "Portale Della Cura Oscura": {
-            "copie": 1,
+          "Urlo Lacerante": {
+            "copie": 2,
             "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
+            "set_espansione": "Inquisition",
             "rarity": "Common",
-            "costo_destino": "3 Azioni",
-            "quantita": 1,
+            "costo_destino": "1 Azione",
+            "quantita": 3,
             "keywords": [
-              "Nefarita",
-              "Seguace di Algeroth"
+              "Seguace di Muawijhe"
             ],
-            "apostolo_padre": "Algeroth"
+            "apostolo_padre": "Muawijhe"
           },
           "Autorità": {
-            "copie": 1,
+            "copie": 2,
             "classe": "Oscura Simmetria",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": "2 Azioni",
-            "quantita": 1,
+            "quantita": 2,
             "keywords": [
               "Seguace di Semai"
             ],
@@ -3308,19 +3230,17 @@
             ],
             "apostolo_padre": "Semai"
           },
-          "Forza Empia": {
+          "Cecità": {
             "copie": 1,
             "classe": "Oscura Simmetria",
-            "set_espansione": "Inquisition",
+            "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": "",
             "quantita": 1,
-            "keywords": [
-              "Eretico"
-            ],
+            "keywords": [],
             "apostolo_padre": null
           },
-          "Forza Malvagia": {
+          "Forza Empia": {
             "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Inquisition",
@@ -3344,7 +3264,7 @@
             ],
             "apostolo_padre": null
           },
-          "Occhio Sacrilego": {
+          "Occhio Malvagio": {
             "copie": 1,
             "classe": "Oscura Simmetria",
             "set_espansione": "Inquisition",
@@ -3355,134 +3275,25 @@
               "Eretico"
             ],
             "apostolo_padre": null
-          },
-          "Deformazione": {
-            "copie": 1,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": "",
-            "quantita": 1,
-            "keywords": [
-              "Seguace di Demnogonis"
-            ],
-            "apostolo_padre": "Demnogonis"
-          },
-          "Ruggine": {
-            "copie": 1,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": "10 Punti Destino",
-            "quantita": 1,
-            "keywords": [
-              "Seguace di Demnogonis"
-            ],
-            "apostolo_padre": "Demnogonis"
-          },
-          "Untore": {
-            "copie": 1,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": "",
-            "quantita": 1,
-            "keywords": [
-              "Seguace di Demnogonis"
-            ],
-            "apostolo_padre": "Demnogonis"
-          },
-          "Apertura Dimensionale": {
-            "copie": 1,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": "",
-            "quantita": 1,
-            "keywords": [
-              "Seguace di Ilian"
-            ],
-            "apostolo_padre": "Ilian"
-          },
-          "Mano Della Morte": {
-            "copie": 3,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": "",
-            "quantita": 4,
-            "keywords": [
-              "Seguace di Ilian"
-            ],
-            "apostolo_padre": "Ilian"
-          },
-          "Confondere": {
-            "copie": 1,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": "",
-            "quantita": 1,
-            "keywords": [
-              "Seguace di Muawijhe"
-            ],
-            "apostolo_padre": "Muawijhe"
-          },
-          "Dormire": {
-            "copie": 1,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": "1 Azione",
-            "quantita": 1,
-            "keywords": [
-              "Seguace di Muawijhe"
-            ],
-            "apostolo_padre": "Muawijhe"
-          },
-          "Sogni Orribili": {
-            "copie": 1,
-            "classe": "Oscura Simmetria",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": "5 Punti Destino",
-            "quantita": 1,
-            "keywords": [
-              "Seguace di Muawijhe"
-            ],
-            "apostolo_padre": "Muawijhe"
           }
         },
         "Fortificazione": {
-          "Cittadella Di Algeroth": {
+          "Gli Archivi Di Pietra": {
             "copie": 1,
             "classe": "Fortificazione",
-            "set_espansione": "Base",
+            "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
             "keywords": [
-              "Algeroth",
-              "Seguace di Algeroth",
-              "Cittadella",
+              "Archivi",
+              "Pietra",
+              "Arte",
+              "Evocazione",
               "Fortificazione"
             ]
           },
-          "Quartier Generale": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 1,
-            "keywords": [
-              "Cybertronic",
-              "Quartier Generale",
-              "Città",
-              "Fortificazione"
-            ]
-          },
-          "La Cattedrale Di San Dorado": {
+          "La Cattedrale Di Burroughs": {
             "copie": 1,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
@@ -3491,37 +3302,84 @@
             "quantita": 1,
             "keywords": [
               "Cattedrale",
-              "San Dorado",
+              "Burroughs",
               "Arte",
-              "Manipolazione",
+              "Premonizione",
               "Fortificazione"
             ]
           },
-          "La Cattedrale Di Volksburg": {
+          "La Cattedrale Di Fukido": {
+            "copie": 2,
+            "classe": "Fortificazione",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Cattedrale",
+              "Fukido",
+              "Arte",
+              "Mentale",
+              "Fortificazione"
+            ]
+          },
+          "La Cattedrale Di Gibson": {
             "copie": 1,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
+            "keywords": [
+              "Cattedrale",
+              "Gibson",
+              "Arte",
+              "Cambiamento",
+              "Fortificazione"
+            ]
+          },
+          "La Cattedrale Di Heimburg": {
+            "copie": 1,
+            "classe": "Fortificazione",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Cattedrale",
+              "Heimburg",
+              "Arte",
+              "Esorcismo",
+              "Fortificazione"
+            ]
+          },
+          "La Cattedrale Di Longshore": {
+            "copie": 1,
+            "classe": "Fortificazione",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Cattedrale",
+              "Longshore",
+              "Arte",
+              "Elementi",
+              "Fortificazione"
+            ]
+          },
+          "La Cattedrale Di Volksburg": {
+            "copie": 2,
+            "classe": "Fortificazione",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
             "keywords": [
               "Cattedrale",
               "Volksburg",
               "Arte",
               "Cinetica",
-              "Fortificazione"
-            ]
-          },
-          "Trincea": {
-            "copie": 2,
-            "classe": "Fortificazione",
-            "set_espansione": "Base",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
-            "keywords": [
-              "Trincea",
-              "Protezione",
               "Fortificazione"
             ]
           },
@@ -3539,7 +3397,7 @@
               "Fortificazione"
             ]
           },
-          "Complesso Industriale": {
+          "Industria Bellica": {
             "copie": 1,
             "classe": "Fortificazione",
             "set_espansione": "Inquisition",
@@ -3547,47 +3405,36 @@
             "costo_destino": 0,
             "quantita": 1,
             "keywords": [
-              "Industriale",
-              "Complesso",
-              "Fortificazione"
-            ]
-          },
-          "Industria Bellica": {
-            "copie": 5,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 5,
-            "keywords": [
               "Industria",
               "Bellica",
               "Fortificazione"
             ]
           },
-          "Luna": {
+          "Cittadella Di Muawijhe": {
             "copie": 1,
+            "classe": "Fortificazione",
+            "set_espansione": "Base",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Muawijhe",
+              "Seguace di Muawijhe",
+              "Cittadella",
+              "Fortificazione"
+            ]
+          },
+          "Cittadella Di Semai": {
+            "copie": 2,
             "classe": "Fortificazione",
             "set_espansione": "Base",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 2,
             "keywords": [
-              "Luna",
-              "Mercenari",
-              "Fortificazione"
-            ]
-          },
-          "Nascondiglio": {
-            "copie": 1,
-            "classe": "Fortificazione",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 4,
-            "keywords": [
-              "Nascondiglio",
-              "Eretici",
+              "Semai",
+              "Seguace di Semai",
+              "Cittadella",
               "Fortificazione"
             ]
           }
@@ -3623,6 +3470,16 @@
             "keywords": [],
             "valore": "5D"
           },
+          "Arsenale Infame": {
+            "copie": 1,
+            "classe": "Reliquia",
+            "set_espansione": "Inquisition",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [],
+            "valore": 0
+          },
           "Necromacchina": {
             "copie": 1,
             "classe": "Reliquia",
@@ -3633,63 +3490,129 @@
             "keywords": [],
             "valore": 0
           },
-          "Pergamena D'Evocazione Sacrilega": {
+          "Pugnale Sacrificale": {
             "copie": 1,
             "classe": "Reliquia",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
             "quantita": 1,
-            "keywords": [],
-            "valore": 0
-          },
-          "Globo Dei Servi Minori": {
-            "copie": 2,
-            "classe": "Reliquia",
-            "set_espansione": "Inquisition",
-            "rarity": "Common",
-            "costo_destino": 0,
-            "quantita": 2,
             "keywords": [],
             "valore": 0
           },
           "Teschio Di Krynston": {
-            "copie": 1,
+            "copie": 4,
             "classe": "Reliquia",
             "set_espansione": "Inquisition",
             "rarity": "Common",
             "costo_destino": 0,
-            "quantita": 1,
+            "quantita": 4,
             "keywords": [],
             "valore": 0
           }
         },
-        "Warzone": {},
+        "Warzone": {
+          "Victoria": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Guerrieri Imperiale"
+            ]
+          },
+          "Giungla Di Venere": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Ranger Venusiano"
+            ]
+          },
+          "Citadella Sanctum": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": []
+          },
+          "Caverne Di Diamanti": {
+            "copie": 2,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 4,
+            "keywords": [
+              "Ulteriore incremento per specifico guerriero, fazione o corporazione",
+              "Mishima"
+            ]
+          },
+          "Asteroide Infestato": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 2,
+            "keywords": [
+              "Ulteriore incremento",
+              "Guerrieri contro attaccanti Imperiale"
+            ]
+          },
+          "Montagne Di Helstrom": {
+            "copie": 1,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 1,
+            "keywords": []
+          },
+          "Cratere Di Anatholia": {
+            "copie": 3,
+            "classe": "Warzone",
+            "set_espansione": "Warzone",
+            "rarity": "Common",
+            "costo_destino": 0,
+            "quantita": 3,
+            "keywords": []
+          }
+        },
         "Missione": {}
       },
       "metadati_mazzo": {
         "indice": 3,
-        "data_creazione": "2025-10-29T16:25:32.018491",
-        "totale_carte": 110,
+        "data_creazione": "2025-10-30T17:25:29.745982",
+        "totale_carte": 118,
         "statistiche_base": {
           "guerrieri_squadra": 17,
           "guerrieri_schieramento": 15,
-          "carte_supporto": 78
+          "carte_supporto": 86
         },
         "apostoli_presenti": [
-          "Semai",
-          "Algeroth"
+          "Algeroth",
+          "Ilian"
         ],
         "statistiche_apostoli": {
-          "Semai": 5,
-          "Algeroth": 8
+          "Algeroth": 6,
+          "Ilian": 5
         },
         "statistiche_originali": {
-          "numero_totale_carte": 110,
+          "numero_totale_carte": 118,
           "fazioni_presenti": [
-            "Imperiale",
+            "Cybertronic",
             "Oscura Legione",
-            "Cybertronic"
+            "Mishima"
           ],
           "espansioni_utilizzate": [
             "Base",
@@ -3697,11 +3620,12 @@
             "Warzone"
           ],
           "distribuzione_per_tipo": {
-            "equipaggiamento": 20,
-            "fortificazione": 15,
-            "speciale": 16,
-            "oscura_simmetria": 19,
-            "reliquia": 8
+            "equipaggiamento": 21,
+            "fortificazione": 14,
+            "speciale": 14,
+            "oscura_simmetria": 17,
+            "reliquia": 10,
+            "warzone": 10
           }
         }
       }
@@ -3710,52 +3634,54 @@
   "statistiche_aggregate": {
     "panoramica_generale": {
       "numero_mazzi": 3,
-      "totale_carte": 360,
-      "totale_guerrieri_squadra": 69,
-      "totale_guerrieri_schieramento": 30,
-      "totale_carte_supporto": 261,
-      "media_carte_per_mazzo": 120.0,
-      "media_guerrieri_squadra": 23.0,
-      "media_guerrieri_schieramento": 10.0,
-      "media_supporto": 87.0
+      "totale_carte": 381,
+      "totale_guerrieri_squadra": 56,
+      "totale_guerrieri_schieramento": 26,
+      "totale_carte_supporto": 299,
+      "media_carte_per_mazzo": 127.0,
+      "media_guerrieri_squadra": 18.666666666666668,
+      "media_guerrieri_schieramento": 8.666666666666666,
+      "media_supporto": 99.66666666666667
     },
     "distribuzione_fazioni": {
       "squadra": {
-        "Fratellanza": 14,
-        "Capitol": 11,
-        "Bauhaus": 11,
-        "Cybertronic": 22,
-        "Imperiale": 11
+        "Fratellanza": 11,
+        "Bauhaus": 8,
+        "Capitol": 7,
+        "Cybertronic": 20,
+        "Imperiale": 2,
+        "Mishima": 8
       },
       "schieramento": {
-        "Oscura Legione": 30
+        "Oscura Legione": 26
       }
     },
     "distribuzione_classi_supporto": {
-      "Equipaggiamento": 59,
-      "Fortificazione": 48,
-      "Speciale": 79,
-      "Arte": 17,
-      "Reliquia": 21,
+      "Equipaggiamento": 58,
+      "Fortificazione": 39,
+      "Speciale": 89,
       "Missione": 2,
-      "Oscura Simmetria": 35
+      "Arte": 22,
+      "Reliquia": 19,
+      "Warzone": 36,
+      "Oscura Simmetria": 34
     },
     "distribuzione_apostoli": {
-      "Ilian": 7,
-      "Algeroth": 16,
-      "Semai": 6
+      "Semai": 2,
+      "Algeroth": 17,
+      "Ilian": 7
     },
     "riepilogo_mazzi": [
       {
         "indice_mazzo": 1,
-        "totale_carte": 128,
-        "guerrieri_squadra": 36,
+        "totale_carte": 151,
+        "guerrieri_squadra": 26,
         "guerrieri_schieramento": 0,
-        "carte_supporto": 92,
+        "carte_supporto": 125,
         "fazioni_squadra": [
           "Fratellanza",
-          "Capitol",
-          "Bauhaus"
+          "Bauhaus",
+          "Capitol"
         ],
         "fazioni_schieramento": [],
         "apostoli_presenti": [],
@@ -3763,24 +3689,58 @@
           "Equipaggiamento",
           "Fortificazione",
           "Speciale",
+          "Missione",
           "Arte",
-          "Reliquia"
+          "Reliquia",
+          "Warzone"
         ],
         "espansioni_utilizzate": [
-          "Base",
           "Inquisition",
-          "Warzone"
+          "Warzone",
+          "Base"
         ]
       },
       {
         "indice_mazzo": 2,
-        "totale_carte": 122,
-        "guerrieri_squadra": 16,
-        "guerrieri_schieramento": 15,
-        "carte_supporto": 91,
+        "totale_carte": 112,
+        "guerrieri_squadra": 13,
+        "guerrieri_schieramento": 11,
+        "carte_supporto": 88,
         "fazioni_squadra": [
           "Cybertronic",
           "Imperiale"
+        ],
+        "fazioni_schieramento": [
+          "Oscura Legione"
+        ],
+        "apostoli_presenti": [
+          "Semai",
+          "Algeroth"
+        ],
+        "classi_supporto": [
+          "Equipaggiamento",
+          "Fortificazione",
+          "Speciale",
+          "Missione",
+          "Oscura Simmetria",
+          "Reliquia",
+          "Warzone"
+        ],
+        "espansioni_utilizzate": [
+          "Inquisition",
+          "Warzone",
+          "Base"
+        ]
+      },
+      {
+        "indice_mazzo": 3,
+        "totale_carte": 118,
+        "guerrieri_squadra": 17,
+        "guerrieri_schieramento": 15,
+        "carte_supporto": 86,
+        "fazioni_squadra": [
+          "Cybertronic",
+          "Mishima"
         ],
         "fazioni_schieramento": [
           "Oscura Legione"
@@ -3793,44 +3753,14 @@
           "Equipaggiamento",
           "Fortificazione",
           "Speciale",
-          "Missione",
           "Oscura Simmetria",
-          "Reliquia"
-        ],
-        "espansioni_utilizzate": [
-          "Base",
-          "Warzone",
-          "Inquisition"
-        ]
-      },
-      {
-        "indice_mazzo": 3,
-        "totale_carte": 110,
-        "guerrieri_squadra": 17,
-        "guerrieri_schieramento": 15,
-        "carte_supporto": 78,
-        "fazioni_squadra": [
-          "Cybertronic",
-          "Imperiale"
-        ],
-        "fazioni_schieramento": [
-          "Oscura Legione"
-        ],
-        "apostoli_presenti": [
-          "Semai",
-          "Algeroth"
-        ],
-        "classi_supporto": [
-          "Equipaggiamento",
-          "Fortificazione",
-          "Speciale",
-          "Oscura Simmetria",
-          "Reliquia"
-        ],
-        "espansioni_utilizzate": [
-          "Base",
-          "Inquisition",
+          "Reliquia",
           "Warzone"
+        ],
+        "espansioni_utilizzate": [
+          "Inquisition",
+          "Warzone",
+          "Base"
         ]
       }
     ]

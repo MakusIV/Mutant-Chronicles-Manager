@@ -179,13 +179,14 @@ class Warzone:
         self.fondamentale = False  # se la carta è fondamentale per il mazzo
     
     def aggiungi_modificatore_difensore(self, statistica: str, valore: int, 
-                                      condizione: str = "", descrizione: str = "") -> None:
+                                      condizione: str = "", descrizione: str = "", difensore = []) -> None:
         """Aggiunge un modificatore per il guerriero in difesa"""
         modificatore = ModificatoreWarzone(
             statistica=statistica,
             valore=valore,
             condizione=condizione,
             descrizione=descrizione,
+            difensore = difensore,
             solo_difensore=True
         )
         self.modificatori_difensore.append(modificatore)
@@ -565,10 +566,11 @@ class Warzone:
         # Modificatori difensore
         for mod_data in data["modificatori_difensore"]:
             warzone.aggiungi_modificatore_difensore(
-                mod_data["statistica"],
-                mod_data["valore"],
-                mod_data["descrizione"],
-                mod_data["difensore"]
+                statistica=mod_data["statistica"],
+                valore=mod_data["valore"],
+                descrizione=mod_data["descrizione"],
+                condizione=mod_data.get("condizione", ""),
+                difensore=mod_data["difensore"]
 
             )
         

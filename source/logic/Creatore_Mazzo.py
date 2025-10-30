@@ -18,7 +18,7 @@ from dataclasses import dataclass
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
 from source.logic.Creatore_Collezione import creazione_Collezione_Giocatore, carica_collezioni_json_migliorato, salva_collezioni_json_migliorato, determina_orientamento_collezione
 from source.cards.Guerriero import (
-    Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte
+    Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte, DOOMTROOPER
 )
 from source.cards.Equipaggiamento import Equipaggiamento
 from source.cards.Speciale import Speciale
@@ -512,7 +512,7 @@ class CreatoreMazzo:
         potenza = self._calcola_potenza_carta(oscura)
         self.potenze_calcolate['Oscura Simmetria'][oscura.nome] = potenza
         return potenza
-        
+
     def calcola_potenza_reliquia(self, reliquia: Reliquia) -> float:
         """
         Calcola la potenza relativa di una reliquia
@@ -629,15 +629,23 @@ class CreatoreMazzo:
 
         # Somma modificatori statistiche
         statistiche = {
-            'combattimento':    warzone.stats.combattimento,
-            'sparare':          warzone.stats.sparare,
-            'armatura':         warzone.stats.armatura,
-            'valore':           warzone.stats.valore
+            'combattimento':    warzone.stats['combattimento'],
+            'sparare':          warzone.stats['sparare'],
+            'armatura':         warzone.stats['armatura'],
+            'valore':           warzone.stats['valore']
         }
 
+        potenza_positiva = 1.0
+        potenza_negativa = 1.0
+
         for valore_modifica in statistiche.values():
+            
             if valore_modifica > 0:
-                potenza += valore_modifica
+                potenza_positiva += valore_modifica
+            else:
+                potenza_negativa += abs(valore_modifica)
+            
+        potenza = potenza_positiva * 2 / potenza_negativa
          
 
         modifica_statistiche_applicata = True if potenza > 1 else False   
@@ -652,7 +660,7 @@ class CreatoreMazzo:
             # Potenziamento altri guerrieri
             statistica = modificatore.statistica.lower()
             descrizione = modificatore.descrizione.lower()
-            valore = modificatore.valore.lower()
+            valore = modificatore.valore
             condizione = modificatore.condizione.lower()            
             
             # spostare quando considera carta guerriero da associare per valutazione sul gurriero specifico
@@ -696,59 +704,61 @@ class CreatoreMazzo:
             descrizione = effetto.descrizione.lower()
             target = effetto.target.lower()
             tipo = effetto.tipo_effetto.lower()
-        
-
-            if tipo == "combattimento":
-                    if nome == "uccide automaticamente":
-                        potenza *= 1.5
-                    if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
-                        potenza *= 1.3
-                    
-            if tipo == "punti":
-                if nome in ["produce punti", "guadagna punti"]:
-                    potenza *= 1.3 
-
-                if nome in ["protezione punti"]:
-                    potenza *= 1.5
-
-            if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
-                    potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico warzone", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
-                    potenza *= 1.2
-                                                                                    
-            if tipo == "modificatore":        
-                if nome in ["aumenta effetto", "aumenta caratteristica"]:
-                    potenza *= 1.3
-                elif nome == "trasforma guerrieri uccisi in alleati":
-                    potenza *= 1.1
-                elif nome == "sostituisce guerrieri":
-                    potenza *= 1.2
-
-            if tipo == "guarigione" :
-                if nome in ["guarisce se stesso", "guarisce guerriero"]:
-                    potenza *= 1.3
-                if nome == "ripara equipaggiamento o fortificazione":
-                    potenza *= 1.1
-
-            if tipo == "arte":                
-                if "lancia arte e/o incantesimo dell'arte" == nome:
-                    potenza *= 1.3                
-                elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
-                    potenza *= 1.2
-
-            if tipo in ["oscura simmetria", "dono degli apostoli"]:                
-                    potenza *= 1.3                        
+            effetto_ristretto = True if "ristretto:" in target[:len("ristretto:")] else False
             
-            if tipo == "carte":
-                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
-                    potenza *= 1.3    
+            if not effetto_ristretto:
 
-            if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
-                    potenza *= 1.3    
-                elif nome in ["modifica azione", "modifica stato"]:
-                    potenza *= 1.1                 
+                if tipo == "combattimento":
+                        if nome == "uccide automaticamente":
+                            potenza *= 1.5
+                        if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
+                            potenza *= 1.3
+                        
+                if tipo == "punti":
+                    if nome in ["produce punti", "guadagna punti"]:
+                        potenza *= 1.3 
+
+                    if nome in ["protezione punti"]:
+                        potenza *= 1.5
+
+                if tipo == "immunita":
+                    if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                        potenza *= 1.4
+                    elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico warzone", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                        potenza *= 1.2
+                                                                                        
+                if tipo == "modificatore":        
+                    if nome in ["aumenta effetto", "aumenta caratteristica"]:
+                        potenza *= 1.3
+                    elif nome == "trasforma guerrieri uccisi in alleati":
+                        potenza *= 1.1
+                    elif nome == "sostituisce guerrieri":
+                        potenza *= 1.2
+
+                if tipo == "guarigione" :
+                    if nome in ["guarisce se stesso", "guarisce guerriero"]:
+                        potenza *= 1.3
+                    if nome == "ripara equipaggiamento o fortificazione":
+                        potenza *= 1.1
+
+                if tipo == "arte":                
+                    if "lancia arte e/o incantesimo dell'arte" == nome:
+                        potenza *= 1.3                
+                    elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
+                        potenza *= 1.2
+
+                if tipo in ["oscura simmetria", "dono degli apostoli"]:                
+                        potenza *= 1.3                        
+                
+                if tipo == "carte":
+                    if nome in ["assegna carta", "scarta carta", "elimina carta"]:
+                        potenza *= 1.3    
+
+                if tipo == "azioni":
+                    if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
+                        potenza *= 1.3    
+                    elif nome in ["modifica azione", "modifica stato"]:
+                        potenza *= 1.1                 
 
         self.potenze_calcolate['Warzone'][warzone.nome] = potenza
         return potenza
@@ -1218,13 +1228,29 @@ class CreatoreMazzo:
                 fattore_incremento = 100
         
             fazioni = []
+            solo_nefarita = False
+            solo_personalita = False
+
             if hasattr(carta, 'fazione'):
                 fazioni = [carta.fazione]
             elif hasattr(carta, 'fazioni_permesse'):
                 fazioni = carta.fazioni_permesse
-            elif hasattr(carta, 'restrizioni') and hasattr(carta.restrizioni, 'fazioni_permesse'):
-                fazioni = carta.restrizioni.fazioni_permesse
-            
+            if hasattr(carta, 'restrizioni'):                
+                if hasattr(carta.restrizioni, 'fazioni_permesse'):
+                    fazioni = carta.restrizioni.fazioni_permesse
+                if isinstance(carta.restrizioni, list):
+                    #solo_seguace_apostolo = f"Solo Seguace di {apostolo}" in carta.restrizioni and f"Seguace di {apostolo}" in guerriero.keywords  # NO VIENE CONSIDERATO NELLA VALUTAZIOBNE DELL'ORIENTAMENTO APOSTOLO EFFETTUATA PIU AVANTI
+                    solo_nefarita = f"Solo Nefarita" in carta.restrizioni
+                    solo_personalita = f"Solo Personalita" in carta.restrizioni
+
+                    if  solo_nefarita or solo_personalita: # or solo_seguace_apostolo:
+                        for guerriero in tutti_guerrieri:
+                            if ( solo_nefarita and guerriero.tipo == 'Nefarita' ) or ( solo_personalita and guerriero.tipo == 'Personalita' ):
+                                fattore_incremento *= 1.5 # aumenta del 50% il fattore di incremento se la carta è dedicata a nefariti
+                                break
+                            
+                 
+                
             doomtrooper_dedicata = any(f in fazioni for f in FAZIONI_DOOMTROOPER) or 'Doomtrooper' in fazioni
             orientamento_doomtrooper_dedicata = any(f in orientamento_doomtrooper for f in fazioni) if (orientamento_doomtrooper and len(orientamento_doomtrooper) > 0) else False
             fratellanza_dedicata = any(f in fazioni for f in FAZIONI_FRATELLANZA) 
@@ -1235,8 +1261,12 @@ class CreatoreMazzo:
                 if orientamento_doomtrooper_dedicata: #la carta è dedicata ai doomtrooper con fazione inclusa nell'orientamento: 
                     bonus_moltiplicatore *= BONUS_ORIENTAMENTO * fattore_incremento # triplica il punteggio se la fazione è anche nell'orientamento doomtrooper
             
-                else: # la carta è dedicata a tutti i doomtrooper
+                elif "Doomtrooper" in fazioni or any(f in (FAZIONI_DOOMTROOPER + [Fazione.FRATELLANZA]) for f in fazioni): # la carta è dedicata a tutti i doomtrooper
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_incremento # aumenta il punteggio se la fazione è nei doomtroopers
+
+                else: # la carta è dedicata ad una fazione doomtrooper non presente nelle fazioni della carta
+                    pass
+                
                 
             
             if fratellanza and fratellanza_dedicata: # la carta è dedicata alla fratellanza                
@@ -1260,7 +1290,8 @@ class CreatoreMazzo:
                                 
                 if orientamento_apostolo and len(orientamento_apostolo) > 0 : # la carta è dedicata alla oscura legione e sono definiti gli apostoli preferiti
                     for apostolo in orientamento_apostolo:
-                        if f"Seguace di {apostolo}" in carta.keywords:
+                        seguace = f"Seguace di {apostolo}" in carta.keywords or (hasattr(carta, 'corporazioni_specifiche') and f"Seguace di {apostolo}" in carta.corporazioni_specifiche)
+                        if seguace:
                             bonus_moltiplicatore *= BONUS_ORIENTAMENTO * fattore_incremento
                 else:
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_incremento
@@ -1278,51 +1309,37 @@ class CreatoreMazzo:
             if not carta_compatibile:
                 continue
             
-            
+
             if hasattr(carta, "keywords") and "Ulteriore incremento per specifico guerriero, fazione o corporazione" in carta.keywords:
 
                 if tipo_carta == "warzone":
-                    guerrieri_dedicati = carta["modificatori_difensore"]["difensore"]
 
-                    for guerriero_dedicato in guerrieri_dedicati:
+                    # Nota: le valutazioni su "effetti_combattimento" sono effettuate nel calolo della potenza della warzone
 
-                        if "Seguace di" in guerriero_dedicato:
-                            fazione_guerriero_dedicato = guerriero_dedicato.split("Seguace di ")[1]
-                            for guerriero in tutti_guerrieri:
-                                if fazione_guerriero_dedicato in guerriero.keywords:
-                                    bonus_moltiplicatore *= 2
-                                    break
-                        elif "Doomtrooper" in guerriero_dedicato:
-                            for guerriero in tutti_guerrieri:
-                                if guerriero.fazione in FAZIONI_DOOMTROOPER:
-                                    bonus_moltiplicatore *= 2
-                                    break
-                        elif "Fratellanza" in guerriero_dedicato:                     
-                            for guerriero in tutti_guerrieri:
-                                if guerriero.fazione in FAZIONI_FRATELLANZA:
-                                    bonus_moltiplicatore *= 2
-                                    break   
-                        elif "Oscura Legione" in guerriero_dedicato:                     
-                            for guerriero in tutti_guerrieri:
-                                if guerriero.fazione in FAZIONI_OSCURA_LEGIONE:
-                                    bonus_moltiplicatore *= 2
-                                    break
-                        elif "Cultista" in guerriero_dedicato:                     
-                            for guerriero in tutti_guerrieri:
-                                if "Cultista" in guerriero.keywords:
-                                    bonus_moltiplicatore *= 2
-                                    break
-                        elif "Eretico" in guerriero_dedicato:                  
-                            for guerriero in tutti_guerrieri:
-                                if "Eretico" in guerriero.keywords:
-                                    bonus_moltiplicatore *= 2
-                                    break           
-                        else: # specifico guerriero
-                            for guerriero in tutti_guerrieri:
-                                if guerriero.nome == guerriero_dedicato:
-                                    bonus_moltiplicatore *= 2.0
-                                    break     
-                             
+                    for modificatore in carta.modificatori_difensore:
+
+                        guerrieri_dedicati = modificatore.difensore
+
+                        for guerriero_dedicato in guerrieri_dedicati:
+                            
+                            req_doom = doomtrooper and ( "Doomtrooper" in guerriero_dedicato or guerriero_dedicato == DOOMTROOPER )
+                            req_osc_l = oscura_legione and "Oscura Legione" in guerriero_dedicato
+                            req_frat = fratellanza and "Fratellanza" in guerriero_dedicato
+                            req_seg = not req_osc_l and oscura_legione and orientamento_apostolo and len(orientamento_apostolo) > 0 and "Seguaci di" == guerriero_dedicato[:len("Seguaci di")] and guerriero_dedicato.split("Seguaci di ")[1] in orientamento_apostolo  
+                            req_corp_doom = not req_doom and doomtrooper and any( guerriero_dedicato == f.value for f in FAZIONI_DOOMTROOPER)
+                            req_cul = "Cultista" in guerriero_dedicato[:len("Cultista")]
+                            req_ere = "Eretico" in guerriero_dedicato[:len("Eretico")]               
+
+                            if req_seg or req_doom or req_corp_doom or req_frat or req_osc_l or req_cul or req_ere:
+                                bonus_moltiplicatore *= 1.25
+                                break
+                            
+                            else: # specifico guerriero
+                                for guerriero in tutti_guerrieri:
+                                    if guerriero.nome == guerriero_dedicato:
+                                        bonus_moltiplicatore *= 2.0
+                                        break     
+                                
 
                 if tipo_carta == "equipaggiamento":
                     pass
@@ -1364,8 +1381,8 @@ class CreatoreMazzo:
                         potenza *= 1 + percentuale
                         break
                 
-            elif tipo_carta == 'missione':
-                potenza = 0.5  # Default per missioni
+            elif tipo_carta == 'missione':                                
+                potenza = 1.0  # Default per missioni
             
 
             fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti            
@@ -1422,8 +1439,6 @@ class CreatoreMazzo:
                     numero_carte_richiesto_non_raggiunto = False
                 
         return carte_selezionate
-    
-
 
     def _carta_compatibile_con_guerrieri(self, carta: Any, guerrieri: List[Guerriero]) -> List:
         """
@@ -1462,7 +1477,7 @@ class CreatoreMazzo:
                 elif tipo_carta in ['arte', 'oscura_simmetria', 'reliquia', 'warzone']:
                     risultato = carta.puo_essere_associata_a_guerriero(guerriero)
                     
-                    if ( tipo_carta in ['arte', 'oscura_simmetria'] and risultato.get('puo_lanciare') ) or  ( tipo_carta == 'warzone' and risultato.get('puo_essere_associata') ) or (tipo_carta == 'reliquia' and risultato.get('puo_assegnare')):
+                    if ( tipo_carta in ['arte', 'oscura_simmetria'] and risultato.get('puo_lanciare') ) or  ( tipo_carta == 'warzone' and risultato.get('puo_assegnare') ) or (tipo_carta == 'reliquia' and risultato.get('puo_assegnare')):
                         result = True
                         numero_guerrieri_compatibili += 1
                 
