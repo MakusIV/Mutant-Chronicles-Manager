@@ -570,7 +570,7 @@ DATABASE_RELIQUIE = {
         "modificatori": [],
         "poteri": [
             {
-                "nome": "Assegna carte",
+                "nome": "Assegna carta",
                 "descrizione": "Ogni volta che il possessore di questo guerriero introduce in gioco una carta, può subito pescarne dal mazzo un'altra per rimpiazzarla. Le carte scartate non vengono rimpiazzate in questo modo",
                 "tipo_potere": "Carte",
                 "costo_attivazione": 0,
@@ -776,7 +776,7 @@ DATABASE_RELIQUIE = {
         "poteri": [
             
             {
-                "nome": "Assegna Carta",
+                "nome": "Assegna carta",
                 "descrizione": "Eliminando questa carta puoi evocare un Apostolo dalla tua Collezione.L'Apostolo è subito inserito gratis nel tuo scheramento",
                 "tipo_potere": "Carte",
                 "costo_attivazione": 0,
@@ -970,6 +970,10 @@ def crea_reliquia_da_database(nome_reliquia: str) -> Optional[Reliquia]:
     reliquia.vulnerabilita = dati["vulnerabilita"]
     reliquia.incompatibile_con = dati["incompatibile_con"]
     reliquia.potenzia = dati["potenzia"]
+    reliquia.quantita = dati["quantita"]
+    reliquia.quantita_minima_consigliata = dati["quantita_minima_consigliata"]
+    reliquia.valore_strategico = dati["valore_strategico"]
+    reliquia.fondamentale = dati["fondamentale"]
     
     return reliquia
 

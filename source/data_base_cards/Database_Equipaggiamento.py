@@ -4357,7 +4357,10 @@ def crea_equipaggiamento_da_database(nome_equipaggiamento: str):
     # Configura altre proprietà
     equipaggiamento.requisiti = data["requisiti"]
     equipaggiamento.restrizioni_guerriero = data["restrizioni_guerriero"]
-    equipaggiamento.valore_minimo_richiesto = data["valore_minimo_richiesto"]
+    equipaggiamento.quantita = data["quantita"]
+    equipaggiamento.quantita_minima_consigliata = data["quantita_minima_consigliata"]
+    equipaggiamento.valore_strategico = data["valore_strategico"]
+    equipaggiamento.fondamentale = data["fondamentale"]
     equipaggiamento.testo_carta = data["testo_carta"]
     equipaggiamento.flavour_text = data["flavour_text"]
     equipaggiamento.keywords = data["keywords"]

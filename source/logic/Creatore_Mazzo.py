@@ -1217,7 +1217,13 @@ class CreatoreMazzo:
         carte_con_punteggio = []
         
         for carta in carte_disponibili:
-
+            # Verifica compatibilità carta - guerrieri
+            carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
+            
+            # se non compatibile conitnua con il prossimo elemento del ciclo
+            if not carta_compatibile:
+                continue 
+            
             bonus_moltiplicatore = 1.0            
             fattore_incremento = 1 # fattore di incremento del rating assegnato alla carta se è fondamentale
 
@@ -1269,7 +1275,7 @@ class CreatoreMazzo:
                 
                 
             
-            if fratellanza and fratellanza_dedicata: # la carta è dedicata alla fratellanza                
+            if fratellanza and fratellanza_dedicata and not (doomtrooper_dedicata or orientamento_doomtrooper_dedicata): # la carta è dedicata alla fratellanza                
 
                 if tipo_carta == 'arte':                                        
                     # Le arti possono essere utilizzate anche da guerrieri non appartenenti alla Fratellanza                    
@@ -1303,11 +1309,6 @@ class CreatoreMazzo:
             if orientamento_eretico and 'Eretico' in carta.keywords:
                 bonus_moltiplicatore *= BONUS_ERETICO # triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
 
-            carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
-            
-            # Verifica compatibilità
-            if not carta_compatibile:
-                continue
             
 
             if hasattr(carta, "keywords") and "Ulteriore incremento per specifico guerriero, fazione o corporazione" in carta.keywords:
@@ -1411,10 +1412,23 @@ class CreatoreMazzo:
                 # Calcola numero di copie
                 quantita_disponibile = getattr(carta, 'quantita') - quantita_utilizzata[carta.nome]
                 quantita_minima_consigliata = getattr(carta, 'quantita_minima_consigliata')
+                numero_copie_prelevabile = numero_carte / len(carte_con_punteggio)
+
+                # valuta la quantita minima di copie da considerare nella richiesta qualora il numero di carte presenti  
+                # nella lista du carte con punteggio è inferiore rispetto  al numero complessivo richiesto:
+                #  (aumenta la quantità mini,a richiesta di carte per uno stesso tipo)
 
                 if quantita_minima_consigliata < 1:
                     quantita_minima_consigliata = random.randint(1,3)
                 
+                if numero_copie_prelevabile > 1 and ( random.random() < numero_copie_prelevabile - 1 ):
+                    numero_copie_prelevabile = math.ceil(numero_copie_prelevabile)
+                else:
+                    numero_copie_prelevabile = math.floor(numero_copie_prelevabile)
+
+                if quantita_minima_consigliata < numero_copie_prelevabile:                    
+                    quantita_minima_consigliata = numero_copie_prelevabile
+
                 num_copie_da_inserire = min(5, quantita_disponibile, quantita_minima_consigliata)   
                 quantita_utilizzata[carta.nome] += num_copie_da_inserire
 
@@ -1864,6 +1878,17 @@ def crea_mazzo_da_gioco(collezione: Any,
 # FUNZIONI DI UTILITÀ
 # ================================================================================
 
+
+##################################################################################
+# Funzioni in cui è definito il formato di salvataggio del file json:
+#
+# salva_mazzi_json_migliorato_con_conteggio_e_apostoli -> 
+#   ->  crea_inventario_dettagliato_mazzo_json_con_conteggio_e_apostoli 
+#       ->  processa_guerrieri_per_fazioni_con_apostoli, ottieni_attributo_sicuro
+#       ->  processa_supporto_per_classi -> determina_classe_supporto, ottieni_attributo_sicuro
+##################################################################################
+
+
 def stampa_mazzo(mazzo: Dict[str, Any]) -> None:
     """
     Stampa il mazzo in formato leggibile
@@ -2201,15 +2226,20 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
             
             conteggio_carte[nome] += 1
             
+            if classe in ["Warzone", "Reliquia"]:
+                utilizzatori = carta.restrizioni.fazioni_permesse
+            else:
+                utilizzatori = ottieni_attributo_sicuro(carta, 'fazioni_permesse', [])
+
+
             if nome not in dettagli_carte:
                 dettagli_carte[nome] = {
                     'copie': 0,
                     'classe': classe,
                     'set_espansione': ottieni_attributo_sicuro(carta, 'set_espansione', 'Base'),
-                    'rarity': ottieni_attributo_sicuro(carta, 'rarity', 'Common'),
-                    'costo_destino': ottieni_attributo_sicuro(carta, 'costo_destino', 0),
-                    'quantita': ottieni_attributo_sicuro(carta, 'quantita', 0),
-                    'keywords': ottieni_attributo_sicuro(carta, 'keywords', [])
+                    'rarity': ottieni_attributo_sicuro(carta, 'rarity', 'Common'),                    
+                    'quantita_collezione': ottieni_attributo_sicuro(carta, 'quantita', 0),
+                    'utilizzatori': utilizzatori
                 }
                 
                 # Aggiungi attributi specifici se presenti
@@ -2221,18 +2251,18 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
                         else:
                             dettagli_carte[nome]['fazione'] = str(fazione_obj)
                     
-                    if hasattr(carta, 'valor_destino'):
-                        dettagli_carte[nome]['valor_destino'] = carta.valor_destino
+                    if hasattr(carta, 'valore_strategico'):
+                        dettagli_carte[nome]['valore_strategico'] = carta.valore_strategico
                     
-                    if hasattr(carta, 'valore'):
-                        dettagli_carte[nome]['valore'] = carta.valore
+                    if hasattr(carta, 'fondamentale'):
+                        dettagli_carte[nome]['fondamentale'] = carta.fondamentale
                     
-                    if hasattr(carta, 'disciplina_arte'):
-                        disciplina_obj = carta.disciplina_arte
+                    if hasattr(carta, 'disciplina'):
+                        disciplina_obj = carta.disciplina
                         if hasattr(disciplina_obj, 'value'):
-                            dettagli_carte[nome]['disciplina_arte'] = disciplina_obj.value
+                            dettagli_carte[nome]['disciplina'] = disciplina_obj.value
                         else:
-                            dettagli_carte[nome]['disciplina_arte'] = str(disciplina_obj)
+                            dettagli_carte[nome]['disciplina'] = str(disciplina_obj)
                     
                     if hasattr(carta, 'apostolo'):
                         apostolo_obj = carta.apostolo
@@ -2259,9 +2289,7 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
                 'copie': 0,
                 'classe': 'Speciale',
                 'set_espansione': 'Unknown',
-                'rarity': 'Common',
-                'costo_destino': 0,
-                'quantita': 0,
+                'rarity': 'Common',                                
                 'keywords': [],
                 'errore_processamento': str(e)
             }
@@ -3252,6 +3280,8 @@ def esempio_salvataggio_mazzi_con_conteggio(mazzi: List[Dict[str, Any]]) -> None
     print("4. Visualizza con conteggio: stampa_statistiche_da_json_mazzi(dati)")
     if dati_json:
         stampa_statistiche_da_json_mazzi(dati_json)
+
+
 
 
 

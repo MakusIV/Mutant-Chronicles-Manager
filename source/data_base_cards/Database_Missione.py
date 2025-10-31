@@ -330,6 +330,10 @@ def crea_missione_da_database(nome_missione: str) -> Optional[Missione]:
     missione.keywords = dati["keywords"]
     missione.restrizioni = dati["restrizioni"]
     missione.condizioni_speciali = dati["condizioni_speciali"]
+    missione.quantita = dati["quantita"]
+    missione.quantita_minima_consigliata = dati["quantita_minima_consigliata"]
+    missione.valore_strategico = dati["valore_strategico"]
+    missione.fondamentale = dati["fondamentale"]
     
     return missione
 

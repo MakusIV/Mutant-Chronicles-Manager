@@ -6718,6 +6718,11 @@ def crea_carta_da_database(nome_carta: str):
         )
         carta.effetti.append(effetto)
     
+    carta.quantita = data["quantita"]
+    carta.quantita_minima_consigliata = data["quantita_minima_consigliata"]
+    carta.valore_strategico = data["valore_strategico"]
+    carta.fondamentale = data["fondamentale"]
+
     return carta
 
 

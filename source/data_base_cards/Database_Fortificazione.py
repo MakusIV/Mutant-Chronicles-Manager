@@ -1146,6 +1146,11 @@ def crea_fortificazione_da_database(nome_fortificazione: str):
         fortificazione.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"] 
                                           if f in [faz.value for faz in Fazione]]
     
+    fortificazione.quantita = data["quantita"]
+    fortificazione.quantita_minima_consigliata = data["quantita_minima_consigliata"]
+    fortificazione.valore_strategico = data["valore_strategico"]
+    fortificazione.fondamentale = data["fondamentale"]
+
     return fortificazione
 
 
