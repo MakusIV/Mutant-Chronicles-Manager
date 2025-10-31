@@ -1608,10 +1608,10 @@ DATABASE_EQUIPAGGIAMENTO = {
         "tipo_veicolo": "Carro Armato",
         "rarity": "Common",
         "statistiche": {
-            "combattimento": 0,
-            "sparare": 7,
-            "armatura": 0,
-            "valore": 0
+            "combattimento": 5,
+            "sparare": 5,
+            "armatura": 5,
+            "valore": 5
         },
         "modificatori_speciali": [],
         "abilita_speciali": [
@@ -1636,7 +1636,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "in_gioco": False,
             "utilizzato_questo_turno": False
         },
-        "testo_carta": "ASSOCIABILE A QUALSIASI VEICOLO DELL'OSCURA LEGIONE. Il guerriero guadagna un +7 in S. Gli avversari feriti dall'Hellblaster sono automaticamente uccisi. Spendendo un'Azione, puoi scartare una Fortificazione in gioco. Puoi spendere più di un'azione in questo modo.",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE. VEICOLO E CARRO ARMATO. Il guerriero guadagna un +5 in C, S, A e V. Gli avversari feriti dall'Hellblaster sono automaticamente uccisi. Spendendo un'Azione, puoi scartare una Fortificazione in gioco. Puoi spendere più di un'azione in questo modo.",
         "flavour_text": "",
         "keywords": [],
         "set_espansione": "Inquisition",
@@ -2742,7 +2742,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         ],
         "requisiti": ["Un guerriero può avere un solo VEICOLO", "Quando utilizzi l'Icarus non si possono usare altre Armi"],
         "fazioni_permesse": ["Fratellanza"],
-        "restrizioni_guerriero": [],
+        "restrizioni_guerriero": ["Arcangelo"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -3405,8 +3405,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         "rarity": "Common",
         "statistiche": {
             "combattimento": 0,
-            "sparare": 5,
-            "armatura": 0,
+            "sparare": 0,
+            "armatura": 5,
             "valore": 0
         },
         "modificatori_speciali": [],
@@ -4058,8 +4058,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         "rarity": "Common",
         "statistiche": {
             "combattimento": 0,
-            "sparare": 5,
-            "armatura": 0,
+            "sparare": 0,
+            "armatura": 5,
             "valore": 0
         },
         "modificatori_speciali": [],
