@@ -178,8 +178,8 @@ class Fortificazione:
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append("Solo per Eretici")
 
-            if "Seguaci di " in self.corporazione_specifica:
-                apostolo_richiesto = restrizione.split("Seguaci di ")[1].strip()
+            if "Seguaci di " == self.corporazione_specifica[:len("Seguaci di ")]:
+                apostolo_richiesto = self.corporazione_specifica.split("Seguaci di ")[1].strip()
                 if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")

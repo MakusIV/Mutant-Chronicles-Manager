@@ -205,8 +205,6 @@ class CreatoreMazzo:
                     potenza *= 1.3                
                 elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
                     potenza *= 1.2
-            if tipo == "oscura simmetria" or tipo == "dono degli apostoli":                
-                    potenza *= 1.3            
 
             if tipo == "carte":
                 if nome in ["assegna carta", "scarta carta", "elimina carta"]:
@@ -332,10 +330,7 @@ class CreatoreMazzo:
                 if "lancia arte e/o incantesimo dell'arte" == nome:
                     potenza *= 1.3                
                 elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
-                    potenza *= 1.2
-
-            if tipo in ["oscura simmetria", "dono degli apostoli"]:                
-                    potenza *= 1.3                        
+                    potenza *= 1.2             
             
             if tipo == "carte":
                 if nome in ["assegna carta", "scarta carta", "elimina carta"]:
@@ -456,9 +451,7 @@ class CreatoreMazzo:
                 elif "lancia arte specifica" == nome:
                     potenza *= 1.2
 
-            if tipo in ["oscura simmetria", "dono degli apostoli"]:                
-                    potenza *= 1.3            
-            
+         
             if tipo == "carte":
                 if nome in ["assegna carta", "scarta carta", "elimina carta"]:
                     potenza *= 1.3   
@@ -588,9 +581,6 @@ class CreatoreMazzo:
                 elif "lancia arte specifica" == nome:
                     potenza *= 1.2
 
-            if tipo in ["oscura simmetria", "dono degli apostoli"]:                
-                    potenza *= 1.3            
-            
             if tipo == "carte":
                 if nome in ["assegna carta", "scarta carta", "elimina carta"]:
                     potenza *= 1.3   
@@ -746,10 +736,7 @@ class CreatoreMazzo:
                         potenza *= 1.3                
                     elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
                         potenza *= 1.2
-
-                if tipo in ["oscura simmetria", "dono degli apostoli"]:                
-                        potenza *= 1.3                        
-                
+            
                 if tipo == "carte":
                     if nome in ["assegna carta", "scarta carta", "elimina carta"]:
                         potenza *= 1.3    
@@ -1211,7 +1198,7 @@ class CreatoreMazzo:
         BONUS_ERETICO = 2 # Fattore applicato se selezionati ERETICI
         BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI     
         BONUS_STRATEGICO = 4 # Fattore applicato in base all'assegnazione del valore "valore_strategico" da parte dell'utente
-                
+        BONUS_FONDAMENTALE = 100 # Fattore applicato se la carta è fondamentale
 
         # Calcola potenza per ogni carta
         carte_con_punteggio = []
@@ -1231,7 +1218,7 @@ class CreatoreMazzo:
                 fattore_incremento = 1 + carta.valore_strategico * BONUS_STRATEGICO / 10 
 
             if carta.fondamentale:
-                fattore_incremento = 100
+                fattore_incremento = BONUS_FONDAMENTALE
         
             fazioni = []
             solo_nefarita = False
@@ -1253,9 +1240,7 @@ class CreatoreMazzo:
                         for guerriero in tutti_guerrieri:
                             if ( solo_nefarita and guerriero.tipo == 'Nefarita' ) or ( solo_personalita and guerriero.tipo == 'Personalita' ):
                                 fattore_incremento *= 1.5 # aumenta del 50% il fattore di incremento se la carta è dedicata a nefariti
-                                break
-                            
-                 
+                                break 
                 
             doomtrooper_dedicata = any(f in fazioni for f in FAZIONI_DOOMTROOPER) or 'Doomtrooper' in fazioni
             orientamento_doomtrooper_dedicata = any(f in orientamento_doomtrooper for f in fazioni) if (orientamento_doomtrooper and len(orientamento_doomtrooper) > 0) else False
@@ -1271,7 +1256,7 @@ class CreatoreMazzo:
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_incremento # aumenta il punteggio se la fazione è nei doomtroopers
 
                 else: # la carta è dedicata ad una fazione doomtrooper non presente nelle fazioni della carta
-                    pass
+                    pass # eventuale decremento del bous se necessario (non implementato)
                 
                 
             
@@ -1293,15 +1278,21 @@ class CreatoreMazzo:
             
              # Orientamento Apostolo (per guerrieri Oscura Legione)
             if oscura_legione and oscura_legione_dedicata: # la carta è dedicata alla oscura legione 
-                                
-                if orientamento_apostolo and len(orientamento_apostolo) > 0 : # la carta è dedicata alla oscura legione e sono definiti gli apostoli preferiti
-                    for apostolo in orientamento_apostolo:
-                        seguace = f"Seguace di {apostolo}" in carta.keywords or (hasattr(carta, 'corporazioni_specifiche') and f"Seguace di {apostolo}" in carta.corporazioni_specifiche)
-                        if seguace:
-                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO * fattore_incremento
-                else:
+
+                if carta.tipo.value in ["Dono dell'Oscura Simmetria", "Dono dell'Oscura Legione"]:
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_incremento
 
+                elif orientamento_apostolo and len(orientamento_apostolo) > 0 : # la carta è dedicata alla oscura legione e sono definiti gli apostoli preferiti
+                    bonus_applicato = False
+                    for apostolo in orientamento_apostolo:
+                        seguace = f"Seguace di {apostolo}" in carta.keywords # or (hasattr(carta, 'restrizioni') and isinstance(carta.restrizioni, List) and f"Solo Seguaci di {apostolo}" in carta.restrizioni)
+                        if seguace:
+                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO * fattore_incremento
+                            bonus_applicato = True
+                    
+                    if not bonus_applicato and tipo_carta == 'oscura_simmetria':
+                        bonus_moltiplicatore /= 2 * BONUS_FONDAMENTALE  # pass    #non implementato: decremento del bonus per evitare la scelta di carte appartenenti ad apostoli non presenti in orientamento conseguente la presenza di guerrieri non seguaci ed in grado di utilizzare sia i doni degli apostoli che quelli dell'oscura simmetria
+                
                 if orientamento_cultista and 'Cultista' in carta.keywords:
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
                  
@@ -1351,7 +1342,7 @@ class CreatoreMazzo:
                 if tipo_carta == "arte":
                     pass
 
-                if tipo_carta == "oscura simmetria":
+                if tipo_carta == "oscura_simmetria":
                     pass
             
 
@@ -1385,11 +1376,10 @@ class CreatoreMazzo:
             elif tipo_carta == 'missione':                                
                 potenza = 1.0  # Default per missioni
             
-
-            fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti            
-            punteggio = potenza * fattore_compatibilita * bonus_moltiplicatore
-
-            carte_con_punteggio.append((carta, punteggio))
+            if bonus_moltiplicatore >= 1:
+                fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti            
+                punteggio = potenza * fattore_compatibilita * bonus_moltiplicatore
+                carte_con_punteggio.append((carta, punteggio))
         
         # Ordina per potenza
         carte_con_punteggio.sort(key=lambda x: x[1], reverse=True)
@@ -1415,7 +1405,7 @@ class CreatoreMazzo:
                 numero_copie_prelevabile = numero_carte / len(carte_con_punteggio)
 
                 # valuta la quantita minima di copie da considerare nella richiesta qualora il numero di carte presenti  
-                # nella lista du carte con punteggio è inferiore rispetto  al numero complessivo richiesto:
+                # nella lista di carte con punteggio è inferiore rispetto  al numero complessivo richiesto:
                 #  (aumenta la quantità mini,a richiesta di carte per uno stesso tipo)
 
                 if quantita_minima_consigliata < 1:

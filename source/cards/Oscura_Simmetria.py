@@ -186,6 +186,10 @@ class Oscura_Simmetria:
             risultato["puo_assegnare"] = False
             risultato["errori"].append("Solo Eretici")
 
+        if "Solo Nefarita" in self.restrizioni and "Nefarita" not in guerriero.keywords:
+            risultato["puo_assegnare"] = False
+            risultato["errori"].append("Solo Nefarita")
+
         if "Non può essere usato su Personalita" in self.restrizioni and guerriero.tipo == TipoGuerriero.PERSONALITA:   
             risultato["puo_assegnare"] = False
             risultato["errori"].append("Solo Non Personalita")
