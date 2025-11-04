@@ -1939,6 +1939,7 @@ def ottieni_attributo_sicuro(obj, nome_attributo: str, default_value=None):
         return valore.value
     
     return valore if valore is not None else default_value
+
 def determina_classe_supporto(carta) -> str:
     """
     Determina la classe di una carta supporto basandosi sul tipo della classe.
@@ -2254,6 +2255,13 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
                         else:
                             dettagli_carte[nome]['disciplina'] = str(disciplina_obj)
                     
+                    if hasattr(carta, 'tipo'):
+                        tipo_obj = carta.tipo
+                        if hasattr(tipo_obj, 'value'):
+                            dettagli_carte[nome]['tipo'] = tipo_obj.value
+                        else:
+                            dettagli_carte[nome]['tipo'] = carta.tipo
+
                     if hasattr(carta, 'apostolo'):
                         apostolo_obj = carta.apostolo
                         if hasattr(apostolo_obj, 'value'):
