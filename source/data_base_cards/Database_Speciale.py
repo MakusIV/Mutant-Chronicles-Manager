@@ -2807,7 +2807,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Qualsiasi Reliquia",
         "durata": "Istantanea",
-        "timing": "In ogni momento, anche se non sei un famoso collezionista",
+        "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -2842,7 +2842,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Megacorporazione (non la Fratellanza)",
         "durata": "Permanente",
-        "timing": "In ogni momento",
+        "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -2877,7 +2877,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Qualsiasi guerriero ferito",
         "durata": "Istantanea",
-        "timing": "In ogni momento tranne che in combattimento",
+        "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -2912,7 +2912,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Guerriero che abbia un'abilità di immunità",
         "durata":  "Durante questo Combattimento",
-        "timing": "Durante il combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -2947,7 +2947,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Carta in gioco",
         "durata": "Istantanea",
-        "timing": "In ogni momento",
+        "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -2982,7 +2982,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Due Doomtrooper in gioco",
         "durata": "Permanente",
-        "timing": "In ogni momento",
+        "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3017,7 +3017,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Guerriero con Valore 4 o meno",
         "durata": "Permanente",
-        "timing": "In ogni momento",
+        "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3052,7 +3052,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Qualsiasi giocatore",
         "durata": "Fino Fine Turno",
-        "timing": "Durante la sua fase pescare, prima che peschi qualsiasi carta",
+        "timing": "Duranta la Fase Pescare",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3087,7 +3087,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Giocatore",
         "durata": "Istantanea",
-        "timing": "Al costo di tre azioni",
+        "timing": "Turno Proprio",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3122,7 +3122,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": DOOMTROOPER,
         "bersaglio": "Qualsiasi Doomtrooper",
         "durata": "Permanente",
-        "timing": "Subito dopo che ha ucciso un guerriero con un valore maggiore",
+        "timing": "Dopo Uccisione",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3166,7 +3166,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": DOOMTROOPER,
         "bersaglio": "Qualsiasi Doomtrooper",
         "durata": "Permanente",
-        "timing": "Immediatamente dopo che ha ucciso un guerriero di valore maggiore",
+        "timing": "Dopo Uccisione",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3210,7 +3210,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Qualsiasi guerriero durante il combattimento",
         "durata":  "Durante questo Combattimento",
-        "timing": "Durante il combattimento",
+        "timing": "In Combattimento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3245,7 +3245,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Ogni giocatore",
         "durata": "Istantanea",
-        "timing": "Al costo di un'azione",
+        "timing": "Turno Proprio",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3280,7 +3280,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": DOOMTROOPER,
         "bersaglio": "Qualsiasi Doomtrooper",
         "durata": "Permanente",
-        "timing": "Immediatamente dopo che ha ucciso un guerriero di valore maggiore",
+        "timing": "Dopo Uccisione",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -3324,7 +3324,7 @@ DATABASE_SPECIALI = {
         "fazioni_permesse": ["Generica"],
         "bersaglio": "Giocatore",
         "durata": "Istantanea",
-        "timing": "In ogni momento",
+        "timing": "In Ogni Momento",
         "set_espansione": "Base",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
@@ -6672,7 +6672,7 @@ def get_carte_per_rarità(rarity: str) -> dict:
 def crea_carta_da_database(nome_carta: str):
     """
     Crea un'istanza della classe Speciale dal database
-    
+    đ
     Args:
         nome_carta: Nome della carta nel database
         
@@ -6684,6 +6684,8 @@ def crea_carta_da_database(nome_carta: str):
     
     data = DATABASE_SPECIALI[nome_carta]
     
+    return Speciale.from_dict(data)
+
     # Crea l'istanza base
     carta = Speciale(data["nome"], data["valore"])
     

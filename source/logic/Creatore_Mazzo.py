@@ -1966,6 +1966,7 @@ def determina_classe_supporto(carta) -> str:
     }
     
     return mappatura_classi.get(nome_classe, nome_classe)
+
 def crea_info_guerriero_sicura(guerriero):
     """
     Crea un dizionario con le informazioni del guerriero in modo sicuro.
@@ -2019,6 +2020,7 @@ def crea_info_guerriero_sicura(guerriero):
             'combattimento': 0, 'sparare': 0, 'armatura': 0, 'valore': 0,
             'errore_serializzazione': str(e)
         }
+
 def crea_info_carta_supporto_sicura(carta):
     """
     Crea un dizionario con le informazioni della carta supporto in modo sicuro.
@@ -2071,7 +2073,6 @@ def crea_info_carta_supporto_sicura(carta):
             'rarity': str(getattr(carta, 'rarity', 'Common')),
             'errore_serializzazione': str(e)
         }
-
 
 def stampa_riepilogo_mazzi_migliorato(mazzi: List[Dict[str, Any]]) -> None:
     """
@@ -2178,7 +2179,6 @@ def stampa_riepilogo_mazzi_migliorato(mazzi: List[Dict[str, Any]]) -> None:
         print(f"\n🎴 DISTRIBUZIONE GLOBALE CLASSI SUPPORTO:")
         for classe, count in sorted(classi_supporto.items(), key=lambda x: x[1], reverse=True):
             print(f"   • {classe}: {count} carte")
-
 
 def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[str, Any]]:
     """
@@ -2317,6 +2317,7 @@ def processa_supporto_per_classi(carte_supporto: List[Any]) -> Dict[str, Dict[st
     
     # Mantieni struttura base anche se vuota
     return classi_supporto
+
 def calcola_statistiche_aggregate_organizzate(mazzi: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Calcola statistiche aggregate per i mazzi con organizzazione per fazioni e classi.
@@ -2424,6 +2425,7 @@ def calcola_statistiche_aggregate_organizzate(mazzi: List[Dict[str, Any]]) -> Di
     stats['distribuzione_classi_supporto'] = dict(stats['distribuzione_classi_supporto'])
     
     return stats
+
 def testa_compatibilita_mazzi(mazzi: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Testa la compatibilità dei mazzi con il nuovo sistema organizzato.
@@ -2521,7 +2523,6 @@ def testa_compatibilita_mazzi(mazzi: List[Dict[str, Any]]) -> Dict[str, Any]:
     risultati['statistiche_test']['classi_rilevate'] = list(risultati['statistiche_test']['classi_rilevate'])
     
     return risultati
-
 
 def salva_mazzi_json_sicuro(mazzi: List[Dict[str, Any]], filename: str = "mazzi_sicuri.json") -> bool:
     """
@@ -2677,6 +2678,7 @@ def salva_mazzi_json_sicuro(mazzi: List[Dict[str, Any]], filename: str = "mazzi_
         except Exception as e3:
             print(f"❌ Errore critico nel salvataggio: {e3}")
             return False
+
 def carica_mazzi_json_migliorato(filename: str) -> Optional[Dict[str, Any]]:
     """
     Carica mazzi da file JSON con supporto per la nuova organizzazione per fazioni e classi.
@@ -2741,6 +2743,7 @@ def carica_mazzi_json_migliorato(filename: str) -> Optional[Dict[str, Any]]:
     except Exception as e:
         print(f"❌ Errore durante il caricamento: {e}")
         return None
+
 def stampa_statistiche_da_json_mazzi(dati_json: Dict[str, Any]) -> None:
     """
     Stampa statistiche dai mazzi caricati da JSON con supporto per organizzazione.
@@ -2863,6 +2866,7 @@ def converti_enum_ricorsivo_mazzi(obj):
         except (TypeError, ValueError):
             # Se non è serializzabile, convertilo in stringa
             return str(obj)
+
 def crea_statistiche_aggregate_mazzi_json(mazzi: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Crea statistiche aggregate per i mazzi in formato JSON.
@@ -2935,6 +2939,7 @@ def crea_statistiche_aggregate_mazzi_json(mazzi: List[Dict[str, Any]]) -> Dict[s
         statistiche_aggregate['distribuzione_globale'][key] = dict(statistiche_aggregate['distribuzione_globale'][key])
     
     return statistiche_aggregate
+
 def crea_inventario_dettagliato_mazzo_json(mazzo: Dict[str, Any], indice: int) -> Dict[str, Any]:
     """
     Crea un inventario dettagliato di un singolo mazzo in formato JSON.
@@ -2968,6 +2973,7 @@ def crea_inventario_dettagliato_mazzo_json(mazzo: Dict[str, Any], indice: int) -
         inventario['inventario_supporto'].append(carta_info)
     
     return inventario
+
 def diagnostica_mazzo(mazzo: Dict[str, Any], indice: int = 1) -> Dict[str, Any]:
     """
     Esegue una diagnostica completa di un singolo mazzo per identificare problemi.
@@ -3086,6 +3092,7 @@ def diagnostica_mazzo(mazzo: Dict[str, Any], indice: int = 1) -> Dict[str, Any]:
         risultati['stato_generale'] = 'ERRORE'
     
     return risultati
+
 def stampa_diagnostica_mazzi(mazzi: List[Dict[str, Any]]) -> None:
     """
     Stampa una diagnostica completa dei mazzi.
@@ -3143,6 +3150,7 @@ def stampa_diagnostica_mazzi(mazzi: List[Dict[str, Any]]) -> None:
     
     if mazzi_errori > 0:
         print(f"\n⚠️ RACCOMANDAZIONE: Correggere gli errori critici prima del salvataggio JSON")
+
 def crea_guerriero_serializzabile(guerriero):
     """Crea una versione serializzabile del guerriero."""
     return {
@@ -3156,6 +3164,7 @@ def crea_guerriero_serializzabile(guerriero):
         'armatura': 0,
         'valore': 0
     }
+
 def crea_carta_serializzabile(carta):
     """Crea una versione serializzabile della carta."""
     return {
@@ -3164,6 +3173,7 @@ def crea_carta_serializzabile(carta):
         'set_espansione': ottieni_attributo_sicuro(carta, 'set_espansione', 'Set Sconosciuto'),
         'rarity': ottieni_attributo_sicuro(carta, 'rarity', 'Common')
     }
+
 def crea_placeholder_guerriero(guerriero, nome_default):
     """Crea un placeholder per un guerriero problematico."""
     return {
@@ -3175,6 +3185,7 @@ def crea_placeholder_guerriero(guerriero, nome_default):
         'errore_originale': 'Guerriero non serializzabile',
         'tipo_originale': type(guerriero).__name__ if guerriero else 'Unknown'
     }
+
 def crea_placeholder_carta(carta, nome_default):
     """Crea un placeholder per una carta problematica."""
     return {
@@ -3185,6 +3196,7 @@ def crea_placeholder_carta(carta, nome_default):
         'errore_originale': 'Carta non serializzabile',
         'tipo_originale': type(carta).__name__ if carta else 'Unknown'
     }
+
 def pulisci_mazzi_per_salvataggio(mazzi: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
     Pulisce e prepara i mazzi per un salvataggio sicuro.
@@ -3252,6 +3264,7 @@ def pulisci_mazzi_per_salvataggio(mazzi: List[Dict[str, Any]]) -> List[Dict[str,
             mazzi_puliti.append(mazzo_placeholder)
     
     return mazzi_puliti
+
 def esempio_salvataggio_mazzi_con_conteggio(mazzi: List[Dict[str, Any]]) -> None:
     """
     Esempio di utilizzo delle funzioni di salvataggio con conteggio copie.

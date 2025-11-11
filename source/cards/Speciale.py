@@ -80,6 +80,9 @@ class TimingSpeciale(Enum):
     QUANDO_FERITO = "Quando Ferito"
     QUANDO_UCCISO = "Quando Ucciso"
     QUANDO_ELIMINATO = "Quando Eliminato"
+    FASE_PESCARE = "Duranta la Fase Pescare"
+    DOPO_UCCISIONE = "Dopo Uccisione"
+
 
 
 @dataclass
@@ -631,7 +634,7 @@ class Speciale:
         speciale.tipo = TipoSpeciale(data["tipo"])
         speciale.rarity = Rarity(data["rarity"])
         speciale.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"]]
-        speciale.bersaglio = BersaglioSpeciale(data["bersaglio"])
+        speciale.bersaglio = data["bersaglio"]
         speciale.durata = DurataSpeciale(data["durata"])
         speciale.timing = TimingSpeciale(data["timing"])
         speciale.set_espansione = data["set_espansione"]
