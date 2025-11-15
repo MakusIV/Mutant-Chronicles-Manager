@@ -288,54 +288,7 @@ def crea_missione_da_database(nome_missione: str) -> Optional[Missione]:
         return None
     
     dati = DATABASE_MISSIONI[nome_missione]
-    
-    # Crea la missione base
-    missione = Missione(dati["nome"], dati["costo_azione"])
-    
-    # Imposta attributi base
-    missione.tipo = TipoMissione(dati["tipo"])
-    missione.difficolta = DifficoltaMissione(dati["difficolta"])
-    missione.rarity = Rarity(dati["rarity"])
-    missione.bersaglio = TipoBersaglioMissione(dati["bersaglio"])
-    
-    # Imposta restrizioni
-    missione.fazioni_permesse = [Fazione(f) for f in dati["fazioni_permesse"]]
-    missione.corporazioni_specifiche = dati["corporazioni_specifiche"]
-    missione.restrizioni_guerriero = dati["restrizioni_guerriero"]
-    
-    # Imposta obiettivo
-    obj_data = dati["obiettivo"]
-    missione.aggiorna_obiettivo(
-        obj_data["descrizione"],
-        obj_data["tipo_obiettivo"],
-        obj_data["valore_richiesto"],
-        obj_data["condizioni_speciali"]
-    )
-    
-    # Imposta ricompensa
-    ric_data = dati["ricompensa"]
-    missione.aggiorna_ricompensa(
-        ric_data["punti_promozione"],
-        ric_data["punti_destino"],
-        ric_data["carte_extra"],
-        ric_data["effetti_speciali"],
-        ric_data["descrizione"]
-    )
-    
-    # Imposta metadati
-    missione.set_espansione = dati["set_espansione"]
-    missione.numero_carta = dati["numero_carta"]
-    missione.testo_carta = dati["testo_carta"]
-    missione.flavour_text = dati["flavour_text"]
-    missione.keywords = dati["keywords"]
-    missione.restrizioni = dati["restrizioni"]
-    missione.condizioni_speciali = dati["condizioni_speciali"]
-    missione.quantita = dati["quantita"]
-    missione.quantita_minima_consigliata = dati["quantita_minima_consigliata"]
-    missione.valore_strategico = dati["valore_strategico"]
-    missione.fondamentale = dati["fondamentale"]
-    
-    return missione
+    return Missione.from_dict(dati)
 
 
 def get_tutte_le_missioni() -> Dict[str, Dict[str, Any]]:

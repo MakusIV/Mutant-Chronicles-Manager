@@ -167,7 +167,8 @@ class Fortificazione:
     
         # Nota: questi controlli possono essere ridondanti con il precedente. Da ottimizzare aggiornando anche le info nel database
 
-        if self.beneficiario == "Corporazione Specifica":
+        if self.beneficiario.value == "Corporazione Specifica" and self.corporazione_specifica is not None:
+
             if "Doomtrooper" in self.corporazione_specifica:
                 if guerriero.fazione == Fazione.OSCURA_LEGIONE:
                     risultato["puo_assegnare"] = False
@@ -180,9 +181,11 @@ class Fortificazione:
 
             if "Seguaci di " == self.corporazione_specifica[:len("Seguaci di ")]:
                 apostolo_richiesto = self.corporazione_specifica.split("Seguaci di ")[1].strip()
-                if (guerriero.keywords is None or guerriero.keywords == [] or guerriero.keywords != "Seguace di " + apostolo_richiesto):                       
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
+        else:
+            print(f"Errore: {self.nome} ha beneficiario 'Corporazione Specifica' ma nessuna corporazione specifica definita.")
 
         restrizione = self.restrizioni
 
@@ -604,16 +607,22 @@ class Fortificazione:
             elif "Seguaci di " in data["corporazione_specifica"]:
                 fortificazione.corporazione_specifica = data["corporazione_specifica"]
             else:    
-                fortificazione.corporazione_specifica = Fazione(data["corporazione_specifica"])
+                fortificazione.corporazione_specifica = Fazione(data["corporazione_specifica"]).value
 
         if data["apostolo_specifico"]:
             fortificazione.apostolo_specifico = ApostoloPadre(data["apostolo_specifico"])
         
+        # Configura fazioni permesse
+        if data["fazioni_permesse"]:
+            fortificazione.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"] 
+                if f in [faz.value for faz in Fazione]]
+   
+        
         # Ripristina proprietà
         fortificazione.numero_carta = data["numero_carta"]
-        fortificazione.in_gioco = data["in_gioco"]
-        fortificazione.area_corrente = data["area_corrente"]
-        fortificazione.guerriero_assegnato = data["guerriero_assegnato"]
+        #fortificazione.in_gioco = data["in_gioco"]
+        #fortificazione.area_corrente = data["area_corrente"]
+        #fortificazione.guerriero_assegnato = data["guerriero_assegnato"]
         fortificazione.unica_per_giocatore = data["unica_per_giocatore"]
         fortificazione.distruttibile = data["distruttibile"]
         

@@ -808,15 +808,13 @@ class CreatoreMazzo:
         potenza = 1.0
         # Analizza effetti
         for effetto in carta.effetti:
-
             tipo_effetto = effetto.tipo_effetto.lower() # es. "Modificatore", "Controllo", "Danno", etc.
             valore = effetto.valore # valore numerico dell'effetto (se applicabile)
             statistica_target = effetto.statistica_target # quale statistica viene modificata (C, S, A, V)
             descrizione_effetto = effetto.descrizione_effetto #descrizione effetto: 'uccide', ferisce automaticamente', 'scarta guerriero' 'scarta carta'
             desc = descrizione_effetto.lower()
                 
-            if tipo_effetto == "danno":
-                                
+            if tipo_effetto == "danno":                                
                 # Effetti speciali
                 if 'ferisce' in desc and 'automaticamente' in desc:
                     potenza *= 1.4
@@ -826,12 +824,12 @@ class CreatoreMazzo:
                     potenza = 1.5
                 elif 'scarta' in desc and any(x in desc for x in ['equipaggiamento', 'fortificazione', 'reliquia', 'warzone']):
                     potenza = 1.4
-
-            elif tipo_effetto in ['azione combattimento', 'azione fase']: # Azione Fase, Azione Ogni Momento
-                potenza *= valore
-
-            elif tipo_effetto == 'azione ogni momento':
-                potenza *= 2 * valore
+            
+            elif isinstance(valore, int) and valore > 0:
+                if tipo_effetto in ['azione combattimento', 'azione fase']: # Azione Fase, Azione Ogni Momento
+                    potenza *= valore
+                elif tipo_effetto == 'azione ogni momento':
+                    potenza *= 2 * valore
             
         return potenza
         

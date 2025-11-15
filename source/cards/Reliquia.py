@@ -652,20 +652,24 @@ class Reliquia:
         reliquia.requisiti_speciali = data["requisiti_speciali"]
         reliquia.immunita = data["immunita"]
         reliquia.vulnerabilita = data["vulnerabilita"]
+
+        reliquia.incompatibile_con = data["incompatibile_con"]
+        reliquia.potenzia = data["potenzia"]
+
         reliquia.valore_strategico = data["valore_strategico"]
-        reliquia.quantita = data.get("quantita", 0)
-        reliquia.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
+        reliquia.quantita = data.get("quantita")
+        reliquia.quantita_minima_consigliata = data.get("quantita_minima_consigliata")
         reliquia.fondamentale = data.get("fondamentale", False)
         
         # Ripristina stato di gioco        
-        stato = data.get("stato_gioco")
+        # stato = data.get("stato_gioco")
 
-        if stato:
-            reliquia.stato = StatoReliquia(stato["stato"])
-            reliquia.assegnata_a = stato["assegnata_a"]
-            reliquia.assegnata_da = stato["assegnata_da"]
-            reliquia.turno_assegnazione = stato["turno_assegnazione"]
-            reliquia.in_gioco_globalmente = stato["in_gioco_globalmente"]
+        #if stato:
+        #    reliquia.stato = StatoReliquia(stato["stato"])
+        #    reliquia.assegnata_a = stato["assegnata_a"]
+        #    reliquia.assegnata_da = stato["assegnata_da"]
+        #    reliquia.turno_assegnazione = stato["turno_assegnazione"]
+        #    reliquia.in_gioco_globalmente = stato["in_gioco_globalmente"]
             
         return reliquia
     

@@ -3010,7 +3010,7 @@ DATABASE_SPECIALI = {
     },
 
     "Corve": {
-        "nome": "Corvè",
+        "nome": "Corve",
         "valore": "",
         "tipo": "Speciale",
         "rarity": "Common",
@@ -5302,7 +5302,15 @@ DATABASE_SPECIALI = {
         "max_copie_per_combattimento": 1,
         "max_copie_per_turno": 1,
         "richiede_azione": False,
-        "effetti": [],
+        "effetti": [ {
+                "nome_effetto": "Attacco Libero",
+                "tipo_effetto": "Azione Combattimento",
+                "valore": "1",
+                "statistica_target": "",
+                "descrizione_effetto": "Mentre è in gioco, i membri della Fratellanza e della Cybertronic possono attaccarsi liberamente",
+                "condizioni": ["Doomtrooper"],
+                "limitazioni": []
+            }],
         "testo_carta": "GIOCABILE IN OGNI MOMENTO. Mentre è in gioco, i membri della Fratellanza e della Cybertronic possono attaccarsi liberamente",
         "flavour_text": "",
         "keywords": [],
@@ -6682,50 +6690,9 @@ def crea_carta_da_database(nome_carta: str):
     if nome_carta not in DATABASE_SPECIALI:
         return None
     
-    data = DATABASE_SPECIALI[nome_carta]
-    
+    data = DATABASE_SPECIALI[nome_carta]    
     return Speciale.from_dict(data)
 
-    # Crea l'istanza base
-    carta = Speciale(data["nome"], data["valore"])
-    
-    # Configura proprietà dalla classe enum
-    carta.tipo = TipoSpeciale(data["tipo"])
-    carta.rarity = Rarity(data["rarity"])
-    carta.bersaglio = data["bersaglio"]
-    carta.durata = DurataSpeciale(data["durata"])
-    carta.timing = data["timing"]
-    carta.set_espansione = data["set_espansione"]
-    carta.numero_carta = data["numero_carta"]
-    carta.max_copie_per_combattimento = data["max_copie_per_combattimento"]
-    carta.max_copie_per_turno = data["max_copie_per_turno"]
-    carta.richiede_azione = data["richiede_azione"]
-    carta.testo_carta = data["testo_carta"]
-    carta.flavour_text = data["flavour_text"]
-    carta.keywords = data["keywords"]
-    carta.restrizioni = data["restrizioni"]
-    
-    # Configura fazioni permesse
-    carta.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"]]
-    
-    # Aggiungi effetti
-    for effetto_data in data["effetti"]:
-        effetto = EffettoSpeciale(
-            tipo_effetto=effetto_data["tipo_effetto"],
-            valore=effetto_data["valore"],
-            statistica_target=effetto_data["statistica_target"],
-            descrizione_effetto=effetto_data["descrizione_effetto"],
-            condizioni=effetto_data["condizioni"],
-            limitazioni=effetto_data["limitazioni"]
-        )
-        carta.effetti.append(effetto)
-    
-    carta.quantita = data["quantita"]
-    carta.quantita_minima_consigliata = data["quantita_minima_consigliata"]
-    carta.valore_strategico = data["valore_strategico"]
-    carta.fondamentale = data["fondamentale"]
-
-    return carta
 
 
 def verifica_integrita_database() -> dict:
@@ -6753,9 +6720,6 @@ def verifica_integrita_database() -> dict:
 
         if carta["durata"] not in [t.value for t in DurataSpeciale]:
            errori["durata_errata"].append(f"{nome}: {carta['durata']}")
-
-        if carta["bersaglio"] not in [t.value for t in BersaglioSpeciale]:
-           errori["bersaglio_errato"].append(f"{nome}: {carta['bersaglio']}")
 
 
         # Verifica effetti presenti

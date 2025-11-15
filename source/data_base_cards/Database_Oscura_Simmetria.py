@@ -48,7 +48,7 @@ DATABASE_OSCURA_SIMMETRIA = {
             "utilizzata": False,
             "bersagli_attuali": []
         },
-        "restrizioni": ["Seguace di Muawijhe"],
+        "restrizioni": ["Solo Seguaci di Muawijhe"],
         "corruzione_applicata": {},
         "mutazioni_applicate": {},
         "penalita_giocatore": {},
@@ -1609,6 +1609,8 @@ def crea_carta_da_database(nome_carta: str):
     
     data = DATABASE_OSCURA_SIMMETRIA[nome_carta]
     
+    return Oscura_Simmetria.from_dict(data)
+
     # Crea l'istanza base
     carta = Oscura_Simmetria(
         nome=data["nome"],
@@ -1714,7 +1716,7 @@ def verifica_integrita_database() -> dict:
             errori["fazioni_errate"].append(f"{nome}: {carta['fazioni_permesse']}")
         
         # Verifica coerenza apostoli e doni
-        if carta["tipo"] == "Dono dell'Apostolo":
+        if carta["tipo"] == "Dono degli Apostoli":
             if not carta["apostolo_padre"]:
                 errori["apostoli_inconsistenti"].append(f"{nome}: Dono senza apostolo")
             if not any("Solo Seguaci di" in r for r in carta["restrizioni"]):
@@ -1751,27 +1753,7 @@ if __name__ == "__main__":
     print(f"Per rarità: {stats['per_rarity']}")
     print(f"Doni degli Apostoli: {stats['doni_apostoli']}")
     print(f"Carte Generiche: {stats['carte_generiche']}")
-    
-    # Test correzioni
-    print(f"\n=== VERIFICA CORREZIONI APPLICATE ===")
-    
-    # Verifica denominazione corretta "Oscura Legione"
-    fazioni_corrette = all(
-        carta["fazioni_permesse"] == ["Oscura Legione"] 
-        for carta in DATABASE_OSCURA_SIMMETRIA.values()
-    )
-    print(f"✓ Denominazione 'Oscura Legione' corretta: {fazioni_corrette}")
-    
-   
-    
-    # Verifica Doni per Seguaci
-    doni_con_restrizioni = [
-        nome for nome, carta in DATABASE_OSCURA_SIMMETRIA.items()
-        if carta["tipo"] == "Dono dell'Apostolo" and 
-        any("Solo Seguaci di" in r for r in carta["restrizioni"])
-    ]
-    print(f"✓ Doni con restrizioni Seguaci: {len(doni_con_restrizioni)}")
-    
+         
     # Test creazione carta
     print(f"\n=== TEST CREAZIONE CARTA ===")
     corruzione = crea_carta_da_database("corruzione_minore")

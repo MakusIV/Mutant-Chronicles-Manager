@@ -20,7 +20,7 @@ DATABASE_FORTIFICAZIONI = {
     "Cittadella Di Algeroth": {
         "nome": "Cittadella Di Algeroth",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Cittadella Apostolo",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -56,7 +56,7 @@ DATABASE_FORTIFICAZIONI = {
         "numero_carta": "",
         "area_compatibile": "Squadra",
         "beneficiario": "Tutti",
-        "corporazione_specifica": None,
+        "corporazione_specifica": "Doomtrooper",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
@@ -95,7 +95,7 @@ DATABASE_FORTIFICAZIONI = {
         "numero_carta": "",
         "area_compatibile": "Squadra",
         "beneficiario": "Tutti",
-        "corporazione_specifica": None,
+        "corporazione_specifica": "Doomtrooper",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
@@ -128,7 +128,7 @@ DATABASE_FORTIFICAZIONI = {
     "San Dorado": {
         "nome": "San Dorado",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Corporazione",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -197,7 +197,7 @@ DATABASE_FORTIFICAZIONI = {
     "Longshore": {
         "nome": "Longshore",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Corporazione",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -302,7 +302,7 @@ DATABASE_FORTIFICAZIONI = {
     "Cattedrale": {
         "nome": "Cattedrale",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Corporazione",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -415,7 +415,7 @@ DATABASE_FORTIFICAZIONI = {
         "numero_carta": "",
         "area_compatibile": "Squadra",
         "beneficiario": "Tutti",
-        "corporazione_specifica": None,
+        "corporazione_specifica": "Doomtrooper",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
@@ -454,7 +454,7 @@ DATABASE_FORTIFICAZIONI = {
         "numero_carta": "",
         "area_compatibile": "Squadra",
         "beneficiario": "Tutti",
-        "corporazione_specifica": None,
+        "corporazione_specifica": "Doomtrooper",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
@@ -487,7 +487,7 @@ DATABASE_FORTIFICAZIONI = {
     "Fogne": {
         "nome": "Fogne",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Corporazione",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -565,7 +565,7 @@ DATABASE_FORTIFICAZIONI = {
     "Heimburg": {
         "nome": "Heimburg",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Corporazione",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -595,7 +595,7 @@ DATABASE_FORTIFICAZIONI = {
     "Cittadella Di Muawijhe": {
         "nome": "Cittadella Di Muawijhe",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Apostolo",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -655,7 +655,7 @@ DATABASE_FORTIFICAZIONI = {
     "Nascondiglio": {
         "nome": "Nascondiglio",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Corporazione",
         "rarity": "Common",
         "set_espansione": "Inquisition",
         "numero_carta": "",
@@ -691,7 +691,7 @@ DATABASE_FORTIFICAZIONI = {
         "numero_carta": "",
         "area_compatibile": "Squadra",
         "beneficiario": "Tutti",
-        "corporazione_specifica": None,
+        "corporazione_specifica": "Doomtrooper",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
@@ -724,7 +724,7 @@ DATABASE_FORTIFICAZIONI = {
     "Cittadella Di Semai": {
         "nome": "Cittadella Di Semai",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Cittadella Apostolo",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -760,7 +760,7 @@ DATABASE_FORTIFICAZIONI = {
         "numero_carta": "",
         "area_compatibile": "Squadra",
         "beneficiario": "Tutti",
-        "corporazione_specifica": None,
+        "corporazione_specifica": "Doomtrooper",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
@@ -799,7 +799,7 @@ DATABASE_FORTIFICAZIONI = {
         "numero_carta": "",
         "area_compatibile": "Squadra",
         "beneficiario": "Tutti",
-        "corporazione_specifica": None,
+        "corporazione_specifica": "Doomtrooper",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
@@ -832,7 +832,7 @@ DATABASE_FORTIFICAZIONI = {
     "Quartier Generale": {
         "nome": "Quartier Generale",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Corporazione",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -862,7 +862,7 @@ DATABASE_FORTIFICAZIONI = {
     "Fukido": {
         "nome": "Fukido",
         "costo_destino": 0,
-        "tipo": "Fortificazione Generica",
+        "tipo": "Città Corporazione",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
@@ -898,7 +898,7 @@ DATABASE_FORTIFICAZIONI = {
         "numero_carta": "",
         "area_compatibile": "Squadra",
         "beneficiario": "Tutti",
-        "corporazione_specifica": None,
+        "corporazione_specifica": "Doomtrooper",
         "apostolo_specifico": None,
         "unica_per_giocatore": True,
         "distruttibile": True,
@@ -1084,74 +1084,7 @@ def crea_fortificazione_da_database(nome_fortificazione: str):
         return None
     
     data = DATABASE_FORTIFICAZIONI[nome_fortificazione]
-    
-    # Crea l'istanza base
-    fortificazione = Fortificazione(
-        nome=data["nome"],
-        costo_destino=data["costo_destino"]
-    )
-    
-    # Configura proprietà dalla enum
-    fortificazione.tipo = TipoFortificazione(data["tipo"])
-    fortificazione.rarity = Rarity(data["rarity"])
-    fortificazione.set_espansione = Set_Espansione(data["set_espansione"])
-    fortificazione.area_compatibile = AreaCompatibile(data["area_compatibile"])
-    fortificazione.beneficiario = BeneficiarioFortificazione(data["beneficiario"])
-    
-    if data["corporazione_specifica"]:
-        fortificazione.corporazione_specifica = (data["corporazione_specifica"])
-    if data["apostolo_specifico"]:
-        fortificazione.apostolo_specifico = ApostoloPadre(data["apostolo_specifico"])
-    
-    # Configura proprietà specifiche
-    fortificazione.numero_carta = data["numero_carta"]
-    fortificazione.unica_per_giocatore = data["unica_per_giocatore"]
-    fortificazione.distruttibile = data["distruttibile"]
-    fortificazione.bonus_armatura = data["bonus_armatura"]
-    fortificazione.punti_struttura = data["punti_struttura"]
-    fortificazione.resistenza_attacchi = data["resistenza_attacchi"]
-    
-    # Configura modificatori
-    for mod_data in data["modificatori"]:
-        modificatore = ModificatoreFortificazione(
-            statistica=mod_data["statistica"],
-            valore=mod_data["valore"],
-            condizione=mod_data["condizione"],
-            descrizione=mod_data["descrizione"],
-            permanente=mod_data["permanente"]
-        )
-        fortificazione.modificatori.append(modificatore)
-    
-    # Configura abilità speciali
-    for abil_data in data["abilita_speciali"]:
-        abilita = AbilitaFortificazione(
-            nome=abil_data["nome"],
-            descrizione=abil_data["descrizione"],
-            tipo_abilita=abil_data["tipo_abilita"],
-            costo_attivazione=abil_data["costo_attivazione"],
-            condizioni_attivazione=abil_data["condizioni_attivazione"],
-            effetti_speciali=abil_data["effetti_speciali"]
-        )
-        fortificazione.abilita_speciali.append(abilita)
-    
-    # Configura altre proprietà
-    fortificazione.requisiti = data["requisiti"]
-    fortificazione.restrizioni = data["restrizioni"]
-    fortificazione.testo_carta = data["testo_carta"]
-    fortificazione.flavour_text = data["flavour_text"]
-    fortificazione.keywords = data["keywords"]
-    
-    # Configura fazioni permesse
-    if data["fazioni_permesse"]:
-        fortificazione.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"] 
-                                          if f in [faz.value for faz in Fazione]]
-    
-    fortificazione.quantita = data["quantita"]
-    fortificazione.quantita_minima_consigliata = data["quantita_minima_consigliata"]
-    fortificazione.valore_strategico = data["valore_strategico"]
-    fortificazione.fondamentale = data["fondamentale"]
-
-    return fortificazione
+    return Fortificazione.from_dict(data)
 
 
 def get_statistiche_database_fortificazioni() -> Dict[str, Any]:

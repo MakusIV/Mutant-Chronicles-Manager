@@ -660,29 +660,29 @@ class Oscura_Simmetria:
         carta.flavour_text = data["flavour_text"]
         carta.keywords = data["keywords"]
         carta.restrizioni = data["restrizioni"]
-        carta.corruzione_applicata = data["corruzione_applicata"]
-        carta.mutazioni_applicate = data["mutazioni_applicate"]
-        carta.penalita_giocatore = data["penalita_giocatore"]
-        carta.contatori_oscura = data["contatori_oscura"]
-        carta.livello_corruzione = data["livello_corruzione"]
+        #carta.corruzione_applicata = data["corruzione_applicata"]
+        #carta.mutazioni_applicate = data["mutazioni_applicate"]
+        #carta.penalita_giocatore = data["penalita_giocatore"]
+        #carta.contatori_oscura = data["contatori_oscura"]
+        #carta.livello_corruzione = data["livello_corruzione"]
         carta.valore_strategico = data["valore_strategico"]
-        carta.quantita = data.get("quantita", 0)
-        carta.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
-        carta.fondamentale = data.get("fondamentale", False)
+        carta.quantita = data.get("quantita")
+        carta.quantita_minima_consigliata = data.get("quantita_minima_consigliata")
+        carta.fondamentale = data.get("fondamentale")
         
         # Gestione nuovi campi (compatibilità)
-        if "puo_essere_negata" in data:
-            carta.puo_essere_negata = data["puo_essere_negata"]
+        #if "puo_essere_negata" in data:
+        #    carta.puo_essere_negata = data["puo_essere_negata"]
         
         # Ripristina stato di gioco
-        stato = data["stato_gioco"]
-        carta.in_gioco = stato["in_gioco"]
-        carta.utilizzata = stato["utilizzata"]
-        carta.bersagli_attuali = stato["bersagli_attuali"]
+        #stato = data["stato_gioco"]
+        #carta.in_gioco = stato["in_gioco"]
+        #carta.utilizzata = stato["utilizzata"]
+        #carta.bersagli_attuali = stato["bersagli_attuali"]
         
         # Gestione nuovi campi stato
-        if "assegnata_a" in stato:
-            carta.assegnata_a = stato["assegnata_a"]
+        #if "assegnata_a" in stato:
+        #    carta.assegnata_a = stato["assegnata_a"]
         
         # Ricostruisce effetti
         for eff_data in data["effetti"]:

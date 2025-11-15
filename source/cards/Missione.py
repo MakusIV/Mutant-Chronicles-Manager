@@ -471,22 +471,22 @@ class Missione:
         missione.condizioni_speciali = data["condizioni_speciali"]
         
         # Ripristina stato di gioco
-        stato = data["stato_gioco"]
-        missione.stato = StatoMissione(stato["stato"])
-        missione.assegnata_a = stato["assegnata_a"]
-        missione.assegnata_da = stato["assegnata_da"]
-        missione.turno_assegnazione = stato["turno_assegnazione"]
-        missione.progresso_attuale = stato["progresso_attuale"]
-        missione.opzionale = stato["opzionale"]
-        missione.completamento_automatico = stato["completamento_automatico"]
-        missione.unica_per_bersaglio = stato["unica_per_bersaglio"]
+        #stato = data["stato_gioco"]
+        #missione.stato = StatoMissione(stato["stato"])
+        #missione.assegnata_a = stato["assegnata_a"]
+        #missione.assegnata_da = stato["assegnata_da"]
+        #missione.turno_assegnazione = stato["turno_assegnazione"]
+        #missione.progresso_attuale = stato["progresso_attuale"]
+        #missione.opzionale = stato["opzionale"]
+        #missione.completamento_automatico = stato["completamento_automatico"]
+        #missione.unica_per_bersaglio = stato["unica_per_bersaglio"]
         
-        missione.effetti_attivi = data["effetti_attivi"]
-        missione.modificatori_applicati = data["modificatori_applicati"]
+        #missione.effetti_attivi = data["effetti_attivi"]
+        #missione.modificatori_applicati = data["modificatori_applicati"]
         missione.valore_strategico = data["valore_strategico"]
-        missione.quantita = data.get("quantita", 0)
-        missione.quantita_minima_consigliata = data.get("quantita_minima_consigliata", 0)
-        missione.fondamentale = data.get("fondamentale", False)
+        missione.quantita = data.get("quantita")
+        missione.quantita_minima_consigliata = data.get("quantita_minima_consigliata")
+        missione.fondamentale = data.get("fondamentale")
         
         return missione
     

@@ -474,14 +474,74 @@ class Equipaggiamento:
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Equipaggiamento':
         """Crea un equipaggiamento da un dizionario"""
-        equipaggiamento = cls(data["nome"], data["valore"])
         
+        
+        # Crea l'istanza base usando il valore dal database
+        valore = data["statistiche"]["combattimento"] + data["statistiche"]["sparare"] + data["statistiche"]["armatura"]
+        equipaggiamento = cls(data["nome"], valore)
+        
+    
+        # Configura proprietà specifiche    
+        equipaggiamento.tipo = TipoEquipaggiamento(data["tipo"]) if data["tipo"] in [t.value for t in TipoEquipaggiamento] else TipoEquipaggiamento.EQUIPAGGIAMENTO_GENERICO
+        equipaggiamento.rarity = Rarity(data["rarity"])
+        equipaggiamento.set_espansione = data["set_espansione"]
+        
+        # Configura statistiche
+        stats = data["statistiche"]
+        equipaggiamento.modificatori_combattimento = stats["combattimento"]
+        equipaggiamento.modificatori_armatura = stats["armatura"]
+        equipaggiamento.modificatori_sparare = stats["sparare"]
+        equipaggiamento.modificatori_valore = stats["valore"]
+        
+        # Configura modificatori_speciali
+        for mod_data in data["modificatori_speciali"]:
+            modificatore = ModificatoreEquipaggiamento(
+                statistica=mod_data["statistica"],
+                valore=mod_data["valore"],
+                condizione=mod_data["condizione"],
+                descrizione=mod_data["descrizione"]
+            )
+            equipaggiamento.modificatori_speciali.append(modificatore)
+        
+        # Configura abilità speciali
+        for abil_data in data["abilita_speciali"]:
+            abilita = AbilitaSpeciale(
+                nome=abil_data["nome"],
+                descrizione=abil_data["descrizione"],
+                costo_attivazione=abil_data["costo_attivazione"],
+                tipo_attivazione=abil_data["tipo_attivazione"],
+                limitazioni=abil_data["limitazioni"]
+            )
+            equipaggiamento.abilita_speciali.append(abilita)
+        
+        # Configura altre proprietà
+        equipaggiamento.requisiti = data["requisiti"]
+        equipaggiamento.restrizioni_guerriero = data["restrizioni_guerriero"]
+        equipaggiamento.quantita = data["quantita"]
+        equipaggiamento.quantita_minima_consigliata = data["quantita_minima_consigliata"]
+        equipaggiamento.valore_strategico = data["valore_strategico"]
+        equipaggiamento.fondamentale = data["fondamentale"]
+        equipaggiamento.testo_carta = data["testo_carta"]
+        equipaggiamento.flavour_text = data["flavour_text"]
+        equipaggiamento.keywords = data["keywords"]
+        
+        # Configura fazioni permesse
+        if data["fazioni_permesse"]:
+            equipaggiamento.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"] if f in [faz.value for faz in Fazione]]
+        
+        return equipaggiamento
+
+
+
+        ########################################################################
         # Tipo e classificazione
-        equipaggiamento.tipo = TipoEquipaggiamento(data["tipo"])
+        equipaggiamento.tipo = TipoEquipaggiamento(data["tipo"]) if data["tipo"] in [t.value for t in TipoEquipaggiamento] else TipoEquipaggiamento.EQUIPAGGIAMENTO_GENERICO
+        
         if data["tipo_armatura"]:
             equipaggiamento.tipo_armatura = TipoArmatura(data["tipo_armatura"])
         if data["tipo_veicolo"]:
             equipaggiamento.tipo_veicolo = TipoVeicolo(data["tipo_veicolo"])
+
         equipaggiamento.rarity = Rarity(data["rarity"])
         
         # Modificatori

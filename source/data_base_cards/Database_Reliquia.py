@@ -141,6 +141,7 @@ DATABASE_RELIQUIE = {
         "vulnerabilita": [],
         "incompatibile_con": [],
         "potenzia": [],
+        "valore_strategico": 10,
         "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
@@ -905,77 +906,7 @@ def crea_reliquia_da_database(nome_reliquia: str) -> Optional[Reliquia]:
     
     dati = DATABASE_RELIQUIE[nome_reliquia]
     
-    # Crea la reliquia base
-    reliquia = Reliquia(dati["nome"], dati["valore"])
-    
-    # Imposta attributi base
-    reliquia.tipo = TipoReliquia(dati["tipo"])
-    reliquia.rarity = Rarity(dati["rarity"])
-    
-    # Imposta restrizioni
-    restr_data = dati["restrizioni"]
-
-    corporazioni = [t.value for t in CorporazioneSpecifica]
-    #corporazioni.extend(t.value for t in Fazione)
-    
-    for f in restr_data["corporazioni_specifiche"]:       
-        if f not in corporazioni and 'Assegnabile a guerrieri con V <=' != f[:len("Assegnabile a guerrieri con V <=")]:
-            print(f"errore nell'assegnazione della proprietà corporazioni_specifiche. La corporazione {f} non è presente nella lista delle corporazioni ammissibili. {[c for c in corporazioni]}")
-    
-    if "Doomtrooper" in restr_data["fazioni_permesse"]:
-            restr_data["fazioni_permesse"].remove("Doomtrooper")
-            restr_data["fazioni_permesse"].extend(DOOMTROOPER)
-
-    reliquia.restrizioni = RestrizioneReliquia(
-        fazioni_permesse =[Fazione(f) for f in restr_data["fazioni_permesse"]],
-        corporazioni_specifiche=restr_data["corporazioni_specifiche"],
-        tipi_guerriero=restr_data["tipi_guerriero"],
-        keywords_richieste=restr_data["keywords_richieste"],
-        livello_minimo=restr_data["livello_minimo"]
-    )
-    
-    # Imposta modificatori
-    for mod_data in dati["modificatori"]:
-        modificatore = ModificatoreReliquia(
-            statistica=mod_data["statistica"],
-            valore=mod_data["valore"],
-            condizione=mod_data["condizione"],
-            descrizione=mod_data["descrizione"],
-            permanente=mod_data["permanente"]
-        )
-        reliquia.modificatori.append(modificatore)
-    
-    # Imposta poteri
-    for pot_data in dati["poteri"]:
-        potere = PotereReliquia(
-            nome=pot_data["nome"],
-            descrizione=pot_data["descrizione"],
-            tipo_potere=TipoPotereReliquia(pot_data["tipo_potere"]),
-            costo_attivazione=pot_data["costo_attivazione"],
-            tipo_attivazione=pot_data["tipo_attivazione"],
-            limitazioni=pot_data["limitazioni"],
-            una_volta_per_turno=pot_data["una_volta_per_turno"]
-        )
-        reliquia.poteri.append(potere)
-    
-    # Imposta metadati
-    reliquia.set_espansione = dati["set_espansione"]
-    reliquia.numero_carta = dati["numero_carta"]
-    reliquia.testo_carta = dati["testo_carta"]
-    reliquia.flavour_text = dati["flavour_text"]
-    reliquia.keywords = dati["keywords"]
-    reliquia.origine_storica = dati["origine_storica"]
-    reliquia.requisiti_speciali = dati["requisiti_speciali"]
-    reliquia.immunita = dati["immunita"]
-    reliquia.vulnerabilita = dati["vulnerabilita"]
-    reliquia.incompatibile_con = dati["incompatibile_con"]
-    reliquia.potenzia = dati["potenzia"]
-    reliquia.quantita = dati["quantita"]
-    reliquia.quantita_minima_consigliata = dati["quantita_minima_consigliata"]
-    reliquia.valore_strategico = dati["valore_strategico"]
-    reliquia.fondamentale = dati["fondamentale"]
-    
-    return reliquia
+    return Reliquia.from_dict(dati)
 
 
 def get_tutte_le_reliquie() -> Dict[str, Dict[str, Any]]:
@@ -1373,7 +1304,7 @@ if __name__ == "__main__":
     
     # Esempio 1: Creare una reliquia dal database
     print(f"\n=== ESEMPIO CREAZIONE RELIQUIA ===")
-    spada = crea_reliquia_da_database("Spada del Destino")
+    spada = crea_reliquia_da_database("Pugnale Sacrificale")
     if spada:
         print(f"✓ Creata: {spada}")
         print(f"  Tipo: {spada.tipo.value}")
@@ -1448,15 +1379,15 @@ if __name__ == "__main__":
     guerriero_bauhaus = GuerrieroTest("Hans Mueller", "Bauhaus", "Doomtrooper")
     guerriero_bauhaus.keywords = ["Doomtrooper", "Techno"]
     
-    verifica_dispositivo = verifica_compatibilita_guerriero("Dispositivo Bauhaus", guerriero_bauhaus)
-    print(f"✓ Dispositivo Bauhaus compatibile con guerriero Bauhaus: {verifica_dispositivo['compatibile']}")
+    verifica_dispositivo = verifica_compatibilita_guerriero("Shillelagh", guerriero_bauhaus)
+    print(f"✓ Shillelagh compatibile con guerriero Bauhaus: {verifica_dispositivo['compatibile']}")
     
     # Test guerriero Oscura Legione
     guerriero_oscuro = GuerrieroTest("Nepharite Warlord", "Oscura Legione", "Nepharite")
     guerriero_oscuro.keywords = ["Nepharite", "Oscuro"]
     
-    verifica_spada = verifica_compatibilita_guerriero("Spada del Destino", guerriero_oscuro)
-    print(f"✗ Spada del Destino compatibile con Oscura Legione: {verifica_spada['compatibile']}")
+    verifica_spada = verifica_compatibilita_guerriero("Armatura Di Empietà", guerriero_oscuro)
+    print(f"✗ Armatura Di Empietà compatibile con Oscura Legione: {verifica_spada['compatibile']}")
     if not verifica_spada['compatibile']:
         print(f"  Motivo: {verifica_spada['motivo'] if 'motivo' in verifica_spada else 'Restrizioni non soddisfatte'}")
     
@@ -1464,8 +1395,8 @@ if __name__ == "__main__":
     guerriero_fratellanza = GuerrieroTest("Brother Marcus", "Fratellanza", "Doomtrooper")
     guerriero_fratellanza.keywords = ["Doomtrooper", "Mystic"]
     
-    verifica_sigillo = verifica_compatibilita_guerriero("Sigillo di Cardinal", guerriero_fratellanza)
-    print(f"✓ Sigillo di Cardinal compatibile con Fratellanza: {verifica_sigillo['compatibile']}")
+    verifica_sigillo = verifica_compatibilita_guerriero("Liber Ereticus", guerriero_fratellanza)
+    print(f"✓ Liber Ereticus compatibile con Fratellanza: {verifica_sigillo['compatibile']}")
     
     # Esempio 8: Reliquie per tipo di guerriero
     print(f"\n=== RELIQUIE PER TIPO GUERRIERO ===")
@@ -1494,9 +1425,9 @@ if __name__ == "__main__":
         print(f"  - {nome}")
     
     # Esempio 10: Analisi dettagliata di una reliquia
-    print(f"\n=== ANALISI DETTAGLIATA: FRAMMENTO DEL VUOTO ===")
+    print(f"\n=== ANALISI DETTAGLIATA: Frammento Del Vero Chip ===")
     
-    frammento = crea_reliquia_da_database("Frammento del Vuoto")
+    frammento = crea_reliquia_da_database("Frammento Del Vero Chip")
     if frammento:
         print(f"Nome: {frammento.nome}")
         print(f"Tipo: {frammento.tipo.value}")
@@ -1507,7 +1438,7 @@ if __name__ == "__main__":
         
         print(f"\nModificatori:")
         for mod in frammento.modificatori:
-            print(f"  - {mod.descrizione} ({mod.valore:+}{mod.statistica})")
+            print(f"  - {mod.descrizione} ({mod.valore}{mod.statistica})")
         
         print(f"\nPoteri:")
         for potere in frammento.poteri:
