@@ -155,17 +155,10 @@ class Fortificazione:
             Dizionario con risultato e eventuali errori
         """
         risultato = {"puo_assegnare": True, "errori": []}
-        
-        # Controllo fazioni_permesse
-        if self.fazioni_permesse is not None and self.fazioni_permesse != []:
-            # Se l'equipaggiamento ha fazioni_permesse specifiche
-            if all( a != guerriero.fazione for a in self.fazioni_permesse):
-                # Verifica se è equipaggiamento generico utilizzabile da tutti
-                if self.fazioni_permesse != ["Tutte"] or (self.fazioni_permesse == ["Doomtrooper"] and guerriero.fazione not in DOOMTROOPER):
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse}")
-    
+        restrizione = self.restrizioni
+       
         # Nota: questi controlli possono essere ridondanti con il precedente. Da ottimizzare aggiornando anche le info nel database
+        # Nota: se viene verificata una condizone di non assegnabilità, le successive non vengono verificate in quanto già non assegnabile (assegnazione solo False)
 
         if self.beneficiario.value == "Corporazione Specifica" and self.corporazione_specifica is not None:
 
@@ -184,12 +177,8 @@ class Fortificazione:
                 if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
-        else:
-            print(f"Errore: {self.nome} ha beneficiario 'Corporazione Specifica' ma nessuna corporazione specifica definita.")
-
-        restrizione = self.restrizioni
-
-        if "Solo Doomtrooper" in restrizione:
+                
+        elif "Solo Doomtrooper" in restrizione:
             if guerriero.fazione == Fazione.OSCURA_LEGIONE:
                 risultato["puo_assegnare"] = False
                 risultato["errori"].append("Solo per Doomtrooper")
@@ -241,7 +230,16 @@ class Fortificazione:
             if guerriero.stats.valore > valore_richiesto:                       
                 risultato["puo_assegnare"] = False
                 risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
-            
+
+        # Controllo fazioni_permesse
+        elif self.fazioni_permesse is not None and self.fazioni_permesse != []:
+            # Se l'equipaggiamento ha fazioni_permesse specifiche
+            if all( a != guerriero.fazione for a in self.fazioni_permesse):
+                # Verifica se è fortificazione generica utilizzabile da tutti
+                if self.fazioni_permesse != ["Tutte"] or (self.fazioni_permesse == ["Doomtrooper"] and guerriero.fazione not in DOOMTROOPER):
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse}")
+        
         return risultato
     
     def get_modificatore_armatura(self, guerriero_id: str = None) -> int:
