@@ -727,18 +727,24 @@ def seleziona_carte_casuali_per_tipo(
     # Separa carte per orientamento se specificato
     carte_orientate = {}
     carte_generiche = {}
-    
+    carte_generiche_fondamentali = {}
+
     if fazioni_orientamento:
+        fazioni_permesse = []
+
         for nome, dati in carte_disponibili.items():
+            
             # Verifica se la carta supporta le fazioni di orientamento   
             if 'fazione' in dati:     # Guerriero     
-                fazioni_permesse = dati.get('fazioni_permesse', [])            
+                fazioni_permesse.append(dati.get('fazione'))            
             elif 'fazioni_permesse' in dati:  # Speciale, Equipaggiamento, Fortificazione, Missione, Oscura_Simmetria       
                 fazioni_permesse = dati.get('fazioni_permesse', [])            
             elif 'restrizioni' in dati: # Reliquia, Warzone     
                 fazioni_permesse = dati['restrizioni'].get('fazioni_permesse', [])            
             
-            if any(f.value in fazioni_permesse for f in fazioni_orientamento):
+            if dati.get('fondamentale', False) and "Tutte" in fazioni_permesse: # carte fondamentali valide per tutte le fazioni
+                carte_generiche_fondamentali[nome] = dati
+            elif any(f.value in fazioni_permesse for f in fazioni_orientamento):
                 # QUI PUOI INSERIRE PER GUERRIERO, ARTE E OSCURA SIMMETRIA LA SELEZIONE DELLE SPECIALIZZAZIONI (APOSTOLI, TIPO ARTE)
                 carte_orientate[nome] = dati # inserisce la carta nelle carte_orientate se questa è associabile ad una delle fazioni permesse
             else:
@@ -766,21 +772,31 @@ def seleziona_carte_casuali_per_tipo(
         else:
             pool_carte = carte_generiche if carte_generiche else carte_orientate
         
+        pool_carte.update(carte_generiche_fondamentali)  # aggiunge sempre le carte fondamentali al pool di selezione
+
         if not pool_carte:
             continue
         
+
         # Seleziona carta casuale
         nome_carta = random.choice(list(pool_carte.keys()))
         dati_carta = pool_carte[nome_carta]
-        
-
+        carta_fondamentale = dati_carta.get('fondamentale', False) # and nome_carta in carte_generiche_fondamentali
 
         # MODIFICA PER DISTRIBUZIONE BILANCIATA CARTE COLLEZIONE
         # se il numero d carte è insufficiente per tutti i giocatori, assegna la carta in base alla probabilita in modo da non favorire il/i primo/i giocatore per cui si crea la collezione
         quantita_disponibile = dati_carta.get('quantita') - QUANTITA_UTILIZZATE[nome_carta]        
 
         if quantita_disponibile < giocatori_rimasti:  # numero copie inferiore al numero giocatori da servire
-            if random.random() >= quantita_disponibile / giocatori_rimasti: # valutazione della probabilità di NON assegnazione della carta al giocatore corrente
+            
+            # criteri di NON assegnazione della carta al giocatore corrente: se non è una carta fondamentale valuta la 
+            # probabilità di NON assegnazione della carta al giocatore corrente. Se invece è fondamentale la assegna
+            # NOTA: 
+            # L'assegnazione garantita della carta fondamentale è stata implementata per evitare che una o più collezioni 
+            # non ricevano carte fondamentali, soprattutto quelle generiche valide cioè per tutte le fazioni. 
+            # Questo succede in quanto le carte vengono scelte in modo casuale dal pool e anche se viene scelta per una 
+            # collezione, nella valutazione di NON assegnazione potrebbe non essere assegnata.
+            if not carta_fondamentale and random.random() >= quantita_disponibile / giocatori_rimasti: 
                 # la carta non è assegnabile al giocatore corrente e viene rimossa dal pool 
                 if nome_carta in carte_orientate:
                     del carte_orientate[nome_carta]
@@ -798,7 +814,10 @@ def seleziona_carte_casuali_per_tipo(
         )
             
         # calcola la quantita di copie da inserire nella collezione per una specifica carta        
-        quantita = random.randint(1, max_quantita_disponibile)
+        if carta_fondamentale:
+            quantita = min(1, max_quantita_disponibile)  # assegna sempre 1 copia per le carte fondamentali
+        else:
+            quantita = random.randint(1, max_quantita_disponibile)
         
         # Crea e aggiungi il quantitativo di copie richiesto per la carta specifica con diverse istanze della stessa
         for _ in range(quantita):
