@@ -266,60 +266,62 @@ class Warzone:
                     fazioni_str = [f for f in self.restrizioni.fazioni_permesse]
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Fazione non permessa. Richieste: {fazioni_str}")                
-        
-        if "Solo Doomtrooper" in self.restrizioni.limiti_utilizzo: 
-                if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+
+        if self.restrizioni.limiti_utilizzo is None or self.restrizioni.limiti_utilizzo == []:
+
+            if "Solo Doomtrooper" in self.restrizioni.limiti_utilizzo: 
+                    if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append("Solo per Doomtrooper")
+
+            elif "Solo Oscura Legione" in self.restrizioni.limiti_utilizzo:
+                if guerriero.fazione != Fazione.OSCURA_LEGIONE:
                     risultato["puo_assegnare"] = False
-                    risultato["errori"].append("Solo per Doomtrooper")
+                    risultato["errori"].append("Solo per Oscura Legione")                            
 
-        elif "Solo Oscura Legione" in self.restrizioni.limiti_utilizzo:
-            if guerriero.fazione != Fazione.OSCURA_LEGIONE:
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append("Solo per Oscura Legione")                            
-
-        elif "Solo Seguaci di" in self.restrizioni.limiti_utilizzo:
-                apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
-                if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
-          
-        elif "Solo Eretici" in self.restrizioni.limiti_utilizzo:
-                if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):                       
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Solo Eretici")
-
-        elif "Solo Mercenari" in self.restrizioni.limiti_utilizzo:
-            if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):                       
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append(f"Solo Mercenari")
-
-        elif "Solo Mercenari o Eretici" in self.restrizioni.limiti_utilizzo:
-            if guerriero.tipo != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords or "Eretico" not in guerriero.keywords ):                       
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append(f"Solo Mercenari o Eretici")
-
-        elif "Solo Comandanti" in self.restrizioni.limiti_utilizzo:
-            if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):                       
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append(f"Solo Comandanti")
-
-        elif "Solo Nefariti" in self.restrizioni.limiti_utilizzo:
-            if (guerriero.keywords is None or guerriero.keywords == [] or "Nefarita" not in guerriero.keywords ):                       
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append(f"Solo Nefarita")
-
-        elif "Solo Personalita" in self.restrizioni.limiti_utilizzo:
-            if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):                       
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append(f"Solo Personalita")
-        
-        elif "Assegnabile a guerrieri con V <= " in self.restrizioni.limiti_utilizzo:
-            valore_richiesto = int( self.restrizioni.limiti_utilizzo.split("Assegnabile a guerrieri con V <= ")[1].strip() )
+            elif "Solo Seguaci di" in self.restrizioni.limiti_utilizzo:
+                    apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
             
-            if guerriero.stats.valore > valore_richiesto:                       
-                risultato["puo_assegnare"] = False
-                risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
-        
+            elif "Solo Eretici" in self.restrizioni.limiti_utilizzo:
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):                       
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Eretici")
+
+            elif "Solo Mercenari" in self.restrizioni.limiti_utilizzo:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Mercenari")
+
+            elif "Solo Mercenari o Eretici" in self.restrizioni.limiti_utilizzo:
+                if guerriero.tipo != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords or "Eretico" not in guerriero.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Mercenari o Eretici")
+
+            elif "Solo Comandanti" in self.restrizioni.limiti_utilizzo:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Comandanti")
+
+            elif "Solo Nefariti" in self.restrizioni.limiti_utilizzo:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Nefarita" not in guerriero.keywords ):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Nefarita")
+
+            elif "Solo Personalita" in self.restrizioni.limiti_utilizzo:
+                if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo Personalita")
+            
+            elif "Assegnabile a guerrieri con V <= " in self.restrizioni.limiti_utilizzo:
+                valore_richiesto = int( self.restrizioni.limiti_utilizzo.split("Assegnabile a guerrieri con V <= ")[1].strip() )
+                
+                if guerriero.stats.valore > valore_richiesto:                       
+                    risultato["puo_assegnare"] = False
+                    risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
+            
         
         return risultato
     
