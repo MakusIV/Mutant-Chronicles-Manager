@@ -248,7 +248,7 @@ class Fortificazione:
             # Se l'equipaggiamento ha fazioni_permesse specifiche
             if all( a != guerriero.fazione for a in self.fazioni_permesse):
                 # Verifica se è fortificazione generica utilizzabile da tutti
-                if self.fazioni_permesse != ["Tutte"] or (self.fazioni_permesse == ["Doomtrooper"] and guerriero.fazione not in DOOMTROOPER):
+                if self.fazioni_permesse != ["Generica"] or (self.fazioni_permesse == ["Doomtrooper"] and guerriero.fazione not in DOOMTROOPER):
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse}")
         
@@ -623,9 +623,12 @@ class Fortificazione:
             fortificazione.apostolo_specifico = ApostoloPadre(data["apostolo_specifico"])
         
         # Configura fazioni permesse
-        if data["fazioni_permesse"]:
-            fortificazione.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"] 
-                if f in [faz.value for faz in Fazione]]
+        if data["fazioni_permesse"]:   
+            if "Doomtrooper" in data["fazioni_permesse"]:
+                fortificazione.fazioni_permesse = ["Doomtrooper"]
+            else:         
+                fortificazione.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"] 
+                    if f in [faz.value for faz in Fazione]]
    
         
         # Ripristina proprietà

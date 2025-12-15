@@ -742,7 +742,7 @@ def seleziona_carte_casuali_per_tipo(
             elif 'restrizioni' in dati: # Reliquia, Warzone     
                 fazioni_permesse = dati['restrizioni'].get('fazioni_permesse', [])            
             
-            if dati.get('fondamentale', False) and "Tutte" in fazioni_permesse: # carte fondamentali valide per tutte le fazioni
+            if dati.get('fondamentale', False) and "Generica" in fazioni_permesse: # carte fondamentali valide per tutte le fazioni
                 carte_generiche_fondamentali[nome] = dati
             elif any(f.value in fazioni_permesse for f in fazioni_orientamento):
                 # QUI PUOI INSERIRE PER GUERRIERO, ARTE E OSCURA SIMMETRIA LA SELEZIONE DELLE SPECIALIZZAZIONI (APOSTOLI, TIPO ARTE)
@@ -802,6 +802,8 @@ def seleziona_carte_casuali_per_tipo(
                     del carte_orientate[nome_carta]
                 if nome_carta in carte_generiche:
                     del carte_generiche[nome_carta]
+                if nome_carta in carte_generiche_fondamentali:
+                    del carte_generiche_fondamentali[nome_carta]
                 continue #prosegue con il prossimo item del ciclo for
 
 
@@ -813,9 +815,23 @@ def seleziona_carte_casuali_per_tipo(
             dati_carta.get('quantita') - QUANTITA_UTILIZZATE[nome_carta]
         )
             
+        if max_quantita_disponibile < 1:
+            # Nessuna copia disponibile, rimuovi dal pool
+            if nome_carta in carte_orientate:
+                del carte_orientate[nome_carta]
+            if nome_carta in carte_generiche:
+                del carte_generiche[nome_carta]
+            if nome_carta in carte_generiche_fondamentali:
+                del carte_generiche_fondamentali[nome_carta]
+            continue
+
         # calcola la quantita di copie da inserire nella collezione per una specifica carta        
         if carta_fondamentale:
-            quantita = min(1, max_quantita_disponibile)  # assegna sempre 1 copia per le carte fondamentali
+            d = round(max_quantita_disponibile/giocatori_rimasti)
+            if d > 1:
+                quantita = random.randint(1, d)  #
+            else:
+                quantita = 1
         else:
             quantita = random.randint(1, max_quantita_disponibile)
         
@@ -837,6 +853,8 @@ def seleziona_carte_casuali_per_tipo(
             del carte_orientate[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
         if nome_carta in carte_generiche:
             del carte_generiche[nome_carta] # elimina la carta e di conseguenza dal pool di scelta casuale: un solo prelievo
+        if nome_carta in carte_generiche_fondamentali:
+            del carte_generiche_fondamentali[nome_carta]
 
         # Aggiorna contatore totale carte inserite per tipologia
         numero_totale_carte_inserite_per_tipologia += quantita
@@ -1243,7 +1261,8 @@ def determina_orientamento_collezione(collezione: CollezioneGiocatore, espansion
         if guerrieri_oscura_legione_totale > 0.66 * guerrieri_doomtrooper_totale:
             lista_apostoli = primi_tre_apostoli # 3 apostoli
             lista_fazioni = prime_tre_fazioni_doomtrooper[:2] # 2 fazioni
-        
+            orientamento = 'oscura legione-doomtrooper'            
+
         # l'oscura legione non è preponderante rispetto i doomtrooper e neanche i doomtrooper sono preponderanti rispetto la fratellanza
         elif guerrieri_fratellanza_totale >  0.5 * guerrieri_doomtrooper_totale:  # fratellanza e oscura legione superiore significativamente ai doomtrooper
             lista_fazioni = prime_tre_fazioni_doomtrooper[:2]
@@ -1255,8 +1274,7 @@ def determina_orientamento_collezione(collezione: CollezioneGiocatore, espansion
         else:
             lista_apostoli = primi_tre_apostoli[:2] # 2 apostoli
             lista_fazioni = prime_tre_fazioni_doomtrooper[:2] # 2 fazioni
-
-        orientamento = 'doomtrooper-oscura legione'                                
+            orientamento = 'doomtrooper-oscura legione'                                
         
     # doomtrooper e fratellanza superiori alla oscura legione
     elif guerrieri_doomtrooper_totale > guerrieri_oscura_legione_totale < guerrieri_fratellanza_totale:
