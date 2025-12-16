@@ -1162,14 +1162,14 @@ class CreatoreMazzo:
         Returns:
             Lista di carte selezionate
         """
-            
+        # cmabia questi valori per aumentare o diminuire la distribuzione delle carte in base al tipo
         DISTRIBUZIONE_EQUIPAGGIAMENTO = {
             'combattimento':    0.25, 
             'sparare':          0.25,
             'armatura':         0.25,
             'azioni':           0.125            
         }
-
+        # cmabia questi valori per aumentare o diminuire la distribuzione delle carte in base al tipo
         DISTRIBUZIONE_SPECIALE = {
             'combattimento':    0.12,
             'sparare':          0.12,
@@ -1189,8 +1189,7 @@ class CreatoreMazzo:
         tutti_guerrieri = squadra + schieramento
         numero_guerrieri = len(tutti_guerrieri)
 
-         # Bonus per orientamenti
-       
+         # Bonus per orientamenti       
         BONUS_SPECIALIZZAZIONE = 4.0 # Fattore punteggio applicato se il guerriero è della fazione specializzata
         BONUS_ORIENTAMENTO = 10.0 # Fattore punteggio applicato alle preferenze specifiche di orientamento
         BONUS_ERETICO = 2 # Fattore applicato se selezionati ERETICI
@@ -1202,21 +1201,16 @@ class CreatoreMazzo:
         carte_con_punteggio = []
         
         for carta in carte_disponibili:
-            # Verifica compatibilità carta - guerrieri
-            carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
-            
-            # se non compatibile conitnua con il prossimo elemento del ciclo
-            if not carta_compatibile:
-                continue 
-            
+                        
             bonus_moltiplicatore = 1.0            
             fattore_incremento = 1 # fattore di incremento del rating assegnato alla carta se è fondamentale
 
             if hasattr(carta, 'valore_strategico') and carta.valore_strategico != None and carta.valore_strategico > 0:
                 fattore_incremento = 1 + carta.valore_strategico * BONUS_STRATEGICO / 10 
-
+            
             if carta.fondamentale:
                 fattore_incremento = BONUS_FONDAMENTALE
+                
         
             fazioni = []
             solo_nefarita = False
@@ -1239,12 +1233,23 @@ class CreatoreMazzo:
                             if ( solo_nefarita and guerriero.tipo == 'Nefarita' ) or ( solo_personalita and guerriero.tipo == 'Personalita' ):
                                 fattore_incremento *= 1.5 # aumenta del 50% il fattore di incremento se la carta è dedicata a nefariti
                                 break 
-                
-            doomtrooper_dedicata = any(f in fazioni for f in FAZIONI_DOOMTROOPER) or 'Doomtrooper' in fazioni
+            
+            carta_generica_fondamentale = Fazione.GENERICA in fazioni and carta.fondamentale
+
+            # Verifica compatibilità carta - guerrieri            
+            carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)            
+
+            # se non compatibile conitnua con il prossimo elemento del ciclo
+            if not (carta_compatibile or carta_generica_fondamentale):
+                continue 
+
+            doomtrooper_dedicata = any(f in fazioni for f in FAZIONI_DOOMTROOPER) or 'Doomtrooper'
             orientamento_doomtrooper_dedicata = any(f in orientamento_doomtrooper for f in fazioni) if (orientamento_doomtrooper and len(orientamento_doomtrooper) > 0) else False
-            fratellanza_dedicata = any(f in fazioni for f in FAZIONI_FRATELLANZA) 
+            fratellanza_dedicata = any(f in fazioni for f in FAZIONI_FRATELLANZA)
             oscura_legione_dedicata = any(f in fazioni for f in FAZIONI_OSCURA_LEGIONE)
 
+            # Assegnazione dei fattori di moltiplicazione del punteggio in base agli orientamenti
+            # Orientamento Doomtrooper
             if doomtrooper and doomtrooper_dedicata: # la carta è dedicata ai doomtrooper o è generica (fazione None)        
                             
                 if orientamento_doomtrooper_dedicata: #la carta è dedicata ai doomtrooper con fazione inclusa nell'orientamento: 
@@ -1256,8 +1261,7 @@ class CreatoreMazzo:
                 else: # la carta è dedicata ad una fazione doomtrooper non presente nelle fazioni della carta
                     pass # eventuale decremento del bous se necessario (non implementato)
                 
-                
-            
+            # Orientamento Arte (per guerrieri Fratellanza)                
             if fratellanza and fratellanza_dedicata and not (doomtrooper_dedicata or orientamento_doomtrooper_dedicata): # la carta è dedicata alla fratellanza                
 
                 if tipo_carta == 'arte':                                        
@@ -1275,6 +1279,7 @@ class CreatoreMazzo:
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE  * fattore_incremento # aumenta il punteggio se la fazione è nei doomtroopers
             
              # Orientamento Apostolo (per guerrieri Oscura Legione)
+            # Orientamento Apostolo (per guerrieri Oscura Legione)
             if oscura_legione and oscura_legione_dedicata: # la carta è dedicata alla oscura legione 
 
                 if carta.tipo.value in ["Dono dell'Oscura Simmetria", "Dono dell'Oscura Legione"]:
@@ -1293,13 +1298,14 @@ class CreatoreMazzo:
                 
                 if orientamento_cultista and 'Cultista' in carta.keywords:
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
-                 
-
+            # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in carta.keywords:
                 bonus_moltiplicatore *= BONUS_ERETICO # triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
+            # Carta generica fondamentale (il bonus_moltiplicatore utilizzato per il calcolo del punteggio non viene valutato per la condizione fondamentale nelle assegnazioni per orientamento)
+            if carta_generica_fondamentale:
+                bonus_moltiplicatore *= BONUS_FONDAMENTALE # aumenta di un ulteriore fattore (BONUS_FONDAMENTALE) il bonus per carte generiche fondamentali
 
-            
-
+            # Valutazione per carte con keyword di incremento specifico
             if hasattr(carta, "keywords") and "Ulteriore incremento per specifico guerriero, fazione o corporazione" in carta.keywords:
 
                 if tipo_carta == "warzone":
