@@ -15,6 +15,9 @@ from enum import Enum
 import json
 from collections import defaultdict
 from dataclasses import dataclass
+import os
+import shutil
+from pathlib import Path
 
 
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
@@ -3561,8 +3564,371 @@ def stampa_resoconto_aggiornamenti(collezioni: List) -> None:
 
 
 
+# ==================== GESTIONE IMMAGINI COLLEZIONI ====================
 
+# Percorso base delle immagini
+PERCORSO_BASE_IMMAGINI = "image/"
+PERCORSO_BASE_COLLEZIONI = "out/collezioni_immagini/"
 
+def ottieni_percorso_cartella_immagini_sorgente(tipo_carta: str, carta: Any) -> Optional[str]:
+    """
+    Ottiene il percorso della cartella sorgente delle immagini in base al tipo di carta.
+
+    Per i guerrieri, usa la fazione della carta.
+    Per le altre carte, usa il tipo specifico.
+
+    Args:
+        tipo_carta: Il tipo di carta ('guerriero', 'equipaggiamento', etc.)
+        carta: L'oggetto carta da cui estrarre eventuali informazioni aggiuntive
+
+    Returns:
+        Il percorso relativo alla cartella delle immagini o None se non trovato
+    """
+    # Mappatura tipo carta -> nome cartella immagini
+    mappatura_cartelle = {
+        'equipaggiamento': 'Equipaggiamento',
+        'arte': 'Arte',
+        'fortificazione': 'Fortificazioni',
+        'missione': 'Missioni',
+        'speciale': 'Speciali',
+        'oscura_simmetria': 'Oscura Simmetria',
+        'reliquia': 'Reliquie',
+        'warzone': 'Warzone'
+    }
+
+    if tipo_carta == 'guerriero':
+        # Per i guerrieri, usa la fazione
+        if hasattr(carta, 'fazione') and carta.fazione:
+            fazione_nome = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+            # Mappatura fazioni speciali
+            #if fazione_nome == "Oscura Legione":
+                #return os.path.join(PERCORSO_BASE_IMMAGINI, "Oscura Legione")
+            #elif fazione_nome == "Fratellanza":
+                #return os.path.join(PERCORSO_BASE_IMMAGINI, "Fratellanza")
+            #elif fazione_nome == "Imperiale":
+                #return os.path.join(PERCORSO_BASE_IMMAGINI, "Imperiali")
+            #elif fazione_nome == "Mercenario":
+                #return os.path.join(PERCORSO_BASE_IMMAGINI, "Generici")
+            #else:
+                # Bauhaus, Capitol, Mishima, Cybertronic
+            return os.path.join(PERCORSO_BASE_IMMAGINI, fazione_nome)
+        return None
+    else:
+        # Per altre carte, usa la mappatura
+        nome_cartella = mappatura_cartelle.get(tipo_carta)
+        if nome_cartella:
+            return os.path.join(PERCORSO_BASE_IMMAGINI, nome_cartella)
+        return None
+
+def ottieni_nome_file_immagine(nome_carta: str) -> str:
+    """
+    Converte il nome di una carta nel nome del file immagine corrispondente.
+
+    Sostituisce gli spazi con underscore e aggiunge l'estensione .jpg
+
+    Args:
+        nome_carta: Il nome della carta
+
+    Returns:
+        Il nome del file immagine
+    """
+    return nome_carta.replace(' ', '_') + '.jpg'
+
+def crea_struttura_cartelle_collezione(id_giocatore: int, collezione) -> str:
+    """
+    Crea la struttura di cartelle per una collezione.
+
+    Crea una cartella principale per la collezione e sottocartelle per ogni tipo di carta presente.
+
+    Args:
+        id_giocatore: L'ID del giocatore
+        collezione: L'oggetto CollezioneGiocatore
+
+    Returns:
+        Il percorso della cartella principale della collezione
+    """
+    # Crea la cartella principale della collezione
+    cartella_collezione = os.path.join(PERCORSO_BASE_COLLEZIONI, f"collezione_{id_giocatore}")
+    os.makedirs(cartella_collezione, exist_ok=True)
+
+    # Mappatura tipi carta -> nome cartella nella collezione
+    nomi_cartelle_collezione = {
+        'guerriero': 'Guerriero',
+        'equipaggiamento': 'Equipaggiamento',
+        'arte': 'Arte',
+        'fortificazione': 'Fortificazioni',
+        'missione': 'Missioni',
+        'speciale': 'Speciali',
+        'oscura_simmetria': 'Oscura_Simmetria',
+        'reliquia': 'Reliquie',
+        'warzone': 'Warzone'
+    }
+
+    # Crea sottocartelle per ogni tipo di carta presente nella collezione
+    for tipo_carta in collezione.carte.keys():
+        if tipo_carta in nomi_cartelle_collezione:
+            sottocartella = os.path.join(cartella_collezione, nomi_cartelle_collezione[tipo_carta])
+            os.makedirs(sottocartella, exist_ok=True)
+
+    return cartella_collezione
+
+def copia_immagini_collezione(id_giocatore: int, collezione) -> Dict[str, Any]:
+    """
+    Copia le immagini delle carte di una collezione nella cartella dedicata.
+
+    Per ogni carta nella collezione:
+    1. Determina la cartella sorgente dell'immagine
+    2. Trova il file immagine
+    3. Lo copia nella sottocartella appropriata della collezione
+
+    Args:
+        id_giocatore: L'ID del giocatore
+        collezione: L'oggetto CollezioneGiocatore
+
+    Returns:
+        Un dizionario con le statistiche della copia
+    """
+    risultati = {
+        'id_giocatore': id_giocatore,
+        'totale_carte': 0,
+        'immagini_copiate': 0,
+        'immagini_non_trovate': [],
+        'errori': []
+    }
+
+    # Crea la struttura delle cartelle
+    cartella_collezione = crea_struttura_cartelle_collezione(id_giocatore, collezione)
+
+    # Mappatura tipi carta -> nome cartella nella collezione
+    nomi_cartelle_collezione = {
+        'guerriero': 'Guerriero',
+        'equipaggiamento': 'Equipaggiamento',
+        'arte': 'Arte',
+        'fortificazione': 'Fortificazioni',
+        'missione': 'Missioni',
+        'speciale': 'Speciali',
+        'oscura_simmetria': 'Oscura_Simmetria',
+        'reliquia': 'Reliquie',
+        'warzone': 'Warzone'
+    }
+
+    # Processa ogni tipo di carta
+    for tipo_carta, liste_carte in collezione.carte.items():
+        if tipo_carta not in nomi_cartelle_collezione:
+            continue
+
+        cartella_destinazione = os.path.join(cartella_collezione, nomi_cartelle_collezione[tipo_carta])
+
+        # Tiene traccia delle carte già copiate per evitare duplicati
+        carte_copiate = set()
+
+        for carta in liste_carte:
+            risultati['totale_carte'] += 1
+
+            # Evita di copiare la stessa carta più volte
+            if carta.nome in carte_copiate:
+                continue
+
+            try:
+                # Ottiene la cartella sorgente
+                cartella_sorgente = ottieni_percorso_cartella_immagini_sorgente(tipo_carta, carta)
+
+                if not cartella_sorgente:
+                    risultati['errori'].append(f"Impossibile determinare cartella sorgente per {carta.nome}")
+                    continue
+
+                # Ottiene il nome del file immagine
+                nome_file = ottieni_nome_file_immagine(carta.nome)
+                percorso_sorgente = os.path.join(cartella_sorgente, nome_file)
+                percorso_destinazione = os.path.join(cartella_destinazione, nome_file)
+
+                # Copia il file se esiste
+                if os.path.exists(percorso_sorgente):
+                    shutil.copy2(percorso_sorgente, percorso_destinazione)
+                    risultati['immagini_copiate'] += 1
+                    carte_copiate.add(carta.nome)
+                else:
+                    risultati['immagini_non_trovate'].append(f"{carta.nome} ({percorso_sorgente})")
+
+            except Exception as e:
+                risultati['errori'].append(f"Errore copiando {carta.nome}: {str(e)}")
+
+    return risultati
+
+def esporta_immagini_collezioni(collezioni: List, verbose: bool = True) -> Dict[str, Any]:
+    """
+    Esporta le immagini di tutte le collezioni nelle rispettive cartelle.
+
+    Funzione principale che coordina l'esportazione delle immagini per tutte le collezioni.
+
+    Args:
+        collezioni: Lista di oggetti CollezioneGiocatore
+        verbose: Se True, stampa messaggi di progresso
+
+    Returns:
+        Un dizionario con le statistiche complessive dell'esportazione
+    """
+    risultati_complessivi = {
+        'numero_collezioni': len(collezioni),
+        'totale_immagini_copiate': 0,
+        'totale_immagini_non_trovate': 0,
+        'totale_errori': 0,
+        'dettaglio_collezioni': []
+    }
+
+    if verbose:
+        print(f"\n{'='*80}")
+        print(f"📸 ESPORTAZIONE IMMAGINI COLLEZIONI")
+        print(f"{'='*80}")
+        print(f"Numero collezioni da processare: {len(collezioni)}")
+        print(f"Percorso destinazione: {PERCORSO_BASE_COLLEZIONI}")
+
+    # Processa ogni collezione
+    for i, collezione in enumerate(collezioni, 1):
+        id_giocatore = i  # Usa l'indice come ID giocatore
+
+        if verbose:
+            print(f"\n🎯 Processando collezione {id_giocatore}/{len(collezioni)}...")
+
+        try:
+            risultati = copia_immagini_collezione(id_giocatore, collezione)
+
+            # Aggiorna statistiche complessive
+            risultati_complessivi['totale_immagini_copiate'] += risultati['immagini_copiate']
+            risultati_complessivi['totale_immagini_non_trovate'] += len(risultati['immagini_non_trovate'])
+            risultati_complessivi['totale_errori'] += len(risultati['errori'])
+            risultati_complessivi['dettaglio_collezioni'].append(risultati)
+
+            if verbose:
+                print(f"  ✅ Immagini copiate: {risultati['immagini_copiate']}/{risultati['totale_carte']}")
+                if risultati['immagini_non_trovate']:
+                    print(f"  ⚠️  Immagini non trovate: {len(risultati['immagini_non_trovate'])}")
+                if risultati['errori']:
+                    print(f"  ❌ Errori: {len(risultati['errori'])}")
+
+        except Exception as e:
+            risultati_complessivi['totale_errori'] += 1
+            if verbose:
+                print(f"  ❌ Errore processando collezione {id_giocatore}: {str(e)}")
+
+    if verbose:
+        print(f"\n{'='*80}")
+        print(f"📊 RIEPILOGO ESPORTAZIONE")
+        print(f"{'='*80}")
+        print(f"Collezioni processate: {len(collezioni)}")
+        print(f"Totale immagini copiate: {risultati_complessivi['totale_immagini_copiate']}")
+        print(f"Totale immagini non trovate: {risultati_complessivi['totale_immagini_non_trovate']}")
+        print(f"Totale errori: {risultati_complessivi['totale_errori']}")
+        print(f"{'='*80}\n")
+
+    return risultati_complessivi
+
+def esporta_immagini_da_json(percorso_json: str, verbose: bool = True) -> Dict[str, Any]:
+    """
+    Carica un file JSON di collezioni ed esporta le immagini.
+
+    Questa funzione è utile per esportare immagini da collezioni salvate in precedenza.
+
+    Args:
+        percorso_json: Il percorso del file JSON contenente le collezioni
+        verbose: Se True, stampa messaggi di progresso
+
+    Returns:
+        Un dizionario con le statistiche dell'esportazione
+    """
+    try:
+        with open(percorso_json, 'r', encoding='utf-8') as f:
+            dati = json.load(f)
+
+        # Estrae le collezioni dal JSON
+        collezioni_json = dati.get('collezioni_dettagliate', [])
+
+        if not collezioni_json:
+            if verbose:
+                print(f"⚠️  Nessuna collezione trovata nel file {percorso_json}")
+            return {'errore': 'Nessuna collezione trovata'}
+
+        if verbose:
+            print(f"📁 Caricato file: {percorso_json}")
+            print(f"🎮 Trovate {len(collezioni_json)} collezioni")
+
+        # Ricostruisce le collezioni dal JSON
+        collezioni = []
+        for collezione_json in collezioni_json:
+            collezione = ricostruisci_collezione_da_json(collezione_json)
+            collezioni.append(collezione)
+
+        # Esporta le immagini
+        return esporta_immagini_collezioni(collezioni, verbose)
+
+    except FileNotFoundError:
+        if verbose:
+            print(f"❌ File non trovato: {percorso_json}")
+        return {'errore': f'File non trovato: {percorso_json}'}
+    except json.JSONDecodeError as e:
+        if verbose:
+            print(f"❌ Errore parsing JSON: {str(e)}")
+        return {'errore': f'Errore parsing JSON: {str(e)}'}
+    except Exception as e:
+        if verbose:
+            print(f"❌ Errore: {str(e)}")
+        return {'errore': str(e)}
+
+def ricostruisci_collezione_da_json(collezione_json: Dict[str, Any]):
+    """
+    Ricostruisce un oggetto CollezioneGiocatore da un dizionario JSON.
+
+    Questa funzione crea carte fittizie con solo le informazioni necessarie per
+    l'esportazione delle immagini (nome, tipo, fazione).
+
+    Args:
+        collezione_json: Il dizionario JSON della collezione
+
+    Returns:
+        Un oggetto CollezioneGiocatore ricostruito
+    """
+    from dataclasses import dataclass, field
+
+    @dataclass
+    class CartaFittizia:
+        """Classe fittizia per contenere le informazioni minime di una carta"""
+        nome: str
+        tipo: str
+        fazione: Optional[str] = None
+
+    class CollezioneRicostruita:
+        """Classe fittizia per contenere le carte ricostruite"""
+        def __init__(self):
+            self.carte = defaultdict(list)
+
+    collezione = CollezioneRicostruita()
+
+    # Processa ogni tipo di carta
+    carte_per_tipo = collezione_json.get('carte_per_tipo', {})
+
+    for tipo_carta, info_tipo in carte_per_tipo.items():
+        dettaglio_carte = info_tipo.get('dettaglio_carte', {})
+
+        for nome_carta, info_carta in dettaglio_carte.items():
+            # Estrae informazioni necessarie
+            quantita = info_carta.get('quantita', 1)
+            fazione = info_carta.get('fazione')
+
+            # Crea copie fittizie della carta
+            for _ in range(quantita):
+                carta_fittizia = CartaFittizia(
+                    nome=nome_carta,
+                    tipo=info_carta.get('tipo', tipo_carta),
+                    fazione=fazione
+                )
+                # Converti la stringa fazione in un oggetto con .value se presente
+                if fazione:
+                    from types import SimpleNamespace
+                    carta_fittizia.fazione = SimpleNamespace(value=fazione)
+
+                collezione.carte[tipo_carta].append(carta_fittizia)
+
+    return collezione
 
 
 # ==================== MAIN ====================

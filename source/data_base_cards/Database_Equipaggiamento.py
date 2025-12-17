@@ -3312,8 +3312,8 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Un guerriero può avere assegnato solo un veicolo", "Non può utilizzare altre carte Equipaggiamento mentre utilizza il Furga"],
-        "fazioni_permesse": ["Solo Mercenari o Eretici"],
-        "restrizioni_guerriero": [],
+        "fazioni_permesse": [],
+        "restrizioni_guerriero": ["Solo Mercenari o Eretici"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},
@@ -3326,7 +3326,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         },
         "testo_carta": "ASSEGNABILE AD OGNI MERCENARIO O ERETICO. VEICOLO. Un guerriero può avere assegnato solo un veicolo. Il guerriero non può utilizzare altre carte Equipaggiamento mentre utilizza il Furga ma attacca sempre per primo nelle sparatorie (S). Se l'avversario sopravvive potrà rispondere al fuoco.",
         "flavour_text": "",
-        "keywords": ["Eretico"],
+        "keywords": ["Eretico", "Mercenario"],
         "set_espansione": "Warzone",
         "numero_carta": "",
         "costo_produzione": 0,
@@ -3589,7 +3589,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": [],
-        "fazioni_permesse": ["Imperiali"],
+        "fazioni_permesse": ["Imperiale"],
         "restrizioni_guerriero": [],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -3743,7 +3743,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": [],
-        "fazioni_permesse": ["Imperiali", "Cybertronic"],
+        "fazioni_permesse": ["Imperiale", "Cybertronic"],
         "restrizioni_guerriero": ["Solo Comandanti"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
