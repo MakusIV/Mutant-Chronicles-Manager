@@ -625,7 +625,7 @@ class Fortificazione:
         # Configura fazioni permesse
         if data["fazioni_permesse"]:   
             if "Doomtrooper" in data["fazioni_permesse"]:
-                fortificazione.fazioni_permesse = ["Doomtrooper"]
+                fortificazione.fazioni_permesse = DOOMTROOPER
             else:         
                 fortificazione.fazioni_permesse = [Fazione(f) for f in data["fazioni_permesse"] 
                     if f in [faz.value for faz in Fazione]]

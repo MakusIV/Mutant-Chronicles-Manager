@@ -1641,7 +1641,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     
     "Porta Stendardo": {
         "nome": "Porta Stendardo",
-        "fazione": "Capitol", 
+        "fazione": "Imperiale", 
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
@@ -2234,8 +2234,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
 
-    "Artefatto di Combattimento": {
-        "nome": "Artefatto di Combattimento",
+    "Artefatto Di Combattimento": {
+        "nome": "Artefatto Di Combattimento",
         "fazione": "Mishima", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -3612,8 +3612,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Technomancer": {
-        "nome": "Technomancer",
+    "Techno-Mancer": {
+        "nome": "Techno-Mancer",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -3995,8 +3995,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False,        
     },
 
-    "Golem dell'Oscurità": {
-        "nome": "Golem dell'Oscurità",
+    "Golem dell'Oscurita": {
+        "nome": "Golem dell'Oscurita",
         "fazione": "Oscura Legione", 
         "tipo": "Seguace",
         "rarity": "Common",
@@ -4290,8 +4290,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "fondamentale": False
     },
     
-    "Nepharita di Demnogonis": {
-        "nome": "Nepharita di Demnogonis",
+    "Nefarita di Demnogonis": {
+        "nome": "Nefarita di Demnogonis",
         "fazione": "Oscura Legione",
         "tipo": "Seguace",
         "rarity": "Rare",

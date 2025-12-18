@@ -60,8 +60,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "fondamentale": False       
     },
     
-    "Cecità": {
-        "nome": "Cecità",
+    "Cecita": {
+        "nome": "Cecita",
         "costo_destino": "",
         "tipo": "Dono dell'Oscura Legione",
         "apostolo_padre": None,
@@ -1206,8 +1206,8 @@ DATABASE_OSCURA_SIMMETRIA = {
         "fondamentale": True       
     },
     
-    "Autorità": {
-        "nome": "Autorità",
+    "Autorita": {
+        "nome": "Autorita",
         "costo_destino": "2 Azioni",
         "tipo": "Dono degli Apostoli",
         "apostolo_padre": "Semai",

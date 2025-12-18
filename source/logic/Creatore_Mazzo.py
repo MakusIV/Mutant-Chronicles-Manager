@@ -11,6 +11,7 @@ from typing import List, Dict, Tuple, Optional, Any, Union
 from enum import Enum
 import json
 import os
+import shutil
 from collections import defaultdict
 from dataclasses import dataclass
 
@@ -1123,6 +1124,10 @@ class CreatoreMazzo:
 
             
             if ( len(squadra) + len(schieramento)) >= numero_guerrieri_target: # se il limite è raggiunto esce altrimenti ripete il ciclo
+                # Target raggiunto, esce
+                numero_guerrieri_richiesto_non_raggiunto = False
+            else:
+                # Target non raggiunto, verifica se ci sono ancora carte disponibili
                 carte_ancora_disponibili = False
 
                 for guerriero in guerrieri_ordinati:
@@ -1131,6 +1136,7 @@ class CreatoreMazzo:
                         break
                 
                 if not carte_ancora_disponibili:
+                    # Non ci sono più carte disponibili, esce
                     numero_guerrieri_richiesto_non_raggiunto = False
     
         return squadra, schieramento
@@ -1428,14 +1434,18 @@ class CreatoreMazzo:
 
                 for _ in range(num_copie_da_inserire):
                     
-                    if len(carte_selezionate) <= numero_carte:
+                    if len(carte_selezionate) < numero_carte:
                         carte_selezionate.append(carta)# NOTA: inserisce nella lista copie di una stessa istanza                        
 
                     else:
                         return carte_selezionate  # limite raggiunto
 
 
-            if len(carte_selezionate) < numero_carte: # se il limite è raggiunto esce altrimenti ripete il ciclo
+            if len(carte_selezionate) >= numero_carte: # se il limite è raggiunto esce altrimenti ripete il ciclo
+                # Target raggiunto, esce
+                numero_carte_richiesto_non_raggiunto = False
+            else:
+                # Target non raggiunto, verifica se ci sono ancora carte disponibili
                 carte_ancora_disponibili = False
 
                 for carta, _ in carte_con_punteggio:
@@ -1865,6 +1875,8 @@ def crea_mazzo_da_gioco(collezione: Any,
         'distribuzione_utilizzata': distribuzione
     }
     
+    #esporta_immagini_mazzi([risultato], verbose= True)
+
     return risultato
 
 
@@ -3811,60 +3823,50 @@ def calcola_statistiche_aggregate_con_apostoli(mazzi: List[Dict[str, Any]]) -> D
     return stats
 
 
+
 # ================================================================================
-# ISTRUZIONI PER L'USO DELLE FUNZIONI AGGIORNATE
+# ISTRUZIONI PER L'INTEGRAZIONE - ATT: VERI
 # ================================================================================
+
 """
-🎯 COME USARE LE FUNZIONI AGGIORNATE CON APOSTOLI:
+🔧 INSTALLAZIONE E USO:
 
-1. SOSTITUISCI le funzioni precedenti con queste versioni:
-   - processa_guerrieri_per_fazioni() → processa_guerrieri_per_fazioni_con_apostoli()
-   - crea_inventario_dettagliato_mazzo_json_con_conteggio() → crea_inventario_dettagliato_mazzo_json_con_conteggio_e_apostoli()
-   - salva_mazzi_json_migliorato_con_conteggio() → salva_mazzi_json_migliorato_con_conteggio_e_apostoli()
+1. COPIA tutto questo codice alla fine del file Creatore_Mazzo.py
 
-2. USA la nuova funzione di salvataggio:
-   salva_mazzi_json_migliorato_con_conteggio_e_apostoli(mazzi, "mazzi_con_apostoli.json")
+2. ASSICURATI che sia definita: PERCORSO_SALVATAGGIO = "out/"
 
-📁 STRUTTURA JSON RISULTANTE CON APOSTOLI:
-{
-  "inventario_guerrieri": {
-    "schieramento": {
-      "Oscura Legione": {
-        "Algeroth": {
-          "Necromutante": {"copie": 2, "fazione": "Oscura Legione", "apostolo_seguace": "Algeroth", ...},
-          "Cacciatore Oscuro": {"copie": 1, "fazione": "Oscura Legione", "apostolo_seguace": "Algeroth", ...}
-        },
-        "Semai": {
-          "Legionario di Semai": {"copie": 3, "fazione": "Oscura Legione", "apostolo_seguace": "Semai", ...}
-        },
-        "Muawijhe": {
-          "Cultista di Muawijhe": {"copie": 1, "fazione": "Oscura Legione", "apostolo_seguace": "Muawijhe", ...}
-        },
-        "Oscura Legione": {
-          "Eretico": {"copie": 2, "fazione": "Oscura Legione", "apostolo_seguace": "Oscura Legione", ...}
-        }
-      }
-    }
-  },
-  "metadati_mazzo": {
-    "apostoli_presenti": ["Algeroth", "Semai", "Muawijhe"],
-    "statistiche_apostoli": {
-      "Algeroth": 3,
-      "Semai": 3, 
-      "Muawijhe": 1
-    }
-  }
-}
+3. RISOLVE IL TUO ERRORE con:
+   salva_mazzi_json_sicuro(mazzi, "miei_mazzi.json")
 
-🆕 NUOVE CARATTERISTICHE:
-✅ Sottocategorizzazione per apostoli nell'Oscura Legione
-✅ Identificazione automatica seguaci dai keywords
-✅ Statistiche per apostolo
-✅ Compatibilità con struttura precedente
-✅ Gestione guerrieri non seguaci (categoria generale)
+🎯 USO IMMEDIATO:
+```python
+# I tuoi mazzi esistenti
+mazzi = [mazzo1, mazzo2, mazzo3]  # dai tuoi crea_mazzo_da_gioco
+
+# SOLUZIONE SICURA - garantisce sempre il salvataggio
+salva_mazzi_json_sicuro(mazzi, "miei_mazzi.json")
+
+# ALTERNATIVA - diagnostica + salvataggio normale  
+stampa_diagnostica_mazzi(mazzi)  # Identifica problemi
+salva_mazzi_json_migliorato(mazzi, "mazzi_diagnosticati.json")
+```
+
+📊 FUNZIONI PRINCIPALI:
+- stampa_riepilogo_mazzi_migliorato(mazzi)
+- salva_mazzi_json_sicuro(mazzi, "file.json")       # GARANTISCE SUCCESSO
+- salva_mazzi_json_migliorato(mazzi, "file.json")   # Standard
+- carica_mazzi_json_migliorato("file.json")
+- stampa_diagnostica_mazzi(mazzi)
+- verifica_integrità_mazzi(mazzi)
+- analizza_bilanciamento_mazzi(mazzi)
+- menu_interattivo_mazzi()
+
+🚨 RISOLVE IL TUO ERRORE:
+L'errore "tipo_guerriero" è risolto da:
+- ottieni_attributo_sicuro() - gestisce attributi mancanti
+- crea_info_guerriero_sicura() - usa 'tipo' invece di 'tipo_guerriero'
+- salva_mazzi_json_sicuro() - garantisce sempre successo
 """
-
-
 
 ###############################################################################################################################
 
@@ -4109,6 +4111,503 @@ def cerca_carte_in_mazzi(mazzi: List[Dict[str, Any]], nome_carta: str) -> List[D
                 })
     
     return risultati
+
+
+# ================================================================================
+# GESTIONE IMMAGINI MAZZI
+# ================================================================================
+
+# Costanti per le cartelle immagini
+PERCORSO_BASE_IMMAGINI = "image/"
+PERCORSO_BASE_MAZZI = "out/mazzi_immagini/"
+
+def ottieni_percorso_cartella_immagini_sorgente(tipo_carta: str, carta: Any) -> Optional[str]:
+    """
+    Ottiene il percorso della cartella sorgente delle immagini in base al tipo di carta.
+
+    Per i guerrieri, usa la fazione della carta.
+    Per le altre carte, usa il tipo specifico.
+
+    Args:
+        tipo_carta: Il tipo di carta ('guerriero', 'equipaggiamento', etc.)
+        carta: L'oggetto carta da cui estrarre eventuali informazioni aggiuntive
+
+    Returns:
+        Il percorso relativo alla cartella delle immagini o None se non trovato
+    """
+    # Mappatura tipo carta -> nome cartella immagini
+    mappatura_cartelle = {
+        'equipaggiamento': 'Equipaggiamento',
+        'arte': 'Arte',
+        'fortificazione': 'Fortificazioni',
+        'missione': 'Missioni',
+        'speciale': 'Speciali',
+        'oscura_simmetria': 'Oscura Simmetria',
+        'reliquia': 'Reliquie',
+        'warzone': 'Warzone'
+    }
+
+    if tipo_carta == 'guerriero':
+        # Per i guerrieri, usa la fazione
+        if hasattr(carta, 'fazione') and carta.fazione:
+            fazione_nome = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+            return os.path.join(PERCORSO_BASE_IMMAGINI, fazione_nome)
+        return None
+    else:
+        # Per altre carte, usa la mappatura
+        nome_cartella = mappatura_cartelle.get(tipo_carta)
+        if nome_cartella:
+            return os.path.join(PERCORSO_BASE_IMMAGINI, nome_cartella)
+        return None
+
+def trova_file_case_insensitive(cartella: str, nome_file: str) -> Optional[str]:
+    """
+    Cerca un file in una cartella ignorando maiuscole/minuscole.
+
+    Args:
+        cartella: Il percorso della cartella in cui cercare
+        nome_file: Il nome del file da cercare
+
+    Returns:
+        Il percorso completo del file se trovato, None altrimenti
+    """
+    if not os.path.exists(cartella):
+        return None
+
+    try:
+        # Ottieni tutti i file nella cartella
+        files_in_dir = os.listdir(cartella)
+
+        # Cerca il file ignorando maiuscole/minuscole
+        nome_file_lower = nome_file.lower()
+        for file_name in files_in_dir:
+            if file_name.lower() == nome_file_lower:
+                return os.path.join(cartella, file_name)
+
+        return None
+    except Exception:
+        return None
+
+def ottieni_nome_file_immagine(nome_carta: str) -> str:
+    """
+    Converte il nome di una carta nel nome del file immagine corrispondente.
+
+    Sostituisce gli spazi con underscore e aggiunge l'estensione .jpg
+
+    Args:
+        nome_carta: Il nome della carta
+
+    Returns:
+        Il nome del file immagine
+    """
+    return nome_carta.replace(' ', '_') + '.jpg'
+
+def is_guerriero_oscura_legione(carta: Any) -> bool:
+    """
+    Verifica se un guerriero appartiene all'Oscura Legione.
+
+    Args:
+        carta: L'oggetto carta del guerriero
+
+    Returns:
+        True se il guerriero è dell'Oscura Legione, False altrimenti
+    """
+    if hasattr(carta, 'fazione') and carta.fazione:
+        fazione_nome = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+        return fazione_nome == "Oscura Legione"
+    return False
+
+def crea_struttura_cartelle_mazzo(nome_mazzo: str) -> str:
+    """
+    Crea la struttura di cartelle per un mazzo.
+
+    Crea una cartella principale per il mazzo e sottocartelle per ogni tipo di carta.
+    Per i guerrieri, crea due sottocartelle: 'schieramento' e 'squadra'.
+
+    Args:
+        nome_mazzo: Il nome del mazzo
+
+    Returns:
+        Il percorso della cartella principale del mazzo
+    """
+    # Crea la cartella principale del mazzo
+    cartella_mazzo = os.path.join(PERCORSO_BASE_MAZZI, nome_mazzo)
+    os.makedirs(cartella_mazzo, exist_ok=True)
+
+    # Mappatura tipi carta -> nome cartella nel mazzo
+    nomi_cartelle_mazzo = {
+        'equipaggiamento': 'Equipaggiamento',
+        'arte': 'Arte',
+        'fortificazione': 'Fortificazioni',
+        'missione': 'Missioni',
+        'speciale': 'Speciali',
+        'oscura_simmetria': 'Oscura_Simmetria',
+        'reliquia': 'Reliquie',
+        'warzone': 'Warzone'
+    }
+
+    # Crea tutte le sottocartelle (eccetto Guerriero che ha sottocartelle speciali)
+    for nome_cartella in nomi_cartelle_mazzo.values():
+        sottocartella = os.path.join(cartella_mazzo, nome_cartella)
+        os.makedirs(sottocartella, exist_ok=True)
+
+    # Crea la cartella Guerriero con le sottocartelle schieramento e squadra
+    cartella_guerriero = os.path.join(cartella_mazzo, 'Guerriero')
+    os.makedirs(os.path.join(cartella_guerriero, 'schieramento'), exist_ok=True)
+    os.makedirs(os.path.join(cartella_guerriero, 'squadra'), exist_ok=True)
+
+    return cartella_mazzo
+
+def copia_immagini_mazzo(nome_mazzo: str, mazzo) -> Dict[str, Any]:
+    """
+    Copia le immagini delle carte di un mazzo nella cartella dedicata.
+
+    Per ogni carta nel mazzo:
+    1. Determina la cartella sorgente dell'immagine
+    2. Trova il file immagine
+    3. Lo copia nella sottocartella appropriata del mazzo
+
+    Args:
+        nome_mazzo: Il nome del mazzo
+        mazzo: L'oggetto Mazzo (può essere un oggetto ricostruito con .carte o un dict con squadra/schieramento/carte_supporto)
+
+    Returns:
+        Un dizionario con le statistiche della copia
+    """
+    risultati = {
+        'nome_mazzo': nome_mazzo,
+        'totale_carte': 0,
+        'immagini_copiate': 0,
+        'immagini_non_trovate': [],
+        'errori': []
+    }
+
+    # Crea la struttura delle cartelle
+    cartella_mazzo = crea_struttura_cartelle_mazzo(nome_mazzo)
+
+    # Mappatura tipi carta -> nome cartella nel mazzo
+    nomi_cartelle_mazzo = {
+        'guerriero': 'Guerriero',
+        'equipaggiamento': 'Equipaggiamento',
+        'arte': 'Arte',
+        'fortificazione': 'Fortificazioni',
+        'missione': 'Missione',
+        'speciale': 'Speciali',
+        'oscura_simmetria': 'Oscura_Simmetria',
+        'reliquia': 'Reliquie',
+        'warzone': 'Warzone'
+    }
+
+    # Tiene traccia delle carte già copiate per evitare duplicati
+    carte_copiate = set()
+
+    def copia_carta(carta, tipo_carta_override=None):
+        """Funzione helper per copiare una singola carta"""
+        risultati['totale_carte'] += 1
+
+        # Evita di copiare la stessa carta più volte
+        if carta.nome in carte_copiate:
+            return
+
+        try:
+            # Determina il tipo di carta
+            if tipo_carta_override:
+                tipo_carta = tipo_carta_override
+            else:
+                tipo_carta = type(carta).__name__.lower()
+
+            # Ottiene la cartella di destinazione
+            if tipo_carta not in nomi_cartelle_mazzo:
+                risultati['errori'].append(f"Tipo carta sconosciuto per {carta.nome}: {tipo_carta}")
+                return
+
+            cartella_destinazione = os.path.join(cartella_mazzo, nomi_cartelle_mazzo[tipo_carta])
+
+            # Per i guerrieri, aggiungi la sottocartella appropriata (schieramento o squadra)
+            if tipo_carta == 'guerriero':
+                if is_guerriero_oscura_legione(carta):
+                    cartella_destinazione = os.path.join(cartella_destinazione, 'schieramento')
+                else:
+                    cartella_destinazione = os.path.join(cartella_destinazione, 'squadra')
+
+            # Ottiene la cartella sorgente
+            cartella_sorgente = ottieni_percorso_cartella_immagini_sorgente(tipo_carta, carta)
+
+            if not cartella_sorgente:
+                risultati['errori'].append(f"Impossibile determinare cartella sorgente per {carta.nome}")
+                return
+
+            # Ottiene il nome del file immagine
+            nome_file = ottieni_nome_file_immagine(carta.nome)
+
+            # Cerca il file ignorando maiuscole/minuscole
+            percorso_sorgente_trovato = trova_file_case_insensitive(cartella_sorgente, nome_file)
+
+            # Copia il file se esiste
+            if percorso_sorgente_trovato:
+                percorso_destinazione = os.path.join(cartella_destinazione, os.path.basename(percorso_sorgente_trovato))
+                shutil.copy2(percorso_sorgente_trovato, percorso_destinazione)
+                risultati['immagini_copiate'] += 1
+                carte_copiate.add(carta.nome)
+            else:
+                percorso_sorgente = os.path.join(cartella_sorgente, nome_file)
+                risultati['immagini_non_trovate'].append(f"{carta.nome} ({percorso_sorgente})")
+                carte_copiate.add(carta.nome)  # Aggiungi anche se non trovata per evitare duplicati
+
+        except Exception as e:
+            risultati['errori'].append(f"Errore copiando {carta.nome}: {str(e)}")
+            carte_copiate.add(carta.nome)  # Aggiungi anche in caso di errore per evitare duplicati
+
+    # Verifica quale struttura ha il mazzo
+    if hasattr(mazzo, 'carte') and isinstance(mazzo.carte, dict):
+        # Struttura da JSON ricostruito: mazzo.carte[tipo] = [lista carte]
+        for tipo_carta, liste_carte in mazzo.carte.items():
+            if tipo_carta not in nomi_cartelle_mazzo:
+                continue
+
+            for carta in liste_carte:
+                copia_carta(carta, tipo_carta)
+
+    elif isinstance(mazzo, dict):
+        # Struttura da crea_mazzo_da_gioco: mazzo['squadra'], mazzo['schieramento'], mazzo['carte_supporto']
+
+        # Processa squadra (guerrieri)
+        if 'squadra' in mazzo:
+            for guerriero in mazzo['squadra']:
+                copia_carta(guerriero, 'guerriero')
+
+        # Processa schieramento (guerrieri)
+        if 'schieramento' in mazzo:
+            for guerriero in mazzo['schieramento']:
+                copia_carta(guerriero, 'guerriero')
+
+        # Processa carte_supporto (tutte le altre carte mescolate)
+        if 'carte_supporto' in mazzo:
+            for carta in mazzo['carte_supporto']:
+                # Il tipo viene determinato automaticamente dal nome della classe
+                copia_carta(carta)
+
+    else:
+        risultati['errori'].append("Struttura mazzo non riconosciuta")
+
+    return risultati
+
+def esporta_immagini_mazzi(mazzi: List, verbose: bool = True) -> Dict[str, Any]:
+    """
+    Esporta le immagini di tutti i mazzi nelle rispettive cartelle.
+
+    Funzione principale che coordina l'esportazione delle immagini per tutti i mazzi.
+
+    Args:
+        mazzi: Lista di oggetti Mazzo
+        verbose: Se True, stampa messaggi di progresso
+
+    Returns:
+        Un dizionario con le statistiche complessive dell'esportazione
+    """
+    risultati_complessivi = {
+        'numero_mazzi': len(mazzi),
+        'totale_immagini_copiate': 0,
+        'totale_immagini_non_trovate': 0,
+        'totale_errori': 0,
+        'dettaglio_mazzi': []
+    }
+
+    if verbose:
+        print(f"\n{'='*80}")
+        print(f"ESPORTAZIONE IMMAGINI MAZZI")
+        print(f"{'='*80}")
+        print(f"Numero mazzi da processare: {len(mazzi)}")
+        print(f"Percorso destinazione: {PERCORSO_BASE_MAZZI}")
+
+    # Processa ogni mazzo
+    for i, mazzo in enumerate(mazzi, 1):
+        nome_mazzo = f"mazzo_{i}"
+
+        if verbose:
+            print(f"\nProcessando mazzo {i}/{len(mazzi)}...")
+
+        try:
+            risultati = copia_immagini_mazzo(nome_mazzo, mazzo)
+
+            # Aggiorna statistiche complessive
+            risultati_complessivi['totale_immagini_copiate'] += risultati['immagini_copiate']
+            risultati_complessivi['totale_immagini_non_trovate'] += len(risultati['immagini_non_trovate'])
+            risultati_complessivi['totale_errori'] += len(risultati['errori'])
+            risultati_complessivi['dettaglio_mazzi'].append(risultati)
+
+            if verbose:
+                print(f"  Immagini copiate: {risultati['immagini_copiate']}/{risultati['totale_carte']}")
+                if risultati['immagini_non_trovate']:
+                    print(f"  Immagini non trovate: {len(risultati['immagini_non_trovate'])}")
+                    for immagine_non_trovata in risultati['immagini_non_trovate']:
+                        print(f"    - {immagine_non_trovata}")
+                if risultati['errori']:
+                    print(f"  Errori: {len(risultati['errori'])}")
+                    for errore in risultati['errori']:
+                        print(f"    - {errore}")
+
+        except Exception as e:
+            risultati_complessivi['totale_errori'] += 1
+            if verbose:
+                print(f"  Errore processando mazzo {i}: {str(e)}")
+
+    if verbose:
+        print(f"\n{'='*80}")
+        print(f"RIEPILOGO ESPORTAZIONE")
+        print(f"{'='*80}")
+        print(f"Mazzi processati: {len(mazzi)}")
+        print(f"Totale immagini copiate: {risultati_complessivi['totale_immagini_copiate']}")
+        print(f"Totale immagini non trovate: {risultati_complessivi['totale_immagini_non_trovate']}")
+        print(f"Totale errori: {risultati_complessivi['totale_errori']}")
+        print(f"{'='*80}\n")
+
+    return risultati_complessivi
+
+def ricostruisci_mazzo_da_json(mazzo_json: Dict[str, Any]):
+    """
+    Ricostruisce un oggetto Mazzo da un dizionario JSON.
+
+    Questa funzione crea carte fittizie con solo le informazioni necessarie per
+    l'esportazione delle immagini (nome, tipo, fazione).
+
+    Args:
+        mazzo_json: Il dizionario JSON del mazzo
+
+    Returns:
+        Un oggetto Mazzo ricostruito
+    """
+    from dataclasses import dataclass
+    from types import SimpleNamespace
+
+    @dataclass
+    class CartaFittizia:
+        """Classe fittizia per contenere le informazioni minime di una carta"""
+        nome: str
+        tipo: str
+        fazione: Optional[str] = None
+
+    class MazzoRicostruito:
+        """Classe fittizia per contenere le carte ricostruite"""
+        def __init__(self):
+            self.carte = defaultdict(list)
+
+    mazzo = MazzoRicostruito()
+
+    # Mappatura delle classi JSON ai tipi di carte
+    mappatura_classi = {
+        'Equipaggiamento': 'equipaggiamento',
+        'Arte': 'arte',
+        'Fortificazioni': 'fortificazione',
+        'Fortificazione': 'fortificazione',
+        'Missioni': 'missione',
+        'Missione': 'missione',
+        'Speciali': 'speciale',
+        'Speciale': 'speciale',
+        'Oscura Simmetria': 'oscura_simmetria',
+        'Reliquie': 'reliquia',
+        'Reliquia': 'reliquia',
+        'Warzone': 'warzone'
+    }
+
+    # 1. Processa inventario_guerrieri
+    inventario_guerrieri = mazzo_json.get('inventario_guerrieri', {})
+    if inventario_guerrieri:
+        for categoria in ['squadra', 'schieramento', 'altre']:
+            if categoria in inventario_guerrieri:
+                for fazione, guerrieri in inventario_guerrieri[categoria].items():
+                    for nome_guerriero, info_guerriero in guerrieri.items():
+                        quantita = info_guerriero.get('quantita', info_guerriero.get('copie', 1))
+                        fazione_carta = info_guerriero.get('fazione', fazione)
+
+                        # Crea copie fittizie del guerriero
+                        for _ in range(quantita):
+                            carta_fittizia = CartaFittizia(
+                                nome=nome_guerriero,
+                                tipo='guerriero',
+                                fazione=fazione_carta
+                            )
+                            # Aggiungi un attributo fazione come oggetto con .value
+                            carta_fittizia.fazione = SimpleNamespace(value=fazione_carta)
+                            mazzo.carte['guerriero'].append(carta_fittizia)
+
+    # 2. Processa inventario_supporto
+    inventario_supporto = mazzo_json.get('inventario_supporto', {})
+    if inventario_supporto:
+        for classe, carte_classe in inventario_supporto.items():
+            # Determina il tipo di carta dalla classe
+            tipo_carta = mappatura_classi.get(classe)
+
+            if not tipo_carta:
+                continue
+
+            # Itera sulle carte di questa classe
+            for nome_carta, info_carta in carte_classe.items():
+                quantita = info_carta.get('quantita', info_carta.get('copie', 1))
+                fazione = info_carta.get('fazione')
+
+                # Crea copie fittizie della carta
+                for _ in range(quantita):
+                    carta_fittizia = CartaFittizia(
+                        nome=nome_carta,
+                        tipo=tipo_carta,
+                        fazione=fazione
+                    )
+                    mazzo.carte[tipo_carta].append(carta_fittizia)
+
+    return mazzo
+
+def esporta_immagini_mazzi_da_json(percorso_json: str, verbose: bool = True) -> Dict[str, Any]:
+    """
+    Carica un file JSON di mazzi ed esporta le immagini.
+
+    Questa funzione è utile per esportare immagini da mazzi salvati in precedenza.
+
+    Args:
+        percorso_json: Il percorso del file JSON contenente i mazzi
+        verbose: Se True, stampa messaggi di progresso
+
+    Returns:
+        Un dizionario con le statistiche dell'esportazione
+    """
+    try:
+        with open(percorso_json, 'r', encoding='utf-8') as f:
+            dati = json.load(f)
+
+        # Estrae i mazzi dal JSON
+        mazzi_json = dati.get('mazzi_dettagliati', [])
+
+        if not mazzi_json:
+            if verbose:
+                print(f"Nessun mazzo trovato nel file {percorso_json}")
+            return {'errore': 'Nessun mazzo trovato'}
+
+        if verbose:
+            print(f"Caricato file: {percorso_json}")
+            print(f"Trovati {len(mazzi_json)} mazzi")
+
+        # Ricostruisce i mazzi dal JSON
+        mazzi = []
+        for mazzo_json in mazzi_json:
+            mazzo = ricostruisci_mazzo_da_json(mazzo_json)
+            mazzi.append(mazzo)
+
+        # Esporta le immagini
+        return esporta_immagini_mazzi(mazzi, verbose)
+
+    except FileNotFoundError:
+        if verbose:
+            print(f"File non trovato: {percorso_json}")
+        return {'errore': f'File non trovato: {percorso_json}'}
+    except json.JSONDecodeError as e:
+        if verbose:
+            print(f"Errore parsing JSON: {str(e)}")
+        return {'errore': f'Errore parsing JSON: {str(e)}'}
+    except Exception as e:
+        if verbose:
+            print(f"Errore: {str(e)}")
+        return {'errore': str(e)}
+
 
 
 # ================================================================================
@@ -4464,6 +4963,9 @@ def test_funzioni_mazzi():
     
     print("\n✅ Test completato!")
 
+
+
+
 # ================================================================================
 # MAIN DI TEST (se eseguito come modulo standalone)
 # ================================================================================
@@ -4529,55 +5031,12 @@ if __name__ == "__main__":
             )
     
     esempio_salvataggio_mazzi_con_conteggio(mazzo)
-    
+
     # Menu interattivo
     risposta = input("\nVuoi aprire il menu interattivo? (s/n): ")
     if risposta.lower().startswith('s'):
         menu_interattivo_mazzi()
 
-# ================================================================================
-# ISTRUZIONI PER L'INTEGRAZIONE
-# ================================================================================
-
-"""
-🔧 INSTALLAZIONE E USO:
-
-1. COPIA tutto questo codice alla fine del file Creatore_Mazzo.py
-
-2. ASSICURATI che sia definita: PERCORSO_SALVATAGGIO = "out/"
-
-3. RISOLVE IL TUO ERRORE con:
-   salva_mazzi_json_sicuro(mazzi, "miei_mazzi.json")
-
-🎯 USO IMMEDIATO:
-```python
-# I tuoi mazzi esistenti
-mazzi = [mazzo1, mazzo2, mazzo3]  # dai tuoi crea_mazzo_da_gioco
-
-# SOLUZIONE SICURA - garantisce sempre il salvataggio
-salva_mazzi_json_sicuro(mazzi, "miei_mazzi.json")
-
-# ALTERNATIVA - diagnostica + salvataggio normale  
-stampa_diagnostica_mazzi(mazzi)  # Identifica problemi
-salva_mazzi_json_migliorato(mazzi, "mazzi_diagnosticati.json")
-```
-
-📊 FUNZIONI PRINCIPALI:
-- stampa_riepilogo_mazzi_migliorato(mazzi)
-- salva_mazzi_json_sicuro(mazzi, "file.json")       # GARANTISCE SUCCESSO
-- salva_mazzi_json_migliorato(mazzi, "file.json")   # Standard
-- carica_mazzi_json_migliorato("file.json")
-- stampa_diagnostica_mazzi(mazzi)
-- verifica_integrità_mazzi(mazzi)
-- analizza_bilanciamento_mazzi(mazzi)
-- menu_interattivo_mazzi()
-
-🚨 RISOLVE IL TUO ERRORE:
-L'errore "tipo_guerriero" è risolto da:
-- ottieni_attributo_sicuro() - gestisce attributi mancanti
-- crea_info_guerriero_sicura() - usa 'tipo' invece di 'tipo_guerriero'
-- salva_mazzi_json_sicuro() - garantisce sempre successo
-"""
 
 
 

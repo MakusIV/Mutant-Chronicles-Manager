@@ -1807,8 +1807,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": True
     },
 
-    "AG-17 Panzerknacker": {
-        "nome": "AG-17 Panzerknacker",
+    "AG-17 Panzer_Knacker": {
+        "nome": "AG-17 Panzer_Knacker",
         "valore": 0,
         "tipo": "Arma da Fuoco",
         "categoria_arma": "Fucile d'Assalto",
@@ -2236,8 +2236,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": False
     },
 
-    "Spada e Pistola Punisher": {
-        "nome": "Spada e Pistola Punisher",
+    "Spada E Pistola Punisher": {
+        "nome": "Spada E Pistola Punisher",
         "valore": 0,
         "tipo": "Arma da Fuoco e da Corpo a Corpo",
         "categoria_arma": "Corpo a Corpo",
@@ -2555,8 +2555,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": False
     },
 
-    "Catalizzatore di Energia": {
-        "nome": "Catalizzatore di Energia",
+    "Catalizzatore Di Energia": {
+        "nome": "Catalizzatore Di Energia",
         "valore": 0,
         "tipo": "Equipaggiamento",
         "categoria_arma": "Strumento",
@@ -3664,8 +3664,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": True
     },
 
-    "Lanciaflamme Tormentor": {
-        "nome": "Lanciaflamme Tormentor",
+    "Lanciafiamme Tormentor": {
+        "nome": "Lanciafiamme Tormentor",
         "valore": 0,
         "tipo": "Arma da Fuoco",
         "categoria_arma": "Lanciafiamme",
@@ -3718,8 +3718,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": False
     },
 
-    "Mandible/SA-SG 7200": {
-        "nome": "Mandible/SA-SG 7200",
+    "Mandible_SA-SG 7200": {
+        "nome": "Mandible_SA-SG 7200",
         "valore": 0,
         "tipo": "Arma da Corpo a Corpo",
         "categoria_arma": "Fucile a Pompa",
@@ -4048,8 +4048,8 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": False
     },
 
-    "Reaver Trasporta Truppe": {
-        "nome": "Reaver Trasporta Truppe",
+    "Reaver Trasporto Truppe": {
+        "nome": "Reaver Trasporto Truppe",
         "valore": 0,
         "tipo": "Veicolo",
         "categoria_arma": "Carro Armato",
@@ -4102,7 +4102,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": False
     },
 
-    "Airbrush/M516 S": {
+    "Airbrush_M516 S": {
         "nome": "Airbrush/M516 S",
         "valore": 0,
         "tipo": "Arma da Fuoco",
@@ -4156,7 +4156,7 @@ DATABASE_EQUIPAGGIAMENTO = {
         "fondamentale": False
     },
 
-    "Hagelsturm/M516 D": {
+    "Hagelsturm_M516 D": {
         "nome": "Hagelsturm/M516 D",
         "valore": 0,
         "tipo": "Arma da Fuoco",

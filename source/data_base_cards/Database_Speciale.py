@@ -9,9 +9,8 @@ from source.cards.Speciale import (
     Speciale, TipoSpeciale, BersaglioSpeciale, DurataSpeciale, 
     TimingSpeciale, EffettoSpeciale
 )
-from source.cards.Guerriero import Fazione, Rarity
+from source.cards.Guerriero import Fazione, Rarity, DOOMTROOPER
 
-DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Capitol", "Imperiale", "Fratellanza"]
 
 DATABASE_SPECIALI = {
     

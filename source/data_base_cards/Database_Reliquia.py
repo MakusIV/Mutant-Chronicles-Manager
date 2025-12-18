@@ -703,8 +703,8 @@ DATABASE_RELIQUIE = {
         "fondamentale": True
     },
 
-    "Armatura Di Empietà": {
-        "nome": "Armatura Di Empietà",
+    "Armatura Di Empieta": {
+        "nome": "Armatura Di Empieta",
         "valore": 0,
         "tipo": "",
         "rarity": "Common",

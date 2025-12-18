@@ -10,7 +10,7 @@ from source.cards.Missione import (
     Missione, TipoMissione, DifficoltaMissione, TipoBersaglioMissione,
     ObiettivoMissione, RicompensaMissione, StatoMissione
 )
-from source.cards.Guerriero import Fazione, Rarity
+from source.cards.Guerriero import Fazione, Rarity, DOOMTROOPER
 
 
 # Database completo delle carte Missione
@@ -96,7 +96,7 @@ DATABASE_MISSIONI = {
         "difficolta": "Normale",
         "rarity": "Common",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": ["Doomtrooper"],
+        "fazioni_permesse": DOOMTROOPER,
         "corporazioni_specifiche": ["Eretico"],
         "restrizioni_guerriero": [],
         "obiettivo": {
@@ -197,8 +197,8 @@ DATABASE_MISSIONI = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    "Portale Del Grande Inquisitore": {
-        "nome": "Portale Del Grande Inquisitore",
+    "Portale Del Grande Conquistatore": {
+        "nome": "Portale Del Grande Conquistatore",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Normale",

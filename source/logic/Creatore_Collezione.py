@@ -1186,6 +1186,7 @@ def creazione_Collezione_Giocatore(
     print(f"Create {len(collezioni)} collezioni")
     print(f"Quantità totali utilizzate: {dict(QUANTITA_UTILIZZATE)}")
     
+    esporta_immagini_collezioni(collezioni, verbose = True)
     return collezioni
 
 def determina_orientamento_collezione(collezione: CollezioneGiocatore, espansioni_richieste: List[Set_Espansione]) -> Dict:    
@@ -3620,6 +3621,34 @@ def ottieni_percorso_cartella_immagini_sorgente(tipo_carta: str, carta: Any) -> 
             return os.path.join(PERCORSO_BASE_IMMAGINI, nome_cartella)
         return None
 
+def trova_file_case_insensitive(cartella: str, nome_file: str) -> Optional[str]:
+    """
+    Cerca un file in una cartella ignorando maiuscole/minuscole.
+
+    Args:
+        cartella: Il percorso della cartella in cui cercare
+        nome_file: Il nome del file da cercare
+
+    Returns:
+        Il percorso completo del file se trovato, None altrimenti
+    """
+    if not os.path.exists(cartella):
+        return None
+
+    try:
+        # Ottieni tutti i file nella cartella
+        files_in_dir = os.listdir(cartella)
+
+        # Cerca il file ignorando maiuscole/minuscole
+        nome_file_lower = nome_file.lower()
+        for file_name in files_in_dir:
+            if file_name.lower() == nome_file_lower:
+                return os.path.join(cartella, file_name)
+
+        return None
+    except Exception:
+        return None
+
 def ottieni_nome_file_immagine(nome_carta: str) -> str:
     """
     Converte il nome di una carta nel nome del file immagine corrispondente.
@@ -3739,19 +3768,24 @@ def copia_immagini_collezione(id_giocatore: int, collezione) -> Dict[str, Any]:
 
                 # Ottiene il nome del file immagine
                 nome_file = ottieni_nome_file_immagine(carta.nome)
-                percorso_sorgente = os.path.join(cartella_sorgente, nome_file)
-                percorso_destinazione = os.path.join(cartella_destinazione, nome_file)
+
+                # Cerca il file ignorando maiuscole/minuscole
+                percorso_sorgente_trovato = trova_file_case_insensitive(cartella_sorgente, nome_file)
 
                 # Copia il file se esiste
-                if os.path.exists(percorso_sorgente):
-                    shutil.copy2(percorso_sorgente, percorso_destinazione)
+                if percorso_sorgente_trovato:
+                    percorso_destinazione = os.path.join(cartella_destinazione, os.path.basename(percorso_sorgente_trovato))
+                    shutil.copy2(percorso_sorgente_trovato, percorso_destinazione)
                     risultati['immagini_copiate'] += 1
                     carte_copiate.add(carta.nome)
                 else:
+                    percorso_sorgente = os.path.join(cartella_sorgente, nome_file)
                     risultati['immagini_non_trovate'].append(f"{carta.nome} ({percorso_sorgente})")
+                    carte_copiate.add(carta.nome)  # Aggiungi anche se non trovata per evitare duplicati
 
             except Exception as e:
                 risultati['errori'].append(f"Errore copiando {carta.nome}: {str(e)}")
+                carte_copiate.add(carta.nome)  # Aggiungi anche in caso di errore per evitare duplicati
 
     return risultati
 
@@ -3803,8 +3837,12 @@ def esporta_immagini_collezioni(collezioni: List, verbose: bool = True) -> Dict[
                 print(f"  ✅ Immagini copiate: {risultati['immagini_copiate']}/{risultati['totale_carte']}")
                 if risultati['immagini_non_trovate']:
                     print(f"  ⚠️  Immagini non trovate: {len(risultati['immagini_non_trovate'])}")
+                    for immagine_non_trovata in risultati['immagini_non_trovate']:
+                        print(f"    - {immagine_non_trovata}")
                 if risultati['errori']:
                     print(f"  ❌ Errori: {len(risultati['errori'])}")
+                    for errore in risultati['errori']:
+                        print(f"    - {errore}")
 
         except Exception as e:
             risultati_complessivi['totale_errori'] += 1
