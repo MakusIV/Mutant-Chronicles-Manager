@@ -1398,7 +1398,7 @@ CARTE_ARTE_DATABASE = {
         "bersaglio": "Guerriero Proprio",
         "durata": "Fine Combattimento",
         "timing": "In Combattimento",
-        "set_espansione": "Base",
+        "set_espansione": "Sconosciuto",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
         "max_copie_per_turno": 1,
@@ -1484,7 +1484,7 @@ CARTE_ARTE_DATABASE = {
         "bersaglio": "Guerriero Avversario",
         "durata": "Istantanea",
         "timing": "Turno Proprio",
-        "set_espansione": "Base",
+        "set_espansione": "Sconosciuto",
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
         "max_copie_per_turno": 1,
@@ -2636,8 +2636,8 @@ CARTE_ARTE_DATABASE = {
         "fondamentale": False
     },
 
-    "Opportunità Di Nathaniel": {
-        "nome": "Opportunità Di Nathaniel",
+    "Opportunita Di Nathaniel": {
+        "nome": "Opportunita Di Nathaniel",
         "valore": 0,
         "tipo": "Normale",
         "disciplina": "Manipolazione",

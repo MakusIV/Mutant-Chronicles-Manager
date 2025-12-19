@@ -31,8 +31,8 @@ DATABASE_EQUIPAGGIAMENTO = {
 
     # Base
 
-    "AH/UH-19 Mitraglia Guardiano": {
-        "nome": "AH/UH-19 Mitraglia Guardiano",
+    "AH_UH-19 Mitraglia Guardiano": {
+        "nome": "AH_UH-19 Mitraglia Guardiano",
         "valore": 0,
         "tipo": "Veicolo",
         "categoria_arma": "Aeronave",
@@ -4103,7 +4103,7 @@ DATABASE_EQUIPAGGIAMENTO = {
     },
 
     "Airbrush_M516 S": {
-        "nome": "Airbrush/M516 S",
+        "nome": "Airbrush_M516 S",
         "valore": 0,
         "tipo": "Arma da Fuoco",
         "categoria_arma": "Fucile a Pompa",
@@ -4157,7 +4157,7 @@ DATABASE_EQUIPAGGIAMENTO = {
     },
 
     "Hagelsturm_M516 D": {
-        "nome": "Hagelsturm/M516 D",
+        "nome": "Hagelsturm_M516 D",
         "valore": 0,
         "tipo": "Arma da Fuoco",
         "categoria_arma": "Fucile a Pompa",

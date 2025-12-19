@@ -761,8 +761,8 @@ DATABASE_RELIQUIE = {
         "fondamentale": True
     },
 
-    "Pergamena D'Evocazione Sacrilega": {
-        "nome": "Pergamena D'Evocazione Sacrilega",
+    "Pergamena Di Evocazione Sacrilega": {
+        "nome": "Pergamena Di Evocazione Sacrilega",
         "valore": 0,
         "tipo": "",
         "rarity": "Common",

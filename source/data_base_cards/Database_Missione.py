@@ -233,8 +233,8 @@ DATABASE_MISSIONI = {
         "fondamentale": False # utilizzata per la creazione del mazzo: indica se la carta è importante per la preparazione del mazzo (es. personaggi unici, carte speciali fondamentali)        ,        
     },
 
-    "Assedio Alla Citadella": {
-        "nome": "Assedio Alla Citadella",
+    "Assedio Alla Cittadella": {
+        "nome": "Assedio Alla Cittadella",
         "costo_azione": 1,
         "tipo": "Guerriero",
         "difficolta": "Normale",

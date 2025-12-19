@@ -4291,7 +4291,7 @@ def copia_immagini_mazzo(nome_mazzo: str, mazzo) -> Dict[str, Any]:
         'equipaggiamento': 'Equipaggiamento',
         'arte': 'Arte',
         'fortificazione': 'Fortificazioni',
-        'missione': 'Missione',
+        'missione': 'Missioni',
         'speciale': 'Speciali',
         'oscura_simmetria': 'Oscura_Simmetria',
         'reliquia': 'Reliquie',
