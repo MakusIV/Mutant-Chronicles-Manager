@@ -19,6 +19,17 @@ import os
 import shutil
 from pathlib import Path
 
+# Import per la generazione di PDF
+try:
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import cm
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+    from reportlab.lib.enums import TA_LEFT, TA_CENTER
+    REPORTLAB_AVAILABLE = True
+except ImportError:
+    REPORTLAB_AVAILABLE = False
+
 
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
 from source.cards.Guerriero import (
@@ -2478,15 +2489,15 @@ def menu_interattivo():
         print("\n" + "="*60)
         print("MANAGER_GIOCO - MENU INTERATTIVO")
         print("="*60)
-        print("1. vuoto")
+        print("1. crea cartelle collezioni")
         print("2. vuoto")
-        print("3. Test multiple espansioni")
-        print("4. Stress test")
-        print("5. Test validazione parametri")
-        print("6. Esempio utilizzo completo")
-        print("7. Creazione personalizzata")
-        print("8. Reset tracciamento quantità")
-        print("9. Carica collezioni da JSON")
+        print("3. Test multiple espansioni (dedicato al test)")
+        print("4. Stress test (dedicato al test)" )
+        print("5. Test validazione parametri (dedicato al test)")
+        print("6. Esempio utilizzo completo (dedicato al test)")
+        print("7. Creazione personalizzata (dedicato al test)")
+        print("8. Reset tracciamento quantità (dedicato al test)")
+        print("9. Carica collezioni da JSON (dedicato al test)")
         print("0. Esci")
         
         scelta = input("\nScegli un'opzione: ").strip()
@@ -2495,7 +2506,59 @@ def menu_interattivo():
             print("Arrivederci!")
             break
         elif scelta == "1":
-            pass
+             # Creazione personalizzata
+            try:
+                num = int(input("Numero giocatori: "))
+                
+                print("Espansioni disponibili:")
+                for i, esp in enumerate(Set_Espansione):
+                    print(f"  {i+1}. {esp.value}")
+                
+                esp_input = input("Scegli espansioni (numeri separati da virgola): ")
+                esp_indices = [int(x.strip())-1 for x in esp_input.split(",")]
+                espansioni = [list(Set_Espansione)[i] for i in esp_indices if 0 <= i < len(Set_Espansione)]                
+                orientamento = input("Orientamento (s/n): ").lower().startswith('s')           
+
+                risultato = crea_cartelle_collezioni(
+                    numero_giocatori=num,
+                    espansioni=espansioni,
+                    orientamento=orientamento,
+                    nome_cartella=None,
+                    verbose=True
+                )
+
+                print("\n" + "="*80)
+                print("RISULTATI CREAZIONE COLLEZIONI E CARTELLE")
+                print("="*80)
+
+                if 'errore' in risultato:
+                    print(f"❌ ERRORE: {risultato['errore']}")
+                    return 1
+
+                print(f"✅ Collezioni e cartelle create con successo!")
+                print(f"\n📊 Statistiche:")
+                print(f"   - Timestamp: {risultato['timestamp']}")
+                print(f"   - Numero collezioni: {risultato['numero_collezioni']}")
+                print(f"   - Percorso principale: {risultato['percorso_principale']}")
+                print(f"   - Collezioni esportate: {len(risultato['collezioni_esportate'])}")
+
+                if risultato['errori']:
+                    print(f"\n⚠️  Errori riscontrati ({len(risultato['errori'])}):")
+                    for err in risultato['errori']:
+                        print(f"   - {err}")
+
+                print(f"\n📁 Dettagli collezioni esportate:")
+                for col in risultato['collezioni_esportate']:
+                    print(f"   Giocatore {col['id_giocatore']}:")
+                    print(f"      - Totale carte: {col['totale_carte']}")
+                    print(f"      - Valore DP: {col['valore_dp']}")
+                    print(f"      - Orientamento: {col['orientamento'] if col['orientamento'] else 'Nessuno'}")
+
+                return 0
+                
+            except Exception as e:
+                print(f"Errore: {e}")
+
         elif scelta == "2":
             pass
         elif scelta == "3":
@@ -3969,64 +4032,520 @@ def ricostruisci_collezione_da_json(collezione_json: Dict[str, Any]):
     return collezione
 
 
+# ============================================================================
+# FUNZIONI PER ESPORTAZIONE COLLEZIONI MULTIPLE
+# ============================================================================
+
+def crea_pdf_collezione(collezione: CollezioneGiocatore, percorso_pdf: str) -> bool:
+    """
+    Crea un file PDF con l'elenco delle carte di una collezione.
+
+    Le carte sono organizzate per tipo (Guerriero, Equipaggiamento, ecc.) e per ogni carta
+    vengono mostrate: nome, quantità, fazione, corporazione specifica (se presente).
+    Per le carte Arte viene indicato il tipo di Arte.
+    Per le carte Oscura Simmetria viene indicato il tipo di dono.
+
+    Args:
+        collezione: L'oggetto CollezioneGiocatore da esportare
+        percorso_pdf: Il percorso completo dove salvare il PDF
+
+    Returns:
+        True se il PDF è stato creato con successo, False altrimenti
+    """
+    if not REPORTLAB_AVAILABLE:
+        print("⚠️  La libreria reportlab non è disponibile. Impossibile creare il PDF.")
+        print("   Installa reportlab con: pip install reportlab")
+        return False
+
+    try:
+        # Crea il documento PDF
+        doc = SimpleDocTemplate(
+            percorso_pdf,
+            pagesize=A4,
+            rightMargin=2*cm,
+            leftMargin=2*cm,
+            topMargin=2*cm,
+            bottomMargin=2*cm
+        )
+
+        # Definisce gli stili
+        styles = getSampleStyleSheet()
+
+        # Stile per il titolo
+        style_titolo = ParagraphStyle(
+            'CustomTitle',
+            parent=styles['Heading1'],
+            fontSize=16,
+            textColor='darkblue',
+            spaceAfter=20,
+            alignment=TA_CENTER
+        )
+
+        # Stile per i sottotitoli (tipo carta)
+        style_sottotitolo = ParagraphStyle(
+            'CustomHeading',
+            parent=styles['Heading2'],
+            fontSize=14,
+            textColor='darkgreen',
+            spaceAfter=12,
+            spaceBefore=12
+        )
+
+        # Stile per il testo normale
+        style_normale = styles['Normal']
+
+        # Lista degli elementi da inserire nel PDF
+        elementi = []
+
+        # Titolo
+        titolo = Paragraph(
+            f"<b>Collezione Giocatore {collezione.id_giocatore}</b>",
+            style_titolo
+        )
+        elementi.append(titolo)
+        elementi.append(Spacer(1, 0.5*cm))
+
+        # Orientamento (se presente)
+        if collezione.fazioni_orientamento:
+            fazioni_str = ", ".join([
+                f.value if hasattr(f, 'value') else str(f)
+                for f in collezione.fazioni_orientamento
+            ])
+            orientamento_text = Paragraph(
+                f"<b>Orientamento:</b> {fazioni_str}",
+                style_normale
+            )
+            elementi.append(orientamento_text)
+            elementi.append(Spacer(1, 0.3*cm))
+
+        # Statistiche generali
+        totale_carte = collezione.get_totale_carte()
+        valore_dp = collezione.statistiche.valore_totale_dp
+
+        stats_text = Paragraph(
+            f"<b>Totale carte:</b> {totale_carte} | <b>Valore totale:</b> {valore_dp} DP",
+            style_normale
+        )
+        elementi.append(stats_text)
+        elementi.append(Spacer(1, 0.5*cm))
+
+        # Ordine dei tipi di carta
+        ordine_tipi = [
+            'guerriero', 'equipaggiamento', 'speciale', 'fortificazione',
+            'missione', 'arte', 'oscura_simmetria', 'reliquia', 'warzone'
+        ]
+
+        nomi_tipi = {
+            'guerriero': 'Guerrieri',
+            'equipaggiamento': 'Equipaggiamento',
+            'speciale': 'Carte Speciali',
+            'fortificazione': 'Fortificazioni',
+            'missione': 'Missioni',
+            'arte': 'Carte Arte',
+            'oscura_simmetria': 'Carte Oscura Simmetria',
+            'reliquia': 'Reliquie',
+            'warzone': 'Warzone'
+        }
+
+        # Processa ogni tipo di carta
+        for tipo_carta in ordine_tipi:
+            liste_carte = collezione.carte.get(tipo_carta, [])
+
+            if not liste_carte:
+                continue
+
+            # Conta carte per nome
+            carte_conteggio = defaultdict(int)
+            carte_esempi = {}
+
+            for carta in liste_carte:
+                carte_conteggio[carta.nome] += 1
+                if carta.nome not in carte_esempi:
+                    carte_esempi[carta.nome] = carta
+
+            # Sottotitolo per il tipo di carta
+            sottotitolo = Paragraph(
+                f"<b>{nomi_tipi[tipo_carta]} ({len(liste_carte)} carte, {len(carte_conteggio)} uniche)</b>",
+                style_sottotitolo
+            )
+            elementi.append(sottotitolo)
+            elementi.append(Spacer(1, 0.2*cm))
+
+            # Ordina le carte in base al tipo
+            if tipo_carta == 'guerriero':
+                # Ordina i guerrieri per fazione, poi per nome
+                carte_ordinate = sorted(
+                    carte_conteggio.items(),
+                    key=lambda x: (
+                        carte_esempi[x[0]].fazione.value if hasattr(carte_esempi[x[0]], 'fazione') and carte_esempi[x[0]].fazione else 'ZZZ',
+                        x[0]  # nome carta
+                    )
+                )
+            elif tipo_carta == 'arte':
+                # Ordina le arti per disciplina, poi per nome
+                carte_ordinate = sorted(
+                    carte_conteggio.items(),
+                    key=lambda x: (
+                        carte_esempi[x[0]].disciplina.value if hasattr(carte_esempi[x[0]], 'disciplina') and carte_esempi[x[0]].disciplina else 'ZZZ',
+                        x[0]  # nome carta
+                    )
+                )
+            elif tipo_carta == 'oscura_simmetria':
+                # Ordina le carte oscura simmetria per tipo di dono, poi per nome
+                def get_dono_key(nome_carta):
+                    carta = carte_esempi[nome_carta]
+                    if hasattr(carta, 'tipo') and carta.tipo:
+                        tipo_str = carta.tipo.value if hasattr(carta.tipo, 'value') else str(carta.tipo)
+                        # Se è un dono degli apostoli, usa il nome dell'apostolo
+                        if hasattr(carta, 'apostolo_padre') and carta.apostolo_padre:
+                            apostolo_str = carta.apostolo_padre.value if hasattr(carta.apostolo_padre, 'value') else str(carta.apostolo_padre)
+                            if apostolo_str and apostolo_str != 'None':
+                                return f"Seguace di {apostolo_str}"
+                        return tipo_str
+                    return 'ZZZ'
+
+                carte_ordinate = sorted(
+                    carte_conteggio.items(),
+                    key=lambda x: (get_dono_key(x[0]), x[0])
+                )
+            else:
+                # Per gli altri tipi, ordina solo per nome
+                carte_ordinate = sorted(carte_conteggio.items())
+
+            # Dettagli per ogni carta
+            for nome_carta, quantita in carte_ordinate:
+                carta = carte_esempi[nome_carta]
+
+                # Informazioni base
+                info_parti = [f"<b>{nome_carta}</b> (x{quantita})"]
+
+                # Fazione (se presente)
+                if hasattr(carta, 'fazione') and carta.fazione:
+                    fazione_str = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+                    info_parti.append(f"Fazione: {fazione_str}")
+
+                # Corporazione specifica (per Guerrieri)
+                if tipo_carta == 'guerriero' and hasattr(carta, 'corporazione_specifica'):
+                    if carta.corporazione_specifica:
+                        corp_str = carta.corporazione_specifica.value if hasattr(carta.corporazione_specifica, 'value') else str(carta.corporazione_specifica)
+                        info_parti.append(f"Corporazione: {corp_str}")
+
+                # Tipo Arte (per carte Arte)
+                if tipo_carta == 'arte' and hasattr(carta, 'disciplina'):
+                    if carta.disciplina:
+                        disciplina_str = carta.disciplina.value if hasattr(carta.disciplina, 'value') else str(carta.disciplina)
+                        info_parti.append(f"Disciplina: {disciplina_str}")
+
+                # Tipo dono (per carte Oscura Simmetria)
+                if tipo_carta == 'oscura_simmetria':
+                    if hasattr(carta, 'tipo') and carta.tipo:
+                        tipo_str = carta.tipo.value if hasattr(carta.tipo, 'value') else str(carta.tipo)
+
+                        # Se è un dono degli apostoli, aggiungi il nome dell'apostolo
+                        if hasattr(carta, 'apostolo_padre') and carta.apostolo_padre:
+                            apostolo_str = carta.apostolo_padre.value if hasattr(carta.apostolo_padre, 'value') else str(carta.apostolo_padre)
+                            if apostolo_str and apostolo_str != 'None':
+                                info_parti.append(f"Dono: Seguace di {apostolo_str}")
+                            else:
+                                info_parti.append(f"Dono: {tipo_str}")
+                        else:
+                            info_parti.append(f"Dono: {tipo_str}")
+
+                # Crea il testo della carta
+                carta_text = Paragraph(
+                    " | ".join(info_parti),
+                    style_normale
+                )
+                elementi.append(carta_text)
+                elementi.append(Spacer(1, 0.1*cm))
+
+            elementi.append(Spacer(1, 0.3*cm))
+
+        # Costruisce il PDF
+        doc.build(elementi)
+
+        return True
+
+    except Exception as e:
+        print(f"❌ Errore durante la creazione del PDF: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+
+def crea_cartelle_collezioni(
+    numero_giocatori: int,
+    espansioni: List[Set_Espansione],
+    orientamento: bool = False,
+    nome_cartella: Optional[str] = None,
+    verbose: bool = True
+) -> Dict[str, Any]:
+    """
+    Crea una cartella con collezioni per più giocatori, includendo file JSON, PDF e immagini.
+
+    Questa funzione:
+    1. Genera collezioni per il numero specificato di giocatori
+    2. Crea una cartella principale "Collezioni_<data_orario>"
+    3. Per ogni giocatore crea:
+       - Una cartella "Collezione_Giocatore_<numero>"
+       - Un file JSON con i dati della collezione
+       - Un file PDF con l'elenco delle carte
+       - Una cartella "Immagini" con le immagini delle carte
+
+    Args:
+        numero_giocatori: Numero di collezioni da creare
+        espansioni: Lista delle espansioni da cui selezionare le carte
+        orientamento: Se True, orienta le collezioni verso fazioni specifiche
+        nome_cartella: Nome personalizzato per la cartella principale (opzionale)
+        verbose: Se True, stampa messaggi di progresso
+
+    Returns:
+        Dizionario con le statistiche dell'esportazione e i percorsi creati
+    """
+    try:
+        # Genera le collezioni
+        if verbose:
+            print(f"\n{'='*80}")
+            print(f"🎮 ESPORTAZIONE COLLEZIONI GIOCATORI")
+            print(f"{'='*80}")
+            print(f"📊 Numero giocatori: {numero_giocatori}")
+            print(f"📦 Espansioni: {[e.value if hasattr(e, 'value') else str(e) for e in espansioni]}")
+            print(f"🎯 Orientamento: {'Sì' if orientamento else 'No'}")
+            print(f"\n🔄 Generazione collezioni in corso...")
+
+        collezioni = creazione_Collezione_Giocatore(
+            numero_giocatori=numero_giocatori,
+            espansioni=espansioni,
+            orientamento=orientamento
+        )
+        
+        if verbose:
+            print(f"✅ Generate {len(collezioni)} collezioni")
+
+        # Crea il nome della cartella principale
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        if nome_cartella:
+            nome_cartella_principale = nome_cartella
+        else:
+            nome_cartella_principale = f"Collezioni_{timestamp}"
+
+        percorso_principale = Path(PERCORSO_SALVATAGGIO) / nome_cartella_principale
+
+        # Crea la cartella principale
+        percorso_principale.mkdir(parents=True, exist_ok=True)
+
+        salva_collezioni_json_migliorato(collezioni=collezioni, filename = nome_cartella_principale + "/lista_collezioni.json")
+
+        if verbose:
+            print(f"\n📁 Cartella principale creata: {percorso_principale}")
+
+
+        # Statistiche dell'esportazione
+        statistiche = {
+            'timestamp': timestamp,
+            'numero_collezioni': len(collezioni),
+            'percorso_principale': str(percorso_principale),
+            'collezioni_esportate': [],
+            'errori': []
+        }
+
+        # Processa ogni collezione
+        for i, collezione in enumerate(collezioni):
+            if verbose:
+                print(f"\n📦 Processando Collezione Giocatore {collezione.id_giocatore}...")
+
+            try:
+                # Crea la cartella del giocatore
+                nome_cartella_giocatore = f"Collezione_Giocatore_{collezione.id_giocatore}"
+                percorso_giocatore = percorso_principale / nome_cartella_giocatore
+                percorso_giocatore.mkdir(exist_ok=True)
+
+                if verbose:
+                    print(f"   📁 Cartella giocatore: {percorso_giocatore.name}")
+
+                # 1. Salva il file JSON
+                nome_file_json = f"collezione_giocatore_{collezione.id_giocatore}.json"
+                percorso_json = percorso_giocatore / nome_file_json
+
+                # Crea la struttura JSON dettagliata per questa collezione
+                dati_collezione = {
+                    'metadata': {
+                        'versione': '2.0',
+                        'tipo_export': 'collezione_singola',
+                        'data_creazione': datetime.now().isoformat(),
+                        'id_giocatore': collezione.id_giocatore
+                    },
+                    'collezione': crea_inventario_dettagliato_json(collezione)
+                }
+
+                # Salva il JSON
+                with open(percorso_json, 'w', encoding='utf-8') as f:
+                    json.dump(dati_collezione, f, indent=2, ensure_ascii=False)
+
+                if verbose:
+                    print(f"   ✅ JSON salvato: {nome_file_json}")
+
+                # 2. Crea il PDF
+                nome_file_pdf = f"elenco_carte_giocatore_{collezione.id_giocatore}.pdf"
+                percorso_pdf = percorso_giocatore / nome_file_pdf
+
+                pdf_creato = crea_pdf_collezione(collezione, str(percorso_pdf))
+
+                if pdf_creato and verbose:
+                    print(f"   ✅ PDF creato: {nome_file_pdf}")
+                elif not pdf_creato:
+                    statistiche['errori'].append(
+                        f"Impossibile creare PDF per Giocatore {collezione.id_giocatore}"
+                    )
+
+                # 3. Crea la cartella Immagini
+                percorso_immagini = percorso_giocatore / "Immagini"
+                percorso_immagini.mkdir(exist_ok=True)
+
+                if verbose:
+                    print(f"   📁 Cartella immagini creata")
+
+                # 4. Esporta le immagini
+                if verbose:
+                    print(f"   🖼️  Esportazione immagini in corso...")
+
+                # Copia le immagini direttamente dall'oggetto collezione
+                # anziché usare esporta_immagini_da_json che richiede un formato JSON diverso
+                try:
+                    # Prima crea la struttura in out/collezioni_immagini/collezione_{id}
+                    risultato_immagini = copia_immagini_collezione(collezione.id_giocatore, collezione)
+
+                    # Poi sposta le immagini nella cartella Immagini del giocatore
+                    cartella_immagini_source = Path("out/collezioni_immagini") / f"collezione_{collezione.id_giocatore}"
+
+                    if cartella_immagini_source.exists():
+                        # Sposta le immagini nella cartella corretta mantenendo la struttura
+                        for item in cartella_immagini_source.iterdir():
+                            dest = percorso_immagini / item.name
+                            if item.is_dir():
+                                shutil.copytree(item, dest, dirs_exist_ok=True)
+                            else:
+                                shutil.copy2(item, dest)
+
+                        # Rimuovi la cartella temporanea
+                        shutil.rmtree(cartella_immagini_source)
+
+                    if verbose:
+                        num_immagini = sum(1 for _ in percorso_immagini.rglob('*.png'))
+                        print(f"   ✅ Immagini esportate: {num_immagini} file")
+
+                except Exception as e:
+                    errore = f"Errore durante l'esportazione immagini per Giocatore {collezione.id_giocatore}: {str(e)}"
+                    statistiche['errori'].append(errore)
+                    if verbose:
+                        print(f"   ⚠️  {errore}")
+
+                # Aggiungi alle statistiche
+                statistiche['collezioni_esportate'].append({
+                    'id_giocatore': collezione.id_giocatore,
+                    'percorso': str(percorso_giocatore),
+                    'totale_carte': collezione.get_totale_carte(),
+                    'valore_dp': collezione.statistiche.valore_totale_dp,
+                    'orientamento': [
+                        f.value if hasattr(f, 'value') else str(f)
+                        for f in collezione.fazioni_orientamento
+                    ] if collezione.fazioni_orientamento else []
+                })
+
+            except Exception as e:
+                errore = f"Errore elaborando Giocatore {collezione.id_giocatore}: {str(e)}"
+                statistiche['errori'].append(errore)
+                if verbose:
+                    print(f"   ❌ {errore}")
+
+        # Riepilogo finale
+        if verbose:
+            print(f"\n{'='*80}")
+            print(f"✅ ESPORTAZIONE COMPLETATA")
+            print(f"{'='*80}")
+            print(f"📁 Percorso: {percorso_principale}")
+            print(f"🎮 Collezioni esportate: {len(statistiche['collezioni_esportate'])}/{len(collezioni)}")
+
+            if statistiche['errori']:
+                print(f"\n⚠️  Errori riscontrati: {len(statistiche['errori'])}")
+                for errore in statistiche['errori']:
+                    print(f"   - {errore}")
+
+        return statistiche
+
+    except Exception as e:
+        errore_msg = f"Errore durante l'esportazione: {str(e)}"
+        if verbose:
+            print(f"\n❌ {errore_msg}")
+            import traceback
+            traceback.print_exc()
+
+        return {
+            'errore': errore_msg,
+            'timestamp': datetime.now().isoformat()
+        }
+
+
+
+
 # ==================== MAIN ====================
 
 if __name__ == "__main__":
-    print("""
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                           Creatore_Collezione.PY                             ║
-║                    Mutant Chronicles / Doomtrooper                          ║
-║                                                                              ║
-║  Modulo per la creazione di collezioni giocatore secondo le regole          ║
-║  ufficiali del regolamento Doomtrooper.                                     ║
-║                                                                              ║
-║  Funzionalità implementate:                                                  ║
-║  • Creazione collezioni giocatore (non mazzi da gioco)                      ║
-║  • Orientamento fazioni casuali (Fratellanza-Doomtrooper-Mercenario, etc.)  ║
-║  • Selezione casuale carte da tutte le espansioni specificate               ║
-║  • Verifica integrità e bilanciamento collezioni                            ║
-║  • Export/Import JSON                                                        ║
-║  • Sistema di test completo                                                  ║
-║                                                                              ║
-║  NOTA: CollezioneGiocatore = tutte le carte possedute                       ║
-║        Mazzo da gioco = sottoinsieme con min 5 guerrieri (creato separatam.)║
-╚══════════════════════════════════════════════════════════════════════════════╝
-    """)
-    
-    print("AVVIO DEMO AUTOMATICA...")
-    
+    #    print("""
+    """╔══════════════════════════════════════════════════════════════════════════════╗
+    ║                           Creatore_Collezione.PY                             ║
+    ║                    Mutant Chronicles / Doomtrooper                          ║
+    ║                                                                              ║
+    ║  Modulo per la creazione di collezioni giocatore secondo le regole          ║
+    ║  ufficiali del regolamento Doomtrooper.                                     ║
+    ║                                                                              ║
+    ║  Funzionalità implementate:                                                  ║
+    ║  • Creazione collezioni giocatore (non mazzi da gioco)                      ║
+    ║  • Orientamento fazioni casuali (Fratellanza-Doomtrooper-Mercenario, etc.)  ║
+    ║  • Selezione casuale carte da tutte le espansioni specificate               ║
+    ║  • Verifica integrità e bilanciamento collezioni                            ║
+    ║  • Export/Import JSON                                                        ║
+    ║  • Sistema di test completo                                                  ║
+    ║                                                                              ║
+    ║  NOTA: CollezioneGiocatore = tutte le carte possedute                       ║
+    ║        Mazzo da gioco = sottoinsieme con min 5 guerrieri (creato separatam.)║
+    ╚══════════════════════════════════════════════════════════════════════════════╝
+    #    """#)
+        
+    #print("AVVIO DEMO AUTOMATICA...")
+
     # Demo rapida delle funzionalità principali
     try:
-        print("\n🎯 Demo: Creazione collezioni base")
-        demo_collezioni = creazione_Collezione_Giocatore(
-            numero_giocatori=2,
-            espansioni=[Set_Espansione.BASE, Set_Espansione.INQUISITION],
-            orientamento=False
-        )
-        print(f"✅ Create {len(demo_collezioni)} collezioni base")
+        #print("\n🎯 Demo: Creazione collezioni base")
+        #demo_collezioni = creazione_Collezione_Giocatore(
+        #    numero_giocatori=2,
+        #    espansioni=[Set_Espansione.BASE, Set_Espansione.INQUISITION],
+        #    orientamento=False
+        #)
+        #print(f"✅ Create {len(demo_collezioni)} collezioni base")
         
-        print("\n🎯 Demo: Creazione collezioni orientate")
-        demo_orientate = creazione_Collezione_Giocatore(
-            numero_giocatori=2,
-            espansioni=[Set_Espansione.BASE, Set_Espansione.INQUISITION],
-            orientamento=True
-        )
-        print(f"✅ Create {len(demo_orientate)} collezioni orientate")
+        #print("\n🎯 Demo: Creazione collezioni orientate")
+        #demo_orientate = creazione_Collezione_Giocatore(
+        #    numero_giocatori=2,
+        #    espansioni=[Set_Espansione.BASE, Set_Espansione.INQUISITION],
+        #    orientamento=True
+        #)
+        #print(f"✅ Create {len(demo_orientate)} collezioni orientate")
         
-        print("\n🎯 Demo: Verifica integrità")
-        integrità = verifica_integrità_collezioni(demo_orientate)
-        print(f"✅ Verifica completata: {integrità['collezioni_valide']} valide su {len(demo_orientate)}")
+        #print("\n🎯 Demo: Verifica integrità")
+        #integrità = verifica_integrità_collezioni(demo_orientate)
+        #print(f"✅ Verifica completata: {integrità['collezioni_valide']} valide su {len(demo_orientate)}")
         
-        print(f"\n🎯 Demo completata con successo!")
-        print(f"📊 Totale carte generate: {sum(c.get_totale_carte() for c in demo_collezioni + demo_orientate)}")
+        #print(f"\n🎯 Demo completata con successo!")
+        #print(f"📊 Totale carte generate: {sum(c.get_totale_carte() for c in demo_collezioni + demo_orientate)}")
         
-        print("\n🎯 Demo: Test funzioni di creazione individuali")
-        test_creazioni_individuali()
+        #print("\n🎯 Demo: Test funzioni di creazione individuali")
+        #test_creazioni_individuali()
 
-        print("\n🎯 Demo: Test salvataggio")
-        esempio_salvataggio_migliorato()
+        #print("\n🎯 Demo: Test salvataggio")
+        #esempio_salvataggio_migliorato()
         
-        # Per attivare il menu interattivo, decommenta la riga seguente:
+        #Per attivare il menu interattivo, decommenta la riga seguente:
         menu_interattivo()
 
     except Exception as e:

@@ -6,6 +6,7 @@ classi, usecase e utilità per la creazione dei mazzi da gioco
 
 import random
 import math
+import sys
 from datetime import datetime
 from typing import List, Dict, Tuple, Optional, Any, Union
 from enum import Enum
@@ -14,6 +15,18 @@ import os
 import shutil
 from collections import defaultdict
 from dataclasses import dataclass
+from pathlib import Path
+
+# Import per la generazione di PDF
+try:
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import cm
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+    from reportlab.lib.enums import TA_LEFT, TA_CENTER
+    REPORTLAB_AVAILABLE = True
+except ImportError:
+    REPORTLAB_AVAILABLE = False
 
 
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
@@ -73,6 +86,25 @@ from source.data_base_cards.Database_Warzone import (
 )
 
 PERCORSO_SALVATAGGIO = "out/"
+
+
+# ================================================================================
+# ENCODER JSON PER GESTIRE ENUMERAZIONI
+# ================================================================================
+
+class EnumJSONEncoder(json.JSONEncoder):
+    """
+    Encoder JSON personalizzato per gestire enum e altri oggetti non serializzabili.
+    Converte automaticamente gli enum nei loro valori stringa.
+    """
+    def default(self, obj: Any) -> Any:
+        if isinstance(obj, Enum):
+            return obj.value
+        # Se è un oggetto con attributo 'value', usa quello
+        elif hasattr(obj, 'value'):
+            return obj.value
+        return super().default(obj)
+
 
 # ================================================================================
 # COSTANTI PER LA DISTRIBUZIONE DEL TIPO DI CARTE NEL MAZZO
@@ -3825,7 +3857,7 @@ def calcola_statistiche_aggregate_con_apostoli(mazzi: List[Dict[str, Any]]) -> D
 
 
 # ================================================================================
-# ISTRUZIONI PER L'INTEGRAZIONE - ATT: VERI
+# ISTRUZIONI PER L'INTEGRAZIONE - ATT: VERIF
 # ================================================================================
 
 """
@@ -4639,6 +4671,8 @@ def menu_interattivo_mazzi():
         print("11. Esempio completo salvataggio")
         print("12. Pulisci mazzi correnti")
         print("13. Crea e salva mazzo da file collezione")
+        print("14. Crea e salva mazzo da cartella collezioni")
+
         print("0. Esci")
         
         
@@ -4804,7 +4838,8 @@ def menu_interattivo_mazzi():
                 num = int(input("numero collezione (0, 1, ...): "))
                 collezione = collezioni[num]
                 
-                filename = input("nome file di output (default: mazzo_di_sconosciuto.json): ").strip()
+                filename = "mazzo_collezione_" + str(num) #input("nome file di output (default: mazzo_di_sconosciuto.json): ").strip()
+                
                 if not filename:
                     filename = "mazzo_di_sconosciuto.json"
                 
@@ -4851,7 +4886,7 @@ def menu_interattivo_mazzi():
                             print(f"  {i+1}. {esp.value}")        
                         apo_input = input("Scegli gli Apostoli (numeri separati da virgola): ")
                         apo_indices = [int(x.strip())-1 for x in apo_input.split(",")]
-                        apostoli_scelti = [list(ApostoloOscuraSimmetria)[i].value for i in art_indices if 0 <= i < len(ApostoloOscuraSimmetria)]
+                        apostoli_scelti = [list(ApostoloOscuraSimmetria)[i].value for i in apo_indices if 0 <= i < len(ApostoloOscuraSimmetria)]
                     cultisti = input("utilizzo cultisti (s/n): ").lower().startswith('s')
 
                 eretici = input("utilizzo eretici (s/n): ").lower().startswith('s')
@@ -4886,9 +4921,592 @@ def menu_interattivo_mazzi():
                     print("❌ Salvataggio fallito")
             except Exception as e:
                 print(f"Errore: {e}")
-        
+
+        elif scelta == "14":
+            # Creazione personalizzata
+            mazzi_correnti.clear()
+            sys.path.insert(0, '/home/marco/Sviluppo/Mutant_Chronicles')
+                            
+            try:
+                cartella_collezioni = str(input("nome cartella con il file collezioni da caricare: "))
+                numero_collezione =  int(input("numero della collezione da caricare: "))
+
+                risultato = crea_mazzo_da_cartella_collezione(
+                    cartella_collezioni = "Collezioni_20260102_155823",
+                    numero_collezione = numero_collezione,
+                    verbose=True
+                )
+
+                print("\n" + "="*80)
+                print("RISULTATI DELLA CREAZIONE DEL MAZZO DA CARTELLA COLLEZIONE")
+                print("="*80)
+
+                if risultato.get('successo'):
+                    print(f"✅ cartella mazzo e relativi contenuti creati con successo!")
+                    print(f"\n📊 Statistiche:")
+                    print(f"   - Percorso mazzo: {risultato['percorso_mazzo']}")
+                    print(f"   - Numero carte: {risultato['numero_carte']}")
+
+                    mazzo = risultato.get('mazzo', {})
+                    if mazzo:
+                        stats = mazzo.get('statistiche', {})
+                        print(f"\n🎴 Dettagli mazzo:")
+                        print(f"   - Guerrieri squadra: {len(mazzo.get('squadra', []))}")
+                        print(f"   - Guerrieri schieramento: {len(mazzo.get('schieramento', []))}")
+                        print(f"   - Carte supporto: {len(mazzo.get('carte_supporto', []))}")
+                        print(f"   - Distribuzione per tipo: {stats.get('distribuzione_per_tipo', {})}")
+
+                    return 0
+                else:
+                    print(f"❌ ERRORE: {risultato.get('errore', 'Errore sconosciuto')}")
+                    return 1
+
+            except Exception as e:
+                print(f"\n❌ ERRORE FATALE: {e}")
+                import traceback
+                traceback.print_exc()
+                return 1
+
         else:
             print("❌ Opzione non valida")
+
+
+
+
+# ============================================================================
+# FUNZIONI PER CREAZIONE MAZZO DA CARTELLA COLLEZIONE
+# ============================================================================
+
+def crea_pdf_mazzo(mazzo: Dict[str, Any], percorso_pdf: str, numero_giocatore: int) -> bool:
+    """
+    Crea un file PDF con l'elenco delle carte di un mazzo.
+
+    Le carte sono organizzate per tipo (Guerrieri Squadra, Guerrieri Schieramento,
+    Equipaggiamento, ecc.) e per ogni carta vengono mostrate: nome, quantità, fazione.
+    Per le carte Arte viene indicata la disciplina.
+    Per le carte Oscura Simmetria viene indicato il tipo di dono.
+
+    Args:
+        mazzo: Dizionario del mazzo (output di crea_mazzo_da_gioco)
+        percorso_pdf: Il percorso completo dove salvare il PDF
+        numero_giocatore: Il numero del giocatore
+
+    Returns:
+        True se il PDF è stato creato con successo, False altrimenti
+    """
+    if not REPORTLAB_AVAILABLE:
+        print("⚠️  La libreria reportlab non è disponibile. Impossibile creare il PDF.")
+        print("   Installa reportlab con: pip install reportlab")
+        return False
+
+    try:
+        # Crea il documento PDF
+        doc = SimpleDocTemplate(
+            percorso_pdf,
+            pagesize=A4,
+            rightMargin=2*cm,
+            leftMargin=2*cm,
+            topMargin=2*cm,
+            bottomMargin=2*cm
+        )
+
+        # Definisce gli stili
+        styles = getSampleStyleSheet()
+
+        # Stile per il titolo
+        style_titolo = ParagraphStyle(
+            'CustomTitle',
+            parent=styles['Heading1'],
+            fontSize=16,
+            textColor='darkblue',
+            spaceAfter=20,
+            alignment=TA_CENTER
+        )
+
+        # Stile per i sottotitoli (tipo carta)
+        style_sottotitolo = ParagraphStyle(
+            'CustomHeading',
+            parent=styles['Heading2'],
+            fontSize=14,
+            textColor='darkgreen',
+            spaceAfter=12,
+            spaceBefore=12
+        )
+
+        # Stile per il testo normale
+        style_normale = styles['Normal']
+
+        # Lista degli elementi da inserire nel PDF
+        elementi = []
+
+        # Titolo
+        titolo = Paragraph(
+            f"<b>Mazzo Giocatore {numero_giocatore}</b>",
+            style_titolo
+        )
+        elementi.append(titolo)
+        elementi.append(Spacer(1, 0.5*cm))
+
+        # Statistiche generali
+        statistiche = mazzo.get('statistiche', {})
+        totale_carte = statistiche.get('numero_totale_carte', 0)
+
+        stats_text = Paragraph(
+            f"<b>Totale carte:</b> {totale_carte}",
+            style_normale
+        )
+        elementi.append(stats_text)
+        elementi.append(Spacer(1, 0.5*cm))
+
+        # Funzione helper per contare e raggruppare carte
+        def conta_carte(lista_carte):
+            carte_conteggio = defaultdict(int)
+            carte_esempi = {}
+            for carta in lista_carte:
+                carte_conteggio[carta.nome] += 1
+                if carta.nome not in carte_esempi:
+                    carte_esempi[carta.nome] = carta
+            return carte_conteggio, carte_esempi
+
+        # 1. GUERRIERI SQUADRA
+        squadra = mazzo.get('squadra', [])
+        if squadra:
+            carte_conteggio, carte_esempi = conta_carte(squadra)
+
+            sottotitolo = Paragraph(
+                f"<b>Guerrieri Squadra ({len(squadra)} carte, {len(carte_conteggio)} uniche)</b>",
+                style_sottotitolo
+            )
+            elementi.append(sottotitolo)
+            elementi.append(Spacer(1, 0.2*cm))
+
+            # Ordina per fazione, poi per nome
+            carte_ordinate = sorted(
+                carte_conteggio.items(),
+                key=lambda x: (
+                    carte_esempi[x[0]].fazione.value if hasattr(carte_esempi[x[0]], 'fazione') and carte_esempi[x[0]].fazione else 'ZZZ',
+                    x[0]
+                )
+            )
+
+            for nome_carta, quantita in carte_ordinate:
+                carta = carte_esempi[nome_carta]
+                info_parti = [f"<b>{nome_carta}</b> (x{quantita})"]
+
+                if hasattr(carta, 'fazione') and carta.fazione:
+                    fazione_str = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+                    info_parti.append(f"Fazione: {fazione_str}")
+
+                carta_text = Paragraph(" | ".join(info_parti), style_normale)
+                elementi.append(carta_text)
+                elementi.append(Spacer(1, 0.1*cm))
+
+            elementi.append(Spacer(1, 0.3*cm))
+
+        # 2. GUERRIERI SCHIERAMENTO
+        schieramento = mazzo.get('schieramento', [])
+        if schieramento:
+            carte_conteggio, carte_esempi = conta_carte(schieramento)
+
+            sottotitolo = Paragraph(
+                f"<b>Guerrieri Schieramento ({len(schieramento)} carte, {len(carte_conteggio)} uniche)</b>",
+                style_sottotitolo
+            )
+            elementi.append(sottotitolo)
+            elementi.append(Spacer(1, 0.2*cm))
+
+            # Ordina per fazione, poi per nome
+            carte_ordinate = sorted(
+                carte_conteggio.items(),
+                key=lambda x: (
+                    carte_esempi[x[0]].fazione.value if hasattr(carte_esempi[x[0]], 'fazione') and carte_esempi[x[0]].fazione else 'ZZZ',
+                    x[0]
+                )
+            )
+
+            for nome_carta, quantita in carte_ordinate:
+                carta = carte_esempi[nome_carta]
+                info_parti = [f"<b>{nome_carta}</b> (x{quantita})"]
+
+                if hasattr(carta, 'fazione') and carta.fazione:
+                    fazione_str = carta.fazione.value if hasattr(carta.fazione, 'value') else str(carta.fazione)
+                    info_parti.append(f"Fazione: {fazione_str}")
+
+                carta_text = Paragraph(" | ".join(info_parti), style_normale)
+                elementi.append(carta_text)
+                elementi.append(Spacer(1, 0.1*cm))
+
+            elementi.append(Spacer(1, 0.3*cm))
+
+        # 3. CARTE SUPPORTO
+        carte_supporto = mazzo.get('carte_supporto', [])
+        if carte_supporto:
+            # Raggruppa per tipo
+            carte_per_tipo = defaultdict(list)
+            for carta in carte_supporto:
+                tipo = type(carta).__name__.lower()
+                carte_per_tipo[tipo].append(carta)
+
+            # Ordine dei tipi
+            ordine_tipi = ['equipaggiamento', 'speciale', 'fortificazione', 'missione', 'arte', 'oscura_simmetria', 'reliquia', 'warzone']
+            nomi_tipi = {
+                'equipaggiamento': 'Equipaggiamento',
+                'speciale': 'Carte Speciali',
+                'fortificazione': 'Fortificazioni',
+                'missione': 'Missioni',
+                'arte': 'Carte Arte',
+                'oscura_simmetria': 'Carte Oscura Simmetria',
+                'reliquia': 'Reliquie',
+                'warzone': 'Warzone'
+            }
+
+            for tipo in ordine_tipi:
+                if tipo not in carte_per_tipo:
+                    continue
+
+                liste_carte = carte_per_tipo[tipo]
+                carte_conteggio, carte_esempi = conta_carte(liste_carte)
+
+                sottotitolo = Paragraph(
+                    f"<b>{nomi_tipi.get(tipo, tipo.capitalize())} ({len(liste_carte)} carte, {len(carte_conteggio)} uniche)</b>",
+                    style_sottotitolo
+                )
+                elementi.append(sottotitolo)
+                elementi.append(Spacer(1, 0.2*cm))
+
+                # Ordina in base al tipo
+                if tipo == 'arte':
+                    # Ordina per disciplina
+                    carte_ordinate = sorted(
+                        carte_conteggio.items(),
+                        key=lambda x: (
+                            carte_esempi[x[0]].disciplina.value if hasattr(carte_esempi[x[0]], 'disciplina') and carte_esempi[x[0]].disciplina else 'ZZZ',
+                            x[0]
+                        )
+                    )
+                elif tipo == 'oscura_simmetria':
+                    # Ordina per tipo di dono
+                    def get_dono_key(nome_carta):
+                        carta = carte_esempi[nome_carta]
+                        if hasattr(carta, 'tipo') and carta.tipo:
+                            tipo_str = carta.tipo.value if hasattr(carta.tipo, 'value') else str(carta.tipo)
+                            if hasattr(carta, 'apostolo_padre') and carta.apostolo_padre:
+                                apostolo_str = carta.apostolo_padre.value if hasattr(carta.apostolo_padre, 'value') else str(carta.apostolo_padre)
+                                if apostolo_str and apostolo_str != 'None':
+                                    return f"Seguace di {apostolo_str}"
+                            return tipo_str
+                        return 'ZZZ'
+
+                    carte_ordinate = sorted(
+                        carte_conteggio.items(),
+                        key=lambda x: (get_dono_key(x[0]), x[0])
+                    )
+                else:
+                    # Ordina solo per nome
+                    carte_ordinate = sorted(carte_conteggio.items())
+
+                for nome_carta, quantita in carte_ordinate:
+                    carta = carte_esempi[nome_carta]
+                    info_parti = [f"<b>{nome_carta}</b> (x{quantita})"]
+
+                    # Aggiungi informazioni specifiche per tipo
+                    if tipo == 'arte' and hasattr(carta, 'disciplina') and carta.disciplina:
+                        disciplina_str = carta.disciplina.value if hasattr(carta.disciplina, 'value') else str(carta.disciplina)
+                        info_parti.append(f"Disciplina: {disciplina_str}")
+
+                    if tipo == 'oscura_simmetria':
+                        if hasattr(carta, 'tipo') and carta.tipo:
+                            tipo_str = carta.tipo.value if hasattr(carta.tipo, 'value') else str(carta.tipo)
+                            if hasattr(carta, 'apostolo_padre') and carta.apostolo_padre:
+                                apostolo_str = carta.apostolo_padre.value if hasattr(carta.apostolo_padre, 'value') else str(carta.apostolo_padre)
+                                if apostolo_str and apostolo_str != 'None':
+                                    info_parti.append(f"Dono: Seguace di {apostolo_str}")
+                                else:
+                                    info_parti.append(f"Dono: {tipo_str}")
+                            else:
+                                info_parti.append(f"Dono: {tipo_str}")
+
+                    carta_text = Paragraph(" | ".join(info_parti), style_normale)
+                    elementi.append(carta_text)
+                    elementi.append(Spacer(1, 0.1*cm))
+
+                elementi.append(Spacer(1, 0.3*cm))
+
+        # Costruisce il PDF
+        doc.build(elementi)
+
+        return True
+
+    except Exception as e:
+        print(f"❌ Errore durante la creazione del PDF: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+
+def crea_mazzo_da_cartella_collezione(
+    cartella_collezioni: str,
+    numero_collezione: int,
+    verbose: bool = True
+) -> Dict[str, Any]:
+    """
+    Crea un mazzo da una cartella di collezioni con interazione utente.
+
+    Questa funzione:
+    1. Carica il file lista_collezioni.json dalla cartella specificata
+    2. Interagisce con l'utente per ottenere i parametri del mazzo
+    3. Crea il mazzo dalla collezione selezionata
+    4. Salva il mazzo in formato JSON
+    5. Crea un PDF con l'elenco delle carte
+    6. Esporta le immagini delle carte del mazzo
+
+    Args:
+        cartella_collezioni: Nome della cartella contenente le collezioni (relativa a out/)
+        numero_collezione: Numero della collezione da cui creare il mazzo (1-based)
+        verbose: Se True, stampa messaggi di progresso
+
+    Returns:
+        Dizionario con le statistiche della creazione
+    """
+    try:
+        if verbose:
+            print(f"\n{'='*80}")
+            print(f"🎴 CREAZIONE MAZZO DA CARTELLA COLLEZIONE")
+            print(f"{'='*80}")
+            print(f"📁 Cartella: {cartella_collezioni}")
+            print(f"🎮 Numero collezione: {numero_collezione}")
+
+        # Costruisce il percorso del file collezioni
+        # NOTA: carica_collezioni_json_migliorato aggiunge automaticamente PERCORSO_SALVATAGGIO ("out/")
+        percorso_relativo = f"{cartella_collezioni}/lista_collezioni.json"
+
+        # Carica le collezioni
+        if verbose:
+            print(f"\n📂 Caricamento collezioni...")
+
+        risultato = carica_collezioni_json_migliorato(percorso_relativo)
+
+        if not risultato:
+            raise ValueError(f"Impossibile caricare il file {percorso_relativo}")
+
+        # La funzione restituisce una tupla (dati_json, collezioni)
+        dati_json, collezioni = risultato
+
+        if not collezioni:
+            raise ValueError("Nessuna collezione trovata nel file")
+
+        if numero_collezione < 1 or numero_collezione > len(collezioni):
+            raise ValueError(f"Numero collezione non valido. Deve essere tra 1 e {len(collezioni)}")
+
+        collezione = collezioni[numero_collezione - 1]
+
+        if verbose:
+            print(f"✅ Collezione {numero_collezione} caricata")
+            print(f"\n{'='*80}")
+            print(f"CONFIGURAZIONE MAZZO")
+            print(f"{'='*80}")
+
+        # Interazione con l'utente per i parametri del mazzo
+        carte_min = int(input("Numero minimo di carte del mazzo: "))
+        carte_max = int(input("Numero massimo di carte del mazzo: "))
+
+        fazioni_doomtrooper = []
+        arti_scelte = []
+        apostoli_scelti = []
+        espansioni = []
+
+        # Doomtrooper
+        doomtrooper = input("Utilizzo doomtrooper (s/n): ").lower().startswith('s')
+        if doomtrooper:
+            scelta_fazioni = input("Vuoi specificare quali fazioni doomtrooper utilizzare (s/n): ").lower().startswith('s')
+            if scelta_fazioni:
+                print("Fazioni:")
+                for i, faz in enumerate(FAZIONI_DOOMTROOPER):
+                    print(f"  {i+1}. {faz.value}")
+                faz_input = input("Scegli fazioni (numeri separati da virgola): ")
+                faz_indices = [int(x.strip())-1 for x in faz_input.split(",")]
+                fazioni_doomtrooper = [list(FAZIONI_DOOMTROOPER)[i].value for i in faz_indices if 0 <= i < len(FAZIONI_DOOMTROOPER)]
+
+        # Fratellanza
+        fratellanza = input("Utilizzo fratellanza (s/n): ").lower().startswith('s')
+        if fratellanza:
+            scelta_arte = input("Vuoi specificare quali tipologie di Arte vuoi utilizzare (s/n): ").lower().startswith('s')
+            if scelta_arte:
+                print("Tipologie Arte:")
+                for i, arte in enumerate(DisciplinaArte):
+                    print(f"  {i+1}. {arte.value}")
+                art_input = input("Scegli le tipologie di Arte (numeri separati da virgola): ")
+                art_indices = [int(x.strip())-1 for x in art_input.split(",")]
+                arti_scelte = [list(DisciplinaArte)[i].value for i in art_indices if 0 <= i < len(DisciplinaArte)]
+
+        # Oscura Legione
+        cultisti = False
+        oscura_legione = input("Utilizzo oscura legione (s/n): ").lower().startswith('s')
+        if oscura_legione:
+            scelta_apostoli = input("Vuoi specificare quali Apostoli vuoi utilizzare (s/n): ").lower().startswith('s')
+            if scelta_apostoli:
+                print("Apostoli:")
+                for i, apo in enumerate(ApostoloOscuraSimmetria):
+                    print(f"  {i+1}. {apo.value}")
+                apo_input = input("Scegli gli Apostoli (numeri separati da virgola): ")
+                apo_indices = [int(x.strip())-1 for x in apo_input.split(",")]
+                apostoli_scelti = [list(ApostoloOscuraSimmetria)[i].value for i in apo_indices if 0 <= i < len(ApostoloOscuraSimmetria)]
+            cultisti = input("Utilizzo cultisti (s/n): ").lower().startswith('s')
+
+        # Eretici
+        eretici = input("Utilizzo eretici (s/n): ").lower().startswith('s')
+
+        # Espansioni
+        print("\nEspansioni disponibili:")
+        for i, esp in enumerate(Set_Espansione):
+            print(f"  {i+1}. {esp.value}")
+        esp_input = input("Scegli espansioni (numeri separati da virgola): ")
+        esp_indices = [int(x.strip())-1 for x in esp_input.split(",")]
+        espansioni = [list(Set_Espansione)[i].value for i in esp_indices if 0 <= i < len(Set_Espansione)]
+
+        # Crea il mazzo
+        if verbose:
+            print(f"\n{'='*80}")
+            print(f"🔄 CREAZIONE MAZZO IN CORSO...")
+            print(f"{'='*80}")
+
+        mazzo = crea_mazzo_da_gioco(
+            collezione,
+            numero_carte_max=carte_max,
+            numero_carte_min=carte_min,
+            espansioni_richieste=espansioni,
+            doomtrooper=doomtrooper,
+            orientamento_doomtrooper=fazioni_doomtrooper,
+            fratellanza=fratellanza,
+            orientamento_arte=arti_scelte,
+            oscura_legione=oscura_legione,
+            orientamento_apostolo=apostoli_scelti,
+            orientamento_eretico=eretici,
+            orientamento_cultista=cultisti
+        )
+
+        if verbose:
+            print(f"✅ Mazzo creato: {mazzo['statistiche']['numero_totale_carte']} carte totali")
+
+        # Crea la struttura delle cartelle
+        percorso_cartella = Path(PERCORSO_SALVATAGGIO) / cartella_collezioni
+        cartella_collezione_giocatore = percorso_cartella / f"Collezione_Giocatore_{numero_collezione}"
+        cartella_mazzo = cartella_collezione_giocatore / f"Mazzo_Giocatore_{numero_collezione}"
+        cartella_mazzo.mkdir(parents=True, exist_ok=True)
+
+        if verbose:
+            print(f"\n📁 Cartella mazzo creata: {cartella_mazzo}")
+
+        # 1. Salva il JSON del mazzo
+        nome_file_json = f"mazzo_giocatore_{numero_collezione}.json"
+        percorso_json = cartella_mazzo / nome_file_json
+
+        # Crea la struttura JSON del mazzo
+        inventario_mazzo = crea_inventario_dettagliato_mazzo_json_con_conteggio_e_apostoli(mazzo, numero_collezione)
+
+        dati_mazzo = {
+            'metadata': {
+                'versione': '2.0',
+                'tipo_export': 'mazzo_singolo',
+                'data_creazione': datetime.now().isoformat(),
+                'numero_giocatore': numero_collezione
+            },
+            'mazzo': inventario_mazzo
+        }
+
+        with open(percorso_json, 'w', encoding='utf-8') as f:
+            json.dump(dati_mazzo, f, indent=2, ensure_ascii=False, default=str)
+
+        if verbose:
+            print(f"   ✅ JSON salvato: {nome_file_json}")
+
+        # 2. Crea il PDF
+        nome_file_pdf = f"elenco_carte_mazzo_{numero_collezione}.pdf"
+        percorso_pdf = cartella_mazzo / nome_file_pdf
+
+        pdf_creato = crea_pdf_mazzo(mazzo, str(percorso_pdf), numero_collezione)
+
+        if pdf_creato and verbose:
+            print(f"   ✅ PDF creato: {nome_file_pdf}")
+        elif not pdf_creato and verbose:
+            print(f"   ⚠️  Impossibile creare PDF")
+
+        # 3. Crea la cartella Immagini
+        cartella_immagini = cartella_mazzo / f"Immagini_Mazzo_{numero_collezione}"
+        cartella_immagini.mkdir(exist_ok=True)
+
+        if verbose:
+            print(f"   📁 Cartella immagini creata")
+
+        # 4. Esporta le immagini
+        if verbose:
+            print(f"   🖼️  Esportazione immagini in corso...")
+
+        try:
+            # Usa la funzione copia_immagini_mazzo
+            nome_mazzo_temp = f"temp_mazzo_{numero_collezione}"
+            risultato_immagini = copia_immagini_mazzo(nome_mazzo_temp, mazzo)
+
+            # Sposta le immagini nella cartella corretta
+            cartella_immagini_temp = Path(PERCORSO_SALVATAGGIO) / "mazzi_immagini" / nome_mazzo_temp
+
+            if cartella_immagini_temp.exists():
+                # Copia tutte le immagini mantenendo la struttura
+                for item in cartella_immagini_temp.iterdir():
+                    dest = cartella_immagini / item.name
+                    if item.is_dir():
+                        shutil.copytree(item, dest, dirs_exist_ok=True)
+                    else:
+                        shutil.copy2(item, dest)
+
+                # Rimuovi la cartella temporanea
+                shutil.rmtree(cartella_immagini_temp)
+
+            if verbose:
+                num_immagini = sum(1 for _ in cartella_immagini.rglob('*.jpg')) + sum(1 for _ in cartella_immagini.rglob('*.png'))
+                print(f"   ✅ Immagini esportate: {num_immagini} file")
+
+        except Exception as e:
+            if verbose:
+                print(f"   ⚠️  Errore durante l'esportazione immagini: {e}")
+
+        # Riepilogo finale
+        if verbose:
+            print(f"\n{'='*80}")
+            print(f"✅ CREAZIONE MAZZO COMPLETATA")
+            print(f"{'='*80}")
+            print(f"📁 Percorso: {cartella_mazzo}")
+            print(f"🎴 Carte totali: {mazzo['statistiche']['numero_totale_carte']}")
+            print(f"⚔️ Guerrieri squadra: {len(mazzo['squadra'])}")
+            print(f"🌙 Guerrieri schieramento: {len(mazzo['schieramento'])}")
+            print(f"🎴 Carte supporto: {len(mazzo['carte_supporto'])}")
+
+        return {
+            'successo': True,
+            'percorso_mazzo': str(cartella_mazzo),
+            'numero_carte': mazzo['statistiche']['numero_totale_carte'],
+            'mazzo': mazzo
+        }
+
+    except Exception as e:
+        errore_msg = f"Errore durante la creazione del mazzo: {str(e)}"
+        if verbose:
+            print(f"\n❌ {errore_msg}")
+            import traceback
+            traceback.print_exc()
+
+        return {
+            'successo': False,
+            'errore': errore_msg
+        }
+
+
+
+
+
+
+
+
 
 # ================================================================================
 # FUNZIONI DI TEST E VALIDAZIONE
@@ -4966,77 +5584,80 @@ def test_funzioni_mazzi():
 
 
 
+
 # ================================================================================
 # MAIN DI TEST (se eseguito come modulo standalone)
 # ================================================================================
 
 if __name__ == "__main__":
+    
+    menu_interattivo_mazzi()
     """
     Esecuzione diretta del modulo per test.
     """
-    print("🎯 MODULO GESTIONE MAZZI - TEST STANDALONE")
+    
+    #print("🎯 MODULO GESTIONE MAZZI - TEST STANDALONE")
     
     # Esegui test base
     # test_funzioni_mazzi()
 
-    espansioni_richieste = [Set_Espansione.BASE, Set_Espansione.INQUISITION, Set_Espansione.WARZONE]
+    #espansioni_richieste = [Set_Espansione.BASE, Set_Espansione.INQUISITION, Set_Espansione.WARZONE]
 
-    collezioni = creazione_Collezione_Giocatore(3, espansioni_richieste, orientamento = True)
-    salva_collezioni_json_migliorato(collezioni = collezioni, filename = "collezioni_3_player_no_orientamento.json")
-    dati_json, collezioni = carica_collezioni_json_migliorato(filename = "collezioni_3_player_no_orientamento.json")
+    #collezioni = creazione_Collezione_Giocatore(3, espansioni_richieste, orientamento = True)
+    #salva_collezioni_json_migliorato(collezioni = collezioni, filename = "collezioni_3_player_no_orientamento.json")
+    #dati_json, collezioni = carica_collezioni_json_migliorato(filename = "collezioni_3_player_no_orientamento.json")
 
-    orientamento_collezioni = []
+    #orientamento_collezioni = []
     # conta Guerrieri
-    mazzo = []
-    orientamento_fratellanza_forzato = True
-    orientamento = {}
+    #mazzo = []
+    #orientamento_fratellanza_forzato = True
+    #orientamento = {}
 
-    for collezione in collezioni:
-        
-        if orientamento_fratellanza_forzato:
-            orientamento['fratellanza'] = True
-            orientamento['orientamento_arte'] = ['Cambiamento', 'Elementi', 'Esorcismo', 'Cinetica']
-            orientamento['oscura_legione'] = False
-            orientamento['orientamento_apostolo']=[]
-            orientamento['doomtrooper'] = True
-            orientamento['orientamento_doomtrooper'] = ['Bauhaus', 'Capitol']
-            orientamento['orientamento_eretico'] = False
-            orientamento['orientamento_cultista'] = False  
-            orientamento_fratellanza_forzato = False # orientamento vincolato alla fratellanza solo per il primo mazzo            
-        else:
-            orientamento = determina_orientamento_collezione(collezione = collezione, espansioni_richieste = espansioni_richieste)
-
-
-
-        print(f"\nCreazione mazzo per collezione con orientamento:")
-        print(f"  Doomtrooper: {orientamento['doomtrooper']} - Fazioni: {orientamento['orientamento_doomtrooper']} ")
-        print(f"  Fratellanza: {orientamento['fratellanza']} - Arti: {orientamento['orientamento_arte']}")
-        print(f"  Oscura Legione: {orientamento['oscura_legione']} - Apostoli: {orientamento['orientamento_apostolo']}")
-        print(f"  Eretici: {orientamento['orientamento_eretico']} - Cultisti: {orientamento['orientamento_cultista']}")
-
-
-        mazzo.append( 
-            crea_mazzo_da_gioco(collezione,
-                        numero_carte_max = 200,
-                        numero_carte_min = 150,
-                        espansioni_richieste = ["Base", "Inquisition", "Warzone"],
-                        doomtrooper = orientamento['doomtrooper'],
-                        orientamento_doomtrooper = orientamento['orientamento_doomtrooper'],
-                        fratellanza = orientamento['fratellanza'],
-                        orientamento_arte = orientamento['orientamento_arte'],
-                        oscura_legione = orientamento['oscura_legione'],
-                        orientamento_apostolo = orientamento['orientamento_apostolo'],
-                        orientamento_eretico = orientamento['orientamento_eretico'],
-                        orientamento_cultista = orientamento['orientamento_cultista'])
-            )
     
-    esempio_salvataggio_mazzi_con_conteggio(mazzo)
+    #for collezione in collezioni:
+        
+    #    if orientamento_fratellanza_forzato:
+            #orientamento['fratellanza'] = True
+            #orientamento['orientamento_arte'] = ['Cambiamento', 'Elementi', 'Esorcismo', 'Cinetica']
+            #orientamento['oscura_legione'] = False
+            #orientamento['orientamento_apostolo']=[]
+            #orientamento['doomtrooper'] = True
+            #orientamento['orientamento_doomtrooper'] = ['Bauhaus', 'Capitol']
+            #orientamento['orientamento_eretico'] = False
+            #orientamento['orientamento_cultista'] = False  
+            #orientamento_fratellanza_forzato = False # orientamento vincolato alla fratellanza solo per il primo mazzo            
+    #    else:
+            #orientamento = determina_orientamento_collezione(collezione = collezione, espansioni_richieste = espansioni_richieste)
+
+
+
+    #    print(f"\nCreazione mazzo per collezione con orientamento:")
+    #    print(f"  Doomtrooper: {orientamento['doomtrooper']} - Fazioni: {orientamento['orientamento_doomtrooper']} ")
+    #    print(f"  Fratellanza: {orientamento['fratellanza']} - Arti: {orientamento['orientamento_arte']}")
+    #    print(f"  Oscura Legione: {orientamento['oscura_legione']} - Apostoli: {orientamento['orientamento_apostolo']}")
+    #    print(f"  Eretici: {orientamento['orientamento_eretico']} - Cultisti: {orientamento['orientamento_cultista']}")
+
+
+    #    mazzo.append( 
+            #crea_mazzo_da_gioco(collezione,
+            #            numero_carte_max = 200,
+            #            numero_carte_min = 150,
+            #            espansioni_richieste = ["Base", "Inquisition", "Warzone"],
+            #            doomtrooper = orientamento['doomtrooper'],
+            #            orientamento_doomtrooper = orientamento['orientamento_doomtrooper'],
+            #            fratellanza = orientamento['fratellanza'],
+            #            orientamento_arte = orientamento['orientamento_arte'],
+            #            oscura_legione = orientamento['oscura_legione'],
+            #            orientamento_apostolo = orientamento['orientamento_apostolo'],
+            #            orientamento_eretico = orientamento['orientamento_eretico'],
+            #            orientamento_cultista = orientamento['orientamento_cultista'])
+            #)
+    
+    #esempio_salvataggio_mazzi_con_conteggio(mazzo)
 
     # Menu interattivo
-    risposta = input("\nVuoi aprire il menu interattivo? (s/n): ")
-    if risposta.lower().startswith('s'):
-        menu_interattivo_mazzi()
-
-
+    #risposta = input("\nVuoi aprire il menu interattivo? (s/n): ")
+    #if risposta.lower().startswith('s'):
+    #    menu_interattivo_mazzi()
 
 
