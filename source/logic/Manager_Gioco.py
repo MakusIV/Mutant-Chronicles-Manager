@@ -31,7 +31,7 @@ PERCORSO_SALVATAGGIO = "out/"
 # ==================== ESEMPI E TEST PER COLLEZIONE GIOCATORE ====================
 
 def menu_interattivo():
-    """Menu interattivo per testare le funzionalità"""
+    """Menu interattivo per la creazione delle collezioni e mazzi giocatore."""
     
     while True:
         print("\n" + "="*60)

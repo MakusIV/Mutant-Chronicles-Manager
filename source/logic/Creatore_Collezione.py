@@ -2489,7 +2489,7 @@ def menu_interattivo():
         print("\n" + "="*60)
         print("MANAGER_GIOCO - MENU INTERATTIVO")
         print("="*60)
-        print("1. crea cartelle collezioni")
+        print("1. crea cartelle collezioni (FUNZIONE UFFICIALE)")
         print("2. vuoto")
         print("3. Test multiple espansioni (dedicato al test)")
         print("4. Stress test (dedicato al test)" )
