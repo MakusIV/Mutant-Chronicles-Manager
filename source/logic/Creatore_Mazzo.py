@@ -1587,7 +1587,7 @@ class CreatoreMazzo:
             distribuzione['warzone'] = 0
             
         if not Set_Espansione.INQUISITION.value in espansioni_richieste:
-            ridistribuzione_totale += distribuzione['inquisition']
+            ridistribuzione_totale += distribuzione['reliquia']
             distribuzione['reliquia'] = 0
         
         if ridistribuzione_totale > 0:
@@ -1658,6 +1658,7 @@ def crea_mazzo_da_gioco(collezione: Any,
         orientamento_arte: Discipline Arte preferite (opzionale)
         orientamento_apostolo: Apostoli preferiti (opzionale)
         orientamento_eretico: Se True, preferisce guerrieri eretici (opzionale)
+        orientamento_cultista: Se True, preferisce guerrieri cultisti (opzionale)
         
     Returns:
         Dizionario contenente:
@@ -4932,7 +4933,7 @@ def menu_interattivo_mazzi():
                 numero_collezione =  int(input("numero della collezione da caricare: "))
 
                 risultato = crea_mazzo_da_cartella_collezione(
-                    cartella_collezioni = "Collezioni_20260102_155823",
+                    cartella_collezioni = cartella_collezioni,
                     numero_collezione = numero_collezione,
                     verbose=True
                 )
