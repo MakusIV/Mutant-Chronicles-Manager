@@ -56,6 +56,15 @@ CARTELLA_IMMAGINI_PER_TIPOLOGIA = {
 
 ESTENSIONI_IMMAGINE = (".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG")
 
+# Le cinque Megacorporazioni, più le altre affiliazioni che compaiono come sotto-categoria.
+CORPORAZIONI = ("Bauhaus", "Capitol", "Cybertronic", "Imperiale", "Mishima")
+
+# Insieme delle fazioni considerate Doomtrooper (regolamento §6): quando una carta le
+# abilita tutte, la sotto-categoria diventa "Doomtrooper" invece dell'elenco per esteso.
+FAZIONI_DOOMTROOPER = frozenset(CORPORAZIONI) | {"Fratellanza", "Mercenario"}
+
+SOTTOCATEGORIA_ASSENTE = "Non specificata"
+
 
 # ================================================================================
 # STRATO DATI — indipendente dall'interfaccia grafica
@@ -67,17 +76,21 @@ class CartaMazzo:
 
     nome: str
     tipologia: str                      # Guerriero, Equipaggiamento, Speciale, …
+    sottocategoria: str                 # Fazione, disciplina, apostolo… secondo la tipologia
     appartenenza: str                   # Squadra/Schieramento, oppure il sottotipo della carta
     fazione: str
     copie: int
+    disciplina: str = ""                # solo per le carte Arte
     percorso_immagine: Optional[Path] = None
     dettagli: Dict[str, Any] = field(default_factory=dict)
 
     def chiave_ordinamento(self) -> tuple:
-        """Ordina per posizione della tipologia e poi per nome."""
+        """Ordina per tipologia, poi per sotto-categoria e infine per nome."""
         posizione = (ORDINE_TIPOLOGIE.index(self.tipologia)
                      if self.tipologia in ORDINE_TIPOLOGIE else len(ORDINE_TIPOLOGIE))
-        return (posizione, self.nome.lower())
+        # Le carte senza sotto-categoria vanno in fondo al proprio gruppo
+        assente = self.sottocategoria == SOTTOCATEGORIA_ASSENTE
+        return (posizione, assente, self.sottocategoria.lower(), self.nome.lower())
 
 
 def _formatta_fazioni(utilizzatori: Any) -> str:
@@ -107,6 +120,78 @@ def _formatta_fazioni(utilizzatori: Any) -> str:
         nomi.append(testo.replace("_", " ").title())
 
     return ", ".join(nomi)
+
+
+def _nomi_fazioni(utilizzatori: Any) -> List[str]:
+    """
+    Estrae i nomi leggibili delle fazioni dal campo `utilizzatori`.
+
+    Args:
+        utilizzatori: Valore del campo, con le fazioni serializzate come "Fazione.GENERICA"
+
+    Returns:
+        I nomi delle fazioni, ordinati
+    """
+    if not utilizzatori:
+        return []
+    if isinstance(utilizzatori, str):
+        utilizzatori = [utilizzatori]
+
+    nomi = []
+    for voce in utilizzatori:
+        testo = str(voce)
+        if "." in testo:
+            testo = testo.rsplit(".", 1)[1]
+        nomi.append(testo.replace("_", " ").title())
+    return sorted(set(nomi))
+
+
+def sottocategoria_supporto(tipologia: str, info: Dict[str, Any]) -> str:
+    """
+    Determina la sotto-categoria di una carta di supporto.
+
+    Il criterio cambia con la tipologia:
+
+    - **Equipaggiamento** (e per estensione gli altri tipi con `utilizzatori`): la fazione
+      abilitata all'uso. "Tutte" per le carte generiche, "Doomtrooper" quando sono abilitate
+      tutte le fazioni Doomtrooper, altrimenti l'elenco delle fazioni.
+    - **Arte**: la disciplina dell'incantesimo (Mentale, Cinetica, …).
+    - **Oscura Simmetria**: il soggetto che concede il Dono, cioè l'Apostolo quando la carta
+      ne dichiara uno, altrimenti l'Oscura Legione o l'Oscura Simmetria secondo il tipo.
+
+    Args:
+        tipologia: Tipologia della carta
+        info: Il dizionario della carta letto dal JSON del mazzo
+
+    Returns:
+        La sotto-categoria, o SOTTOCATEGORIA_ASSENTE se non ricavabile
+    """
+    if tipologia == "Arte":
+        return str(info.get("disciplina") or "").strip() or SOTTOCATEGORIA_ASSENTE
+
+    if tipologia == "Oscura Simmetria":
+        apostolo = info.get("apostolo_padre") or info.get("apostolo")
+        nome_apostolo = str(getattr(apostolo, "value", apostolo) or "").strip()
+        if nome_apostolo and nome_apostolo.lower() not in ("none", "nessuno"):
+            return nome_apostolo
+        # Senza Apostolo il concedente è dichiarato dal tipo del Dono
+        tipo = str(info.get("tipo") or "")
+        if "Oscura Legione" in tipo:
+            return "Oscura Legione"
+        if "Oscura Simmetria" in tipo:
+            return "Oscura Simmetria"
+        return SOTTOCATEGORIA_ASSENTE
+
+    fazioni = _nomi_fazioni(info.get("utilizzatori"))
+    if not fazioni:
+        return SOTTOCATEGORIA_ASSENTE
+    if fazioni == ["Generica"]:
+        return "Tutte"
+    if set(fazioni) >= FAZIONI_DOOMTROOPER:
+        return "Doomtrooper"
+    if fazioni == ["Mercenario"]:
+        return "Mercenari"
+    return ", ".join(fazioni)
 
 
 def trova_immagine(cartella_immagini: Path, tipologia: str, nome_carta: str,
@@ -179,11 +264,14 @@ def carica_mazzo(cartella_mazzo: Path) -> tuple[List[CartaMazzo], Dict[str, Any]
     for area, fazioni in (mazzo.get("inventario_guerrieri") or {}).items():
         for fazione, elenco in (fazioni or {}).items():
             for nome, info in (elenco or {}).items():
+                fazione_carta = info.get("fazione") or fazione
                 carte.append(CartaMazzo(
                     nome=nome,
                     tipologia="Guerriero",
+                    # Per i guerrieri la sotto-categoria è l'icona di affiliazione
+                    sottocategoria=str(fazione_carta).strip() or SOTTOCATEGORIA_ASSENTE,
                     appartenenza=area.capitalize(),
-                    fazione=info.get("fazione") or fazione,
+                    fazione=fazione_carta,
                     copie=int(info.get("copie", 0)),
                     percorso_immagine=(trova_immagine(cartella_immagini, "Guerriero", nome, area)
                                        if cartella_immagini else None),
@@ -203,9 +291,11 @@ def carica_mazzo(cartella_mazzo: Path) -> tuple[List[CartaMazzo], Dict[str, Any]
             carte.append(CartaMazzo(
                 nome=nome,
                 tipologia=tipologia,
+                sottocategoria=sottocategoria_supporto(tipologia, info),
                 appartenenza=sottotipo,
                 fazione=_formatta_fazioni(info.get("utilizzatori")),
                 copie=int(info.get("copie", 0)),
+                disciplina=str(info.get("disciplina") or ""),
                 percorso_immagine=(trova_immagine(cartella_immagini, tipologia, nome)
                                    if cartella_immagini else None),
                 dettagli=info,
@@ -382,12 +472,26 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
         nodo.setFirstColumnSpanned(True)
         nodo.setExpanded(True)
 
+        # Secondo livello: la sotto-categoria, il cui significato dipende dalla tipologia
+        # (affiliazione per i guerrieri, fazione abilitata per l'equipaggiamento, disciplina
+        # per l'Arte, Apostolo concedente per l'Oscura Simmetria).
+        sottogruppi: Dict[str, List[CartaMazzo]] = {}
         for carta in carte_gruppo:
-            figlio = QTreeWidgetItem(nodo, [carta.nome, str(carta.copie)])
-            figlio.setData(0, Qt.ItemDataRole.UserRole, carta)
-            figlio.setTextAlignment(1, Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
-            if primo_elemento is None:
-                primo_elemento = figlio
+            sottogruppi.setdefault(carta.sottocategoria, []).append(carta)
+
+        for sottocategoria, carte_sotto in sottogruppi.items():
+            copie_sotto = sum(c.copie for c in carte_sotto)
+            nodo_sotto = QTreeWidgetItem(
+                nodo, [f"{sottocategoria}  ({len(carte_sotto)} carte, {copie_sotto} copie)"])
+            nodo_sotto.setFirstColumnSpanned(True)
+            nodo_sotto.setExpanded(True)
+
+            for carta in carte_sotto:
+                figlio = QTreeWidgetItem(nodo_sotto, [carta.nome, str(carta.copie)])
+                figlio.setData(0, Qt.ItemDataRole.UserRole, carta)
+                figlio.setTextAlignment(1, Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+                if primo_elemento is None:
+                    primo_elemento = figlio
 
     # ---- Pannello di dettaglio, con l'immagine della carta
     immagine = EtichettaImmagine()
@@ -424,9 +528,17 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
             dettaglio.setText("")
             return
 
+        # La disciplina compare solo dove ha senso, cioè sulle carte Arte. Per quelle carte
+        # la sotto-categoria è la disciplina stessa: mostrarle entrambe sarebbe una ripetizione.
+        riga_disciplina = f"<b>Disciplina:</b> {carta.disciplina}<br>" if carta.disciplina else ""
+        riga_categoria = ("" if carta.disciplina == carta.sottocategoria
+                          else f"<b>Categoria:</b> {carta.sottocategoria}<br>")
+
         dettaglio.setText(
             f"<b style='font-size:14pt'>{carta.nome}</b><br><br>"
             f"<b>Tipologia:</b> {carta.tipologia}<br>"
+            f"{riga_categoria}"
+            f"{riga_disciplina}"
             f"<b>Appartenenza:</b> {carta.appartenenza}<br>"
             f"<b>Fazione:</b> {carta.fazione}<br>"
             f"<b>Copie nel mazzo:</b> {carta.copie}<br>"
