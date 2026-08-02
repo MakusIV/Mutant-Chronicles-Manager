@@ -262,7 +262,7 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
     """
     try:
         from PySide6.QtCore import Qt
-        from PySide6.QtGui import QPixmap
+        from PySide6.QtGui import QFontMetrics, QImageReader, QPixmap
         from PySide6.QtWidgets import (
             QAbstractItemView, QApplication, QFrame, QHBoxLayout, QHeaderView, QLabel,
             QMainWindow, QScrollArea, QSizePolicy, QSplitter, QTreeWidget,
@@ -288,6 +288,28 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
         f"({len(carte)} carte distinte, {copie_totali} copie)"
     )
     finestra.resize(1100, 720)
+
+    def leggi_pixmap(percorso: Path) -> QPixmap:
+        """
+        Carica l'immagine di una carta applicandone l'orientamento EXIF.
+
+        Alcune scansioni (7 carte Cybertronic e la Valkiria, nel materiale attuale)
+        hanno i pixel memorizzati in orizzontale e un tag EXIF `Orientation` che ne
+        dichiara la rotazione. Gli editor di immagini lo applicano; `QPixmap(percorso)`
+        no, e la carta apparirebbe coricata. QImageReader.setAutoTransform applica
+        esattamente la trasformazione dichiarata, senza toccare le carte che sono
+        davvero in formato orizzontale (diverse Fortificazioni) e che non hanno il tag.
+
+        Args:
+            percorso: Percorso del file immagine
+
+        Returns:
+            Il pixmap orientato correttamente, nullo se l'immagine non è leggibile
+        """
+        lettore = QImageReader(str(percorso))
+        lettore.setAutoTransform(True)
+        immagine = lettore.read()
+        return QPixmap.fromImage(immagine) if not immagine.isNull() else QPixmap()
 
     class EtichettaImmagine(QLabel):
         """
@@ -338,8 +360,17 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
     elenco.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
 
     intestazione = elenco.header()
+    # setStretchLastSection è attivo per impostazione predefinita e fa allargare l'ultima
+    # colonna a tutto lo spazio residuo, ignorando la modalità di ridimensionamento: senza
+    # disattivarlo la colonna delle copie occupa centinaia di pixel invece dei ~50 che servono.
+    intestazione.setStretchLastSection(False)
     intestazione.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
-    intestazione.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+    intestazione.setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
+
+    metriche = QFontMetrics(elenco.font())
+    larghezza_copie = max(metriche.horizontalAdvance("999"),
+                          metriche.horizontalAdvance("Copie")) + 24   # margini e spaziatura
+    elenco.setColumnWidth(1, larghezza_copie)
 
     primo_elemento: Optional[QTreeWidgetItem] = None
 
@@ -404,7 +435,7 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
         )
 
         if carta.percorso_immagine and carta.percorso_immagine.is_file():
-            pixmap = QPixmap(str(carta.percorso_immagine))
+            pixmap = leggi_pixmap(carta.percorso_immagine)
             if not pixmap.isNull():
                 immagine.imposta_immagine(pixmap)
                 return
