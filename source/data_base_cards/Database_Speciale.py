@@ -333,40 +333,6 @@ DATABASE_SPECIALI = {
         "fondamentale": False
     },
 
-    "Colpo Fortunato": {
-        "nome": "Colpo Fortunato",
-        "valore": None,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Un guerriero durante il combattimento",
-        "durata":  "Durante questo Combattimento",
-        "timing": "In Combattimento",
-        "set_espansione": "Base",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Aumenta effetto",
-                "tipo_effetto": "Modificatore",
-                "valore": 2,
-                "statistica_target": "sparare",
-                "descrizione_effetto": "Il guerriero guadagna un +2 sulla caratteristica S per questo combattimento",
-                "condizioni": ["Giocabile su un guerriero durante il combattimento"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN GUERRIERO DURANTE IL COMBATTIMENTO. Il guerriero guadagna un +2 sulla caratteristica S per questo combattimento.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 7,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
 
     "Essenza Di Chiarezza": {
         "nome": "Essenza Di Chiarezza",
@@ -543,76 +509,6 @@ DATABASE_SPECIALI = {
         "fondamentale": False
     },
 
-    "Nascosto Nell'Ombra": {
-        "nome": "Nascosto Nell'Ombra",
-        "valore": None,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Un guerriero",
-        "durata": "Fino alla prossima Fase Pescare",
-        "timing": "In Ogni Momento",
-        "set_espansione": "Base",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Modifica Stato",
-                "tipo_effetto": "Modificatore",
-                "valore": "+3",
-                "statistica_target": "attacco",
-                "descrizione_effetto": "Questa carta deve essere scartata nella prossima Fase 'Pescare'. Nel frattempo, considera un +3 in A",
-                "condizioni": ["Giocabile su un guerriero in ogni momento"],
-                "limitazioni": ["Deve essere scartata nella prossima Fase Pescare"]
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN GUERRIERO IN OGNI MOMENTO. Questa carta deve essere scartata nella prossima Fase 'Pescare'. Nel frattempo, considera un +3 in A.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": [],
-        "valore_strategico": 6,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Empatia Cinetica": {
-        "nome": "Empatia Cinetica",
-        "valore": None,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse":  DOOMTROOPER,
-        "bersaglio": "Tutti i Guerrieri",
-        "durata": "Permanente",
-        "timing": "In Ogni Momento",
-        "set_espansione": "Base",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Lancia Arte",
-                "tipo_effetto": "Arte",
-                "valore": "",
-                "statistica_target": "",
-                "descrizione_effetto": "Il guerriero potrà, d'ora in poi, lanciare gli Incantesimi ARTE DELLA CINETICA",
-                "condizioni": ["Giocabile su ogni Doomtrooper in ogni momento"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. Il guerriero potrà, d'ora in poi, lanciare gli Incantesimi ARTE DELLA CINETICA.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 5,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
     "Empatia Mentale": {
         "nome": "Empatia Mentale",
         "valore": None,
@@ -653,7 +549,7 @@ DATABASE_SPECIALI = {
         "valore": None,
         "tipo": "Speciale",
         "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": ["Oscura Legione"],
         "bersaglio": "Guerriero Avversario",
         "durata": "Istantanea",
         "timing": "In Risposta",
@@ -683,40 +579,6 @@ DATABASE_SPECIALI = {
         "fondamentale": True
     },
 
-    "Azione Evasiva": {
-        "nome": "Azione Evasiva",
-        "valore": None,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Un guerriero durante il combattimento",
-        "durata":  "Durante questo Combattimento",
-        "timing": "In Combattimento",
-        "set_espansione": "Base",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Aumenta effetto",
-                "tipo_effetto": "Modificatore",
-                "valore": "+2",
-                "statistica_target": "attacco",
-                "descrizione_effetto": "Il giocatore guadagna un +2 in A per questo combattimento",
-                "condizioni": ["Giocabile su un guerriero durante il combattimento"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE SU UN GUERRIERO DURANTE IL COMBATTIMENTO. Il giocatore guadagna un +2 in A per questo combattimento.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": [],
-        "valore_strategico": 4,
-        "quantita": 1,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
 
     "Senza Munizioni": {
         "nome": "Senza Munizioni",
@@ -889,41 +751,6 @@ DATABASE_SPECIALI = {
         "restrizioni": [],
         "valore_strategico": 7,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Essenza Di Rettitudine": {
-        "nome": "Essenza Di Rettitudine",
-        "valore": None,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero della Fratellanza nella tua squadra",
-        "durata": "Permanente",
-        "timing": "In Ogni Momento",
-        "set_espansione": "Base",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Immune agli effetti dell'Oscura Simmetria",
-                "tipo_effetto": "Immunita",
-                "valore": "",
-                "statistica_target": "",
-                "descrizione_effetto": "Tutti gli Eretici in gioco devono scartare i loro Doni dell'Oscura Simmetria",
-                "condizioni": ["Devi avere un guerriero della Fratellanza nella tua squadra"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE IN OGNI MOMENTO. DEVI AVERE UN GUERRIERO DELLA FRATELLANZA NELLA TUA SQUADRA. Tutti gli Eretici in gioco devono scartare i loro Doni dell'Oscura Simmetria.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": ["Devi avere un guerriero della Fratellanza nella tua squadra"],
-        "valore_strategico": 1,
-        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2263,41 +2090,6 @@ DATABASE_SPECIALI = {
         "restrizioni": [],
         "valore_strategico": 6,
         "quantita": 2,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },
-
-    "Essenza Di Integrita": {
-        "nome": "Essenza Di Integrita",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Tutti i Guerrieri Avversari",
-        "durata": "Permanente",
-        "timing": "In Ogni Momento",
-        "set_espansione": "Base",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Ferisce Seguaci",
-                "tipo_effetto": "Modificatore",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Tutti i Seguaci di Semai in gioco sono feriti e devono scartare tutte le loro carte dell'Oscura Simmetria",
-                "condizioni": ["Avere un guerriero della Fratellanza nella squadra"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "GIOCABILE IN OGNI MOMENTO. DEVI AVERE UN GUERRIERO DELLA FRATELLANZA NELLA TUA SQUADRA. Tutti i Seguaci di Semai in gioco sono feriti e devono scartare tutte le loro carte dell'Oscura Simmetria.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": [],
-        "valore_strategico": 5,
-        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3754,14 +3546,14 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Rinforzo Squadra",
                 "tipo_effetto": "Modificatore",
-                "valore": "Ogni 7D",
-                "statistica_target": "combattimento",
-                "descrizione_effetto": "Per ogni 7D, un compagno della Squadra del guerriero può vedere la situazione e si unisce a lui in battaglia. Compagni che non sono nel gruppo dell'Oscura Legione e viceversa. Il gruppo somma i valori di caratteristiche di attacco. L'avversario può colpire solo uno del gruppo durante il combattimento",
+                "valore": "2D per punto V del rinforzo",
+                "statistica_target": "combattimento e sparare",
+                "descrizione_effetto": "Al costo di 2D per ogni punto V del rinforzo, un compagno della Squadra del guerriero può vedere la situazione e si unisce a lui in battaglia. Compagni che non sono nel gruppo dell'Oscura Legione e viceversa. Il gruppo somma i valori di C e S. L'avversario può colpire solo uno del gruppo durante il combattimento",
                 "condizioni": ["In Combattimento"],
                 "limitazioni": ["Escluso Oscura Legione", "L'avversario può colpire solo uno del gruppo"]
             }
         ],
-        "testo_carta": "GIOCABILE SU QUALSIASI GUERRIERO DURANTE IL COMBATTIMENTO. Per ogni 7D, un compagno della Squadra del guerriero può vedere la situazione e si unisce a lui in battaglia. Compagni che non sono nel gruppo dell'Oscura Legione e viceversa. Il gruppo somma i valori di caratteristiche di attacco. L'avversario può colpire solo uno del gruppo durante il combattimento.",
+        "testo_carta": "GIOCABILE SU QUALSIASI GUERRIERO DURANTE IL COMBATTIMENTO. Al costo di 2D per ogni punto V del rinforzo, un compagno della Squadra del guerriero può vedere la situazione e si unisce a lui in battaglia. Compagni che non sono nel gruppo dell'Oscura Legione e viceversa. Il gruppo somma i valori di C e S. L'avversario può colpire solo uno del gruppo durante il combattimento.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
@@ -4104,14 +3896,14 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Modifica Stato",
                 "tipo_effetto": "Modificatore",
-                "valore": "20D extra per attacco",
+                "valore": "2D extra per attacco",
                 "statistica_target": "combattimento",
-                "descrizione_effetto": "Tutti i giocatori possono compiere più di un'Azione di Attacco fino all'inizio del Tuo prossimo Turno. Ogni Attacco extra costa 20D. Un giocatore non può eseguire più Azioni di Attacco di quante ne abbia a disposizione. Ogni Attacco viene risolto separatamente",
+                "descrizione_effetto": "Tutti i giocatori possono compiere più di un'Azione di Attacco fino all'inizio del Tuo prossimo Turno. Ogni Attacco extra costa 2D. Un giocatore non può eseguire più Azioni di Attacco di quante ne abbia a disposizione. Ogni Attacco viene risolto separatamente",
                 "condizioni": [],
-                "limitazioni": ["Ogni attacco extra costa 20D", "Limitato dalle azioni disponibili"]
+                "limitazioni": ["Ogni attacco extra costa 2D", "Limitato dalle azioni disponibili"]
             }
         ],
-        "testo_carta": "GIOCABILE DURANTE IL TUO TURNO, PRIMA CHE TU COMPIA ALTRE AZIONI. Tutti i giocatori possono compiere più di un'Azione di Attacco fino all'inizio del Tuo prossimo Turno. Ogni Attacco extra costa 20D. Un giocatore non può eseguire più Azioni di Attacco di quante ne abbia a disposizione. Ogni Attacco viene risolto separatamente.",
+        "testo_carta": "GIOCABILE DURANTE IL TUO TURNO, PRIMA CHE TU COMPIA ALTRE AZIONI. Tutti i giocatori possono compiere più di un'Azione di Attacco fino all'inizio del Tuo prossimo Turno. Ogni Attacco extra costa 2D. Un giocatore non può eseguire più Azioni di Attacco di quante ne abbia a disposizione. Ogni Attacco viene risolto separatamente.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
@@ -4531,16 +4323,16 @@ DATABASE_SPECIALI = {
         "richiede_azione": False,
         "effetti": [
             {
-                "nome_effetto": "Scarta Carte Speciali",
+                "nome_effetto": "Scarta Carte Equipaggiamento",
                 "tipo_effetto": "Modificatore",
                 "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Scegli una carta Speciale in gioco e scartala",
+                "statistica_target": "equipaggiamento",
+                "descrizione_effetto": "Scegli una Corporazione, la Fratellanza o l'Oscura Legione: tutti i guerrieri di quella fazione devono scartare le loro carte Equipaggiamento",
                 "condizioni": [],
-                "limitazioni": []
+                "limitazioni": ["Colpisce tutti i guerrieri della fazione scelta"]
             }
         ],
-        "testo_carta": "GIOCABILE IN OGNI MOMENTO. Scegli una carta Speciale in gioco e scartala.",
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO. Scegli una Corporazione, la Fratellanza o l'Oscura Legione: tutti i guerrieri di quella fazione devono scartare le loro carte Equipaggiamento.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
@@ -5005,41 +4797,6 @@ DATABASE_SPECIALI = {
         "fondamentale": False
     },
 
-    "Imboscata": {
-        "nome": "Imboscata",
-        "valore": 0,
-        "tipo": "Speciale",
-        "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
-        "bersaglio": "Guerriero Avversario",
-        "durata": "Istantanea",
-        "timing": "Prima del Combattimento",
-        "set_espansione": "Inquisition",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Attacco Automatico",
-                "tipo_effetto": "Combattimento",
-                "valore": 0,
-                "statistica_target": "",
-                "descrizione_effetto": "Un Tuo guerriero può immediatamente Attaccare il guerriero appena schierato. Questo non viene considerato un'Azione di Attacco",
-                "condizioni": ["Guerriero appena schierato"],
-                "limitazioni": ["Non considerato Azione di Attacco"]
-            }
-        ],
-        "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN GUERRIERO È STATO SCHIERATO. Un Tuo guerriero può immediatamente Attaccare il guerriero appena schierato. Questo non viene considerato un'Azione di Attacco.",
-        "flavour_text": "",
-        "keywords": [],
-        "restrizioni": [],
-        "valore_strategico": 1,
-        "quantita": 4,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
-    },    
-
     # Warzone
 
     "Grandi Manovre": {
@@ -5237,12 +4994,12 @@ DATABASE_SPECIALI = {
                 "tipo_effetto": "Modificatore",
                 "valore": 0,
                 "statistica_target": "",
-                "descrizione_effetto": "Nessun bonus per le Fortificazioni viene applicato durante questo combattimento. Le Fortificazioni possono essere utilizzate normalmente",
+                "descrizione_effetto": "Nessun bonus per le Fortificazioni viene applicato durante questo combattimento",
                 "condizioni": ["Durante i combattimenti"],
                 "limitazioni": []
             }
         ],
-        "testo_carta": "GIOCABILE DURANTE I COMBATTIMENTI. Nessun bonus per le Fortificazioni viene applicato durante questo combattimento. Le Fortificazioni possono essere utilizzate normalmente.",
+        "testo_carta": "GIOCABILE DURANTE I COMBATTIMENTI. Nessun bonus per le Fortificazioni viene applicato durante questo combattimento.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
@@ -5480,12 +5237,12 @@ DATABASE_SPECIALI = {
                 "tipo_effetto": "Modificatore",
                 "valore": 0,
                 "statistica_target": "",
-                "descrizione_effetto": "Paga il valore V del guerriero in punti D quando introduci in gioco questa carta. Il guerriero diventa membro della Cybertronic e perde ogni legame precedente. Il guerriero diventa automaticamente immune ai doni degli Apostoli. Non potrà mai lanciare incantesimi dell'Arte",
+                "descrizione_effetto": "Paga il valore V del guerriero in punti D quando introduci in gioco questa carta. Il guerriero diventa membro della Cybertronic e perde ogni legame precedente. Il guerriero diventa automaticamente immune ai doni minori dell'Oscura Simmetria, ma non ai doni degli Apostoli. Non potrà mai lanciare incantesimi dell'Arte",
                 "condizioni": ["Costo un'azione", "Paga V del guerriero in D"],
                 "limitazioni": ["Immune agli effetti dell'Oscura Simmetria", "Non può lanciare Arte"]
             }
         ],
-        "testo_carta": "GIOCABILE AL COSTO DI UN'AZIONE SU QUALSIASI DOOMTROOPER IN GIOCO. Paga il valore V del guerriero in punti D quando introduci in gioco questa carta. Il guerriero diventa membro della Cybertronic e perde ogni legame precedente. Il guerriero diventa automaticamente immune ai doni degli Apostoli. Non potrà mai lanciare incantesimi dell'Arte.",
+        "testo_carta": "GIOCABILE AL COSTO DI UN'AZIONE SU QUALSIASI DOOMTROOPER IN GIOCO. Paga il valore V del guerriero in punti D quando introduci in gioco questa carta. Il guerriero diventa membro della Cybertronic e perde ogni legame precedente. Il guerriero diventa automaticamente immune ai doni minori dell'Oscura Simmetria, ma non ai doni degli Apostoli. Non potrà mai lanciare incantesimi dell'Arte.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
@@ -5581,16 +5338,16 @@ DATABASE_SPECIALI = {
         "richiede_azione": False,
         "effetti": [
             {
-                "nome_effetto": "Disabilita Arma",
+                "nome_effetto": "Arma Esplode Sul Portatore",
                 "tipo_effetto": "Modificatore",
                 "valore": 0,
                 "statistica_target": "equipaggiamento",
-                "descrizione_effetto": "L'Arma è spuntata e non potrà essere utilizzata in questo combattimento. Risolvete il combattimento come di consueto tranne che dovrete sommare il valore dell'arma difettosa al valore del guerriero che la gioca questa carta (compresi eventuali altri modificatori). Dopo il combattimento l'arma viene scartata",
+                "descrizione_effetto": "L'arma esplode attaccando chi la utilizza. Risolvete il combattimento come di consueto, ma è il guerriero stesso a subire l'attacco della propria arma difettosa. Dopo il combattimento l'arma viene scartata",
                 "condizioni": ["Guerriero con arma da fuoco", "In Combattimento"],
                 "limitazioni": ["Arma scartata dopo il combattimento"]
             }
         ],
-        "testo_carta": "GIOCABILE SU UN GUERRIERO CHE UTILIZZA UN'ARMA DA FUOCO DURANTE UN COMBATTIMENTO. L'Arma è spuntata e non potrà essere utilizzata in questo combattimento. Risolvete il combattimento come di consueto tranne che dovrete sommare il valore dell'arma difettosa al valore del guerriero che la gioca questa carta (compresi eventuali altri modificatori). Dopo il combattimento l'arma viene scartata.",
+        "testo_carta": "GIOCABILE SU UN GUERRIERO CHE UTILIZZA UN'ARMA DA FUOCO DURANTE UN COMBATTIMENTO. L'arma esplode attaccando chi la utilizza. Risolvete il combattimento come di consueto, ma è il guerriero stesso a subire l'attacco della propria arma difettosa. Dopo il combattimento l'arma viene scartata.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
@@ -6244,7 +6001,7 @@ DATABASE_SPECIALI = {
         "valore": 0,
         "tipo": "Speciale",
         "rarity": "Common",
-        "fazioni_permesse": ["Bauhaus", "Mishima", "Capitol", "Cybertronic", "Mercenario"],
+        "fazioni_permesse": ["Bauhaus", "Mishima", "Capitol", "Mercenario"],
         "bersaglio": "Tutti i Guerrieri",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
@@ -6273,7 +6030,7 @@ DATABASE_SPECIALI = {
                 "limitazioni": ["Non può attaccare guerrieri con V inferiore"]
             }
         ],
-        "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER IN OGNI MOMENTO. QUESTA CARTA RIMANE IN GIOCO. Il guerriero diventa un membro del Clan Imperiale in aggiunta al precedente legame. Il guerriero guadagna un +2 in C e S. Il guerriero non è comunque legato (affiliato) alla Corporazione Imperiale",
+        "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER NON CYBERTRONIC IN OGNI MOMENTO. QUESTA CARTA RIMANE IN GIOCO. Il guerriero diventa un membro del Clan Imperiale in aggiunta al precedente legame. Il guerriero guadagna un +2 in C e S. Il guerriero non è comunque legato (affiliato) alla Corporazione Imperiale",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtrooper"],
@@ -6338,12 +6095,12 @@ DATABASE_SPECIALI = {
                 "tipo_effetto": "Modificatore",
                 "valore": 0,
                 "statistica_target": "",
-                "descrizione_effetto": "Il combattimento finisce immediatamente. L'Attaccante può attaccare immediatamente un altro guerriero (non può scegliere lo stesso). L'Attaccante può scegliere se e quale guerriero nella squadra o nello schieramento del difensore designato",
+                "descrizione_effetto": "Il combattimento finisce immediatamente. L'Attaccante può attaccare immediatamente un altro guerriero (non può scegliere lo stesso)",
                 "condizioni": ["In Combattimento"],
                 "limitazioni": ["L'attaccante non può scegliere lo stesso guerriero"]
             }
         ],
-        "testo_carta": "GIOCABILE DURANTE IL COMBATTIMENTO. Il combattimento finisce immediatamente. L'Attaccante può attaccare immediatamente un altro guerriero (non può scegliere lo stesso). L'Attaccante può scegliere se e quale guerriero nella squadra o nello schieramento del difensore designato.",
+        "testo_carta": "GIOCABILE DURANTE IL COMBATTIMENTO. Il combattimento finisce immediatamente. L'Attaccante può attaccare immediatamente un altro guerriero (non può scegliere lo stesso).",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
@@ -6439,16 +6196,16 @@ DATABASE_SPECIALI = {
         "richiede_azione": False,
         "effetti": [
             {
-                "nome_effetto": "Cerca Carta nel Mazzo",
-                "tipo_effetto": "Carte",
+                "nome_effetto": "Annulla Equipaggiamento",
+                "tipo_effetto": "Scarto_Carte",
                 "valore": 0,
                 "statistica_target": "equipaggiamento",
-                "descrizione_effetto": "UNA CARTA EQUIPAGGIAMENTO D'ORA E STATA ESTINTA E NON PUÒ PIÙ ESSERE INTRODOTTA IN GIOCO. Dopo che che questo è stato detto, da tutti i guerrieri che utilizzano quella particolare carta equipaggiamento e mescola questi equipaggiamenti nel mazzo di carte da pescare",
-                "condizioni": [],
-                "limitazioni": ["Tipo di equipaggiamento estinto permanentemente"]
+                "descrizione_effetto": "Annulla istantaneamente una singola carta Equipaggiamento appena giocata dall'avversario, scartandola immediatamente",
+                "condizioni": ["Immediatamente dopo che una carta Equipaggiamento è stata giocata"],
+                "limitazioni": ["Colpisce una sola carta Equipaggiamento per volta"]
             }
         ],
-        "testo_carta": "GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. UNA CARTA EQUIPAGGIAMENTO D'ORA E STATA ESTINTA E NON PUÒ PIÙ ESSERE INTRODOTTA IN GIOCO. Dopo che che questo è stato detto, da tutti i guerrieri che utilizzano quella particolare carta equipaggiamento e mescola questi equipaggiamenti nel mazzo di carte da pescare.",
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO IMMEDIATAMENTE DOPO CHE UNA CARTA EQUIPAGGIAMENTO È STATA GIOCATA. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Annulla istantaneamente la carta Equipaggiamento appena giocata dall'avversario, scartandola immediatamente.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
@@ -6546,14 +6303,14 @@ DATABASE_SPECIALI = {
             {
                 "nome_effetto": "Bonus Statistiche",
                 "tipo_effetto": "Modificatore",
-                "valore": "+1 in C, S, A e V",
-                "statistica_target": "tutte",
+                "valore": "+1 in C, S e A",
+                "statistica_target": "combattimento, sparare e armatura",
                 "descrizione_effetto": "Questa carta rimane in gioco associata al guerriero. Il guerriero guadagna un +1 in C, S e A. Un guerriero può avere più di un Attestato",
                 "condizioni": ["Doomtrooper", "Ha appena ucciso guerriero con V superiore"],
                 "limitazioni": []
             }
         ],
-        "testo_carta": "GIOCABILE SU UN DOOMTROOPER IMMEDIATAMENTE DOPO CHE HA UCCISO UN GUERRIERO CON UNA CARATTERISTICA V MAGGIORE. QUESTA CARTA RIMANE IN GIOCO ASSOCIATA AL GUERRIERO. Il guerriero guadagna un +1 in C, S, A e V. Un guerriero può avere più di un Attestato.",
+        "testo_carta": "GIOCABILE SU UN DOOMTROOPER IMMEDIATAMENTE DOPO CHE HA UCCISO UN GUERRIERO CON UNA CARATTERISTICA V MAGGIORE. QUESTA CARTA RIMANE IN GIOCO ASSOCIATA AL GUERRIERO. Il guerriero guadagna un +1 in C, S e A. Un guerriero può avere più di un Attestato.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Solo Doomtroopers"],

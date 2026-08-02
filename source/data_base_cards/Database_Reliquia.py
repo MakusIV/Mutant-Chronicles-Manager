@@ -181,7 +181,7 @@ DATABASE_RELIQUIE = {
         ],
         "set_espansione": "Inquisition",
         "numero_carta": "",
-        "testo_carta": "ASSEGNABILE A OGNI DOOMTROOPER, SE SEI UN FAMOSO COLLEZIONISTA. ARMATURA. +4 in A. D'ora in poi il guerriero è considerato un MORTIFICATOR. Può Attaccare qualsiasi guerriero in gioco e uccide automaticamente i guerrieri che ferisce. Il guerriero mantiene l'ICONA DI LEGAMO, e quando viene Attaccato si applicano le normali restrizioni. Il guerriero Attacca per primo. Se l'avversario sopravvive, può rispondere all'Attacco. Un guerriero può avere una sola ARMATURA.",
+        "testo_carta": "ASSEGNABILE A OGNI DOOMTROOPER, SE SEI UN FAMOSO COLLEZIONISTA. ARMATURA. +4 in A. D'ora in poi il guerriero è considerato un MORTIFICATORE. Può Attaccare qualsiasi guerriero in gioco e uccide automaticamente i guerrieri che ferisce. Il guerriero mantiene l'ICONA DI LEGAME, e quando viene Attaccato si applicano le normali restrizioni. Il guerriero Attacca per primo. Se l'avversario sopravvive, può rispondere all'Attacco. Un guerriero può avere una sola ARMATURA.",
         "flavour_text": "",
         "keywords": [],
         "origine_storica": "",
@@ -761,8 +761,8 @@ DATABASE_RELIQUIE = {
         "fondamentale": True
     },
 
-    "Pergamena Di Evocazione Sacrilega": {
-        "nome": "Pergamena Di Evocazione Sacrilega",
+    "Pergamena D'Invocazione Sacrilega": {
+        "nome": "Pergamena D'Invocazione Sacrilega",
         "valore": 0,
         "tipo": "",
         "rarity": "Common",
@@ -778,17 +778,17 @@ DATABASE_RELIQUIE = {
             
             {
                 "nome": "Assegna carta",
-                "descrizione": "Eliminando questa carta puoi evocare un Apostolo dalla tua Collezione.L'Apostolo è subito inserito gratis nel tuo scheramento",
+                "descrizione": "Al costo di tre Azioni, eliminando questa carta puoi evocare un Apostolo dalla tua Collezione. L'Apostolo è subito inserito gratis nel Tuo Schieramento",
                 "tipo_potere": "Carte",
                 "costo_attivazione": 0,
-                "tipo_attivazione": "Passivo",
+                "tipo_attivazione": "Attivo",
                 "limitazioni": [],
                 "una_volta_per_turno": False
             }
         ],
         "set_espansione": "Inquisition",
         "numero_carta": "",
-        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Eliminando questa carta puoi evocare un Apostolo dalla tua Collezione.L'Apostolo è subito inserito gratis nel tuo scheramento",
+        "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO DELL'OSCURA LEGIONE, SE SEI UN FAMOSO COLLEZIONISTA. Al costo di tre Azioni, eliminando questa carta puoi evocare un Apostolo dalla tua Collezione. L'Apostolo è subito inserito gratis nel Tuo Schieramento",
         "flavour_text": "",
         "keywords": [],
         "origine_storica": "",

@@ -1144,19 +1144,19 @@ CARTE_ARTE_DATABASE = {
         "numero_carta": "",
         "max_copie_per_combattimento": 1,
         "max_copie_per_turno": 1,
-        "richiede_azione": True,
+        "richiede_azione": False,
         "effetti": [
             {
                 "nome_effetto": "Crea Copia",
                 "tipo_effetto": "Carte",
-                "valore": "4D + due azioni",
+                "valore": "4D",
                 "statistica_target": "",
                 "descrizione_effetto": "Il Maestro può assumere le sembianze di un membro della Fratellanza già in gioco per il resto della partita. Per 6D quello di un Doomtrooper, per 10D quelle di un membro dell'Oscura Legione. Il Maestro acquisisce C, S, A e V dell'originale",
-                "condizioni": ["Costo 4D + due azioni per Fratellanza", "6D per Doomtrooper", "10D per Oscura Legione"],
+                "condizioni": ["Costo 4D per Fratellanza", "6D per Doomtrooper", "10D per Oscura Legione"],
                 "limitazioni": []
             }
         ],
-        "testo_carta": "ARTE DELLA CINETICA. GIOCABILE AL COSTO DI 4D E DUE AZIONI. Il Maestro può assumere le sembianze di un membro della Fratellanza già in gioco per il resto della partita. Per 6D quello di un Doomtrooper, per 10D quelle di un membro dell'Oscura Legione. Il Maestro acquisisce C, S, A e V dell'originale.",
+        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO DI COMBATTIMENTO PERSONALE. GIOCABILE AL COSTO DI 4D. Il Maestro può assumere le sembianze di un membro della Fratellanza già in gioco per il resto della partita. Per 6D quello di un Doomtrooper, per 10D quelle di un membro dell'Oscura Legione. Il Maestro acquisisce C, S, A e V dell'originale.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1218,12 +1218,12 @@ CARTE_ARTE_DATABASE = {
     "Colpire": {
         "nome": "Colpire",
         "valore": 0,
-        "tipo": "Incantesimo di Combattimento",
+        "tipo": "Incantesimo Personale di Combattimento",
         "disciplina": "Cinetica",
         "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
+        "bersaglio": "Maestro",
         "durata": "Fine Combattimento",
         "timing": "In Combattimento",
         "set_espansione": "Base",
@@ -1237,12 +1237,12 @@ CARTE_ARTE_DATABASE = {
                 "tipo_effetto": "Modificatore",
                 "valore": "+1 in S per ogni D speso",
                 "statistica_target": "sparare",
-                "descrizione_effetto": "Per ogni D speso, il guerriero guadagna un +1 in S",
-                "condizioni": ["Incantesimo di combattimento"],
+                "descrizione_effetto": "Per ogni D speso, il Maestro guadagna un +1 in S",
+                "condizioni": ["Incantesimo personale di combattimento"],
                 "limitazioni": []
             }
         ],
-        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in S.",
+        "testo_carta": "ARTE DELLA CINETICA. INCANTESIMO PERSONALE DI COMBATTIMENTO. Per ogni D speso, il Maestro guadagna un +1 in S.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1283,9 +1283,18 @@ CARTE_ARTE_DATABASE = {
                 "descrizione_effetto": "Il Maestro non può essere attaccato fino all'inizio del Tuo prossimo Turno",
                 "condizioni": ["Solo il Maestro"],
                 "limitazioni": ["Durata limitata al prossimo turno"]
+            },
+            {
+                "nome_effetto": "Bonus Attacco",
+                "tipo_effetto": "Modificatore",
+                "valore": "+2 in C, S, A e V",
+                "statistica_target": "tutte",
+                "descrizione_effetto": "Se il Maestro attacca, guadagna un +2 in C, S, A e V",
+                "condizioni": ["Il Maestro attacca"],
+                "limitazioni": []
             }
         ],
-        "testo_carta": "ARTE MENTALE. GIOCABILE IN OGNI MOMENTO. Il Maestro non può essere attaccato fino all'inizio del Tuo prossimo Turno.",
+        "testo_carta": "ARTE MENTALE. GIOCABILE IN OGNI MOMENTO. Il Maestro non può essere attaccato fino all'inizio del Tuo prossimo Turno. Se il Maestro attacca, guadagna un +2 in C, S, A e V.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1519,12 +1528,12 @@ CARTE_ARTE_DATABASE = {
     "Velocita": {
         "nome": "Velocita",
         "valore": 0,
-        "tipo": "Normale",
+        "tipo": "Incantesimo Personale di Combattimento",
         "disciplina": "Mentale",
         "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
+        "bersaglio": "Maestro",
         "durata": "Fine Combattimento",
         "timing": "In Combattimento",
         "set_espansione": "Base",
@@ -1538,12 +1547,12 @@ CARTE_ARTE_DATABASE = {
                 "tipo_effetto": "Modificatore",
                 "valore": 0,
                 "statistica_target": "",
-                "descrizione_effetto": "Il guerriero colpisce per primo. Se il guerriero ferisce l'avversario, il combattimento ha termine. Altrimenti, l'avversario può contrattaccare",
+                "descrizione_effetto": "Il Maestro colpisce per primo. Se il Maestro ferisce l'avversario, il combattimento ha termine. Altrimenti, si controlla il risultato anche per l'avversario. Quanto sopra accade solo dopo che entrambi i giocatori hanno giocato tutte le carte di modifica al combattimento",
                 "condizioni": ["In Combattimento"],
-                "limitazioni": ["Se non ferisce, l'avversario può contrattaccare"]
+                "limitazioni": ["Solo dopo che entrambi i giocatori hanno giocato tutte le carte di modifica al combattimento"]
             }
         ],
-        "testo_carta": "ARTE MENTALE. GIOCABILE DURANTE IL COMBATTIMENTO. Il guerriero colpisce per primo. Se il guerriero ferisce l'avversario, il combattimento ha termine. Altrimenti, l'avversario può contrattaccare.",
+        "testo_carta": "ARTE MENTALE. GIOCABILE DURANTE IL COMBATTIMENTO. Il Maestro colpisce per primo. Se il Maestro ferisce l'avversario, il combattimento ha termine. Altrimenti, si controlla il risultato anche per l'avversario. Quanto sopra accade solo dopo che entrambi i giocatori hanno giocato tutte le carte di modifica al combattimento.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1710,14 +1719,14 @@ CARTE_ARTE_DATABASE = {
             {
                 "nome_effetto": "Cerca Carta nel Mazzo",
                 "tipo_effetto": "Carte",
-                "valore": "5D per Doomtrooper non-Personalità",
+                "valore": "2D per Doomtrooper non-Personalità",
                 "statistica_target": "",
-                "descrizione_effetto": "Spendendo 5D, puoi introdurre nella Tua Squadra un Doomtrooper non-Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie",
-                "condizioni": ["Costo 5D"],
-                "limitazioni": ["Solo Doomtrooper non-Personalità", "Deve pagare V in D (o doppio dal mazzo da pescare)"]
+                "descrizione_effetto": "Spendendo 2D, puoi introdurre nella Tua Squadra un Doomtrooper non-Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie. Puoi evocare un solo guerriero",
+                "condizioni": ["Costo 2D"],
+                "limitazioni": ["Solo Doomtrooper non-Personalità", "Deve pagare V in D (o doppio dal mazzo da pescare)", "Puoi evocare un solo guerriero"]
             }
         ],
-        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 5D, puoi introdurre nella Tua Squadra un Doomtrooper non-Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie.",
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 2D, puoi introdurre nella Tua Squadra un Doomtrooper non-Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie. Puoi evocare un solo guerriero.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1755,12 +1764,12 @@ CARTE_ARTE_DATABASE = {
                 "tipo_effetto": "Carte",
                 "valore": "2D per Doomtrooper Personalita",
                 "statistica_target": "",
-                "descrizione_effetto": "Spendendo 2D, puoi introdurre nella Tua Squadra un Doomtrooper Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie",
+                "descrizione_effetto": "Spendendo 2D, puoi introdurre nella Tua Squadra un Doomtrooper Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie. Puoi evocare un solo guerriero",
                 "condizioni": ["Costo 2D"],
-                "limitazioni": ["Solo Doomtrooper Personalita", "Deve pagare V in D (o doppio dal mazzo da pescare)"]
+                "limitazioni": ["Solo Doomtrooper Personalita", "Deve pagare V in D (o doppio dal mazzo da pescare)", "Puoi evocare un solo guerriero"]
             }
         ],
-        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 5D, puoi introdurre nella Tua Squadra un Doomtrooper Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie.",
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Spendendo 2D, puoi introdurre nella Tua Squadra un Doomtrooper Personalità prelevandolo dal Tuo mazzo di carte Scartate. Paghi il suo V in D. Puoi prelevarlo dal Tuo mazzo di carte da Pescare ma pagando il doppio del suo V in D. Devi pagare i punti D o le Azioni necessarie. Puoi evocare un solo guerriero.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1966,16 +1975,16 @@ CARTE_ARTE_DATABASE = {
         "richiede_azione": False,
         "effetti": [
             {
-                "nome_effetto": "Cerca Carta nel Mazzo",
+                "nome_effetto": "Recupera Fortificazione",
                 "tipo_effetto": "Carte",
-                "valore": "3D per Fortificazione dalle scartate, 6D dal mazzo",
+                "valore": 0,
                 "statistica_target": "",
-                "descrizione_effetto": "Per 3D, puoi prendere dal Tuo mazzo di carte scartate una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione",
-                "condizioni": ["Costo 3D da scartate o 6D da mazzo"],
-                "limitazioni": ["Il guerriero deve poter usare la Fortificazione", "Deve pagare D o Azioni della carta"]
+                "descrizione_effetto": "Puoi riprendere una carta Fortificazione dal Tuo mazzo di carte Scartate e giocarla immediatamente",
+                "condizioni": [],
+                "limitazioni": []
             }
         ],
-        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Per 3D, puoi prendere dal Tuo mazzo di carte scartate una qualsiasi carta Fortificazione e assegnarla ad un Tuo guerriero. Il guerriero deve poter usare la Fortificazione. Oppure spendendo 6D, prenderla dal Tuo mazzo di carte da Pescare. Devi pagare il costo in D o in Azioni indicate sulla carta Fortificazione.",
+        "testo_carta": "ARTE D'EVOCAZIONE. GIOCABILE IN OGNI MOMENTO. ELIMINA QUESTA CARTA DAL GIOCO DOPO L'USO. Puoi riprendere una carta Fortificazione dal Tuo mazzo di carte Scartate e giocarla immediatamente.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -2009,16 +2018,16 @@ CARTE_ARTE_DATABASE = {
         "richiede_azione": False,
         "effetti": [
             {
-                "nome_effetto": "Bonus Attacco",
-                "tipo_effetto": "Modificatore",
-                "valore": "+1 in A per ogni D speso",
-                "statistica_target": "armatura",
-                "descrizione_effetto": "Per ogni D speso, il guerriero guadagna un +1 in A",
-                "condizioni": ["Incantesimo di combattimento"],
-                "limitazioni": []
+                "nome_effetto": "Annulla Attacco",
+                "tipo_effetto": "Controllo",
+                "valore": "6D",
+                "statistica_target": "",
+                "descrizione_effetto": "Spendi 6D per prevedere un Attacco e sfuggirgli prima che abbia inizio. L'Azione di Attacco è subito annullata. Questa carta ha effetto anche quando viene giocata contro un avversario Immune all'Arte",
+                "condizioni": ["Costo 6D"],
+                "limitazioni": ["Efficace anche contro avversari Immuni all'Arte"]
             }
         ],
-        "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Per ogni D speso, il guerriero guadagna un +1 in A.",
+        "testo_carta": "ARTE DELLA PREMONIZIONE. INCANTESIMO DI COMBATTIMENTO. Spendi 6D per prevedere un Attacco e sfuggirgli prima che abbia inizio. L'Azione di Attacco è subito annullata. Questa carta ha effetto anche quando viene giocata contro un avversario Immune all'Arte.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
