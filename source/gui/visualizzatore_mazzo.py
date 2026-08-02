@@ -264,8 +264,9 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
         from PySide6.QtCore import Qt
         from PySide6.QtGui import QPixmap
         from PySide6.QtWidgets import (
-            QAbstractItemView, QApplication, QHBoxLayout, QHeaderView, QLabel,
-            QMainWindow, QSplitter, QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget,
+            QAbstractItemView, QApplication, QFrame, QHBoxLayout, QHeaderView, QLabel,
+            QMainWindow, QScrollArea, QSizePolicy, QSplitter, QTreeWidget,
+            QTreeWidgetItem, QVBoxLayout, QWidget,
         )
     except ImportError:
         print("PySide6 non è installato. Installalo nell'ambiente del progetto con:\n"
@@ -288,18 +289,57 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
     )
     finestra.resize(1100, 720)
 
-    # ---- Elenco delle carte, raggruppato per tipologia
+    class EtichettaImmagine(QLabel):
+        """
+        Etichetta che mostra l'immagine della carta adattandola allo spazio disponibile.
+
+        Conserva il pixmap originale e lo riscala a ogni ridimensionamento, senza mai
+        far dipendere il proprio `sizeHint` dall'immagine: diversamente, impostare un
+        pixmap più grande propagherebbe una richiesta di ingrandimento fino alla
+        finestra. Con la finestra massimizzata quella richiesta non può essere
+        soddisfatta e su Wayland produce un errore di protocollo
+        ("xdg_surface buffer does not match the configured maximized state").
+        """
+
+        def __init__(self) -> None:
+            super().__init__()
+            self._originale = QPixmap()
+            self.setMinimumSize(1, 1)
+            self.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
+            self.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        def imposta_immagine(self, pixmap: Optional[QPixmap]) -> None:
+            """Imposta l'immagine da mostrare (None o pixmap nullo per svuotare)."""
+            self._originale = pixmap if pixmap is not None else QPixmap()
+            self._ridisegna()
+
+        def resizeEvent(self, evento) -> None:      # noqa: N802 (nome imposto da Qt)
+            super().resizeEvent(evento)
+            self._ridisegna()
+
+        def _ridisegna(self) -> None:
+            if self._originale.isNull():
+                super().setPixmap(QPixmap())
+                return
+            super().setPixmap(self._originale.scaled(
+                self.size(),
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation,
+            ))
+
+    # ---- Elenco delle carte, raggruppato per tipologia.
+    # Appartenenza e fazione non compaiono come colonne: sono riportate nel pannello
+    # di dettaglio sotto l'immagine, e toglierle lascia più spazio ai nomi delle carte.
     elenco = QTreeWidget()
-    elenco.setColumnCount(4)
-    elenco.setHeaderLabels(["Carta", "Appartenenza", "Fazione", "Copie"])
+    elenco.setColumnCount(2)
+    elenco.setHeaderLabels(["Carta", "Copie"])
     elenco.setAlternatingRowColors(True)
     elenco.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
     elenco.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
 
     intestazione = elenco.header()
     intestazione.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
-    for colonna in (1, 2, 3):
-        intestazione.setSectionResizeMode(colonna, QHeaderView.ResizeMode.ResizeToContents)
+    intestazione.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
 
     primo_elemento: Optional[QTreeWidgetItem] = None
 
@@ -312,16 +352,14 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
         nodo.setExpanded(True)
 
         for carta in carte_gruppo:
-            figlio = QTreeWidgetItem(nodo, [carta.nome, carta.appartenenza, carta.fazione, str(carta.copie)])
+            figlio = QTreeWidgetItem(nodo, [carta.nome, str(carta.copie)])
             figlio.setData(0, Qt.ItemDataRole.UserRole, carta)
-            figlio.setTextAlignment(3, Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+            figlio.setTextAlignment(1, Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
             if primo_elemento is None:
                 primo_elemento = figlio
 
     # ---- Pannello di dettaglio, con l'immagine della carta
-    immagine = QLabel("Nessuna carta selezionata")
-    immagine.setAlignment(Qt.AlignmentFlag.AlignCenter)
-    immagine.setMinimumWidth(360)
+    immagine = EtichettaImmagine()
     immagine.setStyleSheet("border: 1px solid palette(mid); background: palette(base);")
 
     dettaglio = QLabel()
@@ -329,17 +367,28 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
     dettaglio.setWordWrap(True)
     dettaglio.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
 
+    # Il testo del dettaglio cambia lunghezza da una carta all'altra (i nomi e gli
+    # elenchi di fazioni possono andare a capo più volte). Racchiuderlo in un'area
+    # scorrevole di altezza fissa fa sì che le dimensioni richieste dalla finestra
+    # restino costanti durante lo scorrimento dell'elenco, senza però troncare il testo.
+    area_dettaglio = QScrollArea()
+    area_dettaglio.setWidget(dettaglio)
+    area_dettaglio.setWidgetResizable(True)
+    area_dettaglio.setFrameShape(QFrame.Shape.NoFrame)
+    area_dettaglio.setFixedHeight(170)
+    area_dettaglio.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Fixed)
+
     pannello = QWidget()
     disposizione_pannello = QVBoxLayout(pannello)
     disposizione_pannello.addWidget(immagine, stretch=1)
-    disposizione_pannello.addWidget(dettaglio)
+    disposizione_pannello.addWidget(area_dettaglio)
 
     def mostra_carta(elemento: Optional[QTreeWidgetItem], _precedente=None) -> None:
         """Aggiorna immagine e dettagli in base alla carta selezionata."""
         carta = elemento.data(0, Qt.ItemDataRole.UserRole) if elemento is not None else None
 
         if carta is None:                       # nodo di tipologia: nessun dettaglio
-            immagine.setPixmap(QPixmap())
+            immagine.imposta_immagine(None)
             immagine.setText("Seleziona una carta")
             dettaglio.setText("")
             return
@@ -357,14 +406,10 @@ def avvia_interfaccia(cartella_mazzo: Path) -> int:
         if carta.percorso_immagine and carta.percorso_immagine.is_file():
             pixmap = QPixmap(str(carta.percorso_immagine))
             if not pixmap.isNull():
-                immagine.setPixmap(pixmap.scaled(
-                    immagine.size(),
-                    Qt.AspectRatioMode.KeepAspectRatio,
-                    Qt.TransformationMode.SmoothTransformation,
-                ))
+                immagine.imposta_immagine(pixmap)
                 return
 
-        immagine.setPixmap(QPixmap())
+        immagine.imposta_immagine(None)
         immagine.setText("Immagine non disponibile")
 
     elenco.currentItemChanged.connect(mostra_carta)
