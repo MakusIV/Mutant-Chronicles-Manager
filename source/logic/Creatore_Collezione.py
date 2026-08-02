@@ -744,14 +744,19 @@ def seleziona_carte_casuali_per_tipo(
     carte_generiche_fondamentali = {}
 
     if fazioni_orientamento:
-        fazioni_permesse = []
 
         for nome, dati in carte_disponibili.items():
-            
-            # Verifica se la carta supporta le fazioni di orientamento   
-            if 'fazione' in dati:     # Guerriero     
-                fazioni_permesse.append(dati.get('fazione'))            
-            elif 'fazioni_permesse' in dati:  # Speciale, Equipaggiamento, Fortificazione, Missione, Oscura_Simmetria       
+
+            # Verifica se la carta supporta le fazioni di orientamento.
+            # Nota: `fazioni_permesse` va ricostruita ad ogni carta. In precedenza il ramo
+            # Guerriero usava .append() su una lista dichiarata fuori dal ciclo, accumulando
+            # le fazioni di tutti i guerrieri già esaminati: dal primo guerriero della fazione
+            # richiesta in poi, ogni guerriero successivo risultava "orientato".
+            fazioni_permesse = []
+
+            if 'fazione' in dati:     # Guerriero
+                fazioni_permesse = [dati.get('fazione')]
+            elif 'fazioni_permesse' in dati:  # Speciale, Equipaggiamento, Fortificazione, Missione, Oscura_Simmetria
                 fazioni_permesse = dati.get('fazioni_permesse', [])            
             elif 'restrizioni' in dati: # Reliquia, Warzone     
                 fazioni_permesse = dati['restrizioni'].get('fazioni_permesse', [])            
@@ -1206,11 +1211,15 @@ def determina_orientamento_collezione(collezione: CollezioneGiocatore, espansion
     tutti_guerrieri = collezione.get_carte_per_tipo_mazzo('guerriero')    
     guerrieri_disponibili = []
     
+    # Entrambi i lati del confronto vanno normalizzati al valore testuale: `set_espansione`
+    # può essere una stringa o un enum Set_Espansione a seconda della classe carta.
+    espansioni_valide = {str(getattr(e, 'value', e)) for e in espansioni_richieste}
+
     for carta in tutti_guerrieri:
             if hasattr(carta, 'set_espansione'):
-                set_carta = carta.set_espansione
-                    
-                if set_carta in espansioni_richieste.value if hasattr(espansioni_richieste, 'value') else espansioni_richieste:
+                set_carta = str(getattr(carta.set_espansione, 'value', carta.set_espansione))
+
+                if set_carta in espansioni_valide:
                     guerrieri_disponibili.append(carta)
          
 
