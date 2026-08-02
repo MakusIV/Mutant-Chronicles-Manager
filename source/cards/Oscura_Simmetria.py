@@ -178,20 +178,24 @@ class Oscura_Simmetria:
         # Verifica seguaci degli apostoli
         if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO and "Solo doni dell'Oscura Simmetria" not in guerriero.restrizioni:
             seguace_richiesto = f"Seguace di {self.apostolo_padre.value}"
-            if seguace_richiesto not in guerriero.keywords:
-                risultato["puo_assegnare"] = False
+            # Eccezione: alcuni guerrieri (es. Billy) ricevono i Doni di qualsiasi Apostolo
+            # pur non essendo Seguaci; lo dichiarano con un'abilità di tipo "Dono degli Apostoli".
+            riceve_ogni_dono = any(str(abilita.tipo) == "Dono degli Apostoli"
+                                   for abilita in getattr(guerriero, 'abilita', []) or [])
+            if seguace_richiesto not in guerriero.keywords and not riceve_ogni_dono:
+                risultato["puo_lanciare"] = False
                 risultato["errori"].append(f"Solo seguaci di {self.apostolo_padre.value} possono ricevere questo dono")
 
         if "Solo Eretici" in self.restrizioni and "Eretico" not in guerriero.keywords:
-            risultato["puo_assegnare"] = False
+            risultato["puo_lanciare"] = False
             risultato["errori"].append("Solo Eretici")
 
         if "Solo Nefarita" in self.restrizioni and "Nefarita" not in guerriero.keywords:
-            risultato["puo_assegnare"] = False
+            risultato["puo_lanciare"] = False
             risultato["errori"].append("Solo Nefarita")
 
         if "Non può essere usato su Personalita" in self.restrizioni and guerriero.tipo == TipoGuerriero.PERSONALITA:   
-            risultato["puo_assegnare"] = False
+            risultato["puo_lanciare"] = False
             risultato["errori"].append("Solo Non Personalita")
         
         return risultato

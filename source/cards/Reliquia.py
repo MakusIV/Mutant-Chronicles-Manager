@@ -187,70 +187,73 @@ class Reliquia:
         }
 
         # Verifica fazioni permesse
-        if self.restrizioni.fazioni_permesse != None or self.restrizioni.fazioni_permesse != []:
+        if self.restrizioni.fazioni_permesse is not None and self.restrizioni.fazioni_permesse != []:
             if hasattr(guerriero, 'fazione'):
                 if guerriero.fazione.value != "Doomtrooper" and guerriero.fazione not in self.restrizioni.fazioni_permesse:
                     fazioni_str = [f for f in self.restrizioni.fazioni_permesse]
                     risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Fazione non permessa. Richieste: {fazioni_str}")                
-        
-        if self.restrizioni.corporazioni_specifiche != None or self.restrizioni.corporazioni_specifiche != []:
+                    risultato["errori"].append(f"Fazione non permessa. Richieste: {fazioni_str}")
 
-            if "Solo Doomtrooper" in self.restrizioni.corporazioni_specifiche: 
+        if self.restrizioni.corporazioni_specifiche is not None and self.restrizioni.corporazioni_specifiche != []:
+
+            for corporazione in self.restrizioni.corporazioni_specifiche:
+
+                if "Solo Doomtrooper" in corporazione:
                     if guerriero.fazione == Fazione.OSCURA_LEGIONE:
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append("Solo per Doomtrooper")
 
-            elif "Solo Oscura Legione" in self.restrizioni.corporazioni_specifiche:
-                if guerriero.fazione != Fazione.OSCURA_LEGIONE:
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append("Solo per Oscura Legione")                            
+                elif "Solo Oscura Legione" in corporazione:
+                    if guerriero.fazione != Fazione.OSCURA_LEGIONE:
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append("Solo per Oscura Legione")
 
-            elif "Solo Seguaci di" in self.restrizioni.corporazioni_specifiche:
-                    apostolo_richiesto = self.restrizioni.fazioni_permesse.split("Solo Seguaci di ")[1].strip()
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
+                elif "Solo Seguaci di" in corporazione:
+                    apostolo_richiesto = corporazione.split("Solo Seguaci di ")[1].strip()
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
-            
-            elif "Solo Eretici" in self.restrizioni.corporazioni_specifiche:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):                       
+
+                elif "Solo Eretici" in corporazione:
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Eretici")
 
-            elif "Solo Mercenari" in self.restrizioni.corporazioni_specifiche:
-                if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):                       
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Solo Mercenari")
+                # Nota: va valutata prima di "Solo Mercenari", che ne è un prefisso
+                elif "Solo Mercenari o Eretici" in corporazione:
+                    if guerriero.tipo != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or ("Mercenario" not in guerriero.keywords and "Eretico" not in guerriero.keywords) ):
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Mercenari o Eretici")
 
-            elif "Solo Mercenari o Eretici" in self.restrizioni.corporazioni_specifiche:
-                if guerriero.tipo != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords or "Eretico" not in guerriero.keywords ):                       
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Solo Mercenari o Eretici")
+                elif "Solo Mercenari" in corporazione:
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Mercenari")
 
-            elif "Solo Comandanti" in self.restrizioni.corporazioni_specifiche:
-                if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):                       
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Solo Comandanti")
+                elif "Solo Comandanti" in corporazione:
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Comandanti")
 
-            elif "Solo Nefariti" in self.restrizioni.corporazioni_specifiche:
-                if (guerriero.keywords is None or guerriero.keywords == [] or "Nefarita" not in guerriero.keywords ):                       
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Solo Nefarita")
+                elif "Solo Nefariti" in corporazione:
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Nefarita" not in guerriero.keywords ):
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Nefarita")
 
-            elif "Solo Personalita" in self.restrizioni.corporazioni_specifiche:
-                if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):                       
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Solo Personalita")
-            
-            elif "Assegnabile a guerrieri con V <= " in self.restrizioni.corporazioni_specifiche[:len("Assegnabile a guerrieri con V <= ")]:
-                valore_richiesto = int( self.restrizioni.corporazioni_specifiche.split("Assegnabile a guerrieri con V <= ")[1].strip() )
-                
-                if guerriero.stats.valore > valore_richiesto:                       
-                    risultato["puo_assegnare"] = False
-                    risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
+                elif "Solo Personalita" in corporazione:
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Personalita")
 
-            if risultato["puo_assegnare"] == False:
-                return risultato        
+                elif "Assegnabile a guerrieri con V <= " in corporazione:
+                    valore_richiesto = int( corporazione.split("Assegnabile a guerrieri con V <= ")[1].strip() )
+
+                    if guerriero.stats.valore > valore_richiesto:
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
+
+                if risultato["puo_assegnare"] == False:
+                    return risultato
         # Verifica corporazioni specifiche
         #if self.restrizioni.corporazioni_specifiche:
         #    if hasattr(guerriero, 'corporazione'):

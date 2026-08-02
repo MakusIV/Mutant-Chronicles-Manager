@@ -170,7 +170,12 @@ class Arte:
             discipline_arte_guerriero = [abilita.target.lower() for abilita in guerriero.abilita if abilita.tipo == "Arte"]   
            
             lancia_incantesimi_combattimento_personale = self.tipo == TipoArte.INCANTESIMO_PERSONALE and "incantesimo di combattimento personale" in discipline_arte_guerriero
-            lancia_arte_specifica = any( discipline.lower() not in discipline_arte_guerriero for discipline in [DisciplinaArte.TUTTE.value, self.disciplina.value])
+            # Il campo `target` del guerriero è una frase che cita una o due discipline
+            # (es. "Arte della Manipolazione ed Esorcismo"), non il nome nudo della
+            # disciplina: serve un confronto per sottostringa, non l'appartenenza alla lista.
+            lancia_arte_specifica = any( disciplina.lower() in target
+                                         for target in discipline_arte_guerriero
+                                         for disciplina in (DisciplinaArte.TUTTE.value, self.disciplina.value) )
             
             if not ( lancia_incantesimi_combattimento_personale or lancia_arte_specifica ):
                 risultato["puo_lanciare"] = False
