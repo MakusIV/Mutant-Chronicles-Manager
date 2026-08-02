@@ -143,7 +143,8 @@ class Equipaggiamento:
             raise TypeError("fazioni_permesse must be a str")
         
         if all( a not in [f.value for f in Fazione] for a in fazioni_permesse):
-            if fazioni_permesse != ["Generica"]:
+            # Il parametro è una stringa singola: va confrontato con una stringa, non con una lista
+            if fazioni_permesse != "Generica":
                 raise ValueError(f"fazioni_permesse must be in {[f.value for f in Fazione]}")
         
         self.fazioni_permesse.append(fazioni_permesse)
@@ -273,8 +274,10 @@ class Equipaggiamento:
         if self.fazioni_permesse is not None and self.fazioni_permesse != []:
             # Se l'equipaggiamento ha fazioni_permesse specifiche
             if guerriero.fazione not in [a for a in self.fazioni_permesse]:
-                # Verifica se è equipaggiamento generico utilizzabile da tutti
-                if self.fazioni_permesse != ["Generica"]:
+                # Verifica se è equipaggiamento generico utilizzabile da tutti.
+                # Nota: dopo from_dict `fazioni_permesse` contiene membri dell'enum Fazione,
+                # non stringhe: il confronto va fatto con Fazione.GENERICA.
+                if self.fazioni_permesse != [Fazione.GENERICA]:
                     risultato["puo_assegnare"] = False
                     risultato["errori"].append(f"Affiliazione richiesta: {self.fazioni_permesse}")
         

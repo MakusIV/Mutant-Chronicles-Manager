@@ -730,8 +730,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "set_espansione": "Base",
         "numero_carta": "",
         "stats": {
-            "combattimento": 0,
-            "sparare": 3, 
+            "combattimento": 3,
+            "sparare": 3,
             "armatura": 3,
             "valore": 3
         },
@@ -984,7 +984,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Sempre"
             }
         ],
-        "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA. Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Cybertronic\", ma dovrà pagare 1D per poter introdurre queste carte in gioco.",
+        "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA. Ogni punto guadagnato dal Mercenario dovrà essere convertito in Punti Destino. Il guerriero potrà utilizzare Armi e Equipaggiamenti marcati \"Solo Cybertronic\", ma dovrà pagare 3D per poter introdurre queste carte in gioco.",
         "flavour_text": "",
         "keywords": ["Mercenario"],
         "restrizioni": [],
@@ -1415,14 +1415,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Sempre"
             }
         ],
-        "testo_carta": "Immune ai DONI DELL'OSCURA SIMMETRIA, ma non ai DONI DEGLI APOSTOLI. In ogni momento, può equipaggiare qualsiasi Doomtrooper con carte Equipaggiamento Cybertronic senza spendere Azioni. Può anche affiliare qualsiasi Doomtrooper non-Personalità alla Cybertronic. Questo causa una ferita al Tecnico, ma se muore così non si guadagnano Punti. Non può usare l'Arte.",
+        "testo_carta": "COMANDANTE (SERGENTE). IMMUNE AI DONI DELL'OSCURA SIMMETRIA, MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Assegna un guerriero Cybertronic non personalità all'Osservatore Tattico. Questo guerriero ed eventuali altre copie di questo presenti nella tua squadra guadagnano un +4 in C, S, A e V mentre l'Osservatore è vivo e nella squadra.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Comandante"],
         "restrizioni": ["Carte delle Arti non Assegnabili"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
-            "ferito": False, 
+            "ferito": False,
             "pronto": True
         },
         "valore_strategico": 10,
@@ -1533,14 +1533,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             },
             {
                 "nome": "Aumenta caratteristica",
-                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +4",
+                "descrizione": "Aumenta le caratteristiche di Combattimento, Sparare, Armatura e Valore di +3",
                 "tipo": "Modificatore",
                 "costo_destino": 0,
-                "target": "Tutti i guerrieri Cybertronic nella squadra",
+                "target": "Tutti i guerrieri Cybertronic nella squadra (non Charles stesso)",
                 "timing": "Sempre"
             }
         ],
-        "testo_carta": "PERSONALITÀ. IMMUNE AI DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Tutti i tuoi guerrieri Cybertronic guadagnano un + 4 in C, S, A e V finché Charles stesso finché lui è presente nella squadra.",
+        "testo_carta": "PERSONALITÀ. IMMUNE AI DONI DELL'OSCURA SIMMETRIA MA NON AI DONI DEGLI APOSTOLI. Non potrà mai lanciare incantesimi dell'Arte. Tutti i tuoi guerrieri Cybertronic guadagnano un +3 in C, S, A e V (non Charles stesso) finché lui è presente nella squadra.",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": ["Carte delle Arti non Assegnabili"],
@@ -1579,10 +1579,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "target": "Guerriero",
                 "timing": "Sempre"
             }        ],
-        "testo_carta": "PERSONALITÀ. IMMUNE AI DONI DELL'OSCURA SIMMETRIA. Mentre l'Executive è in gioco tu puoi convertire ogni numero di azioni non di attacco in azioni di attacco ma queste devono essere compiute da guerrieri Cybertronic.",
+        "testo_carta": "PERSONALITÀ. LEADER CORPORATIVO. Non può mai prendere parte al combattimento né andare in copertura. Mentre l'Executive è in gioco tu puoi convertire ogni numero di azioni non di attacco in azioni di attacco, ma queste devono essere compiute da guerrieri Cybertronic.",
         "flavour_text": "",
         "keywords": ["Leader Corporativo", "Personalita"],
-        "restrizioni": ["Carte delle Arti non Assegnabili"],
+        "restrizioni": ["Non può prendere parte al combattimento", "Non può andare in copertura"],
         "equipaggiamento": [],
         "stato_gioco": {
             "in_gioco": False,
@@ -1717,16 +1717,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     
     "Guardia Inesperta": {
         "nome": "Guardia Inesperta",
-        "fazione": "Imperiale", 
+        "fazione": "Imperiale",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
         "stats": {
             "combattimento": 2,
-            "sparare": 2, 
-            "armatura": 2,
-            "valore": 3
+            "sparare": 2,
+            "armatura": 3,
+            "valore": 2
         },
         "abilita": [],
         "testo_carta": "Le Guardie inesperte non possono mai andare in Copertura e non possono mai utilizzare fortificationi.",
@@ -1747,16 +1747,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Membro del Clan": {
         "nome": "Membro del Clan",
-        "fazione": "Imperiale", 
+        "fazione": "Imperiale",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
         "stats": {
-            "combattimento": 3,
-            "sparare": 2, 
-            "armatura": 4,
-            "valore": 4
+            "combattimento": 4,
+            "sparare": 2,
+            "armatura": 3,
+            "valore": 3
         },
         "abilita": [{
                 "nome": "Aumenta caratteristica",
@@ -1784,15 +1784,15 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Blood Beret": {
         "nome": "Blood Beret",
-        "fazione": "Imperiale", 
+        "fazione": "Imperiale",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
         "stats": {
             "combattimento": 4,
-            "sparare": 3, 
-            "armatura": 4,
+            "sparare": 4,
+            "armatura": 3,
             "valore": 4
         },
         "abilita": [{
@@ -1821,15 +1821,15 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Sgt McBride": {
         "nome": "Sgt McBride",
-        "fazione": "Imperiale", 
+        "fazione": "Imperiale",
         "tipo": "Personalita",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
         "stats": {
             "combattimento": 5,
-            "sparare": 5, 
-            "armatura": 5,
+            "sparare": 5,
+            "armatura": 4,
             "valore": 5
         },
         "abilita": [
@@ -1890,16 +1890,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Farabutto": {
         "nome": "Farabutto",
-        "fazione": "Imperiale", 
+        "fazione": "Imperiale",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
         "stats": {
-            "combattimento": 4,
-            "sparare": 4, 
-            "armatura": 3,
-            "valore": 5
+            "combattimento": 5,
+            "sparare": 3,
+            "armatura": 4,
+            "valore": 4
         },
         "abilita": [],
         "testo_carta": "Non puoi aggiungere il Farabutto alla tua Squadra se sono presenti Guerrieri Imperiali e viceversa.",
@@ -1920,16 +1920,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Sean Gallagher": {
         "nome": "Sean Gallagher",
-        "fazione": "Imperiale", 
+        "fazione": "Imperiale",
         "tipo": "Personalita",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
         "stats": {
-            "combattimento": 8,
-            "sparare": 0, 
+            "combattimento": 10,
+            "sparare": 3,
             "armatura": 8,
-            "valore": 10
+            "valore": 8
         },
         "abilita": [{
                 "nome": "Immune agli effetti dell'Oscura Simmetria",
@@ -2092,16 +2092,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
     # Warzone
     "Comandante di Reparto": {
         "nome": "Comandante di Reparto",
-        "fazione": "Imperiale", 
+        "fazione": "Imperiale",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
         "stats": {
-            "combattimento": 5,
-            "sparare": 3, 
-            "armatura": 7,
-            "valore": 7
+            "combattimento": 7,
+            "sparare": 3,
+            "armatura": 5,
+            "valore": 6
         },
         "abilita": [
             {
@@ -2131,15 +2131,15 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Comandante in Capo": {
         "nome": "Comandante in Capo",
-        "fazione": "Imperiale", 
+        "fazione": "Imperiale",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
         "stats": {
-            "combattimento": 6,
-            "sparare": 7, 
-            "armatura": 5,
+            "combattimento": 9,
+            "sparare": 5,
+            "armatura": 7,
             "valore": 9
         },
         "abilita": [
@@ -2422,9 +2422,9 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "numero_carta": "",
         "stats": {
             "combattimento": 3,
-            "sparare": 3, 
+            "sparare": 3,
             "armatura": 3,
-            "valore": 2
+            "valore": 3
         },
         "abilita": [
             {
@@ -3280,7 +3280,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 4
         },
         "abilita": [],
-        "testo_carta": "I Necromutanti sono guerrieri trasformati dalla malvagia Necrotecnologia. Essi agiscono come ufficiali comandanti dei Legionari nn Morti di Algeroth",
+        "testo_carta": "SEGUACE DI ALGEROTH. I Necromutanti sono guerrieri trasformati dalla malvagia Necrotecnologia. Essi agiscono come ufficiali comandanti dei Legionari non Morti di Algeroth",
         "flavour_text": "La morte è solo l'inizio del servizio alle Potenze Oscure.",
         "keywords": ["Seguace di Algeroth", "Necromutante"],
         "restrizioni": [],
@@ -3310,7 +3310,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 3
         },
         "abilita": [],
-        "testo_carta": "Puoi assegnare un DONO DELL'OSCURA SIMMETRIA agli Eretici man non un DONO DEGLI APOSTOLI",
+        "testo_carta": "Puoi assegnare un DONO DELL'OSCURA SIMMETRIA agli Eretici ma non un DONO DEGLI APOSTOLI",
         "flavour_text": "",
         "keywords": ["Eretico"],
         "restrizioni": ["Solo doni dell'Oscura Simmetria"],
@@ -3349,7 +3349,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Turno"
             }
         ],
-        "testo_carta": "Billy è considerato un Eretico. Egli può ricever DONI DELL'OSCURA SIMMETRIA e spendendo 5D può ricevere un DONO DEGLI APOSTOLI",
+        "testo_carta": "PERSONALITA. Billy è considerato un Eretico. Egli può ricever DONI DELL'OSCURA SIMMETRIA e spendendo 5D può ricevere un DONO DEGLI APOSTOLI",
         "flavour_text": "",
         "keywords": ["Eretico", "Personalita"],
         "restrizioni": [],
@@ -3379,7 +3379,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 5
         },
         "abilita": [],
-        "testo_carta": "I Centurion sono soldati d'Elite trasformati dall'Oscura Simmetria per diventare i comandanti delle Legioni di Algeroth",
+        "testo_carta": "SEGUACE DI ALGEROTH. I Centurion sono soldati d'Elite trasformati dall'Oscura Simmetria per diventare i comandanti delle Legioni di Algeroth",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": [],
@@ -3416,7 +3416,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "target": "Tutto",
                 "timing": ""
             }],
-        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ad un Pretorian Stalker. Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2",
+        "testo_carta": "SEGUACE DI ALGEROTH. Le carte dell'Oscura Simmetria non possono essere assegnate ad un Pretorian Stalker. Se hai due Pretorian Stalkers nel tuo Schieramento i loro C ed S aumentano di +2",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": ["Solo doni degli Apostoli"],
@@ -3446,7 +3446,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 2
         },
         "abilita": [],
-        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
+        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari non Morti",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": ["Solo doni degli Apostoli"],
@@ -3485,7 +3485,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Fase Combattimento"
             }
         ],
-        "testo_carta": "SEGUACE DI ALGEROTH. Ogni Karnofago nel tuo Schieramento ucciderà automaticamente un guerriero ferito in gioco (mai un Nefaria) durante la fase SCARTARE. Non vengono guadagnati punti. Se non vi sono guerrieri feriti, il Karnofago viene scartato. L'avversario, in questo caso, non guadagna punti.",
+        "testo_carta": "SEGUACE DI ALGEROTH. Ogni Karnofago nel tuo Schieramento ucciderà automaticamente un guerriero ferito in gioco (mai un Nefarita) durante la fase SCARTARE. Non vengono guadagnati punti. Se non vi sono guerrieri feriti, il Karnofago viene scartato. L'avversario, in questo caso, non guadagna punti.",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": [],
@@ -3656,7 +3656,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 10
         },
         "abilita": [],
-        "testo_carta": "SEGUACE DI ALGEROTH. Non può mai partecipare a un combattimento, o andare in copertura. Se qualcuno dei tuoi seguaci di Algeroth viene ucciso da un Doomtrooper e sopravvive al combattimento puoi IMPRIGIONARLO, le carte associate al guerriero imprigionato sono scartate. I prigionieri non possono attaccare e non possono essere attaccati. Se il Justifier è scartato tutti i suoi prigionieri tornano alla loro Squadra.",
+        "testo_carta": "SEGUACE DI ALGEROTH. Non può mai partecipare a un combattimento, o andare in copertura. Se qualcuno dei tuoi seguaci di Algeroth ferisce (non uccide) un Doomtrooper e sopravvive al combattimento può IMPRIGIONARLO, le carte associate al guerriero imprigionato sono scartate. I prigionieri non possono attaccare e non possono essere attaccati. Se il Justifier è scartato tutti i suoi prigionieri tornano alla loro Squadra.",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": [],
@@ -3771,16 +3771,16 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     "Necromagus Supremo": {
         "nome": "Necromagus Supremo",
-        "fazione": "Oscura Legione", 
+        "fazione": "Oscura Legione",
         "tipo": "Seguace",
         "rarity": "Common",
         "set_espansione": "Warzone",
         "numero_carta": "",
         "stats": {
-            "combattimento": 22,
-            "sparare": 14, 
-            "armatura": 26,
-            "valore": 20
+            "combattimento": 4,
+            "sparare": 4,
+            "armatura": 5,
+            "valore": 5
         },
         "abilita": [],
         "testo_carta": "SEGUACE DI ALGEROTH CONSIDERATO UN ERETICO. Mentre è in gioco, tutti i tuoi Eretici guadagnano un +3 in C, S e A (non il Necromagus)",
@@ -3892,7 +3892,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "descrizione": "Equipaggia qualsiasi seguace di Algeroth con arte Oscura Simmetria e Doni degli Apostoli",
                 "tipo": "Carte",
                 "costo_destino": 0,
-                "target": "Seguaci di ALgeroth",
+                "target": "Seguaci di Algeroth",
                 "timing": "Ogni Momento"
             },
             {
@@ -3972,14 +3972,14 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [
             {
                 "nome": "Ataccabile solo dalla Fratellanza",
-                "descrizione": "Solo i membri della Fratellamza possono attaccarlo con penalità in A di -1",
-                "tipo": "Combattimento", 
+                "descrizione": "Solo i membri della Fratellamza possono attaccarlo con penalità in A di -3",
+                "tipo": "Combattimento",
                 "costo_destino": 0,
                 "target": "Guerriero",
                 "timing": "Fase Combattimento"
             }
         ],
-        "testo_carta": "SEGUACE DI ALGEROTH. I membri delle cinque Corporazioni non possono Attaccare il Cacciatore, ma i guerrieri della Fratellanza possono. Se Attaccati i Doomtrooper hanno un -1 in A quando combattono contro un Cacciatore Oscuro.",
+        "testo_carta": "SEGUACE DI ALGEROTH. I membri delle cinque Corporazioni non possono Attaccare il Cacciatore, ma i guerrieri della Fratellanza possono. Se Attaccati i Doomtrooper hanno un -3 in A quando combattono contro un Cacciatore Oscuro.",
         "flavour_text": "",
         "keywords": ["Seguace di Algeroth"],
         "restrizioni": [],
@@ -4137,13 +4137,13 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         },
         "abilita": [{
                 "nome": "Aumenta effetto",
-                "descrizione": "Ogni Urlatore causa un Punto Danno al costo di 5D.",
+                "descrizione": "Ogni Urlatore causa un Punto Danno al costo di 3 Azioni.",
                 "tipo": "Modificatore",
-                "costo_destino": 5,
+                "costo_destino": 0,
                 "target": "Tutto",
                 "timing": "Una volta a partita"
             }],
-        "testo_carta": "Una volta a partita, al costo di 5D, puoi invocare il Vento della Pazzia. Ogni Urlatore causa un Punto Danno, se sommandoli il totale è >= A, tutti i guerrieri in gioco sono Feriti. Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
+        "testo_carta": "Una volta a partita, al costo di 3 Azioni, puoi invocare il Vento della Pazzia. Ogni Urlatore causa un Punto Danno, se sommandoli il totale è >= A, tutti i guerrieri in gioco sono Feriti. Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Urlanti",
         "flavour_text": "",
         "keywords": ["Seguace di Muawijhe"],
         "restrizioni": ["Solo doni degli Apostoli"],
@@ -4314,7 +4314,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             },
             {
                 "nome": "Aumenta effetto",
-                "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
+                "descrizione": "Se delle carte dell'Oscura Simmetria sono assegnate al Nefarita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.",
                 "tipo": "Modificatore",
                 "costo_destino": 1,
                 "target": "",
@@ -4328,7 +4328,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "target": "",
                 "timing": "Sempre"
             }],
-        "testo_carta": "Immune agli effetti dell'Arte. Se delle carte dell'Oscura Simmetria sono assegnate al Nepharita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto.Se Ferito, il Nefarita  può guarire se stesso spendendo 7D",
+        "testo_carta": "Immune agli effetti dell'Arte. Se delle carte dell'Oscura Simmetria sono assegnate al Nefarita di Demnogonis, per ogni Punto D speso su un effetto dell'Oscura Simmetria il Valore raddoppia per quell'effetto. Se Ferito, il Nefarita può guarire se stesso spendendo 7D",
         "flavour_text": "",
         "keywords": ["Seguace di Demnogonis", "Nefarita"],
         "restrizioni": [],
@@ -4358,7 +4358,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 4
         },
         "abilita": [],
-        "testo_carta": "Con laLame Scalper e siringhe piene di veleni mortali, i Tutori sono ben lieti di dare ai feriti l'estrema unzione",
+        "testo_carta": "SEGUACE DI DEMNOGONIS. Con Lame Scalper e siringhe piene di veleni mortali, i Tutori sono ben lieti di dare ai feriti l'estrema unzione",
         "flavour_text": "",
         "keywords": ["Seguace di Demnogonis"],
         "restrizioni": [],
@@ -4396,7 +4396,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "target": "Guerriero",
                 "timing": "Fase Combattimento"
             },],
-        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Benedetti. I guerrieri feriti dai Legionari Benedetti sono automaticamente morti.",
+        "testo_carta": "SEGUACE DI DEMNOGONIS. Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari Benedetti. I guerrieri feriti dai Legionari Benedetti sono automaticamente morti.",
         "flavour_text": "",
         "keywords": ["Seguace di Demnogonis", "Se ferisce, uccide automaticamente"],
         "restrizioni": ["Solo doni degli Apostoli"],
@@ -4505,7 +4505,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 2
         },
         "abilita": [],
-        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Figli di Ilian",
+        "testo_carta": "SEGUACE DI ILIAN. Le carte dell'Oscura Simmetria non possono essere assegnate ai Figli di Ilian",
         "flavour_text": "",
         "keywords": ["Seguace di Ilian"],
         "restrizioni": ["Solo doni degli Apostoli"],
@@ -4535,7 +4535,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 6
         },
         "abilita": [],
-        "testo_carta": "Le Guardie del Tempio di Ilian sono guerrieri estremamente potenti che pattugliano la Cittadella della Signora del Vuoto",
+        "testo_carta": "SEGUACE DI ILIAN. Le Guardie del Tempio di Ilian sono guerrieri estremamente potenti che pattugliano la Cittadella della Signora del Vuoto",
         "flavour_text": "",
         "keywords": ["Seguace di Ilian"],
         "restrizioni": [],
@@ -4565,7 +4565,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 1
         },
         "abilita": [],
-        "testo_carta": "SEGUACE DI ILIAN. Non potrà mai essere influenzato da altre carte (eccetto carte di attacco a guerrieri) e non potrà mai attaccare. Al costo di 2 AZIONI potrai ispezionare un numero di carte, in mano al giocatore avversario, pari al numero di punti D spesi. 1 x . Spendendo 2 D potrai guardare 2 carte. Le carte da guardare si pescano a caso.",
+        "testo_carta": "SEGUACE DI ILIAN. Non potrà mai essere influenzato da altre carte (eccetto carte di attacco a guerrieri) e non potrà mai attaccare. Al costo di 2 AZIONI potrai ispezionare un numero di carte, in mano al giocatore avversario, pari al numero di punti D spesi. Es. Spendendo 2 D potrai guardare 2 carte. Le carte da guardare si pescano a caso.",
         "flavour_text": "",
         "keywords": ["Seguace di Ilian"],
         "restrizioni": [],
@@ -4760,7 +4760,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "target": "",
                 "timing": "Sempre"
             }],
-        "testo_carta": "Se Ferito, l'Intruso Callistoniano può guarire se stesso spendendo, in ogni momento, 6D",
+        "testo_carta": "SEGUACE DI SEMAI. Se Ferito, l'Intruso Callistoniano può guarire se stesso spendendo, in ogni momento, 6D",
         "flavour_text": "",
         "keywords": ["Seguace di Semai"],
         "restrizioni": [],
@@ -4837,7 +4837,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
             "valore": 2
         },
         "abilita": [],
-        "testo_carta": "Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari di Semai",
+        "testo_carta": "SEGUACE DI SEMAI. Le carte dell'Oscura Simmetria non possono essere assegnate ai Legionari di Semai",
         "flavour_text": "",
         "keywords": ["Seguace di Semai"],
         "restrizioni": ["Solo doni degli Apostoli"],
@@ -4891,7 +4891,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "target": "",
                 "timing": "Sempre"
             }],
-        "testo_carta": "Immune agli effetti dell'Arte. I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto, esamina la tua Collezione e introduci un Legionario di Semai nel tuo Schieramento. Se non hai una carta per rappresentarlo, perdi questa possibilità",
+        "testo_carta": "SEGUACE DI SEMAI. Immune agli effetti dell'Arte. I Doomtrooper uccisi da lui diventano Legionari di Semai sotto il tuo controllo. Scarta il morto, esamina la tua Collezione e introduci un Legionario di Semai nel tuo Schieramento. Se non hai una carta per rappresentarlo, perdi questa possibilità",
         "flavour_text": "",
         "keywords": ["Seguace di Semai", "Nefarita"],
         "restrizioni": [],
@@ -4981,8 +4981,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
 
     # === MERCENARIO ===
     # Fatto
-    "Agente nick michaels": {
-        "nome": "Agente nick michaels",
+    "Agente Nick Michaels": {
+        "nome": "Agente Nick Michaels",
         "fazione": "Mercenario", 
         "tipo": "Personalita",
         "rarity": "Common",
@@ -5010,8 +5010,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
-    "Guardia del corpo": {
-        "nome": "Guardia del corpo",
+    "Guardia Del Corpo": {
+        "nome": "Guardia Del Corpo",
         "fazione": "Mercenario", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -5068,28 +5068,20 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
-    "Medico da campo": {
-        "nome": "Medico da campo",
-        "fazione": "Mercenario", 
+    "Medico Da Campo": {
+        "nome": "Medico Da Campo",
+        "fazione": "Mercenario",
         "tipo": "Normale",
         "rarity": "Common",
         "set_espansione": "Base",
         "numero_carta": "",
         "stats": {
             "combattimento": 0,
-            "sparare": 0, 
+            "sparare": 0,
             "armatura": 5,
             "valore": 3
         },
         "abilita": [
-            {
-                "nome": "Guarisce se stesso.",
-                "descrizione": "Se ferito, .",
-                "tipo": "Guarigione",
-                "costo_destino": 0,
-                "target": "Guerriero",
-                "timing": "Sempre"
-            },
             {
                 "nome": "Guarisce guerriero ferito",
                 "descrizione": "Può curare un Doomtrooper ferito (facendolo tornare sano) al costo di tre azioni. Non può curare un morto.",
@@ -5114,8 +5106,8 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
-    "Apostata rinnegato": {
-        "nome": "Apostata rinnegato",
+    "Apostata Rinnegato": {
+        "nome": "Apostata Rinnegato",
         "fazione": "Mercenario", 
         "tipo": "Normale",
         "rarity": "Common",
@@ -5137,7 +5129,7 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
                 "timing": "Turno"
             }
         ],
-        "testo_carta": "Può usare tutti i tipi di Arte. L'apostata Rinnegato non ha nessun Legame e non può riceverne nessuno separato dalla Tua Squadra e dal Tuo Schieramento. Può lanciare qualsiasi incantesimo su qualsiasi guerriero e Attaccare ed essere Attaccato da qualsiasi guerriero.",
+        "testo_carta": "Può usare tutti i tipi di Arte. L'apostata Rinnegato non ha nessun Legame e non può riceverne nessuno. Tienilo separato dalla Tua Squadra e dal Tuo Schieramento. Può lanciare qualsiasi incantesimo su qualsiasi guerriero e Attaccare ed essere Attaccato da qualsiasi guerriero.",
         "flavour_text": "",
         "keywords": ["Eretico"],
         "restrizioni": [],

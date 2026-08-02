@@ -240,12 +240,12 @@ DATABASE_FORTIFICAZIONI = {
         "bonus_armatura": 2,
         "punti_struttura": 0,
         "resistenza_attacchi": False,
-        "modificatori": [            
+        "modificatori": [
             {
-                "statistica": "multiple: A, C",
-                "valore": "+2",
+                "statistica": "C",
+                "valore": -2,
                 "condizione": "sempre",
-                "descrizione": "Il guerriero guadagna un +2 in A, e un +2 in C",
+                "descrizione": "Il guerriero guadagna un +2 in A, e un -2 in C",
                 "permanente": True
             }
         ],
@@ -253,7 +253,7 @@ DATABASE_FORTIFICAZIONI = {
         "requisiti": [],
         "restrizioni": ["Non può cominciare un combattimento Corpo a Corpo", "Può essere mossa su un altro guerriero al costo di un'Azione"],
         "fazioni_permesse": ["Generica"],
-        "testo_carta": "ASSEGNA QUESTA CARTA A UN GUERRIERO AL COSTO DI UN'AZIONE. Il guerriero trova protezione in una Trincea. Questo guerriero guadagna un +2 in A, e un +2 in C. Il guerriero non può cominciare un combattimento Corpo a Corpo, (ma può difendersi se è attaccato). Questa carta può essere mossa su un altro guerriero al costo di un'Azione.",
+        "testo_carta": "ASSEGNA QUESTA CARTA A UN GUERRIERO AL COSTO DI UN'AZIONE. Il guerriero trova protezione in una Trincea. Questo guerriero guadagna un +2 in A, e un -2 in C. Il guerriero non può cominciare un combattimento Corpo a Corpo, (ma può difendersi se è attaccato). Questa carta può essere mossa su un altro guerriero al costo di un'Azione.",
         "flavour_text": "",
         "keywords": ["Trincea", "Protezione", "Fortificazione"],
         "valore_strategico": 6,
@@ -387,9 +387,9 @@ DATABASE_FORTIFICAZIONI = {
         "modificatori": [            
             {
                 "statistica": "A",
-                "valore": "+2",
+                "valore": 1,
                 "condizione": "Uso ristretto: Mercenari",
-                "descrizione": "Tutti i tuoi Mercenari guadagnano +2 in A",
+                "descrizione": "Tutti i tuoi Mercenari guadagnano +2 in A (bonus aggiuntivo di +1 rispetto al +1 base di bonus_armatura, che il motore somma)",
                 "permanente": True
             }
         ],

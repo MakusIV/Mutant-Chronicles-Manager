@@ -6,6 +6,7 @@ classi, usecase e utilità per la creazione dei mazzi da gioco
 
 import random
 import math
+import re
 import sys
 from datetime import datetime
 from typing import List, Dict, Tuple, Optional, Any, Union
@@ -135,6 +136,111 @@ RIDISTRIBUZIONE_PERCENTUALE = {
     'fortificazione': 0.20
 }
 
+# Sinonimi con cui i database indicano le statistiche di combattimento nel campo
+# `statistica_target` degli `effetti`. Il valore è la statistica canonica di riferimento.
+SINONIMI_STATISTICHE_EFFETTI = {
+    "combattimento": "combattimento",
+    "attacco":       "combattimento",
+    "sparare":       "sparare",
+    "sparatoria":    "sparare",
+    "armatura":      "armatura",
+}
+
+# Valori che indicano "tutte le statistiche": contano come le tre statistiche di
+# combattimento C/S/A (il Valore V è escluso, come in STATISTICHE_MODIFICATORI).
+STATISTICHE_TARGET_TUTTE = ("tutte", "c, s, a, v")
+
+
+def bersaglio_e_avversario(carta: Any) -> bool:
+    """
+    Indica se una carta agisce sui guerrieri avversari anziché sui propri.
+
+    Per Speciale, Arte e Oscura Simmetria il bersaglio è dichiarato nel campo `bersaglio`
+    ("Guerriero Avversario", "Tutti i Guerrieri Avversari", "Giocatore Avversario").
+    La distinzione conta per il punteggio: su una carta rivolta all'avversario un
+    modificatore **negativo** è un vantaggio, non una penalità.
+
+    Args:
+        carta: Oggetto Speciale, Arte o Oscura_Simmetria
+
+    Returns:
+        True se la carta è rivolta all'avversario
+    """
+    bersaglio = getattr(carta, 'bersaglio', None)
+    return "avversar" in str(getattr(bersaglio, 'value', bersaglio) or "").lower()
+
+
+def statistica_penalizza_avversario(statistica: Any) -> bool:
+    """
+    Indica se un modificatore agisce sulla statistica dell'avversario.
+
+    Alcuni moduli non hanno un campo bersaglio e codificano l'informazione nel nome
+    della statistica (es. Equipaggiamento: "combattimento dell'avversario").
+
+    Args:
+        statistica: Il campo `statistica` del modificatore
+
+    Returns:
+        True se il modificatore agisce sull'avversario
+    """
+    return "avversario" in str(statistica or "").lower()
+
+
+def valore_efficace_modificatore(valore: Any, contro_avversario: bool) -> Optional[int]:
+    """
+    Restituisce il contributo di un modificatore al punteggio, con il segno corretto.
+
+    Su una carta rivolta all'avversario la convenzione si inverte: più il valore è
+    negativo, più la carta è efficace (es. "Cecita": -2 a C e S degli avversari).
+
+    Il valore restituito conserva il segno: positivo se il modificatore avvantaggia il
+    giocatore, negativo se lo penalizza. Sta al chiamante pesarlo (vedi peso_modificatore).
+
+    Args:
+        valore: Il campo `valore` del modificatore
+        contro_avversario: Se il modificatore agisce sull'avversario
+
+    Returns:
+        Il contributo con segno, oppure None se il valore non è numerico
+    """
+    numero = valore_numerico_modificatore(valore)
+    if numero is None:
+        return None
+
+    return -numero if contro_avversario else numero   # una penalità inflitta all'avversario è un vantaggio
+
+
+def numero_statistiche_combattimento(statistica_target: Any) -> int:
+    """
+    Conta quante statistiche di combattimento (C/S/A) sono toccate da un effetto.
+
+    Il campo `statistica_target` non contiene solo nomi singoli: i database usano anche
+    "tutte", elenchi in linguaggio naturale ("combattimento e sparare",
+    "combattimento, sparare, azioni e velocità") e sinonimi ("attacco", "sparatoria").
+
+    Args:
+        statistica_target: Il campo `statistica_target` dell'effetto
+
+    Returns:
+        Numero di statistiche di combattimento interessate (0 se nessuna)
+    """
+    testo = str(statistica_target or "").strip().lower()
+    if not testo or testo in ("nessuna", "varie"):
+        return 0
+    if testo in STATISTICHE_TARGET_TUTTE:
+        return 3
+
+    return len({canonica for sinonimo, canonica in SINONIMI_STATISTICHE_EFFETTI.items()
+                if sinonimo in testo})
+
+
+# Peso usato nella ridistribuzione a posteriori per i tipi assenti da RIDISTRIBUZIONE_PERCENTUALE
+# (quella tabella copre solo i tipi che possono ricevere quote nella ridistribuzione a priori).
+PESO_RIDISTRIBUZIONE_DEFAULT = 0.10
+
+# Numero massimo di giri di ridistribuzione a posteriori degli slot non riempiti.
+MAX_GIRI_RIDISTRIBUZIONE = 2
+
 # Fazioni Doomtrooper e Oscura Legione
 FAZIONI_DOOMTROOPER = [
     Fazione.IMPERIALE, 
@@ -147,7 +253,147 @@ FAZIONI_DOOMTROOPER = [
 
 FAZIONI_FRATELLANZA = [Fazione.FRATELLANZA]
 FAZIONI_OSCURA_LEGIONE = [Fazione.OSCURA_LEGIONE]
-STATISTICHE_MODIFICATORI = [["sparare", "combattimento", "armatura", "S", "A", "C", "multiple:"]]
+# Statistiche di combattimento riconosciute nei modificatori delle carte di supporto.
+# Vanno confrontate sempre in minuscolo: i moduli usano convenzioni diverse
+# (parole intere in Equipaggiamento, lettere singole in Fortificazione/Reliquia/Warzone).
+STATISTICHE_MODIFICATORI = ["sparare", "combattimento", "armatura", "s", "a", "c"]
+
+# Valori non numerici che indicano un potenziamento molto forte.
+VALORI_SPECIALI_MODIFICATORI = ["raddoppiate", "uguale alla più elevata", "x3"]
+
+# Pesi con cui bonus e penalità concorrono al punteggio. Molte carte potenziano una
+# statistica e contemporaneamente ne penalizzano un'altra (es. la Trincea: +2 in A e
+# -2 in C): la penalità deve pesare, ma meno del bonus, perché è il giocatore a
+# scegliere quando esporsi allo svantaggio.
+PESO_MODIFICATORE_POSITIVO = 0.65
+PESO_MODIFICATORE_NEGATIVO = 0.35
+
+# Potenza minima: una carta il cui saldo è negativo resta in fondo alla graduatoria
+# senza però assumere valori nulli o negativi, che falserebbero i prodotti a valle.
+POTENZA_MINIMA = 0.1
+
+
+def peso_modificatore(valore_efficace: float) -> float:
+    """
+    Restituisce il peso con cui un modificatore concorre al punteggio.
+
+    Args:
+        valore_efficace: Contributo del modificatore, già col segno corretto rispetto
+                         a chi lo subisce (positivo = vantaggio per il giocatore)
+
+    Returns:
+        float: PESO_MODIFICATORE_POSITIVO per i vantaggi, PESO_MODIFICATORE_NEGATIVO per le penalità
+    """
+    return PESO_MODIFICATORE_POSITIVO if valore_efficace > 0 else PESO_MODIFICATORE_NEGATIVO
+
+# Regolamento §2: "Non si possono avere più di 5 copie di ogni singola carta".
+# Il limite vale sul mazzo completo, non sulla singola tornata di selezione.
+MAX_COPIE_PER_CARTA_MAZZO = 5
+
+
+def statistica_di_combattimento(statistica: Any) -> bool:
+    """
+    Indica se un modificatore agisce su una statistica di combattimento (C/S/A).
+
+    Riconosce anche le forme che indicano la statistica dell'avversario
+    ("combattimento dell'avversario"): sono modificatori a tutti gli effetti, con la
+    convenzione di segno invertita (vedi valore_efficace_modificatore).
+
+    Args:
+        statistica: Il campo `statistica` del modificatore, in una qualsiasi
+                    delle convenzioni usate dai database ("armatura", "A",
+                    "multiple: S, A, V", "combattimento dell'avversario", ...)
+
+    Returns:
+        True se la statistica è rilevante per il calcolo della potenza
+    """
+    valore_statistica = str(statistica or "").strip().lower()
+
+    if valore_statistica in STATISTICHE_MODIFICATORI or valore_statistica.startswith("multiple:"):
+        return True
+
+    # Forme del tipo "combattimento dell'avversario": il nome della statistica di
+    # combattimento è presente come prefisso. Si considerano solo i nomi per esteso:
+    # le sigle di una lettera darebbero falsi positivi ("azioni" inizia per "a").
+    return any(valore_statistica.startswith(nome)
+               for nome in STATISTICHE_MODIFICATORI if len(nome) > 1)
+
+
+def valore_numerico_modificatore(valore: Any) -> Optional[int]:
+    """
+    Estrae il valore numerico di un modificatore.
+
+    Serve perché il campo `valore` non ha un tipo uniforme fra i moduli:
+    è int in Fortificazione e Warzone, stringa col segno in Equipaggiamento
+    e Reliquia ("+4"), e talvolta stringa mista ("+1 ulteriore").
+
+    Args:
+        valore: Il campo `valore` del modificatore
+
+    Returns:
+        Il valore come intero, oppure None se non numerico (es. "raddoppiate")
+    """
+    if valore is None or isinstance(valore, bool):
+        return None
+    if isinstance(valore, int):
+        return valore
+    corrispondenza = re.search(r"[+-]?\d+", str(valore))
+    return int(corrispondenza.group()) if corrispondenza else None
+
+
+def livello_bonus_modificatore(valore: Any, contro_avversario: bool = False) -> int:
+    """
+    Classifica l'entità di un modificatore in fasce di potenza.
+
+    Riproduce le tre soglie del codice originale (che le riconosceva
+    confrontando sottostringhe: "+5".."+9", "+3"/"+4", "+1"/"+2") ma su base
+    numerica, così da funzionare anche con i valori interi e da non premiare
+    i modificatori negativi, che sono penalità inflitte al proprio guerriero.
+
+    Args:
+        valore: Il campo `valore` del modificatore
+        contro_avversario: Se il modificatore agisce sulla statistica dell'avversario,
+                           nel qual caso la convenzione di segno si inverte: una
+                           penalità inflitta all'avversario è un vantaggio
+
+    Returns:
+        Fascia **con segno**: positiva per i vantaggi, negativa per le penalità.
+        0 = valore nullo o non interpretabile; ±1 = piccolo (1/2), ±2 = medio (3/4),
+        ±3 = grande (>= 5)
+    """
+    if any(speciale in str(valore or "").lower() for speciale in VALORI_SPECIALI_MODIFICATORI):
+        return 3
+
+    numero = valore_efficace_modificatore(valore, contro_avversario)
+    if numero is None or numero == 0:
+        return 0
+
+    segno = 1 if numero > 0 else -1
+    intensita = abs(numero)
+
+    if intensita >= 5:
+        return segno * 3
+    if intensita >= 3:
+        return segno * 2
+    return segno * 1
+
+
+def modificatore_utilizzabile(condizione: Any) -> bool:
+    """
+    Indica se un modificatore va conteggiato nella potenza nonostante la sua condizione.
+
+    I modificatori marcati "Uso ristretto:" valgono solo in casi particolari e
+    non fanno testo, a meno che la condizione sia del tipo "incrementa con costo:",
+    che il giocatore può sempre scegliere di pagare.
+
+    Args:
+        condizione: Il campo `condizione` del modificatore
+
+    Returns:
+        True se il modificatore va conteggiato
+    """
+    testo_condizione = str(condizione or "").lower()
+    return "uso ristretto:" not in testo_condizione or "incrementa con costo:" in testo_condizione
 
 # ================================================================================
 # CLASSE PRINCIPALE PER LA CREAZIONE DEL MAZZO
@@ -249,7 +495,94 @@ class CreatoreMazzo:
                         
         self.potenze_calcolate['Guerriero'][guerriero.nome] = potenza
         return potenza
-    
+
+    def _guerriero_riceve_doni_di_ogni_apostolo(self, guerriero: Guerriero) -> bool:
+        """
+        Indica se un guerriero può ricevere i Doni di un Apostolo qualsiasi.
+
+        È l'eccezione alla regola dei Seguaci: alcuni guerrieri (es. Billy, un
+        Eretico) possono ricevere Doni degli Apostoli pur non essendo Seguaci di
+        alcun Apostolo specifico. La capacità è dichiarata nel database con
+        un'abilità di tipo "Dono degli Apostoli", con lo stesso schema usato per
+        i guerrieri abilitati all'Arte (`abilita.tipo == "Arte"`).
+
+        Args:
+            guerriero: Oggetto Guerriero
+
+        Returns:
+            True se il guerriero può ricevere i Doni di qualsiasi Apostolo
+        """
+        return any(str(abilita.tipo) == "Dono degli Apostoli"
+                   for abilita in getattr(guerriero, 'abilita', []) or [])
+
+    def _dono_utilizzabile_dai_guerrieri(self, carta: Any, guerrieri: List[Guerriero]) -> bool:
+        """
+        Indica se un Dono degli Apostoli è utilizzabile da almeno un guerriero del mazzo.
+
+        Un Dono degli Apostoli richiede un Seguace di quello specifico Apostolo
+        (regolamento §5), salvo i guerrieri che fanno eccezione (vedi
+        `_guerriero_riceve_doni_di_ogni_apostolo`). I Doni generici dell'Oscura
+        Simmetria non hanno un Apostolo di riferimento e non sono soggetti a
+        questo vincolo.
+
+        Args:
+            carta: Carta Oscura Simmetria
+            guerrieri: Guerrieri presenti nel mazzo
+
+        Returns:
+            True se almeno un guerriero può ricevere il Dono
+        """
+        apostolo = getattr(carta, 'apostolo_padre', None)
+        nome_apostolo = getattr(apostolo, 'value', apostolo)
+
+        if not nome_apostolo:   # Dono generico: nessun vincolo di Apostolo
+            return True
+
+        seguace_richiesto = f"Seguace di {nome_apostolo}"
+
+        return any(seguace_richiesto in (getattr(g, 'keywords', []) or [])
+                   or self._guerriero_riceve_doni_di_ogni_apostolo(g)
+                   for g in guerrieri)
+
+    def _applica_bonus_modificatore(self, potenza: float, livello: int,
+                                    modifica_statistiche_applicata: bool) -> float:
+        """
+        Applica alla potenza il bonus di un modificatore di statistica.
+
+        Se la carta ha già ricevuto un potenziamento dal gruppo `statistiche`,
+        il modificatore agisce come moltiplicatore (per non sommare due volte lo
+        stesso potenziamento); altrimenti come addendo.
+
+        Le penalità (fascia negativa) riducono la potenza, con il peso ridotto di
+        PESO_MODIFICATORE_NEGATIVO: molte carte potenziano una statistica penalizzandone
+        un'altra (es. la Trincea, +2 in A e -2 in C) e lo svantaggio deve pesare, ma meno
+        del vantaggio.
+
+        Args:
+            potenza: Potenza calcolata finora
+            livello: Fascia del modificatore **con segno** (±1 piccolo, ±2 medio, ±3 grande)
+            modifica_statistiche_applicata: Se la potenza è già stata modificata
+
+        Returns:
+            float: potenza aggiornata
+        """
+        if livello == 0:
+            return potenza
+
+        moltiplicatori = {1: 1.1, 2: 1.2, 3: 1.3}
+        addendi = {1: 1, 2: 2, 3: 4}
+
+        fascia = abs(livello)
+        peso = peso_modificatore(livello)
+
+        if modifica_statistiche_applicata:
+            variazione = (moltiplicatori[fascia] - 1) * peso
+            fattore = (1 + variazione) if livello > 0 else (1 - variazione)
+            return max(POTENZA_MINIMA, potenza * fattore)
+
+        contributo = addendi[fascia] * peso
+        return max(POTENZA_MINIMA, potenza + (contributo if livello > 0 else -contributo))
+
     def calcola_potenza_equipaggiamento(self, equipaggiamento: Equipaggiamento) -> float:
         """
         Calcola la potenza relativa di un equipaggiamento
@@ -288,43 +621,21 @@ class CreatoreMazzo:
         # Bonus per modificatori speciali
         for modificatore in equipaggiamento.modificatori_speciali:
             # Potenziamento altri guerrieri
-            statistica = modificatore.statistica.lower()
-            descrizione = modificatore.descrizione.lower()
-            valore = modificatore.valore.lower()
-            condizione = modificatore.condizione.lower()            
-            
-            if statistica in STATISTICHE_MODIFICATORI:
-                                                
-                if any(val in valore for val in ["raddoppiate", "+5", "+6", "+7", "+8", "+9"]):  
-                                                  
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                        
-                        if modifica_statistiche_applicata: 
-                            potenza *= 1.3
-                        else:    
-                            potenza += 4
-                
-                elif any(val in valore for val in ["+3", "+4"]):                
-                    
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                        
-                        if modifica_statistiche_applicata:
-                            potenza *= 1.2
-                        else:    
-                            potenza += 2
-                    
-                elif any(val in descrizione for val in ["+1", "+2"]):                        
-                        
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                            
-                            if modifica_statistiche_applicata:
-                                potenza *= 1.1
-                            else:    
-                                potenza += 1
-                
-                                
-                if "multiple" in statistica:
-                    potenza *= 1.5 # aumenta del 50% la potenza assoluta                
+            statistica = str(modificatore.statistica or "").lower()
+
+            if not statistica_di_combattimento(statistica):
+                continue
+
+            # Il bersaglio può essere codificato nel nome della statistica
+            # (es. "combattimento dell'avversario"): in quel caso una penalità è un vantaggio.
+            livello = livello_bonus_modificatore(modificatore.valore,
+                                                 statistica_penalizza_avversario(modificatore.statistica))
+
+            if livello and modificatore_utilizzabile(modificatore.condizione):
+                potenza = self._applica_bonus_modificatore(potenza, livello, modifica_statistiche_applicata)
+
+            if statistica.startswith("multiple"):
+                potenza *= 1.5 # aumenta del 50% la potenza assoluta
         
         # Bonus per abilita speciali
         for abilita in equipaggiamento.abilita_speciali:
@@ -404,42 +715,21 @@ class CreatoreMazzo:
         # Bonus per modificatori speciali
         for modificatore in fortificazione.modificatori:
             # Potenziamento altri guerrieri
-            statistica = modificatore.statistica.lower()
-            descrizione = modificatore.descrizione.lower()
-            valore = modificatore.valore.lower()
-            condizione = modificatore.condizione.lower()            
-            
-            if statistica in STATISTICHE_MODIFICATORI:
-                                                
-                if any(val in valore for val in ["raddoppiate", "+5", "+6", "+7", "+8", "+9"]):  
-                                                  
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                        
-                        if modifica_statistiche_applicata: 
-                            potenza *= 1.3
-                        else:    
-                            potenza += 4
-                
-                elif any(val in valore for val in ["+3", "+4"]):                
-                    
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                        
-                        if modifica_statistiche_applicata:
-                            potenza *= 1.2
-                        else:    
-                            potenza += 2
-                    
-                elif any(val in descrizione for val in ["+1", "+2"]):                        
-                    
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                            
-                            if modifica_statistiche_applicata:
-                                potenza *= 1.1
-                            else:    
-                                potenza += 1
-                                    
-                if "multiple" in statistica:
-                    potenza *= 1.5 # aumenta del 50% la potenza assoluta                
+            statistica = str(modificatore.statistica or "").lower()
+
+            if not statistica_di_combattimento(statistica):
+                continue
+
+            # Il bersaglio può essere codificato nel nome della statistica
+            # (es. "combattimento dell'avversario"): in quel caso una penalità è un vantaggio.
+            livello = livello_bonus_modificatore(modificatore.valore,
+                                                 statistica_penalizza_avversario(modificatore.statistica))
+
+            if livello and modificatore_utilizzabile(modificatore.condizione):
+                potenza = self._applica_bonus_modificatore(potenza, livello, modifica_statistiche_applicata)
+
+            if statistica.startswith("multiple"):
+                potenza *= 1.5 # aumenta del 50% la potenza assoluta
         
         # Bonus per abilita speciali
         for abilita in fortificazione.abilita_speciali:
@@ -557,23 +847,23 @@ class CreatoreMazzo:
         # Bonus per modificatori speciali
         for modificatore in reliquia.modificatori:
             # Potenziamento altri guerrieri
-            statistica = modificatore.statistica.lower()
-            #descrizione = modificatore.descrizione.lower()
-            valore = modificatore.valore.lower()
-            condizione = modificatore.condizione.lower()            
-            
-            if statistica in STATISTICHE_MODIFICATORI:                
-                if isinstance(valore, str) and "ristretto:" not in condizione:
-                    if valore in ["raddoppiate", "uguale alla più elevata", "x3"]:
-                        valore = 10  # Considera raddoppiate come +10 per il calcolo della potenza:
-                        break
-                    elif valore.startswith('+'):
-                        valore = int(valore[1:])  # Rimuovi il segno '+' per la conversione a intero
-                    else:
-                        valore = 0
-                    
-                potenza += valore                        
-                
+            statistica = str(modificatore.statistica or "").lower()
+            valore = str(modificatore.valore or "").lower()
+            condizione = str(modificatore.condizione or "").lower()
+
+            # A differenza degli altri moduli, qui il modificatore viene sommato
+            # direttamente alla potenza invece di essere classificato in fasce.
+            if not statistica_di_combattimento(statistica) or "ristretto:" in condizione:
+                continue
+
+            if any(speciale in valore for speciale in VALORI_SPECIALI_MODIFICATORI):
+                potenza += 10  # Considera raddoppiate come +10 per il calcolo della potenza
+            else:
+                numero = valore_numerico_modificatore(modificatore.valore)
+                if numero is not None and numero > 0:
+                    potenza += numero
+
+
         # Bonus per poteri
         for potere in reliquia.poteri:
             # Potenziamento altri guerrieri
@@ -681,44 +971,22 @@ class CreatoreMazzo:
         # Bonus per modificatori speciali
         for modificatore in warzone.modificatori_difensore:
             # Potenziamento altri guerrieri
-            statistica = modificatore.statistica.lower()
-            descrizione = modificatore.descrizione.lower()
-            valore = modificatore.valore
-            condizione = modificatore.condizione.lower()            
-            
+            statistica = str(modificatore.statistica or "").lower()
+
             # spostare quando considera carta guerriero da associare per valutazione sul gurriero specifico
-            if statistica in STATISTICHE_MODIFICATORI:
-                                                
-                if any(val in valore for val in ["raddoppiate", "+5", "+6", "+7", "+8", "+9"]):  
-                                                  
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                        
-                        if modifica_statistiche_applicata: 
-                            potenza *= 1.3
-                        else:    
-                            potenza += 4
-                
-                elif any(val in valore for val in ["+3", "+4"]):                
-                    
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                        
-                        if modifica_statistiche_applicata:
-                            potenza *= 1.2
-                        else:    
-                            potenza += 2
-                    
-                elif any(val in descrizione for val in ["+1", "+2"]):                        
-                        
-                    if ( "uso ristretto:" not in condizione or "incrementa con costo:" in condizione ):
-                            
-                            if modifica_statistiche_applicata:
-                                potenza *= 1.1
-                            else:    
-                                potenza += 1
-                
-                                
-                if "multiple" in statistica:
-                    potenza *= 1.5 # aumenta del 50% la potenza assoluta                
+            if not statistica_di_combattimento(statistica):
+                continue
+
+            # Il bersaglio può essere codificato nel nome della statistica
+            # (es. "combattimento dell'avversario"): in quel caso una penalità è un vantaggio.
+            livello = livello_bonus_modificatore(modificatore.valore,
+                                                 statistica_penalizza_avversario(modificatore.statistica))
+
+            if livello and modificatore_utilizzabile(modificatore.condizione):
+                potenza = self._applica_bonus_modificatore(potenza, livello, modifica_statistiche_applicata)
+
+            if statistica.startswith("multiple"):
+                potenza *= 1.5 # aumenta del 50% la potenza assoluta
         
         # Bonus per abilita speciali
         for effetto in warzone.effetti_combattimento:
@@ -812,20 +1080,34 @@ class CreatoreMazzo:
         """
         
         potenza = 1.0
+
+        # Su una carta rivolta all'avversario i modificatori negativi sono un vantaggio:
+        # il segno del contributo va invertito (vedi valore_efficace_modificatore).
+        contro_avversario = bersaglio_e_avversario(carta)
+
         # Analizza effetti statistiche
         for effetto in carta.effetti:
 
-            tipo_effetto = effetto.tipo_effetto.lower() # es. "Modificatore", "Controllo", "Danno", etc.
-            valore = effetto.valore # valore numerico dell'effetto (se applicabile)
-            statistica_target = effetto.statistica_target.lower() # quale statistica viene modificata (C, S, A, V)
-            descrizione_effetto = effetto.descrizione_effetto #descrizione effetto: 'uccide', ferisce automaticamente', 'scarta guerriero' 'scarta carta'
-            desc = descrizione_effetto.lower()
+            tipo_effetto = str(effetto.tipo_effetto or "").lower() # es. "Modificatore", "Controllo", "Combattimento", etc.
 
-            if tipo_effetto == "modificatore" and statistica_target in ["combattimento", "sparare", "armatura", "C", "S", "A"] and isinstance(valore, int) and valore > 0:
-                potenza += valore                     
-        
-        
-        return potenza
+            if tipo_effetto != "modificatore":
+                continue
+
+            # `valore` è un intero in una parte dei database e una stringa col segno ("+2")
+            # nel resto: va normalizzato, altrimenti la maggior parte degli effetti non conta.
+            # Il segno restituito è già riferito al giocatore: positivo = vantaggio.
+            valore = valore_efficace_modificatore(effetto.valore, contro_avversario)
+            if not valore:
+                continue
+
+            # Un modificatore che agisce su più statistiche vale proporzionalmente di più:
+            # "tutte" conta come le tre statistiche di combattimento.
+            statistiche = numero_statistiche_combattimento(effetto.statistica_target)
+
+            # Bonus e penalità pesano diversamente (vedi peso_modificatore)
+            potenza += peso_modificatore(valore) * valore * statistiche
+
+        return max(POTENZA_MINIMA, potenza)
        
     def _calcola_potenza_carta_azioni(self, carta: Any) -> float:
         """
@@ -839,31 +1121,53 @@ class CreatoreMazzo:
         """
     
         potenza = 1.0
-        # Analizza effetti
+        # Analizza effetti.
+        # NOTA: i valori di `tipo_effetto` realmente presenti nei database sono
+        # Modificatore, Carte, Arte, Combattimento, Immunita, Guarigione, Controllo,
+        # Azione Combattimento e Scarto_Carte. Le voci cercate in precedenza ("Danno",
+        # "Azione Fase", "Azione Ogni Momento") non compaiono in nessuna carta, quindi
+        # questa funzione restituiva 1.0 fisso per 281 carte su 282. I fattori usati qui
+        # sono gli stessi che il modulo applica alle abilità equivalenti di guerrieri ed
+        # equipaggiamenti, per coerenza fra le scale.
         for effetto in carta.effetti:
-            tipo_effetto = effetto.tipo_effetto.lower() # es. "Modificatore", "Controllo", "Danno", etc.
-            valore = effetto.valore # valore numerico dell'effetto (se applicabile)
-            statistica_target = effetto.statistica_target # quale statistica viene modificata (C, S, A, V)
-            descrizione_effetto = effetto.descrizione_effetto #descrizione effetto: 'uccide', ferisce automaticamente', 'scarta guerriero' 'scarta carta'
-            desc = descrizione_effetto.lower()
-                
-            if tipo_effetto == "danno":                                
-                # Effetti speciali
+            tipo_effetto = str(effetto.tipo_effetto or "").lower()
+            valore = valore_numerico_modificatore(effetto.valore)
+            desc = str(effetto.descrizione_effetto or "").lower()
+
+            if tipo_effetto == "combattimento":
                 if 'ferisce' in desc and 'automaticamente' in desc:
                     potenza *= 1.4
                 elif 'uccide' in desc:
                     potenza *= 2.0
                 elif 'scarta' in desc and 'guerriero' in desc:
-                    potenza = 1.5
+                    potenza *= 1.5
                 elif 'scarta' in desc and any(x in desc for x in ['equipaggiamento', 'fortificazione', 'reliquia', 'warzone']):
-                    potenza = 1.4
-            
-            elif isinstance(valore, int) and valore > 0:
-                if tipo_effetto in ['azione combattimento', 'azione fase']: # Azione Fase, Azione Ogni Momento
-                    potenza *= valore
-                elif tipo_effetto == 'azione ogni momento':
-                    potenza *= 2 * valore
-            
+                    potenza *= 1.4
+                else:
+                    potenza *= 1.2
+
+            elif tipo_effetto in ('carte', 'scarto_carte'):
+                if 'scarta' in desc and 'guerriero' in desc:
+                    potenza *= 1.5
+                else:
+                    potenza *= 1.3
+
+            elif tipo_effetto == "immunita":
+                potenza *= 1.4
+
+            elif tipo_effetto == "guarigione":
+                potenza *= 1.3
+
+            elif tipo_effetto == "arte":
+                potenza *= 1.3
+
+            elif tipo_effetto == "controllo":
+                potenza *= 1.2
+
+            elif tipo_effetto.startswith("azione") and valore is not None and valore > 0:
+                # "Azione Ogni Momento" vale il doppio: è giocabile anche fuori dal proprio turno
+                potenza *= (2 * valore) if 'ogni momento' in tipo_effetto else valore
+
         return potenza
         
     def _calcola_potenza_carta(self, carta: Any) -> float:
@@ -900,16 +1204,20 @@ class CreatoreMazzo:
         if not espansioni_richieste:
             return carte
             
+        # `set_espansione` è una stringa in sette classi carta su nove, ma un enum
+        # Set_Espansione in Fortificazione e Reliquia: entrambi i lati del confronto
+        # vanno normalizzati al valore testuale, altrimenti quelle due classi
+        # verrebbero sempre escluse.
+        espansioni_valide = {str(getattr(e, 'value', e)) for e in espansioni_richieste}
+
         carte_filtrate = []
         for carta in carte:
             if hasattr(carta, 'set_espansione'):
-                set_carta = carta.set_espansione
-                #if hasattr(set_carta, 'value'):
-                #    set_carta = set_carta.value
-                    
-                if set_carta in espansioni_richieste.value if hasattr(espansioni_richieste, 'value') else espansioni_richieste:
+                set_carta = str(getattr(carta.set_espansione, 'value', carta.set_espansione))
+
+                if set_carta in espansioni_valide:
                     carte_filtrate.append(carta)
-                    
+
         return carte_filtrate
         
     def seleziona_guerrieri(self, 
@@ -1069,14 +1377,15 @@ class CreatoreMazzo:
             
             # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in guerriero.keywords:
-                    # bonus_moltiplicatore *= BONUS_ERETICO # aumenta di un ulteriore fattore (BONUS_ERETICI) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
+                    # Gli Eretici sono Oscura Legione o Doomtrooper, quindi hanno già ricevuto
+                    # l'eventuale bonus della propria categoria: qui si applica solo il fattore
+                    # aggiuntivo BONUS_ERETICO, ammettendo il guerriero se nessun altro ramo
+                    # di orientamento lo aveva già fatto.
                     if guerriero not in guerrieri_ammessi:
                         bonus_moltiplicatore *= BONUS_ERETICO
                         _assegnazione_punteggio_guerriero_ammesso(self, guerriero)
-                    elif guerriero.nome in punteggi:
-                        punteggi[guerriero.nome] *= BONUS_ERETICO # aumenta di un ulteriore fattore (BONUS_ERETICI) il bonus per eretici (gli eretici sono OL o DOOMTROOPER quindi già beneficiano dell'eventuale bonus O o DOmmotrooper)
                     else:
-                        print(f"MA CHI CAZZ'E'??: Escluso eretico guerriero {guerriero.nome} della fazione {guerriero.fazione} non compatibile con le fazioni selezionate per il mazzo")
+                        punteggi[guerriero.nome] *= BONUS_ERETICO
             
             #punteggi[guerriero.nome] = punteggio * bonus_moltiplicatore * bonus_factor_guerriero_strategico
         
@@ -1106,7 +1415,10 @@ class CreatoreMazzo:
                 quantita_consigliata = getattr(guerriero, 'quantita_minima_consigliata')           
 
                 # se non è definita la quantità consigliata ( = 0 ) la calcola in base al valore del guerriero (maggiore costo)                                    
-                if quantita_consigliata and quantita_consigliata <1:                    
+                # `q and q < 1` non può essere vero per un intero (0 è falsy, >=1 non è <1):
+                # l'euristica sottostante non veniva mai eseguita, e un guerriero con
+                # quantita_minima_consigliata a 0 avrebbe bloccato il ciclo while.
+                if quantita_consigliata < 1:
                     
                     if guerriero.stats.valore >= 10 or guerriero.tipo == 'Personalita':                                        
                         quantita_consigliata = 1             
@@ -1123,7 +1435,10 @@ class CreatoreMazzo:
                         min_val = random.randint(1, 2)                                    
                         quantita_consigliata = random.randint(min_val, min_val + 1)                
                     
-                num_copie_da_inserire = min(5, quantita_disponibile, quantita_consigliata)    
+                # Il tetto delle 5 copie è cumulativo sull'intero mazzo: va scalato di quanto
+                # già inserito nelle tornate precedenti del ciclo while.
+                copie_ancora_ammesse = MAX_COPIE_PER_CARTA_MAZZO - quantita_utilizzata[guerriero.nome]
+                num_copie_da_inserire = max(0, min(copie_ancora_ammesse, quantita_disponibile, quantita_consigliata))
                 quantita_utilizzata[guerriero.nome] += num_copie_da_inserire
 
                 if oscura_legione and (doomtrooper or fratellanza): 
@@ -1163,7 +1478,11 @@ class CreatoreMazzo:
                 carte_ancora_disponibili = False
 
                 for guerriero in guerrieri_ordinati:
-                    if getattr(guerriero, 'quantita') - quantita_utilizzata[guerriero.nome] > 0:
+                    # Una carta è ancora spendibile solo se ha copie residue *e* non ha già
+                    # raggiunto il tetto delle 5 copie: senza questa seconda condizione il
+                    # ciclo non terminerebbe mai una volta saturate tutte le carte.
+                    residuo = min(getattr(guerriero, 'quantita'), MAX_COPIE_PER_CARTA_MAZZO) - quantita_utilizzata[guerriero.nome]
+                    if residuo > 0:
                         carte_ancora_disponibili = True
                         break
                 
@@ -1281,7 +1600,12 @@ class CreatoreMazzo:
             if not (carta_compatibile or carta_generica_fondamentale):
                 continue 
 
-            doomtrooper_dedicata = any(f in fazioni for f in FAZIONI_DOOMTROOPER) or 'Doomtrooper'
+            # Nota: qui era presente un `or 'Doomtrooper'` che, essendo una stringa non vuota,
+            # rendeva la variabile sempre veritiera: il blocco Doomtrooper si applicava a ogni
+            # carta e, di riflesso, il blocco Fratellanza/Arte (guardato da `not
+            # doomtrooper_dedicata`) non veniva mai eseguito. Il caso della carta marcata
+            # "Doomtrooper" è già gestito più sotto, nel ramo BONUS_SPECIALIZZAZIONE.
+            doomtrooper_dedicata = any(f in fazioni for f in FAZIONI_DOOMTROOPER)
             orientamento_doomtrooper_dedicata = any(f in orientamento_doomtrooper for f in fazioni) if (orientamento_doomtrooper and len(orientamento_doomtrooper) > 0) else False
             fratellanza_dedicata = any(f in fazioni for f in FAZIONI_FRATELLANZA)
             oscura_legione_dedicata = any(f in fazioni for f in FAZIONI_OSCURA_LEGIONE)
@@ -1324,15 +1648,28 @@ class CreatoreMazzo:
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE * fattore_incremento
 
                 elif orientamento_apostolo and len(orientamento_apostolo) > 0 : # la carta è dedicata alla oscura legione e sono definiti gli apostoli preferiti
-                    bonus_applicato = False
-                    for apostolo in orientamento_apostolo:
-                        seguace = f"Seguace di {apostolo}" in carta.keywords # or (hasattr(carta, 'restrizioni') and isinstance(carta.restrizioni, List) and f"Solo Seguaci di {apostolo}" in carta.restrizioni)
-                        if seguace:
-                            bonus_moltiplicatore *= BONUS_ORIENTAMENTO * fattore_incremento
-                            bonus_applicato = True
-                    
-                    if not bonus_applicato and tipo_carta == 'oscura_simmetria':
-                        bonus_moltiplicatore /= 2 * BONUS_FONDAMENTALE  # pass    #non implementato: decremento del bonus per evitare la scelta di carte appartenenti ad apostoli non presenti in orientamento conseguente la presenza di guerrieri non seguaci ed in grado di utilizzare sia i doni degli apostoli che quelli dell'oscura simmetria
+
+                    # L'Apostolo di appartenenza è dichiarato nel campo `apostolo_padre`
+                    # (vale None per i Doni generici); la keyword "Seguace di X" ne è il
+                    # riflesso ed è usata come ripiego per le carte che non espongono il campo.
+                    apostolo_carta = getattr(carta, 'apostolo_padre', None)
+                    apostolo_carta = getattr(apostolo_carta, 'value', apostolo_carta)
+
+                    if not apostolo_carta:
+                        for apostolo in orientamento_apostolo:
+                            if f"Seguace di {apostolo}" in carta.keywords:
+                                apostolo_carta = apostolo
+                                break
+
+                    if apostolo_carta and apostolo_carta in orientamento_apostolo:
+                        bonus_moltiplicatore *= BONUS_ORIENTAMENTO * fattore_incremento
+
+                    elif tipo_carta == 'oscura_simmetria' and not self._dono_utilizzabile_dai_guerrieri(carta, tutti_guerrieri):
+                        # Dono di un Apostolo fuori orientamento e che nessun guerriero del
+                        # mazzo può ricevere: va declassato, non escluso. Il pavimento a 1.0
+                        # evita che il filtro "bonus_moltiplicatore >= 1" lo elimini del tutto,
+                        # lasciando l'esclusione al controllo di compatibilità carta-guerriero.
+                        bonus_moltiplicatore = max(1.0, bonus_moltiplicatore / BONUS_ORIENTAMENTO)
                 
                 if orientamento_cultista and 'Cultista' in carta.keywords:
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
@@ -1419,7 +1756,10 @@ class CreatoreMazzo:
                 potenza = 1.0  # Default per missioni
             
             if bonus_moltiplicatore >= 1:
-                fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti            
+                # numero_guerrieri non può essere 0: il chiamante interrompe la creazione del
+                # mazzo se la selezione dei guerrieri è vuota. La guardia resta come difesa
+                # per un'eventuale invocazione diretta della funzione.
+                fattore_compatibilita = 1 + 2 * numero_guerrieri_compatibili / numero_guerrieri if numero_guerrieri else 1.0 # raddoppia se la metà dei guerrieri può utilizzare la carta, triplica se tutti
                 punteggio = potenza * fattore_compatibilita * bonus_moltiplicatore
                 carte_con_punteggio.append((carta, punteggio))
         
@@ -1461,7 +1801,10 @@ class CreatoreMazzo:
                 if quantita_minima_consigliata < numero_copie_prelevabile:                    
                     quantita_minima_consigliata = numero_copie_prelevabile
 
-                num_copie_da_inserire = min(5, quantita_disponibile, quantita_minima_consigliata)   
+                # Il tetto delle 5 copie è cumulativo sull'intero mazzo: va scalato di quanto
+                # già inserito nelle tornate precedenti del ciclo while.
+                copie_ancora_ammesse = MAX_COPIE_PER_CARTA_MAZZO - quantita_utilizzata[carta.nome]
+                num_copie_da_inserire = max(0, min(copie_ancora_ammesse, quantita_disponibile, quantita_minima_consigliata))
                 quantita_utilizzata[carta.nome] += num_copie_da_inserire
 
                 for _ in range(num_copie_da_inserire):
@@ -1481,7 +1824,11 @@ class CreatoreMazzo:
                 carte_ancora_disponibili = False
 
                 for carta, _ in carte_con_punteggio:
-                    if getattr(carta, 'quantita') - quantita_utilizzata[carta.nome] > 0:
+                    # Una carta è ancora spendibile solo se ha copie residue *e* non ha già
+                    # raggiunto il tetto delle 5 copie: senza questa seconda condizione il
+                    # ciclo non terminerebbe mai una volta saturate tutte le carte.
+                    residuo = min(getattr(carta, 'quantita'), MAX_COPIE_PER_CARTA_MAZZO) - quantita_utilizzata[carta.nome]
+                    if residuo > 0:
                         carte_ancora_disponibili = True
                         break
                 
@@ -1710,161 +2057,113 @@ def crea_mazzo_da_gioco(collezione: Any,
         orientamento_cultista,
         distribuzione['guerriero']
     )
-    
-    # Seleziona carte di supporto nell'ordine specificato
+
+    # Un mazzo non può esistere senza guerrieri (regolamento §2: almeno 5). Se la selezione
+    # è vuota — tipicamente perché l'orientamento richiesto non corrisponde ad alcun guerriero
+    # della collezione — si interrompe qui con un errore comprensibile, invece di proseguire
+    # e far fallire il calcolo del fattore di compatibilità in seleziona_carte_supporto.
+    if not squadra and not schieramento:
+        return {
+            'squadra': [],
+            'schieramento': [],
+            'carte_supporto': [],
+            'statistiche': {},
+            'errori': ["Nessun guerriero selezionabile: la collezione non contiene guerrieri "
+                       "compatibili con le fazioni e gli orientamenti richiesti"]
+        }
+
+    # Seleziona carte di supporto nell'ordine specificato.
+    # Ogni tipo ha una quota assegnata da calcola_distribuzione_carte; se il pool compatibile
+    # non basta a coprirla, gli slot mancanti vengono ridistribuiti ai tipi che invece hanno
+    # saturato la propria quota (vedi ridistribuzione a posteriori più sotto).
+    def _seleziona(tipo: str, quota: int) -> List[Any]:
+        if quota <= 0:
+            return []
+        return creatore.seleziona_carte_supporto(
+            squadra,
+            schieramento,
+            espansioni_richieste,
+            tipo,
+            doomtrooper,
+            orientamento_doomtrooper,
+            fratellanza,
+            orientamento_arte,
+            oscura_legione,
+            orientamento_apostolo,
+            orientamento_eretico,
+            orientamento_cultista,
+            quota
+        )
+
+    # Condizioni di applicabilità per i tipi che dipendono dalla composizione richiesta
+    tipi_ammessi = {
+        'equipaggiamento':  True,
+        'fortificazione':   True,
+        'speciale':         True,
+        'missione':         True,
+        'arte':             bool(usa_fratellanza),
+        'oscura_simmetria': bool(usa_oscura_legione),
+        'reliquia':         'Inquisition' in espansioni_richieste,
+        'warzone':          'Warzone' in espansioni_richieste,
+    }
+
+    quote = {tipo: (distribuzione.get(tipo, 0) if ammesso else 0)
+             for tipo, ammesso in tipi_ammessi.items()}
+
+    # Prima passata
+    selezione = {tipo: _seleziona(tipo, quota) for tipo, quota in quote.items()}
+    deficit = {tipo: quote[tipo] - len(selezione[tipo]) for tipo in quote}
+
+    # Ridistribuzione a posteriori degli slot non riempiti.
+    # Nota: la ri-selezione SOSTITUISCE il risultato precedente invece di aggiungersi ad esso.
+    # seleziona_carte_supporto conta le copie già inserite in una variabile locale alla singola
+    # chiamata: concatenare i risultati di due chiamate per lo stesso tipo farebbe ripartire da
+    # zero il conteggio, permettendo a una carta di superare il limite di 5 copie del regolamento.
+    for _ in range(MAX_GIRI_RIDISTRIBUZIONE):
+        # Il residuo si misura sulla dimensione del mazzo, non sommando i deficit per tipo:
+        # un tipo strutturalmente incapiente (es. Missione, di cui esistono poche carte)
+        # conserva il proprio deficit a ogni giro e verrebbe altrimenti compensato più volte.
+        totale_attuale = len(squadra) + len(schieramento) + sum(len(c) for c in selezione.values())
+        residuo = numero_carte_target - totale_attuale
+        if residuo <= 0:
+            break
+
+        # Possono assorbire solo i tipi che hanno saturato la quota: quelli già in deficit
+        # hanno esaurito il proprio pool compatibile. I guerrieri restano esclusi, perché
+        # modificarne il numero cambierebbe la compatibilità di tutte le carte già scelte.
+        capienti = [tipo for tipo in quote if quote[tipo] > 0 and deficit[tipo] == 0]
+        if not capienti:
+            break
+
+        pesi = {tipo: RIDISTRIBUZIONE_PERCENTUALE.get(tipo, PESO_RIDISTRIBUZIONE_DEFAULT)
+                for tipo in capienti}
+        somma_pesi = sum(pesi.values())
+        if somma_pesi <= 0:
+            break
+
+        assegnato = False
+        supplemento_residuo = residuo   # non si distribuisce più di quanto manchi al target
+
+        for tipo in capienti:
+            supplemento = min(supplemento_residuo, int(round(residuo * pesi[tipo] / somma_pesi)))
+            if supplemento <= 0:
+                continue
+            supplemento_residuo -= supplemento
+            nuova_quota = quote[tipo] + supplemento
+            carte_prima = len(selezione[tipo])
+            selezione[tipo] = _seleziona(tipo, nuova_quota)
+            quote[tipo] = nuova_quota
+            deficit[tipo] = nuova_quota - len(selezione[tipo])
+
+            if len(selezione[tipo]) > carte_prima:
+                assegnato = True   # il tipo ha effettivamente assorbito parte del residuo
+
+        if not assegnato:
+            break
+
     carte_supporto = []
-    
-    # 1. Equipaggiamenti
-    if distribuzione['equipaggiamento'] > 0:
-        equipaggiamenti = creatore.seleziona_carte_supporto(
-            squadra, 
-            schieramento, 
-            espansioni_richieste,
-            'equipaggiamento', 
-            doomtrooper,
-            orientamento_doomtrooper,
-            fratellanza,   
-            orientamento_arte,         
-            oscura_legione,
-            orientamento_apostolo,
-            orientamento_eretico,
-            orientamento_cultista,
-            distribuzione['equipaggiamento']
-        )
-        carte_supporto.extend(equipaggiamenti)
-    
-    # 2. Fortificazioni
-    if distribuzione['fortificazione'] > 0:
-        fortificazioni = creatore.seleziona_carte_supporto(
-            squadra, 
-            schieramento, 
-            espansioni_richieste,
-            'fortificazione', 
-            doomtrooper,
-            orientamento_doomtrooper,
-            fratellanza,       
-            orientamento_arte,       
-            oscura_legione,
-            orientamento_apostolo,
-            orientamento_eretico,
-            orientamento_cultista,
-            distribuzione['fortificazione']
-        )
-        carte_supporto.extend(fortificazioni)
-    
-    # 3. Speciali    
-    if distribuzione['speciale'] > 0:
-        speciali = creatore.seleziona_carte_supporto(
-            squadra, 
-            schieramento, 
-            espansioni_richieste,
-            'speciale', 
-            doomtrooper,
-            orientamento_doomtrooper,
-            fratellanza,         
-            orientamento_arte,     
-            oscura_legione,
-            orientamento_apostolo,
-            orientamento_eretico,
-            orientamento_cultista,
-            distribuzione['speciale']
-        )
-        carte_supporto.extend(speciali)        
-    
-    # 4. Missioni
-    if distribuzione['missione'] > 0:
-        missioni = creatore.seleziona_carte_supporto(
-            squadra, 
-            schieramento, 
-            espansioni_richieste,
-            'missione', 
-            doomtrooper,
-            orientamento_doomtrooper,
-            fratellanza,    
-            orientamento_arte,          
-            oscura_legione,
-            orientamento_apostolo,
-            orientamento_eretico,
-            orientamento_cultista,
-            distribuzione['missione']
-        )
-        carte_supporto.extend(missioni)        
-    
-    # 5. Arte (se guerrieri Fratellanza presenti)
-    if usa_fratellanza and distribuzione['arte'] > 0:
-        arte = creatore.seleziona_carte_supporto(
-            squadra, 
-            schieramento, 
-            espansioni_richieste,
-            'arte', 
-            doomtrooper,
-            orientamento_doomtrooper,
-            fratellanza,   
-            orientamento_arte,           
-            oscura_legione,
-            orientamento_apostolo,
-            orientamento_eretico,
-            orientamento_cultista,
-            distribuzione['arte']
-        )
-        carte_supporto.extend(arte)
-    
-    # 6. Oscura Simmetria (se guerrieri Oscura Legione presenti)
-    if usa_oscura_legione and distribuzione['oscura_simmetria'] > 0:
-        oscura = creatore.seleziona_carte_supporto(
-            squadra, 
-            schieramento, 
-            espansioni_richieste,
-            'oscura_simmetria', 
-            doomtrooper,
-            orientamento_doomtrooper,
-            fratellanza,      
-            orientamento_arte,        
-            oscura_legione,
-            orientamento_apostolo,
-            orientamento_eretico,
-            orientamento_cultista,
-            distribuzione['oscura_simmetria']
-        )
-        carte_supporto.extend(oscura)
-    
-    # 7. Reliquie (se espansione Inquisition richiesta)
-    if 'Inquisition' in espansioni_richieste and distribuzione['reliquia'] > 0:
-        reliquie = creatore.seleziona_carte_supporto(
-            squadra, 
-            schieramento, 
-            espansioni_richieste,
-            'reliquia', 
-            doomtrooper,
-            orientamento_doomtrooper,
-            fratellanza,            
-            orientamento_arte,  
-            oscura_legione,
-            orientamento_apostolo,
-            orientamento_eretico,
-            orientamento_cultista,
-            distribuzione['reliquia']
-        )
-        carte_supporto.extend(reliquie)
-    
-    # 8. Warzone (se espansione Warzone richiesta)
-    if 'Warzone' in espansioni_richieste and distribuzione['warzone'] > 0:
-        warzone = creatore.seleziona_carte_supporto(
-            squadra, 
-            schieramento, 
-            espansioni_richieste,
-            'warzone', 
-            doomtrooper,
-            orientamento_doomtrooper,
-            fratellanza,        
-            orientamento_arte,      
-            oscura_legione,
-            orientamento_apostolo,
-            orientamento_eretico,
-            orientamento_cultista,
-            distribuzione['warzone']
-        )
-        carte_supporto.extend(warzone)
+    for tipo in tipi_ammessi:
+        carte_supporto.extend(selezione[tipo])
 
     statistiche = {
         'numero_totale_carte': len(squadra) + len(schieramento) + len(carte_supporto),

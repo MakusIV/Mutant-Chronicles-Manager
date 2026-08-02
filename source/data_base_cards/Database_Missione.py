@@ -63,10 +63,10 @@ DATABASE_MISSIONI = {
         "corporazioni_specifiche": [],
         "restrizioni_guerriero": [],
         "obiettivo": {
-            "descrizione": "Il guerriero deve uccidere un guerriero imperiale per completare la missione",
+            "descrizione": "Il guerriero deve uccidere un Doomtrooper Imperiale per completare la missione",
             "tipo_obiettivo": "Uccidere",
             "valore_richiesto": 0,
-            "condizioni_speciali": ["guerriero imperiale", "Stesso turno"]
+            "condizioni_speciali": ["Doomtrooper Imperiale", "Stesso turno"]
         },
         "ricompensa": {
             "punti_promozione": 2,
@@ -77,7 +77,7 @@ DATABASE_MISSIONI = {
         },
         "set_espansione": "Base",
         "numero_carta": "M003",
-        "testo_carta": "Assegnabile ad un qualsiasi guerriero imperiale. Il guerriero deve uccidere un guerriero imperiale per completare la missione e per guadagniare due volte il valore V del guerriero ucciso. Il guerriero attaccante non può essere identico al guerriero difensore",
+        "testo_carta": "Assegnabile ad un qualsiasi Doomtrooper Imperiale. Il guerriero deve uccidere un Doomtrooper Imperiale per completare la missione e per guadagniare due volte il valore V del guerriero ucciso. Il guerriero attaccante non può essere identico al guerriero difensore",
         "flavour_text": "Un massacro metodico che lascia il campo di battaglia cosparso di cadaveri.",
         "keywords": ["Missione", "Uccisione", "Difficile"],
         "restrizioni": ["Solo Imperiale"],
@@ -208,21 +208,21 @@ DATABASE_MISSIONI = {
         "corporazioni_specifiche": ["Seguace di Algeroth"],
         "restrizioni_guerriero": ["Solo Nefarita"],
         "obiettivo": {
-            "descrizione": "Questo Nefarita deve uccidere un guerriero della Fratellanza con V tre volte più grande cme sacrificio. Non guadagni punti deel guerriero ucciso ma tutti i guerrieri in gioco della frtellanza perdono la capacità di usare le arti per tutta la partita",
+            "descrizione": "Questo Nefarita deve uccidere un guerriero della Fratellanza con un Valore di 3 o più come sacrificio. Non guadagni punti del guerriero ucciso ma tutti i guerrieri in gioco della Fratellanza perdono la capacità di usare le arti per tutta la partita",
             "tipo_obiettivo": "Uccidere",
-            "valore_richiesto": 2,
-            "condizioni_speciali": []
+            "valore_richiesto": 1,
+            "condizioni_speciali": ["Guerriero della Fratellanza con Valore 3 o più"]
         },
         "ricompensa": {
             "punti_promozione": 0,
             "punti_destino": 0,
             "carte_extra": 0,
             "effetti_speciali": [],
-            "descrizione": "Tutti i guerrieri in gioco della frtellanza perdono la capacità di usare le arti per tutta la partita"
+            "descrizione": "Tutti i guerrieri in gioco della Fratellanza perdono la capacità di usare le arti per tutta la partita"
         },
         "set_espansione": "Base",
         "numero_carta": "M007",
-        "testo_carta": "ASSEGNABILE AD UN NEFARITA DI ALGEROTH SOLO SE UNA CITTADELLA DI ALGEROTH E' NEL TUO SCHIERAMENTO. Questo Nefarita deve uccidere un guerriero della Fratellanza con V tre volte più grande cme sacrificio. Non guadagni punti deel guerriero ucciso ma tutti i guerrieri in gioco della frtellanza perdono la capacità di usare le arti per tutta la partita",
+        "testo_carta": "ASSEGNABILE AD UN NEFARITA DI ALGEROTH SOLO SE UNA CITTADELLA DI ALGEROTH E' NEL TUO SCHIERAMENTO. Questo Nefarita deve uccidere un guerriero della Fratellanza con un Valore di 3 o più come sacrificio. Non guadagni punti del guerriero ucciso ma tutti i guerrieri in gioco della Fratellanza perdono la capacità di usare le arti per tutta la partita",
         "flavour_text": "La superiorità tecnologica Capitol si manifesta in ogni colpo sparato.",
         "keywords": ["Missione", "Capitol", "Armi da Fuoco"],
         "restrizioni": ["Solo Nefarita", "Solo Seguaci di Algeroth"],
@@ -244,7 +244,7 @@ DATABASE_MISSIONI = {
         "corporazioni_specifiche": ["Imperiale"],
         "restrizioni_guerriero": [],
         "obiettivo": {
-            "descrizione": "Devi distruggere una Citadella degli Apostoli Oscuri in gioco per completare la missione e ricevere 3 ounti promozione",
+            "descrizione": "Devi distruggere una Cittadella degli Apostoli Oscuri in gioco per completare la missione e ricevere 3 punti promozione",
             "tipo_obiettivo": "Distruggere",
             "valore_richiesto": 0,
             "condizioni_speciali": []
@@ -258,7 +258,7 @@ DATABASE_MISSIONI = {
         },
         "set_espansione": "Base",
         "numero_carta": "M008",
-        "testo_carta": "ASSEGNABILE AD OGNI GIOCATORE. Devi distruggere una Citadella degli Apostoli Oscuri in gioco per completare la missione e ricevere 3 ounti promozione",
+        "testo_carta": "ASSEGNABILE AD OGNI GIOCATORE. Devi distruggere una Cittadella degli Apostoli Oscuri in gioco per completare la missione e ricevere 3 punti promozione",
         "flavour_text": "",
         "keywords": [],
         "restrizioni": [],
