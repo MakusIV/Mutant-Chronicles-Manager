@@ -1,0 +1,21 @@
+# Dipendenze del progetto.
+#
+#   python3 -m venv .venv
+#   .venv/bin/pip install -r requirements.txt
+#
+# Sono elencate solo le dipendenze dirette: pillow, charset-normalizer e shiboken6
+# vengono installate da sole come dipendenze di reportlab e PySide6.
+
+# Generazione dei PDF con l'elenco delle carte di collezioni e mazzi.
+reportlab>=4.0
+
+# Interfaccia grafica del visualizzatore di mazzi (source/gui/visualizzatore_mazzo.py).
+#
+# Il progetto usa PySide6 e non tkinter per un vincolo dell'ambiente: tkinter non è
+# incluso nel Python di sistema e il pacchetto python3-tk richiede i permessi di root,
+# mentre PySide6 si installa nel .venv senza privilegi. Per lo stesso motivo non è
+# utilizzabile PIL.ImageTk, che dipende da tkinter.
+#
+# Basta la variante Essentials: servono solo QtCore, QtGui e QtWidgets, e pesa
+# sensibilmente meno del pacchetto PySide6 completo.
+PySide6-Essentials>=6.10
