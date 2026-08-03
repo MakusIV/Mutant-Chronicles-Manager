@@ -54,6 +54,23 @@ def creatore():
     return CreatoreMazzo(collezione)
 
 
+@pytest.fixture(scope="module")
+def creatore_con_arti(creatore):
+    """
+    La stessa collezione, con in più le carte Arte.
+
+    Sono tenute fuori dalla fixture principale perché i test sulle sinergie e sugli
+    orientamenti misurano il peso delle carte, e aggiungere una tipologia intera
+    sposterebbe i confronti già fissati.
+    """
+    arte = importlib.import_module("source.data_base_cards.Database_Arte")
+    for nome in arte.CARTE_ARTE_DATABASE:
+        carta = arte.crea_carta_da_database(nome)
+        if carta is not None:
+            creatore.collezione.aggiungi_carta(carta, 5)
+    return creatore
+
+
 def _seleziona(creatore, **orientamento):
     random.seed(42)
     squadra, schieramento = creatore.seleziona_guerrieri(
@@ -362,6 +379,63 @@ def test_valpurgius_e_una_carta_fondamentale():
     dati = GUERRIERI_DATABASE["Valpurgius"]
     assert dati.get("fondamentale") is True
     assert dati.get("valore_strategico", 0) >= 8
+
+
+@pytest.mark.lento
+@pytest.mark.parametrize("seme", range(4))
+def test_nessuna_arte_senza_chi_la_lanci(creatore_con_arti, seme):
+    """
+    Il verso opposto della regola precedente: un mazzo *con* la Fratellanza non deve
+    pescare incantesimi che nessuno dei suoi guerrieri sa lanciare.
+
+    È già garantito da `_carta_compatibile_con_guerrieri`, che scarta le carte non
+    compatibili con alcun guerriero del mazzo — per le Arti il controllo passa dalla
+    disciplina. Il test lo fissa perché quel filtro serve a molte tipologie, e un
+    domani potrebbe essere allentato senza accorgersi di questo effetto.
+    """
+    random.seed(seme)
+    squadra, schieramento = creatore_con_arti.seleziona_guerrieri(
+        espansioni_richieste=ESPANSIONI, numero_guerrieri_target=20,
+        doomtrooper=True, fratellanza=True, oscura_legione=False,
+        orientamento_arte=["Cinetica"])
+    guerrieri = squadra + schieramento
+
+    random.seed(seme)
+    arti = creatore_con_arti.seleziona_carte_supporto(
+        squadra=squadra, schieramento=schieramento, espansioni_richieste=ESPANSIONI,
+        tipo_carta="arte", doomtrooper=True, fratellanza=True, oscura_legione=False,
+        orientamento_arte=["Cinetica"], numero_carte=15)
+
+    distinte = {getattr(c, "nome", "?"): c for c in arti}
+    inutilizzabili = [
+        nome for nome, carta in distinte.items()
+        if not any(carta.puo_essere_associata_a_guerriero(g).get("puo_lanciare")
+                   for g in guerrieri)]
+
+    assert not inutilizzabili, (
+        f"incantesimi che nessun guerriero del mazzo può lanciare: {sorted(inutilizzabili)}")
+
+
+@pytest.mark.lento
+def test_senza_lanciatori_il_mazzo_non_prende_arti(creatore_con_arti):
+    """
+    Il caso estremo: solo Doomtrooper, nessuno dei quali lancia l'Arte. Non devono
+    entrare né incantesimi né Cattedrali — la combinazione «Cattedrale più Arti per
+    Doomtrooper» richiederebbe che tre carte escano insieme, ed è la scommessa che la
+    regola sulla saturazione della mano vuole evitare.
+    """
+    squadra = [g for g in (crea_guerriero_da_nome(n) for n in
+                           ("Blood Beret", "Ussaro", "Sergente", "Capitano Bauhaus")) if g]
+    assert not any(a.tipo == "Arte" for g in squadra for a in g.abilita), (
+        "il presupposto non regge: uno di questi guerrieri lancia l'Arte")
+
+    random.seed(42)
+    arti = creatore_con_arti.seleziona_carte_supporto(
+        squadra=squadra, schieramento=[], espansioni_richieste=ESPANSIONI,
+        tipo_carta="arte", doomtrooper=True, fratellanza=True, oscura_legione=False,
+        numero_carte=15)
+
+    assert not arti, f"pescate Arti senza alcun lanciatore: {[getattr(c,'nome','?') for c in arti]}"
 
 
 @pytest.mark.lento
