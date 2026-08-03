@@ -1367,7 +1367,10 @@ class CreatoreMazzo:
                             bonus_moltiplicatore *= BONUS_ORIENTAMENTO
                             ammesso = True
                                                 
-                if orientamento_cultista and 'Cultista' in guerriero.keywords:
+                # Nota: la keyword è "Cultista di <Apostolo>", mai "Cultista" da solo, e
+                # `in` su una lista confronta gli elementi interi: la condizione era
+                # sempre falsa e BONUS_CULTISTA non veniva mai applicato a nessuno.
+                if orientamento_cultista and any(k.startswith('Cultista') for k in guerriero.keywords):
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
                     ammesso = True
 
@@ -1671,7 +1674,8 @@ class CreatoreMazzo:
                         # lasciando l'esclusione al controllo di compatibilità carta-guerriero.
                         bonus_moltiplicatore = max(1.0, bonus_moltiplicatore / BONUS_ORIENTAMENTO)
                 
-                if orientamento_cultista and 'Cultista' in carta.keywords:
+                # Come sopra: la keyword porta sempre il nome dell'Apostolo.
+                if orientamento_cultista and any(k.startswith('Cultista') for k in carta.keywords):
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
             # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in carta.keywords:
