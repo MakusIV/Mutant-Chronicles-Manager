@@ -171,10 +171,31 @@ scoperti sono vuoti, e `test_ogni_abilita_speciale_e_classificata` li tiene tali
 nome nuovo che nessun ramo riconosce fa fallire il test, e va corretto invece che
 aggiunto all'elenco.
 
+### «Solo Personalita»: basta una delle due dichiarazioni
+
 **`Warzone.py` non importava `TipoGuerriero`**, quindi la restrizione «Solo Personalita»
-sollevava `NameError` invece di verificare il tipo del guerriero. Aggiunto l'import: la
-restrizione ora chiede entrambe le dichiarazioni, il `tipo` e la keyword, in tutte e sei
-le classi che la supportano.
+sollevava `NameError` invece di verificare il tipo del guerriero. Aggiunto l'import.
+
+Attivando quel controllo è emerso un problema più profondo, che riguardava tutte e sei
+le classi. Un guerriero può risultare Personalità in due modi — il campo `tipo` e la
+keyword — e il codice **le pretendeva entrambe**. I dati dicono il contrario:
+
+| Come le Personalità si dichiarano | Quante |
+|---|---|
+| il solo `tipo` | **27** |
+| `tipo` e keyword | 2 |
+| la sola keyword | 0 |
+
+`Cecchino`, il cui testo dice «GIOCABILE SU QUALSIASI PERSONALITÀ», arrivava così a
+**2 guerrieri su 29**.
+
+C'era anche una contraddizione fra i due versi: «Solo Personalita» pretendeva entrambe
+le dichiarazioni mentre «Non utilizzabile da Personalita» ne bastava una, quindi un
+guerriero col solo `tipo` — il caso normale — veniva respinto da **entrambe**: troppo
+poco Personalità per le carte a loro riservate, troppo per quelle che le escludono.
+
+Ora basta una delle due, in tutte le classi, e l'Oscura Simmetria guarda anche la
+keyword oltre al `tipo`. `Cecchino` passa a 29 destinatari.
 
 ---
 

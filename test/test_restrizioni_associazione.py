@@ -130,30 +130,57 @@ def test_restrizione_concede_al_giusto_e_nega_agli_altri(nome_classe, caso):
     )
 
 
-@pytest.mark.parametrize("nome_classe", ["Speciale", "Equipaggiamento", "Fortificazione",
-                                         "Reliquia", "Missione", "Warzone"])
-def test_solo_personalita_vuole_il_tipo_e_la_keyword(nome_classe):
+CLASSI_CON_SOLO_PERSONALITA = ["Speciale", "Equipaggiamento", "Fortificazione",
+                               "Reliquia", "Missione", "Warzone"]
+
+# Le tre forme in cui un guerriero può risultare Personalità, più il caso negativo.
+# Nel database 27 Personalità su 29 portano il solo `tipo` e nessuna la sola keyword:
+# pretendere entrambe le dichiarazioni lascerebbe fuori quasi tutte.
+DICHIARAZIONI_PERSONALITA = [
+    ("tipo e keyword", dict(keywords=["Personalita"], tipo=TipoGuerriero.PERSONALITA), True),
+    ("il solo tipo", dict(keywords=[], tipo=TipoGuerriero.PERSONALITA), True),
+    ("la sola keyword", dict(keywords=["Personalita"], tipo=TipoGuerriero.NORMALE), True),
+    ("nessuna delle due", dict(keywords=[], tipo=TipoGuerriero.NORMALE), False),
+]
+
+
+@pytest.mark.parametrize("nome_classe", CLASSI_CON_SOLO_PERSONALITA)
+@pytest.mark.parametrize("forma,caratteristiche,ammesso",
+                         DICHIARAZIONI_PERSONALITA,
+                         ids=[d[0] for d in DICHIARAZIONI_PERSONALITA])
+def test_solo_personalita_basta_una_delle_due_dichiarazioni(nome_classe, forma,
+                                                            caratteristiche, ammesso):
     """
-    «Solo Personalita» chiede entrambe le dichiarazioni: il `tipo` del guerriero e la
-    keyword. In `Warzone` il controllo sul tipo sollevava `NameError` perché
-    `TipoGuerriero` non era importato, quindi la restrizione non era verificabile lì.
+    «Solo Personalita» ammette chi è Personalità per il `tipo` **oppure** per la keyword.
+    Pretenderle entrambe rendeva `Cecchino` — «GIOCABILE SU QUALSIASI PERSONALITÀ» —
+    assegnabile a 2 guerrieri su 29.
     """
     spec = SPEC_CARTE[nome_classe]
     carta = spec.costruisci("Solo Personalita")
+    guerriero = crea_guerriero(nome=forma, **caratteristiche)
 
-    completa = crea_guerriero(nome="personalita", keywords=["Personalita"],
-                              tipo=TipoGuerriero.PERSONALITA)
-    assert spec.permesso(carta, completa), (
-        f"{nome_classe}: una Personalità dichiarata nel tipo e nelle keyword è respinta")
+    assert spec.permesso(carta, guerriero) is ammesso, (
+        f"{nome_classe}: un guerriero che dichiara {forma} dovrebbe "
+        f"{'essere ammesso' if ammesso else 'essere respinto'}")
 
-    for etichetta, parziale in [
-        ("solo la keyword", crea_guerriero(keywords=["Personalita"],
-                                           tipo=TipoGuerriero.NORMALE)),
-        ("solo il tipo", crea_guerriero(keywords=[], tipo=TipoGuerriero.PERSONALITA)),
-        ("nessuna delle due", crea_guerriero(keywords=[], tipo=TipoGuerriero.NORMALE)),
-    ]:
-        assert not spec.permesso(carta, parziale), (
-            f"{nome_classe}: ammesso un guerriero con {etichetta}")
+
+@pytest.mark.parametrize("forma,caratteristiche,e_personalita",
+                         DICHIARAZIONI_PERSONALITA,
+                         ids=[d[0] for d in DICHIARAZIONI_PERSONALITA])
+def test_non_utilizzabile_da_personalita_esclude_con_le_stesse_forme(forma, caratteristiche,
+                                                                    e_personalita):
+    """
+    Il verso opposto dev'essere simmetrico, altrimenti un guerriero che dichiara la
+    Personalità in un modo solo verrebbe respinto da entrambe le carte: troppo poco
+    Personalità per quelle riservate, troppo per quelle che la escludono.
+    """
+    spec = SPEC_CARTE["Speciale"]
+    carta = spec.costruisci("Non utilizzabile da Personalita")
+    guerriero = crea_guerriero(nome=forma, **caratteristiche)
+
+    assert spec.permesso(carta, guerriero) is not e_personalita, (
+        f"un guerriero che dichiara {forma} dovrebbe "
+        f"{'essere respinto' if e_personalita else 'essere ammesso'}")
 
 
 @pytest.mark.parametrize("nome_classe", TUTTE + ["Missione"])

@@ -202,7 +202,13 @@ class Oscura_Simmetria:
             risultato["puo_lanciare"] = False
             risultato["errori"].append("Solo Nefarita")
 
-        if "Non può essere usato su Personalita" in self.restrizioni and guerriero.tipo == TipoGuerriero.PERSONALITA:   
+        # Come per «Solo Personalita» nelle altre classi: basta una delle due
+        # dichiarazioni. Qui si guardava il solo `tipo`, e una Personalità dichiarata
+        # nelle sole keyword sarebbe sfuggita all'esclusione.
+        e_personalita = (guerriero.tipo == TipoGuerriero.PERSONALITA
+                         or (guerriero.keywords and "Personalita" in guerriero.keywords))
+
+        if "Non può essere usato su Personalita" in self.restrizioni and e_personalita:
             risultato["puo_lanciare"] = False
             risultato["errori"].append("Solo Non Personalita")
         

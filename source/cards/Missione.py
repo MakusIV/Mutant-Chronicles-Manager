@@ -203,7 +203,11 @@ class Missione:
                             risultato["errori"].append(f"Solo Nefarita")
 
                     elif "Solo Personalita" in restrizione:
-                        if (bersaglio.keywords is None or bersaglio.keywords == [] or "Personalita" not in bersaglio.keywords or bersaglio.tipo != TipoGuerriero.PERSONALITA):
+                        # Basta una delle due dichiarazioni: nel database 27 Personalita'
+                        # su 29 portano il solo `tipo`, e nessuna la sola keyword.
+                        # Pretenderle entrambe lasciava fuori quasi tutte le Personalita'.
+                        if not (bersaglio.tipo == TipoGuerriero.PERSONALITA
+                                or (bersaglio.keywords and "Personalita" in bersaglio.keywords)):
                             risultato["puo_assegnare"] = False
                             risultato["errori"].append(f"Solo Personalita")
 

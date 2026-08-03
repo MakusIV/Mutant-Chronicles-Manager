@@ -232,7 +232,11 @@ class Fortificazione:
                         risultato["errori"].append(f"Solo Nefarita")
 
                 elif "Solo Personalita" in restrizione_corrente:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):
+                    # Basta una delle due dichiarazioni: nel database 27 Personalita' su 29
+                    # portano il solo `tipo`, e nessuna la sola keyword. Pretenderle
+                    # entrambe lasciava fuori quasi tutte le Personalita' del gioco.
+                    if not (guerriero.tipo == TipoGuerriero.PERSONALITA
+                            or (guerriero.keywords and "Personalita" in guerriero.keywords)):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Personalita")
 

@@ -168,6 +168,47 @@ def test_furga_750_va_ai_mercenari_oppure_agli_eretici():
         f"respinti a torto: {sorted(attesi - ammessi)}")
 
 
+def test_cecchino_e_giocabile_su_qualsiasi_personalita():
+    """
+    «GIOCABILE SU QUALSIASI PERSONALITÀ». La restrizione «Solo Personalita» pretendeva
+    che il guerriero fosse Personalità **sia** nel `tipo` **sia** nelle keyword, ma nel
+    database 27 Personalità su 29 portano il solo `tipo` e nessuna la sola keyword: la
+    carta arrivava a 2 guerrieri invece che a tutti.
+    """
+    modulo = importlib.import_module("source.data_base_cards.Database_Speciale")
+    carta = modulo.crea_carta_da_database("Cecchino")
+    assert carta is not None
+
+    from conftest import SPEC_CARTE
+    spec = SPEC_CARTE["Speciale"]
+    ammessi = {nome for nome, guerriero in GUERRIERI if spec.permesso(carta, guerriero)}
+    personalita = {nome for nome, dati in GUERRIERI_DATABASE.items()
+                   if dati.get("tipo") == "Personalita"
+                   or "Personalita" in (dati.get("keywords") or [])}
+
+    assert ammessi == personalita, (
+        f"ammessi a torto: {sorted(ammessi - personalita)}; "
+        f"respinti a torto: {sorted(personalita - ammessi)}")
+
+
+def test_le_personalita_del_database_si_dichiarano_soprattutto_col_tipo():
+    """
+    Il presupposto della semantica scelta, verificato sui dati: se un giorno le
+    Personalità venissero marcate solo con la keyword, il `tipo` da solo non basterebbe
+    più a riconoscerle e questa asimmetria andrebbe rivista.
+    """
+    solo_tipo = {nome for nome, dati in GUERRIERI_DATABASE.items()
+                 if dati.get("tipo") == "Personalita"
+                 and "Personalita" not in (dati.get("keywords") or [])}
+    solo_keyword = {nome for nome, dati in GUERRIERI_DATABASE.items()
+                    if dati.get("tipo") != "Personalita"
+                    and "Personalita" in (dati.get("keywords") or [])}
+
+    assert solo_tipo, "nessuna Personalità dichiarata col solo tipo: la semantica va rivista"
+    assert not solo_keyword, (
+        f"Personalità dichiarate con la sola keyword: {sorted(solo_keyword)}")
+
+
 def _missione(nome):
     modulo = importlib.import_module("source.data_base_cards.Database_Missione")
     return modulo.crea_missione_da_database(nome)
