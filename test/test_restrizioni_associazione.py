@@ -96,10 +96,9 @@ CASI = [
 
 # Difetti accertati, non attese sbagliate: il test resta scritto nel verso giusto e
 # fallirà quando smetterà di fallire, così la correzione non passa inosservata.
-DIFETTI_NOTI = {
-    ("Warzone", "Solo Personalita"):
-        "Warzone.py:317 usa TipoGuerriero senza averlo importato: solleva NameError",
-}
+# Vuoto: l'ultimo — `Warzone.py` usava `TipoGuerriero` senza importarlo — è stato
+# corretto, e la restrizione «Solo Personalita» ora vale anche lì.
+DIFETTI_NOTI: dict[tuple, str] = {}
 
 
 def _parametri():
@@ -129,6 +128,32 @@ def test_restrizione_concede_al_giusto_e_nega_agli_altri(nome_classe, caso):
         f"{nome_classe} con «{caso.restrizione}» concede il permesso a un guerriero "
         f"che non la soddisfa ({caso.respinto}): la restrizione è inerte"
     )
+
+
+@pytest.mark.parametrize("nome_classe", ["Speciale", "Equipaggiamento", "Fortificazione",
+                                         "Reliquia", "Missione", "Warzone"])
+def test_solo_personalita_vuole_il_tipo_e_la_keyword(nome_classe):
+    """
+    «Solo Personalita» chiede entrambe le dichiarazioni: il `tipo` del guerriero e la
+    keyword. In `Warzone` il controllo sul tipo sollevava `NameError` perché
+    `TipoGuerriero` non era importato, quindi la restrizione non era verificabile lì.
+    """
+    spec = SPEC_CARTE[nome_classe]
+    carta = spec.costruisci("Solo Personalita")
+
+    completa = crea_guerriero(nome="personalita", keywords=["Personalita"],
+                              tipo=TipoGuerriero.PERSONALITA)
+    assert spec.permesso(carta, completa), (
+        f"{nome_classe}: una Personalità dichiarata nel tipo e nelle keyword è respinta")
+
+    for etichetta, parziale in [
+        ("solo la keyword", crea_guerriero(keywords=["Personalita"],
+                                           tipo=TipoGuerriero.NORMALE)),
+        ("solo il tipo", crea_guerriero(keywords=[], tipo=TipoGuerriero.PERSONALITA)),
+        ("nessuna delle due", crea_guerriero(keywords=[], tipo=TipoGuerriero.NORMALE)),
+    ]:
+        assert not spec.permesso(carta, parziale), (
+            f"{nome_classe}: ammesso un guerriero con {etichetta}")
 
 
 @pytest.mark.parametrize("nome_classe", TUTTE + ["Missione"])

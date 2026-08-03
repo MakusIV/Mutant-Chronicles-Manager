@@ -49,17 +49,10 @@ def _vocabolario_del_blocco(intestazione):
 # --------------------------------------------------------------------------
 
 # Nomi presenti nel database che il punteggio non riconosce: l'abilità non aggiunge
-# nulla alla potenza della carta. Vanno svuotati allineando il nome al vocabolario o
-# aggiungendo il ramo, non allungati.
-ABILITA_SENZA_PUNTEGGIO = {
-    "assegna carte": "il ramo esistente è «assegna carta», al singolare",
-    "lancia arte": "nessun ramo per questo nome nel blocco `arte`",
-    "attacca sempre per primo": "il ramo affine è «permette ai guerrieri di attaccare per primi»",
-    "immune alle ferite durante il combattimento":
-        "il ramo lo cerca per sottostringa ma con la maiuscola: «Immune alle ferite…»",
-    "incrementa azioni": "nessun ramo per questo nome",
-    "attacca sempre per primo se sceglie di sparare": "nessun ramo per questo nome",
-}
+# nulla alla potenza della carta. L'elenco è vuoto — tutte le abilità pesano — e
+# `test_ogni_abilita_speciale_e_classificata` lo tiene tale: un nome nuovo che nessun
+# ramo riconosce fa fallire quel test, e va corretto invece che aggiunto qui.
+ABILITA_SENZA_PUNTEGGIO: dict[str, str] = {}
 
 
 def _abilita_nei_dati():
@@ -98,24 +91,34 @@ def test_le_abilita_senza_punteggio_sono_ancora_tali(nome, causa):
         f"«{nome}» non compare più nel database. Toglilo da ABILITA_SENZA_PUNTEGGIO.")
 
 
-def test_quante_abilita_restano_senza_punteggio():
-    """Il conteggio, perché la misura resti sotto gli occhi: oggi sono 12 su 54."""
-    riconosciuti = _vocabolario_del_blocco("# Bonus per abilita speciali")
-    contate = _abilita_nei_dati()
-    ignorate = sum(q for nome, q in contate.items() if nome not in riconosciuti)
-    assert (ignorate, sum(contate.values())) == (12, 54), (
-        f"la proporzione è cambiata: {ignorate} abilità senza punteggio su "
-        f"{sum(contate.values())}")
+def test_nessuna_stringa_del_vocabolario_porta_maiuscole():
+    """
+    I blocchi confrontano il nome dell'abilità **già abbassato a minuscolo**: una
+    stringa del vocabolario con una maiuscola non può mai corrispondere, e il ramo che
+    la contiene è scritto ma irraggiungibile. Erano 19 stringhe in quattro blocchi —
+    `"Incrementa Azioni"`, `"Attacca sempre per primo"`, `"Immune alle ferite durante il
+    combattimento"` fra le altre — e valevano da sole 4 delle 12 abilità senza punteggio.
+    """
+    sospette = []
+    for intestazione in ("# Bonus per abilita speciali", "# Bonus per poteri"):
+        inizio = SORGENTE_PUNTEGGIO.index(intestazione)
+        fine = SORGENTE_PUNTEGGIO.index("\n    def ", inizio)
+        for riga_numero, riga in enumerate(
+                SORGENTE_PUNTEGGIO[inizio:fine].split("\n"), 1):
+            for stringa in re.findall(r'"([A-Za-zà-ù\' ]{4,})"', riga):
+                if any(carattere.isupper() for carattere in stringa):
+                    sospette.append(f"{intestazione} +{riga_numero}: {stringa!r}")
+
+    assert not sospette, (
+        "stringhe del vocabolario che il confronto in minuscolo non può raggiungere:\n  "
+        + "\n  ".join(sospette))
 
 
 # --------------------------------------------------------------------------
 # Reliquia: `poteri`
 # --------------------------------------------------------------------------
 
-POTERI_SENZA_PUNTEGGIO = {
-    "attacco in uscita da copertura": "nessun ramo per questo nome nel blocco `azioni`",
-    "annulla effetto arte": "il ramo affine è «annulla immunita dell'Oscura simmetria»",
-}
+POTERI_SENZA_PUNTEGGIO: dict[str, str] = {}
 
 
 def _poteri_nei_dati():

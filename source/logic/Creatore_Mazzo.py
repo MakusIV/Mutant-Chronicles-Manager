@@ -679,9 +679,9 @@ class CreatoreMazzo:
                         potenza *= 1.3
                     
             if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
                     potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
                     potenza *= 1.2
                                                                                     
             if tipo == "modificatore":        
@@ -698,21 +698,28 @@ class CreatoreMazzo:
                 if nome == "ripara equipaggiamento o fortificazione":
                     potenza *= 1.1
 
-            if tipo == "arte":                
-                if "lancia arte e/o incantesimo dell'arte" == nome:
-                    potenza *= 1.3                
+            if tipo == "arte":
+                # "lancia arte" e' la forma breve usata dai dati dell'Equipaggiamento e
+                # gia' riconosciuta dai blocchi di Reliquia e Fortificazione.
+                if nome in ["lancia arte e/o incantesimo dell'arte", "lancia arte"]:
+                    potenza *= 1.3
                 elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
-                    potenza *= 1.2             
-            
+                    potenza *= 1.2
+
             if tipo == "carte":
-                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
-                    potenza *= 1.3    
+                # "assegna carte" e' la variante al plurale, usata dai veicoli e dalle armi
+                # che ne trasportano o ne ricevono piu' d'una.
+                if nome in ["assegna carta", "assegna carte", "scarta carta", "elimina carta"]:
+                    potenza *= 1.3
 
             if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
-                    potenza *= 1.3    
+                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni",
+                            "attacca sempre per primo",
+                            # variante condizionata: vale solo scegliendo di Sparare
+                            "attacca sempre per primo se sceglie di sparare"]:
+                    potenza *= 1.3
                 elif nome in ["modifica azione", "modifica stato"]:
-                    potenza *= 1.1                
+                    potenza *= 1.1
         
 
         self.potenze_calcolate['Equipaggiamento'][equipaggiamento.nome] = potenza
@@ -777,9 +784,9 @@ class CreatoreMazzo:
             
                     
             if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
                     potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
                     potenza *= 1.2
                                                                                     
             if tipo == "modificatore":        
@@ -815,7 +822,7 @@ class CreatoreMazzo:
                     potenza *= 1.5
 
             if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo", "Attacco in uscita da Copertura"]:
+                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo", "attacco in uscita da copertura"]:
                     potenza *= 1.3    
                 elif nome in ["modifica azione", "modifica stato"]:
                     potenza *= 1.1    
@@ -907,9 +914,9 @@ class CreatoreMazzo:
                     potenza *= 1.3            
                     
             if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
                     potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
                     potenza *= 1.2
                                                                                     
             if tipo == "modificatore":        
@@ -927,7 +934,7 @@ class CreatoreMazzo:
                     potenza *= 1.1
 
             if tipo == "arte":                
-                if nome in ["lancia arte", "Annulla effetto arte"]:
+                if nome in ["lancia arte", "annulla effetto arte"]:
                     potenza *= 1.3                
                 elif "lancia arte specifica" == nome:
                     potenza *= 1.2
@@ -944,7 +951,7 @@ class CreatoreMazzo:
                     potenza *= 1.5
 
             if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo", "Attacco in uscita da Copertura"]:
+                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo", "attacco in uscita da copertura"]:
                     potenza *= 1.3    
                 elif nome in ["modifica azione", "modifica stato"]:
                     potenza *= 1.1       
@@ -1041,9 +1048,9 @@ class CreatoreMazzo:
                         potenza *= 1.5
 
                 if tipo == "immunita":
-                    if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                    if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
                         potenza *= 1.4
-                    elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico warzone", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                    elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico warzone", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
                         potenza *= 1.2
                                                                                         
                 if tipo == "modificatore":        
@@ -1071,7 +1078,7 @@ class CreatoreMazzo:
                         potenza *= 1.3    
 
                 if tipo == "azioni":
-                    if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
+                    if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo"]:
                         potenza *= 1.3    
                     elif nome in ["modifica azione", "modifica stato"]:
                         potenza *= 1.1                 

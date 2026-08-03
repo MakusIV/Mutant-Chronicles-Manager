@@ -81,8 +81,6 @@ collezioni e mazzi, e non se ne trova la scansione. Le carte in quello stato son
 
 Tutti marcati `xfail(strict=True)`: il test fallirà quando il difetto sarà corretto.
 
-- 🟠 **`Warzone.py:317` usa `TipoGuerriero` senza importarlo**: `NameError` su
-  `"Solo Personalita"`. Nessuna carta lo innesca oggi.
 - 🟡 **Il controllo di disciplina in Arte è dentro `if len(guerriero.abilita) > 0`**: chi
   non ha abilità lo salta. Latente — nessun guerriero della Fratellanza ne è privo.
 - 🟡 **I Cultisti non entrano mai in un mazzo Doomtrooper**: `seleziona_guerrieri` sceglie
@@ -150,6 +148,33 @@ Sull'ultima: il criterio è **più permissivo** di quello che sostituisce — ch
 un'abilità di tipo Arte lancia anche fuori fazione. `test_i_lanciatori_esterni_sono_soltanto_tre`
 fissa l'elenco, così dare quell'abilità a un guerriero che non deve lanciare non passa
 inosservato.
+
+### Il vocabolario del punteggio
+
+Il secondo asse — quanto vale una carta, non chi può riceverla — confronta i nomi di
+abilità e poteri per uguaglianza contro elenchi scritti nel codice. **12 abilità su 54 e
+2 poteri su 17 non pesavano.** Due cause distinte:
+
+- **19 stringhe del vocabolario portavano maiuscole**, in quattro blocchi
+  (`"Incrementa Azioni"`, `"Attacca sempre per primo"`, `"Immune alle ferite durante il
+  combattimento"`, …), mentre il confronto avviene contro il nome **già abbassato a
+  minuscolo**: rami scritti e irraggiungibili. Abbassate tutte;
+  `test_nessuna_stringa_del_vocabolario_porta_maiuscole` impedisce che tornino.
+- **3 nomi non avevano alcun ramo** nel blocco Equipaggiamento: `"assegna carte"` (la
+  variante al plurale di `"assegna carta"`, usata dai veicoli che ne trasportano più
+  d'una), `"lancia arte"` (forma breve già riconosciuta dai blocchi di Reliquia e
+  Fortificazione) e `"attacca sempre per primo se sceglie di sparare"` (variante
+  condizionata). Aggiunti accanto ai nomi affini.
+
+Ora tutte le 54 abilità e tutti i 17 poteri contribuiscono. Gli elenchi dei nomi
+scoperti sono vuoti, e `test_ogni_abilita_speciale_e_classificata` li tiene tali: un
+nome nuovo che nessun ramo riconosce fa fallire il test, e va corretto invece che
+aggiunto all'elenco.
+
+**`Warzone.py` non importava `TipoGuerriero`**, quindi la restrizione «Solo Personalita»
+sollevava `NameError` invece di verificare il tipo del guerriero. Aggiunto l'import: la
+restrizione ora chiede entrambe le dichiarazioni, il `tipo` e la keyword, in tutte e sei
+le classi che la supportano.
 
 ---
 
