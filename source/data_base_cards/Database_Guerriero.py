@@ -5131,7 +5131,10 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "testo_carta": "Può usare tutti i tipi di Arte. L'apostata Rinnegato non ha nessun Legame e non può riceverne nessuno. Tienilo separato dalla Tua Squadra e dal Tuo Schieramento. Può lanciare qualsiasi incantesimo su qualsiasi guerriero e Attaccare ed essere Attaccato da qualsiasi guerriero.",
         "flavour_text": "",
-        "keywords": ["Eretico"],
+        # Il testo non lo dichiara Eretico — a differenza dell'Apostata, che apre con
+        # "CONSIDERATO UN ERETICO": dice solo che non ha Legame. La keyword "Eretico"
+        # era una contaminazione dal nome simile.
+        "keywords": [],
         "restrizioni": [],
         "equipaggiamento": [],
         "stato_gioco": {

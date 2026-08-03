@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Any, Union
 from enum import Enum
 import json
-from source.cards.Guerriero import Guerriero, Fazione, Rarity, Set_Espansione, TipoGuerriero  # Import dalle classi esistenti
+from source.cards.Guerriero import Guerriero, Fazione, Rarity, Set_Espansione, TipoGuerriero, DOOMTROOPER  # Import dalle classi esistenti
 
 
 
@@ -178,8 +178,16 @@ class Missione:
 
                 for restrizione in self.restrizioni:
 
-                    # Nota: va valutata prima di "Solo Mercenari", che ne è un prefisso
-                    if "Solo Mercenari o Eretici" in restrizione:
+                    # Condizioni in alternativa: basta soddisfarne una. Vanno valutate
+                    # prima delle rispettive forme semplici, di cui contengono il prefisso.
+                    if "Solo Doomtrooper o Eretici" in restrizione:
+                        e_doomtrooper = bersaglio.fazione.value in DOOMTROOPER
+                        e_eretico = bool(bersaglio.keywords) and "Eretico" in bersaglio.keywords
+                        if not (e_doomtrooper or e_eretico):
+                            risultato["puo_assegnare"] = False
+                            risultato["errori"].append("Solo Doomtrooper o Eretici")
+
+                    elif "Solo Mercenari o Eretici" in restrizione:
                         if bersaglio.tipo != Fazione.MERCENARIO and (bersaglio.keywords is None or bersaglio.keywords == [] or ("Mercenario" not in bersaglio.keywords and "Eretico" not in bersaglio.keywords) ):
                             risultato["puo_assegnare"] = False
                             risultato["errori"].append(f"Solo Mercenari o Eretici")
@@ -210,8 +218,31 @@ class Missione:
                         return risultato
 
                 if risultato["puo_assegnare"] == False:
-                    return risultato    
-                        
+                    return risultato
+
+            # Controlla i vincoli sul tipo di guerriero.
+            # Il campo `restrizioni_guerriero` era popolato nel database ma non veniva
+            # letto da nessuna parte: `Quindici Minuti Di Fama` dichiarava così il suo
+            # unico vincolo — «non Personalita» — e lo vedeva ignorato.
+            if self.restrizioni_guerriero:
+
+                for restrizione in self.restrizioni_guerriero:
+
+                    if "Non Personalita" in restrizione:
+                        if (bersaglio.tipo == TipoGuerriero.PERSONALITA
+                                or (bersaglio.keywords and "Personalita" in bersaglio.keywords)):
+                            risultato["puo_assegnare"] = False
+                            risultato["errori"].append("Non Personalita")
+
+                    elif "Solo Nefarita" in restrizione:
+                        if (bersaglio.keywords is None or bersaglio.keywords == []
+                                or "Nefarita" not in bersaglio.keywords):
+                            risultato["puo_assegnare"] = False
+                            risultato["errori"].append("Solo Nefarita")
+
+                    if risultato["puo_assegnare"] == False:
+                        return risultato
+
             # Controlla restrizioni di fazione
             if self.fazioni_permesse and Fazione("Generica") not in self.fazioni_permesse and bersaglio.fazione not in self.fazioni_permesse:
                 risultato["puo_assegnare"] = False

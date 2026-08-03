@@ -576,7 +576,12 @@ DATABASE_OSCURA_SIMMETRIA = {
             "utilizzata": False,
             "bersagli_attuali": []
         },
-        "restrizioni": ["Solo Seguaci di Algeroth", "Solo Nefarita"],
+        # «DONO DI ALGEROTH. Può solo essere assegnato a un Nefarita di qualsiasi
+        # Apostolo»: il dono è di Algeroth, ma il destinatario non deve esserne Seguace.
+        # `Solo Seguaci di Algeroth` contraddiceva il testo e restringeva i destinatari;
+        # la deroga serve perché il vincolo sul Seguace non viene da questa stringa ma
+        # da `tipo` + `apostolo_padre`.
+        "restrizioni": ["Solo Nefarita", "Dono di qualsiasi Apostolo"],
         "corruzione_applicata": {},
         "mutazioni_applicate": {},
         "penalita_giocatore": {},
@@ -928,7 +933,12 @@ DATABASE_OSCURA_SIMMETRIA = {
             "utilizzata": False,
             "bersagli_attuali": []
         },
-        "restrizioni": ["Solo Seguaci di Algeroth", "Solo Nefarita"],
+        # «DONO DI ALGEROTH. Può solo essere assegnato a un Nefarita di qualsiasi
+        # Apostolo»: il dono è di Algeroth, ma il destinatario non deve esserne Seguace.
+        # `Solo Seguaci di Algeroth` contraddiceva il testo e restringeva i destinatari;
+        # la deroga serve perché il vincolo sul Seguace non viene da questa stringa ma
+        # da `tipo` + `apostolo_padre`.
+        "restrizioni": ["Solo Nefarita", "Dono di qualsiasi Apostolo"],
         "corruzione_applicata": {},
         "mutazioni_applicate": {},
         "penalita_giocatore": {},
@@ -1719,7 +1729,12 @@ def verifica_integrita_database() -> dict:
         if carta["tipo"] == "Dono degli Apostoli":
             if not carta["apostolo_padre"]:
                 errori["apostoli_inconsistenti"].append(f"{nome}: Dono senza apostolo")
-            if not any("Solo Seguaci di" in r for r in carta["restrizioni"]):
+            # Un Dono va di norma ai soli Seguaci dell'Apostolo che lo concede, salvo
+            # che la carta dichiari la deroga: «Può solo essere assegnato a un Nefarita
+            # di qualsiasi Apostolo». In quel caso il destinatario è vincolato per altra
+            # via, e pretendere la restrizione sui Seguaci sarebbe un falso allarme.
+            if not any("Solo Seguaci di" in r for r in carta["restrizioni"]) \
+                    and "Dono di qualsiasi Apostolo" not in carta["restrizioni"]:
                 errori["doni_senza_restrizioni"].append(f"{nome}: Manca restrizione Seguaci")
         
         if carta["timing"] not in [t.value for t in TimingOscura]:

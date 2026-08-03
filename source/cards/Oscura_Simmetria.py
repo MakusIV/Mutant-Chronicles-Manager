@@ -175,8 +175,16 @@ class Oscura_Simmetria:
             risultato["puo_lanciare"] = False
             risultato["errori"].append(f"Il guerriero {guerriero.nome} non può usare le carte generiche dell'Oscura Simmetria")
     
-        # Verifica seguaci degli apostoli
-        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO and "Solo doni dell'Oscura Simmetria" not in guerriero.restrizioni:
+        # Verifica seguaci degli apostoli.
+        # Il vincolo si ricava da `apostolo_padre`: di norma un Dono può andare solo ai
+        # Seguaci dell'Apostolo che lo concede. Alcune carte derogano — «DONO DI ALGEROTH.
+        # Può solo essere assegnato a un Nefarita di qualsiasi Apostolo» — e lo dichiarano
+        # con "Dono di qualsiasi Apostolo": restano Doni di quell'Apostolo, ma il
+        # destinatario non deve esserne Seguace. Il vincolo che quelle carte pongono sul
+        # destinatario (essere Nefarita) è dichiarato a parte ed è verificato più sotto.
+        dono_aperto_a_tutti = "Dono di qualsiasi Apostolo" in self.restrizioni
+
+        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO and not dono_aperto_a_tutti and "Solo doni dell'Oscura Simmetria" not in guerriero.restrizioni:
             seguace_richiesto = f"Seguace di {self.apostolo_padre.value}"
             # Eccezione: alcuni guerrieri (es. Billy) ricevono i Doni di qualsiasi Apostolo
             # pur non essendo Seguaci; lo dichiarano con un'abilità di tipo "Dono degli Apostoli".

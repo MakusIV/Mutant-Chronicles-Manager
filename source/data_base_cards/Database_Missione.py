@@ -44,7 +44,9 @@ DATABASE_MISSIONI = {
         "testo_carta": "Assegna questa missione a un tuo guerriero non personalita. Il guerriero deve uccidere un guerriero personalita nemico. Se ci riesce, guadagni 4 Punti in più rispetto al normale V",
         "flavour_text": "La vendetta è un piatto che va servito freddo... e letale.",
         "keywords": ["Missione", "Uccisione"],
-        "restrizioni": ["Solo Doomtrooper"],
+        # Nessun vincolo di fazione: il testo la assegna a un guerriero qualsiasi purché
+        # non Personalita, e quel vincolo è già dichiarato in `restrizioni_guerriero`.
+        "restrizioni": [],
         "condizioni_speciali": [],
         "valore_strategico": 4,
         "quantita":1,
@@ -96,8 +98,12 @@ DATABASE_MISSIONI = {
         "difficolta": "Normale",
         "rarity": "Common",
         "bersaglio": "Proprio Guerriero",
-        "fazioni_permesse": DOOMTROOPER,
-        "corporazioni_specifiche": ["Eretico"],
+        # Gli Eretici sono guerrieri dell'Oscura Legione: senza di essa il controllo di
+        # fazione li respingerebbe prima ancora di arrivare alla restrizione.
+        "fazioni_permesse": DOOMTROOPER + ["Oscura Legione"],
+        # Svuotato: `Eretico` qui imponeva la keyword a *tutti* i destinatari, quindi
+        # anche ai Doomtrooper, che il testo ammette senza altre condizioni.
+        "corporazioni_specifiche": [],
         "restrizioni_guerriero": [],
         "obiettivo": {
             "descrizione": "Uccideri una personalita della fratellanza. Una volta completata la missione, tutti i tuoi guerrieri nella squadra (se la missione era assegnata ad un Doomtrooper) oppure del tuo schieramento (se era assegnata ad un Eretico) saranno immuni a tutti gli effetti delle arti",
@@ -117,7 +123,12 @@ DATABASE_MISSIONI = {
         "testo_carta": "ASSEGNABILE AD UN DOOMTROOPER O AD UN ERETICO. Per completare questa missione devi uccidere una personalita della fratellanza. Una volta completata la missione, tutti i tuoi guerrieri nella squadra (se la missione era assegnata ad un Doomtrooper) oppure del tuo schieramento (se era assegnata ad un Eretico) saranno immuni a tutti gli effetti delle arti.",
         "flavour_text": "La vera forza si manifesta quando tutto sembra perduto.",
         "keywords": ["Eretico"],
-        "restrizioni": ["Solo Doomtrooper", "Solo Eretico"],
+        # «ASSEGNABILE AD UN DOOMTROOPER O AD UN ERETICO»: le due condizioni sono in
+        # alternativa, non cumulative. Erano due voci separate, che il consumatore legge
+        # in AND — nessun guerriero è insieme Doomtrooper ed Eretico, e la missione
+        # risultava assegnabile a nessuno. La forma «X o Y» in una stringa sola è la
+        # stessa già usata da «Solo Mercenari o Eretici».
+        "restrizioni": ["Solo Doomtrooper o Eretici"],
         "condizioni_speciali": [],
         "valore_strategico": 1,
         "quantita":2,
