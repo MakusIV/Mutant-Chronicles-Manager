@@ -179,6 +179,76 @@ def test_i_cultisti_vanno_sempre_in_squadra(creatore):
 
 
 # --------------------------------------------------------------------------
+# Le quote di Squadra e Schieramento
+# --------------------------------------------------------------------------
+
+
+@pytest.mark.lento
+@pytest.mark.parametrize("target", [15, 20, 25, 30, 40, 55])
+def test_il_numero_di_guerrieri_richiesto_e_rispettato(creatore, target):
+    """
+    Le due quote devono sommare **esattamente** al numero richiesto.
+
+    Ricavandole entrambe per arrotondamento sforavano — 32 guerrieri su 30 richiesti,
+    perché la soglia era già arrotondata per eccesso e il confronto la ammetteva — e
+    correggendo il solo confronto restavano sotto con i numeri dispari: 7 + 7 invece
+    di 15. Ora la prima si ricava dal rapporto e la seconda prende il resto.
+    """
+    random.seed(42)
+    squadra, schieramento = creatore.seleziona_guerrieri(
+        espansioni_richieste=ESPANSIONI, numero_guerrieri_target=target,
+        doomtrooper=True, orientamento_doomtrooper=["Imperiale", "Cybertronic"],
+        fratellanza=False, oscura_legione=True,
+        orientamento_apostolo=["Algeroth", "Ilian"])
+
+    assert len(squadra) + len(schieramento) == target, (
+        f"richiesti {target} guerrieri, ottenuti {len(squadra)} in Squadra e "
+        f"{len(schieramento)} nello Schieramento")
+
+
+@pytest.mark.lento
+@pytest.mark.parametrize("target", [15, 25, 30])
+def test_con_una_sola_fazione_non_si_divide(creatore, target):
+    """Senza Oscura Legione non c'è Schieramento: la Squadra prende tutto."""
+    random.seed(42)
+    squadra, schieramento = creatore.seleziona_guerrieri(
+        espansioni_richieste=ESPANSIONI, numero_guerrieri_target=target,
+        doomtrooper=True, fratellanza=False, oscura_legione=False)
+
+    assert not schieramento
+    assert len(squadra) == target
+
+
+@pytest.mark.lento
+def test_le_quote_seguono_il_rapporto_dichiarato(creatore):
+    """
+    Con `RAPPORTO_SQUADRA_SCHIERAMENTO` a 1 le due quote si dividono a metà.
+
+    Si contano per **fazione**, non per area: un Cultista sta in Squadra ma pesa sulla
+    quota dell'Oscura Legione, quindi le due liste possono essere sbilanciate di
+    qualche unità mentre le quote sono esatte. Il test lega l'esito alla costante
+    invece che al numero, così cambiarla non lascia dietro un'attesa scritta a mano.
+    """
+    from source.logic.Creatore_Mazzo import (FAZIONI_OSCURA_LEGIONE,
+                                             RAPPORTO_SQUADRA_SCHIERAMENTO)
+
+    target = 40
+    random.seed(42)
+    squadra, schieramento = creatore.seleziona_guerrieri(
+        espansioni_richieste=ESPANSIONI, numero_guerrieri_target=target,
+        doomtrooper=True, fratellanza=False, oscura_legione=True,
+        orientamento_apostolo=["Algeroth"])
+
+    tutti = squadra + schieramento
+    oscura_legione = [g for g in tutti if g.fazione in FAZIONI_OSCURA_LEGIONE]
+
+    atteso = target // (RAPPORTO_SQUADRA_SCHIERAMENTO + 1)
+    assert len(oscura_legione) == atteso, (
+        f"la quota dell'Oscura Legione è {len(oscura_legione)}, attesa {atteso}")
+    assert len(tutti) - len(oscura_legione) == target - atteso
+
+
+# --------------------------------------------------------------------------
 # Bonus riservati a guerrieri specifici
 # --------------------------------------------------------------------------
 #

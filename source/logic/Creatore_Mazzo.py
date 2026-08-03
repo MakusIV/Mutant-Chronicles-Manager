@@ -1509,15 +1509,21 @@ class CreatoreMazzo:
                 num_copie_da_inserire = max(0, min(copie_ancora_ammesse, quantita_disponibile, quantita_consigliata))
                 quantita_utilizzata[guerriero.nome] += num_copie_da_inserire
 
-                if oscura_legione and (doomtrooper or fratellanza): 
-                    q = RAPPORTO_SQUADRA_SCHIERAMENTO + 1
-                    m = RAPPORTO_SQUADRA_SCHIERAMENTO / q
+                # Le due quote devono sommare esattamente al numero richiesto. Ricavarle
+                # entrambe per arrotondamento le faceva sforare — `<=` su una soglia già
+                # arrotondata per eccesso dava 32 guerrieri su 30 richiesti — oppure, con
+                # un numero dispari, restare sotto: 7 + 7 invece di 15. Qui la prima si
+                # ricava dal rapporto e la seconda prende il resto.
+                if oscura_legione and (doomtrooper or fratellanza):
+                    numero_guerrieri_per_schieramento = (
+                        numero_guerrieri_target // (RAPPORTO_SQUADRA_SCHIERAMENTO + 1))
+                    numero_guerrieri_per_squadra = (
+                        numero_guerrieri_target - numero_guerrieri_per_schieramento)
                 else:
-                    q = 1
-                    m = 1
-                
-                numero_guerrieri_per_schieramento = math.floor( 0.49 + numero_guerrieri_target / q)
-                numero_guerrieri_per_squadra = math.floor( 0.49 + numero_guerrieri_target * m )
+                    # Un solo tipo di fazione: nessuna divisione da fare, l'area che la
+                    # ospita può prendere tutto.
+                    numero_guerrieri_per_schieramento = numero_guerrieri_target
+                    numero_guerrieri_per_squadra = numero_guerrieri_target
                 # Il Cultista e' dell'Oscura Legione ma il suo testo dice «Puoi aggiungere
                 # il Cultista solo alla Tua Squadra»: non va mai nello Schieramento,
                 # nemmeno in un mazzo orientato all'Oscura Legione.
@@ -1535,7 +1541,7 @@ class CreatoreMazzo:
                 for _ in range(num_copie_da_inserire): # NOTA: inserisce la stessa istanza per più volte nella lista
 
                     if inserisci_in_schieramento:
-                        if quota_oscura_legione <= numero_guerrieri_per_schieramento:
+                        if quota_oscura_legione < numero_guerrieri_per_schieramento:
                             schieramento.append(guerriero)
                             quota_oscura_legione += 1
                         else:
@@ -1544,12 +1550,12 @@ class CreatoreMazzo:
                         # Il Cultista occupa la Squadra ma pesa sulla quota della propria
                         # fazione: e' un guerriero dell'Oscura Legione che sta in Squadra.
                         if solo_in_squadra:
-                            if quota_oscura_legione <= numero_guerrieri_per_schieramento:
+                            if quota_oscura_legione < numero_guerrieri_per_schieramento:
                                 squadra.append(guerriero)
                                 quota_oscura_legione += 1
                             else:
                                 break
-                        elif quota_squadra <= numero_guerrieri_per_squadra:
+                        elif quota_squadra < numero_guerrieri_per_squadra:
                             squadra.append(guerriero)
                             quota_squadra += 1
                         else:
