@@ -81,11 +81,6 @@ collezioni e mazzi, e non se ne trova la scansione. Le carte in quello stato son
 
 Tutti marcati `xfail(strict=True)`: il test fallirà quando il difetto sarà corretto.
 
-- 🔴 **`Apostata`, `Apostata Rinnegato` e `Valpurgius` non possono lanciare nessuna delle
-  66 Arti**, pur avendo l'abilità «Arte / Tutte le Discipline» e un testo che lo dice.
-  `Arte.py:164` fa l'eccezione sulla keyword `"Apostata"`, che nessun guerriero possiede.
-  *Rimedio migliore*: usare l'abilità di tipo Arte come criterio — copre tutti e tre,
-  mentre aggiungere la keyword lascerebbe fuori Valpurgius.
 - 🟠 **`Warzone.py:317` usa `TipoGuerriero` senza importarlo**: `NameError` su
   `"Solo Personalita"`. Nessuna carta lo innesca oggi.
 - 🟡 **Il controllo di disciplina in Arte è dentro `if len(guerriero.abilita) > 0`**: chi
@@ -149,6 +144,12 @@ senza estendere anche il consumo creerebbe l'ennesimo dato che nessuno legge.
 | `Database_Missione.py` + `Missione.py` | `Cospirazione Eretica`: le due restrizioni in AND la rendevano assegnabile a **nessuno**. Ora `Solo Doomtrooper o Eretici`, con ramo dedicato |
 | `Database_Oscura_Simmetria.py` + `Oscura_Simmetria.py` | `Portale Della Cura Oscura` e `Legame Necrovisuale`: aggiunta la deroga `Dono di qualsiasi Apostolo`. Da 1 destinatario a tutti e 3 i Nefariti |
 | `Creatore_Mazzo.py` | `'Cultista' in keywords` era **sempre falso** (la keyword è `Cultista di X`, e `in` su lista confronta gli elementi interi): `BONUS_CULTISTA` non si applicava a nessuno. Da 0 a 3 Cultisti selezionati |
+| `Arte.py` | l'eccezione al controllo di fazione cercava la keyword `"Apostata"`, che **nessun guerriero possiede**: `Apostata`, `Apostata Rinnegato` e `Valpurgius` non potevano lanciare nessuna delle 66 Arti. Il criterio è ora l'abilità di tipo Arte che il guerriero dichiara — lo stesso campo che il controllo sulla disciplina già consulta. Copre tutti e tre, mentre la keyword avrebbe lasciato fuori Valpurgius, che non è un Apostata |
+
+Sull'ultima: il criterio è **più permissivo** di quello che sostituisce — chiunque dichiari
+un'abilità di tipo Arte lancia anche fuori fazione. `test_i_lanciatori_esterni_sono_soltanto_tre`
+fissa l'elenco, così dare quell'abilità a un guerriero che non deve lanciare non passa
+inosservato.
 
 ---
 

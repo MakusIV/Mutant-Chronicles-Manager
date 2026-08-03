@@ -89,14 +89,34 @@ def test_ogni_arte_ha_almeno_un_lanciatore(nome_carta):
     )
 
 
-def test_fuori_dalla_fratellanza_non_si_lancia():
+@pytest.mark.parametrize("fazione", [Fazione.CAPITOL, Fazione.OSCURA_LEGIONE,
+                                     Fazione.MISHIMA])
+def test_fuori_dalla_fratellanza_non_si_lancia_senza_l_abilita(fazione):
+    """Chi non è della Fratellanza e non dichiara di saper lanciare l'Arte è respinto."""
     nome_carta = next(iter(CARTE_ARTE_DATABASE))
     carta = crea_carta_da_database(nome_carta)
-    for fazione in (Fazione.CAPITOL, Fazione.OSCURA_LEGIONE, Fazione.MISHIMA):
-        maestro = _maestro(carta.disciplina.value, fazione=fazione)
-        assert not carta.puo_essere_associata_a_guerriero(maestro).get("puo_lanciare"), (
-            f"{nome_carta} è lanciabile da un guerriero {fazione.value}"
-        )
+    profano = crea_guerriero(nome="profano", fazione=fazione, abilita=[])
+
+    assert not carta.puo_essere_associata_a_guerriero(profano).get("puo_lanciare"), (
+        f"{nome_carta} è lanciabile da un guerriero {fazione.value} senza abilità di Arte"
+    )
+
+
+@pytest.mark.parametrize("fazione", [Fazione.CAPITOL, Fazione.OSCURA_LEGIONE,
+                                     Fazione.MISHIMA])
+def test_fuori_dalla_fratellanza_si_lancia_con_l_abilita(fazione):
+    """
+    Il verso complementare, che è il senso della correzione: la fazione non basta più a
+    escludere: chi dichiara l'abilità lancia comunque, come l'Apostata Rinnegato, che è
+    un Mercenario, e Valpurgius, che è dell'Oscura Legione.
+    """
+    nome_carta = next(iter(CARTE_ARTE_DATABASE))
+    carta = crea_carta_da_database(nome_carta)
+    maestro = _maestro(carta.disciplina.value, fazione=fazione)
+
+    assert carta.puo_essere_associata_a_guerriero(maestro).get("puo_lanciare"), (
+        f"{nome_carta}: un maestro {fazione.value} della disciplina giusta è respinto"
+    )
 
 
 # --------------------------------------------------------------------------
@@ -114,13 +134,13 @@ LANCIATORI_ESTERNI = [
 
 @pytest.mark.parametrize("nome_guerriero,frase", LANCIATORI_ESTERNI,
                          ids=[g[0] for g in LANCIATORI_ESTERNI])
-@pytest.mark.xfail(strict=True, reason=(
-    "l'eccezione in Arte.py:164 cerca la keyword «Apostata», che nessun guerriero del "
-    "database possiede: i tre lanciatori esterni sono respinti dal controllo di fazione"))
 def test_i_lanciatori_esterni_possono_lanciare(nome_guerriero, frase):
     """
     Tutti e tre dichiarano un'abilità «Arte / Tutte le Discipline» e un testo che lo
-    conferma, e nessuno dei tre può lanciare una sola delle 66 carte.
+    conferma, e nessuno dei tre poteva lanciare una sola delle 66 carte: l'eccezione al
+    controllo di fazione cercava la keyword «Apostata», che nessun guerriero possiede.
+    Ora il criterio è l'abilità dichiarata, che li copre tutti e tre — compreso
+    Valpurgius, che un criterio sui nomi propri avrebbe lasciato fuori.
     """
     guerriero = crea_guerriero_da_nome(nome_guerriero)
     assert guerriero is not None
@@ -133,6 +153,33 @@ def test_i_lanciatori_esterni_possono_lanciare(nome_guerriero, frase):
         f"{nome_guerriero} non può lanciare nessuna delle {len(CARTE_ARTE_DATABASE)} "
         f"carte Arte, ma il suo testo dice: «{frase}»"
     )
+
+
+def test_i_lanciatori_esterni_sono_soltanto_tre():
+    """
+    Il criterio è più permissivo di quello che sostituisce — chiunque dichiari
+    un'abilità di tipo Arte lancia anche fuori fazione — quindi va tenuto d'occhio: dare
+    quell'abilità a un guerriero che non deve lanciare aprirebbe un varco in silenzio.
+    """
+    esterni = {nome for nome, guerriero in GUERRIERI
+               if guerriero.fazione is not FRATELLANZA
+               and any(abilita.tipo == "Arte" for abilita in guerriero.abilita)}
+
+    assert esterni == {nome for nome, _ in LANCIATORI_ESTERNI}, (
+        f"i guerrieri fuori Fratellanza che dichiarano di lanciare l'Arte sono cambiati: "
+        f"{sorted(esterni)}")
+
+
+def test_la_keyword_apostata_non_e_piu_necessaria():
+    """
+    Il criterio non deve tornare a dipendere da una keyword che i dati non hanno: era
+    proprio l'assenza di «Apostata» dal database a rendere l'eccezione inerte.
+    """
+    portatori = {nome for nome, dati in GUERRIERI_DATABASE.items()
+                 if "Apostata" in (dati.get("keywords") or [])}
+    assert not portatori, (
+        f"la keyword «Apostata» è comparsa su {sorted(portatori)}: se il criterio deve "
+        f"tornare a usarla, va rivisto anche il caso di Valpurgius, che non è un Apostata")
 
 
 @pytest.mark.parametrize("nome_guerriero,frase", LANCIATORI_ESTERNI,
