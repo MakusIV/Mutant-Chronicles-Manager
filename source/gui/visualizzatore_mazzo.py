@@ -212,25 +212,57 @@ def trova_immagine(cartella_immagini: Path, tipologia: str, nome_carta: str,
     Returns:
         Il percorso dell'immagine, oppure None se non trovata
     """
-    cartella = cartella_immagini / CARTELLA_IMMAGINI_PER_TIPOLOGIA.get(tipologia, tipologia)
-    if sottocartella:
-        cartella = cartella / sottocartella
-
-    if not cartella.is_dir():
-        return None
+    radice = cartella_immagini / CARTELLA_IMMAGINI_PER_TIPOLOGIA.get(tipologia, tipologia)
+    cartella = radice / sottocartella if sottocartella else radice
 
     atteso = nome_carta.replace(" ", "_").lower()
 
-    for percorso in cartella.iterdir():
-        if percorso.is_file() and percorso.stem.lower() == atteso:
-            return percorso
+    if cartella.is_dir():
+        for percorso in cartella.iterdir():
+            if percorso.is_file() and percorso.stem.lower() == atteso:
+                return percorso
 
-    # Ripiego: alcune immagini possono trovarsi nella cartella della tipologia
-    # anche quando è prevista una sottocartella.
-    if sottocartella:
-        return trova_immagine(cartella_immagini, tipologia, nome_carta)
+    # Ripiego: l'immagine può trovarsi altrove sotto la cartella della tipologia.
+    # Succede ai Cultisti, che l'esportazione colloca nello «schieramento» seguendo la
+    # fazione mentre il mazzo li assegna alla «squadra», come vuole il loro testo:
+    # l'immagine è la stessa carta, e cercarla solo nell'area dichiarata la perderebbe.
+    if radice.is_dir():
+        for percorso in radice.rglob("*"):
+            if percorso.is_file() and percorso.stem.lower() == atteso:
+                return percorso
 
     return None
+
+
+def _e_una_carta(valore: Any) -> bool:
+    """
+    Distingue il nodo di una carta da un raggruppamento intermedio.
+
+    Una carta porta i propri dati (`copie`, `stats`, `fazione`…); un raggruppamento —
+    l'Apostolo, sotto l'Oscura Legione — contiene altri nodi.
+    """
+    if not isinstance(valore, dict):
+        return False
+    return any(chiave in valore for chiave in ("copie", "quantita", "stats", "fazione"))
+
+
+def _guerrieri_del_gruppo(elenco: Any):
+    """
+    Restituisce le coppie (nome, dati) di un gruppo di guerrieri, attraversando
+    l'eventuale livello dell'Apostolo.
+
+    Args:
+        elenco: Il contenuto di `inventario_guerrieri[area][fazione]`
+
+    Yields:
+        Le carte trovate, a qualunque profondità siano annidate
+    """
+    for nome, valore in (elenco or {}).items():
+        if _e_una_carta(valore):
+            yield nome, valore
+        elif isinstance(valore, dict):
+            # Raggruppamento intermedio (l'Apostolo): si scende di un livello
+            yield from _guerrieri_del_gruppo(valore)
 
 
 def carica_mazzo(cartella_mazzo: Path) -> tuple[List[CartaMazzo], Dict[str, Any]]:
@@ -260,10 +292,18 @@ def carica_mazzo(cartella_mazzo: Path) -> tuple[List[CartaMazzo], Dict[str, Any]
 
     carte: List[CartaMazzo] = []
 
-    # Guerrieri: raggruppati per area e poi per fazione
+    # Guerrieri: raggruppati per area e poi per fazione. L'Oscura Legione ha un livello
+    # in più — l'Apostolo — che le altre fazioni non hanno:
+    #
+    #     squadra > Cybertronic    > Cyril Dent           > {copie, stats, …}
+    #     squadra > Oscura Legione > Algeroth > Cultista… > {copie, stats, …}
+    #
+    # Senza attraversarlo, il nome dell'Apostolo veniva scambiato per il nome di una
+    # carta: comparivano «Algeroth» e «Ilian» con zero copie, e i guerrieri veri
+    # sparivano dall'elenco.
     for area, fazioni in (mazzo.get("inventario_guerrieri") or {}).items():
         for fazione, elenco in (fazioni or {}).items():
-            for nome, info in (elenco or {}).items():
+            for nome, info in _guerrieri_del_gruppo(elenco):
                 fazione_carta = info.get("fazione") or fazione
                 carte.append(CartaMazzo(
                     nome=nome,

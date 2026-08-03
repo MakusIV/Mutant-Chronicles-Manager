@@ -83,6 +83,33 @@ class CorporazioneSpecifica(Enum):
     
 DOOMTROOPER = ["Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol", "Mercenario", "Fratellanza"]
 
+# Keyword con cui un guerriero dichiara di valere come Doomtrooper pur non appartenendo
+# a nessuna delle sette fazioni: la portano i Cultisti, il cui testo dice «CONSIDERATO
+# UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO».
+DOOMTROOPER_SENZA_LEGAME = "Doomtrooper senza legame"
+
+
+def vale_come_doomtrooper(guerriero) -> bool:
+    """
+    Indica se un guerriero conta come Doomtrooper.
+
+    Oltre alle sette fazioni, valgono i guerrieri che lo dichiarano con la keyword
+    `Doomtrooper senza legame`. Sono Doomtrooper **generici**: ricevono le carte aperte
+    a tutti i Doomtrooper, ma non avendo icona di legame restano fuori da quelle
+    riservate a una singola Megacorporazione — vincolo che passa da `fazioni_permesse`
+    e non da questa funzione.
+
+    Args:
+        guerriero: Istanza del guerriero
+
+    Returns:
+        True se il guerriero conta come Doomtrooper
+    """
+    fazione = getattr(guerriero, 'fazione', None)
+    if getattr(fazione, 'value', fazione) in DOOMTROOPER:
+        return True
+    return DOOMTROOPER_SENZA_LEGAME in (getattr(guerriero, 'keywords', None) or [])
+
 
 
 class Rarity(Enum):

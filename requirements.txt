@@ -19,3 +19,7 @@ reportlab>=4.0
 # Basta la variante Essentials: servono solo QtCore, QtGui e QtWidgets, e pesa
 # sensibilmente meno del pacchetto PySide6 completo.
 PySide6-Essentials>=6.10
+
+# Suite di test (test/). Si esegue dalla radice del progetto con
+#   .venv/bin/python -m pytest
+pytest>=8.0

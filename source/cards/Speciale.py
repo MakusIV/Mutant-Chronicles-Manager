@@ -11,7 +11,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, TipoGuerriero, DOOMTROOPER  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, TipoGuerriero, DOOMTROOPER, vale_come_doomtrooper  # Import dalle classi esistenti
 
 
 class TipoSpeciale(Enum):
@@ -258,7 +258,9 @@ class Speciale:
 
             for restrizione in self.restrizioni:
                 if "Solo Doomtrooper" in restrizione: 
-                    if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
+                    # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
+                    if not vale_come_doomtrooper(guerriero):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append("Solo per Doomtrooper")
                 elif "Solo Oscura Legione" in restrizione:
@@ -283,12 +285,28 @@ class Speciale:
                         risultato["errori"].append(f"Solo Eretici")
                 
                 elif "Solo Necromutanti" in restrizione:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Necromutante" not in guerriero.keywords  ):                       
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Necromutante" not in guerriero.keywords  ):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Necromutanti")
 
+                # Il ramo mancava, a differenza delle altre cinque classi che lo hanno:
+                # `Reintegrato` («GIOCABILE SU UN MERCENARIO») dichiarava la restrizione e
+                # la vedeva ignorata, finendo a 126 guerrieri su 136.
+                # Se un giorno una carta Speciale userà la forma «Solo Mercenari o
+                # Eretici», il suo ramo andrà messo *prima* di questo, che ne è il prefisso.
+                elif "Solo Mercenari" in restrizione:
+                    if (guerriero.fazione != Fazione.MERCENARIO
+                            and (guerriero.keywords is None or guerriero.keywords == []
+                                 or "Mercenario" not in guerriero.keywords)):
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Mercenari")
+
                 elif "Solo Personalita" in restrizione:
-                    if guerriero.tipo != TipoGuerriero.PERSONALITA or (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords ):
+                    # Basta una delle due dichiarazioni: nel database 27 Personalita' su 29
+                    # portano il solo `tipo`, e nessuna la sola keyword. Pretenderle
+                    # entrambe lasciava fuori quasi tutte le Personalita' del gioco.
+                    if not (guerriero.tipo == TipoGuerriero.PERSONALITA
+                            or (guerriero.keywords and "Personalita" in guerriero.keywords)):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Personalita")
 

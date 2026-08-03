@@ -33,7 +33,8 @@ except ImportError:
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
 from source.logic.Creatore_Collezione import creazione_Collezione_Giocatore, carica_collezioni_json_migliorato, salva_collezioni_json_migliorato, determina_orientamento_collezione
 from source.cards.Guerriero import (
-    Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte, DOOMTROOPER
+    Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte, DOOMTROOPER,
+    vale_come_doomtrooper
 )
 from source.cards.Equipaggiamento import Equipaggiamento
 from source.cards.Speciale import Speciale
@@ -113,7 +114,13 @@ class EnumJSONEncoder(json.JSONEncoder):
 
 # 1: 50% SCHIERAMENTO, 50% SQUADRA, 3/2: 40% SCHIERAMENTO, 60% SQUADRA, 2: 33% SCHIERAMENTO, 66% SQUADRA, 3: 25% SCHIERAMENTO, 75% SQUADRA
 # 1/2: 66% SCHIERAMENTO, 33% SQUADRA, 2/3: 60% SCHIERAMENTO, 40% SQUADRA, 1/3: 75% SCHIERAMENTO, 25% SQUADRA
-RAPPORTO_SQUADRA_SCHIERAMENTO = 1 
+RAPPORTO_SQUADRA_SCHIERAMENTO = 1
+
+# Keyword con cui una carta dichiara di abilitare l'uso dell'Arte a un guerriero che non
+# la lancerebbe: le Cattedrali, le Empatie, il Guanto dell'Esorcista. Non la portano le
+# carte che all'Arte si oppongono — «Interferenza», «Forza Di Volonta», «Distratto» —
+# che restano utili contro l'Arte avversaria anche in un mazzo che vi rinuncia.
+ABILITA_ARTE = "Abilita l'Arte"
 
 DISTRIBUZIONE_BASE = {
     'guerriero': (0.19, 0.24),          # 19-24%
@@ -544,6 +551,34 @@ class CreatoreMazzo:
                    or self._guerriero_riceve_doni_di_ogni_apostolo(g)
                    for g in guerrieri)
 
+    def _bonus_condizionato_attivabile(self, carta: Any, guerrieri: List[Guerriero]) -> bool:
+        """
+        Indica se un bonus riservato a guerrieri specifici è attivabile nel mazzo.
+
+        Alcune carte concedono un potenziamento maggiore a un guerriero determinato —
+        la Lancia Castigator dà +2 in C a ogni Doomtrooper e +4 a una Valchiria — e lo
+        dichiarano nel campo `guerrieri_avvantaggiati` del modificatore. Il bonus non
+        entra nella potenza della carta, che è una proprietà intrinseca e non può
+        dipendere dal mazzo: entra qui, dove i guerrieri scelti sono noti.
+
+        È il verso opposto di `_dono_utilizzabile_dai_guerrieri`, che declassa i Doni
+        che nessuno può ricevere.
+
+        Args:
+            carta: Carta di supporto da valutare
+            guerrieri: Guerrieri presenti nel mazzo
+
+        Returns:
+            True se almeno un guerriero del mazzo attiva il bonus
+        """
+        nomi_presenti = {getattr(g, 'nome', '') for g in guerrieri}
+
+        for modificatore in getattr(carta, 'modificatori_speciali', None) or []:
+            avvantaggiati = getattr(modificatore, 'guerrieri_avvantaggiati', None) or []
+            if any(nome in nomi_presenti for nome in avvantaggiati):
+                return True
+        return False
+
     def _applica_bonus_modificatore(self, potenza: float, livello: int,
                                     modifica_statistiche_applicata: bool) -> float:
         """
@@ -651,9 +686,9 @@ class CreatoreMazzo:
                         potenza *= 1.3
                     
             if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
                     potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
                     potenza *= 1.2
                                                                                     
             if tipo == "modificatore":        
@@ -670,21 +705,28 @@ class CreatoreMazzo:
                 if nome == "ripara equipaggiamento o fortificazione":
                     potenza *= 1.1
 
-            if tipo == "arte":                
-                if "lancia arte e/o incantesimo dell'arte" == nome:
-                    potenza *= 1.3                
+            if tipo == "arte":
+                # "lancia arte" e' la forma breve usata dai dati dell'Equipaggiamento e
+                # gia' riconosciuta dai blocchi di Reliquia e Fortificazione.
+                if nome in ["lancia arte e/o incantesimo dell'arte", "lancia arte"]:
+                    potenza *= 1.3
                 elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
-                    potenza *= 1.2             
-            
+                    potenza *= 1.2
+
             if tipo == "carte":
-                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
-                    potenza *= 1.3    
+                # "assegna carte" e' la variante al plurale, usata dai veicoli e dalle armi
+                # che ne trasportano o ne ricevono piu' d'una.
+                if nome in ["assegna carta", "assegna carte", "scarta carta", "elimina carta"]:
+                    potenza *= 1.3
 
             if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
-                    potenza *= 1.3    
+                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni",
+                            "attacca sempre per primo",
+                            # variante condizionata: vale solo scegliendo di Sparare
+                            "attacca sempre per primo se sceglie di sparare"]:
+                    potenza *= 1.3
                 elif nome in ["modifica azione", "modifica stato"]:
-                    potenza *= 1.1                
+                    potenza *= 1.1
         
 
         self.potenze_calcolate['Equipaggiamento'][equipaggiamento.nome] = potenza
@@ -749,9 +791,9 @@ class CreatoreMazzo:
             
                     
             if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
                     potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
                     potenza *= 1.2
                                                                                     
             if tipo == "modificatore":        
@@ -787,7 +829,7 @@ class CreatoreMazzo:
                     potenza *= 1.5
 
             if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo", "Attacco in uscita da Copertura"]:
+                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo", "attacco in uscita da copertura"]:
                     potenza *= 1.3    
                 elif nome in ["modifica azione", "modifica stato"]:
                     potenza *= 1.1    
@@ -879,9 +921,9 @@ class CreatoreMazzo:
                     potenza *= 1.3            
                     
             if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
                     potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
                     potenza *= 1.2
                                                                                     
             if tipo == "modificatore":        
@@ -899,7 +941,7 @@ class CreatoreMazzo:
                     potenza *= 1.1
 
             if tipo == "arte":                
-                if nome in ["lancia arte", "Annulla effetto arte"]:
+                if nome in ["lancia arte", "annulla effetto arte"]:
                     potenza *= 1.3                
                 elif "lancia arte specifica" == nome:
                     potenza *= 1.2
@@ -916,7 +958,7 @@ class CreatoreMazzo:
                     potenza *= 1.5
 
             if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo", "Attacco in uscita da Copertura"]:
+                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo", "attacco in uscita da copertura"]:
                     potenza *= 1.3    
                 elif nome in ["modifica azione", "modifica stato"]:
                     potenza *= 1.1       
@@ -1013,9 +1055,9 @@ class CreatoreMazzo:
                         potenza *= 1.5
 
                 if tipo == "immunita":
-                    if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'Oscura simmetria", "immune ai doni degli apostoli"]:
+                    if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
                         potenza *= 1.4
-                    elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico warzone", "immune alla specifica fortificazione", "Immune alle ferite durante il combattimento"]):
+                    elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico warzone", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
                         potenza *= 1.2
                                                                                         
                 if tipo == "modificatore":        
@@ -1043,7 +1085,7 @@ class CreatoreMazzo:
                         potenza *= 1.3    
 
                 if tipo == "azioni":
-                    if nome in ["converte azioni in azioni d'attacco", "Incrementa Azioni", "Attacca sempre per primo"]:
+                    if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo"]:
                         potenza *= 1.3    
                     elif nome in ["modifica azione", "modifica stato"]:
                         potenza *= 1.1                 
@@ -1312,9 +1354,18 @@ class CreatoreMazzo:
             if hasattr(guerriero, 'valore_strategico'):
                 bonus_factor_guerriero_strategico = 1 + guerriero.valore_strategico * BONUS_STRATEGICO / 10
 
-            # Orientamento Doomtrooper            
-            if doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
-                ammesso = False              
+            # Un Cultista e' dell'Oscura Legione ma il suo testo lo dichiara «CONSIDERATO
+            # UN DOOMTROOPER SENZA ICONA DI LEGAME», lasciando scegliere volta per volta.
+            # Nella costruzione del mazzo la scelta si riduce a questa: se lo schieramento
+            # dell'Oscura Legione e' fra gli orientamenti richiesti lo si valuta li', dove
+            # riceve anche il bonus dell'Apostolo; altrimenti vale come Doomtrooper,
+            # invece di restare escluso da entrambi i rami.
+            vale_fra_i_doomtrooper = (guerriero.fazione in FAZIONI_DOOMTROOPER
+                                      or (vale_come_doomtrooper(guerriero) and not oscura_legione))
+
+            # Orientamento Doomtrooper
+            if doomtrooper and vale_fra_i_doomtrooper:
+                ammesso = False
 
                 if not orientamento_doomtrooper or orientamento_doomtrooper == []: # il guerriero è un doomtrooper e non è definito l'orientamento
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se la fazione è nei doomtroopers
@@ -1367,14 +1418,22 @@ class CreatoreMazzo:
                             bonus_moltiplicatore *= BONUS_ORIENTAMENTO
                             ammesso = True
                                                 
-                if orientamento_cultista and 'Cultista' in guerriero.keywords:
-                    bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
-                    ammesso = True
-
                 if ammesso:
                     _assegnazione_punteggio_guerriero_ammesso(self, guerriero)
 
             
+            # Orientamento Cultista. Sta fuori dai rami di fazione, come quello Eretico:
+            # un Cultista puo' essere valutato fra i Doomtrooper — il suo testo lo
+            # consente — e li' il ramo dell'Oscura Legione non viene raggiunto.
+            # La keyword e' "Cultista di <Apostolo>", mai "Cultista" da solo, e `in` su
+            # una lista confronta gli elementi interi: il confronto secco era sempre falso.
+            if orientamento_cultista and any(k.startswith('Cultista') for k in guerriero.keywords):
+                if guerriero not in guerrieri_ammessi:
+                    bonus_moltiplicatore *= BONUS_CULTISTA
+                    _assegnazione_punteggio_guerriero_ammesso(self, guerriero)
+                else:
+                    punteggi[guerriero.nome] *= BONUS_CULTISTA
+
             # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in guerriero.keywords:
                     # Gli Eretici sono Oscura Legione o Doomtrooper, quindi hanno già ricevuto
@@ -1397,6 +1456,15 @@ class CreatoreMazzo:
         # Seleziona guerrieri garantendo distribuzione equa
         squadra = []
         schieramento = []
+        # Le quote sono contate per **fazione**, non per area. Coincidono quasi sempre —
+        # i Doomtrooper stanno in Squadra, l'Oscura Legione nello Schieramento — tranne
+        # che per i Cultisti, che il loro testo assegna alla Squadra pur essendo guerrieri
+        # dell'Oscura Legione. Contarli fra i Doomtrooper li metterebbe in competizione
+        # con loro per gli stessi posti: in un mazzo a orientamento misto la Squadra si
+        # riempie di Doomtrooper e i Cultisti restano fuori, anche quando sono proprio la
+        # specializzazione richiesta.
+        quota_oscura_legione = 0
+        quota_squadra = 0
         numero_guerrieri_richiesto_non_raggiunto = True
         quantita_utilizzata = {}
 
@@ -1441,28 +1509,55 @@ class CreatoreMazzo:
                 num_copie_da_inserire = max(0, min(copie_ancora_ammesse, quantita_disponibile, quantita_consigliata))
                 quantita_utilizzata[guerriero.nome] += num_copie_da_inserire
 
-                if oscura_legione and (doomtrooper or fratellanza): 
-                    q = RAPPORTO_SQUADRA_SCHIERAMENTO + 1
-                    m = RAPPORTO_SQUADRA_SCHIERAMENTO / q
+                # Le due quote devono sommare esattamente al numero richiesto. Ricavarle
+                # entrambe per arrotondamento le faceva sforare — `<=` su una soglia già
+                # arrotondata per eccesso dava 32 guerrieri su 30 richiesti — oppure, con
+                # un numero dispari, restare sotto: 7 + 7 invece di 15. Qui la prima si
+                # ricava dal rapporto e la seconda prende il resto.
+                if oscura_legione and (doomtrooper or fratellanza):
+                    numero_guerrieri_per_schieramento = (
+                        numero_guerrieri_target // (RAPPORTO_SQUADRA_SCHIERAMENTO + 1))
+                    numero_guerrieri_per_squadra = (
+                        numero_guerrieri_target - numero_guerrieri_per_schieramento)
                 else:
-                    q = 1
-                    m = 1
-                
-                numero_guerrieri_per_schieramento = math.floor( 0.49 + numero_guerrieri_target / q)
-                numero_guerrieri_per_squadra = math.floor( 0.49 + numero_guerrieri_target * m )
-                inserisci_in_schieramento = oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE
-                inserisci_in_squadra = ( doomtrooper or fratellanza) and ( guerriero.fazione in FAZIONI_DOOMTROOPER or guerriero.fazione in FAZIONI_FRATELLANZA)            
+                    # Un solo tipo di fazione: nessuna divisione da fare, l'area che la
+                    # ospita può prendere tutto.
+                    numero_guerrieri_per_schieramento = numero_guerrieri_target
+                    numero_guerrieri_per_squadra = numero_guerrieri_target
+                # Il Cultista e' dell'Oscura Legione ma il suo testo dice «Puoi aggiungere
+                # il Cultista solo alla Tua Squadra»: non va mai nello Schieramento,
+                # nemmeno in un mazzo orientato all'Oscura Legione.
+                solo_in_squadra = (guerriero.fazione in FAZIONI_OSCURA_LEGIONE
+                                   and vale_come_doomtrooper(guerriero))
+
+                inserisci_in_schieramento = (oscura_legione
+                                             and guerriero.fazione in FAZIONI_OSCURA_LEGIONE
+                                             and not solo_in_squadra)
+                inserisci_in_squadra = solo_in_squadra or (
+                    (doomtrooper or fratellanza)
+                    and (guerriero.fazione in FAZIONI_DOOMTROOPER
+                         or guerriero.fazione in FAZIONI_FRATELLANZA))
 
                 for _ in range(num_copie_da_inserire): # NOTA: inserisce la stessa istanza per più volte nella lista
-                    
+
                     if inserisci_in_schieramento:
-                        if len(schieramento) <= numero_guerrieri_per_schieramento: 
+                        if quota_oscura_legione < numero_guerrieri_per_schieramento:
                             schieramento.append(guerriero)
+                            quota_oscura_legione += 1
                         else:
                             break
                     elif inserisci_in_squadra:
-                        if len(squadra) <= numero_guerrieri_per_squadra:  
+                        # Il Cultista occupa la Squadra ma pesa sulla quota della propria
+                        # fazione: e' un guerriero dell'Oscura Legione che sta in Squadra.
+                        if solo_in_squadra:
+                            if quota_oscura_legione < numero_guerrieri_per_schieramento:
+                                squadra.append(guerriero)
+                                quota_oscura_legione += 1
+                            else:
+                                break
+                        elif quota_squadra < numero_guerrieri_per_squadra:
                             squadra.append(guerriero)
+                            quota_squadra += 1
                         else:
                             break
                 
@@ -1553,13 +1648,27 @@ class CreatoreMazzo:
         BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI     
         BONUS_STRATEGICO = 4 # Fattore applicato in base all'assegnazione del valore "valore_strategico" da parte dell'utente
         BONUS_FONDAMENTALE = 100 # Fattore applicato se la carta è fondamentale
+        # Fattore applicato quando la carta concede un potenziamento maggiore a un guerriero
+        # gia' presente nel mazzo (campo `guerrieri_avvantaggiati`). Volutamente contenuto:
+        # il vantaggio e' reale ma vale su un solo guerriero, non su tutta la squadra.
+        BONUS_SINERGIA = 2
 
         # Calcola potenza per ogni carta
         carte_con_punteggio = []
         
         for carta in carte_disponibili:
-                        
-            bonus_moltiplicatore = 1.0            
+
+            # Senza la Fratellanza il mazzo rinuncia all'Arte, e con essa alle carte che
+            # la abilitano — le Cattedrali, le Empatie, il Guanto dell'Esorcista.
+            #
+            # Non è un giudizio sulla loro potenza: le carte Arte occupano slot, e
+            # tenerle per i pochi guerrieri non della Fratellanza che le lanciano
+            # significa sperare che l'incantesimo e chi può lanciarlo escano in fasi
+            # Pescare vicine. È una scommessa che, non riuscendo, satura la mano.
+            if not fratellanza and ABILITA_ARTE in (getattr(carta, 'keywords', None) or []):
+                continue
+
+            bonus_moltiplicatore = 1.0
             fattore_incremento = 1 # fattore di incremento del rating assegnato alla carta se è fondamentale
 
             if hasattr(carta, 'valore_strategico') and carta.valore_strategico != None and carta.valore_strategico > 0:
@@ -1671,11 +1780,20 @@ class CreatoreMazzo:
                         # lasciando l'esclusione al controllo di compatibilità carta-guerriero.
                         bonus_moltiplicatore = max(1.0, bonus_moltiplicatore / BONUS_ORIENTAMENTO)
                 
-                if orientamento_cultista and 'Cultista' in carta.keywords:
+                # Come sopra: la keyword porta sempre il nome dell'Apostolo.
+                if orientamento_cultista and any(k.startswith('Cultista') for k in carta.keywords):
                     bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
             # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in carta.keywords:
                 bonus_moltiplicatore *= BONUS_ERETICO # triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
+
+            # Sinergia con un guerriero gia' scelto: la carta concede un potenziamento
+            # maggiore a un guerriero determinato, e quel guerriero e' nel mazzo. La
+            # potenza della carta non lo contempla — `modificatore_utilizzabile` scarta i
+            # bonus "Uso ristretto:" perche' non sono garantiti — quindi il vantaggio va
+            # riconosciuto qui, dove i guerrieri scelti sono noti.
+            if self._bonus_condizionato_attivabile(carta, tutti_guerrieri):
+                bonus_moltiplicatore *= BONUS_SINERGIA
             # Carta generica fondamentale (il bonus_moltiplicatore utilizzato per il calcolo del punteggio non viene valutato per la condizione fondamentale nelle assegnazioni per orientamento)
             if carta_generica_fondamentale:
                 bonus_moltiplicatore *= BONUS_FONDAMENTALE # aumenta di un ulteriore fattore (BONUS_FONDAMENTALE) il bonus per carte generiche fondamentali
@@ -4633,8 +4751,19 @@ def copia_immagini_mazzo(nome_mazzo: str, mazzo) -> Dict[str, Any]:
     # Tiene traccia delle carte già copiate per evitare duplicati
     carte_copiate = set()
 
-    def copia_carta(carta, tipo_carta_override=None):
-        """Funzione helper per copiare una singola carta"""
+    def copia_carta(carta, tipo_carta_override=None, area=None):
+        """
+        Funzione helper per copiare una singola carta.
+
+        Args:
+            carta: La carta da copiare
+            tipo_carta_override: Tipologia, quando non ricavabile dalla carta
+            area: "squadra" o "schieramento" per i guerrieri, cioè dove il mazzo li ha
+                  effettivamente collocati. Senza questo dato la sottocartella veniva
+                  dedotta dalla fazione, e i Cultisti finivano sotto «schieramento»
+                  mentre il mazzo li assegna alla «squadra», come vuole il loro testo:
+                  l'immagine non si trovava più dove il visualizzatore la cercava.
+        """
         risultati['totale_carte'] += 1
 
         # Evita di copiare la stessa carta più volte
@@ -4655,12 +4784,17 @@ def copia_immagini_mazzo(nome_mazzo: str, mazzo) -> Dict[str, Any]:
 
             cartella_destinazione = os.path.join(cartella_mazzo, nomi_cartelle_mazzo[tipo_carta])
 
-            # Per i guerrieri, aggiungi la sottocartella appropriata (schieramento o squadra)
+            # Per i guerrieri, aggiungi la sottocartella appropriata (schieramento o squadra).
+            # Vale l'area in cui il mazzo ha collocato il guerriero; la fazione resta come
+            # ripiego per i chiamanti che non la conoscono.
             if tipo_carta == 'guerriero':
-                if is_guerriero_oscura_legione(carta):
-                    cartella_destinazione = os.path.join(cartella_destinazione, 'schieramento')
+                if area in ('squadra', 'schieramento'):
+                    sottocartella = area
+                elif is_guerriero_oscura_legione(carta):
+                    sottocartella = 'schieramento'
                 else:
-                    cartella_destinazione = os.path.join(cartella_destinazione, 'squadra')
+                    sottocartella = 'squadra'
+                cartella_destinazione = os.path.join(cartella_destinazione, sottocartella)
 
             # Ottiene la cartella sorgente
             cartella_sorgente = ottieni_percorso_cartella_immagini_sorgente(tipo_carta, carta)
@@ -4706,12 +4840,12 @@ def copia_immagini_mazzo(nome_mazzo: str, mazzo) -> Dict[str, Any]:
         # Processa squadra (guerrieri)
         if 'squadra' in mazzo:
             for guerriero in mazzo['squadra']:
-                copia_carta(guerriero, 'guerriero')
+                copia_carta(guerriero, 'guerriero', area='squadra')
 
         # Processa schieramento (guerrieri)
         if 'schieramento' in mazzo:
             for guerriero in mazzo['schieramento']:
-                copia_carta(guerriero, 'guerriero')
+                copia_carta(guerriero, 'guerriero', area='schieramento')
 
         # Processa carte_supporto (tutte le altre carte mescolate)
         if 'carte_supporto' in mazzo:

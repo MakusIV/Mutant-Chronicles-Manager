@@ -7,9 +7,9 @@ VERSIONE CORRETTA - Allineata alle regole ufficiali del gioco
 
 from enum import Enum
 from typing import List, Optional, Dict, Any, Union
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, TipoGuerriero  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, TipoGuerriero, vale_come_doomtrooper  # Import dalle classi esistenti
 
 
 class TipoEquipaggiamento(Enum):
@@ -47,6 +47,11 @@ class ModificatoreEquipaggiamento:
     valore: int      # valore del modificatore (+/-)
     condizione: str = ""  # condizione per applicare il modificatore
     descrizione: str = ""
+    # Guerrieri per cui il modificatore vale, quando la condizione ne nomina di
+    # specifici: «Se assegnata a una VALCHIRIA» diventa ["Valkiria"]. La condizione
+    # resta il testo di regolamento, questo campo è la sua forma confrontabile — i
+    # nomi devono esistere in GUERRIERI_DATABASE, e un test lo verifica.
+    guerrieri_avvantaggiati: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -213,7 +218,9 @@ class Equipaggiamento:
             for restrizione in self.restrizioni_guerriero:
 
                 if "Solo Doomtrooper" in restrizione:
-                    if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
+                    # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
+                    if not vale_come_doomtrooper(guerriero):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append("Solo per Doomtrooper")
                 
@@ -233,15 +240,22 @@ class Equipaggiamento:
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Eretici")
 
-                elif "Solo Mercenari" in restrizione:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):                       
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Mercenari")
-
+                # Nota: va valutata prima di "Solo Mercenari", che ne è un prefisso.
+                # L'ordine era invertito — a differenza delle altre quattro classi, che
+                # portano già questa nota — e `Furga 750` («ASSEGNABILE AD OGNI MERCENARIO
+                # O ERETICO») finiva nel ramo dei soli Mercenari.
                 elif "Solo Mercenari o Eretici" in restrizione:
-                    if guerriero.tipo != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords or "Eretico" not in guerriero.keywords ):                       
+                    # Le due condizioni sono in alternativa: si nega solo a chi non
+                    # soddisfa né l'una né l'altra. Con `or` fra le due negazioni si
+                    # finiva per pretenderle entrambe.
+                    if guerriero.fazione != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or ("Mercenario" not in guerriero.keywords and "Eretico" not in guerriero.keywords) ):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Mercenari o Eretici")
+
+                elif "Solo Mercenari" in restrizione:
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Mercenari")
 
                 elif "Solo Comandanti" in restrizione:
                     if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):                       
@@ -254,7 +268,11 @@ class Equipaggiamento:
                         risultato["errori"].append(f"Solo Nefarita")
 
                 elif "Solo Personalita" in restrizione:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):                       
+                    # Basta una delle due dichiarazioni: nel database 27 Personalita' su 29
+                    # portano il solo `tipo`, e nessuna la sola keyword. Pretenderle
+                    # entrambe lasciava fuori quasi tutte le Personalita' del gioco.
+                    if not (guerriero.tipo == TipoGuerriero.PERSONALITA
+                            or (guerriero.keywords and "Personalita" in guerriero.keywords)):                       
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Personalita")
                 
@@ -508,7 +526,8 @@ class Equipaggiamento:
                 statistica=mod_data["statistica"],
                 valore=mod_data["valore"],
                 condizione=mod_data["condizione"],
-                descrizione=mod_data["descrizione"]
+                descrizione=mod_data["descrizione"],
+                guerrieri_avvantaggiati=list(mod_data.get("guerrieri_avvantaggiati") or [])
             )
             equipaggiamento.modificatori_speciali.append(modificatore)
         
@@ -600,7 +619,8 @@ class Equipaggiamento:
                 mod["statistica"],
                 mod["valore"],
                 mod.get("condizione", ""),
-                mod.get("descrizione", "")
+                mod.get("descrizione", ""),
+                list(mod.get("guerrieri_avvantaggiati") or [])
             ) for mod in data["modificatori_speciali"]
         ]
         equipaggiamento.abilita_speciali = [

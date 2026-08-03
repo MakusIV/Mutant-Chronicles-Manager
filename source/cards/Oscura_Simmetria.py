@@ -175,8 +175,31 @@ class Oscura_Simmetria:
             risultato["puo_lanciare"] = False
             risultato["errori"].append(f"Il guerriero {guerriero.nome} non può usare le carte generiche dell'Oscura Simmetria")
     
-        # Verifica seguaci degli apostoli
-        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO and "Solo doni dell'Oscura Simmetria" not in guerriero.restrizioni:
+        # Verifica seguaci degli apostoli.
+        # Il vincolo si ricava da `apostolo_padre`: di norma un Dono può andare solo ai
+        # Seguaci dell'Apostolo che lo concede. Alcune carte derogano — «DONO DI ALGEROTH.
+        # Può solo essere assegnato a un Nefarita di qualsiasi Apostolo» — e lo dichiarano
+        # con "Dono di qualsiasi Apostolo": restano Doni di quell'Apostolo, ma il
+        # destinatario non deve esserne Seguace. Il vincolo che quelle carte pongono sul
+        # destinatario (essere Nefarita) è dichiarato a parte ed è verificato più sotto.
+        dono_aperto_a_tutti = "Dono di qualsiasi Apostolo" in self.restrizioni
+
+        # «Solo doni dell'Oscura Simmetria» e «Solo doni degli Apostoli» sono restrizioni
+        # complementari del guerriero, e vanno trattate allo stesso modo: la seconda esclude
+        # dai generici (poco sopra), questa dai Doni degli Apostoli.
+        #
+        # Era invece scritta come coda della condizione d'ingresso al blocco sottostante,
+        # dove agiva da esenzione anziché da esclusione: il guerriero «Eretico», l'unico
+        # che la dichiara, saltava la verifica sul Seguace e riceveva 23 Doni su 25, di
+        # Apostoli di cui non è Seguace.
+        #
+        # Il veto precede ogni deroga sull'Apostolo: nemmeno le carte che dichiarano
+        # «Dono di qualsiasi Apostolo» arrivano a chi può ricevere i soli doni generici.
+        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and "Solo doni dell'Oscura Simmetria" in guerriero.restrizioni:
+            risultato["puo_lanciare"] = False
+            risultato["errori"].append(f"Il guerriero {guerriero.nome} può ricevere solo i Doni generici dell'Oscura Simmetria")
+
+        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO and not dono_aperto_a_tutti:
             seguace_richiesto = f"Seguace di {self.apostolo_padre.value}"
             # Eccezione: alcuni guerrieri (es. Billy) ricevono i Doni di qualsiasi Apostolo
             # pur non essendo Seguaci; lo dichiarano con un'abilità di tipo "Dono degli Apostoli".
@@ -194,7 +217,13 @@ class Oscura_Simmetria:
             risultato["puo_lanciare"] = False
             risultato["errori"].append("Solo Nefarita")
 
-        if "Non può essere usato su Personalita" in self.restrizioni and guerriero.tipo == TipoGuerriero.PERSONALITA:   
+        # Come per «Solo Personalita» nelle altre classi: basta una delle due
+        # dichiarazioni. Qui si guardava il solo `tipo`, e una Personalità dichiarata
+        # nelle sole keyword sarebbe sfuggita all'esclusione.
+        e_personalita = (guerriero.tipo == TipoGuerriero.PERSONALITA
+                         or (guerriero.keywords and "Personalita" in guerriero.keywords))
+
+        if "Non può essere usato su Personalita" in self.restrizioni and e_personalita:
             risultato["puo_lanciare"] = False
             risultato["errori"].append("Solo Non Personalita")
         

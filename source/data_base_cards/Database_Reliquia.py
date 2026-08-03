@@ -253,7 +253,7 @@ DATABASE_RELIQUIE = {
         "numero_carta": "",
         "testo_carta": "ASSEGNABILE A QUALSIASI GUERRIERO, SE SEI UN FAMOSO COLLEZIONISTA. Il guerriero può lanciare tutti gli incantesimi dell'Arte dell'Esorcismo. Ogni 1D speso per gli incantesimi di Esorcismo vale 2D. Il guerriero guadagna un +5 in C e S, quando combatte gli Eretici, e un +3 in C e S, quando combatte guerrieri dell'Oscura Legione.",
         "flavour_text": "",
-        "keywords": [],
+        "keywords": ["Abilita l'Arte"],
         "origine_storica": "",
         "requisiti_speciali": [],
         "immunita": [],

@@ -12,7 +12,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass, field
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, AreaGioco, Statistiche  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, AreaGioco, Statistiche, TipoGuerriero, vale_come_doomtrooper  # Import dalle classi esistenti
 
 FAZIONI_SQUADRA = [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.CYBERTRONIC, Fazione.FRATELLANZA, Fazione.IMPERIALE, Fazione.MISHIMA, Fazione.MERCENARIO]
 FAZIONI_SCHIERAMENTO = [Fazione.OSCURA_LEGIONE]
@@ -272,7 +272,9 @@ class Warzone:
             for limite in self.restrizioni.limiti_utilizzo:
 
                 if "Solo Doomtrooper" in limite:
-                    if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
+                    # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
+                    if not vale_come_doomtrooper(guerriero):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append("Solo per Doomtrooper")
 
@@ -314,7 +316,11 @@ class Warzone:
                         risultato["errori"].append(f"Solo Nefarita")
 
                 elif "Solo Personalita" in limite:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords or guerriero.tipo != TipoGuerriero.PERSONALITA):
+                    # Basta una delle due dichiarazioni: nel database 27 Personalita' su 29
+                    # portano il solo `tipo`, e nessuna la sola keyword. Pretenderle
+                    # entrambe lasciava fuori quasi tutte le Personalita' del gioco.
+                    if not (guerriero.tipo == TipoGuerriero.PERSONALITA
+                            or (guerriero.keywords and "Personalita" in guerriero.keywords)):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Personalita")
 
