@@ -116,6 +116,41 @@ def test_un_immagine_inesistente_resta_introvabile(tmp_path):
                           "Guerriero Inesistente", "squadra") is None
 
 
+@pytest.mark.lento
+def test_l_esportazione_colloca_i_guerrieri_nell_area_del_mazzo(tmp_path, monkeypatch):
+    """
+    La sottocartella dell'immagine seguiva la **fazione**: i Cultisti finivano sotto
+    «schieramento» mentre il mazzo li assegna alla «squadra», come vuole il loro testo,
+    e l'immagine non si trovava dove il visualizzatore la cercava. Ora segue l'area.
+    """
+    from source.logic import Creatore_Mazzo
+    from source.data_base_cards.Database_Guerriero import crea_guerriero_da_nome
+
+    monkeypatch.setattr(Creatore_Mazzo, "PERCORSO_BASE_MAZZI", f"{tmp_path}/")
+
+    cultista = crea_guerriero_da_nome("Cultista di Algeroth")
+    oscura_legione = crea_guerriero_da_nome("Karnofago")
+    doomtrooper = crea_guerriero_da_nome("Blood Beret")
+    assert all((cultista, oscura_legione, doomtrooper))
+
+    Creatore_Mazzo.esporta_immagini_mazzi([{
+        "indice": 1,
+        "squadra": [cultista, doomtrooper],
+        "schieramento": [oscura_legione],
+        "carte_supporto": [],
+    }], verbose=False)
+
+    guerrieri = next(tmp_path.rglob("Guerriero"), None)
+    assert guerrieri is not None, "cartella Guerriero non creata"
+    collocazione = {p.stem: p.parent.name for p in guerrieri.rglob("*") if p.is_file()}
+
+    assert collocazione.get("Cultista_di_Algeroth") == "squadra", (
+        f"il Cultista è finito in {collocazione.get('Cultista_di_Algeroth')!r}: "
+        f"il mazzo lo assegna alla squadra")
+    assert collocazione.get("Karnofago") == "schieramento"
+    assert collocazione.get("Blood_Beret") == "squadra"
+
+
 def test_un_mazzo_senza_json_e_un_errore_esplicito(tmp_path):
     cartella = tmp_path / "Mazzo_Giocatore_1"
     cartella.mkdir()

@@ -339,6 +339,32 @@ def test_senza_fratellanza_niente_carte_che_abilitano_l_arte(creatore, tipologia
 
 
 @pytest.mark.lento
+@pytest.mark.parametrize("seme", range(6))
+def test_valpurgius_non_dipende_dall_arte(creatore, seme):
+    """
+    Valpurgius lancia l'Arte, ma vale per molto altro: è `fondamentale`, ha
+    `valore_strategico` massimo ed è un Nefarita Seguace di Algeroth. La regola che
+    esclude le carte dell'Arte senza Fratellanza riguarda le carte di supporto, non i
+    guerrieri: chiedendo l'Oscura Legione con Algeroth deve entrare comunque.
+    """
+    random.seed(seme)
+    squadra, schieramento = creatore.seleziona_guerrieri(
+        espansioni_richieste=ESPANSIONI, numero_guerrieri_target=25,
+        doomtrooper=False, fratellanza=False, oscura_legione=True,
+        orientamento_apostolo=["Algeroth"])
+
+    assert any(g.nome == "Valpurgius" for g in squadra + schieramento), (
+        "Valpurgius non è stato selezionato con orientamento Oscura Legione e Algeroth")
+
+
+def test_valpurgius_e_una_carta_fondamentale():
+    """Il presupposto: se perdesse quei due attributi, la selezione cambierebbe."""
+    dati = GUERRIERI_DATABASE["Valpurgius"]
+    assert dati.get("fondamentale") is True
+    assert dati.get("valore_strategico", 0) >= 8
+
+
+@pytest.mark.lento
 def test_con_la_fratellanza_quelle_carte_restano_disponibili(creatore):
     """Il verso complementare: la regola esclude, non cancella."""
     from source.logic.Creatore_Mazzo import ABILITA_ARTE

@@ -4745,8 +4745,19 @@ def copia_immagini_mazzo(nome_mazzo: str, mazzo) -> Dict[str, Any]:
     # Tiene traccia delle carte già copiate per evitare duplicati
     carte_copiate = set()
 
-    def copia_carta(carta, tipo_carta_override=None):
-        """Funzione helper per copiare una singola carta"""
+    def copia_carta(carta, tipo_carta_override=None, area=None):
+        """
+        Funzione helper per copiare una singola carta.
+
+        Args:
+            carta: La carta da copiare
+            tipo_carta_override: Tipologia, quando non ricavabile dalla carta
+            area: "squadra" o "schieramento" per i guerrieri, cioè dove il mazzo li ha
+                  effettivamente collocati. Senza questo dato la sottocartella veniva
+                  dedotta dalla fazione, e i Cultisti finivano sotto «schieramento»
+                  mentre il mazzo li assegna alla «squadra», come vuole il loro testo:
+                  l'immagine non si trovava più dove il visualizzatore la cercava.
+        """
         risultati['totale_carte'] += 1
 
         # Evita di copiare la stessa carta più volte
@@ -4767,12 +4778,17 @@ def copia_immagini_mazzo(nome_mazzo: str, mazzo) -> Dict[str, Any]:
 
             cartella_destinazione = os.path.join(cartella_mazzo, nomi_cartelle_mazzo[tipo_carta])
 
-            # Per i guerrieri, aggiungi la sottocartella appropriata (schieramento o squadra)
+            # Per i guerrieri, aggiungi la sottocartella appropriata (schieramento o squadra).
+            # Vale l'area in cui il mazzo ha collocato il guerriero; la fazione resta come
+            # ripiego per i chiamanti che non la conoscono.
             if tipo_carta == 'guerriero':
-                if is_guerriero_oscura_legione(carta):
-                    cartella_destinazione = os.path.join(cartella_destinazione, 'schieramento')
+                if area in ('squadra', 'schieramento'):
+                    sottocartella = area
+                elif is_guerriero_oscura_legione(carta):
+                    sottocartella = 'schieramento'
                 else:
-                    cartella_destinazione = os.path.join(cartella_destinazione, 'squadra')
+                    sottocartella = 'squadra'
+                cartella_destinazione = os.path.join(cartella_destinazione, sottocartella)
 
             # Ottiene la cartella sorgente
             cartella_sorgente = ottieni_percorso_cartella_immagini_sorgente(tipo_carta, carta)
@@ -4818,12 +4834,12 @@ def copia_immagini_mazzo(nome_mazzo: str, mazzo) -> Dict[str, Any]:
         # Processa squadra (guerrieri)
         if 'squadra' in mazzo:
             for guerriero in mazzo['squadra']:
-                copia_carta(guerriero, 'guerriero')
+                copia_carta(guerriero, 'guerriero', area='squadra')
 
         # Processa schieramento (guerrieri)
         if 'schieramento' in mazzo:
             for guerriero in mazzo['schieramento']:
-                copia_carta(guerriero, 'guerriero')
+                copia_carta(guerriero, 'guerriero', area='schieramento')
 
         # Processa carte_supporto (tutte le altre carte mescolate)
         if 'carte_supporto' in mazzo:
