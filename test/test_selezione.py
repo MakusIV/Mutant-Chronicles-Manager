@@ -35,10 +35,16 @@ def creatore():
 
     equipaggiamento = importlib.import_module(
         "source.data_base_cards.Database_Equipaggiamento")
+    speciale = importlib.import_module("source.data_base_cards.Database_Speciale")
+    fortificazione = importlib.import_module(
+        "source.data_base_cards.Database_Fortificazione")
     fonti = [
         (GUERRIERI_DATABASE, crea_guerriero_da_nome),
         (equipaggiamento.DATABASE_EQUIPAGGIAMENTO,
          equipaggiamento.crea_equipaggiamento_da_database),
+        (speciale.DATABASE_SPECIALI, speciale.crea_carta_da_database),
+        (fortificazione.DATABASE_FORTIFICAZIONI,
+         fortificazione.crea_fortificazione_da_database),
     ]
     for database, costruisci in fonti:
         for nome in database:
@@ -105,6 +111,36 @@ def test_i_cultisti_entrano_anche_in_un_mazzo_doomtrooper(creatore):
     selezionati = _seleziona(creatore, doomtrooper=True, fratellanza=False,
                              oscura_legione=False, orientamento_cultista=True)
     assert [n for n in selezionati if n.startswith("Cultista")]
+
+
+@pytest.mark.lento
+def test_i_cultisti_pesano_sulla_quota_dell_oscura_legione(creatore):
+    """
+    Il Cultista sta in Squadra ma è un guerriero dell'Oscura Legione: la quota che lo
+    ospita è quella della sua fazione, non quella dell'area in cui è schierato.
+
+    Contandolo fra i Doomtrooper finiva in competizione con loro per gli stessi posti, e
+    in un mazzo a orientamento misto la Squadra si riempiva di Doomtrooper prima che
+    arrivasse il suo turno: i Cultisti restavano fuori proprio quando erano la
+    specializzazione richiesta.
+    """
+    # Il numero di guerrieri conta: troppo pochi e la Squadra non si satura, troppi e
+    # avanza posto per tutti. A 30 le quote sono 15 e 15, e la Squadra si riempie di
+    # Doomtrooper prima che arrivi il turno del secondo Cultista — la condizione in cui
+    # il difetto si manifestava.
+    random.seed(42)
+    squadra, schieramento = creatore.seleziona_guerrieri(
+        espansioni_richieste=ESPANSIONI, numero_guerrieri_target=30,
+        doomtrooper=True,
+        orientamento_doomtrooper=["Imperiale", "Cybertronic", "Mercenario"],
+        fratellanza=False, oscura_legione=True,
+        orientamento_apostolo=["Algeroth", "Ilian"],
+        orientamento_eretico=True, orientamento_cultista=True)
+
+    cultisti = {g.nome for g in squadra + schieramento if g.nome.startswith("Cultista")}
+    assert len(cultisti) >= 2, (
+        f"con due Apostoli orientati e la specializzazione Cultista attiva ne è entrato "
+        f"solo: {sorted(cultisti)}")
 
 
 @pytest.mark.lento
@@ -240,6 +276,85 @@ def test_la_sinergia_fa_salire_la_carta_in_classifica(creatore):
     assert con < senza, (
         f"con la Valkiria in squadra la Lancia Castigator dovrebbe salire, "
         f"ma passa dalla posizione {senza} alla {con}")
+
+
+# --------------------------------------------------------------------------
+# Senza Fratellanza il mazzo rinuncia all'Arte
+# --------------------------------------------------------------------------
+#
+# Le carte Arte occupano slot, e tenere le carte che le abilitano per i pochi guerrieri
+# non della Fratellanza che le lanciano significa sperare che l'incantesimo e chi può
+# lanciarlo escano in fasi Pescare vicine: una scommessa che, non riuscendo, satura la
+# mano. La tipologia `arte` era già esclusa; mancavano le carte che la abilitano.
+
+
+def _carte_che_abilitano_l_arte():
+    from source.logic.Creatore_Mazzo import ABILITA_ARTE
+
+    trovate = []
+    for modulo, variabile in [("Database_Speciale", "DATABASE_SPECIALI"),
+                              ("Database_Fortificazione", "DATABASE_FORTIFICAZIONI"),
+                              ("Database_Reliquia", "DATABASE_RELIQUIE")]:
+        database = getattr(importlib.import_module(f"source.data_base_cards.{modulo}"),
+                           variabile)
+        trovate += [nome for nome, dati in database.items()
+                    if ABILITA_ARTE in (dati.get("keywords") or [])]
+    return trovate
+
+
+def test_le_carte_che_abilitano_l_arte_sono_marcate():
+    """
+    Il marcatore distingue chi **abilita** l'Arte da chi vi si **oppone**: la sola
+    keyword «Arte» non basterebbe, perché la porta anche `Interferenza`, che annulla un
+    incantesimo avversario e resta utile in un mazzo che all'Arte rinuncia.
+    """
+    marcate = _carte_che_abilitano_l_arte()
+    assert len(marcate) == 17, f"le carte marcate sono {len(marcate)}: {sorted(marcate)}"
+
+    speciale = importlib.import_module("source.data_base_cards.Database_Speciale")
+    for nome in ("Interferenza", "Forza Di Volonta", "Distratto"):
+        if nome in speciale.DATABASE_SPECIALI:
+            assert nome not in marcate, (
+                f"«{nome}» si oppone all'Arte, non la abilita: non va marcata")
+
+
+@pytest.mark.lento
+@pytest.mark.parametrize("tipologia", ["speciale", "fortificazione"])
+def test_senza_fratellanza_niente_carte_che_abilitano_l_arte(creatore, tipologia):
+    from source.logic.Creatore_Mazzo import ABILITA_ARTE
+
+    squadra = [g for g in (crea_guerriero_da_nome(n) for n in
+                           ("Blood Beret", "Ussaro", "Sergente")) if g]
+    random.seed(42)
+    selezionate = creatore.seleziona_carte_supporto(
+        squadra=squadra, schieramento=[], espansioni_richieste=ESPANSIONI,
+        tipo_carta=tipologia, doomtrooper=True, fratellanza=False,
+        oscura_legione=False, numero_carte=200)
+
+    abilitanti = [getattr(c, "nome", "?") for c in selezionate
+                  if ABILITA_ARTE in (getattr(c, "keywords", None) or [])]
+    assert not abilitanti, (
+        f"un mazzo senza Fratellanza ha pescato carte che abilitano l'Arte: "
+        f"{sorted(set(abilitanti))}")
+
+
+@pytest.mark.lento
+def test_con_la_fratellanza_quelle_carte_restano_disponibili(creatore):
+    """Il verso complementare: la regola esclude, non cancella."""
+    from source.logic.Creatore_Mazzo import ABILITA_ARTE
+
+    squadra = [g for g in (crea_guerriero_da_nome(n) for n in
+                           ("Mistico", "Custode dell'Arte", "Valkiria")) if g]
+    random.seed(42)
+    selezionate = creatore.seleziona_carte_supporto(
+        squadra=squadra, schieramento=[], espansioni_richieste=ESPANSIONI,
+        tipo_carta="fortificazione", doomtrooper=False, fratellanza=True,
+        oscura_legione=False, numero_carte=200)
+
+    abilitanti = [getattr(c, "nome", "?") for c in selezionate
+                  if ABILITA_ARTE in (getattr(c, "keywords", None) or [])]
+    assert abilitanti, (
+        "con la Fratellanza le carte che abilitano l'Arte devono restare selezionabili")
 
 
 # --------------------------------------------------------------------------

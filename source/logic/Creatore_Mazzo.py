@@ -114,7 +114,13 @@ class EnumJSONEncoder(json.JSONEncoder):
 
 # 1: 50% SCHIERAMENTO, 50% SQUADRA, 3/2: 40% SCHIERAMENTO, 60% SQUADRA, 2: 33% SCHIERAMENTO, 66% SQUADRA, 3: 25% SCHIERAMENTO, 75% SQUADRA
 # 1/2: 66% SCHIERAMENTO, 33% SQUADRA, 2/3: 60% SCHIERAMENTO, 40% SQUADRA, 1/3: 75% SCHIERAMENTO, 25% SQUADRA
-RAPPORTO_SQUADRA_SCHIERAMENTO = 1 
+RAPPORTO_SQUADRA_SCHIERAMENTO = 1
+
+# Keyword con cui una carta dichiara di abilitare l'uso dell'Arte a un guerriero che non
+# la lancerebbe: le Cattedrali, le Empatie, il Guanto dell'Esorcista. Non la portano le
+# carte che all'Arte si oppongono — «Interferenza», «Forza Di Volonta», «Distratto» —
+# che restano utili contro l'Arte avversaria anche in un mazzo che vi rinuncia.
+ABILITA_ARTE = "Abilita l'Arte"
 
 DISTRIBUZIONE_BASE = {
     'guerriero': (0.19, 0.24),          # 19-24%
@@ -1450,6 +1456,15 @@ class CreatoreMazzo:
         # Seleziona guerrieri garantendo distribuzione equa
         squadra = []
         schieramento = []
+        # Le quote sono contate per **fazione**, non per area. Coincidono quasi sempre —
+        # i Doomtrooper stanno in Squadra, l'Oscura Legione nello Schieramento — tranne
+        # che per i Cultisti, che il loro testo assegna alla Squadra pur essendo guerrieri
+        # dell'Oscura Legione. Contarli fra i Doomtrooper li metterebbe in competizione
+        # con loro per gli stessi posti: in un mazzo a orientamento misto la Squadra si
+        # riempie di Doomtrooper e i Cultisti restano fuori, anche quando sono proprio la
+        # specializzazione richiesta.
+        quota_oscura_legione = 0
+        quota_squadra = 0
         numero_guerrieri_richiesto_non_raggiunto = True
         quantita_utilizzata = {}
 
@@ -1518,15 +1533,25 @@ class CreatoreMazzo:
                          or guerriero.fazione in FAZIONI_FRATELLANZA))
 
                 for _ in range(num_copie_da_inserire): # NOTA: inserisce la stessa istanza per più volte nella lista
-                    
+
                     if inserisci_in_schieramento:
-                        if len(schieramento) <= numero_guerrieri_per_schieramento: 
+                        if quota_oscura_legione <= numero_guerrieri_per_schieramento:
                             schieramento.append(guerriero)
+                            quota_oscura_legione += 1
                         else:
                             break
                     elif inserisci_in_squadra:
-                        if len(squadra) <= numero_guerrieri_per_squadra:  
+                        # Il Cultista occupa la Squadra ma pesa sulla quota della propria
+                        # fazione: e' un guerriero dell'Oscura Legione che sta in Squadra.
+                        if solo_in_squadra:
+                            if quota_oscura_legione <= numero_guerrieri_per_schieramento:
+                                squadra.append(guerriero)
+                                quota_oscura_legione += 1
+                            else:
+                                break
+                        elif quota_squadra <= numero_guerrieri_per_squadra:
                             squadra.append(guerriero)
+                            quota_squadra += 1
                         else:
                             break
                 
@@ -1626,8 +1651,18 @@ class CreatoreMazzo:
         carte_con_punteggio = []
         
         for carta in carte_disponibili:
-                        
-            bonus_moltiplicatore = 1.0            
+
+            # Senza la Fratellanza il mazzo rinuncia all'Arte, e con essa alle carte che
+            # la abilitano — le Cattedrali, le Empatie, il Guanto dell'Esorcista.
+            #
+            # Non è un giudizio sulla loro potenza: le carte Arte occupano slot, e
+            # tenerle per i pochi guerrieri non della Fratellanza che le lanciano
+            # significa sperare che l'incantesimo e chi può lanciarlo escano in fasi
+            # Pescare vicine. È una scommessa che, non riuscendo, satura la mano.
+            if not fratellanza and ABILITA_ARTE in (getattr(carta, 'keywords', None) or []):
+                continue
+
+            bonus_moltiplicatore = 1.0
             fattore_incremento = 1 # fattore di incremento del rating assegnato alla carta se è fondamentale
 
             if hasattr(carta, 'valore_strategico') and carta.valore_strategico != None and carta.valore_strategico > 0:
