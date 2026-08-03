@@ -77,16 +77,37 @@ collezioni e mazzi, e non se ne trova la scansione. Le carte in quello stato son
 
 ---
 
-## 2. Difetti di codice aperti
+## 2. Difetti di codice — chiusi
 
-Tutti marcati `xfail(strict=True)`: il test fallirà quando il difetto sarà corretto.
+Non restano `xfail`. Gli ultimi due sono stati corretti così:
 
-- 🟡 **Il controllo di disciplina in Arte è dentro `if len(guerriero.abilita) > 0`**: chi
-  non ha abilità lo salta. Latente — nessun guerriero della Fratellanza ne è privo.
-- 🟡 **I Cultisti non entrano mai in un mazzo Doomtrooper**: `seleziona_guerrieri` sceglie
-  il ramo di orientamento con un `if/elif` sulla fazione. È la doppia natura non modellata.
-- 🟡 **`Cospirazione Eretica` dipende dai Cultisti**: dopo la correzione della keyword
-  dell'Apostata Rinnegato, sono loro i soli Eretici che potrebbero valere come Doomtrooper.
+**Il controllo di disciplina in Arte** era racchiuso in `if len(guerriero.abilita) > 0`, e
+chi non aveva alcuna abilità lo saltava ottenendo il permesso per la sola fazione. Tolta
+la guardia: senza abilità l'elenco delle discipline resta vuoto, i predicati risultano
+falsi e il guerriero è respinto. Verificato a impatto nullo sui dati — 759 permessi prima
+e dopo, perché i 47 guerrieri senza abilità sono tutti fuori dalla Fratellanza e già
+respinti dal controllo di fazione.
+
+**La doppia natura dei Cultisti** è ora rappresentata dalla keyword
+`Doomtrooper senza legame`, trascrizione del loro testo («CONSIDERATO UN DOOMTROOPER
+SENZA ICONA DI LEGAME E UN ERETICO»), letta da `vale_come_doomtrooper()` in
+`Guerriero.py`. La funzione è usata in **tre punti**, perché correggerne uno solo avrebbe
+prodotto incoerenza:
+
+1. la **compatibilità** — i rami «Solo Doomtrooper» delle sei classi: prima un Cultista
+   entrava in un mazzo Doomtrooper senza poter ricevere le 12 carte riservate ai
+   Doomtrooper che quel mazzo contiene;
+2. la **selezione** — `seleziona_guerrieri` sceglieva il ramo di orientamento con un
+   `if/elif` sulla sola fazione. Il bonus Cultista è stato spostato fuori dai rami, come
+   già quello Eretico, perché un Cultista valutato fra i Doomtrooper non raggiunge il
+   ramo dell'Oscura Legione;
+3. la **ripartizione squadra/schieramento** — il testo dice «Puoi aggiungere il Cultista
+   solo alla Tua Squadra», e invece finiva nello Schieramento in ogni mazzo orientato
+   all'Oscura Legione.
+
+Restano Doomtrooper **generici**: ricevono le carte aperte a tutti i Doomtrooper ma, non
+avendo icona di legame, non quelle riservate a una singola Megacorporazione — vincolo che
+passa da `fazioni_permesse` ed è verificato da un test.
 
 ### Restrizioni che nessun ramo riconosce
 

@@ -12,7 +12,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass, field
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, AreaGioco, Statistiche, TipoGuerriero  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, AreaGioco, Statistiche, TipoGuerriero, vale_come_doomtrooper  # Import dalle classi esistenti
 
 FAZIONI_SQUADRA = [Fazione.BAUHAUS, Fazione.CAPITOL, Fazione.CYBERTRONIC, Fazione.FRATELLANZA, Fazione.IMPERIALE, Fazione.MISHIMA, Fazione.MERCENARIO]
 FAZIONI_SCHIERAMENTO = [Fazione.OSCURA_LEGIONE]
@@ -272,7 +272,9 @@ class Warzone:
             for limite in self.restrizioni.limiti_utilizzo:
 
                 if "Solo Doomtrooper" in limite:
-                    if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
+                    # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
+                    if not vale_come_doomtrooper(guerriero):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append("Solo per Doomtrooper")
 

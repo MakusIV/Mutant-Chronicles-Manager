@@ -9,7 +9,7 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass, field
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, TipoGuerriero  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, TipoGuerriero, vale_come_doomtrooper  # Import dalle classi esistenti
 
 
 class TipoEquipaggiamento(Enum):
@@ -218,7 +218,9 @@ class Equipaggiamento:
             for restrizione in self.restrizioni_guerriero:
 
                 if "Solo Doomtrooper" in restrizione:
-                    if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
+                    # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
+                    if not vale_come_doomtrooper(guerriero):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append("Solo per Doomtrooper")
                 

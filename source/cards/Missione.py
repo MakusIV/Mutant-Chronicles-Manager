@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Any, Union
 from enum import Enum
 import json
-from source.cards.Guerriero import Guerriero, Fazione, Rarity, Set_Espansione, TipoGuerriero, DOOMTROOPER  # Import dalle classi esistenti
+from source.cards.Guerriero import Guerriero, Fazione, Rarity, Set_Espansione, TipoGuerriero, DOOMTROOPER, vale_come_doomtrooper  # Import dalle classi esistenti
 
 
 
@@ -151,7 +151,9 @@ class Missione:
                 for corporazione in self.corporazioni_specifiche:
 
                     if "Doomtrooper" in corporazione:
-                        if bersaglio.fazione == Fazione.OSCURA_LEGIONE:
+                        # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
+                        # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
+                        if not vale_come_doomtrooper(bersaglio):
                             risultato["puo_assegnare"] = False
                             risultato["errori"].append("Solo per Doomtrooper")
 
@@ -181,7 +183,7 @@ class Missione:
                     # Condizioni in alternativa: basta soddisfarne una. Vanno valutate
                     # prima delle rispettive forme semplici, di cui contengono il prefisso.
                     if "Solo Doomtrooper o Eretici" in restrizione:
-                        e_doomtrooper = bersaglio.fazione.value in DOOMTROOPER
+                        e_doomtrooper = vale_come_doomtrooper(bersaglio)
                         e_eretico = bool(bersaglio.keywords) and "Eretico" in bersaglio.keywords
                         if not (e_doomtrooper or e_eretico):
                             risultato["puo_assegnare"] = False

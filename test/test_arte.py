@@ -192,16 +192,12 @@ def test_i_lanciatori_esterni_dichiarano_l_abilita(nome_guerriero, frase):
     )
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "il controllo sulla disciplina è dentro `if len(guerriero.abilita) > 0`, quindi chi "
-    "non ha abilità lo salta del tutto. Latente: nessun guerriero della Fratellanza è "
-    "oggi privo di abilità"))
 def test_senza_abilita_non_si_lancia():
     """
-    Il controllo sulla disciplina sta dentro `if len(guerriero.abilita) > 0`: un
-    guerriero senza alcuna abilità lo salta e ottiene il permesso per la sola fazione.
-    Oggi non fa danni perché tutti i guerrieri della Fratellanza hanno un'abilità, ma
-    basterebbe aggiungerne uno senza per aprire il varco — questo test lo intercetta.
+    Il controllo sulla disciplina stava dentro `if len(guerriero.abilita) > 0`: un
+    guerriero senza alcuna abilità lo saltava e otteneva il permesso per la sola
+    fazione. Non faceva danni — nessun guerriero della Fratellanza è privo di abilità —
+    ma bastava aggiungerne uno per aprire il varco.
     """
     nome_carta = next(iter(CARTE_ARTE_DATABASE))
     carta = crea_carta_da_database(nome_carta)

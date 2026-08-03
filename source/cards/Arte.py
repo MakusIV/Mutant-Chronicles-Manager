@@ -178,21 +178,26 @@ class Arte:
             risultato["puo_lanciare"] = False
             risultato["errori"].append(f"Solo {[f.value for f in self.fazioni_permesse]} e chi dichiara di saper lanciare l'Arte possono usarla")
 
-        # Verifica gestione della disciplina (se specificata)
-        if len(guerriero.abilita) > 0:
-            discipline_arte_guerriero = [abilita.target.lower() for abilita in guerriero.abilita if abilita.tipo == "Arte"]
-           
-            lancia_incantesimi_combattimento_personale = self.tipo == TipoArte.INCANTESIMO_PERSONALE and "incantesimo di combattimento personale" in discipline_arte_guerriero
-            # Il campo `target` del guerriero è una frase che cita una o due discipline
-            # (es. "Arte della Manipolazione ed Esorcismo"), non il nome nudo della
-            # disciplina: serve un confronto per sottostringa, non l'appartenenza alla lista.
-            lancia_arte_specifica = any( disciplina.lower() in target
-                                         for target in discipline_arte_guerriero
-                                         for disciplina in (DisciplinaArte.TUTTE.value, self.disciplina.value) )
-            
-            if not ( lancia_incantesimi_combattimento_personale or lancia_arte_specifica ):
-                risultato["puo_lanciare"] = False
-                risultato["errori"].append(f"Richiede disciplina in {self.disciplina.value}")      
+        # Verifica gestione della disciplina.
+        #
+        # Il calcolo era racchiuso in `if len(guerriero.abilita) > 0`, e chi non aveva
+        # alcuna abilità saltava il controllo ottenendo il permesso per la sola fazione.
+        # Senza la guardia l'elenco delle discipline resta vuoto, entrambi i predicati
+        # risultano falsi e il guerriero è respinto — che è il comportamento voluto:
+        # lanciare l'Arte richiede di dichiararlo, non di tacere.
+        discipline_arte_guerriero = [abilita.target.lower() for abilita in guerriero.abilita if abilita.tipo == "Arte"]
+
+        lancia_incantesimi_combattimento_personale = self.tipo == TipoArte.INCANTESIMO_PERSONALE and "incantesimo di combattimento personale" in discipline_arte_guerriero
+        # Il campo `target` del guerriero è una frase che cita una o due discipline
+        # (es. "Arte della Manipolazione ed Esorcismo"), non il nome nudo della
+        # disciplina: serve un confronto per sottostringa, non l'appartenenza alla lista.
+        lancia_arte_specifica = any( disciplina.lower() in target
+                                     for target in discipline_arte_guerriero
+                                     for disciplina in (DisciplinaArte.TUTTE.value, self.disciplina.value) )
+
+        if not ( lancia_incantesimi_combattimento_personale or lancia_arte_specifica ):
+            risultato["puo_lanciare"] = False
+            risultato["errori"].append(f"Richiede disciplina in {self.disciplina.value}")
         
 
 

@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Any, Union
 from enum import Enum
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, CorporazioneSpecifica, DOOMTROOPER, TipoGuerriero  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, CorporazioneSpecifica, DOOMTROOPER, TipoGuerriero, vale_come_doomtrooper  # Import dalle classi esistenti
 
 
 class TipoReliquia(Enum):
@@ -199,7 +199,9 @@ class Reliquia:
             for corporazione in self.restrizioni.corporazioni_specifiche:
 
                 if "Solo Doomtrooper" in corporazione:
-                    if guerriero.fazione == Fazione.OSCURA_LEGIONE:
+                    # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
+                    # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
+                    if not vale_come_doomtrooper(guerriero):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append("Solo per Doomtrooper")
 

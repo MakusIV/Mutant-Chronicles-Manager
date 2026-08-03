@@ -3860,7 +3860,12 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "SEGUACE DI ALGEROTH. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
         "flavour_text": "",
-        "keywords": ["Seguace di Algeroth", "Eretico", "Cultista di Algeroth"],
+        # «CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO»: la keyword
+        # traduce quella dichiarazione in forma confrontabile. Vale come Doomtrooper
+        # generico — riceve le carte «Solo Doomtrooper» — ma non ha legame corporativo,
+        # quindi resta fuori da quelle riservate a una singola Megacorporazione.
+        "keywords": ["Seguace di Algeroth", "Eretico", "Cultista di Algeroth",
+                     "Doomtrooper senza legame"],
         "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4205,7 +4210,12 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "SEGUACE DI MUAWIJHE. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
         "flavour_text": "",
-        "keywords": ["Seguace di Muawijhe", "Eretico", "Cultista di Muawijhe"],
+        # «CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO»: la keyword
+        # traduce quella dichiarazione in forma confrontabile. Vale come Doomtrooper
+        # generico — riceve le carte «Solo Doomtrooper» — ma non ha legame corporativo,
+        # quindi resta fuori da quelle riservate a una singola Megacorporazione.
+        "keywords": ["Seguace di Muawijhe", "Eretico", "Cultista di Muawijhe",
+                     "Doomtrooper senza legame"],
         "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4276,7 +4286,12 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "SEGUACE DI DEMNOGONIS. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
         "flavour_text": "",
-        "keywords": ["Seguace di Demnogonis", "Eretico", "Cultista di Demnogonis"],
+        # «CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO»: la keyword
+        # traduce quella dichiarazione in forma confrontabile. Vale come Doomtrooper
+        # generico — riceve le carte «Solo Doomtrooper» — ma non ha legame corporativo,
+        # quindi resta fuori da quelle riservate a una singola Megacorporazione.
+        "keywords": ["Seguace di Demnogonis", "Eretico", "Cultista di Demnogonis",
+                     "Doomtrooper senza legame"],
         "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4430,7 +4445,12 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "SEGUACE DI ILIAN. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
         "flavour_text": "",
-        "keywords": ["Seguace di Ilian", "Eretico", "Cultista di Ilian"],
+        # «CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO»: la keyword
+        # traduce quella dichiarazione in forma confrontabile. Vale come Doomtrooper
+        # generico — riceve le carte «Solo Doomtrooper» — ma non ha legame corporativo,
+        # quindi resta fuori da quelle riservate a una singola Megacorporazione.
+        "keywords": ["Seguace di Ilian", "Eretico", "Cultista di Ilian",
+                     "Doomtrooper senza legame"],
         "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
         "equipaggiamento": [],
         "stato_gioco": {
@@ -4923,7 +4943,12 @@ GUERRIERI_DATABASE: Dict[str, Dict[str, Any]] = {
         "abilita": [],
         "testo_carta": "SEGUACE DI SEMAI. CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO. Puoi aggiungere il Cultista solo alla Tua Squadra. Egli può ricevere carte dell'Oscura Simmetria. Non può attaccare guerrieri della Fratellanza. Volta per volta, puoi decidere se il Cultista è un Doomtrooper o un guerriero dell'Oscura Legione.",
         "flavour_text": "",
-        "keywords": ["Seguace di Semai", "Eretico", "Cultista di Semai"],
+        # «CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME E UN ERETICO»: la keyword
+        # traduce quella dichiarazione in forma confrontabile. Vale come Doomtrooper
+        # generico — riceve le carte «Solo Doomtrooper» — ma non ha legame corporativo,
+        # quindi resta fuori da quelle riservate a una singola Megacorporazione.
+        "keywords": ["Seguace di Semai", "Eretico", "Cultista di Semai",
+                     "Doomtrooper senza legame"],
         "restrizioni": ["Non può attaccare guerrieri: Fratellanza"],
         "equipaggiamento": [],
         "stato_gioco": {

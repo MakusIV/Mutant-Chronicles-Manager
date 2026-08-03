@@ -95,15 +95,34 @@ def test_l_orientamento_eretico_fa_emergere_gli_eretici(creatore):
 
 
 @pytest.mark.lento
-@pytest.mark.xfail(strict=True, reason=(
-    "`seleziona_guerrieri` sceglie il ramo di orientamento con un if/elif sulla fazione, "
-    "e i Cultisti hanno fazione Oscura Legione: in un mazzo Doomtrooper non entrano mai, "
-    "benché il testo li dichiari «CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME» e "
-    "lasci scegliere volta per volta. La doppia natura non è modellata"))
 def test_i_cultisti_entrano_anche_in_un_mazzo_doomtrooper(creatore):
+    """
+    «CONSIDERATO UN DOOMTROOPER SENZA ICONA DI LEGAME»: la keyword
+    `Doomtrooper senza legame` traduce quella dichiarazione, e `seleziona_guerrieri` la
+    legge. Prima il ramo di orientamento si sceglieva con un if/elif sulla sola fazione,
+    e i Cultisti — che sono Oscura Legione — non entravano mai in un mazzo Doomtrooper.
+    """
     selezionati = _seleziona(creatore, doomtrooper=True, fratellanza=False,
                              oscura_legione=False, orientamento_cultista=True)
     assert [n for n in selezionati if n.startswith("Cultista")]
+
+
+@pytest.mark.lento
+def test_i_cultisti_vanno_sempre_in_squadra(creatore):
+    """
+    «Puoi aggiungere il Cultista solo alla Tua Squadra»: non va nello Schieramento
+    nemmeno in un mazzo orientato all'Oscura Legione, dove la sua fazione lo porterebbe.
+    """
+    for orientamento in [dict(doomtrooper=True, fratellanza=False, oscura_legione=False),
+                         dict(doomtrooper=False, fratellanza=False, oscura_legione=True)]:
+        random.seed(42)
+        squadra, schieramento = creatore.seleziona_guerrieri(
+            espansioni_richieste=ESPANSIONI, numero_guerrieri_target=40,
+            orientamento_cultista=True, **orientamento)
+
+        nello_schieramento = [g.nome for g in schieramento if g.nome.startswith("Cultista")]
+        assert not nello_schieramento, (
+            f"Cultisti finiti nello Schieramento con {orientamento}: {nello_schieramento}")
 
 
 # --------------------------------------------------------------------------

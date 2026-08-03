@@ -32,6 +32,16 @@ DOOMTROOPER = {"Bauhaus", "Mishima", "Cybertronic", "Imperiale", "Capitol",
                "Mercenario", "Fratellanza"}
 
 
+def _vale_come_doomtrooper(nome):
+    """
+    Vale come Doomtrooper chi appartiene alle sette fazioni **o** lo dichiara con la
+    keyword «Doomtrooper senza legame» — i Cultisti, che sono Oscura Legione.
+    """
+    dati = GUERRIERI_DATABASE[nome]
+    return (dati.get("fazione") in DOOMTROOPER
+            or "Doomtrooper senza legame" in (dati.get("keywords") or []))
+
+
 # --------------------------------------------------------------------------
 # Nessuna carta deve restare senza destinatari
 # --------------------------------------------------------------------------
@@ -98,10 +108,14 @@ def _ammessi_di(tipo, modulo, factory, nome_carta, metodo):
 
 
 def test_lancia_castigator_solo_ai_doomtrooper():
-    """«ASSEGNABILE AD OGNI DOOMTROOPER»: il vincolo stava solo nel testo."""
+    """
+    «ASSEGNABILE AD OGNI DOOMTROOPER»: il vincolo stava solo nel testo. Fra i
+    destinatari rientrano i Cultisti, che pur essendo dell'Oscura Legione si dichiarano
+    «Doomtrooper senza legame».
+    """
     ammessi = _ammessi_di("Equipaggiamento", "Database_Equipaggiamento",
                           "crea_equipaggiamento_da_database", "Lancia Castigator", None)
-    fuori = {n for n in ammessi if GUERRIERI_DATABASE[n].get("fazione") not in DOOMTROOPER}
+    fuori = {n for n in ammessi if not _vale_come_doomtrooper(n)}
     assert not fuori, f"la ricevono anche guerrieri non Doomtrooper: {sorted(fuori)}"
     assert ammessi
 
@@ -112,7 +126,7 @@ def test_addestramento_speciale_solo_doomtrooper_non_personalita():
                           "Addestramento Speciale", None)
     for nome in ammessi:
         dati = GUERRIERI_DATABASE[nome]
-        assert dati.get("fazione") in DOOMTROOPER, f"{nome} non è un Doomtrooper"
+        assert _vale_come_doomtrooper(nome), f"{nome} non vale come Doomtrooper"
         assert dati.get("tipo") != "Personalita" and \
             "Personalita" not in (dati.get("keywords") or []), f"{nome} è una Personalità"
     assert ammessi

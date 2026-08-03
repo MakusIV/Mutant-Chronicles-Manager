@@ -33,7 +33,8 @@ except ImportError:
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
 from source.logic.Creatore_Collezione import creazione_Collezione_Giocatore, carica_collezioni_json_migliorato, salva_collezioni_json_migliorato, determina_orientamento_collezione
 from source.cards.Guerriero import (
-    Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte, DOOMTROOPER
+    Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte, DOOMTROOPER,
+    vale_come_doomtrooper
 )
 from source.cards.Equipaggiamento import Equipaggiamento
 from source.cards.Speciale import Speciale
@@ -1347,9 +1348,18 @@ class CreatoreMazzo:
             if hasattr(guerriero, 'valore_strategico'):
                 bonus_factor_guerriero_strategico = 1 + guerriero.valore_strategico * BONUS_STRATEGICO / 10
 
-            # Orientamento Doomtrooper            
-            if doomtrooper and guerriero.fazione in FAZIONI_DOOMTROOPER:
-                ammesso = False              
+            # Un Cultista e' dell'Oscura Legione ma il suo testo lo dichiara «CONSIDERATO
+            # UN DOOMTROOPER SENZA ICONA DI LEGAME», lasciando scegliere volta per volta.
+            # Nella costruzione del mazzo la scelta si riduce a questa: se lo schieramento
+            # dell'Oscura Legione e' fra gli orientamenti richiesti lo si valuta li', dove
+            # riceve anche il bonus dell'Apostolo; altrimenti vale come Doomtrooper,
+            # invece di restare escluso da entrambi i rami.
+            vale_fra_i_doomtrooper = (guerriero.fazione in FAZIONI_DOOMTROOPER
+                                      or (vale_come_doomtrooper(guerriero) and not oscura_legione))
+
+            # Orientamento Doomtrooper
+            if doomtrooper and vale_fra_i_doomtrooper:
+                ammesso = False
 
                 if not orientamento_doomtrooper or orientamento_doomtrooper == []: # il guerriero è un doomtrooper e non è definito l'orientamento
                     bonus_moltiplicatore *= BONUS_SPECIALIZZAZIONE # aumenta il punteggio se la fazione è nei doomtroopers
@@ -1402,17 +1412,22 @@ class CreatoreMazzo:
                             bonus_moltiplicatore *= BONUS_ORIENTAMENTO
                             ammesso = True
                                                 
-                # Nota: la keyword è "Cultista di <Apostolo>", mai "Cultista" da solo, e
-                # `in` su una lista confronta gli elementi interi: la condizione era
-                # sempre falsa e BONUS_CULTISTA non veniva mai applicato a nessuno.
-                if orientamento_cultista and any(k.startswith('Cultista') for k in guerriero.keywords):
-                    bonus_moltiplicatore *= BONUS_CULTISTA # aumenta di un ulteriore fattore (BONUS_CULTISTA) il bonus per cultisti (i cultisti sono OL quindi già beneficiano dell'eventuale bonus OL)
-                    ammesso = True
-
                 if ammesso:
                     _assegnazione_punteggio_guerriero_ammesso(self, guerriero)
 
             
+            # Orientamento Cultista. Sta fuori dai rami di fazione, come quello Eretico:
+            # un Cultista puo' essere valutato fra i Doomtrooper — il suo testo lo
+            # consente — e li' il ramo dell'Oscura Legione non viene raggiunto.
+            # La keyword e' "Cultista di <Apostolo>", mai "Cultista" da solo, e `in` su
+            # una lista confronta gli elementi interi: il confronto secco era sempre falso.
+            if orientamento_cultista and any(k.startswith('Cultista') for k in guerriero.keywords):
+                if guerriero not in guerrieri_ammessi:
+                    bonus_moltiplicatore *= BONUS_CULTISTA
+                    _assegnazione_punteggio_guerriero_ammesso(self, guerriero)
+                else:
+                    punteggi[guerriero.nome] *= BONUS_CULTISTA
+
             # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in guerriero.keywords:
                     # Gli Eretici sono Oscura Legione o Doomtrooper, quindi hanno già ricevuto
@@ -1488,8 +1503,19 @@ class CreatoreMazzo:
                 
                 numero_guerrieri_per_schieramento = math.floor( 0.49 + numero_guerrieri_target / q)
                 numero_guerrieri_per_squadra = math.floor( 0.49 + numero_guerrieri_target * m )
-                inserisci_in_schieramento = oscura_legione and guerriero.fazione in FAZIONI_OSCURA_LEGIONE
-                inserisci_in_squadra = ( doomtrooper or fratellanza) and ( guerriero.fazione in FAZIONI_DOOMTROOPER or guerriero.fazione in FAZIONI_FRATELLANZA)            
+                # Il Cultista e' dell'Oscura Legione ma il suo testo dice «Puoi aggiungere
+                # il Cultista solo alla Tua Squadra»: non va mai nello Schieramento,
+                # nemmeno in un mazzo orientato all'Oscura Legione.
+                solo_in_squadra = (guerriero.fazione in FAZIONI_OSCURA_LEGIONE
+                                   and vale_come_doomtrooper(guerriero))
+
+                inserisci_in_schieramento = (oscura_legione
+                                             and guerriero.fazione in FAZIONI_OSCURA_LEGIONE
+                                             and not solo_in_squadra)
+                inserisci_in_squadra = solo_in_squadra or (
+                    (doomtrooper or fratellanza)
+                    and (guerriero.fazione in FAZIONI_DOOMTROOPER
+                         or guerriero.fazione in FAZIONI_FRATELLANZA))
 
                 for _ in range(num_copie_da_inserire): # NOTA: inserisce la stessa istanza per più volte nella lista
                     

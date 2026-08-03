@@ -32,7 +32,10 @@ def _dati(nome):
 # I concetti del dominio e come si leggono su un guerriero. `Personalita` e le altre
 # stanno nelle keyword, non nel tipo o nella fazione — è la regola che governa tutto.
 CONCETTI = {
-    "DOOMTROOPER": lambda n: _dati(n).get("fazione") in DOOMTROOPER,
+    # Vale come Doomtrooper anche chi lo dichiara con la keyword «Doomtrooper senza
+    # legame» pur non appartenendo alle sette fazioni: i Cultisti.
+    "DOOMTROOPER": lambda n: (_dati(n).get("fazione") in DOOMTROOPER
+                              or "Doomtrooper senza legame" in (_dati(n).get("keywords") or [])),
     "FRATELLANZA": lambda n: _dati(n).get("fazione") == "Fratellanza",
     "OSCURA LEGIONE": lambda n: _dati(n).get("fazione") == "Oscura Legione",
     "ERETICO": lambda n: "Eretico" in (_dati(n).get("keywords") or []),
