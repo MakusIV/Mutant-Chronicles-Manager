@@ -544,6 +544,34 @@ class CreatoreMazzo:
                    or self._guerriero_riceve_doni_di_ogni_apostolo(g)
                    for g in guerrieri)
 
+    def _bonus_condizionato_attivabile(self, carta: Any, guerrieri: List[Guerriero]) -> bool:
+        """
+        Indica se un bonus riservato a guerrieri specifici è attivabile nel mazzo.
+
+        Alcune carte concedono un potenziamento maggiore a un guerriero determinato —
+        la Lancia Castigator dà +2 in C a ogni Doomtrooper e +4 a una Valchiria — e lo
+        dichiarano nel campo `guerrieri_avvantaggiati` del modificatore. Il bonus non
+        entra nella potenza della carta, che è una proprietà intrinseca e non può
+        dipendere dal mazzo: entra qui, dove i guerrieri scelti sono noti.
+
+        È il verso opposto di `_dono_utilizzabile_dai_guerrieri`, che declassa i Doni
+        che nessuno può ricevere.
+
+        Args:
+            carta: Carta di supporto da valutare
+            guerrieri: Guerrieri presenti nel mazzo
+
+        Returns:
+            True se almeno un guerriero del mazzo attiva il bonus
+        """
+        nomi_presenti = {getattr(g, 'nome', '') for g in guerrieri}
+
+        for modificatore in getattr(carta, 'modificatori_speciali', None) or []:
+            avvantaggiati = getattr(modificatore, 'guerrieri_avvantaggiati', None) or []
+            if any(nome in nomi_presenti for nome in avvantaggiati):
+                return True
+        return False
+
     def _applica_bonus_modificatore(self, potenza: float, livello: int,
                                     modifica_statistiche_applicata: bool) -> float:
         """
@@ -1556,6 +1584,10 @@ class CreatoreMazzo:
         BONUS_CULTISTA = 2 # Fattore applicato se selezionati CULTISTI     
         BONUS_STRATEGICO = 4 # Fattore applicato in base all'assegnazione del valore "valore_strategico" da parte dell'utente
         BONUS_FONDAMENTALE = 100 # Fattore applicato se la carta è fondamentale
+        # Fattore applicato quando la carta concede un potenziamento maggiore a un guerriero
+        # gia' presente nel mazzo (campo `guerrieri_avvantaggiati`). Volutamente contenuto:
+        # il vantaggio e' reale ma vale su un solo guerriero, non su tutta la squadra.
+        BONUS_SINERGIA = 2
 
         # Calcola potenza per ogni carta
         carte_con_punteggio = []
@@ -1680,6 +1712,14 @@ class CreatoreMazzo:
             # Orientamento Eretico (per guerrieri Doomtrooper o Oscura Legione)
             if orientamento_eretico and 'Eretico' in carta.keywords:
                 bonus_moltiplicatore *= BONUS_ERETICO # triplica il punteggio se la fazione è anche nell'orientamento doomtroopers
+
+            # Sinergia con un guerriero gia' scelto: la carta concede un potenziamento
+            # maggiore a un guerriero determinato, e quel guerriero e' nel mazzo. La
+            # potenza della carta non lo contempla — `modificatore_utilizzabile` scarta i
+            # bonus "Uso ristretto:" perche' non sono garantiti — quindi il vantaggio va
+            # riconosciuto qui, dove i guerrieri scelti sono noti.
+            if self._bonus_condizionato_attivabile(carta, tutti_guerrieri):
+                bonus_moltiplicatore *= BONUS_SINERGIA
             # Carta generica fondamentale (il bonus_moltiplicatore utilizzato per il calcolo del punteggio non viene valutato per la condizione fondamentale nelle assegnazioni per orientamento)
             if carta_generica_fondamentale:
                 bonus_moltiplicatore *= BONUS_FONDAMENTALE # aumenta di un ulteriore fattore (BONUS_FONDAMENTALE) il bonus per carte generiche fondamentali

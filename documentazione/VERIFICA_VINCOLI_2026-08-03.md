@@ -32,19 +32,41 @@ Le nozioni di dominio che governano la lettura, chiarite durante la verifica:
 
 ---
 
-## 1. Carte da correggere nei dati
+## 1. Carte corrette dopo il confronto fra testo e vincoli
 
-Il testo dichiara un vincolo che nessun campo impone. Sentinelle in
-`test/test_testo_contro_vincoli.py`, elenco `VINCOLI_NON_IMPOSTI`.
+Tutte corrette il 2026-08-03, con test di regressione in
+`test/test_vincoli_per_carta.py`.
 
-| Carta | Tipo | Il testo dichiara | Chi la riceve indebitamente | Causa |
-|---|---|---|---|---|
-| `Lancia Castigator` | Equipaggiamento | «ASSEGNABILE AD OGNI DOOMTROOPER» | 47 dell'Oscura Legione | nessuna restrizione dichiarata; `fazioni_permesse` è `['Generica']` |
-| `Intimidazione` | Speciale | «QUALSIASI GUERRIERO NON-PERSONALITÀ» | le 29 Personalità | vincolo scritto solo in `condizioni`, che nessuno legge |
-| `Promozione Sul Campo` | Speciale | «UN GUERRIERO NON-PERSONALITÀ» | le 29 Personalità | idem |
-| `Addestramento Speciale` | Speciale | «OGNI DOOMTROOPER NON PERSONALITÀ» | 40 non-Doomtrooper | la parte «non Personalità» è imposta, quella «Doomtrooper» no |
-| `Reintegrato` | Speciale | «GIOCABILE SU UN MERCENARIO» | 126 su 136 | `restrizioni` dice `Solo su Mercenari`, il ramo è `Solo Mercenari` senza «su» |
-| `Nato Fortunato` | Speciale | «UN DOOMTROOPER, NON DELLA FRATELLANZA» | 15 della Fratellanza | `fazioni_permesse` include Fratellanza |
+| Carta | Tipo | Il testo dichiara | Come è stata corretta |
+|---|---|---|---|
+| `Lancia Castigator` | Equipaggiamento | «ASSEGNABILE AD OGNI DOOMTROOPER» | `restrizioni_guerriero: ["Solo Doomtrooper"]` — prima la ricevevano 47 guerrieri dell'Oscura Legione |
+| `Addestramento Speciale` | Speciale | «OGNI DOOMTROOPER NON PERSONALITÀ» | aggiunto `Solo Doomtrooper` alla restrizione esistente: le condizioni sono cumulative |
+| `Reintegrato` | Speciale | «GIOCABILE SU UN MERCENARIO» | **serviva anche il codice**: vedi sotto |
+| `Nato Fortunato` | Speciale | «UN DOOMTROOPER, NON DELLA FRATELLANZA» | `Non utilizzabile su membri della Fratellanza` → `Non utilizzabile dalla Fratellanza`, la forma che il ramo riconosce |
+| `Furga 750` | Equipaggiamento | «OGNI MERCENARIO O ERETICO» | **difetto di codice**, trovato correggendo le altre: vedi sotto |
+
+**Su `Reintegrato` la diagnosi iniziale era sbagliata.** Diceva che il ramo era
+`Solo Mercenari` e la stringa aveva un «su» di troppo: in realtà **`Speciale` non aveva
+affatto quel ramo** — ce l'hanno le altre cinque classi, ed era stato attribuito per
+analogia senza verificarlo. Corretto il dato *e* aggiunto il ramo mancante in
+`Speciale.py`.
+
+**`Furga 750`**, emersa correggendo le altre: in `Equipaggiamento.py` il ramo
+`Solo Mercenari` era valutato **prima** di `Solo Mercenari o Eretici`, di cui è il
+prefisso — le altre quattro classi hanno l'ordine giusto e un commento che avverte
+proprio di questo — e la condizione dell'alternativa usava `or` dove le altre usano
+`and`, trasformando l'alternativa in un cumulo. Gli Eretici che non fossero anche
+Mercenari venivano respinti: da 10 a 22 destinatari.
+
+### Escluse per scelta: le carte fuori espansione
+
+`Intimidazione` e `Promozione Sul Campo` dichiarano «GUERRIERO NON-PERSONALITÀ» nel solo
+campo `condizioni`, che nessuno legge, e restano scoperte: portano
+`set_espansione = "Sconosciuto"`, quindi il filtro sulle espansioni le tiene fuori da
+collezioni e mazzi, e non se ne trova la scansione. Le carte in quello stato sono **19**
+(17 Speciali e 2 Arte); il valore è scritto in due modi — 18 usano `Sconosciuto`,
+`Medico Da Campo` usa `Sconosciuta`. Il conteggio è fissato da
+`test_le_carte_fuori_espansione_restano_note`.
 
 ### Da riverificare sulla scansione
 
@@ -81,6 +103,41 @@ In `test/test_vocabolario_restrizioni.py`, elenco `RESTRIZIONI_IGNORATE`. Refusi
 implementati: le singole corporazioni in Speciale, i nomi di guerriero in Equipaggiamento.
 
 ---
+
+## 2-bis. I bonus riservati a un guerriero specifico
+
+Alcune carte concedono un potenziamento maggiore a un guerriero determinato: la Lancia
+Castigator dà +2 in C a ogni Doomtrooper e **+4 a una Valchiria**. Il pattern riguarda
+**cinque carte** in due tipologie.
+
+Il vocabolario controllato lo modellava già a metà: `statistiche` porta il bonus di
+default, `modificatori_speciali` quello superiore con `condizione: "Uso ristretto: …"`,
+e `modificatore_utilizzabile()` lo esclude dal punteggio perché non è garantito. Giusto
+— ma il bonus restava ignorato anche quando il guerriero *era* nel mazzo.
+
+Aggiunto il campo **`guerrieri_avvantaggiati`** al modificatore: la forma confrontabile
+della condizione, che il testo esprime in prosa e in maiuscolo.
+
+| Carta | Condizione nel testo | `guerrieri_avvantaggiati` |
+|---|---|---|
+| `Lancia Castigator` | «Se assegnata a una VALCHIRIA» | `["Valkiria"]` |
+| `Azogar` | «se assegnata a un NEFARITA DI ALGEROTH» | `["Valpurgius"]` — l'unico Nefarita Seguace di Algeroth |
+| `Tenuta da Battaglia` | «Se è un INQUISITORE o un INQUISITORE MASSIMO» | `["Inquisitore", "L'Inquisitore Massimo"]` |
+
+Il consumo sta in `_bonus_condizionato_attivabile`, agganciato in
+`seleziona_carte_supporto` accanto al precedente esatto — `_dono_utilizzabile_dai_guerrieri`,
+che *declassa* i Doni che nessuno può ricevere: qui si *promuove*, col fattore
+`BONUS_SINERGIA`. La potenza della carta non è toccata, perché è una proprietà
+intrinseca e non può dipendere dal mazzo.
+
+Misurato a parità di squadra: con la Valchiria presente, la Lancia Castigator sale
+**dalla posizione 131 alla 106**.
+
+**Restano fuori due carte**, che dichiarano la condizione in campi diversi:
+`Paramenti Sacri` (in `abilita_speciali`, «Se il guerriero è un MISTICO o un CUSTODE
+DELL'ARTE») e `Portatore Di Luce` (Reliquia, in `poteri`, «Se assegnata a un
+CARDINALE»). Il punteggio valuta quei blocchi con logiche proprie: aggiungervi il campo
+senza estendere anche il consumo creerebbe l'ennesimo dato che nessuno legge.
 
 ## 3. Correzioni già applicate
 

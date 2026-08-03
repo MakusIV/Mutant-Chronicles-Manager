@@ -82,6 +82,92 @@ def test_ogni_carta_ha_almeno_un_destinatario(nome_tipo, modulo, variabile, fact
     )
 
 
+# --------------------------------------------------------------------------
+# Le carte corrette dopo il confronto fra testo e vincoli
+# --------------------------------------------------------------------------
+
+
+def _ammessi_di(tipo, modulo, factory, nome_carta, metodo):
+    from conftest import SPEC_CARTE
+
+    modulo_db = importlib.import_module(f"source.data_base_cards.{modulo}")
+    carta = getattr(modulo_db, factory)(nome_carta)
+    assert carta is not None, f"{nome_carta} non è costruibile"
+    spec = SPEC_CARTE[tipo]
+    return {nome for nome, guerriero in GUERRIERI if spec.permesso(carta, guerriero)}
+
+
+def test_lancia_castigator_solo_ai_doomtrooper():
+    """«ASSEGNABILE AD OGNI DOOMTROOPER»: il vincolo stava solo nel testo."""
+    ammessi = _ammessi_di("Equipaggiamento", "Database_Equipaggiamento",
+                          "crea_equipaggiamento_da_database", "Lancia Castigator", None)
+    fuori = {n for n in ammessi if GUERRIERI_DATABASE[n].get("fazione") not in DOOMTROOPER}
+    assert not fuori, f"la ricevono anche guerrieri non Doomtrooper: {sorted(fuori)}"
+    assert ammessi
+
+
+def test_addestramento_speciale_solo_doomtrooper_non_personalita():
+    """«OGNI DOOMTROOPER NON PERSONALITÀ»: le due condizioni sono cumulative."""
+    ammessi = _ammessi_di("Speciale", "Database_Speciale", "crea_carta_da_database",
+                          "Addestramento Speciale", None)
+    for nome in ammessi:
+        dati = GUERRIERI_DATABASE[nome]
+        assert dati.get("fazione") in DOOMTROOPER, f"{nome} non è un Doomtrooper"
+        assert dati.get("tipo") != "Personalita" and \
+            "Personalita" not in (dati.get("keywords") or []), f"{nome} è una Personalità"
+    assert ammessi
+
+
+def test_reintegrato_solo_ai_mercenari():
+    """
+    «GIOCABILE SU UN MERCENARIO». La restrizione c'era ma diceva «Solo su Mercenari»,
+    e in `Speciale` il ramo corrispondente non esisteva affatto — a differenza delle
+    altre cinque classi, che lo hanno.
+    """
+    ammessi = _ammessi_di("Speciale", "Database_Speciale", "crea_carta_da_database",
+                          "Reintegrato", None)
+    attesi = {nome for nome, dati in GUERRIERI_DATABASE.items()
+              if dati.get("fazione") == "Mercenario"
+              or "Mercenario" in (dati.get("keywords") or [])}
+    assert ammessi == attesi, (
+        f"ammessi a torto: {sorted(ammessi - attesi)}; "
+        f"respinti a torto: {sorted(attesi - ammessi)}")
+
+
+def test_nato_fortunato_esclude_la_fratellanza():
+    """
+    «UN DOOMTROOPER, NON DELLA FRATELLANZA». `fazioni_permesse` è DOOMTROOPER, che la
+    Fratellanza la comprende: a escluderla dev'essere la restrizione, che però era
+    scritta in una forma che nessun ramo riconosce.
+    """
+    ammessi = _ammessi_di("Speciale", "Database_Speciale", "crea_carta_da_database",
+                          "Nato Fortunato", None)
+    attesi = {nome for nome, dati in GUERRIERI_DATABASE.items()
+              if dati.get("fazione") in DOOMTROOPER
+              and dati.get("fazione") != "Fratellanza"}
+    assert ammessi == attesi, (
+        f"ammessi a torto: {sorted(ammessi - attesi)}; "
+        f"respinti a torto: {sorted(attesi - ammessi)}")
+
+
+def test_furga_750_va_ai_mercenari_oppure_agli_eretici():
+    """
+    «ASSEGNABILE AD OGNI MERCENARIO O ERETICO». In `Equipaggiamento` il ramo «Solo
+    Mercenari» era valutato prima di «Solo Mercenari o Eretici», di cui è il prefisso,
+    e la condizione dell'alternativa era scritta come un cumulo: gli Eretici che non
+    fossero anche Mercenari venivano respinti.
+    """
+    ammessi = _ammessi_di("Equipaggiamento", "Database_Equipaggiamento",
+                          "crea_equipaggiamento_da_database", "Furga 750", None)
+    attesi = {nome for nome, dati in GUERRIERI_DATABASE.items()
+              if dati.get("fazione") == "Mercenario"
+              or "Mercenario" in (dati.get("keywords") or [])
+              or "Eretico" in (dati.get("keywords") or [])}
+    assert ammessi == attesi, (
+        f"ammessi a torto: {sorted(ammessi - attesi)}; "
+        f"respinti a torto: {sorted(attesi - ammessi)}")
+
+
 def _missione(nome):
     modulo = importlib.import_module("source.data_base_cards.Database_Missione")
     return modulo.crea_missione_da_database(nome)

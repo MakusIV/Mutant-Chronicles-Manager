@@ -61,19 +61,15 @@ TIPI = [
 # Scostamenti accertati come difetti: il testo dichiara un vincolo che nessun campo
 # impone. Vanno svuotati correggendo il dato, non allungati.
 VINCOLI_NON_IMPOSTI = {
-    ("Speciale", "Reintegrato", "MERCENARIO"):
-        "restrizioni dice «Solo su Mercenari», il ramo esistente è «Solo Mercenari» senza «su»",
-    ("Speciale", "Nato Fortunato", "FRATELLANZA"):
-        "fazioni_permesse include Fratellanza, che il testo esclude",
-    ("Speciale", "Addestramento Speciale", "DOOMTROOPER"):
-        "nessun campo impone «Doomtrooper»; fazioni_permesse è ['Generica']",
-    ("Equipaggiamento", "Lancia Castigator", "DOOMTROOPER"):
-        "nessuna restrizione dichiarata; fazioni_permesse è ['Generica']",
+    # Entrambe dichiarano «GUERRIERO NON-PERSONALITÀ» nel solo campo `condizioni`, che
+    # nessun consumatore legge, e hanno `restrizioni` vuoto. Restano scoperte per scelta:
+    # portano `set_espansione = "Sconosciuto"`, quindi il filtro sulle espansioni le tiene
+    # fuori da collezioni e mazzi, e non se ne trova la scansione. Sono 19 le carte in
+    # quello stato — vedi `test_le_carte_fuori_espansione_restano_note`.
     ("Speciale", "Intimidazione", "PERSONALITÀ"):
-        "«QUALSIASI GUERRIERO NON-PERSONALITÀ»: il vincolo è solo in `condizioni`, "
-        "che nessun consumatore legge, e `restrizioni` è vuoto",
+        "carta fuori espansione: non entra in collezioni né in mazzi",
     ("Speciale", "Promozione Sul Campo", "PERSONALITÀ"):
-        "«UN GUERRIERO NON-PERSONALITÀ»: stesso caso, il vincolo resta in `condizioni`",
+        "carta fuori espansione: non entra in collezioni né in mazzi",
 }
 
 # Scostamenti che non sono difetti: il concetto compare nel testo per una ragione
@@ -83,6 +79,8 @@ FALSI_SCOSTAMENTI = {
     ("Speciale", "Morte Istantanea", "DOOMTROOPER"):
         "il Doomtrooper è l'attaccante da cui ci si difende, non chi riceve la carta",
     ("Equipaggiamento", "Furga 750", "ERETICO"):
+        "«OGNI MERCENARIO O ERETICO» è un'alternativa: chi la riceve ne soddisfa una",
+    ("Equipaggiamento", "Furga 750", "MERCENARIO"):
         "«OGNI MERCENARIO O ERETICO» è un'alternativa: chi la riceve ne soddisfa una",
     ("Missione", "Cospirazione Eretica", "DOOMTROOPER"):
         "«UN DOOMTROOPER O UN ERETICO» è un'alternativa",
@@ -155,6 +153,35 @@ def test_i_vincoli_non_imposti_sono_ancora_tali(chiave, causa):
                for tipo, carta, concetto, _, _ in SCOSTAMENTI), (
         f"{chiave[1]}: il vincolo «{chiave[2]}» è ora imposto ({causa}). "
         f"Toglilo da VINCOLI_NON_IMPOSTI."
+    )
+
+
+# Carte che dichiarano un'espansione non riconosciuta: il filtro sulle espansioni le
+# tiene fuori da collezioni e mazzi, quindi i loro vincoli non hanno modo di sbagliare.
+# Sono elencate perché l'esclusione resti una scelta visibile e non una dimenticanza:
+# il giorno che una di queste ritrova la propria espansione, i suoi vincoli vanno
+# verificati come tutti gli altri.
+ESPANSIONI_NOTE = {"Base", "Inquisition", "Warzone", "Golgotha"}
+
+
+def test_le_carte_fuori_espansione_restano_note():
+    """
+    Il conteggio delle carte con un'espansione non riconosciuta non deve crescere
+    inavvertitamente: sono carte che il gioco non vede.
+    """
+    fuori = []
+    for tipo, modulo, variabile, _ in TIPI + [
+            ("Arte", "Database_Arte", "CARTE_ARTE_DATABASE", "")]:
+        database = getattr(importlib.import_module(f"source.data_base_cards.{modulo}"),
+                           variabile)
+        for chiave, dati in database.items():
+            espansione = str(dati.get("set_espansione") or "")
+            if espansione and espansione not in ESPANSIONI_NOTE:
+                fuori.append(f"{tipo}: {chiave} ({espansione})")
+
+    assert len(fuori) == 19, (
+        f"le carte fuori espansione sono {len(fuori)}, non le 19 note:\n  "
+        + "\n  ".join(sorted(fuori))
     )
 
 

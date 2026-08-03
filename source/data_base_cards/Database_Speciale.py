@@ -432,7 +432,10 @@ DATABASE_SPECIALI = {
         "testo_carta": "GIOCABILE IMMEDIATAMENTE DOPO CHE UN DOOMTROOPER, NON DELLA FRATELLANZA, È STATO INTRODOTTO IN UNA SQUADRA. Il nuovo arrivato ha contatti molto importanti. Spendendo 5D potrai guadagnare 3 PUNTI PROMOZIONE. Questa carta può essere giocata solo una volta per partita.",
         "flavour_text": "",
         "keywords": [],
-        "restrizioni": ["Non utilizzabile su membri della Fratellanza"],
+        # `fazioni_permesse` è DOOMTROOPER, che comprende la Fratellanza: a escluderla
+        # deve essere questa restrizione, che però era scritta in un modo che nessun ramo
+        # riconosce — quello esistente è «Non utilizzabile dalla Fratellanza».
+        "restrizioni": ["Non utilizzabile dalla Fratellanza"],
         "valore_strategico": 1,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
@@ -1632,7 +1635,9 @@ DATABASE_SPECIALI = {
         "testo_carta": "GIOCABILE SU UN MERCENARIO. La Corporazione ha rivalutato la sua posizione e ha deciso di reintegrarlo. Il guerriero potrà guadagnare Punti Promozione. Non viene più considerato un Mercenario e ottiene un +1 in C, S, A, V.",
         "flavour_text": "",
         "keywords": ["Mercenario"],
-        "restrizioni": ["Solo su Mercenari"],
+        # Il ramo che impone il vincolo cerca «Solo Mercenari»: con il «su» di troppo la
+        # restrizione non veniva riconosciuta e la carta andava a 126 guerrieri su 136.
+        "restrizioni": ["Solo Mercenari"],
         "valore_strategico": 1,
         "quantita": 1,
         "quantita_minima_consigliata": 1,
@@ -5105,7 +5110,9 @@ DATABASE_SPECIALI = {
         "testo_carta": "GIOCABILE SU OGNI DOOMTROOPER NON PERSONALITÀ AL COSTO DI UN'AZIONE. QUESTA CARTA RIMANE IN GIOCO. Al costo di tre Azioni questo guerriero può scartare una carta Speciale.",
         "flavour_text": "",
         "keywords": [],
-        "restrizioni": ["Non utilizzabile da Personalita"],
+        # «OGNI DOOMTROOPER NON PERSONALITÀ»: le due condizioni sono cumulative. Solo la
+        # seconda era imposta, e la carta finiva anche ai 40 guerrieri non Doomtrooper.
+        "restrizioni": ["Solo Doomtrooper", "Non utilizzabile da Personalita"],
         "valore_strategico": 5,
         "quantita": 2,
         "quantita_minima_consigliata": 1,

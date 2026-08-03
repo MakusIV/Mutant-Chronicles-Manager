@@ -1880,6 +1880,8 @@ DATABASE_EQUIPAGGIAMENTO = {
                 "statistica": "combattimento",
                 "valore": "+5",
                 "condizione": "Uso ristretto: se assegnata a un NEFARITA DI ALGEROTH",
+                # Valpurgius e' l'unico Nefarita che sia anche Seguace di Algeroth.
+                "guerrieri_avvantaggiati": ["Valpurgius"],
                 "descrizione": "allora l'Azogar conferisce un +5 in C"
             }
         ],
@@ -2148,6 +2150,7 @@ DATABASE_EQUIPAGGIAMENTO = {
                 "statistica": "armatura",
                 "valore": "+3",
                 "condizione": "Uso ristretto: Se è un INQUISITORE o un INQUISITORE MASSIMO",
+                "guerrieri_avvantaggiati": ["Inquisitore", "L'Inquisitore Massimo"],
                 "descrizione": "allora guadagna un +3 in A"
             }
         ],
@@ -2407,6 +2410,7 @@ DATABASE_EQUIPAGGIAMENTO = {
                 "statistica": "combattimento",
                 "valore": "+4",
                 "condizione": "Uso ristretto: Se assegnata a una VALCHIRIA, durante il combattimento",
+                "guerrieri_avvantaggiati": ["Valkiria"],
                 "descrizione": "Se assegnata a una VALCHIRIA, durante il combattimento"
             },
             {
@@ -2419,7 +2423,10 @@ DATABASE_EQUIPAGGIAMENTO = {
         "abilita_speciali": [],
         "requisiti": [],
         "fazioni_permesse": ["Generica"],
-        "restrizioni_guerriero": [],
+        # «ASSEGNABILE AD OGNI DOOMTROOPER»: il vincolo era dichiarato solo nel testo, e
+        # `fazioni_permesse: ["Generica"]` non ne impone nessuno — la lancia finiva anche
+        # ai 47 guerrieri dell'Oscura Legione.
+        "restrizioni_guerriero": ["Solo Doomtrooper"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
         "meccaniche_armi": {},

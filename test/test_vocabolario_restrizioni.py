@@ -152,7 +152,6 @@ RESTRIZIONI_IGNORATE = {
         "il ramo esistente è «Non utilizzabile dalla Fratellanza»",
     ("Speciale", "Non utilizzabile dall'Oscura Legione"):
         "il ramo esistente è «Non utilizzabile dalla Oscura Legione»: differisce per «dall'» contro «dalla»",
-    ("Speciale", "Solo su Mercenari"): "il ramo esistente è «Solo Mercenari», senza «su»",
     ("Speciale", "Seguaci di Demnogonis"): "il ramo esistente è «Solo Seguaci di», manca «Solo»",
     # Nomi di guerriero specifico: nessuna classe confronta il nome del destinatario.
     ("Equipaggiamento", "Tutore"): "nessun ramo confronta il nome del guerriero",

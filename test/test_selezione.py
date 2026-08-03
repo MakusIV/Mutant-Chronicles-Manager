@@ -8,6 +8,7 @@ non fa fallire niente, produce solo mazzi che ignorano ciò che si è chiesto.
 """
 
 import ast
+import importlib
 import pathlib
 import random
 
@@ -24,12 +25,26 @@ ESPANSIONI = [s.value for s in Set_Espansione]
 
 @pytest.fixture(scope="module")
 def creatore():
-    """Una collezione con 5 copie di ogni guerriero: isola la selezione dal caso."""
+    """
+    Una collezione con 5 copie di ogni carta: isola la selezione dal caso.
+
+    Serve anche l'equipaggiamento, non i soli guerrieri, perché i test sulla sinergia
+    verificano quali carte di supporto emergono.
+    """
     collezione = CollezioneGiocatore(1)
-    for nome in GUERRIERI_DATABASE:
-        guerriero = crea_guerriero_da_nome(nome)
-        if guerriero is not None:
-            collezione.aggiungi_carta(guerriero, 5)
+
+    equipaggiamento = importlib.import_module(
+        "source.data_base_cards.Database_Equipaggiamento")
+    fonti = [
+        (GUERRIERI_DATABASE, crea_guerriero_da_nome),
+        (equipaggiamento.DATABASE_EQUIPAGGIAMENTO,
+         equipaggiamento.crea_equipaggiamento_da_database),
+    ]
+    for database, costruisci in fonti:
+        for nome in database:
+            carta = costruisci(nome)
+            if carta is not None:
+                collezione.aggiungi_carta(carta, 5)
     return CreatoreMazzo(collezione)
 
 
@@ -89,6 +104,123 @@ def test_i_cultisti_entrano_anche_in_un_mazzo_doomtrooper(creatore):
     selezionati = _seleziona(creatore, doomtrooper=True, fratellanza=False,
                              oscura_legione=False, orientamento_cultista=True)
     assert [n for n in selezionati if n.startswith("Cultista")]
+
+
+# --------------------------------------------------------------------------
+# Bonus riservati a guerrieri specifici
+# --------------------------------------------------------------------------
+#
+# Alcune carte concedono un potenziamento maggiore a un guerriero determinato — la
+# Lancia Castigator dà +2 in C a ogni Doomtrooper e +4 a una Valchiria. La condizione
+# lo dice in prosa e in maiuscolo; `guerrieri_avvantaggiati` ne è la forma
+# confrontabile, ed è quella che il punteggio sa leggere.
+
+CARTE_CON_SINERGIA = [
+    ("Lancia Castigator", "Valkiria"),
+    ("Azogar", "Valpurgius"),
+    ("Tenuta da Battaglia", "Inquisitore"),
+]
+
+
+def _equipaggiamento(nome):
+    modulo = importlib.import_module("source.data_base_cards.Database_Equipaggiamento")
+    return modulo.crea_equipaggiamento_da_database(nome)
+
+
+@pytest.mark.parametrize("nome_carta,nome_guerriero", CARTE_CON_SINERGIA,
+                         ids=[c[0] for c in CARTE_CON_SINERGIA])
+def test_la_sinergia_e_riconosciuta_solo_col_guerriero_giusto(creatore, nome_carta,
+                                                              nome_guerriero):
+    carta = _equipaggiamento(nome_carta)
+    assert carta is not None
+
+    con = [crea_guerriero_da_nome(nome_guerriero)]
+    senza = [crea_guerriero_da_nome("Blood Beret")]
+
+    assert creatore._bonus_condizionato_attivabile(carta, con), (
+        f"{nome_carta}: la sinergia con {nome_guerriero} non viene riconosciuta")
+    assert not creatore._bonus_condizionato_attivabile(carta, senza), (
+        f"{nome_carta}: la sinergia scatta anche senza {nome_guerriero}")
+
+
+def test_una_carta_senza_il_campo_non_attiva_mai_la_sinergia(creatore):
+    """Il verso complementare: il bonus non deve comparire dal nulla."""
+    carta = _equipaggiamento("Ticker")
+    assert carta is not None
+    assert not creatore._bonus_condizionato_attivabile(
+        carta, [crea_guerriero_da_nome("Valkiria")])
+
+
+def test_i_guerrieri_avvantaggiati_esistono_nel_database():
+    """
+    Il campo è una trascrizione della condizione in prosa: un refuso nel nome lo
+    renderebbe inerte senza che nulla lo segnali — è il difetto che questa suite
+    insegue da principio.
+    """
+    modulo = importlib.import_module("source.data_base_cards.Database_Equipaggiamento")
+    sconosciuti = []
+    for nome_carta, dati in modulo.DATABASE_EQUIPAGGIAMENTO.items():
+        for modificatore in dati.get("modificatori_speciali") or []:
+            for nome in modificatore.get("guerrieri_avvantaggiati") or []:
+                if nome not in GUERRIERI_DATABASE:
+                    sconosciuti.append(f"{nome_carta}: «{nome}»")
+
+    assert not sconosciuti, (
+        "nomi in `guerrieri_avvantaggiati` che non esistono fra i guerrieri: "
+        f"{sconosciuti}")
+
+
+def test_il_campo_accompagna_sempre_una_condizione_ristretta():
+    """
+    `guerrieri_avvantaggiati` ha senso solo su un modificatore che il punteggio non
+    conteggia da sé: se la condizione non fosse «Uso ristretto:», il bonus verrebbe
+    contato due volte.
+    """
+    modulo = importlib.import_module("source.data_base_cards.Database_Equipaggiamento")
+    incoerenti = []
+    for nome_carta, dati in modulo.DATABASE_EQUIPAGGIAMENTO.items():
+        for modificatore in dati.get("modificatori_speciali") or []:
+            if not (modificatore.get("guerrieri_avvantaggiati") or []):
+                continue
+            if "uso ristretto:" not in str(modificatore.get("condizione", "")).lower():
+                incoerenti.append(f"{nome_carta}: {modificatore.get('condizione')!r}")
+
+    assert not incoerenti, (
+        "modificatori con `guerrieri_avvantaggiati` ma senza condizione «Uso ristretto:», "
+        f"il cui bonus verrebbe conteggiato due volte: {incoerenti}")
+
+
+@pytest.mark.lento
+def test_la_sinergia_fa_salire_la_carta_in_classifica(creatore):
+    """
+    L'effetto sulla selezione, misurato a parità di squadra: cambia solo l'esito del
+    rilevamento, così il confronto non risente del numero di guerrieri — che altrimenti
+    sposterebbe il fattore di compatibilità di tutte le carte.
+    """
+    squadra = [g for g in (crea_guerriero_da_nome(n) for n in
+                           ("Blood Beret", "Ussaro", "Sergente", "Valkiria")) if g]
+
+    def posizione(sinergia_attiva):
+        originale = CreatoreMazzo._bonus_condizionato_attivabile
+        if not sinergia_attiva:
+            CreatoreMazzo._bonus_condizionato_attivabile = lambda self, c, g: False
+        try:
+            random.seed(42)
+            selezionate = creatore.seleziona_carte_supporto(
+                squadra=squadra, schieramento=[], espansioni_richieste=ESPANSIONI,
+                tipo_carta="equipaggiamento", doomtrooper=True, fratellanza=True,
+                oscura_legione=False, numero_carte=200)
+            nomi = [getattr(c, "nome", "") for c in selezionate]
+            return nomi.index("Lancia Castigator") if "Lancia Castigator" in nomi else None
+        finally:
+            CreatoreMazzo._bonus_condizionato_attivabile = originale
+
+    con = posizione(True)
+    senza = posizione(False)
+    assert con is not None and senza is not None, "la carta non compare in classifica"
+    assert con < senza, (
+        f"con la Valkiria in squadra la Lancia Castigator dovrebbe salire, "
+        f"ma passa dalla posizione {senza} alla {con}")
 
 
 # --------------------------------------------------------------------------

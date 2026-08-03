@@ -283,9 +283,21 @@ class Speciale:
                         risultato["errori"].append(f"Solo Eretici")
                 
                 elif "Solo Necromutanti" in restrizione:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Necromutante" not in guerriero.keywords  ):                       
+                    if (guerriero.keywords is None or guerriero.keywords == [] or "Necromutante" not in guerriero.keywords  ):
                         risultato["puo_assegnare"] = False
                         risultato["errori"].append(f"Solo Necromutanti")
+
+                # Il ramo mancava, a differenza delle altre cinque classi che lo hanno:
+                # `Reintegrato` («GIOCABILE SU UN MERCENARIO») dichiarava la restrizione e
+                # la vedeva ignorata, finendo a 126 guerrieri su 136.
+                # Se un giorno una carta Speciale userà la forma «Solo Mercenari o
+                # Eretici», il suo ramo andrà messo *prima* di questo, che ne è il prefisso.
+                elif "Solo Mercenari" in restrizione:
+                    if (guerriero.fazione != Fazione.MERCENARIO
+                            and (guerriero.keywords is None or guerriero.keywords == []
+                                 or "Mercenario" not in guerriero.keywords)):
+                        risultato["puo_assegnare"] = False
+                        risultato["errori"].append(f"Solo Mercenari")
 
                 elif "Solo Personalita" in restrizione:
                     if guerriero.tipo != TipoGuerriero.PERSONALITA or (guerriero.keywords is None or guerriero.keywords == [] or "Personalita" not in guerriero.keywords ):
