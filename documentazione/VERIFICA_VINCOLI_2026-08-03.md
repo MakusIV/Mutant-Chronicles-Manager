@@ -153,6 +153,30 @@ DELL'ARTE») e `Portatore Di Luce` (Reliquia, in `poteri`, «Se assegnata a un
 CARDINALE»). Il punteggio valuta quei blocchi con logiche proprie: aggiungervi il campo
 senza estendere anche il consumo creerebbe l'ennesimo dato che nessuno legge.
 
+### La tassonomia dell'Oscura Simmetria
+
+Il database raccoglie tutte le carte che il testo dichiara Doni **degli Apostoli**,
+**dell'Oscura Simmetria** o **dell'Oscura Legione**. Le ultime due diciture indicano la
+stessa cosa — 9 carte contro 1, quasi certamente un refuso di trascrizione — e il codice
+le tratta già come equivalenti. La partizione che conta è un'altra:
+
+| | Carte | `apostolo_padre` |
+|---|---|---|
+| Doni degli Apostoli | 25 | sì |
+| doni generici | 10 | no |
+
+Un guerriero può dichiarare due restrizioni **complementari**, che vanno trattate allo
+stesso modo: `Solo doni degli Apostoli` esclude dai generici, `Solo doni dell'Oscura
+Simmetria` esclude dai Doni degli Apostoli.
+
+La seconda era però scritta come coda della condizione d'ingresso al blocco che verifica
+il Seguace, dove agiva da **esenzione** anziché da esclusione: il guerriero `Eretico`,
+l'unico che la dichiara, saltava la verifica e riceveva **23 Doni di Apostoli su 25**, di
+Apostoli di cui non è Seguace. Ora ne riceve 0 e mantiene tutti e 10 i generici.
+
+Chi è Seguace **e** Eretico — i Cultisti, `Destroyer` — riceve i Doni del proprio
+Apostolo più i generici, e nient'altro: verificato.
+
 ## 3. Correzioni già applicate
 
 | Dove | Cosa |

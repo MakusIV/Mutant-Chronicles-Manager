@@ -184,7 +184,22 @@ class Oscura_Simmetria:
         # destinatario (essere Nefarita) è dichiarato a parte ed è verificato più sotto.
         dono_aperto_a_tutti = "Dono di qualsiasi Apostolo" in self.restrizioni
 
-        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO and not dono_aperto_a_tutti and "Solo doni dell'Oscura Simmetria" not in guerriero.restrizioni:
+        # «Solo doni dell'Oscura Simmetria» e «Solo doni degli Apostoli» sono restrizioni
+        # complementari del guerriero, e vanno trattate allo stesso modo: la seconda esclude
+        # dai generici (poco sopra), questa dai Doni degli Apostoli.
+        #
+        # Era invece scritta come coda della condizione d'ingresso al blocco sottostante,
+        # dove agiva da esenzione anziché da esclusione: il guerriero «Eretico», l'unico
+        # che la dichiara, saltava la verifica sul Seguace e riceveva 23 Doni su 25, di
+        # Apostoli di cui non è Seguace.
+        #
+        # Il veto precede ogni deroga sull'Apostolo: nemmeno le carte che dichiarano
+        # «Dono di qualsiasi Apostolo» arrivano a chi può ricevere i soli doni generici.
+        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and "Solo doni dell'Oscura Simmetria" in guerriero.restrizioni:
+            risultato["puo_lanciare"] = False
+            risultato["errori"].append(f"Il guerriero {guerriero.nome} può ricevere solo i Doni generici dell'Oscura Simmetria")
+
+        if self.tipo == TipoOscuraSimmetria.DONO_APOSTOLO and self.apostolo_padre != ApostoloOscuraSimmetria.NESSUNO and not dono_aperto_a_tutti:
             seguace_richiesto = f"Seguace di {self.apostolo_padre.value}"
             # Eccezione: alcuni guerrieri (es. Billy) ricevono i Doni di qualsiasi Apostolo
             # pur non essendo Seguaci; lo dichiarano con un'abilità di tipo "Dono degli Apostoli".

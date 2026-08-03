@@ -223,6 +223,134 @@ def test_le_personalita_del_database_si_dichiarano_soprattutto_col_tipo():
         f"Personalità dichiarate con la sola keyword: {sorted(solo_keyword)}")
 
 
+# --------------------------------------------------------------------------
+# Oscura Simmetria: i Doni degli Apostoli e quelli generici
+# --------------------------------------------------------------------------
+#
+# Il database raccoglie tutte le carte che il testo dichiara Doni degli Apostoli,
+# dell'Oscura Simmetria o dell'Oscura Legione. Le ultime due diciture indicano la stessa
+# cosa — 9 carte contro 1, quasi certamente un refuso di trascrizione — e il codice le
+# tratta già come equivalenti. La partizione che conta è un'altra: **Doni di un Apostolo**
+# (25, con `apostolo_padre`) contro **doni generici** (10, senza).
+#
+# Un guerriero può dichiarare due restrizioni complementari, che vanno trattate allo
+# stesso modo: «Solo doni degli Apostoli» esclude dai generici, «Solo doni dell'Oscura
+# Simmetria» esclude dai Doni degli Apostoli.
+
+
+def _partizione_oscura_simmetria():
+    modulo = importlib.import_module("source.data_base_cards.Database_Oscura_Simmetria")
+    database = modulo.DATABASE_OSCURA_SIMMETRIA
+    apostoli = [k for k, d in database.items() if d.get("tipo") == "Dono degli Apostoli"]
+    generici = [k for k, d in database.items() if d.get("tipo") != "Dono degli Apostoli"]
+    return modulo, apostoli, generici
+
+
+def _quanti_riceve(nome_guerriero, chiavi):
+    modulo, _, _ = _partizione_oscura_simmetria()
+    guerriero = crea_guerriero_da_nome(nome_guerriero)
+    assert guerriero is not None
+    return sum(1 for chiave in chiavi
+               if (carta := modulo.crea_carta_da_database(chiave))
+               and carta.puo_essere_associata_a_guerriero(guerriero).get("puo_lanciare"))
+
+
+def test_chi_riceve_solo_doni_generici_e_escluso_dai_doni_degli_apostoli():
+    """
+    Il guerriero «Eretico» dichiara «Solo doni dell'Oscura Simmetria». La restrizione
+    era scritta come coda della condizione d'ingresso al blocco che verifica il Seguace,
+    dove agiva da **esenzione** anziché da esclusione: l'Eretico saltava la verifica e
+    riceveva 23 Doni su 25, di Apostoli di cui non è Seguace.
+    """
+    _, apostoli, generici = _partizione_oscura_simmetria()
+
+    con_restrizione = [nome for nome, dati in GUERRIERI_DATABASE.items()
+                       if "Solo doni dell'Oscura Simmetria" in (dati.get("restrizioni") or [])]
+    assert con_restrizione, "nessun guerriero dichiara la restrizione: il test non misura nulla"
+
+    for nome in con_restrizione:
+        assert _quanti_riceve(nome, apostoli) == 0, (
+            f"{nome} riceve Doni degli Apostoli pur potendo ricevere i soli generici")
+        assert _quanti_riceve(nome, generici) == len(generici), (
+            f"{nome} non riceve tutti i doni generici, che sono i soli a cui ha diritto")
+
+
+def test_chi_riceve_solo_doni_di_apostoli_e_escluso_dai_generici():
+    """Il verso complementare, che era già corretto: serve a tenere simmetriche le due."""
+    _, _, generici = _partizione_oscura_simmetria()
+
+    con_restrizione = [nome for nome, dati in GUERRIERI_DATABASE.items()
+                       if "Solo doni degli Apostoli" in (dati.get("restrizioni") or [])]
+    assert con_restrizione
+
+    for nome in con_restrizione:
+        assert _quanti_riceve(nome, generici) == 0, (
+            f"{nome} riceve doni generici pur potendo ricevere i soli Doni degli Apostoli")
+
+
+def test_il_veto_sui_doni_generici_precede_il_vincolo_sul_seguace():
+    """
+    Il veto vale anche per chi **sarebbe** Seguace dell'Apostolo che concede il Dono.
+
+    Nel database non esiste un guerriero simile: l'unico che dichiara «Solo doni
+    dell'Oscura Simmetria» è l'Eretico, che non è Seguace di nessuno e verrebbe respinto
+    comunque dalla verifica sul Seguace. Le due regole coincidono quindi sui dati
+    attuali, e senza un guerriero costruito apposta il ramo che le distingue resterebbe
+    senza copertura — corretto per un effetto collaterale invece che per la propria
+    ragione.
+
+    Il caso è ipotetico, la regola no: chi può ricevere i soli doni generici non riceve
+    Doni di Apostoli, quale che sia il suo Apostolo.
+    """
+    from conftest import crea_guerriero
+    from source.cards.Guerriero import Fazione
+
+    modulo, apostoli, generici = _partizione_oscura_simmetria()
+    dono_di_algeroth = next(
+        chiave for chiave in apostoli
+        if modulo.DATABASE_OSCURA_SIMMETRIA[chiave].get("apostolo_padre") == "Algeroth"
+        and "Solo Nefarita" not in (modulo.DATABASE_OSCURA_SIMMETRIA[chiave].get("restrizioni") or []))
+    carta = modulo.crea_carta_da_database(dono_di_algeroth)
+
+    seguace_vincolato = crea_guerriero(
+        nome="seguace vincolato", fazione=Fazione.OSCURA_LEGIONE,
+        keywords=["Seguace di Algeroth", "Eretico"],
+        restrizioni=["Solo doni dell'Oscura Simmetria"])
+    seguace_libero = crea_guerriero(
+        nome="seguace libero", fazione=Fazione.OSCURA_LEGIONE,
+        keywords=["Seguace di Algeroth", "Eretico"])
+
+    assert carta.puo_essere_associata_a_guerriero(seguace_libero).get("puo_lanciare"), (
+        f"{dono_di_algeroth}: un Seguace di Algeroth senza vincoli dovrebbe riceverlo")
+    assert not carta.puo_essere_associata_a_guerriero(seguace_vincolato).get("puo_lanciare"), (
+        f"{dono_di_algeroth} arriva a un Seguace di Algeroth che può ricevere i soli "
+        f"doni generici: il veto non precede il vincolo sul Seguace")
+
+
+@pytest.mark.parametrize("nome_guerriero,apostolo", [
+    ("Cultista di Semai", "Semai"),
+    ("Cultista di Algeroth", "Algeroth"),
+    ("Destroyer", "Algeroth"),
+])
+def test_un_seguace_riceve_i_doni_del_proprio_apostolo_e_i_generici(nome_guerriero, apostolo):
+    """
+    Un Cultista è Seguace di un Apostolo **e** Eretico: riceve i Doni del proprio
+    Apostolo e tutti i generici, non quelli degli altri Apostoli.
+    """
+    modulo, apostoli, generici = _partizione_oscura_simmetria()
+    guerriero = crea_guerriero_da_nome(nome_guerriero)
+
+    ricevuti = {chiave for chiave in apostoli
+                if (carta := modulo.crea_carta_da_database(chiave))
+                and carta.puo_essere_associata_a_guerriero(guerriero).get("puo_lanciare")}
+
+    estranei = {c for c in ricevuti
+                if modulo.DATABASE_OSCURA_SIMMETRIA[c].get("apostolo_padre") != apostolo}
+    assert not estranei, f"{nome_guerriero} riceve Doni di altri Apostoli: {sorted(estranei)}"
+    assert ricevuti, f"{nome_guerriero} non riceve alcun Dono di {apostolo}"
+    assert _quanti_riceve(nome_guerriero, generici) == len(generici)
+
+
 def _missione(nome):
     modulo = importlib.import_module("source.data_base_cards.Database_Missione")
     return modulo.crea_missione_da_database(nome)
