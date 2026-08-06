@@ -5678,26 +5678,80 @@ def crea_pdf_mazzo(mazzo: Dict[str, Any], percorso_pdf: str, numero_giocatore: i
         return False
 
 
-def crea_mazzo_da_cartella_collezione(
+def _carica_collezione_da_cartella(
     cartella_collezioni: str,
     numero_collezione: int,
     verbose: bool = True
-) -> Dict[str, Any]:
+) -> "CollezioneGiocatore":
     """
-    Crea un mazzo da una cartella di collezioni con interazione utente.
-
-    Questa funzione:
-    1. Carica il file lista_collezioni.json dalla cartella specificata
-    2. Interagisce con l'utente per ottenere i parametri del mazzo
-    3. Crea il mazzo dalla collezione selezionata
-    4. Salva il mazzo in formato JSON
-    5. Crea un PDF con l'elenco delle carte
-    6. Esporta le immagini delle carte del mazzo
+    Carica una singola collezione dal file lista_collezioni.json di una cartella.
 
     Args:
         cartella_collezioni: Nome della cartella contenente le collezioni (relativa a out/)
-        numero_collezione: Numero della collezione da cui creare il mazzo (1-based)
+        numero_collezione: Numero della collezione da caricare (1-based)
         verbose: Se True, stampa messaggi di progresso
+
+    Returns:
+        La collezione richiesta
+
+    Raises:
+        ValueError: se il file non è caricabile o il numero collezione non è valido
+    """
+    # NOTA: carica_collezioni_json_migliorato aggiunge automaticamente PERCORSO_SALVATAGGIO ("out/")
+    percorso_relativo = f"{cartella_collezioni}/lista_collezioni.json"
+
+    if verbose:
+        print(f"\n📂 Caricamento collezioni...")
+
+    risultato = carica_collezioni_json_migliorato(percorso_relativo)
+
+    if not risultato:
+        raise ValueError(f"Impossibile caricare il file {percorso_relativo}")
+
+    # La funzione restituisce una tupla (dati_json, collezioni)
+    dati_json, collezioni = risultato
+
+    if not collezioni:
+        raise ValueError("Nessuna collezione trovata nel file")
+
+    if numero_collezione < 1 or numero_collezione > len(collezioni):
+        raise ValueError(f"Numero collezione non valido. Deve essere tra 1 e {len(collezioni)}")
+
+    if verbose:
+        print(f"✅ Collezione {numero_collezione} caricata")
+
+    return collezioni[numero_collezione - 1]
+
+
+def crea_mazzo_da_cartella_collezione_con_parametri(
+    cartella_collezioni: str,
+    numero_collezione: int,
+    numero_carte_min: int,
+    numero_carte_max: int,
+    espansioni: List[str],
+    doomtrooper: bool = False,
+    orientamento_doomtrooper: Optional[List[str]] = None,
+    fratellanza: bool = False,
+    orientamento_arte: Optional[List[str]] = None,
+    oscura_legione: bool = False,
+    orientamento_apostolo: Optional[List[str]] = None,
+    orientamento_eretico: bool = False,
+    orientamento_cultista: bool = False,
+    verbose: bool = True
+) -> Dict[str, Any]:
+    """
+    Crea un mazzo da una cartella di collezioni, con i parametri già determinati.
+
+    Stessa logica di `crea_mazzo_da_cartella_collezione`, ma senza interazione da
+    terminale: i parametri del mazzo sono passati direttamente come argomenti, così
+    la funzione è utilizzabile anche da un'interfaccia grafica.
+
+    Questa funzione:
+    1. Carica il file lista_collezioni.json dalla cartella specificata
+    2. Crea il mazzo dalla collezione selezionata secondo i parametri indicati
+    3. Salva il mazzo in formato JSON
+    4. Crea un PDF con l'elenco delle carte
+    5. Esporta le immagini delle carte del mazzo
 
     Returns:
         Dizionario con le statistiche della creazione
@@ -5710,93 +5764,7 @@ def crea_mazzo_da_cartella_collezione(
             print(f"📁 Cartella: {cartella_collezioni}")
             print(f"🎮 Numero collezione: {numero_collezione}")
 
-        # Costruisce il percorso del file collezioni
-        # NOTA: carica_collezioni_json_migliorato aggiunge automaticamente PERCORSO_SALVATAGGIO ("out/")
-        percorso_relativo = f"{cartella_collezioni}/lista_collezioni.json"
-
-        # Carica le collezioni
-        if verbose:
-            print(f"\n📂 Caricamento collezioni...")
-
-        risultato = carica_collezioni_json_migliorato(percorso_relativo)
-
-        if not risultato:
-            raise ValueError(f"Impossibile caricare il file {percorso_relativo}")
-
-        # La funzione restituisce una tupla (dati_json, collezioni)
-        dati_json, collezioni = risultato
-
-        if not collezioni:
-            raise ValueError("Nessuna collezione trovata nel file")
-
-        if numero_collezione < 1 or numero_collezione > len(collezioni):
-            raise ValueError(f"Numero collezione non valido. Deve essere tra 1 e {len(collezioni)}")
-
-        collezione = collezioni[numero_collezione - 1]
-
-        if verbose:
-            print(f"✅ Collezione {numero_collezione} caricata")
-            print(f"\n{'='*80}")
-            print(f"CONFIGURAZIONE MAZZO")
-            print(f"{'='*80}")
-
-        # Interazione con l'utente per i parametri del mazzo
-        carte_min = int(input("Numero minimo di carte del mazzo: "))
-        carte_max = int(input("Numero massimo di carte del mazzo: "))
-
-        fazioni_doomtrooper = []
-        arti_scelte = []
-        apostoli_scelti = []
-        espansioni = []
-
-        # Doomtrooper
-        doomtrooper = input("Utilizzo doomtrooper (s/n): ").lower().startswith('s')
-        if doomtrooper:
-            scelta_fazioni = input("Vuoi specificare quali fazioni doomtrooper utilizzare (s/n): ").lower().startswith('s')
-            if scelta_fazioni:
-                print("Fazioni:")
-                for i, faz in enumerate(FAZIONI_DOOMTROOPER):
-                    print(f"  {i+1}. {faz.value}")
-                faz_input = input("Scegli fazioni (numeri separati da virgola): ")
-                faz_indices = [int(x.strip())-1 for x in faz_input.split(",")]
-                fazioni_doomtrooper = [list(FAZIONI_DOOMTROOPER)[i].value for i in faz_indices if 0 <= i < len(FAZIONI_DOOMTROOPER)]
-
-        # Fratellanza
-        fratellanza = input("Utilizzo fratellanza (s/n): ").lower().startswith('s')
-        if fratellanza:
-            scelta_arte = input("Vuoi specificare quali tipologie di Arte vuoi utilizzare (s/n): ").lower().startswith('s')
-            if scelta_arte:
-                print("Tipologie Arte:")
-                for i, arte in enumerate(DisciplinaArte):
-                    print(f"  {i+1}. {arte.value}")
-                art_input = input("Scegli le tipologie di Arte (numeri separati da virgola): ")
-                art_indices = [int(x.strip())-1 for x in art_input.split(",")]
-                arti_scelte = [list(DisciplinaArte)[i].value for i in art_indices if 0 <= i < len(DisciplinaArte)]
-
-        # Oscura Legione
-        cultisti = False
-        oscura_legione = input("Utilizzo oscura legione (s/n): ").lower().startswith('s')
-        if oscura_legione:
-            scelta_apostoli = input("Vuoi specificare quali Apostoli vuoi utilizzare (s/n): ").lower().startswith('s')
-            if scelta_apostoli:
-                print("Apostoli:")
-                for i, apo in enumerate(ApostoloOscuraSimmetria):
-                    print(f"  {i+1}. {apo.value}")
-                apo_input = input("Scegli gli Apostoli (numeri separati da virgola): ")
-                apo_indices = [int(x.strip())-1 for x in apo_input.split(",")]
-                apostoli_scelti = [list(ApostoloOscuraSimmetria)[i].value for i in apo_indices if 0 <= i < len(ApostoloOscuraSimmetria)]
-            cultisti = input("Utilizzo cultisti (s/n): ").lower().startswith('s')
-
-        # Eretici
-        eretici = input("Utilizzo eretici (s/n): ").lower().startswith('s')
-
-        # Espansioni
-        print("\nEspansioni disponibili:")
-        for i, esp in enumerate(Set_Espansione):
-            print(f"  {i+1}. {esp.value}")
-        esp_input = input("Scegli espansioni (numeri separati da virgola): ")
-        esp_indices = [int(x.strip())-1 for x in esp_input.split(",")]
-        espansioni = [list(Set_Espansione)[i].value for i in esp_indices if 0 <= i < len(Set_Espansione)]
+        collezione = _carica_collezione_da_cartella(cartella_collezioni, numero_collezione, verbose)
 
         # Crea il mazzo
         if verbose:
@@ -5806,18 +5774,31 @@ def crea_mazzo_da_cartella_collezione(
 
         mazzo = crea_mazzo_da_gioco(
             collezione,
-            numero_carte_max=carte_max,
-            numero_carte_min=carte_min,
+            numero_carte_max=numero_carte_max,
+            numero_carte_min=numero_carte_min,
             espansioni_richieste=espansioni,
             doomtrooper=doomtrooper,
-            orientamento_doomtrooper=fazioni_doomtrooper,
+            orientamento_doomtrooper=orientamento_doomtrooper or [],
             fratellanza=fratellanza,
-            orientamento_arte=arti_scelte,
+            orientamento_arte=orientamento_arte or [],
             oscura_legione=oscura_legione,
-            orientamento_apostolo=apostoli_scelti,
-            orientamento_eretico=eretici,
-            orientamento_cultista=cultisti
+            orientamento_apostolo=orientamento_apostolo or [],
+            orientamento_eretico=orientamento_eretico,
+            orientamento_cultista=orientamento_cultista
         )
+
+        # Con parametri incompatibili (es. nessun guerriero selezionabile per gli
+        # orientamenti richiesti) crea_mazzo_da_gioco interrompe prima di popolare le
+        # statistiche: senza questo controllo il codice sottostante fallirebbe con un
+        # KeyError invece di riportare la causa reale dell'errore.
+        if not mazzo.get('statistiche'):
+            errore_msg = "; ".join(mazzo.get('errori', [])) or "Impossibile creare il mazzo con i parametri indicati"
+            if verbose:
+                print(f"❌ {errore_msg}")
+            return {
+                'successo': False,
+                'errore': errore_msg
+            }
 
         if verbose:
             print(f"✅ Mazzo creato: {mazzo['statistiche']['numero_totale_carte']} carte totali")
@@ -5921,6 +5902,122 @@ def crea_mazzo_da_cartella_collezione(
             'numero_carte': mazzo['statistiche']['numero_totale_carte'],
             'mazzo': mazzo
         }
+
+    except Exception as e:
+        errore_msg = f"Errore durante la creazione del mazzo: {str(e)}"
+        if verbose:
+            print(f"\n❌ {errore_msg}")
+            import traceback
+            traceback.print_exc()
+
+        return {
+            'successo': False,
+            'errore': errore_msg
+        }
+
+
+def crea_mazzo_da_cartella_collezione(
+    cartella_collezioni: str,
+    numero_collezione: int,
+    verbose: bool = True
+) -> Dict[str, Any]:
+    """
+    Crea un mazzo da una cartella di collezioni con interazione utente.
+
+    Raccoglie da terminale i parametri del mazzo e delega la creazione vera e propria
+    a `crea_mazzo_da_cartella_collezione_con_parametri`.
+
+    Args:
+        cartella_collezioni: Nome della cartella contenente le collezioni (relativa a out/)
+        numero_collezione: Numero della collezione da cui creare il mazzo (1-based)
+        verbose: Se True, stampa messaggi di progresso
+
+    Returns:
+        Dizionario con le statistiche della creazione
+    """
+    try:
+        # Valida la cartella e il numero collezione prima di chiedere i parametri all'utente
+        _carica_collezione_da_cartella(cartella_collezioni, numero_collezione, verbose=False)
+
+        if verbose:
+            print(f"\n{'='*80}")
+            print(f"CONFIGURAZIONE MAZZO")
+            print(f"{'='*80}")
+
+        # Interazione con l'utente per i parametri del mazzo
+        carte_min = int(input("Numero minimo di carte del mazzo: "))
+        carte_max = int(input("Numero massimo di carte del mazzo: "))
+
+        fazioni_doomtrooper = []
+        arti_scelte = []
+        apostoli_scelti = []
+        espansioni = []
+
+        # Doomtrooper
+        doomtrooper = input("Utilizzo doomtrooper (s/n): ").lower().startswith('s')
+        if doomtrooper:
+            scelta_fazioni = input("Vuoi specificare quali fazioni doomtrooper utilizzare (s/n): ").lower().startswith('s')
+            if scelta_fazioni:
+                print("Fazioni:")
+                for i, faz in enumerate(FAZIONI_DOOMTROOPER):
+                    print(f"  {i+1}. {faz.value}")
+                faz_input = input("Scegli fazioni (numeri separati da virgola): ")
+                faz_indices = [int(x.strip())-1 for x in faz_input.split(",")]
+                fazioni_doomtrooper = [list(FAZIONI_DOOMTROOPER)[i].value for i in faz_indices if 0 <= i < len(FAZIONI_DOOMTROOPER)]
+
+        # Fratellanza
+        fratellanza = input("Utilizzo fratellanza (s/n): ").lower().startswith('s')
+        if fratellanza:
+            scelta_arte = input("Vuoi specificare quali tipologie di Arte vuoi utilizzare (s/n): ").lower().startswith('s')
+            if scelta_arte:
+                print("Tipologie Arte:")
+                for i, arte in enumerate(DisciplinaArte):
+                    print(f"  {i+1}. {arte.value}")
+                art_input = input("Scegli le tipologie di Arte (numeri separati da virgola): ")
+                art_indices = [int(x.strip())-1 for x in art_input.split(",")]
+                arti_scelte = [list(DisciplinaArte)[i].value for i in art_indices if 0 <= i < len(DisciplinaArte)]
+
+        # Oscura Legione
+        cultisti = False
+        oscura_legione = input("Utilizzo oscura legione (s/n): ").lower().startswith('s')
+        if oscura_legione:
+            scelta_apostoli = input("Vuoi specificare quali Apostoli vuoi utilizzare (s/n): ").lower().startswith('s')
+            if scelta_apostoli:
+                print("Apostoli:")
+                for i, apo in enumerate(ApostoloOscuraSimmetria):
+                    print(f"  {i+1}. {apo.value}")
+                apo_input = input("Scegli gli Apostoli (numeri separati da virgola): ")
+                apo_indices = [int(x.strip())-1 for x in apo_input.split(",")]
+                apostoli_scelti = [list(ApostoloOscuraSimmetria)[i].value for i in apo_indices if 0 <= i < len(ApostoloOscuraSimmetria)]
+            cultisti = input("Utilizzo cultisti (s/n): ").lower().startswith('s')
+
+        # Eretici
+        eretici = input("Utilizzo eretici (s/n): ").lower().startswith('s')
+
+        # Espansioni
+        print("\nEspansioni disponibili:")
+        for i, esp in enumerate(Set_Espansione):
+            print(f"  {i+1}. {esp.value}")
+        esp_input = input("Scegli espansioni (numeri separati da virgola): ")
+        esp_indices = [int(x.strip())-1 for x in esp_input.split(",")]
+        espansioni = [list(Set_Espansione)[i].value for i in esp_indices if 0 <= i < len(Set_Espansione)]
+
+        return crea_mazzo_da_cartella_collezione_con_parametri(
+            cartella_collezioni=cartella_collezioni,
+            numero_collezione=numero_collezione,
+            numero_carte_min=carte_min,
+            numero_carte_max=carte_max,
+            espansioni=espansioni,
+            doomtrooper=doomtrooper,
+            orientamento_doomtrooper=fazioni_doomtrooper,
+            fratellanza=fratellanza,
+            orientamento_arte=arti_scelte,
+            oscura_legione=oscura_legione,
+            orientamento_apostolo=apostoli_scelti,
+            orientamento_eretico=eretici,
+            orientamento_cultista=cultisti,
+            verbose=verbose
+        )
 
     except Exception as e:
         errore_msg = f"Errore durante la creazione del mazzo: {str(e)}"
