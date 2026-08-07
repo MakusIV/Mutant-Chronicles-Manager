@@ -362,7 +362,7 @@ def avvia_interfaccia(cartelle: List[Path]) -> int:
     """
     try:
         from PySide6.QtCore import Qt
-        from PySide6.QtGui import QFontMetrics, QImageReader, QPixmap
+        from PySide6.QtGui import QImageReader, QPixmap
         from PySide6.QtWidgets import (
             QAbstractItemView, QApplication, QComboBox, QFrame, QHBoxLayout,
             QHeaderView, QLabel, QLineEdit, QMainWindow, QScrollArea, QSizePolicy,
@@ -467,24 +467,15 @@ def avvia_interfaccia(cartelle: List[Path]) -> int:
 
     # ---- Elenco delle carte, raggruppato per tipologia e sotto-categoria
     elenco = QTreeWidget()
-    elenco.setColumnCount(2)
-    elenco.setHeaderLabels(["Carta", "Copie"])
+    elenco.setColumnCount(1)
+    elenco.setHeaderLabels(["Carta"])
     elenco.setAlternatingRowColors(True)
     elenco.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
     elenco.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
 
     intestazione = elenco.header()
-    # setStretchLastSection è attivo per impostazione predefinita e fa allargare l'ultima
-    # colonna a tutto lo spazio residuo, ignorando la modalità di ridimensionamento: senza
-    # disattivarlo la colonna delle copie occupa centinaia di pixel invece dei ~50 che servono.
-    intestazione.setStretchLastSection(False)
+    intestazione.setStretchLastSection(True)
     intestazione.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
-    intestazione.setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
-
-    metriche = QFontMetrics(elenco.font())
-    larghezza_copie = max(metriche.horizontalAdvance("999"),
-                          metriche.horizontalAdvance("Copie")) + 24   # margini e spaziatura
-    elenco.setColumnWidth(1, larghezza_copie)
 
     # ---- Pannello di dettaglio, con l'immagine della carta
     immagine = EtichettaImmagine()
@@ -538,7 +529,9 @@ def avvia_interfaccia(cartelle: List[Path]) -> int:
             f"{riga_disciplina}"
             f"<b>Copie nella collezione:</b> {carta.copie}<br>"
             f"<b>Espansione:</b> {carta.dettagli.get('set_espansione', '—')}<br>"
-            f"<b>Rarità:</b> {carta.dettagli.get('rarity', '—')}"
+            f"<b>Rarità:</b> {carta.dettagli.get('rarity', '—')}<br>"
+            f"<b>Valore strategico:</b> {carta.dettagli.get('valore_strategico', '—')}<br>"
+            f"<b>Fondamentale:</b> {'Sì' if carta.dettagli.get('fondamentale') else 'No'}"
             f"{blocco_testo}"
         )
 
@@ -584,10 +577,8 @@ def avvia_interfaccia(cartelle: List[Path]) -> int:
                 nodo_sotto.setExpanded(True)
 
                 for carta in carte_sotto:
-                    figlio = QTreeWidgetItem(nodo_sotto, [carta.nome, str(carta.copie)])
+                    figlio = QTreeWidgetItem(nodo_sotto, [carta.nome])
                     figlio.setData(0, Qt.ItemDataRole.UserRole, carta)
-                    figlio.setTextAlignment(
-                        1, Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
                     if primo_elemento is None:
                         primo_elemento = figlio
 
@@ -636,8 +627,8 @@ def avvia_interfaccia(cartelle: List[Path]) -> int:
     divisore = QSplitter(Qt.Orientation.Horizontal)
     divisore.addWidget(elenco)
     divisore.addWidget(pannello)
-    divisore.setStretchFactor(0, 3)
-    divisore.setStretchFactor(1, 2)
+    divisore.setStretchFactor(0, 2)
+    divisore.setStretchFactor(1, 3)
 
     contenitore = QWidget()
     disposizione = QVBoxLayout(contenitore)

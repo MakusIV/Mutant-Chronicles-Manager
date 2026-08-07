@@ -3637,7 +3637,9 @@ def processa_guerrieri_per_fazioni_con_apostoli(guerrieri: List[Any]) -> Dict[st
                     'stats': {},
                     'quantita': ottieni_attributo_sicuro(guerriero, 'quantita', 0),
                     'keywords': ottieni_attributo_sicuro(guerriero, 'keywords', []),
-                    'abilita': ottieni_attributo_sicuro(guerriero, 'abilita', [])                    
+                    'abilita': ottieni_attributo_sicuro(guerriero, 'abilita', []),
+                    'valore_strategico': ottieni_attributo_sicuro(guerriero, 'valore_strategico', 0),
+                    'fondamentale': ottieni_attributo_sicuro(guerriero, 'fondamentale', False),
                 }
                 
                 # Per l'Oscura Legione, determina l'apostolo

@@ -2775,7 +2775,13 @@ def crea_inventario_dettagliato_json(collezione) -> Dict[str, Any]:
                         carta_esempio.set_espansione.value if hasattr(carta_esempio.set_espansione, 'value')
                         else str(carta_esempio.set_espansione)
                     )
-                
+
+                if hasattr(carta_esempio, 'valore_strategico'):
+                    dettaglio_carta['valore_strategico'] = carta_esempio.valore_strategico
+
+                if hasattr(carta_esempio, 'fondamentale'):
+                    dettaglio_carta['fondamentale'] = carta_esempio.fondamentale
+
                 # AGGIORNAMENTI SPECIFICI PER TIPO DI CARTA (con gestione errori)
                 
                 # Informazioni specifiche per GUERRIERI
