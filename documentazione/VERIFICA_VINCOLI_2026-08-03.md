@@ -81,10 +81,15 @@ Riletture dirette delle scansioni (`image/`), con correzioni applicate dove conf
   nessuna scansione propria) — rimossa. Restano 2 voci ⚪ non confermate:
   `Fulmine Elementare`, `Spinta Cinetica` (incoerenze interne tra `statistica_target`
   e il testo, non ancora riverificate sulla scansione).
-- **Equipaggiamento, risolte**: `fazioni_permesse` di `Elmetto Comando` e
-  `Computer Tattico` corretto in `Cybertronic` (icona confermata dall'utente).
-  `AC-40 Justifier` e `Lancia Castigator` restano `Generica`: l'icona osservata è
-  Fratellanza, ma nessun testo/FAQ la restringe (`Lancia Castigator` ha già
+- **Equipaggiamento**: tutte e 4 restano `Generica`. `Elmetto Comando` e
+  `Computer Tattico` erano stati corretti in `Cybertronic` sulla base dell'icona,
+  ma il loro `testo_carta` dice «ASSEGNABILE AD OGNI COMANDANTE» — nessuna
+  restrizione di fazione — e vale lo stesso filtro rigido spiegato sopra per
+  False Credenze/Fiamme Purificatrici (qui però l'effetto riguarda il proprio
+  guerriero, quindi il principio è "il testo vince sull'icona", non "il
+  bersaglio è altrui"). `AC-40 Justifier` e `Lancia Castigator` restano
+  `Generica`: l'icona osservata è Fratellanza, ma nessun testo/FAQ la restringe
+  (`Lancia Castigator` ha già
   `Solo Doomtrooper` in `restrizioni_guerriero`, e questo database non ha un valore
   collettivo "Doomtrooper" per `fazioni_permesse`).
 - **Speciale**: `False Credenze` e `Fiamme Purificatrici` restano `Generica`.
