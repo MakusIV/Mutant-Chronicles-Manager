@@ -4332,6 +4332,28 @@ L'errore "tipo_guerriero" è risolto da:
 # FUNZIONI DI ANALISI E VERIFICA
 # ================================================================================
 
+def verifica_limite_copie_mazzo(mazzo: Dict[str, Any]) -> List[str]:
+    """
+    Controllo finale sul mazzo prodotto (regolamento §2): nessuna carta può
+    superare MAX_COPIE_PER_CARTA_MAZZO copie. Il tetto è già imposto durante
+    la selezione (vedi i commenti su `copie_ancora_ammesse`/`residuo` più sopra),
+    ma questo verifica il risultato indipendentemente da come è stato costruito.
+    """
+    conteggio = defaultdict(int)
+    carte = (mazzo.get('squadra', []) + mazzo.get('schieramento', [])
+             + mazzo.get('carte_supporto', []))
+    for carta in carte:
+        nome = getattr(carta, 'nome', None)
+        if nome:
+            conteggio[nome] += 1
+
+    return [
+        f"Limite di {MAX_COPIE_PER_CARTA_MAZZO} copie superato per '{nome}': {quantita} nel mazzo"
+        for nome, quantita in conteggio.items()
+        if quantita > MAX_COPIE_PER_CARTA_MAZZO
+    ]
+
+
 def verifica_integrità_mazzi(mazzi: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Verifica l'integrità dei mazzi creati.
@@ -4384,10 +4406,13 @@ def verifica_integrità_mazzi(mazzi: List[Dict[str, Any]]) -> Dict[str, Any]:
         elif stats['numero_totale_carte'] > 100:
             errori_mazzo.append(f"Mazzo troppo grande: {stats['numero_totale_carte']} carte")
         
+        # Verifica limite di 5 copie per carta (controllo finale sul mazzo prodotto)
+        errori_mazzo.extend(verifica_limite_copie_mazzo(mazzo))
+
         # Verifica errori già presenti nel mazzo
         if mazzo.get('errori'):
             errori_mazzo.extend(mazzo['errori'])
-        
+
         # Aggiorna risultati
         if errori_mazzo:
             risultati['mazzi_con_errori'] += 1

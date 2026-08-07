@@ -844,15 +844,18 @@ def seleziona_carte_casuali_per_tipo(
                 del carte_generiche_fondamentali[nome_carta]
             continue
 
-        # calcola la quantita di copie da inserire nella collezione per una specifica carta        
+        # calcola la quantita di copie da inserire nella collezione per una specifica carta
+        d = round(max_quantita_disponibile/giocatori_rimasti)
+        d = d if d > 1 else 1
         if carta_fondamentale:
-            d = round(max_quantita_disponibile/giocatori_rimasti)
-            if d > 1:
-                quantita = random.randint(1, d)  #
-            else:
-                quantita = 1
+            quantita = random.randint(1, d)
         else:
-            quantita = random.randint(1, max_quantita_disponibile)
+            # scelta casuale tra il sorteggio pieno (favorisce i primi giocatori elaborati,
+            # che vedono il pool ancora intero) e il tetto d (calcolato sui giocatori ancora
+            # da servire): dimezza lo sbilanciamento tra collezioni senza eliminare la
+            # variabilità che rende le collezioni diverse tra loro. Misurato in
+            # strumenti/misure: squilibrio da ~300 a 45-120 carte su 3/4/5 giocatori.
+            quantita = random.choice([random.randint(1, max_quantita_disponibile), d])
         
         # Crea e aggiungi il quantitativo di copie richiesto per la carta specifica con diverse istanze della stessa
         for _ in range(quantita):
@@ -881,8 +884,47 @@ def seleziona_carte_casuali_per_tipo(
         # Interrompe il ciclo se è stato raggiunto il numero massimo di carte per tipologia
         if numero_totale_carte_inserite_per_tipologia >= num_carte:
             return carte_selezionate
-    
+
     return carte_selezionate
+
+
+def distribuisci_missioni_round_robin(
+    numero_giocatori: int,
+    set_espansioni: List[Set_Espansione],
+    ) -> Dict[int, List[Any]]:
+    """
+    Distribuisce le Missioni tra i giocatori una copia alla volta, a rotazione,
+    invece che con il conteggio casuale di seleziona_carte_casuali_per_tipo.
+
+    Le Missioni sono poche (spesso meno di una decina di copie totali): con la
+    selezione generica un giocatore può restare a zero missioni per pura sfortuna
+    del sorteggio, mentre un altro ne accumula diverse. La rotazione garantisce che
+    la differenza tra il giocatore più e meno servito sia al massimo una missione.
+
+    Non pesa l'orientamento di fazione, a differenza delle altre tipologie: farlo
+    richiederebbe conoscere l'orientamento di tutti i giocatori prima di iniziare,
+    ma oggi viene generato uno alla volta nel ciclo principale. Per una tipologia
+    così piccola il compromesso è accettabile.
+    """
+    valori_espansioni = [e.value for e in set_espansioni]
+
+    pool: List[str] = []
+    for nome, dati in DATABASE_MISSIONI.items():
+        if dati.get('set_espansione') not in valori_espansioni:
+            continue
+        quantita_disponibile = dati.get('quantita', 0) - QUANTITA_UTILIZZATE[nome]
+        pool.extend([nome] * max(0, quantita_disponibile))
+
+    random.shuffle(pool)
+
+    missioni_per_giocatore: Dict[int, List[Any]] = {i: [] for i in range(numero_giocatori)}
+    for indice, nome_missione in enumerate(pool):
+        missione = crea_missione_da_database(nome_missione)
+        if missione:
+            missioni_per_giocatore[indice % numero_giocatori].append(missione)
+            utilizza_carta(nome_missione, 1)
+
+    return missioni_per_giocatore
 
 
 def genera_fazioni_orientamento_casuali() -> Tuple[Fazione, ...]:
@@ -1010,10 +1052,14 @@ def creazione_Collezione_Giocatore(
 
     # Resetta tracciamento quantità
     resetta_tracciamento_quantita()
-    
+
+    # Le Missioni si distribuiscono a rotazione, tutte in una volta, prima del ciclo
+    # per-giocatore: vedi distribuisci_missioni_round_robin per il perché.
+    missioni_per_giocatore = distribuisci_missioni_round_robin(numero_giocatori, espansioni_valide)
+
     collezioni = []
     fazioni_utilizzate = set()  # Per evitare duplicati nell'orientamento
-    
+
     print(f"Creazione di {numero_giocatori} collezioni...")
     print(f"Espansioni: {[e.value for e in espansioni_valide]}")
     print(f"Orientamento: {'Sì' if orientamento else 'No'}")
@@ -1120,19 +1166,9 @@ def creazione_Collezione_Giocatore(
         for fortificazione in fortificazioni:
             collezione.aggiungi_carta(fortificazione)
         
-        # 5. Missioni
+        # 5. Missioni (già distribuite a rotazione prima del ciclo, vedi sopra)
         print("Selezionando Missioni...")
-        missioni = seleziona_carte_casuali_per_tipo(
-            DATABASE_MISSIONI,
-            crea_missione_da_database,
-            espansioni_valide,
-            collezione.fazioni_orientamento,
-            min_carte=limiti_carte['Missione']['min'],
-            max_carte=limiti_carte['Missione']['max'],
-            numero_giocatori = numero_giocatori,
-            numero_mazzo = i
-        )
-        for missione in missioni:
+        for missione in missioni_per_giocatore[i]:
             collezione.aggiungi_carta(missione)
         
         # 6. Arte
