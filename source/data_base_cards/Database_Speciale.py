@@ -5054,7 +5054,7 @@ DATABASE_SPECIALI = {
         "valore": 0,
         "tipo": "Speciale",
         "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": ["Fratellanza"],
         "bersaglio": "Giocatore",
         "durata": "Permanente",
         "timing": "In Ogni Momento",
@@ -5404,7 +5404,7 @@ DATABASE_SPECIALI = {
         "valore": 0,
         "tipo": "Speciale",
         "rarity": "Common",
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": ["Fratellanza"],
         "bersaglio": "Tutti i Guerrieri",
         "durata": "Istantanea",
         "timing": "In Ogni Momento",
@@ -6396,7 +6396,47 @@ DATABASE_SPECIALI = {
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
- 
+
+    # Mancava dal database (vedi AUDIT_DATABASE_CARTE_CORREZIONI.md §11): trascritta
+    # dalla scansione in image/Speciali/Famoso_Collezionista.jpg. `tipo_effetto` resta
+    # "Modificatore" solo per instanziare la carta: il gioco di ruolo che concede
+    # (assegnare Reliquie) non è modellato dal motore, e per regolamento questa carta
+    # non è più necessaria per usare le Reliquie in gioco.
+    "Famoso Collezionista": {
+        "nome": "Famoso Collezionista",
+        "valore": 0,
+        "tipo": "Speciale",
+        "rarity": "Common",
+        "fazioni_permesse": ["Generica"],
+        "bersaglio": "Giocatore",
+        "durata": "Permanente",
+        "timing": "In Ogni Momento",
+        "set_espansione": "Inquisition",
+        "numero_carta": "",
+        "max_copie_per_combattimento": 1,
+        "max_copie_per_turno": 1,
+        "richiede_azione": False,
+        "effetti": [
+            {
+                "nome_effetto": "Assegna Reliquie",
+                "tipo_effetto": "Modificatore",
+                "valore": "",
+                "statistica_target": "",
+                "descrizione_effetto": "D'ora in poi sei considerato un Famoso Collezionista e puoi assegnare carte Reliquia ai tuoi guerrieri al costo di un'Azione",
+                "condizioni": ["Costo 1 Azione per assegnare una Reliquia"],
+                "limitazioni": ["Una sola copia in gioco per tipo di Reliquia", "Le Reliquie non sono considerate Equipaggiamento"]
+            }
+        ],
+        "testo_carta": "GIOCABILE IN OGNI MOMENTO. QUESTA CARTA RIMANE IN GIOCO E NON PUÒ MAI ESSERE SCARTATA. D'ora in poi sei considerato un FAMOSO COLLEZIONISTA e puoi assegnare carte Reliquia ai Tuoi guerrieri al costo di un'Azione. In gioco ci può essere una sola carta Reliquia per tipo. Copie delle Reliquie scartate possono rientrare in gioco in seguito. Le Reliquie non sono considerate Equipaggiamento.",
+        "flavour_text": "",
+        "keywords": [],
+        "restrizioni": [],
+        "valore_strategico": 1,
+        "quantita": 15,
+        "quantita_minima_consigliata": 1,
+        "fondamentale": False
+    },
+
 }
 
 

@@ -67,7 +67,7 @@ VINCOLI_NON_IMPOSTI = {
     # Entrambe dichiarano «GUERRIERO NON-PERSONALITÀ» nel solo campo `condizioni`, che
     # nessun consumatore legge, e hanno `restrizioni` vuoto. Restano scoperte per scelta:
     # portano `set_espansione = "Sconosciuto"`, quindi il filtro sulle espansioni le tiene
-    # fuori da collezioni e mazzi, e non se ne trova la scansione. Sono 19 le carte in
+    # fuori da collezioni e mazzi, e non se ne trova la scansione. Sono 18 le carte in
     # quello stato — vedi `test_le_carte_fuori_espansione_restano_note`.
     ("Speciale", "Intimidazione", "PERSONALITÀ"):
         "carta fuori espansione: non entra in collezioni né in mazzi",
@@ -182,8 +182,8 @@ def test_le_carte_fuori_espansione_restano_note():
             if espansione and espansione not in ESPANSIONI_NOTE:
                 fuori.append(f"{tipo}: {chiave} ({espansione})")
 
-    assert len(fuori) == 19, (
-        f"le carte fuori espansione sono {len(fuori)}, non le 19 note:\n  "
+    assert len(fuori) == 18, (
+        f"le carte fuori espansione sono {len(fuori)}, non le 18 note:\n  "
         + "\n  ".join(sorted(fuori))
     )
 

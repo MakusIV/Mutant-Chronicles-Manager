@@ -1108,12 +1108,12 @@ CARTE_ARTE_DATABASE = {
                 "tipo_effetto": "Carte",
                 "valore": "3D per domanda",
                 "statistica_target": "",
-                "descrizione_effetto": "Per ogni 3D, potrai fare una domanda riguardo le carte che tiene in mano l'avversario, che Ti dovrà rispondere \"sì\" o \"no\" (la verità). L'avversario potrà rifiutarsi di rispondere spendendo 5D. È possibile ripetere la stessa domanda più volte",
+                "descrizione_effetto": "Per ogni 3D, potrai fare una domanda riguardo le carte che tiene in mano l'avversario, che Vi dovrà rispondere \"sì\" o \"no\" (la verità). L'avversario potrà rifiutarsi di rispondere spendendo 5D. È possibile ripetere la stessa domanda più volte",
                 "condizioni": ["Costo 3D per domanda"],
                 "limitazioni": ["L'avversario può rifiutarsi spendendo 5D"]
             }
         ],
-        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Per ogni 3D, potrai fare una domanda riguardo le carte che tiene in mano l'avversario, che Ti dovrà rispondere \"sì\" o \"no\" (la verità). L'avversario potrà rifiutarsi di rispondere spendendo 5D. È possibile ripetere la stessa domanda più volte.",
+        "testo_carta": "ARTE DELLA MANIPOLAZIONE. GIOCABILE IN OGNI MOMENTO. Per ogni 3D, potrai fare una domanda riguardo le carte che tiene in mano l'avversario, che Vi dovrà rispondere \"sì\" o \"no\" (la verità). L'avversario potrà rifiutarsi di rispondere spendendo 5D. È possibile ripetere la stessa domanda più volte.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {
@@ -1394,49 +1394,6 @@ CARTE_ARTE_DATABASE = {
         "quantita": 7,
         "quantita_minima_consigliata": 3,
         "fondamentale": True
-    },
-
-    "Esorcizzare Danno": {
-        "nome": "Esorcizzare Danno",
-        "valore": 0,
-        "tipo": "Incantesimo di Combattimento",
-        "disciplina": "Esorcismo",
-        "rarity": "Common",
-        "fazione_richiesta": "Fratellanza",
-        "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
-        "durata": "Fine Combattimento",
-        "timing": "In Combattimento",
-        "set_espansione": "Sconosciuto",
-        "numero_carta": "",
-        "max_copie_per_combattimento": 1,
-        "max_copie_per_turno": 1,
-        "richiede_azione": False,
-        "effetti": [
-            {
-                "nome_effetto": "Bonus Combattimento e Immunità",
-                "tipo_effetto": "Modificatore",
-                "valore": "+1 in A per ogni 2D spesi",
-                "statistica_target": "armatura",
-                "descrizione_effetto": "Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH",
-                "condizioni": ["Incantesimo di combattimento"],
-                "limitazioni": []
-            }
-        ],
-        "testo_carta": "ARTE DELL'ESORCISMO. INCANTESIMO DI COMBATTIMENTO. Per ogni 2D spesi, il guerriero guadagna un +1 in A o diventa immune agli effetti di un DONO DI ALGEROTH.",
-        "flavour_text": "",
-        "keywords": [],
-        "stato_gioco": {
-            "in_gioco": False,
-            "utilizzata": False,
-            "bersagli_attuali": []
-        },
-        "restrizioni": [],
-        "contatori_speciali": {},
-        "valore_strategico": 4,
-        "quantita": 3,
-        "quantita_minima_consigliata": 1,
-        "fondamentale": False
     },
 
     "Risparmio": {
@@ -1879,7 +1836,7 @@ CARTE_ARTE_DATABASE = {
         "rarity": "Common",
         "fazione_richiesta": "Fratellanza",
         "fazioni_permesse": ["Fratellanza"],
-        "bersaglio": "Guerriero Proprio",
+        "bersaglio": "Qualsiasi Guerriero",
         "durata":  "Fino Fine Turno",
         "timing": "Turno Proprio",
         "set_espansione": "Inquisition",
@@ -1893,12 +1850,12 @@ CARTE_ARTE_DATABASE = {
                 "tipo_effetto": "Modificatore",
                 "valore": "",
                 "statistica_target": "",
-                "descrizione_effetto": "Utilizzando tre azioni puoi scartare ogni guerriero spendendo 15D",
-                "condizioni": [],
-                "limitazioni": []
+                "descrizione_effetto": "Spendendo 15D, puoi scartare qualsiasi guerriero in gioco, indipendentemente dall'icona di legame",
+                "condizioni": ["Costo 15D", "Costo tre Azioni"],
+                "limitazioni": ["Non considerata Azione d'Attacco"]
             }
         ],
-        "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE AL COSTO DI 3 AZIONI. Utilizzando tre azioni puoi scartare ogni guerriero spendendo 15D",
+        "testo_carta": "ARTE DEL CAMBIAMENTO. GIOCABILE AL COSTO DI TRE AZIONI. Spendendo 15D, puoi scartare qualsiasi guerriero in gioco, indipendentemente dall'ICONA DI LEGAME. Non è considerato un Attacco.",
         "flavour_text": "",
         "keywords": [],
         "stato_gioco": {

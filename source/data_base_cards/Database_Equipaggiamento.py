@@ -3111,7 +3111,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Un guerriero può avere solo un Elmetto Comando"],
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": ["Cybertronic"],
         "restrizioni_guerriero": ["Solo Comandanti"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,
@@ -3165,7 +3165,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             }
         ],
         "requisiti": ["Un guerriero può avere solo un Computer Tattico"],
-        "fazioni_permesse": ["Generica"],
+        "fazioni_permesse": ["Cybertronic"],
         "restrizioni_guerriero": ["Solo Comandanti"],
         "valore_minimo_richiesto": 0,
         "valore_minimo_richiesto_sparare": 0,

@@ -63,17 +63,49 @@ Mercenari venivano respinti: da 10 a 22 destinatari.
 `Intimidazione` e `Promozione Sul Campo` dichiarano «GUERRIERO NON-PERSONALITÀ» nel solo
 campo `condizioni`, che nessuno legge, e restano scoperte: portano
 `set_espansione = "Sconosciuto"`, quindi il filtro sulle espansioni le tiene fuori da
-collezioni e mazzi, e non se ne trova la scansione. Le carte in quello stato sono **19**
-(17 Speciali e 2 Arte); il valore è scritto in due modi — 18 usano `Sconosciuto`,
-`Medico Da Campo` usa `Sconosciuta`. Il conteggio è fissato da
+collezioni e mazzi, e non se ne trova la scansione. Le carte in quello stato sono **18**
+(17 Speciali e 1 Arte — `"Esorcizzare Danno"`, l'altra, era un doppione di
+`"Esorcizzare Ferite"` ed è stata rimossa); il valore è scritto in due modi — 17 usano
+`Sconosciuto`, `Medico Da Campo` usa `Sconosciuta`. Il conteggio è fissato da
 `test_le_carte_fuori_espansione_restano_note`.
 
-### Da riverificare sulla scansione
+### Da riverificare sulla scansione — aggiornato 2026-08-07
 
-- 11 voci già note: 4 in Arte, 4 in Equipaggiamento, 3 in Speciale.
-- `Famoso Collezionista`: carta mancante dal database.
-- `Il Diciannovesimo Executive`: la riscrittura ha fatto perdere
-  `"Carte delle Arti non Assegnabili"`.
+Riletture dirette delle scansioni (`image/`), con correzioni applicate dove confermate:
+
+- **Arte, risolte**: `Conoscere La Verità` (refuso di trascrizione, "Ti" → "Vi");
+  `Scacciato` (mancavano "indipendentemente dall'ICONA DI LEGAME" e "Non è
+  considerato un Attacco" — `bersaglio` corretto in `Qualsiasi Guerriero`, valore già
+  presente nel vocabolario `BersaglioArte`). `Esorcizzare Danno` era un doppione
+  byte-per-byte di `Esorcizzare Ferite` (stesso `effetti`, stesso `testo_carta`,
+  nessuna scansione propria) — rimossa. Restano 2 voci ⚪ non confermate:
+  `Fulmine Elementare`, `Spinta Cinetica` (incoerenze interne tra `statistica_target`
+  e il testo, non ancora riverificate sulla scansione).
+- **Equipaggiamento, risolte**: `fazioni_permesse` di `Elmetto Comando` e
+  `Computer Tattico` corretto in `Cybertronic` (icona confermata dall'utente).
+  `AC-40 Justifier` e `Lancia Castigator` restano `Generica`: l'icona osservata è
+  Fratellanza, ma nessun testo/FAQ la restringe (`Lancia Castigator` ha già
+  `Solo Doomtrooper` in `restrizioni_guerriero`, e questo database non ha un valore
+  collettivo "Doomtrooper" per `fazioni_permesse`).
+- **Speciale, risolte**: `False Credenze` e `Fiamme Purificatrici` → `Fratellanza`.
+  `Feroce Assassino` era già corretto (`Oscura Legione`).
+- **`Famoso Collezionista`**: aggiunta. La scansione (`image/Speciali/`) era
+  interamente leggibile, a differenza di quanto riportato dall'audit originale —
+  vedi la voce nel database per il testo completo. `fazione = Generica,
+  rarity = Common, quantita = 15, set_espansione = Inquisition` per conferma
+  diretta dell'utente. Non modella l'effetto (assegnazione di Reliquie) nel motore:
+  per regolamento la carta non è più necessaria per usare le Reliquie in gioco.
+- **`Il Diciannovesimo Executive`**: **chiuso, nessuna correzione**. La scansione
+  conferma il `testo_carta` già presente parola per parola, senza alcun riferimento
+  all'Arte. La frase `"Carte delle Arti non Assegnabili"` compare in `restrizioni`
+  di altre 8 carte del database, tutte Cybertronic ma non tutte Personalità
+  (Cyril Dent, Dottoressa Diana, Capitano Cybertronic, Droide Eradicator, Vince
+  Diamond, Tecnico Vac, Osservatore Tattico, Charles Sykes) — il testo reale su
+  quelle carte è **"Non potrà mai lanciare incantesimi dell'arte"**, un concetto
+  diverso da "non assegnabili" con cui la chiave era stata etichettata. Il
+  Diciannovesimo Executive è un Leader Corporativo: non può combattere né andare in
+  copertura (già corretto), e il testo non dice nulla sull'Arte. Resta aperta,
+  fuori da questa sessione, la revisione della chiave/frase sulle altre 8 carte.
 
 ---
 
