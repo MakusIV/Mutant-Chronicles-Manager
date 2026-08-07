@@ -1078,10 +1078,10 @@ DATABASE_OSCURA_SIMMETRIA = {
         "penalita_giocatore": {},
         "contatori_oscura": {},
         "livello_corruzione": 0,
-        "valore_strategico": 1,
+        "valore_strategico": 7,
         "quantita": 4,
         "quantita_minima_consigliata": 2,
-        "fondamentale": True       
+        "fondamentale": True
     },
     
     "Potere Mostruoso": {
