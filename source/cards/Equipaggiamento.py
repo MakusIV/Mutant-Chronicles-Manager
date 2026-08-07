@@ -9,7 +9,8 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass, field
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, TipoGuerriero, vale_come_doomtrooper  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione  # Import dalle classi esistenti
+from source.cards.regole_associazione import valuta_restrizioni
 
 
 class TipoEquipaggiamento(Enum):
@@ -210,84 +211,13 @@ class Equipaggiamento:
         Returns:
             Dizionario con risultato e eventuali errori
         """
-        risultato = {"puo_assegnare": True, "errori": []}
-                
-        # Controllo restrizioni specifiche
-        if self.restrizioni_guerriero is not None and self.restrizioni_guerriero != []:
+        # Vocabolario condiviso con Speciale/Fortificazione/Missione/Reliquia/Warzone —
+        # vedi source/cards/regole_associazione.py.
+        risultato = valuta_restrizioni(self.restrizioni_guerriero, guerriero)
 
-            for restrizione in self.restrizioni_guerriero:
+        if risultato["puo_assegnare"] == False:
+            return risultato
 
-                if "Solo Doomtrooper" in restrizione:
-                    # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
-                    # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
-                    if not vale_come_doomtrooper(guerriero):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append("Solo per Doomtrooper")
-                
-                elif "Solo Oscura Legione" in restrizione:
-                    if guerriero.fazione != Fazione.OSCURA_LEGIONE:
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append("Solo per Oscura Legione")
-                
-                elif "Solo Seguaci di" in restrizione:
-                    apostolo_richiesto = restrizione.split("Solo Seguaci di ")[1].strip()
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):                       
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
-
-                elif "Solo Eretici" in restrizione:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):                       
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Eretici")
-
-                # Nota: va valutata prima di "Solo Mercenari", che ne è un prefisso.
-                # L'ordine era invertito — a differenza delle altre quattro classi, che
-                # portano già questa nota — e `Furga 750` («ASSEGNABILE AD OGNI MERCENARIO
-                # O ERETICO») finiva nel ramo dei soli Mercenari.
-                elif "Solo Mercenari o Eretici" in restrizione:
-                    # Le due condizioni sono in alternativa: si nega solo a chi non
-                    # soddisfa né l'una né l'altra. Con `or` fra le due negazioni si
-                    # finiva per pretenderle entrambe.
-                    if guerriero.fazione != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or ("Mercenario" not in guerriero.keywords and "Eretico" not in guerriero.keywords) ):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Mercenari o Eretici")
-
-                elif "Solo Mercenari" in restrizione:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Mercenari")
-
-                elif "Solo Comandanti" in restrizione:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):                       
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Comandanti")
-
-                elif "Solo Nefariti" in restrizione:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Nefarita" not in guerriero.keywords ):                       
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Nefarita")
-
-                elif "Solo Personalita" in restrizione:
-                    # Basta una delle due dichiarazioni: nel database 27 Personalita' su 29
-                    # portano il solo `tipo`, e nessuna la sola keyword. Pretenderle
-                    # entrambe lasciava fuori quasi tutte le Personalita' del gioco.
-                    if not (guerriero.tipo == TipoGuerriero.PERSONALITA
-                            or (guerriero.keywords and "Personalita" in guerriero.keywords)):                       
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Personalita")
-                
-                elif "Assegnabile a guerrieri con V <= " in restrizione:
-                    valore_richiesto = int( restrizione.split("Assegnabile a guerrieri con V <= ")[1].strip() )
-                    
-                    if guerriero.stats.valore > valore_richiesto:                       
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
-
-            if risultato["puo_assegnare"] == False:
-                return risultato
-            # "Assegnabile a guerrieri con V <= 4"
-            # Aggiungere altre restrizioni specifiche secondo necessità
-        
         # Controllo fazioni_permesse
         if self.fazioni_permesse is not None and self.fazioni_permesse != []:
             # Se l'equipaggiamento ha fazioni_permesse specifiche

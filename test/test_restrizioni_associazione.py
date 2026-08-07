@@ -62,10 +62,20 @@ CASI = [
          dict(fazione=OL),
          dict(fazione=CAPITOL),
          TUTTE),
+    # Il campo fazione da solo non basta e nemmeno la sola keyword: 5 guerrieri con
+    # fazione Mercenario non portano la keyword (es. Agente Nick Michaels), e 5
+    # guerrieri "Ex-X Mercenario" portano la keyword pur avendo un'altra fazione.
+    # Prima della correzione, Equipaggiamento/Fortificazione/Reliquia/Warzone
+    # accettavano solo per keyword: i primi 5 restavano esclusi dalle loro carte
+    # "Solo Mercenari" pur essendo davvero Mercenari.
     Caso("Solo Mercenari",
-         dict(fazione=MERCENARIO, keywords=["Mercenario"]),
          dict(fazione=MERCENARIO, keywords=[]),
-         ["Equipaggiamento", "Fortificazione", "Reliquia", "Warzone"]),
+         dict(fazione=CAPITOL, keywords=[]),
+         ["Speciale", "Equipaggiamento", "Fortificazione", "Reliquia", "Warzone"]),
+    Caso("Solo Mercenari",
+         dict(fazione=CAPITOL, keywords=["Mercenario"]),
+         dict(fazione=CAPITOL, keywords=[]),
+         ["Speciale", "Equipaggiamento", "Fortificazione", "Reliquia", "Warzone"]),
     # Va riconosciuta prima di "Solo Mercenari", di cui contiene il prefisso.
     Caso("Solo Mercenari o Eretici",
          dict(fazione=MERCENARIO, keywords=["Mercenario"]),
@@ -285,6 +295,28 @@ def test_oscura_simmetria_esclude_le_personalita():
     assert _puo_lanciare(carta, crea_guerriero(fazione=OL, tipo=TipoGuerriero.NORMALE))
     assert not _puo_lanciare(
         carta, crea_guerriero(fazione=OL, tipo=TipoGuerriero.PERSONALITA))
+
+
+# --------------------------------------------------------------------------
+# Missione: il veto di fazione scriveva una stringa nuda in "errori"
+# --------------------------------------------------------------------------
+#
+# `risultato["errori"] = f"..."` sovrascriveva la lista con una stringa: qualunque
+# chiamante che si aspettasse una lista (es. `", ".join(risultato["errori"])`)
+# avrebbe ricevuto un errore a runtime invece di un messaggio.
+
+
+def test_missione_veto_di_fazione_accumula_in_una_lista():
+    from source.cards.Missione import Missione
+
+    missione = Missione("Carta di prova")
+    missione.fazioni_permesse = [CAPITOL]
+
+    risultato = missione.puo_essere_associata_a(crea_guerriero(fazione=OL))
+
+    assert risultato["puo_assegnare"] is False
+    assert isinstance(risultato["errori"], list)
+    assert any("non permessa" in errore for errore in risultato["errori"])
 
 
 def test_guerriero_vincolato_ai_soli_doni_degli_apostoli():

@@ -10,6 +10,7 @@ from typing import Dict, List, Optional, Any, Union
 from enum import Enum
 import json
 from source.cards.Guerriero import Guerriero, Fazione, Rarity, Set_Espansione, TipoGuerriero, DOOMTROOPER, vale_come_doomtrooper  # Import dalle classi esistenti
+from source.cards.regole_associazione import valuta_restrizioni
 
 
 
@@ -176,55 +177,13 @@ class Missione:
                     if risultato["puo_assegnare"] == False:
                         return risultato
 
-            if self.restrizioni is not None and self.restrizioni != []:
-
-                for restrizione in self.restrizioni:
-
-                    # Condizioni in alternativa: basta soddisfarne una. Vanno valutate
-                    # prima delle rispettive forme semplici, di cui contengono il prefisso.
-                    if "Solo Doomtrooper o Eretici" in restrizione:
-                        e_doomtrooper = vale_come_doomtrooper(bersaglio)
-                        e_eretico = bool(bersaglio.keywords) and "Eretico" in bersaglio.keywords
-                        if not (e_doomtrooper or e_eretico):
-                            risultato["puo_assegnare"] = False
-                            risultato["errori"].append("Solo Doomtrooper o Eretici")
-
-                    elif "Solo Mercenari o Eretici" in restrizione:
-                        if bersaglio.tipo != Fazione.MERCENARIO and (bersaglio.keywords is None or bersaglio.keywords == [] or ("Mercenario" not in bersaglio.keywords and "Eretico" not in bersaglio.keywords) ):
-                            risultato["puo_assegnare"] = False
-                            risultato["errori"].append(f"Solo Mercenari o Eretici")
-
-                    elif "Solo Comandante" in restrizione:
-                        if (bersaglio.keywords is None or bersaglio.keywords == [] or "Comandante" not in bersaglio.keywords):
-                            risultato["puo_assegnare"] = False
-                            risultato["errori"].append(f"Solo Comandanti")
-
-                    elif "Solo Nefarita" in restrizione:
-                        if (bersaglio.keywords is None or bersaglio.keywords == [] or "Nefarita" not in bersaglio.keywords ):
-                            risultato["puo_assegnare"] = False
-                            risultato["errori"].append(f"Solo Nefarita")
-
-                    elif "Solo Personalita" in restrizione:
-                        # Basta una delle due dichiarazioni: nel database 27 Personalita'
-                        # su 29 portano il solo `tipo`, e nessuna la sola keyword.
-                        # Pretenderle entrambe lasciava fuori quasi tutte le Personalita'.
-                        if not (bersaglio.tipo == TipoGuerriero.PERSONALITA
-                                or (bersaglio.keywords and "Personalita" in bersaglio.keywords)):
-                            risultato["puo_assegnare"] = False
-                            risultato["errori"].append(f"Solo Personalita")
-
-                    elif "Assegnabile a guerrieri con V <= " in restrizione:
-                        valore_richiesto = int( restrizione.split("Assegnabile a guerrieri con V <= ")[1].strip() )
-
-                        if bersaglio.stats.valore > valore_richiesto:
-                            risultato["puo_assegnare"] = False
-                            risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
-
-                    if risultato["puo_assegnare"] == False:
-                        return risultato
-
-                if risultato["puo_assegnare"] == False:
-                    return risultato
+            # Vocabolario condiviso con Speciale/Equipaggiamento/Fortificazione/Reliquia/Warzone
+            # — vedi source/cards/regole_associazione.py.
+            risultato_restrizioni = valuta_restrizioni(self.restrizioni, bersaglio)
+            if not risultato_restrizioni["puo_assegnare"]:
+                risultato["puo_assegnare"] = False
+                risultato["errori"].extend(risultato_restrizioni["errori"])
+                return risultato
 
             # Controlla i vincoli sul tipo di guerriero.
             # Il campo `restrizioni_guerriero` era popolato nel database ma non veniva
@@ -252,7 +211,11 @@ class Missione:
             # Controlla restrizioni di fazione
             if self.fazioni_permesse and Fazione("Generica") not in self.fazioni_permesse and bersaglio.fazione not in self.fazioni_permesse:
                 risultato["puo_assegnare"] = False
-                risultato["errori"] = f"Fazione {bersaglio.fazione.value} non permessa"
+                # Era un'assegnazione diretta con una stringa nuda invece di un append:
+                # sovrascriveva la lista "errori" con una stringa, così ogni chiamante che
+                # si aspettava una lista (es. `", ".join(risultato["errori"])`) avrebbe
+                # ricevuto un oggetto del tipo sbagliato.
+                risultato["errori"].append(f"Fazione {bersaglio.fazione.value} non permessa")
             
             return risultato
                 

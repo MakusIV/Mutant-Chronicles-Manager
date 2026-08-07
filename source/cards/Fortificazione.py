@@ -13,7 +13,8 @@ from enum import Enum
 from typing import List, Optional, Dict, Any, Union
 from dataclasses import dataclass
 import json
-from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, TipoGuerriero, CorporazioneSpecifica, DOOMTROOPER, vale_come_doomtrooper  # Import dalle classi esistenti
+from source.cards.Guerriero import Fazione, Rarity, Set_Espansione, ApostoloPadre, CorporazioneSpecifica, DOOMTROOPER  # Import dalle classi esistenti
+from source.cards.regole_associazione import valuta_restrizioni
 
 
 class TipoFortificazione(Enum):
@@ -185,72 +186,13 @@ class Fortificazione:
             if risultato["puo_assegnare"] == False:
                 return risultato    
                 
-        if restrizione is not None and restrizione != []:
-
-            for restrizione_corrente in restrizione:
-
-                if "Solo Doomtrooper" in restrizione_corrente:
-                    # Un Cultista e' Oscura Legione ma vale come Doomtrooper: il suo
-                    # testo lo dichiara, e `vale_come_doomtrooper` lo riconosce.
-                    if not vale_come_doomtrooper(guerriero):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append("Solo per Doomtrooper")
-
-                elif "Solo Oscura Legione" in restrizione_corrente:
-                    if guerriero.fazione != Fazione.OSCURA_LEGIONE:
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append("Solo per Oscura Legione")
-
-                elif "Solo Seguaci di" in restrizione_corrente:
-                    apostolo_richiesto = restrizione_corrente.split("Solo Seguaci di ")[1].strip()
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Seguace di " + apostolo_richiesto not in guerriero.keywords):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Seguaci di {apostolo_richiesto}")
-
-                elif "Solo Eretici" in restrizione_corrente:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Eretico" not in guerriero.keywords ):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Eretici")
-
-                # Nota: va valutata prima di "Solo Mercenari", che ne è un prefisso
-                elif "Solo Mercenari o Eretici" in restrizione_corrente:
-                    if guerriero.tipo != Fazione.MERCENARIO and (guerriero.keywords is None or guerriero.keywords == [] or ("Mercenario" not in guerriero.keywords and "Eretico" not in guerriero.keywords) ):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Mercenari o Eretici")
-
-                elif "Solo Mercenari" in restrizione_corrente:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Mercenario" not in guerriero.keywords ):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Mercenari")
-
-                elif "Solo Comandanti" in restrizione_corrente:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Comandante" not in guerriero.keywords):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Comandanti")
-
-                elif "Solo Nefariti" in restrizione_corrente:
-                    if (guerriero.keywords is None or guerriero.keywords == [] or "Nefarita" not in guerriero.keywords ):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Nefarita")
-
-                elif "Solo Personalita" in restrizione_corrente:
-                    # Basta una delle due dichiarazioni: nel database 27 Personalita' su 29
-                    # portano il solo `tipo`, e nessuna la sola keyword. Pretenderle
-                    # entrambe lasciava fuori quasi tutte le Personalita' del gioco.
-                    if not (guerriero.tipo == TipoGuerriero.PERSONALITA
-                            or (guerriero.keywords and "Personalita" in guerriero.keywords)):
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo Personalita")
-
-                elif "Assegnabile a guerrieri con V <= " in restrizione_corrente:
-                    valore_richiesto = int( restrizione_corrente.split("Assegnabile a guerrieri con V <= ")[1].strip() )
-
-                    if guerriero.stats.valore > valore_richiesto:
-                        risultato["puo_assegnare"] = False
-                        risultato["errori"].append(f"Solo guerrieri con valore inferiore o uguale a {valore_richiesto}")
-
-                if risultato["puo_assegnare"] == False:
-                    return risultato
+        # Vocabolario condiviso con Speciale/Equipaggiamento/Missione/Reliquia/Warzone —
+        # vedi source/cards/regole_associazione.py.
+        risultato_restrizioni = valuta_restrizioni(restrizione, guerriero)
+        if not risultato_restrizioni["puo_assegnare"]:
+            risultato["puo_assegnare"] = False
+            risultato["errori"].extend(risultato_restrizioni["errori"])
+            return risultato
 
         # Controllo fazioni_permesse
         if self.fazioni_permesse is not None and self.fazioni_permesse != []:
