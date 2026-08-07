@@ -87,8 +87,17 @@ Riletture dirette delle scansioni (`image/`), con correzioni applicate dove conf
   Fratellanza, ma nessun testo/FAQ la restringe (`Lancia Castigator` ha già
   `Solo Doomtrooper` in `restrizioni_guerriero`, e questo database non ha un valore
   collettivo "Doomtrooper" per `fazioni_permesse`).
-- **Speciale, risolte**: `False Credenze` e `Fiamme Purificatrici` → `Fratellanza`.
-  `Feroce Assassino` era già corretto (`Oscura Legione`).
+- **Speciale**: `False Credenze` e `Fiamme Purificatrici` restano `Generica`.
+  L'icona osservata è Fratellanza, ma **`fazioni_permesse` è un filtro rigido**:
+  `Creatore_Mazzo._carta_compatibile_con_guerrieri` scarta una carta Speciale se
+  nessun guerriero del mazzo soddisfa `puo_essere_assegnato_a_guerriero` — quindi
+  vale solo quando l'effetto agisce sui *propri* guerrieri, non su quelli
+  dell'avversario. Entrambe le carte colpiscono guerrieri altrui (False Credenze
+  abilita il combattimento reciproco Fratellanza/Cybertronic, Fiamme
+  Purificatrici scarta un guerriero dell'Oscura Legione): richiedere un
+  guerriero Fratellanza in mazzo per usarle sarebbe stato un vincolo indebito.
+  `Feroce Assassino` resta `Oscura Legione`, correttamente: potenzia un proprio
+  guerriero, che deve appartenere a quella fazione.
 - **`Famoso Collezionista`**: aggiunta. La scansione (`image/Speciali/`) era
   interamente leggibile, a differenza di quanto riportato dall'audit originale —
   vedi la voce nel database per il testo completo. `fazione = Generica,
