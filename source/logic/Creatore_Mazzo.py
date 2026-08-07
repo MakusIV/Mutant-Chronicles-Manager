@@ -32,6 +32,10 @@ except ImportError:
 
 # Import delle classi delle carte (solo le classi, non le funzioni di creazione)
 from source.logic.Creatore_Collezione import creazione_Collezione_Giocatore, carica_collezioni_json_migliorato, salva_collezioni_json_migliorato, determina_orientamento_collezione
+from source.logic.vocabolario_potenza import (
+    applica_bonus_abilita, VOCABOLARIO_GUERRIERO, VOCABOLARIO_EQUIPAGGIAMENTO,
+    VOCABOLARIO_FORTIFICAZIONE, VOCABOLARIO_RELIQUIA, VOCABOLARIO_WARZONE,
+)
 from source.cards.Guerriero import (
     Guerriero, Fazione, Set_Espansione, Rarity, TipoGuerriero, DisciplinaArte, DOOMTROOPER,
     vale_come_doomtrooper
@@ -454,52 +458,13 @@ class CreatoreMazzo:
             
         potenza = ((combattimento + sparo + armatura) * 1.5) / valore
         
-        # Bonus per abilità speciali
+        # Bonus per abilità speciali — vocabolario condiviso con Equipaggiamento/
+        # Fortificazione/Reliquia/Warzone, vedi source/logic/vocabolario_potenza.py.
         for abilita in guerriero.abilita:
-            # Potenziamento altri guerrieri
-            descrizione = abilita.descrizione.lower()
             nome = abilita.nome.lower()
             tipo = abilita.tipo.lower()
+            potenza = applica_bonus_abilita(potenza, tipo, nome, VOCABOLARIO_GUERRIERO)
 
-            if tipo == "combattimento":
-                    if nome == "uccide automaticamente":
-                        potenza *= 1.5
-                    if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
-                        potenza *= 1.3
-                    
-            if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
-                    potenza *= 1.4                
-                
-                elif any(immunita in nome for immunita in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione"]):
-                    potenza *= 1.2
-                        
-            if tipo == "modificatore":        
-                if nome in ["aumenta effetto", "aumenta caratteristica"]:
-                    potenza *= 1.3
-                elif nome == "trasforma guerrieri uccisi in alleati":
-                    potenza *= 1.1
-                elif nome == "sostituisce guerrieri":
-                    potenza *= 1.2
-
-            if tipo == "guarigione" :
-                    if "guarisce se stesso" in nome:
-                        potenza *= 1.3
-
-            if tipo == "arte":                
-                if "lancia arte e/o incantesimo dell'arte" == nome:
-                    potenza *= 1.3                
-                elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
-                    potenza *= 1.2
-
-            if tipo == "carte":
-                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
-                    potenza *= 1.3    
-
-            if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco"]:
-                    potenza *= 1.3    
-                        
         self.potenze_calcolate['Guerriero'][guerriero.nome] = potenza
         return potenza
 
@@ -672,62 +637,12 @@ class CreatoreMazzo:
             if statistica.startswith("multiple"):
                 potenza *= 1.5 # aumenta del 50% la potenza assoluta
         
-        # Bonus per abilita speciali
+        # Bonus per abilita speciali — vocabolario condiviso con Guerriero/
+        # Fortificazione/Reliquia/Warzone, vedi source/logic/vocabolario_potenza.py.
         for abilita in equipaggiamento.abilita_speciali:
-            # Potenziamento altri guerrieri
-            descrizione = abilita.descrizione.lower()
             nome = abilita.nome.lower()
             tipo = abilita.tipo_attivazione.lower()
-
-            if tipo == "combattimento":
-                    if nome == "uccide automaticamente":
-                        potenza *= 1.5
-                    if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
-                        potenza *= 1.3
-                    
-            if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
-                    potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
-                    potenza *= 1.2
-                                                                                    
-            if tipo == "modificatore":        
-                if nome in ["aumenta effetto", "aumenta caratteristica"]:
-                    potenza *= 1.3
-                elif nome == "trasforma guerrieri uccisi in alleati":
-                    potenza *= 1.1
-                elif nome == "sostituisce guerrieri":
-                    potenza *= 1.2
-
-            if tipo == "guarigione" :
-                if nome in ["guarisce se stesso", "guarisce guerriero"]:
-                    potenza *= 1.3
-                if nome == "ripara equipaggiamento o fortificazione":
-                    potenza *= 1.1
-
-            if tipo == "arte":
-                # "lancia arte" e' la forma breve usata dai dati dell'Equipaggiamento e
-                # gia' riconosciuta dai blocchi di Reliquia e Fortificazione.
-                if nome in ["lancia arte e/o incantesimo dell'arte", "lancia arte"]:
-                    potenza *= 1.3
-                elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
-                    potenza *= 1.2
-
-            if tipo == "carte":
-                # "assegna carte" e' la variante al plurale, usata dai veicoli e dalle armi
-                # che ne trasportano o ne ricevono piu' d'una.
-                if nome in ["assegna carta", "assegna carte", "scarta carta", "elimina carta"]:
-                    potenza *= 1.3
-
-            if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni",
-                            "attacca sempre per primo",
-                            # variante condizionata: vale solo scegliendo di Sparare
-                            "attacca sempre per primo se sceglie di sparare"]:
-                    potenza *= 1.3
-                elif nome in ["modifica azione", "modifica stato"]:
-                    potenza *= 1.1
-        
+            potenza = applica_bonus_abilita(potenza, tipo, nome, VOCABOLARIO_EQUIPAGGIAMENTO)
 
         self.potenze_calcolate['Equipaggiamento'][equipaggiamento.nome] = potenza
         return potenza
@@ -773,66 +688,16 @@ class CreatoreMazzo:
             if statistica.startswith("multiple"):
                 potenza *= 1.5 # aumenta del 50% la potenza assoluta
         
-        # Bonus per abilita speciali
+        # Bonus per abilita speciali — vocabolario condiviso con Guerriero/
+        # Equipaggiamento/Reliquia/Warzone, vedi source/logic/vocabolario_potenza.py.
         for abilita in fortificazione.abilita_speciali:
-            # Potenziamento altri guerrieri
-            descrizione = abilita.descrizione.lower()
             nome = abilita.nome.lower()
             tipo = abilita.tipo_abilita.lower()
 
             if potenza == 0:
                 potenza = 1.0
 
-            if tipo == "combattimento":                    
-                if nome == "uccide automaticamente":
-                    potenza *= 1.5
-                if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
-                    potenza *= 1.3
-            
-                    
-            if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
-                    potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
-                    potenza *= 1.2
-                                                                                    
-            if tipo == "modificatore":        
-                if nome in ["aumenta effetto", "aumenta caratteristica"]:
-                    potenza *= 1.3
-                elif nome in ["trasforma guerrieri uccisi in alleati", "imprigiona guerrieri"]:
-                    potenza *= 1.1
-                elif nome == "sostituisce guerrieri":
-                    potenza *= 1.2
-
-            if tipo == "guarigione" :
-                if nome in ["guarisce se stesso", "guarisce guerriero"]:
-                    potenza *= 1.3
-                if nome == "ripara equipaggiamento o fortificazione":
-                    potenza *= 1.1
-
-            if tipo == "arte":                
-                if "lancia arte" == nome:
-                    potenza *= 1.3                
-                elif "lancia arte specifica" == nome:
-                    potenza *= 1.2
-
-         
-            if tipo == "carte":
-                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
-                    potenza *= 1.3   
-
-            if tipo == "punti":
-                if nome in ["produce punti"]:
-                    potenza *= 1.3 
-
-                if nome in ["protezione punti"]:
-                    potenza *= 1.5
-
-            if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo", "attacco in uscita da copertura"]:
-                    potenza *= 1.3    
-                elif nome in ["modifica azione", "modifica stato"]:
-                    potenza *= 1.1    
+            potenza = applica_bonus_abilita(potenza, tipo, nome, VOCABOLARIO_FORTIFICAZIONE)
 
         self.potenze_calcolate['Fortificazione'][fortificazione.nome] = potenza
         return self.potenze_calcolate['Fortificazione'][fortificazione.nome]
@@ -906,63 +771,12 @@ class CreatoreMazzo:
                     potenza += numero
 
 
-        # Bonus per poteri
+        # Bonus per poteri — vocabolario condiviso con Guerriero/Equipaggiamento/
+        # Fortificazione/Warzone, vedi source/logic/vocabolario_potenza.py.
         for potere in reliquia.poteri:
-            # Potenziamento altri guerrieri
-            descrizione = potere.descrizione.lower()
             nome = potere.nome.lower()
             tipo = potere.tipo_potere.value.lower()
-            limitazioni = potere.limitazioni
-            
-            if tipo == "combattimento":                    
-                if nome in ["uccide automaticamente", "porta rinforzi"]:
-                    potenza *= 1.5
-                if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
-                    potenza *= 1.3            
-                    
-            if tipo == "immunita":
-                if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
-                    potenza *= 1.4
-                elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico equipaggiamento", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
-                    potenza *= 1.2
-                                                                                    
-            if tipo == "modificatore":        
-                if nome in ["aumenta effetto", "aumenta caratteristica"]:
-                    potenza *= 1.3
-                elif nome in ["trasforma guerrieri uccisi in alleati", "imprigiona guerrieri"]:
-                    potenza *= 1.1
-                elif nome == "sostituisce guerrieri":
-                    potenza *= 1.2
-
-            if tipo == "guarigione" :
-                if nome in ["guarisce se stesso", "guarisce guerriero"]:
-                    potenza *= 1.3
-                if nome == "ripara equipaggiamento o fortificazione":
-                    potenza *= 1.1
-
-            if tipo == "arte":                
-                if nome in ["lancia arte", "annulla effetto arte"]:
-                    potenza *= 1.3                
-                elif "lancia arte specifica" == nome:
-                    potenza *= 1.2
-
-            if tipo == "carte":
-                if nome in ["assegna carta", "scarta carta", "elimina carta"]:
-                    potenza *= 1.3   
-
-            if tipo == "punti":
-                if nome in ["produce punti"]:
-                    potenza *= 1.3 
-
-                if nome in ["protezione punti"]:
-                    potenza *= 1.5
-
-            if tipo == "azioni":
-                if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo", "attacco in uscita da copertura"]:
-                    potenza *= 1.3    
-                elif nome in ["modifica azione", "modifica stato"]:
-                    potenza *= 1.1       
-
+            potenza = applica_bonus_abilita(potenza, tipo, nome, VOCABOLARIO_RELIQUIA)
 
         self.potenze_calcolate['Reliquia'][reliquia.nome] = potenza
         return potenza
@@ -1030,65 +844,16 @@ class CreatoreMazzo:
             if statistica.startswith("multiple"):
                 potenza *= 1.5 # aumenta del 50% la potenza assoluta
         
-        # Bonus per abilita speciali
+        # Bonus per abilita speciali — vocabolario condiviso con Guerriero/
+        # Equipaggiamento/Fortificazione/Reliquia, vedi source/logic/vocabolario_potenza.py.
         for effetto in warzone.effetti_combattimento:
-            # Potenziamento altri guerrieri            
             nome = effetto.nome.lower()
-            descrizione = effetto.descrizione.lower()
             target = effetto.target.lower()
             tipo = effetto.tipo_effetto.lower()
             effetto_ristretto = True if "ristretto:" in target[:len("ristretto:")] else False
-            
+
             if not effetto_ristretto:
-
-                if tipo == "combattimento":
-                        if nome == "uccide automaticamente":
-                            potenza *= 1.5
-                        if nome in ["permette ai guerrieri di attaccare per primi", "i guerrieri alleati uccidono automaticamente"]:
-                            potenza *= 1.3
-                        
-                if tipo == "punti":
-                    if nome in ["produce punti", "guadagna punti"]:
-                        potenza *= 1.3 
-
-                    if nome in ["protezione punti"]:
-                        potenza *= 1.5
-
-                if tipo == "immunita":
-                    if nome in ["immune agli effetti dell'arte", "immune agli effetti dell'oscura simmetria", "annulla immunita dell'oscura simmetria", "immune ai doni degli apostoli"]:
-                        potenza *= 1.4
-                    elif any( val in nome for val in ["immune agli effetti della specifica arte", "immune allo specifico warzone", "immune alla specifica fortificazione", "immune alle ferite durante il combattimento"]):
-                        potenza *= 1.2
-                                                                                        
-                if tipo == "modificatore":        
-                    if nome in ["aumenta effetto", "aumenta caratteristica"]:
-                        potenza *= 1.3
-                    elif nome == "trasforma guerrieri uccisi in alleati":
-                        potenza *= 1.1
-                    elif nome == "sostituisce guerrieri":
-                        potenza *= 1.2
-
-                if tipo == "guarigione" :
-                    if nome in ["guarisce se stesso", "guarisce guerriero"]:
-                        potenza *= 1.3
-                    if nome == "ripara equipaggiamento o fortificazione":
-                        potenza *= 1.1
-
-                if tipo == "arte":                
-                    if "lancia arte e/o incantesimo dell'arte" == nome:
-                        potenza *= 1.3                
-                    elif "lancia arte e/o incantesimo dell'arte specifica" == nome:
-                        potenza *= 1.2
-            
-                if tipo == "carte":
-                    if nome in ["assegna carta", "scarta carta", "elimina carta"]:
-                        potenza *= 1.3    
-
-                if tipo == "azioni":
-                    if nome in ["converte azioni in azioni d'attacco", "incrementa azioni", "attacca sempre per primo"]:
-                        potenza *= 1.3    
-                    elif nome in ["modifica azione", "modifica stato"]:
-                        potenza *= 1.1                 
+                potenza = applica_bonus_abilita(potenza, tipo, nome, VOCABOLARIO_WARZONE)
 
         self.potenze_calcolate['Warzone'][warzone.nome] = potenza
         return potenza

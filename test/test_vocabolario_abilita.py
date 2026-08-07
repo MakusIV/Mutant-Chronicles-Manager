@@ -18,30 +18,27 @@ dall'ammissibilità al punteggio.
 """
 
 import collections
-import pathlib
-import re
 
 import pytest
 
 from source.data_base_cards.Database_Equipaggiamento import DATABASE_EQUIPAGGIAMENTO
 from source.data_base_cards.Database_Reliquia import DATABASE_RELIQUIE
-
-RADICE = pathlib.Path(__file__).resolve().parents[1]
-SORGENTE_PUNTEGGIO = (RADICE / "source" / "logic" / "Creatore_Mazzo.py").read_text(
-    encoding="utf-8")
+from source.logic.vocabolario_potenza import VOCABOLARIO_EQUIPAGGIAMENTO, VOCABOLARIO_RELIQUIA
 
 
-def _vocabolario_del_blocco(intestazione):
+def _vocabolario_del_blocco(vocabolario):
     """
-    I nomi che il punteggio riconosce, letti dal blocco che li confronta.
+    I nomi che il punteggio riconosce, letti dalla tabella condivisa
+    (source/logic/vocabolario_potenza.py) invece che dal codice del metodo.
 
-    Estrarli dal codice invece di ricopiarli qui evita che le due liste divergano in
-    silenzio: se un ramo viene aggiunto o rinominato, il test se ne accorge.
+    Leggerli dalla tabella invece di ricopiarli qui evita che le due liste
+    divergano in silenzio: se una regola viene aggiunta o rinominata, il test se
+    ne accorge. Prima dell'unificazione in vocabolario_potenza.py questa funzione
+    estraeva le stringhe con una regex dal blocco if/elif in Creatore_Mazzo.py;
+    ora il vocabolario è dati, non testo sorgente da scansionare.
     """
-    inizio = SORGENTE_PUNTEGGIO.index(intestazione)
-    fine = SORGENTE_PUNTEGGIO.index("\n    def ", inizio)
-    blocco = SORGENTE_PUNTEGGIO[inizio:fine]
-    return {s.lower() for s in re.findall(r'"([a-zà-ù\' ]{4,})"', blocco)}
+    return {nome.lower() for regole in vocabolario.values()
+            for nomi, _, _ in regole for nome in nomi}
 
 
 # --------------------------------------------------------------------------
@@ -68,7 +65,7 @@ def test_ogni_abilita_speciale_e_classificata():
     Nessun nome di abilità sfugge alle due liste: o il punteggio lo riconosce, o è
     dichiarato qui come non contribuente, con la ragione scritta.
     """
-    riconosciuti = _vocabolario_del_blocco("# Bonus per abilita speciali")
+    riconosciuti = _vocabolario_del_blocco(VOCABOLARIO_EQUIPAGGIAMENTO)
     non_classificate = [
         f"{nome!r} ({quante} abilità)"
         for nome, quante in _abilita_nei_dati().items()
@@ -84,7 +81,7 @@ def test_ogni_abilita_speciale_e_classificata():
 @pytest.mark.parametrize("nome,causa", sorted(ABILITA_SENZA_PUNTEGGIO.items()))
 def test_le_abilita_senza_punteggio_sono_ancora_tali(nome, causa):
     """Sentinella: quando un nome viene allineato, questo test lo segnala."""
-    riconosciuti = _vocabolario_del_blocco("# Bonus per abilita speciali")
+    riconosciuti = _vocabolario_del_blocco(VOCABOLARIO_EQUIPAGGIAMENTO)
     assert nome not in riconosciuti, (
         f"«{nome}» è ora riconosciuto ({causa}). Toglilo da ABILITA_SENZA_PUNTEGGIO.")
     assert nome in _abilita_nei_dati(), (
@@ -93,21 +90,33 @@ def test_le_abilita_senza_punteggio_sono_ancora_tali(nome, causa):
 
 def test_nessuna_stringa_del_vocabolario_porta_maiuscole():
     """
-    I blocchi confrontano il nome dell'abilità **già abbassato a minuscolo**: una
-    stringa del vocabolario con una maiuscola non può mai corrispondere, e il ramo che
-    la contiene è scritto ma irraggiungibile. Erano 19 stringhe in quattro blocchi —
-    `"Incrementa Azioni"`, `"Attacca sempre per primo"`, `"Immune alle ferite durante il
-    combattimento"` fra le altre — e valevano da sole 4 delle 12 abilità senza punteggio.
+    Il confronto avviene contro il nome dell'abilità **già abbassato a minuscolo**
+    (vedi `applica_bonus_abilita` in vocabolario_potenza.py): una stringa del
+    vocabolario con una maiuscola non potrebbe mai corrispondere, e la regola che
+    la contiene sarebbe scritta ma irraggiungibile. Erano 19 stringhe in quattro
+    blocchi — `"Incrementa Azioni"`, `"Attacca sempre per primo"`, `"Immune alle
+    ferite durante il combattimento"` fra le altre — e valevano da sole 4 delle 12
+    abilità senza punteggio, prima che venissero corrette.
     """
+    from source.logic.vocabolario_potenza import (
+        VOCABOLARIO_GUERRIERO, VOCABOLARIO_EQUIPAGGIAMENTO, VOCABOLARIO_FORTIFICAZIONE,
+        VOCABOLARIO_RELIQUIA, VOCABOLARIO_WARZONE,
+    )
+
     sospette = []
-    for intestazione in ("# Bonus per abilita speciali", "# Bonus per poteri"):
-        inizio = SORGENTE_PUNTEGGIO.index(intestazione)
-        fine = SORGENTE_PUNTEGGIO.index("\n    def ", inizio)
-        for riga_numero, riga in enumerate(
-                SORGENTE_PUNTEGGIO[inizio:fine].split("\n"), 1):
-            for stringa in re.findall(r'"([A-Za-zà-ù\' ]{4,})"', riga):
-                if any(carattere.isupper() for carattere in stringa):
-                    sospette.append(f"{intestazione} +{riga_numero}: {stringa!r}")
+    tabelle = [
+        ("Guerriero", VOCABOLARIO_GUERRIERO),
+        ("Equipaggiamento", VOCABOLARIO_EQUIPAGGIAMENTO),
+        ("Fortificazione", VOCABOLARIO_FORTIFICAZIONE),
+        ("Reliquia", VOCABOLARIO_RELIQUIA),
+        ("Warzone", VOCABOLARIO_WARZONE),
+    ]
+    for etichetta, vocabolario in tabelle:
+        for tipo, regole in vocabolario.items():
+            for nomi, _, _ in regole:
+                for stringa in nomi:
+                    if any(carattere.isupper() for carattere in stringa):
+                        sospette.append(f"{etichetta}[{tipo!r}]: {stringa!r}")
 
     assert not sospette, (
         "stringhe del vocabolario che il confronto in minuscolo non può raggiungere:\n  "
@@ -130,7 +139,7 @@ def _poteri_nei_dati():
 
 
 def test_ogni_potere_di_reliquia_e_classificato():
-    riconosciuti = _vocabolario_del_blocco("# Bonus per poteri")
+    riconosciuti = _vocabolario_del_blocco(VOCABOLARIO_RELIQUIA)
     non_classificati = [
         f"{nome!r} ({quante} poteri)"
         for nome, quante in _poteri_nei_dati().items()
@@ -144,7 +153,7 @@ def test_ogni_potere_di_reliquia_e_classificato():
 
 @pytest.mark.parametrize("nome,causa", sorted(POTERI_SENZA_PUNTEGGIO.items()))
 def test_i_poteri_senza_punteggio_sono_ancora_tali(nome, causa):
-    riconosciuti = _vocabolario_del_blocco("# Bonus per poteri")
+    riconosciuti = _vocabolario_del_blocco(VOCABOLARIO_RELIQUIA)
     assert nome not in riconosciuti, (
         f"«{nome}» è ora riconosciuto ({causa}). Toglilo da POTERI_SENZA_PUNTEGGIO.")
     assert nome in _poteri_nei_dati(), (
