@@ -101,7 +101,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -142,7 +142,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 10,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -191,7 +191,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 10,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 3,
         "fondamentale": True
     },
@@ -261,7 +261,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         'valore_strategico': 10,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -302,7 +302,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 8,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -351,7 +351,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 4,
-        "quantita": 3,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -491,7 +491,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 8,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
@@ -551,7 +551,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 8,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -592,7 +592,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 2,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -657,7 +657,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 10,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -756,7 +756,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 10,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -840,7 +840,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 2,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -881,7 +881,7 @@ DATABASE_RELIQUIE = {
         "incompatibile_con": [],
         "potenzia": [],
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     }

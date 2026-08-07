@@ -81,7 +81,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ['Cattedrale', 'Longshore', 'Arte', 'Elementi', 'Fortificazione', "Abilita l'Arte"],
         "valore_strategico": 2,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -120,7 +120,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ['Cattedrale', 'Heimburg', 'Arte', 'Esorcismo', 'Fortificazione', "Abilita l'Arte"],
         "valore_strategico": 2,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -189,7 +189,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Industriale", "Complesso", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 3,
         "fondamentale": True
     },
@@ -257,7 +257,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Trincea", "Protezione", "Fortificazione"],
         "valore_strategico": 6,
-        "quantita": 5,
+        "quantita": 6,
         "quantita_minima_consigliata": 3,
         "fondamentale": False
     },
@@ -294,7 +294,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Prigionia", "Campo", "Prigionieri", "Fortificazione"],
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -324,7 +324,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Fratellanza", "Cattedrale", "Città", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -362,7 +362,7 @@ DATABASE_FORTIFICAZIONI = {
         "testo_carta": "PUOI AGGIUNGERE QUESTA CARTA ALLA TUA SQUADRA O AL TUO SCHIERAMENTO, AL COSTO DI UN'AZIONE. Mentre l'Industria Bellica è in gioco, guadagni 1D durante la Tua Fase Pescare. Non c'è limite al numero di Industrie Belliche che puoi avere in gioco contemporaneamente.",
         "flavour_text": "",
         "keywords": ["Industria", "Bellica", "Fortificazione"],
-        "quantita": 11,
+        "quantita": 14,
         "valore_strategico": 10,
         "quantita_minima_consigliata": 3,
         "fondamentale": True
@@ -401,7 +401,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Luna", "Mercenari", "Fortificazione"],
         "valore_strategico": 5,
-        "quantita": 6,
+        "quantita": 9,
         "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
@@ -440,7 +440,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ['Cattedrale', 'Burroughs', 'Arte', 'Premonizione', 'Fortificazione', "Abilita l'Arte"],
         "valore_strategico": 2,
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -479,7 +479,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ['Cattedrale', 'Volksburg', 'Arte', 'Cinetica', 'Fortificazione', "Abilita l'Arte"],
         "valore_strategico": 2,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -518,7 +518,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Fogne", "Eretici", "Copertura", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 6,
+        "quantita": 9,
         "quantita_minima_consigliata": 4,
         "fondamentale": True
     },
@@ -557,7 +557,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ['Cattedrale', 'Fukido', 'Arte', 'Mentale', 'Fortificazione', "Abilita l'Arte"],
         "valore_strategico": 2,
-        "quantita": 2,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -587,7 +587,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Bauhaus", "Città", "Heimburg", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -617,7 +617,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Muawijhe", "Seguace di Muawijhe", "Cittadella", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -647,7 +647,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Barriera", "Rinforzata", "Protezione", "Fortificazione"],
         "valore_strategico": 1,
-        "quantita": 6,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -677,7 +677,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Nascondiglio", "Eretici", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 9,
+        "quantita": 12,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -716,7 +716,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ['Cattedrale', 'Gibson', 'Arte', 'Cambiamento', 'Fortificazione', "Abilita l'Arte"],
         "valore_strategico": 2,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -746,7 +746,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Semai", "Seguace di Semai", "Cittadella", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -785,7 +785,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ['Archivi', 'Pietra', 'Arte', 'Evocazione', 'Fortificazione', "Abilita l'Arte"],
         "valore_strategico": 2,
-        "quantita": 2,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -824,7 +824,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Riserva", "Cardinale", "Protezione", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -884,7 +884,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ["Imperiale", "Fukido", "Città", "Fortificazione"],
         "valore_strategico": 10,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -923,7 +923,7 @@ DATABASE_FORTIFICAZIONI = {
         "flavour_text": "",
         "keywords": ['Cattedrale', 'San Dorado', 'Arte', 'Manipolazione', 'Fortificazione', "Abilita l'Arte"],
         "valore_strategico": 2,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     }

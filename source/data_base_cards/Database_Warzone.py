@@ -52,7 +52,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 10,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -98,7 +98,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 10,
         "frequenza_utilizzo": "",
-        "quantita": 10,
+        "quantita": 12,
         "quantita_minima_consigliata": 3,
         "fondamentale": True
     },
@@ -150,7 +150,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 5,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -202,7 +202,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 5,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -254,7 +254,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 4,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -346,7 +346,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 1,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -425,7 +425,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -524,7 +524,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 5,
         "frequenza_utilizzo": "",
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
@@ -564,7 +564,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 1,
         "frequenza_utilizzo": "",
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -604,7 +604,7 @@ DATABASE_WARZONE = {
         },
         "valore_strategico": 10,
         "frequenza_utilizzo": "",
-        "quantita": 5,
+        "quantita": 7,
         "quantita_minima_consigliata": 3,
         "fondamentale": True
     },

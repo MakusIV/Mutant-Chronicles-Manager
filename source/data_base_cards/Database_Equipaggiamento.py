@@ -194,7 +194,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -255,7 +255,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -309,7 +309,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 4,
-        "quantita": 7,
+        "quantita": 9,
         "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
@@ -363,7 +363,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 5,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -425,7 +425,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -524,7 +524,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -685,7 +685,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -785,7 +785,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 10,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -839,7 +839,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 10,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -931,7 +931,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 5,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -985,7 +985,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 10,
-        "quantita": 5,
+        "quantita": 7,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -1093,7 +1093,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 8,
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 2,
         "fondamentale": False
     },
@@ -1139,7 +1139,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1185,7 +1185,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1231,7 +1231,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1285,7 +1285,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 6,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1384,7 +1384,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1538,7 +1538,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1594,7 +1594,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 9,
+        "quantita": 12,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1648,7 +1648,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 4,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1694,7 +1694,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 8,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1856,7 +1856,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 6,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1911,7 +1911,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -1972,7 +1972,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 10,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -2072,7 +2072,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 3,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2180,7 +2180,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2234,7 +2234,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2280,7 +2280,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 3,
-        "quantita": 4,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2333,7 +2333,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2386,7 +2386,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 6,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2449,7 +2449,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 3,
-        "quantita": 4,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2657,7 +2657,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 5,
+        "quantita": 7,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2711,7 +2711,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2925,7 +2925,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -2979,7 +2979,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 4,        
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3079,7 +3079,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 4,
+        "quantita": 8,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3135,7 +3135,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 10,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -3189,7 +3189,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 10,
-        "quantita": 4,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": True
     },
@@ -3289,7 +3289,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 4,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3343,7 +3343,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3451,7 +3451,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3566,7 +3566,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3620,7 +3620,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3666,7 +3666,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 10,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 2,
         "fondamentale": True
     },
@@ -3720,7 +3720,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 3,
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3774,7 +3774,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 4,
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3835,7 +3835,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 1,
+        "quantita": 2,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3889,7 +3889,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 2,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -3943,7 +3943,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 7,
+        "quantita": 9,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4050,7 +4050,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 5,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4104,7 +4104,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 3,
+        "quantita": 4,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4158,7 +4158,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 1,
-        "quantita": 2,
+        "quantita": 3,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     },
@@ -4212,7 +4212,7 @@ DATABASE_EQUIPAGGIAMENTO = {
             "equipaggiamenti_richiesti": []
         },
         "valore_strategico": 3,
-        "quantita": 4,
+        "quantita": 6,
         "quantita_minima_consigliata": 1,
         "fondamentale": False
     }
