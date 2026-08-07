@@ -46,6 +46,102 @@ APOSTOLI_SELEZIONABILI = [apostolo for apostolo in ApostoloOscuraSimmetria if ap
 
 
 # ================================================================================
+# Esecuzione in background — a livello di modulo per poterla testare da sola,
+# senza dover costruire un'intera collezione o un intero mazzo.
+# ================================================================================
+
+def esegui_in_background(finestra, lavori_in_corso: List[Any], funzione, kwargs: Dict[str, Any],
+                          al_termine, in_caso_di_errore) -> None:
+    """
+    Avvia `funzione(**kwargs)` su un QThread e richiama `al_termine`/`in_caso_di_errore`
+    in coda sul thread grafico.
+
+    Args:
+        finestra: la finestra principale (QMainWindow), usata come genitore del thread
+            e del ponte, e per garantire che questi vivano sul thread grafico
+        lavori_in_corso: lista viva per la durata della finestra, a cui viene aggiunta
+            (e da cui viene tolta a fine lavoro) una voce per thread/lavoro/ponte —
+            senza un riferimento esplicito, Python li raccoglierebbe a fine funzione
+            lasciando i segnali penzolanti
+        funzione, kwargs: la funzione da eseguire sul thread separato e i suoi argomenti
+        al_termine, in_caso_di_errore: callback richiamate sul thread grafico, con il
+            risultato o il messaggio di errore
+    """
+    from PySide6.QtCore import QObject, Qt, QThread, Signal
+
+    class _LavoroBackground(QObject):
+        """Esegue una funzione di creazione in un thread separato, per non bloccare
+        l'interfaccia durante operazioni che richiedono decine di secondi (copia
+        immagini, generazione PDF)."""
+
+        completato = Signal(object)
+        fallito = Signal(str)
+
+        def __init__(self, funzione, kwargs: Dict[str, Any]) -> None:
+            super().__init__()
+            self._funzione = funzione
+            self._kwargs = kwargs
+
+        def esegui(self) -> None:
+            try:
+                risultato = self._funzione(**self._kwargs)
+            except Exception as exc:  # difesa: le funzioni chiamate incapsulano già i propri errori
+                self.fallito.emit(str(exc))
+                return
+            self.completato.emit(risultato)
+
+    class _Ponte(QObject):
+        """
+        Destinatario sempre sul thread grafico, per instradare in coda i callback dei
+        lavori in background.
+
+        `al_termine`/`in_caso_di_errore` sono funzioni Python semplici, non metodi di un
+        QObject: connesse direttamente al segnale di `_LavoroBackground` (che vive sul
+        thread del lavoro, dopo `moveToThread`), Qt non ha un'affinità di thread su cui
+        basare la scelta automatica della connessione e finiva per eseguirle sul thread
+        del lavoro invece che su quello grafico. I widget non sono thread-safe: la
+        corruzione non si manifestava subito, ma al primo evento successivo
+        sull'interfaccia (il cambio scheda), con un segmentation fault.
+
+        Il `_Ponte` risolve l'ambiguità: è creato qui, sul thread grafico, quindi la sua
+        affinità è certa, e la connessione fra il suo segnale e il suo stesso metodo può
+        essere messa esplicitamente in coda. Il primo salto (dal lavoro al ponte) resta
+        senza destinatario certo, ma si limita a un `emit`, sempre sicuro da qualunque
+        thread — nessun widget viene toccato prima del secondo salto.
+        """
+
+        inoltra = Signal(object, object)
+
+        def __init__(self, parent: QObject) -> None:
+            super().__init__(parent)
+            self.inoltra.connect(self._esegui, Qt.ConnectionType.QueuedConnection)
+
+        @staticmethod
+        def _esegui(funzione, argomento) -> None:
+            funzione(argomento)
+
+    thread = QThread(finestra)
+    lavoro = _LavoroBackground(funzione, kwargs)
+    lavoro.moveToThread(thread)
+    ponte = _Ponte(finestra)
+
+    voce = (thread, lavoro, ponte)
+    lavori_in_corso.append(voce)
+
+    def pulisci() -> None:
+        if voce in lavori_in_corso:
+            lavori_in_corso.remove(voce)
+
+    thread.started.connect(lavoro.esegui)
+    lavoro.completato.connect(lambda risultato: ponte.inoltra.emit(al_termine, risultato))
+    lavoro.fallito.connect(lambda messaggio: ponte.inoltra.emit(in_caso_di_errore, messaggio))
+    lavoro.completato.connect(thread.quit)
+    lavoro.fallito.connect(thread.quit)
+    thread.finished.connect(pulisci)
+    thread.start()
+
+
+# ================================================================================
 # STRATO DATI — ricerca cartelle, indipendente dall'interfaccia grafica
 # ================================================================================
 
@@ -123,7 +219,7 @@ def avvia_interfaccia() -> int:
         Il codice di uscita dell'applicazione
     """
     try:
-        from PySide6.QtCore import QObject, Qt, QThread, Signal
+        from PySide6.QtCore import Qt
         from PySide6.QtWidgets import (
             QApplication, QCheckBox, QComboBox, QFileDialog, QFormLayout, QHBoxLayout,
             QInputDialog, QLabel, QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
@@ -144,48 +240,6 @@ def avvia_interfaccia() -> int:
     # Tiene in vita i lavori in corso: senza un riferimento esplicito, Python
     # raccoglierebbe thread e worker a fine funzione lasciando i segnali penzolanti.
     lavori_in_corso: List[Any] = []
-
-    class _LavoroBackground(QObject):
-        """Esegue una funzione di creazione in un thread separato, per non bloccare
-        l'interfaccia durante operazioni che richiedono decine di secondi (copia
-        immagini, generazione PDF)."""
-
-        completato = Signal(object)
-        fallito = Signal(str)
-
-        def __init__(self, funzione, kwargs: Dict[str, Any]) -> None:
-            super().__init__()
-            self._funzione = funzione
-            self._kwargs = kwargs
-
-        def esegui(self) -> None:
-            try:
-                risultato = self._funzione(**self._kwargs)
-            except Exception as exc:  # difesa: le funzioni chiamate incapsulano già i propri errori
-                self.fallito.emit(str(exc))
-                return
-            self.completato.emit(risultato)
-
-    def esegui_in_background(funzione, kwargs: Dict[str, Any], al_termine, in_caso_di_errore) -> None:
-        """Avvia `funzione(**kwargs)` su un QThread e richiama i callback in coda sul thread grafico."""
-        thread = QThread(finestra)
-        lavoro = _LavoroBackground(funzione, kwargs)
-        lavoro.moveToThread(thread)
-
-        voce = (thread, lavoro)
-        lavori_in_corso.append(voce)
-
-        def pulisci() -> None:
-            if voce in lavori_in_corso:
-                lavori_in_corso.remove(voce)
-
-        thread.started.connect(lavoro.esegui)
-        lavoro.completato.connect(al_termine)
-        lavoro.fallito.connect(in_caso_di_errore)
-        lavoro.completato.connect(thread.quit)
-        lavoro.fallito.connect(thread.quit)
-        thread.finished.connect(pulisci)
-        thread.start()
 
     def lista_selezionabile(valori: List[str]) -> QListWidget:
         """Crea un elenco a scelta multipla tramite caselle di spunta."""
@@ -293,7 +347,7 @@ def avvia_interfaccia() -> int:
             pulsante_crea_collezione.setEnabled(True)
             stato_collezione.setText(f"❌ Errore imprevisto: {messaggio}")
 
-        esegui_in_background(crea_cartelle_collezioni, kwargs, completata, fallita)
+        esegui_in_background(finestra, lavori_in_corso, crea_cartelle_collezioni, kwargs, completata, fallita)
 
     def apri_collezione_creata() -> None:
         percorso = percorso_collezione_creata["valore"]
@@ -485,7 +539,8 @@ def avvia_interfaccia() -> int:
             pulsante_crea_mazzo.setEnabled(True)
             stato_mazzo.setText(f"❌ Errore imprevisto: {messaggio}")
 
-        esegui_in_background(crea_mazzo_da_cartella_collezione_con_parametri, kwargs, completata, fallita)
+        esegui_in_background(finestra, lavori_in_corso, crea_mazzo_da_cartella_collezione_con_parametri,
+                              kwargs, completata, fallita)
 
     def apri_mazzo_creato() -> None:
         percorso = percorso_mazzo_creato["valore"]
