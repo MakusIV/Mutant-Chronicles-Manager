@@ -131,6 +131,29 @@ def test_i_cultisti_entrano_anche_in_un_mazzo_doomtrooper(creatore):
 
 
 @pytest.mark.lento
+def test_la_fratellanza_entra_in_un_mazzo_doomtrooper_piu_fratellanza(creatore):
+    """
+    `vale_come_doomtrooper` riconosce la Fratellanza come una delle 7 fazioni
+    Doomtrooper — corretto per i vincoli "Solo Doomtrooper" sulle carte — ma in
+    `seleziona_guerrieri` serviva solo a far entrare i Cultisti nel ramo Doomtrooper
+    quando l'Oscura Legione non è richiesta. Senza escludere la Fratellanza da quel
+    riconoscimento, un guerriero Fratellanza vero ci finiva anche lui, per poi essere
+    respinto perché "Fratellanza" non è fra le fazioni di orientamento Doomtrooper
+    richieste: un mazzo Doomtrooper + Fratellanza restava senza guerrieri Fratellanza
+    (e di conseguenza, per `_carta_compatibile_con_guerrieri`, senza carte Arte).
+    """
+    fratellanza = {nome for nome, dati in GUERRIERI_DATABASE.items()
+                    if dati.get("fazione") == "Fratellanza"}
+
+    selezionati = _seleziona(creatore, doomtrooper=True, orientamento_doomtrooper=["Bauhaus"],
+                             fratellanza=True, oscura_legione=False)
+
+    assert [n for n in selezionati if n in fratellanza], (
+        "nessun guerriero Fratellanza selezionato in un mazzo Doomtrooper + Fratellanza"
+    )
+
+
+@pytest.mark.lento
 def test_i_cultisti_pesano_sulla_quota_dell_oscura_legione(creatore):
     """
     Il Cultista sta in Squadra ma è un guerriero dell'Oscura Legione: la quota che lo
@@ -506,6 +529,54 @@ def test_senza_lanciatori_il_mazzo_non_prende_arti(creatore_con_arti):
         numero_carte=15)
 
     assert not arti, f"pescate Arti senza alcun lanciatore: {[getattr(c,'nome','?') for c in arti]}"
+
+
+@pytest.mark.lento
+def test_fondamentale_generica_non_bypassa_le_restrizioni(creatore):
+    """
+    «Fogne» è fondamentale, `fazioni_permesse: ["Generica"]` e `restrizioni: ["Solo
+    Eretici"]`. Un ramo di `seleziona_carte_supporto` faceva bypassare del tutto la
+    compatibilità carta-guerriero per le carte "Generica" e fondamentali — bastava
+    fazioni_permesse=Generica, `restrizioni` non contava — e Fogne finiva nel mazzo
+    anche senza un solo guerriero Eretico presente.
+    """
+    fortificazione = importlib.import_module("source.data_base_cards.Database_Fortificazione")
+    fogne = fortificazione.DATABASE_FORTIFICAZIONI["Fogne"]
+    assert fogne.get("fondamentale") is True
+    assert fogne.get("restrizioni") == ["Solo Eretici"]
+    assert fogne.get("fazioni_permesse") == ["Generica"]
+
+    squadra = [g for g in (crea_guerriero_da_nome(n) for n in
+                           ("Blood Beret", "Ussaro", "Sergente")) if g]
+    assert not any("Eretico" in (g.keywords or []) for g in squadra), (
+        "il presupposto non regge: uno di questi guerrieri è un Eretico")
+
+    random.seed(42)
+    selezionate = creatore.seleziona_carte_supporto(
+        squadra=squadra, schieramento=[], espansioni_richieste=ESPANSIONI,
+        tipo_carta="fortificazione", doomtrooper=True, fratellanza=False,
+        oscura_legione=False, numero_carte=200)
+
+    assert not any(getattr(c, "nome", "?") == "Fogne" for c in selezionate), (
+        "«Fogne» (Solo Eretici) selezionata in un mazzo senza alcun Eretico"
+    )
+
+
+@pytest.mark.lento
+def test_fondamentale_generica_resta_selezionabile_con_il_guerriero_giusto(creatore):
+    """Il verso complementare: la correzione esclude, non cancella la carta."""
+    eretico = next(g for g in (crea_guerriero_da_nome(n) for n in GUERRIERI_DATABASE)
+                    if g and "Eretico" in (g.keywords or []))
+
+    random.seed(42)
+    selezionate = creatore.seleziona_carte_supporto(
+        squadra=[eretico], schieramento=[], espansioni_richieste=ESPANSIONI,
+        tipo_carta="fortificazione", doomtrooper=True, fratellanza=False,
+        oscura_legione=False, numero_carte=200)
+
+    assert any(getattr(c, "nome", "?") == "Fogne" for c in selezionate), (
+        "«Fogne» dovrebbe restare selezionabile in un mazzo con un guerriero Eretico"
+    )
 
 
 @pytest.mark.lento

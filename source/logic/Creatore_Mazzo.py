@@ -1125,8 +1125,17 @@ class CreatoreMazzo:
             # dell'Oscura Legione e' fra gli orientamenti richiesti lo si valuta li', dove
             # riceve anche il bonus dell'Apostolo; altrimenti vale come Doomtrooper,
             # invece di restare escluso da entrambi i rami.
+            # La Fratellanza va esclusa da questo allargamento: `vale_come_doomtrooper`
+            # la riconosce (corretto per i vincoli "Solo Doomtrooper" sulle carte, dove la
+            # Fratellanza e' una delle 7 fazioni), ma qui servirebbe solo a intercettare i
+            # Cultisti — un guerriero Fratellanza vero ha gia' il proprio ramo dedicato
+            # subito sotto, e senza l'esclusione ci finiva comunque, per poi essere
+            # respinto perche' "Fratellanza" non e' fra le fazioni di orientamento
+            # doomtrooper richieste: un mazzo Doomtrooper + Fratellanza restava senza
+            # guerrieri Fratellanza, e di conseguenza senza carte Arte.
             vale_fra_i_doomtrooper = (guerriero.fazione in FAZIONI_DOOMTROOPER
-                                      or (vale_come_doomtrooper(guerriero) and not oscura_legione))
+                                      or (guerriero.fazione not in FAZIONI_FRATELLANZA
+                                          and vale_come_doomtrooper(guerriero) and not oscura_legione))
 
             # Orientamento Doomtrooper
             if doomtrooper and vale_fra_i_doomtrooper:
@@ -1465,14 +1474,21 @@ class CreatoreMazzo:
                                 fattore_incremento *= 1.5 # aumenta del 50% il fattore di incremento se la carta è dedicata a nefariti
                                 break 
             
+            # Usata solo per il bonus di punteggio più sotto, non per bypassare la
+            # compatibilità: una carta "Generica" può comunque avere `restrizioni` più
+            # specifiche (es. Fogne, fazioni_permesse Generica ma "Solo Eretici") che
+            # vanno rispettate anche se la carta è fondamentale. Il bypass che c'era qui
+            # ignorava `restrizioni` del tutto: bastava fazioni_permesse=Generica perché
+            # una carta fondamentale finisse nel mazzo anche senza alcun guerriero che la
+            # rendesse davvero utilizzabile.
             carta_generica_fondamentale = Fazione.GENERICA in fazioni and carta.fondamentale
 
-            # Verifica compatibilità carta - guerrieri            
-            carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)            
+            # Verifica compatibilità carta - guerrieri
+            carta_compatibile, numero_guerrieri_compatibili = self._carta_compatibile_con_guerrieri(carta, tutti_guerrieri)
 
             # se non compatibile conitnua con il prossimo elemento del ciclo
-            if not (carta_compatibile or carta_generica_fondamentale):
-                continue 
+            if not carta_compatibile:
+                continue
 
             # Nota: qui era presente un `or 'Doomtrooper'` che, essendo una stringa non vuota,
             # rendeva la variabile sempre veritiera: il blocco Doomtrooper si applicava a ogni
